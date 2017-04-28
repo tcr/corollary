@@ -1,0 +1,14 @@
+[package]
+name = "calculator"
+version = "0.12.5"
+authors = ["Niko Matsakis <niko@alum.mit.edu>"]
+build = "build.rs" # <-- We added this and everything after!
+
+[build-dependencies.lalrpop]
+version = "0.12.5"
+
+[dependencies]
+regex = "0.2.1"
+
+[dependencies.lalrpop-util]
+version = "0.12.5"

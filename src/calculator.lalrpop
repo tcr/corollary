@@ -1,0 +1,72 @@
+use std::str::FromStr;
+use ast::{Expr, Opcode, Ident, Statement};
+use lalrpop_util::ErrorRecovery;
+
+grammar<'err>(errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>);
+
+pub Exprs = Comma<Expr>;
+
+Comma<T>: Vec<T> = { // (0)
+    <v:(<T> ",")*> <e:T?> => match e { // (1)
+        None=> v,
+        Some(e) => {
+            let mut v = v;
+            v.push(e);
+            v
+        }
+    }
+};
+
+Pipe<T>: Vec<T> = { // (0)
+    <v:(<T> "|")*> <e:T?> => match e { // (1)
+        None=> v,
+        Some(e) => {
+            let mut v = v;
+            v.push(e);
+            v
+        }
+    }
+};
+
+Ident: Ident = {
+  r"[a-zA-Z]+" => Ident((<>).to_string()),
+};
+
+Data: Statement = {
+  "data" <id:Ident> "=" <p:Pipe<Ident>>
+  "deriving" "(" <d:Comma<Ident>> ")" =>
+    Statement::Data(id, p, d),
+  Ident "::" Ident "->" Ident => Statement::Dummy,
+};
+
+pub Statements: Vec<Statement> = {
+    <v:Data+> => v,
+};
+
+Tier<Op,NextTier>: Box<Expr> = {
+    Tier<Op,NextTier> Op NextTier => Box::new(Expr::Op(<>)),
+    NextTier
+};
+
+Expr = Tier<ExprOp, Factor>;
+Factor = Tier<FactorOp, Term>;
+
+ExprOp: Opcode = { // (3)
+    "+" => Opcode::Add,
+    "-" => Opcode::Sub,
+};
+
+FactorOp: Opcode = {
+    "*" => Opcode::Mul,
+    "/" => Opcode::Div,
+};
+
+Term: Box<Expr> = {
+    Num => Box::new(Expr::Number(<>)),
+    "(" <Expr> ")",
+    ! => { errors.push(<>); Box::new(Expr::Error) },
+};
+
+Num: i32 = {
+    r"[0-9]+" => i32::from_str(<>).unwrap()
+};
