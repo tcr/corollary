@@ -30,3 +30,10 @@ data CBinaryOp = CMulOp
 isCmpOp :: CBinaryOp -> Bool
 isCmpOp op = op `elem` [ CLeqOp, CGeqOp, CLeOp, CGrOp, CEqOp, CNeqOp ]
 ```
+
+https://github.com/acowley/language-c/blob/master/src/Language/C/Syntax/Utils.hs
+
+http://echo.rsmw.net/n00bfaq.html
+
+make the auto-ident stuff work using simple regexes
+and then parse using semicolon separated braces

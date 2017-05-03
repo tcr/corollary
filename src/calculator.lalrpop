@@ -6,6 +6,25 @@ grammar<'err>(errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), (
 
 pub Exprs = Comma<Expr>;
 
+Dot<T>: Vec<T> = { // (0)
+    <v:(<T> ".")+> <e:T> => { // (1)
+        let mut v = v;
+        v.push(e);
+        v
+    }
+};
+
+Semi<T>: Vec<T> = { // (0)
+    <v:(<T> ";")*> <e:T?> => match e { // (1)
+        None=> v,
+        Some(e) => {
+            let mut v = v;
+            v.push(e);
+            v
+        }
+    }
+};
+
 Comma<T>: Vec<T> = { // (0)
     <v:(<T> ",")*> <e:T?> => match e { // (1)
         None=> v,
@@ -32,15 +51,26 @@ Ident: Ident = {
   r"[a-zA-Z]+" => Ident((<>).to_string()),
 };
 
+Section: i32 = {
+    Ident ("(" ".." ")")? => 0,
+};
+
 Data: Statement = {
+  "module" Dot<Ident> "(" Comma<Section> ")" "where"
+  "{" Semi<Data> "}" => Statement::Dummy,
+  "{-#" Ident* "#-}" => Statement::Dummy,
+  "import" Dot<Ident> => Statement::Dummy,
   "data" <id:Ident> "=" <p:Pipe<Ident>>
   "deriving" "(" <d:Comma<Ident>> ")" =>
     Statement::Data(id, p, d),
   Ident "::" Ident "->" Ident => Statement::Dummy,
+  Ident Ident "=" Ident "`" Ident "`"  "[" Comma<Ident> "]" => Statement::Dummy,
+  Ident Ident "=" "error" r#""[^"]*""# => Statement::Dummy,
+  Ident Ident "=" Ident => Statement::Dummy,
 };
 
 pub Statements: Vec<Statement> = {
-    <v:Data+> => v,
+    Semi<Data> => <>,
 };
 
 Tier<Op,NextTier>: Box<Expr> = {
