@@ -55,6 +55,11 @@ Section: i32 = {
     Ident ("(" ".." ")")? => 0,
 };
 
+Expr: Statement = {
+    "[" Comma<Ident> "]" => Statement::Dummy,
+    Ident => Statement::Dummy,
+};
+
 Data: Statement = {
   "module" Dot<Ident> "(" Comma<Section> ")" "where"
   "{" Semi<Data> "}" => Statement::Dummy,
@@ -63,7 +68,8 @@ Data: Statement = {
   "data" <id:Ident> "=" <p:Pipe<Ident>>
   "deriving" "(" <d:Comma<Ident>> ")" =>
     Statement::Data(id, p, d),
-  Ident "::" Ident "->" Ident => Statement::Dummy,
+
+  Ident "::" Ident "->" Expr => Statement::Dummy,
   Ident Ident "=" Ident "`" Ident "`"  "[" Comma<Ident> "]" => Statement::Dummy,
   Ident Ident "=" "error" r#""[^"]*""# => Statement::Dummy,
   Ident Ident "=" Ident => Statement::Dummy,
@@ -78,7 +84,7 @@ Tier<Op,NextTier>: Box<Expr> = {
     NextTier
 };
 
-Expr = Tier<ExprOp, Factor>;
+Arith = Tier<ExprOp, Factor>;
 Factor = Tier<FactorOp, Term>;
 
 ExprOp: Opcode = { // (3)
@@ -93,7 +99,7 @@ FactorOp: Opcode = {
 
 Term: Box<Expr> = {
     Num => Box::new(Expr::Number(<>)),
-    "(" <Expr> ")",
+    "(" <Arith> ")",
     ! => { errors.push(<>); Box::new(Expr::Error) },
 };
 

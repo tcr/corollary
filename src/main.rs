@@ -20,113 +20,39 @@ fn strip_comments(text: &str) -> String {
 fn calculator() {
 
     let input = r#"
+module Language.C.Syntax.Utils (
+  -- * Generic operations
+  getSubStmts,
+  mapSubStmts,
+  mapBlockItemStmts,
+  -- * Concrete operations
+  getLabels
+) where
 
-{-# LANGUAGE DeriveDataTypeable #-}
------------------------------------------------------------------------------
--- |
--- Module      :  Language.C.Syntax.Ops
--- Copyright   :  (c) 2008 Benedikt Huber
--- License     :  BSD-style
--- Maintainer  : benedikt.huber@gmail.com
--- Stability   : experimental
--- Portability : ghc
---
--- Unary, binary and asssignment operators. Exported via AST.
------------------------------------------------------------------------------
-module Language.C.Syntax.Ops (
--- * Assignment operators
-CAssignOp(..),
-assignBinop,
--- * Binary operators
-CBinaryOp(..),
-isCmpOp,
-isPtrOp,
-isBitOp,
-isLogicOp,
--- * Unary operators
-CUnaryOp(..),
-isEffectfulOp
-)
-where
-import Data.Generics
+import Data.List
+import Language.C.Data.Ident
+import Language.C.Syntax.AST
 
--- | C assignment operators (K&R A7.17)
-data CAssignOp = CAssignOp
-               | CMulAssOp
-               | CDivAssOp
-               | CRmdAssOp              -- ^ remainder and assignment
-               | CAddAssOp
-               | CSubAssOp
-               | CShlAssOp
-               | CShrAssOp
-               | CAndAssOp
-               | CXorAssOp
-               | COrAssOp
-               deriving (Eq,Ord,Show,Data,Typeable)
-
-assignBinop :: CAssignOp -> CBinaryOp
-assignBinop CAssignOp = error "direct assignment has no binary operator"
-assignBinop CMulAssOp = CMulOp
-assignBinop CDivAssOp = CDivOp
-assignBinop CRmdAssOp = CRmdOp
-assignBinop CAddAssOp = CAddOp
-assignBinop CSubAssOp = CSubOp
-assignBinop CShlAssOp = CShlOp
-assignBinop CShrAssOp = CShrOp
-assignBinop CAndAssOp = CAndOp
-assignBinop CXorAssOp = CXorOp
-assignBinop COrAssOp  = COrOp
-
--- | C binary operators (K&R A7.6-15)
---
-data CBinaryOp = CMulOp
-               | CDivOp
-               | CRmdOp                 -- ^ remainder of division
-               | CAddOp
-               | CSubOp
-               | CShlOp                 -- ^ shift left
-               | CShrOp                 -- ^ shift right
-               | CLeOp                  -- ^ less
-               | CGrOp                  -- ^ greater
-               | CLeqOp                 -- ^ less or equal
-               | CGeqOp                 -- ^ greater or equal
-               | CEqOp                  -- ^ equal
-               | CNeqOp                 -- ^ not equal
-               | CAndOp                 -- ^ bitwise and
-               | CXorOp                 -- ^ exclusive bitwise or
-               | COrOp                  -- ^ inclusive bitwise or
-               | CLndOp                 -- ^ logical and
-               | CLorOp                 -- ^ logical or
-               deriving (Eq,Ord,Show,Data,Typeable)
-
-isCmpOp :: CBinaryOp -> Bool
-isCmpOp op = op `elem` [ CLeqOp, CGeqOp, CLeOp, CGrOp, CEqOp, CNeqOp ]
-
-isPtrOp :: CBinaryOp -> Bool
-isPtrOp op = op `elem` [ CAddOp, CSubOp ]
-
-isBitOp :: CBinaryOp -> Bool
-isBitOp op = op `elem` [ CShlOp, CShrOp, CAndOp, COrOp, CXorOp ]
-
-isLogicOp :: CBinaryOp -> Bool
-isLogicOp op = op `elem` [ CLndOp, CLorOp ]
-
--- | C unary operator (K&R A7.3-4)
---
-data CUnaryOp = CPreIncOp               -- ^ prefix increment operator
-              | CPreDecOp               -- ^ prefix decrement operator
-              | CPostIncOp              -- ^ postfix increment operator
-              | CPostDecOp              -- ^ postfix decrement operator
-              | CAdrOp                  -- ^ address operator
-              | CIndOp                  -- ^ indirection operator
-              | CPlusOp                 -- ^ prefix plus
-              | CMinOp                  -- ^ prefix minus
-              | CCompOp                 -- ^ one's complement
-              | CNegOp                  -- ^ logical negation
-              deriving (Eq,Ord,Show,Data,Typeable)
-
-isEffectfulOp :: CUnaryOp -> Bool
-isEffectfulOp op = op `elem` [ CPreIncOp, CPreDecOp, CPostIncOp, CPostDecOp ]
+-- XXX: This is should be generalized !!!
+--      Data.Generics sounds attractive, but we really need to control the evaluation order
+-- XXX: Expression statements (which are somewhat problematic anyway), aren't handled yet
+getSubStmts :: CStat -> [CStat]
+getSubStmts (CLabel _ s _ _)      = [s]
+getSubStmts (CCase _ s _)         = [s]
+getSubStmts (CCases _ _ s _)      = [s]
+getSubStmts (CDefault s _)        = [s]
+getSubStmts (CExpr _ _)           = []
+getSubStmts (CCompound _ body _)  = concatMap compoundSubStmts body
+getSubStmts (CIf _ sthen selse _) = maybe [sthen] (\s -> [sthen,s]) selse
+getSubStmts (CSwitch _ s _)       = [s]
+getSubStmts (CWhile _ s _ _)      = [s]
+getSubStmts (CFor _ _ _ s _)      = [s]
+getSubStmts (CGoto _ _)           = []
+getSubStmts (CGotoPtr _ _)        = []
+getSubStmts (CCont _)             = []
+getSubStmts (CBreak _)            = []
+getSubStmts (CReturn _ _)         = []
+getSubStmts (CAsm _ _)            = []
 
 "#;
 
