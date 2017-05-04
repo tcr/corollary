@@ -1,39 +1,12 @@
-# compile Corrode to Rust
+# cross-compiling Corrode to Rust
 
-Yeah
+It'd be cool if Corrode were in Rust, but its C parsing library was originally
+written in Haskell so it is to.
 
-http://code.haskell.org/language-c/src/Language/C/Syntax/Ops.hs
+Let's automatically convert that C parsing library to Rust and then tidy it up,
+just like Corrode does with C. Then we can port Corrode to Rust. That's not
+ridiculous! Right!?
 
-```hs
--- | C binary operators (K&R A7.6-15)
---
-data CBinaryOp = CMulOp
-               | CDivOp
-               | CRmdOp                 -- ^ remainder of division
-               | CAddOp
-               | CSubOp
-               | CShlOp                 -- ^ shift left
-               | CShrOp                 -- ^ shift right
-               | CLeOp                  -- ^ less
-               | CGrOp                  -- ^ greater
-               | CLeqOp                 -- ^ less or equal
-               | CGeqOp                 -- ^ greater or equal
-               | CEqOp                  -- ^ equal
-               | CNeqOp                 -- ^ not equal
-               | CAndOp                 -- ^ bitwise and
-               | CXorOp                 -- ^ exclusive bitwise or
-               | COrOp                  -- ^ inclusive bitwise or
-               | CLndOp                 -- ^ logical and
-               | CLorOp                 -- ^ logical or
-               deriving (Eq,Ord,Show,Data,Typeable)
+Great Haskell reference: http://echo.rsmw.net/n00bfaq.html
 
-isCmpOp :: CBinaryOp -> Bool
-isCmpOp op = op `elem` [ CLeqOp, CGeqOp, CLeOp, CGrOp, CEqOp, CNeqOp ]
-```
-
-https://github.com/acowley/language-c/blob/master/src/Language/C/Syntax/Utils.hs
-
-http://echo.rsmw.net/n00bfaq.html
-
-make the auto-ident stuff work using simple regexes
-and then parse using semicolon separated braces
+Language lib: https://github.com/acowley/language-c/blob/master/src/Language/C/Syntax/Utils.hs
