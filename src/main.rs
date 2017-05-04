@@ -1,72 +1,129 @@
 extern crate lalrpop_util;
 extern crate regex;
+extern crate walkdir;
 
 pub mod ast;
 pub mod calculator;
 
 use regex::Regex;
+use std::io::prelude::*;
+use std::fs::{File, read_dir};
+use std::fmt::Debug;
+
+use lalrpop_util::{ParseError};
+use walkdir::WalkDir;
 
 fn strip_comments(text: &str) -> String {
     let re = Regex::new(r"--[^\n\r]*").unwrap();
     let text = re.replace_all(&text, "").to_string();
 
-    let re = Regex::new(r"\{-#.*?#-\}").unwrap();
+    let re = Regex::new(r"\{-[\s\S]*?-\}").unwrap();
     let text = re.replace_all(&text, "").to_string();
+
+    let re = Regex::new(r"(?m);+\s*$").unwrap();
+    let text = re.replace_all(&text, "").to_string();
+
+    let re = Regex::new(r"(?m)^#(ifn?def|endif|else)").unwrap();
+    let text = re.replace_all(&text, "").to_string();
+
+    let re = Regex::new(r#"'(\\.|[^']|\\ESC)'"#).unwrap();
+    let text = re.replace_all(&text, r#"'0'"#).to_string();
+
+    let re = Regex::new(r#""([^"\\]|\\.)*?""#).unwrap();
+    let text = re.replace_all(&text, r#""1""#).to_string();
 
     text
 }
 
+pub fn codelist(code: &str) {
+    for (i, line) in code.lines().enumerate() {
+        println!("{:>3} | {}", i+1, line);
+    }
+}
+
+pub fn code_error(code: &str, tok_pos: usize) {
+    let code = format!("\n\n{}", code);
+    let code = code.lines().collect::<Vec<_>>();
+    let mut pos: isize = 0;
+    for (i, lines) in (&code[..]).windows(3).enumerate() {
+        if pos + lines[2].len() as isize >= tok_pos as isize {
+            if i > 1 {
+                println!("{:>3} | {}", i - 1, lines[0]);
+            }
+            if i > 0 {
+                println!("{:>3} | {}", i, lines[1]);
+            }
+            println!("{:>3} | {}", i + 1, lines[2]);
+
+            println!("{}^", (0..(tok_pos as isize) - (pos - 6)).map(|_| "~").collect::<String>());
+            return;
+        }
+        pos += (lines[2].len() as isize) + 1;
+    }
+}
+
+pub fn parse_results<C,T,E>(code: &str, res: Result<C, ParseError<usize,T,E>>) -> C
+where C: Debug, T: Debug, E: Debug {
+    match res {
+        Ok(value) => {
+            return value;
+        }
+        Err(ParseError::InvalidToken {
+            location: loc
+        }) => {
+            println!("Error: Invalid token:");
+            code_error(code, loc);
+            panic!("{:?}", res);
+        }
+        Err(ParseError::UnrecognizedToken {
+            token: Some((loc, _, _)),
+            ..
+        }) => {
+            println!("Error: Unrecognized token:");
+            code_error(code, loc);
+            panic!("{:?}", res);
+        }
+        err => {
+            panic!("{:?}", err);
+        }
+    }
+}
+
+
 #[test]
 fn calculator() {
+    let mut file = File::open("./language-c/src/Language/C/Analysis/TypeUtils.hs").unwrap();
+    let mut contents = String::new();
+    file.read_to_string(&mut contents).unwrap();
 
-    let input = r#"
-module Language.C.Syntax.Utils (
-  -- * Generic operations
-  getSubStmts,
-  mapSubStmts,
-  mapBlockItemStmts,
-  -- * Concrete operations
-  getLabels
-) where
-
-import Data.List
-import Language.C.Data.Ident
-import Language.C.Syntax.AST
-
--- XXX: This is should be generalized !!!
---      Data.Generics sounds attractive, but we really need to control the evaluation order
--- XXX: Expression statements (which are somewhat problematic anyway), aren't handled yet
-getSubStmts :: CStat -> [CStat]
-getSubStmts (CLabel _ s _ _)      = [s]
-getSubStmts (CCase _ s _)         = [s]
-getSubStmts (CCases _ _ s _)      = [s]
-getSubStmts (CDefault s _)        = [s]
-getSubStmts (CExpr _ _)           = []
-getSubStmts (CCompound _ body _)  = concatMap compoundSubStmts body
-getSubStmts (CIf _ sthen selse _) = maybe [sthen] (\s -> [sthen,s]) selse
-getSubStmts (CSwitch _ s _)       = [s]
-getSubStmts (CWhile _ s _ _)      = [s]
-getSubStmts (CFor _ _ _ s _)      = [s]
-getSubStmts (CGoto _ _)           = []
-getSubStmts (CGotoPtr _ _)        = []
-getSubStmts (CCont _)             = []
-getSubStmts (CBreak _)            = []
-getSubStmts (CReturn _ _)         = []
-getSubStmts (CAsm _ _)            = []
-
-"#;
-
-    let input = commify(input);
-
+    let input = commify(&contents);
     let mut errors = Vec::new();
     {
-        let okay = calculator::parse_Statements(&mut errors, &input).unwrap();
+        let okay = parse_results(&input, calculator::parse_Statements(&mut errors, &input));
         println!("{:?}", okay);
     }
 }
 
 #[cfg(not(test))]
 fn main() {
+    for entry in WalkDir::new("./language-c/src/Language/C") {
+        let e = entry.unwrap();
+        let p = e.path();
+        let mut file = File::open(p).unwrap();
+        let mut contents = String::new();
+        match file.read_to_string(&mut contents) {
+            Ok(..) => (),
+            _ => continue,
+        };
+
+        let input = commify(&contents);
+        let mut errors = Vec::new();
+        if let Ok(..) = calculator::parse_Statements(&mut errors, &input) {
+            println!("SUCCESS - {:?}", p);
+        } else {
+            println!("ERROR   - {:?}", p);
+        }
+    }
 }
 
 fn commify(val: &str) -> String {
@@ -137,7 +194,7 @@ fn commify(val: &str) -> String {
 
             indent += word.len();
 
-            if word == "do" || word == "where" {
+            if word == "do" || word == "where" || word == "of" || word == "let" {
                 trigger = true;
             } else {
                 trigger = false;

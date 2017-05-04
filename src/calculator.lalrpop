@@ -47,32 +47,138 @@ Pipe<T>: Vec<T> = { // (0)
     }
 };
 
+Commaish<T>: Vec<T> = { // (0)
+    <(<T> ","?)+> => <>,
+};
+
 Ident: Ident = {
-  r"[a-zA-Z]+" => Ident((<>).to_string()),
+  r"[a-zA-Z_.][.a-zA-Z_0-9']*" => Ident((<>).to_string()),
 };
 
 Section: i32 = {
     Ident ("(" ".." ")")? => 0,
+    Ident "(" Ident* ")" => 0,
+    "module" Ident ("(" Comma<Section> ")")? => 0,
+};
+
+Case: () = {
+    Destructure+ "->" Expr+ => (),
+};
+
+Quote: () = {
+    //r#"'\\["]'"# => (),
+    r#"'[^']'"# => (),
+    r#""[^"]*""# => (),
 };
 
 Expr: Statement = {
-    "[" Comma<Ident> "]" => Statement::Dummy,
+    Quote => Statement::Dummy,
     Ident => Statement::Dummy,
+    "[" Expr* "]" => Statement::Dummy,
+    "\(" Commaish<Ident> ")" "->" Expr => Statement::Dummy,
+    "(" Expr* ")" => Statement::Dummy,
+    "(" FnDef "->" FnTerm ")" => Statement::Dummy,
+
+    r"\\[a-zA-Z_.][.a-zA-Z_0-9']*" "->" Expr => Statement::Dummy,
+
+    "\\" => Statement::Dummy,
+
+    r"[0-9]+" => Statement::Dummy,
+
+    "`" Ident "`" => Statement::Dummy,
+    ":" => Statement::Dummy,
+    "," => Statement::Dummy,
+    "." => Statement::Dummy,
+    "|" => Statement::Dummy,
+    "/=" => Statement::Dummy,
+    "==" => Statement::Dummy,
+    ".." => Statement::Dummy,
+    "++" => Statement::Dummy,
+    "=" => Statement::Dummy,
+    "$" => Statement::Dummy,
+    "&&" => Statement::Dummy,
+    "<" => Statement::Dummy,
+    "<-" => Statement::Dummy,
+    ">" => Statement::Dummy,
+    ">>=" => Statement::Dummy,
+    "@" => Statement::Dummy,
+    "*" => Statement::Dummy,
+    "+" => Statement::Dummy,
+    "-" => Statement::Dummy,
+    "^" => Statement::Dummy,
+    "::" => Statement::Dummy,
+    ".&." => Statement::Dummy,
+
+    "case" Expr+ "of" "{" Semi<Case> "}" => Statement::Dummy,
+    "let" "{" Semi<Data> "}" => Statement::Dummy,
+
+    "do" "{" Semi<Expr+>
+    ("where" "{" Semi<Data> "}")? "}" => Statement::Dummy,
+    "{" Comma<(Ident "=" Expr ":"? Ident*)> "}" => Statement::Dummy,
+};
+
+FnTerm: Statement = {
+    Expr => Statement::Dummy,
+};
+
+FnDef: Statement = {
+    FnDef "=>" FnTerm => Statement::Dummy,
+    FnDef "->" FnTerm => Statement::Dummy,
+    FnTerm => Statement::Dummy,
+};
+
+Type: () = {
+    "!" Type => (),
+    "[" Type+ "]" => (),
+    "(" Type+ ")" => (),
+    Ident => (),
+};
+
+Destructure: () = {
+    Quote => (),
+    "(" <Destructure*> ")" => (),
+    "[" Destructure* "]" => (),
+    Ident => (),
+    "|" => (),
+    "," => (),
+    "!" Destructure => (),
+    ":" => (),
+    "==" => (),
+    "@" => (),
+    ">>=" => (),
+    "{" Commaish<(Ident ("::" Type)?)> "}" => (),
+    "`" Ident "`" => (),
+
+    "<" => (), //Remove
+    r"[0-9]+" => (), //Remove
+};
+
+ImportList: () = {
+    "(" Commaish<(Ident ("(" ".." ")")?)> ")" => (),
+    Ident => (),
 };
 
 Data: Statement = {
-  "module" Dot<Ident> "(" Comma<Section> ")" "where"
+  "class" Destructure+ ("=>" Ident+)?
+  "where" "{" Semi<Data> "}" => Statement::Dummy,
+
+  "module" Ident ("(" Comma<Section> ")")?
+  "where" "{" Semi<Data> "}" => Statement::Dummy,
+  "instance" FnDef+ "where"
   "{" Semi<Data> "}" => Statement::Dummy,
   "{-#" Ident* "#-}" => Statement::Dummy,
-  "import" Dot<Ident> => Statement::Dummy,
-  "data" <id:Ident> "=" <p:Pipe<Ident>>
-  "deriving" "(" <d:Comma<Ident>> ")" =>
-    Statement::Data(id, p, d),
+  "import" ImportList+ => Statement::Dummy,
 
-  Ident "::" Ident "->" Expr => Statement::Dummy,
-  Ident Ident "=" Ident "`" Ident "`"  "[" Comma<Ident> "]" => Statement::Dummy,
-  Ident Ident "=" "error" r#""[^"]*""# => Statement::Dummy,
-  Ident Ident "=" Ident => Statement::Dummy,
+  "data" <id:Ident+> "=" <p:Destructure+>
+  ("deriving" ImportList)? =>
+    Statement::Data(id[0].clone(), vec![], vec![]),
+  "newtype" <id:Ident+> "=" <p:Destructure+>
+  ("deriving" ImportList)? =>
+     Statement::Data(id[0].clone(), vec![], vec![]),
+
+  Ident "::" FnDef+ => Statement::Dummy,
+  Destructure+ "=" Expr+
+  ("where" "{" Semi<Data> "}")? => Statement::Dummy,
 };
 
 pub Statements: Vec<Statement> = {
