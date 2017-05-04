@@ -92,7 +92,7 @@ where C: Debug, T: Debug, E: Debug {
 
 #[test]
 fn calculator() {
-    let mut file = File::open("./language-c/src/Language/C/Analysis/TypeUtils.hs").unwrap();
+    let mut file = File::open("./language-c/src/Language/C/Analysis/DeclAnalysis.hs").unwrap();
     let mut contents = String::new();
     file.read_to_string(&mut contents).unwrap();
 
