@@ -7,7 +7,7 @@ pub mod calculator;
 
 use regex::Regex;
 use std::io::prelude::*;
-use std::fs::{File, read_dir};
+use std::fs::{File};
 use std::fmt::Debug;
 
 use lalrpop_util::{ParseError};
@@ -92,7 +92,7 @@ where C: Debug, T: Debug, E: Debug {
 
 #[test]
 fn calculator() {
-    let a = "./language-c/src/Language/C/Analysis/TypeCheck.hs";
+    let a = "./corrode/src/Language/Rust/Idiomatic.hs";
     println!("file: {}", a);
     let mut file = File::open(a).unwrap();
     let mut contents = String::new();
@@ -101,7 +101,7 @@ fn calculator() {
     let input = commify(&contents);
     let mut errors = Vec::new();
     {
-        let okay = parse_results(&input, calculator::parse_Statements(&mut errors, &input));
+        let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));
         println!("{:?}", okay);
     }
 }
@@ -109,6 +109,7 @@ fn calculator() {
 #[cfg(not(test))]
 fn main() {
     for entry in WalkDir::new("./language-c/src/Language/C") {
+    //for entry in WalkDir::new("./corrode/src/Language") {
         let e = entry.unwrap();
         let p = e.path();
         let mut file = File::open(p).unwrap();
@@ -120,8 +121,10 @@ fn main() {
 
         let input = commify(&contents);
         let mut errors = Vec::new();
-        if let Ok(..) = calculator::parse_Statements(&mut errors, &input) {
+        if let Ok(v) = calculator::parse_Module(&mut errors, &input) {
             println!("SUCCESS - {:?}", p);
+
+            println!("v {:?}", v);
         } else {
             println!("ERROR   - {:?}", p);
         }

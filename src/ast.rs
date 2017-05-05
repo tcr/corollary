@@ -5,6 +5,7 @@ pub enum Expr {
     Number(i32),
     Op(Box<Expr>, Opcode, Box<Expr>),
     Error,
+    Dummy,
 }
 
 #[derive(Copy, Clone)]
@@ -19,6 +20,19 @@ pub enum Opcode {
 pub enum Statement {
     Data(Ident, Vec<Ident>, Vec<Ident>),
     Dummy,
+    Class,
+    Instance,
+    Import,
+    Newtype,
+    Pipelist,
+    GuardAssign,
+    Assign(Ident),
+    Typedef(Ident),
+}
+
+#[derive(Clone, Debug)]
+pub struct Module {
+    pub statements: Vec<Statement>,
 }
 
 #[derive(Clone, Debug)]
@@ -31,6 +45,7 @@ impl Debug for Expr {
             Number(n) => write!(fmt, "{:?}", n),
             Op(ref l, op, ref r) => write!(fmt, "({:?} {:?} {:?})", l, op, r),
             Error => write!(fmt, "error"),
+            Dummy => write!(fmt, "..."),
         }
     }
 }

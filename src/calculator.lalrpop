@@ -1,5 +1,5 @@
 use std::str::FromStr;
-use ast::{Expr, Opcode, Ident, Statement};
+use ast::*;
 use lalrpop_util::ErrorRecovery;
 
 grammar<'err>(errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>);
@@ -72,56 +72,54 @@ Quote: () = {
     r#""[^"]*""# => (),
 };
 
-Expr: Statement = {
-    Quote => Statement::Dummy,
-    Ident => Statement::Dummy,
-    "\(" Commaish<Ident> ")" "->" Expr => Statement::Dummy,
-    "[" Commaish<Expr> "|" Expr+ "]" => Statement::Dummy,
-    "[" Commaish<Expr> "]" => Statement::Dummy,
-    "[" "]" => Statement::Dummy,
-    "(" Commaish<Expr> ")" => Statement::Dummy,
-    "(" ")" => Statement::Dummy,
-    "(" "," ")" => Statement::Dummy,
-    "(" FnDef "->" FnTerm+ ")" => Statement::Dummy,
+Expr: Expr = {
+    Quote => Expr::Dummy,
+    Ident => Expr::Dummy,
+    "\(" Commaish<Ident> ")" "->" Expr => Expr::Dummy,
+    "[" Commaish<Expr> "|" Expr+ "]" => Expr::Dummy,
+    "[" Commaish<Expr> "]" => Expr::Dummy,
+    "[" "]" => Expr::Dummy,
+    "(" Commaish<Expr> ")" => Expr::Dummy,
+    "(" ")" => Expr::Dummy,
+    "(" "," ")" => Expr::Dummy,
+    "(" FnDef "->" FnTerm+ ")" => Expr::Dummy,
 
-    r"\\[a-zA-Z_.][.a-zA-Z_0-9']*" Expr* "->" Expr => Statement::Dummy,
+    r"\\[a-zA-Z_.][.a-zA-Z_0-9']*" Expr* "->" Expr => Expr::Dummy,
+    r"[0-9]+" => Expr::Dummy,
 
-    "\\" => Statement::Dummy,
+    "\\" => Expr::Dummy,
+    "`" Ident "`" => Expr::Dummy,
+    ":" => Expr::Dummy,
+    "." => Expr::Dummy,
+    "/=" => Expr::Dummy,
+    "==" => Expr::Dummy,
+    ".." => Expr::Dummy,
+    "++" => Expr::Dummy,
+    "$" => Expr::Dummy,
+    "&&" => Expr::Dummy,
+    "||" => Expr::Dummy,
+    "<" => Expr::Dummy,
+    "<=" => Expr::Dummy,
+    "<-" => Expr::Dummy,
+    ">" => Expr::Dummy,
+    ">=" => Expr::Dummy,
+    "=<<" => Expr::Dummy,
+    ".|." => Expr::Dummy,
+    ">>=" => Expr::Dummy,
+    "@" => Expr::Dummy,
+    "*" => Expr::Dummy,
+    "+" => Expr::Dummy,
+    "-" => Expr::Dummy,
+    "^" => Expr::Dummy,
+    "::" => Expr::Dummy,
+    ".&." => Expr::Dummy,
 
-    r"[0-9]+" => Statement::Dummy,
-
-    "`" Ident "`" => Statement::Dummy,
-    ":" => Statement::Dummy,
-    "." => Statement::Dummy,
-    "/=" => Statement::Dummy,
-    "==" => Statement::Dummy,
-    ".." => Statement::Dummy,
-    "++" => Statement::Dummy,
-    "$" => Statement::Dummy,
-    "&&" => Statement::Dummy,
-    "||" => Statement::Dummy,
-    "<" => Statement::Dummy,
-    "<=" => Statement::Dummy,
-    "<-" => Statement::Dummy,
-    ">" => Statement::Dummy,
-    ">=" => Statement::Dummy,
-    "=<<" => Statement::Dummy,
-    ".|." => Statement::Dummy,
-    ">>=" => Statement::Dummy,
-    "@" => Statement::Dummy,
-    "*" => Statement::Dummy,
-    "+" => Statement::Dummy,
-    "-" => Statement::Dummy,
-    "^" => Statement::Dummy,
-    "::" => Statement::Dummy,
-    ".&." => Statement::Dummy,
-
-    "case" Expr+ "of" "{" Semi<Case> "}" => Statement::Dummy,
-    "let" "{" Semi<Data> "}" => Statement::Dummy,
+    "case" Expr+ "of" "{" Semi<Case> "}" => Expr::Dummy,
+    "let" "{" Semi<Statement> "}" => Expr::Dummy,
 
     "do" "{" Semi<Expr+>
-    ("where" "{" Semi<Data> "}")? "}" => Statement::Dummy,
-    "{" Comma<(Ident "=" Expr+)> "}" => Statement::Dummy,
+    ("where" "{" Semi<Statement> "}")? "}" => Expr::Dummy,
+    "{" Comma<(Ident "=" Expr+)> "}" => Expr::Dummy,
 };
 
 FnTerm: Statement = {
@@ -143,22 +141,25 @@ Type: () = {
     "(" ")" => (),
 };
 
-Destructure: () = {
-    Quote => (),
-    "(" <Destructure*> ")" => (),
-    "[" Destructure* "]" => (),
-    Ident => (),
-    "," => (),
-    "!" Destructure => (),
-    ":" => (),
-    "==" => (),
-    "@" => (),
-    ">>=" => (),
-    "{" Comma<(Ident ("::" Type+)?)> "}" => (),
-    "`" Ident "`" => (),
+// TODO make a destructure type
+Destructure: Ident = {
+    Quote => Ident("$$$".to_string()),
+    "(" <Destructure*> ")" => Ident("$$$".to_string()),
+    "(" <Destructure*> "->" Destructure* ")" => Ident("$$$".to_string()),
+    "[" Destructure* "]" => Ident("$$$".to_string()),
+    <Ident> => <>,
+    "!" Destructure => Ident("$$$".to_string()),
+    ":" => Ident("$$$".to_string()),
+    "==" => Ident("$$$".to_string()),
+    "@" => Ident("$$$".to_string()),
+    ">>=" => Ident("$$$".to_string()),
+    "{" Comma<(Ident ("::" Type+)?)> "}" => Ident("$$$".to_string()),
+    "`" Ident "`" => Ident("$$$".to_string()),
 
-    "<" => (), //Remove
-    r"[0-9]+" => (), //Remove
+    "," => Ident("$$$".to_string()), // TODO get rid of this
+
+    "<" => Ident("$$$".to_string()), //Remove
+    r"[0-9]+" => Ident("$$$".to_string()), //Remove
 };
 
 ImportList: () = {
@@ -167,34 +168,35 @@ ImportList: () = {
     Ident => (),
 };
 
-Data: Statement = {
-  "class" Destructure+ ("=>" Ident+)?
-  "where" "{" Semi<Data> "}" => Statement::Dummy,
-
+pub Module: Module = {
   "module" Ident ("(" Comma<Section> ")")?
-  "where" "{" Semi<Data> "}" => Statement::Dummy,
+  "where" "{" <s:Semi<Statement>> "}" => Module {
+    statements: s,
+  },
+};
+
+Statement: Statement = {
+  "class" Destructure+ ("=>" Ident+)?
+  "where" "{" Semi<Statement> "}" => Statement::Class,
+
   "instance" FnDef+ "where"
-  "{" Semi<Data> "}" => Statement::Dummy,
-  "{-#" Ident* "#-}" => Statement::Dummy,
-  "import" ImportList+ => Statement::Dummy,
+  "{" Semi<Statement> "}" => Statement::Instance,
+  "import" ImportList+ => Statement::Import,
 
   "data" <id:Ident+> "=" Pipe<Destructure+>
   ("deriving" ImportList)? =>
     Statement::Data(id[0].clone(), vec![], vec![]),
   "newtype" <id:Ident+> "=" <p:Destructure+>
   ("deriving" ImportList)? =>
-     Statement::Data(id[0].clone(), vec![], vec![]),
+     Statement::Newtype,
 
-  Destructure+ ("|" Commaish<Expr> "=" Expr+)*
-  ("where" "{" Semi<Data> "}")? => Statement::Dummy,
+  Destructure Destructure* ("|" Commaish<Expr> "=" Expr+)*
+  ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
 
-  Ident "::" FnDef+ => Statement::Dummy,
-  Destructure+ "=" Expr+
-  ("where" "{" Semi<Data> "}")? => Statement::Dummy,
-};
+  <i:Ident> "::" FnDef+ => Statement::Typedef(i),
 
-pub Statements: Vec<Statement> = {
-    Semi<Data> => <>,
+  <d:Destructure> Destructure* "=" Expr+
+  ("where" "{" Semi<Statement> "}")? => Statement::Assign(d),
 };
 
 Tier<Op,NextTier>: Box<Expr> = {

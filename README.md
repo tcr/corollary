@@ -13,3 +13,29 @@ either.
 Great Haskell reference: http://echo.rsmw.net/n00bfaq.html
 
 Language lib: https://github.com/acowley/language-c/blob/master/src/Language/C/Syntax/Utils.hs
+
+---
+
+Goal Error.hs
+
+```rust
+// isHardError :: (Error ex) => ex -> Bool
+// isHardError = ( > LevelWarn) . errorLevel
+
+#[derive(Copy, Clone)]
+struct Error {
+    level: u32,
+}
+
+fn errorLevel(e: Error) -> u32 {
+    e.level
+}
+
+fn main() {
+    let isHardError: Box<Fn(Error) -> bool>;
+
+    const LevelWarn: u32 = 3;
+
+    isHardError = Box::new(|x| { errorLevel(x) > LevelWarn });
+}
+```
