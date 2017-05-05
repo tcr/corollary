@@ -1,0 +1,3 @@
+[submodule "language-c"]
+	path = language-c
+	url = https://github.com/acowley/language-c
