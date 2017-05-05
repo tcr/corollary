@@ -2,7 +2,7 @@
 name = "calculator"
 version = "0.12.5"
 authors = ["Niko Matsakis <niko@alum.mit.edu>"]
-build = "build.rs" # <-- We added this and everything after!
+# build = "build.rs"
 
 [build-dependencies.lalrpop]
 version = "0.12.5"

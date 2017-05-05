@@ -62,6 +62,7 @@ Section: i32 = {
 };
 
 Case: () = {
+    Destructure+ ("|" Commaish<Expr> "->" Expr+)* => (),
     Destructure+ "->" Expr+ => (),
 };
 
@@ -74,12 +75,16 @@ Quote: () = {
 Expr: Statement = {
     Quote => Statement::Dummy,
     Ident => Statement::Dummy,
-    "[" Expr* "]" => Statement::Dummy,
     "\(" Commaish<Ident> ")" "->" Expr => Statement::Dummy,
-    "(" Expr* ")" => Statement::Dummy,
-    "(" FnDef "->" FnTerm ")" => Statement::Dummy,
+    "[" Commaish<Expr> "|" Expr+ "]" => Statement::Dummy,
+    "[" Commaish<Expr> "]" => Statement::Dummy,
+    "[" "]" => Statement::Dummy,
+    "(" Commaish<Expr> ")" => Statement::Dummy,
+    "(" ")" => Statement::Dummy,
+    "(" "," ")" => Statement::Dummy,
+    "(" FnDef "->" FnTerm+ ")" => Statement::Dummy,
 
-    r"\\[a-zA-Z_.][.a-zA-Z_0-9']*" "->" Expr => Statement::Dummy,
+    r"\\[a-zA-Z_.][.a-zA-Z_0-9']*" Expr* "->" Expr => Statement::Dummy,
 
     "\\" => Statement::Dummy,
 
@@ -87,19 +92,21 @@ Expr: Statement = {
 
     "`" Ident "`" => Statement::Dummy,
     ":" => Statement::Dummy,
-    "," => Statement::Dummy,
     "." => Statement::Dummy,
-    "|" => Statement::Dummy,
     "/=" => Statement::Dummy,
     "==" => Statement::Dummy,
     ".." => Statement::Dummy,
     "++" => Statement::Dummy,
-    "=" => Statement::Dummy,
     "$" => Statement::Dummy,
     "&&" => Statement::Dummy,
+    "||" => Statement::Dummy,
     "<" => Statement::Dummy,
+    "<=" => Statement::Dummy,
     "<-" => Statement::Dummy,
     ">" => Statement::Dummy,
+    ">=" => Statement::Dummy,
+    "=<<" => Statement::Dummy,
+    ".|." => Statement::Dummy,
     ">>=" => Statement::Dummy,
     "@" => Statement::Dummy,
     "*" => Statement::Dummy,
@@ -114,7 +121,7 @@ Expr: Statement = {
 
     "do" "{" Semi<Expr+>
     ("where" "{" Semi<Data> "}")? "}" => Statement::Dummy,
-    "{" Comma<(Ident "=" Expr ":"? Ident*)> "}" => Statement::Dummy,
+    "{" Comma<(Ident "=" Expr+)> "}" => Statement::Dummy,
 };
 
 FnTerm: Statement = {
@@ -130,8 +137,10 @@ FnDef: Statement = {
 Type: () = {
     "!" Type => (),
     "[" Type+ "]" => (),
-    "(" Type+ ")" => (),
+    "(" Commaish<Type> ")" => (),
+    Ident "->" Ident => (),
     Ident => (),
+    "(" ")" => (),
 };
 
 Destructure: () = {
@@ -139,14 +148,13 @@ Destructure: () = {
     "(" <Destructure*> ")" => (),
     "[" Destructure* "]" => (),
     Ident => (),
-    "|" => (),
     "," => (),
     "!" Destructure => (),
     ":" => (),
     "==" => (),
     "@" => (),
     ">>=" => (),
-    "{" Commaish<(Ident ("::" Type)?)> "}" => (),
+    "{" Comma<(Ident ("::" Type+)?)> "}" => (),
     "`" Ident "`" => (),
 
     "<" => (), //Remove
@@ -155,6 +163,7 @@ Destructure: () = {
 
 ImportList: () = {
     "(" Commaish<(Ident ("(" ".." ")")?)> ")" => (),
+    "(" ")" => (),
     Ident => (),
 };
 
@@ -169,12 +178,15 @@ Data: Statement = {
   "{-#" Ident* "#-}" => Statement::Dummy,
   "import" ImportList+ => Statement::Dummy,
 
-  "data" <id:Ident+> "=" <p:Destructure+>
+  "data" <id:Ident+> "=" Pipe<Destructure+>
   ("deriving" ImportList)? =>
     Statement::Data(id[0].clone(), vec![], vec![]),
   "newtype" <id:Ident+> "=" <p:Destructure+>
   ("deriving" ImportList)? =>
      Statement::Data(id[0].clone(), vec![], vec![]),
+
+  Destructure+ ("|" Commaish<Expr> "=" Expr+)*
+  ("where" "{" Semi<Data> "}")? => Statement::Dummy,
 
   Ident "::" FnDef+ => Statement::Dummy,
   Destructure+ "=" Expr+

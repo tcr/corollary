@@ -23,7 +23,7 @@ fn strip_comments(text: &str) -> String {
     let re = Regex::new(r"(?m);+\s*$").unwrap();
     let text = re.replace_all(&text, "").to_string();
 
-    let re = Regex::new(r"(?m)^#(ifn?def|endif|else)").unwrap();
+    let re = Regex::new(r"(?m)^#(if|ifn?def|endif|else).*").unwrap();
     let text = re.replace_all(&text, "").to_string();
 
     let re = Regex::new(r#"'(\\.|[^']|\\ESC)'"#).unwrap();
@@ -92,7 +92,9 @@ where C: Debug, T: Debug, E: Debug {
 
 #[test]
 fn calculator() {
-    let mut file = File::open("./language-c/src/Language/C/Analysis/DeclAnalysis.hs").unwrap();
+    let a = "./language-c/src/Language/C/Analysis/TypeCheck.hs";
+    println!("file: {}", a);
+    let mut file = File::open(a).unwrap();
     let mut contents = String::new();
     file.read_to_string(&mut contents).unwrap();
 
@@ -206,6 +208,10 @@ fn commify(val: &str) -> String {
     for _ in 0..stash.len() {
         out.push_str("}");
     }
+
+
+    let re = Regex::new(r#"where\s+;"#).unwrap();
+    let out = re.replace_all(&out, r#"where "#).to_string();
 
     out
 }
