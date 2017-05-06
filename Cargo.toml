@@ -2,13 +2,14 @@
 name = "calculator"
 version = "0.12.5"
 authors = ["Niko Matsakis <niko@alum.mit.edu>"]
-# build = "build.rs"
+build = "build.rs"
 
 [build-dependencies.lalrpop]
 version = "0.12.5"
 
 [dependencies]
 regex = "0.2.1"
+maplit = "*"
 walkdir = "1"
 
 [dependencies.lalrpop-util]

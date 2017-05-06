@@ -74,13 +74,13 @@ Quote: () = {
 
 Expr: Expr = {
     Quote => Expr::Dummy,
-    Ident => Expr::Dummy,
+    <Ident> => Expr::Ref(<>),
     "\(" Commaish<Ident> ")" "->" Expr => Expr::Dummy,
-    "[" Commaish<Expr> "|" Expr+ "]" => Expr::Dummy,
-    "[" Commaish<Expr> "]" => Expr::Dummy,
-    "[" "]" => Expr::Dummy,
-    "(" Commaish<Expr> ")" => Expr::Dummy,
-    "(" ")" => Expr::Dummy,
+    "[" <Commaish<Expr>> "|" Expr+ "]" => Expr::Dummy,
+    "[" <Commaish<Expr>> "]" => Expr::Parens(<>),
+    "[" "]" => Expr::Parens(vec![]),
+    "(" <Commaish<Expr>> ")" => Expr::Parens(<>),
+    "(" ")" => Expr::Parens(vec![]),
     "(" "," ")" => Expr::Dummy,
     "(" FnDef "->" FnTerm+ ")" => Expr::Dummy,
 
@@ -117,19 +117,19 @@ Expr: Expr = {
     "case" Expr+ "of" "{" Semi<Case> "}" => Expr::Dummy,
     "let" "{" Semi<Statement> "}" => Expr::Dummy,
 
-    "do" "{" Semi<Expr+>
-    ("where" "{" Semi<Statement> "}")? "}" => Expr::Dummy,
+    "do" "{" <e:Semi<Expr+>>
+    <w:("where" "{" <Semi<Statement>> "}")?> "}" => Expr::Do(e, w),
     "{" Comma<(Ident "=" Expr+)> "}" => Expr::Dummy,
 };
 
-FnTerm: Statement = {
-    Expr => Statement::Dummy,
+FnTerm: Ty = {
+    Expr => Ty::Dummy,
 };
 
-FnDef: Statement = {
-    FnDef "=>" FnTerm => Statement::Dummy,
-    FnDef "->" FnTerm => Statement::Dummy,
-    FnTerm => Statement::Dummy,
+FnDef: Ty = {
+    FnDef "=>" <FnTerm> => <>,
+    FnDef "->" FnTerm => Ty::Dummy,
+    FnTerm => Ty::Dummy,
 };
 
 Type: () = {
@@ -193,10 +193,13 @@ Statement: Statement = {
   Destructure Destructure* ("|" Commaish<Expr> "=" Expr+)*
   ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
 
-  <i:Ident> "::" FnDef+ => Statement::Typedef(i),
+  <i:Ident> "::" <d:FnDef+> => Statement::Prototype(i, d),
 
-  <d:Destructure> Destructure* "=" Expr+
-  ("where" "{" Semi<Statement> "}")? => Statement::Assign(d),
+  "type" <d:Destructure> Destructure* "=" Expr+
+  ("where" "{" Semi<Statement> "}")? => Statement::Typedef(d),
+
+  <d:Destructure> Destructure* "=" <e:Expr+>
+  ("where" "{" Semi<Statement> "}")? => Statement::Assign(d, e),
 };
 
 Tier<Op,NextTier>: Box<Expr> = {

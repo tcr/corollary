@@ -1,3 +1,4 @@
+#[macro_use] extern crate maplit;
 extern crate lalrpop_util;
 extern crate regex;
 extern crate walkdir;
@@ -122,9 +123,44 @@ fn main() {
         let input = commify(&contents);
         let mut errors = Vec::new();
         if let Ok(v) = calculator::parse_Module(&mut errors, &input) {
-            println!("SUCCESS - {:?}", p);
+            println!("mod {:?} {{", p);
 
-            println!("v {:?}", v);
+            // WOWOWOWOWOWOWWWWWWW
+
+            let mut types = btreemap![];
+            for item in &v.statements {
+                // println!("well {:?}", item);
+                if let ast::Statement::Prototype(ast::Ident(s), d) = item.clone() {
+                    types.entry(s).or_insert(vec![]).push(d);
+                }
+            }
+
+            // Print out assignments as fns
+            let mut cache = btreemap![];
+            for item in &v.statements {
+                if let ast::Statement::Assign(ast::Ident(s), exprs) = item.clone() {
+                    if !types.contains_key(&s) {
+                        panic!("this shouldn't happen {:?}", s);
+                    }
+                    cache.entry(s).or_insert(vec![]).push(exprs);
+                }
+            }
+
+            for (key, value) in cache {
+                println!("    fn {}() {{", key);
+                println!("        // {:?}", types[&key]);
+                for decl in value {
+                    for stat in &decl {
+                        if decl.len() > 1 {
+                            println!("------");
+                        }
+                        println!("        {:?};", stat);
+                    }
+                }
+                println!("    }}");
+            }
+
+            println!("}}");
         } else {
             println!("ERROR   - {:?}", p);
         }

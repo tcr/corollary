@@ -4,6 +4,9 @@ use std::fmt::{Debug, Formatter, Error};
 pub enum Expr {
     Number(i32),
     Op(Box<Expr>, Opcode, Box<Expr>),
+    Ref(Ident),
+    Do(Vec<Vec<Expr>>, Option<Vec<Statement>>),
+    Parens(Vec<Expr>),
     Error,
     Dummy,
 }
@@ -26,13 +29,19 @@ pub enum Statement {
     Newtype,
     Pipelist,
     GuardAssign,
-    Assign(Ident),
+    Assign(Ident, Vec<Expr>),
     Typedef(Ident),
+    Prototype(Ident, Vec<Ty>),
 }
 
 #[derive(Clone, Debug)]
 pub struct Module {
     pub statements: Vec<Statement>,
+}
+
+#[derive(Clone, Debug)]
+pub enum Ty {
+    Dummy,
 }
 
 #[derive(Clone, Debug)]
@@ -44,8 +53,27 @@ impl Debug for Expr {
         match *self {
             Number(n) => write!(fmt, "{:?}", n),
             Op(ref l, op, ref r) => write!(fmt, "({:?} {:?} {:?})", l, op, r),
+            Ref(ref i) => write!(fmt, "{:?}", i),
+            Do(ref e, ref w) => {
+                for item in e {
+                    writeln!(fmt, "        {:?}", e);
+                }
+                writeln!(fmt, "where");
+                if let &Some(ref w) = w {
+                    for item in w {
+                        writeln!(fmt, "        {:?}", w);
+                    }
+                }
+                Ok(())
+            }
+            Parens(ref e) => {
+                for item in e {
+                    writeln!(fmt, "        {:?}", e);
+                }
+                Ok(())
+            }
             Error => write!(fmt, "error"),
-            Dummy => write!(fmt, "..."),
+            _ => write!(fmt, "..."),
         }
     }
 }
