@@ -7,8 +7,7 @@ Let's automatically convert that C parsing library to Rust and then tidy it up,
 just like Corrode does with C. Then we can port Corrode to Rust. That's not
 ridiculous! Right!?
 
-**Status:** Parses a lot of the files. No AST generated yet, no working code
-either.
+**Status:** See `out.rs` for the status of the conversion output.
 
 Great Haskell reference: http://echo.rsmw.net/n00bfaq.html
 

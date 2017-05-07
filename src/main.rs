@@ -2,9 +2,11 @@
 extern crate lalrpop_util;
 extern crate regex;
 extern crate walkdir;
+extern crate corroder_parser;
 
-pub mod ast;
-pub mod calculator;
+use corroder_parser::ast;
+use corroder_parser::ast::{Ty, TySpan};
+use corroder_parser::calculator;
 
 use regex::Regex;
 use std::io::prelude::*;
@@ -93,7 +95,7 @@ where C: Debug, T: Debug, E: Debug {
 
 #[test]
 fn calculator() {
-    let a = "./corrode/src/Language/Rust/Idiomatic.hs";
+    let a = "./language-c/src/Language/C/System/Preprocess.hs";
     println!("file: {}", a);
     let mut file = File::open(a).unwrap();
     let mut contents = String::new();
@@ -105,6 +107,106 @@ fn calculator() {
         let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));
         println!("{:?}", okay);
     }
+}
+
+fn print_expr(expr: &ast::Expr) {
+    use ast::Expr::*;
+    match *expr {
+        Parens(ref r) => {
+            for item in r {
+                print_expr(item);
+                print!(", ");
+            }
+        }
+        Do(ref exprset, ref w) => {
+            print!("{{ ");
+            if let &Some(ref stats) = w {
+                println!("{{");
+                for stat in stats {
+                    print_stat(stat);
+                }
+                println!("    }}");
+            }
+            for exprs in exprset {
+                for expr in exprs {
+                    print_expr(expr);
+                    print!(", ");
+                }
+                print!("; ");
+            }
+            print!(" }}");
+        }
+        Ref(ast::Ident(ref i)) => {
+            print!("{}", i);
+        }
+        Number(n) => {
+            print!("{}", n);
+        }
+        Op(ref l, op, ref r) => {
+            print!("({:?} {:?} {:?})", l, op, r);
+        }
+        ref expr => {
+            print!("{:?}", expr);
+        }
+    }
+}
+
+fn print_stat(stat: &ast::Statement) {
+    use ast::Statement::*;
+    match stat {
+        &Assign(ast::Ident(ref i), ref args, ref e) => {
+            print!("        let {} = ", i);
+            for item in e {
+                print_expr(item);
+                print!(", ");
+            }
+            println!("");
+        }
+        _ => {}
+    }
+}
+
+fn unpack_fndef(t: Ty) -> Vec<TySpan> {
+    match t {
+        Ty::Pair(a, b) => {
+            let mut v = vec![a];
+            v.extend(unpack_fndef(*b));
+            v
+        }
+        _ => {
+            vec![vec![t]]
+        }
+    }
+}
+
+fn print_type(t: TySpan) -> String {
+    let mut out = vec![];
+    for item in t {
+        match item {
+            Ty::Ref(ast::Ident(ref s)) => {
+                out.push(s.to_string());
+            }
+            Ty::Span(span) => {
+                out.push(print_type(span));
+            }
+            Ty::Parens(spans) => {
+                out.push(format!("<{}>", spans.into_iter()
+                    .map(print_type)
+                    .collect::<Vec<_>>()
+                    .join(", ")));
+            }
+            Ty::Brackets(spans) => {
+                out.push(format!("[{}]", spans.into_iter()
+                    .map(print_type)
+                    .collect::<Vec<_>>()
+                    .join(", ")));
+            }
+            t => {
+                out.push(format!("{:?}", t));
+            }
+        }
+    }
+    out.join(" ")
 }
 
 #[cfg(not(test))]
@@ -123,6 +225,7 @@ fn main() {
         let input = commify(&contents);
         let mut errors = Vec::new();
         if let Ok(v) = calculator::parse_Module(&mut errors, &input) {
+            //continue;
             println!("mod {:?} {{", p);
 
             // WOWOWOWOWOWOWWWWWWW
@@ -131,38 +234,61 @@ fn main() {
             for item in &v.statements {
                 // println!("well {:?}", item);
                 if let ast::Statement::Prototype(ast::Ident(s), d) = item.clone() {
-                    types.entry(s).or_insert(vec![]).push(d);
+                    if types.contains_key(&s) {
+                        panic!("this shouldn't happen {:?}", s);
+                    }
+                    types.insert(s, d);
                 }
             }
 
             // Print out assignments as fns
             let mut cache = btreemap![];
             for item in &v.statements {
-                if let ast::Statement::Assign(ast::Ident(s), exprs) = item.clone() {
+                if let ast::Statement::Assign(ast::Ident(s), args, exprs) = item.clone() {
                     if !types.contains_key(&s) {
                         panic!("this shouldn't happen {:?}", s);
                     }
-                    cache.entry(s).or_insert(vec![]).push(exprs);
+                    //if cache.contains_key(&s) {
+                    //    panic!("this shouldn't happen {:?}", s);
+                    //}
+                    cache.entry(s).or_insert(vec![]).push((args, exprs));
                 }
             }
 
-            for (key, value) in cache {
-                println!("    fn {}() {{", key);
-                println!("        // {:?}", types[&key]);
-                for decl in value {
-                    for stat in &decl {
-                        if decl.len() > 1 {
-                            println!("------");
-                        }
-                        println!("        {:?};", stat);
+            for (key, fnset) in cache {
+                for (args, exprset) in fnset {
+                    let d = types[&key].clone();
+                    assert!(d.len() == 1);
+                    let t = unpack_fndef(d[0].clone());
+                    assert!(t.len() >= 1);
+
+                    //println!("hm {:?}", types[&key]);
+                    //println!("hm {:?}", t);
+                    print!("    fn {}(", key);
+                    for (&ast::Ident(ref arg), ty) in args.iter().zip(t.iter()) {
+                        print!("{}: {}", arg, print_type(ty.clone()));
+                        print!(", ");
                     }
+                    //for (name, ty) in types[&key] {
+                    //
+                    //}
+                    println!(") -> {} {{", print_type(t.last().unwrap().clone()));
+                    for expr in &exprset {
+                        print!("        ");
+                        print_expr(expr);
+                        print!("\n");
+                    }
+                    println!("    }}");
+                    println!("");
                 }
-                println!("    }}");
             }
 
             println!("}}");
+            println!("");
+            println!("");
+            println!("");
         } else {
-            println!("ERROR   - {:?}", p);
+            println!("ERROR   - {:?}\n\n\n", p);
         }
     }
 }

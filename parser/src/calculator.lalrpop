@@ -51,6 +51,15 @@ Commaish<T>: Vec<T> = { // (0)
     <(<T> ","?)+> => <>,
 };
 
+CommaDef<T>: Vec<T> = { // (0)
+    <v:(<T> ",")*> <e:T> => {
+        let mut v = v;
+        v.push(e);
+        v
+    },
+};
+
+
 Ident: Ident = {
   r"[a-zA-Z_.][.a-zA-Z_0-9']*" => Ident((<>).to_string()),
 };
@@ -82,7 +91,7 @@ Expr: Expr = {
     "(" <Commaish<Expr>> ")" => Expr::Parens(<>),
     "(" ")" => Expr::Parens(vec![]),
     "(" "," ")" => Expr::Dummy,
-    "(" FnDef "->" FnTerm+ ")" => Expr::Dummy,
+    "(" Ident "->" Type ")" => Expr::Dummy,
 
     r"\\[a-zA-Z_.][.a-zA-Z_0-9']*" Expr* "->" Expr => Expr::Dummy,
     r"[0-9]+" => Expr::Dummy,
@@ -122,23 +131,28 @@ Expr: Expr = {
     "{" Comma<(Ident "=" Expr+)> "}" => Expr::Dummy,
 };
 
-FnTerm: Ty = {
-    Expr => Ty::Dummy,
-};
-
 FnDef: Ty = {
-    FnDef "=>" <FnTerm> => <>,
-    FnDef "->" FnTerm => Ty::Dummy,
-    FnTerm => Ty::Dummy,
+    //<a:Type> "=>" <b:Type> => Ty::Where(Box::new(a), Box::new(b)),
+
+    <a:Type> "=>" <b:Type> => b,
+    <Type> => <>,
 };
 
-Type: () = {
-    "!" Type => (),
-    "[" Type+ "]" => (),
-    "(" Commaish<Type> ")" => (),
-    Ident "->" Ident => (),
-    Ident => (),
-    "(" ")" => (),
+Type: Ty = {
+    <a:TypeSpan> "->" <b:Type> => Ty::Pair(a, Box::new(b)),
+    <TypeSpan> => Ty::Span(<>),
+};
+
+TypeSub: Ty = {
+    "!" <Ident> => Ty::Not(Box::new(Ty::Ref(<>))),
+    "[" <CommaDef<TypeSpan>> "]" => Ty::Brackets(<>),
+    "(" <CommaDef<TypeSpan>> ")" => Ty::Parens(<>),
+    "(" ")" => Ty::EmptyParen,
+    <Ident> => Ty::Ref(<>),
+};
+
+TypeSpan: Vec<Ty> = {
+    <TypeSub+> => <>,
 };
 
 // TODO make a destructure type
@@ -153,7 +167,7 @@ Destructure: Ident = {
     "==" => Ident("$$$".to_string()),
     "@" => Ident("$$$".to_string()),
     ">>=" => Ident("$$$".to_string()),
-    "{" Comma<(Ident ("::" Type+)?)> "}" => Ident("$$$".to_string()),
+    "{" Comma<(Ident ("::" TypeSpan)?)> "}" => Ident("$$$".to_string()),
     "`" Ident "`" => Ident("$$$".to_string()),
 
     "," => Ident("$$$".to_string()), // TODO get rid of this
@@ -177,29 +191,29 @@ pub Module: Module = {
 
 Statement: Statement = {
   "class" Destructure+ ("=>" Ident+)?
-  "where" "{" Semi<Statement> "}" => Statement::Class,
+    "where" "{" Semi<Statement> "}" => Statement::Class,
 
-  "instance" FnDef+ "where"
-  "{" Semi<Statement> "}" => Statement::Instance,
+  "instance" FnDef "where"
+    "{" Semi<Statement> "}" => Statement::Instance,
   "import" ImportList+ => Statement::Import,
 
   "data" <id:Ident+> "=" Pipe<Destructure+>
-  ("deriving" ImportList)? =>
-    Statement::Data(id[0].clone(), vec![], vec![]),
+    ("deriving" ImportList)? =>
+      Statement::Data(id[0].clone(), vec![], vec![]),
   "newtype" <id:Ident+> "=" <p:Destructure+>
-  ("deriving" ImportList)? =>
-     Statement::Newtype,
+    ("deriving" ImportList)? =>
+      Statement::Newtype,
 
-  Destructure Destructure* ("|" Commaish<Expr> "=" Expr+)*
-  ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
-
-  <i:Ident> "::" <d:FnDef+> => Statement::Prototype(i, d),
+  <i:Ident> "::" <d:FnDef> => Statement::Prototype(i, vec![d]),
 
   "type" <d:Destructure> Destructure* "=" Expr+
-  ("where" "{" Semi<Statement> "}")? => Statement::Typedef(d),
+    ("where" "{" Semi<Statement> "}")? => Statement::Typedef(d),
 
-  <d:Destructure> Destructure* "=" <e:Expr+>
-  ("where" "{" Semi<Statement> "}")? => Statement::Assign(d, e),
+  Destructure Destructure* ("|" Commaish<Expr> "=" Expr+)*
+    ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
+
+  <d:Destructure> <args:Destructure*> "=" <e:Expr+>
+    ("where" "{" Semi<Statement> "}")? => Statement::Assign(d, args, e),
 };
 
 Tier<Op,NextTier>: Box<Expr> = {

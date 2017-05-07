@@ -1,0 +1,10 @@
+[package]
+name = "corroder-parser"
+version = "0.1.0"
+authors = ["Tim Ryan <id@timryan.org>"]
+
+[build-dependencies.lalrpop]
+version = "0.12.5"
+
+[dependencies.lalrpop-util]
+version = "0.12.5"
