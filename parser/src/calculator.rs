@@ -77,8 +77,8 @@ mod __parse__Exprs {
         Nt_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f(::std::option::Option<(&'input str, &'input str, &'input str)>),
         Nt_28_22_28_22_20Comma_3cSection_3e_20_22_29_22_29((&'input str, Vec<i32>, &'input str)),
         Nt_28_22_28_22_20Comma_3cSection_3e_20_22_29_22_29_3f(::std::option::Option<(&'input str, Vec<i32>, &'input str)>),
-        Nt_28_22_3a_3a_22_20TypeSpan_29((&'input str, Vec<Ty>)),
-        Nt_28_22_3a_3a_22_20TypeSpan_29_3f(::std::option::Option<(&'input str, Vec<Ty>)>),
+        Nt_28_22_3a_3a_22_20TypeSpan_29((&'input str, Ty)),
+        Nt_28_22_3a_3a_22_20TypeSpan_29_3f(::std::option::Option<(&'input str, Ty)>),
         Nt_28_22_3d_3e_22_20Ident_2b_29((&'input str, ::std::vec::Vec<Ident>)),
         Nt_28_22_3d_3e_22_20Ident_2b_29_3f(::std::option::Option<(&'input str, ::std::vec::Vec<Ident>)>),
         Nt_28_22deriving_22_20ImportList_29((&'input str, ())),
@@ -98,9 +98,9 @@ mod __parse__Exprs {
         Nt_28_3c_28Ident_20_22_3d_22_20Expr_2b_29_3e_20_22_2c_22_29_2b(::std::vec::Vec<(Ident, &'input str, ::std::vec::Vec<Expr>)>),
         Nt_28_3c_28Ident_20_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f_29_3e_20_22_2c_22_3f_29((Ident, ::std::option::Option<(&'input str, &'input str, &'input str)>)),
         Nt_28_3c_28Ident_20_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f_29_3e_20_22_2c_22_3f_29_2b(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, &'input str, &'input str)>)>),
-        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29((Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)),
-        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2a(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>),
-        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2b(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>),
+        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29((Ident, ::std::option::Option<(&'input str, Ty)>)),
+        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2a(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>),
+        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2b(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>),
         Nt_28_3cCase_3e_20_22_3b_22_29(()),
         Nt_28_3cCase_3e_20_22_3b_22_29_2a(::std::vec::Vec<()>),
         Nt_28_3cCase_3e_20_22_3b_22_29_2b(::std::vec::Vec<()>),
@@ -123,22 +123,22 @@ mod __parse__Exprs {
         Nt_28_3cStatement_3e_20_22_3b_22_29(Statement),
         Nt_28_3cStatement_3e_20_22_3b_22_29_2a(::std::vec::Vec<Statement>),
         Nt_28_3cStatement_3e_20_22_3b_22_29_2b(::std::vec::Vec<Statement>),
-        Nt_28_3cTypeSpan_3e_20_22_2c_22_29(Vec<Ty>),
-        Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2a(::std::vec::Vec<Vec<Ty>>),
-        Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2b(::std::vec::Vec<Vec<Ty>>),
+        Nt_28_3cTypeSpan_3e_20_22_2c_22_29(Ty),
+        Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2a(::std::vec::Vec<Ty>),
+        Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2b(::std::vec::Vec<Ty>),
         Nt_28Ident_20_22_3d_22_20Expr_2b_29((Ident, &'input str, ::std::vec::Vec<Expr>)),
         Nt_28Ident_20_22_3d_22_20Expr_2b_29_3f(::std::option::Option<(Ident, &'input str, ::std::vec::Vec<Expr>)>),
         Nt_28Ident_20_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f_29((Ident, ::std::option::Option<(&'input str, &'input str, &'input str)>)),
-        Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29((Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)),
-        Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3f(::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>),
+        Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29((Ident, ::std::option::Option<(&'input str, Ty)>)),
+        Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3f(::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>),
         NtArith(Box<Expr>),
         NtCase(()),
         NtCase_3f(::std::option::Option<()>),
         NtComma_3c_28Ident_20_22_3d_22_20Expr_2b_29_3e(Vec<(Ident, &'input str, ::std::vec::Vec<Expr>)>),
-        NtComma_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e(Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>),
+        NtComma_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e(Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>),
         NtComma_3cExpr_3e(Vec<Expr>),
         NtComma_3cSection_3e(Vec<i32>),
-        NtCommaDef_3cTypeSpan_3e(Vec<Vec<Ty>>),
+        NtCommaDef_3cTypeSpan_3e(Vec<Ty>),
         NtCommaish_3c_28Ident_20_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f_29_3e(Vec<(Ident, ::std::option::Option<(&'input str, &'input str, &'input str)>)>),
         NtCommaish_3cExpr_3e(Vec<Expr>),
         NtCommaish_3cIdent_3e(Vec<Ident>),
@@ -176,7 +176,7 @@ mod __parse__Exprs {
         NtTier_3cExprOp_2c_20Factor_3e(Box<Expr>),
         NtTier_3cFactorOp_2c_20Term_3e(Box<Expr>),
         NtType(Ty),
-        NtTypeSpan(Vec<Ty>),
+        NtTypeSpan(Ty),
         NtTypeSub(Ty),
         NtTypeSub_2b(::std::vec::Vec<Ty>),
         Nt____Exprs(Vec<Expr>),
@@ -14142,7 +14142,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, (&'input str, Vec<Ty>), usize) {
+    ) -> (usize, (&'input str, Ty), usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_22_3a_3a_22_20TypeSpan_29(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14152,7 +14152,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::option::Option<(&'input str, Vec<Ty>)>, usize) {
+    ) -> (usize, ::std::option::Option<(&'input str, Ty)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_22_3a_3a_22_20TypeSpan_29_3f(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14352,7 +14352,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>), usize) {
+    ) -> (usize, (Ident, ::std::option::Option<(&'input str, Ty)>), usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14362,7 +14362,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize) {
+    ) -> (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2a(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14372,7 +14372,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize) {
+    ) -> (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2b(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14602,7 +14602,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, Vec<Ty>, usize) {
+    ) -> (usize, Ty, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3cTypeSpan_3e_20_22_2c_22_29(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14612,7 +14612,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::vec::Vec<Vec<Ty>>, usize) {
+    ) -> (usize, ::std::vec::Vec<Ty>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2a(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14622,7 +14622,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::vec::Vec<Vec<Ty>>, usize) {
+    ) -> (usize, ::std::vec::Vec<Ty>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2b(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14662,7 +14662,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>), usize) {
+    ) -> (usize, (Ident, ::std::option::Option<(&'input str, Ty)>), usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14672,7 +14672,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize) {
+    ) -> (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3f(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14722,7 +14722,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize) {
+    ) -> (usize, Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::NtComma_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -14752,7 +14752,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, Vec<Vec<Ty>>, usize) {
+    ) -> (usize, Vec<Ty>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::NtCommaDef_3cTypeSpan_3e(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -15132,7 +15132,7 @@ mod __parse__Exprs {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, Vec<Ty>, usize) {
+    ) -> (usize, Ty, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::NtTypeSpan(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -15255,8 +15255,8 @@ mod __parse__Module {
         Nt_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f(::std::option::Option<(&'input str, &'input str, &'input str)>),
         Nt_28_22_28_22_20Comma_3cSection_3e_20_22_29_22_29((&'input str, Vec<i32>, &'input str)),
         Nt_28_22_28_22_20Comma_3cSection_3e_20_22_29_22_29_3f(::std::option::Option<(&'input str, Vec<i32>, &'input str)>),
-        Nt_28_22_3a_3a_22_20TypeSpan_29((&'input str, Vec<Ty>)),
-        Nt_28_22_3a_3a_22_20TypeSpan_29_3f(::std::option::Option<(&'input str, Vec<Ty>)>),
+        Nt_28_22_3a_3a_22_20TypeSpan_29((&'input str, Ty)),
+        Nt_28_22_3a_3a_22_20TypeSpan_29_3f(::std::option::Option<(&'input str, Ty)>),
         Nt_28_22_3d_3e_22_20Ident_2b_29((&'input str, ::std::vec::Vec<Ident>)),
         Nt_28_22_3d_3e_22_20Ident_2b_29_3f(::std::option::Option<(&'input str, ::std::vec::Vec<Ident>)>),
         Nt_28_22deriving_22_20ImportList_29((&'input str, ())),
@@ -15276,9 +15276,9 @@ mod __parse__Module {
         Nt_28_3c_28Ident_20_22_3d_22_20Expr_2b_29_3e_20_22_2c_22_29_2b(::std::vec::Vec<(Ident, &'input str, ::std::vec::Vec<Expr>)>),
         Nt_28_3c_28Ident_20_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f_29_3e_20_22_2c_22_3f_29((Ident, ::std::option::Option<(&'input str, &'input str, &'input str)>)),
         Nt_28_3c_28Ident_20_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f_29_3e_20_22_2c_22_3f_29_2b(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, &'input str, &'input str)>)>),
-        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29((Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)),
-        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2a(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>),
-        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2b(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>),
+        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29((Ident, ::std::option::Option<(&'input str, Ty)>)),
+        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2a(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>),
+        Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2b(::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>),
         Nt_28_3cCase_3e_20_22_3b_22_29(()),
         Nt_28_3cCase_3e_20_22_3b_22_29_2a(::std::vec::Vec<()>),
         Nt_28_3cCase_3e_20_22_3b_22_29_2b(::std::vec::Vec<()>),
@@ -15301,22 +15301,22 @@ mod __parse__Module {
         Nt_28_3cStatement_3e_20_22_3b_22_29(Statement),
         Nt_28_3cStatement_3e_20_22_3b_22_29_2a(::std::vec::Vec<Statement>),
         Nt_28_3cStatement_3e_20_22_3b_22_29_2b(::std::vec::Vec<Statement>),
-        Nt_28_3cTypeSpan_3e_20_22_2c_22_29(Vec<Ty>),
-        Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2a(::std::vec::Vec<Vec<Ty>>),
-        Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2b(::std::vec::Vec<Vec<Ty>>),
+        Nt_28_3cTypeSpan_3e_20_22_2c_22_29(Ty),
+        Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2a(::std::vec::Vec<Ty>),
+        Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2b(::std::vec::Vec<Ty>),
         Nt_28Ident_20_22_3d_22_20Expr_2b_29((Ident, &'input str, ::std::vec::Vec<Expr>)),
         Nt_28Ident_20_22_3d_22_20Expr_2b_29_3f(::std::option::Option<(Ident, &'input str, ::std::vec::Vec<Expr>)>),
         Nt_28Ident_20_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f_29((Ident, ::std::option::Option<(&'input str, &'input str, &'input str)>)),
-        Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29((Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)),
-        Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3f(::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>),
+        Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29((Ident, ::std::option::Option<(&'input str, Ty)>)),
+        Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3f(::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>),
         NtArith(Box<Expr>),
         NtCase(()),
         NtCase_3f(::std::option::Option<()>),
         NtComma_3c_28Ident_20_22_3d_22_20Expr_2b_29_3e(Vec<(Ident, &'input str, ::std::vec::Vec<Expr>)>),
-        NtComma_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e(Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>),
+        NtComma_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e(Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>),
         NtComma_3cExpr_3e(Vec<Expr>),
         NtComma_3cSection_3e(Vec<i32>),
-        NtCommaDef_3cTypeSpan_3e(Vec<Vec<Ty>>),
+        NtCommaDef_3cTypeSpan_3e(Vec<Ty>),
         NtCommaish_3c_28Ident_20_28_22_28_22_20_22_2e_2e_22_20_22_29_22_29_3f_29_3e(Vec<(Ident, ::std::option::Option<(&'input str, &'input str, &'input str)>)>),
         NtCommaish_3cExpr_3e(Vec<Expr>),
         NtCommaish_3cIdent_3e(Vec<Ident>),
@@ -15354,7 +15354,7 @@ mod __parse__Module {
         NtTier_3cExprOp_2c_20Factor_3e(Box<Expr>),
         NtTier_3cFactorOp_2c_20Term_3e(Box<Expr>),
         NtType(Ty),
-        NtTypeSpan(Vec<Ty>),
+        NtTypeSpan(Ty),
         NtTypeSub(Ty),
         NtTypeSub_2b(::std::vec::Vec<Ty>),
         Nt____Exprs(Vec<Expr>),
@@ -29045,7 +29045,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, (&'input str, Vec<Ty>), usize) {
+    ) -> (usize, (&'input str, Ty), usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_22_3a_3a_22_20TypeSpan_29(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29055,7 +29055,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::option::Option<(&'input str, Vec<Ty>)>, usize) {
+    ) -> (usize, ::std::option::Option<(&'input str, Ty)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_22_3a_3a_22_20TypeSpan_29_3f(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29255,7 +29255,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>), usize) {
+    ) -> (usize, (Ident, ::std::option::Option<(&'input str, Ty)>), usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29265,7 +29265,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize) {
+    ) -> (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2a(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29275,7 +29275,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize) {
+    ) -> (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e_20_22_2c_22_29_2b(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29505,7 +29505,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, Vec<Ty>, usize) {
+    ) -> (usize, Ty, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3cTypeSpan_3e_20_22_2c_22_29(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29515,7 +29515,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::vec::Vec<Vec<Ty>>, usize) {
+    ) -> (usize, ::std::vec::Vec<Ty>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2a(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29525,7 +29525,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::vec::Vec<Vec<Ty>>, usize) {
+    ) -> (usize, ::std::vec::Vec<Ty>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28_3cTypeSpan_3e_20_22_2c_22_29_2b(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29565,7 +29565,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>), usize) {
+    ) -> (usize, (Ident, ::std::option::Option<(&'input str, Ty)>), usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29575,7 +29575,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize) {
+    ) -> (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::Nt_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3f(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29625,7 +29625,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize) {
+    ) -> (usize, Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::NtComma_3c_28Ident_20_28_22_3a_3a_22_20TypeSpan_29_3f_29_3e(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -29655,7 +29655,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, Vec<Vec<Ty>>, usize) {
+    ) -> (usize, Vec<Ty>, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::NtCommaDef_3cTypeSpan_3e(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -30035,7 +30035,7 @@ mod __parse__Module {
       'input,
     >(
         __symbols: &mut ::std::vec::Vec<(usize,__Symbol<'input>,usize)>
-    ) -> (usize, Vec<Ty>, usize) {
+    ) -> (usize, Ty, usize) {
         match __symbols.pop().unwrap() {
             (__l, __Symbol::NtTypeSpan(__v), __r) => (__l, __v, __r),
             _ => panic!("symbol type mismatch")
@@ -34728,12 +34728,12 @@ pub fn __action55<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, a, _): (usize, Vec<Ty>, usize),
+    (_, a, _): (usize, Ty, usize),
     (_, _, _): (usize, &'input str, usize),
     (_, b, _): (usize, Ty, usize),
 ) -> Ty
 {
-    Ty::Pair(a, Box::new(b))
+    Ty::Pair(Box::new(a), Box::new(b))
 }
 
 #[allow(unused_variables)]
@@ -34743,10 +34743,10 @@ pub fn __action56<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, __0, _): (usize, Vec<Ty>, usize),
+    (_, __0, _): (usize, Ty, usize),
 ) -> Ty
 {
-    Ty::Span(__0)
+    __0
 }
 
 #[allow(unused_variables)]
@@ -34771,7 +34771,7 @@ pub fn __action58<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     (_, _, _): (usize, &'input str, usize),
-    (_, __0, _): (usize, Vec<Vec<Ty>>, usize),
+    (_, __0, _): (usize, Vec<Ty>, usize),
     (_, _, _): (usize, &'input str, usize),
 ) -> Ty
 {
@@ -34786,7 +34786,7 @@ pub fn __action59<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     (_, _, _): (usize, &'input str, usize),
-    (_, __0, _): (usize, Vec<Vec<Ty>>, usize),
+    (_, __0, _): (usize, Vec<Ty>, usize),
     (_, _, _): (usize, &'input str, usize),
 ) -> Ty
 {
@@ -34828,9 +34828,9 @@ pub fn __action62<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     (_, __0, _): (usize, ::std::vec::Vec<Ty>, usize),
-) -> Vec<Ty>
+) -> Ty
 {
-    __0
+    Ty::Span(__0)
 }
 
 #[allow(unused_variables)]
@@ -34980,7 +34980,7 @@ pub fn __action73<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     (_, __0, _): (usize, &'input str, usize),
-    (_, __1, _): (usize, Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
+    (_, __1, _): (usize, Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
     (_, __2, _): (usize, &'input str, usize),
 ) -> Ident
 {
@@ -35720,9 +35720,9 @@ pub fn __action124<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, v, _): (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
-    (_, e, _): (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
-) -> Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    (_, v, _): (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
+    (_, e, _): (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
+) -> Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     match e { // (1)
         None=> v,
@@ -35742,8 +35742,8 @@ pub fn __action125<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     (_, __0, _): (usize, Ident, usize),
-    (_, __1, _): (usize, ::std::option::Option<(&'input str, Vec<Ty>)>, usize),
-) -> (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)
+    (_, __1, _): (usize, ::std::option::Option<(&'input str, Ty)>, usize),
+) -> (Ident, ::std::option::Option<(&'input str, Ty)>)
 {
     (__0, __1)
 }
@@ -35755,8 +35755,8 @@ pub fn __action126<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, __0, _): (usize, (&'input str, Vec<Ty>), usize),
-) -> ::std::option::Option<(&'input str, Vec<Ty>)>
+    (_, __0, _): (usize, (&'input str, Ty), usize),
+) -> ::std::option::Option<(&'input str, Ty)>
 {
     Some(__0)
 }
@@ -35770,7 +35770,7 @@ pub fn __action127<
     input: &'input str,
     __lookbehind: &usize,
     __lookahead: &usize,
-) -> ::std::option::Option<(&'input str, Vec<Ty>)>
+) -> ::std::option::Option<(&'input str, Ty)>
 {
     None
 }
@@ -35783,8 +35783,8 @@ pub fn __action128<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     (_, __0, _): (usize, &'input str, usize),
-    (_, __1, _): (usize, Vec<Ty>, usize),
-) -> (&'input str, Vec<Ty>)
+    (_, __1, _): (usize, Ty, usize),
+) -> (&'input str, Ty)
 {
     (__0, __1)
 }
@@ -35850,9 +35850,9 @@ pub fn __action133<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, v, _): (usize, ::std::vec::Vec<Vec<Ty>>, usize),
-    (_, e, _): (usize, Vec<Ty>, usize),
-) -> Vec<Vec<Ty>>
+    (_, v, _): (usize, ::std::vec::Vec<Ty>, usize),
+    (_, e, _): (usize, Ty, usize),
+) -> Vec<Ty>
 {
     {
         let mut v = v;
@@ -36832,7 +36832,7 @@ pub fn __action201<
     input: &'input str,
     __lookbehind: &usize,
     __lookahead: &usize,
-) -> ::std::vec::Vec<Vec<Ty>>
+) -> ::std::vec::Vec<Ty>
 {
     vec![]
 }
@@ -36844,8 +36844,8 @@ pub fn __action202<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, v, _): (usize, ::std::vec::Vec<Vec<Ty>>, usize),
-) -> ::std::vec::Vec<Vec<Ty>>
+    (_, v, _): (usize, ::std::vec::Vec<Ty>, usize),
+) -> ::std::vec::Vec<Ty>
 {
     v
 }
@@ -36857,9 +36857,9 @@ pub fn __action203<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, __0, _): (usize, Vec<Ty>, usize),
+    (_, __0, _): (usize, Ty, usize),
     (_, _, _): (usize, &'input str, usize),
-) -> Vec<Ty>
+) -> Ty
 {
     (__0)
 }
@@ -36871,8 +36871,8 @@ pub fn __action204<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, __0, _): (usize, (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>), usize),
-) -> ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    (_, __0, _): (usize, (Ident, ::std::option::Option<(&'input str, Ty)>), usize),
+) -> ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     Some(__0)
 }
@@ -36886,7 +36886,7 @@ pub fn __action205<
     input: &'input str,
     __lookbehind: &usize,
     __lookahead: &usize,
-) -> ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     None
 }
@@ -36900,7 +36900,7 @@ pub fn __action206<
     input: &'input str,
     __lookbehind: &usize,
     __lookahead: &usize,
-) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     vec![]
 }
@@ -36912,8 +36912,8 @@ pub fn __action207<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, v, _): (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
-) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    (_, v, _): (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
+) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     v
 }
@@ -36925,9 +36925,9 @@ pub fn __action208<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, __0, _): (usize, (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>), usize),
+    (_, __0, _): (usize, (Ident, ::std::option::Option<(&'input str, Ty)>), usize),
     (_, _, _): (usize, &'input str, usize),
-) -> (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)
+) -> (Ident, ::std::option::Option<(&'input str, Ty)>)
 {
     (__0)
 }
@@ -37129,8 +37129,8 @@ pub fn __action223<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, __0, _): (usize, (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>), usize),
-) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    (_, __0, _): (usize, (Ident, ::std::option::Option<(&'input str, Ty)>), usize),
+) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     vec![__0]
 }
@@ -37142,9 +37142,9 @@ pub fn __action224<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, v, _): (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
-    (_, e, _): (usize, (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>), usize),
-) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    (_, v, _): (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
+    (_, e, _): (usize, (Ident, ::std::option::Option<(&'input str, Ty)>), usize),
+) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     { let mut v = v; v.push(e); v }
 }
@@ -37156,8 +37156,8 @@ pub fn __action225<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, __0, _): (usize, Vec<Ty>, usize),
-) -> ::std::vec::Vec<Vec<Ty>>
+    (_, __0, _): (usize, Ty, usize),
+) -> ::std::vec::Vec<Ty>
 {
     vec![__0]
 }
@@ -37169,9 +37169,9 @@ pub fn __action226<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    (_, v, _): (usize, ::std::vec::Vec<Vec<Ty>>, usize),
-    (_, e, _): (usize, Vec<Ty>, usize),
-) -> ::std::vec::Vec<Vec<Ty>>
+    (_, v, _): (usize, ::std::vec::Vec<Ty>, usize),
+    (_, e, _): (usize, Ty, usize),
+) -> ::std::vec::Vec<Ty>
 {
     { let mut v = v; v.push(e); v }
 }
@@ -37822,8 +37822,8 @@ pub fn __action255<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     __0: (usize, &'input str, usize),
-    __1: (usize, Vec<Ty>, usize),
-) -> ::std::option::Option<(&'input str, Vec<Ty>)>
+    __1: (usize, Ty, usize),
+) -> ::std::option::Option<(&'input str, Ty)>
 {
     let __start0 = __0.0.clone();
     let __end0 = __1.2.clone();
@@ -37850,8 +37850,8 @@ pub fn __action256<
     input: &'input str,
     __0: (usize, Ident, usize),
     __1: (usize, &'input str, usize),
-    __2: (usize, Vec<Ty>, usize),
-) -> (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)
+    __2: (usize, Ty, usize),
+) -> (Ident, ::std::option::Option<(&'input str, Ty)>)
 {
     let __start0 = __1.0.clone();
     let __end0 = __2.2.clone();
@@ -37878,7 +37878,7 @@ pub fn __action257<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     __0: (usize, Ident, usize),
-) -> (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)
+) -> (Ident, ::std::option::Option<(&'input str, Ty)>)
 {
     let __start0 = __0.2.clone();
     let __end0 = __0.2.clone();
@@ -39370,9 +39370,9 @@ pub fn __action304<
     input: &'input str,
     __0: (usize, Ident, usize),
     __1: (usize, &'input str, usize),
-    __2: (usize, Vec<Ty>, usize),
+    __2: (usize, Ty, usize),
     __3: (usize, &'input str, usize),
-) -> (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)
+) -> (Ident, ::std::option::Option<(&'input str, Ty)>)
 {
     let __start0 = __0.0.clone();
     let __end0 = __2.2.clone();
@@ -39401,7 +39401,7 @@ pub fn __action305<
     input: &'input str,
     __0: (usize, Ident, usize),
     __1: (usize, &'input str, usize),
-) -> (Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)
+) -> (Ident, ::std::option::Option<(&'input str, Ty)>)
 {
     let __start0 = __0.0.clone();
     let __end0 = __0.2.clone();
@@ -39428,8 +39428,8 @@ pub fn __action306<
     input: &'input str,
     __0: (usize, Ident, usize),
     __1: (usize, &'input str, usize),
-    __2: (usize, Vec<Ty>, usize),
-) -> ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    __2: (usize, Ty, usize),
+) -> ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __0.0.clone();
     let __end0 = __2.2.clone();
@@ -39456,7 +39456,7 @@ pub fn __action307<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     __0: (usize, Ident, usize),
-) -> ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __0.0.clone();
     let __end0 = __0.2.clone();
@@ -39482,9 +39482,9 @@ pub fn __action308<
     input: &'input str,
     __0: (usize, Ident, usize),
     __1: (usize, &'input str, usize),
-    __2: (usize, Vec<Ty>, usize),
+    __2: (usize, Ty, usize),
     __3: (usize, &'input str, usize),
-) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __0.0.clone();
     let __end0 = __3.2.clone();
@@ -39513,7 +39513,7 @@ pub fn __action309<
     input: &'input str,
     __0: (usize, Ident, usize),
     __1: (usize, &'input str, usize),
-) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __0.0.clone();
     let __end0 = __1.2.clone();
@@ -39538,12 +39538,12 @@ pub fn __action310<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
+    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
     __1: (usize, Ident, usize),
     __2: (usize, &'input str, usize),
-    __3: (usize, Vec<Ty>, usize),
+    __3: (usize, Ty, usize),
     __4: (usize, &'input str, usize),
-) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __1.0.clone();
     let __end0 = __4.2.clone();
@@ -39571,10 +39571,10 @@ pub fn __action311<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
+    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
     __1: (usize, Ident, usize),
     __2: (usize, &'input str, usize),
-) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __1.0.clone();
     let __end0 = __2.2.clone();
@@ -39600,8 +39600,8 @@ pub fn __action312<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
-) -> Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    __0: (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
+) -> Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __0.0.clone();
     let __end0 = __0.0.clone();
@@ -39627,9 +39627,9 @@ pub fn __action313<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
-    __1: (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
-) -> Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
+    __1: (usize, ::std::option::Option<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
+) -> Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __0.0.clone();
     let __end0 = __0.2.clone();
@@ -40530,9 +40530,9 @@ pub fn __action346<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, Vec<Ty>, usize),
+    __0: (usize, Ty, usize),
     __1: (usize, &'input str, usize),
-) -> ::std::vec::Vec<Vec<Ty>>
+) -> ::std::vec::Vec<Ty>
 {
     let __start0 = __0.0.clone();
     let __end0 = __1.2.clone();
@@ -40557,10 +40557,10 @@ pub fn __action347<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, ::std::vec::Vec<Vec<Ty>>, usize),
-    __1: (usize, Vec<Ty>, usize),
+    __0: (usize, ::std::vec::Vec<Ty>, usize),
+    __1: (usize, Ty, usize),
     __2: (usize, &'input str, usize),
-) -> ::std::vec::Vec<Vec<Ty>>
+) -> ::std::vec::Vec<Ty>
 {
     let __start0 = __1.0.clone();
     let __end0 = __2.2.clone();
@@ -40586,8 +40586,8 @@ pub fn __action348<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, Vec<Ty>, usize),
-) -> Vec<Vec<Ty>>
+    __0: (usize, Ty, usize),
+) -> Vec<Ty>
 {
     let __start0 = __0.0.clone();
     let __end0 = __0.0.clone();
@@ -40613,9 +40613,9 @@ pub fn __action349<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, ::std::vec::Vec<Vec<Ty>>, usize),
-    __1: (usize, Vec<Ty>, usize),
-) -> Vec<Vec<Ty>>
+    __0: (usize, ::std::vec::Vec<Ty>, usize),
+    __1: (usize, Ty, usize),
+) -> Vec<Ty>
 {
     let __start0 = __0.0.clone();
     let __end0 = __0.2.clone();
@@ -40756,8 +40756,8 @@ pub fn __action354<
     input: &'input str,
     __0: (usize, Ident, usize),
     __1: (usize, &'input str, usize),
-    __2: (usize, Vec<Ty>, usize),
-) -> Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    __2: (usize, Ty, usize),
+) -> Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __0.0.clone();
     let __end0 = __2.2.clone();
@@ -40784,7 +40784,7 @@ pub fn __action355<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     __0: (usize, Ident, usize),
-) -> Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __0.0.clone();
     let __end0 = __0.2.clone();
@@ -40810,7 +40810,7 @@ pub fn __action356<
     input: &'input str,
     __lookbehind: &usize,
     __lookahead: &usize,
-) -> Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __lookbehind.clone();
     let __end0 = __lookahead.clone();
@@ -40835,11 +40835,11 @@ pub fn __action357<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
+    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
     __1: (usize, Ident, usize),
     __2: (usize, &'input str, usize),
-    __3: (usize, Vec<Ty>, usize),
-) -> Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    __3: (usize, Ty, usize),
+) -> Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __1.0.clone();
     let __end0 = __3.2.clone();
@@ -40866,9 +40866,9 @@ pub fn __action358<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
+    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
     __1: (usize, Ident, usize),
-) -> Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+) -> Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __1.0.clone();
     let __end0 = __1.2.clone();
@@ -40893,8 +40893,8 @@ pub fn __action359<
 >(
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
-    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>, usize),
-) -> Vec<(Ident, ::std::option::Option<(&'input str, Vec<Ty>)>)>
+    __0: (usize, ::std::vec::Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>, usize),
+) -> Vec<(Ident, ::std::option::Option<(&'input str, Ty)>)>
 {
     let __start0 = __0.2.clone();
     let __end0 = __0.2.clone();

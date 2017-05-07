@@ -39,18 +39,16 @@ pub struct Module {
     pub statements: Vec<Statement>,
 }
 
-pub type TySpan = Vec<Ty>;
-
 #[derive(Clone, Debug)]
 pub enum Ty {
+    Span(Vec<Ty>),
     Where(Box<Ty>, Box<Ty>),
-    Pair(TySpan, Box<Ty>),
+    Pair(Box<Ty>, Box<Ty>),
     Not(Box<Ty>),
     Ref(Ident),
+    Parens(Vec<Ty>),
+    Brackets(Vec<Ty>),
     EmptyParen,
-    Parens(Vec<TySpan>),
-    Brackets(Vec<TySpan>),
-    Span(TySpan),
     Dummy,
 }
 

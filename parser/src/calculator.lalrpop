@@ -139,8 +139,8 @@ FnDef: Ty = {
 };
 
 Type: Ty = {
-    <a:TypeSpan> "->" <b:Type> => Ty::Pair(a, Box::new(b)),
-    <TypeSpan> => Ty::Span(<>),
+    <a:TypeSpan> "->" <b:Type> => Ty::Pair(Box::new(a), Box::new(b)),
+    <TypeSpan> => <>,
 };
 
 TypeSub: Ty = {
@@ -151,8 +151,8 @@ TypeSub: Ty = {
     <Ident> => Ty::Ref(<>),
 };
 
-TypeSpan: Vec<Ty> = {
-    <TypeSub+> => <>,
+TypeSpan: Ty = {
+    <TypeSub+> => Ty::Span(<>),
 };
 
 // TODO make a destructure type

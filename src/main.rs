@@ -5,7 +5,7 @@ extern crate walkdir;
 extern crate corroder_parser;
 
 use corroder_parser::ast;
-use corroder_parser::ast::{Ty, TySpan};
+use corroder_parser::ast::Ty;
 use corroder_parser::calculator;
 
 use regex::Regex;
@@ -166,47 +166,51 @@ fn print_stat(stat: &ast::Statement) {
     }
 }
 
-fn unpack_fndef(t: Ty) -> Vec<TySpan> {
+fn unpack_fndef(t: Ty) -> Vec<Ty> {
     match t {
         Ty::Pair(a, b) => {
-            let mut v = vec![a];
+            let mut v = vec![*a];
             v.extend(unpack_fndef(*b));
             v
         }
         _ => {
-            vec![vec![t]]
+            vec![t]
         }
     }
 }
 
-fn print_type(t: TySpan) -> String {
-    let mut out = vec![];
-    for item in t {
-        match item {
-            Ty::Ref(ast::Ident(ref s)) => {
-                out.push(s.to_string());
+fn print_type(t: Ty) -> String {
+    match t {
+        Ty::Ref(ast::Ident(ref s)) => {
+            s.to_string()
+        }
+        Ty::Span(mut span) => {
+            let mut out_span = print_type(span.remove(0));
+            if span.len() > 0 {
+                let mut type_span = vec![];
+                for item in span {
+                    type_span.push(print_type(item));
+                }
+                out_span.push_str(&format!("<{}>", type_span.join(" ")))
             }
-            Ty::Span(span) => {
-                out.push(print_type(span));
-            }
-            Ty::Parens(spans) => {
-                out.push(format!("<{}>", spans.into_iter()
-                    .map(print_type)
-                    .collect::<Vec<_>>()
-                    .join(", ")));
-            }
-            Ty::Brackets(spans) => {
-                out.push(format!("[{}]", spans.into_iter()
-                    .map(print_type)
-                    .collect::<Vec<_>>()
-                    .join(", ")));
-            }
-            t => {
-                out.push(format!("{:?}", t));
-            }
+            out_span
+        }
+        Ty::Parens(spans) => {
+            format!("({})", spans.into_iter()
+                .map(print_type)
+                .collect::<Vec<_>>()
+                .join(", "))
+        }
+        Ty::Brackets(spans) => {
+            format!("Vec<{}>", spans.into_iter()
+                .map(print_type)
+                .collect::<Vec<_>>()
+                .join(", "))
+        }
+        t => {
+            format!("{:?}", t)
         }
     }
-    out.join(" ")
 }
 
 #[cfg(not(test))]
