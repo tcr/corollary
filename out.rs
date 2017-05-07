@@ -1,47 +1,37 @@
-ERROR   - "./language-c/src/Language/C/Analysis/AstAnalysis.hs"
+// ERROR: can't output "./language-c/src/Language/C/Analysis/AstAnalysis.hs"
 
-
-
-mod "./language-c/src/Language/C/Analysis/AstAnalysis.hs-boot" {
+mod Language_C_Analysis_AstAnalysis {
 
 }
 
-
-
-mod "./language-c/src/Language/C/Analysis/Builtins.hs" {
+mod Language_C_Analysis_Builtins {
     fn builtins() -> DefTable {
         foldr(doIdent, foldr(doTypeDef, emptyDefTable, typedefs), idents)
     };
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Analysis/ConstEval.hs"
 
+// ERROR: can't output "./language-c/src/Language/C/Analysis/Debug.hs"
 
-ERROR   - "./language-c/src/Language/C/Analysis/ConstEval.hs"
-
-
-
-ERROR   - "./language-c/src/Language/C/Analysis/Debug.hs"
-
-
-
-mod "./language-c/src/Language/C/Analysis/DeclAnalysis.hs" {
+mod Language_C_Analysis_DeclAnalysis {
     fn analyseVarDecl(handle_sue_def: Bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: Bool, $$$: CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Maybe<CInit>) -> m<VarDeclInfo> {
         {
-storage_spec(Operator("<-"), canonicalStorageSpec, storage_specs);
-typ(Operator("<-"), tType, handle_sue_def, node, typequals, canonTySpecs, derived_declrs, oldstyle_params);
-attrs'(Operator("<-"), mapM, tAttr, decl_attrs(Operator("++"), declr_attrs));
-name(Operator("<-"), mkVarName, node, name_opt, asmname_opt);
-return(Operator("$"), VarDeclInfo, name, inline, storage_spec, attrs', typ, node);
-}
+                storage_spec(Operator("<-"), canonicalStorageSpec, storage_specs);
+                typ(Operator("<-"), tType, handle_sue_def, node, typequals, canonTySpecs, derived_declrs, oldstyle_params);
+                attrs'(Operator("<-"), mapM, tAttr, decl_attrs(Operator("++"), declr_attrs));
+                name(Operator("<-"), mkVarName, node, name_opt, asmname_opt);
+                return(Operator("$"), VarDeclInfo, name, inline, storage_spec, attrs', typ, node);
+            }
     };
 
     fn analyseVarDecl'(handle_sue_def: Bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Maybe<CInit>) -> m<VarDeclInfo> {
         {
-Let;
-canonTySpecs(Operator("<-"), canonicalTypeSpec, type_specs);
-analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, inline, declr, oldstyle, init_opt);
-}
+                Let;
+                canonTySpecs(Operator("<-"), canonicalTypeSpec, type_specs);
+                analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, inline, declr, oldstyle, init_opt);
+            }
     };
 
     fn canonicalStorageSpec(storagespecs: Vec<CStorageSpec>) -> m<StorageSpec> {
@@ -70,8 +60,11 @@ analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, i
 
     fn emptyNumTypeSpec() -> NumTypeSpec {
         NumTypeSpec(hashmap! {
-"base" => NoBaseType, "signSpec" => NoSignSpec, "sizeMod" => NoSizeMod, "isComplex" => False
-})
+                "base" => NoBaseType,
+                "signSpec" => NoSignSpec,
+                "sizeMod" => NoSizeMod,
+                "isComplex" => False
+            })
     };
 
     fn getOnlyDeclr($$$: CDecl) -> m<CDeclr> {
@@ -156,68 +149,68 @@ analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, i
 
     fn tCompTypeDecl(handle_def: Bool, $$$: CStructUnion) -> m<CompTypeRef> {
         {
-sue_ref(Operator("<-"), createSUERef, node_info, ident_opt);
-Let;
-attrs'(Operator("<-"), mapM, tAttr, attrs);
-Let;
-handleTagDecl(CompDecl(decl));
-when(handle_def, Operator("$"), {
-maybeM(member_decls_opt, Operator("$"), Lambda, sue_ref, tag', decls, attrs', node_info, Operator(">>="), handleTagDef.CompDef);
-});
-return(decl);
-}
+                sue_ref(Operator("<-"), createSUERef, node_info, ident_opt);
+                Let;
+                attrs'(Operator("<-"), mapM, tAttr, attrs);
+                Let;
+                handleTagDecl(CompDecl(decl));
+                when(handle_def, Operator("$"), {
+                        maybeM(member_decls_opt, Operator("$"), Lambda, sue_ref, tag', decls, attrs', node_info, Operator(">>="), handleTagDef.CompDef);
+                    });
+                return(decl);
+            }
     };
 
     fn tDirectType(handle_sue_def: Bool, node: NodeInfo, ty_quals: Vec<CTypeQual>, canonTySpec: TypeSpecAnalysis) -> m<Type> {
         {
-quals, attrs(Operator("<-"), tTypeQuals, ty_quals);
-Let;
-Case;
-}
+                quals, attrs(Operator("<-"), tTypeQuals, ty_quals);
+                Let;
+                Case;
+            }
     };
 
     fn tEnumType(sue_ref: SUERef, enumerators: Vec<(Ident, Maybe<CExpr>)>, attrs: Attributes, node: NodeInfo) -> m<EnumType> {
         {
-    let $$$ = || {
-        mapAccumL(nextEnumerator, Left(0), enumerators)
-    };
-    let intExpr = |i| {
-        CConst(CIntConst(cInteger(i), undefNode))
-    };
-    fn nextEnrExpr($$$: Either<Integer, (Expr, Integer)>, Nothing: Maybe<CExpr>) -> (Either<Integer, (Expr, Integer)>, CExpr) {
-        Left(succ(i)), intExpr(i)
-    };
+                let $$$ = || {
+                    mapAccumL(nextEnumerator, Left(0), enumerators)
+                };
+                let intExpr = |i| {
+                    CConst(CIntConst(cInteger(i), undefNode))
+                };
+                fn nextEnrExpr($$$: Either<Integer, (Expr, Integer)>, Nothing: Maybe<CExpr>) -> (Either<Integer, (Expr, Integer)>, CExpr) {
+                    Left(succ(i)), intExpr(i)
+                };
 
-    fn nextEnrExpr($$$: Either<Integer, (Expr, Integer)>, Nothing: Maybe<CExpr>) -> (Either<Integer, (Expr, Integer)>, CExpr) {
-        Right(e, succ(offs)), offsExpr(e, offs)
-    };
+                fn nextEnrExpr($$$: Either<Integer, (Expr, Integer)>, Nothing: Maybe<CExpr>) -> (Either<Integer, (Expr, Integer)>, CExpr) {
+                    Right(e, succ(offs)), offsExpr(e, offs)
+                };
 
-    fn nextEnrExpr(_: Either<Integer, (Expr, Integer)>, $$$: Maybe<CExpr>) -> (Either<Integer, (Expr, Integer)>, CExpr) {
-        Right(e, 1), e
-    };
+                fn nextEnrExpr(_: Either<Integer, (Expr, Integer)>, $$$: Maybe<CExpr>) -> (Either<Integer, (Expr, Integer)>, CExpr) {
+                    Right(e, 1), e
+                };
 
-    let nextEnumerator = |memo, $$$| {
-        Let(memo', Enumerator(ident, expr, ty, nodeInfo(ident)))
-    };
-    let offsExpr = |e, offs| {
-        CBinary(CAddOp, e, intExpr(offs), undefNode)
-    };
-    let ty = || {
-        EnumType(sue_ref, enumerators', attrs, node)
-    };
-mapM_(handleEnumeratorDef, enumerators');
-return(ty);
-}
+                let nextEnumerator = |memo, $$$| {
+                    Let(memo', Enumerator(ident, expr, ty, nodeInfo(ident)))
+                };
+                let offsExpr = |e, offs| {
+                    CBinary(CAddOp, e, intExpr(offs), undefNode)
+                };
+                let ty = || {
+                    EnumType(sue_ref, enumerators', attrs, node)
+                };
+                mapM_(handleEnumeratorDef, enumerators');
+                return(ty);
+            }
     };
 
     fn tMemberDecls($$$: CDecl) -> m<Vec<MemberDecl>> {
         {
-Let;
-when(is_inline, Operator("$"), astError, node, "member declaration with inline specifier".to_string());
-canonTySpecs(Operator("<-"), canonicalTypeSpec, typespecs);
-ty(Operator("<-"), tType, True, node, typequals, canonTySpecs, Vector([]), Vector([]));
-Case;
-}
+                Let;
+                when(is_inline, Operator("$"), astError, node, "member declaration with inline specifier".to_string());
+                canonTySpecs(Operator("<-"), canonicalTypeSpec, typespecs);
+                ty(Operator("<-"), tType, True, node, typequals, canonTySpecs, Vector([]), Vector([]));
+                Case;
+            }
     };
 
     fn tMemberDecls($$$: CDecl) -> m<Vec<MemberDecl>> {
@@ -230,13 +223,13 @@ Case;
 
     fn tParamDecl($$$: CDecl) -> m<ParamDecl> {
         {
-declr(Operator("<-"), getParamDeclr);
-VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)(Operator("<-"), analyseVarDecl', True, declspecs, declr, Vector([]), Nothing);
-when(is_inline, Operator("$"), throwTravError, badSpecifierError(node, "parameter declaration with inline specifier".to_string()));
-storage(Operator("<-"), throwOnLeft, Operator("$"), computeParamStorage, node, storage_spec);
-Let;
-return(Operator("$"), paramDecl);
-}
+                declr(Operator("<-"), getParamDeclr);
+                VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)(Operator("<-"), analyseVarDecl', True, declspecs, declr, Vector([]), Nothing);
+                when(is_inline, Operator("$"), throwTravError, badSpecifierError(node, "parameter declaration with inline specifier".to_string()));
+                storage(Operator("<-"), throwOnLeft, Operator("$"), computeParamStorage, node, storage_spec);
+                Let;
+                return(Operator("$"), paramDecl);
+            }
     };
 
     fn tTag(CStructTag: CStructTag) -> CompTyKind {
@@ -261,13 +254,9 @@ return(Operator("$"), paramDecl);
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Analysis/DefTable.hs"
 
-
-ERROR   - "./language-c/src/Language/C/Analysis/DefTable.hs"
-
-
-
-mod "./language-c/src/Language/C/Analysis/Export.hs" {
+mod Language_C_Analysis_Export {
     fn exportArraySize($$$: ArraySize) -> CArrSize {
         CArrSize(static, e)
     };
@@ -426,9 +415,7 @@ mod "./language-c/src/Language/C/Analysis/Export.hs" {
 
 }
 
-
-
-mod "./language-c/src/Language/C/Analysis/NameSpaceMap.hs" {
+mod Language_C_Analysis_NameSpaceMap {
     fn defGlobal($$$: NameSpaceMap<k, a>, ident: k, def: a) -> (NameSpaceMap<k, a>, Maybe<a>) {
         NsMap(Map.insert(ident, def, gs), lss), Map.lookup(ident, gs)
     };
@@ -491,9 +478,7 @@ mod "./language-c/src/Language/C/Analysis/NameSpaceMap.hs" {
 
 }
 
-
-
-mod "./language-c/src/Language/C/Analysis/SemError.hs" {
+mod Language_C_Analysis_SemError {
     fn badSpecifierError(node_info: NodeInfo, msg: String) -> BadSpecifierError {
         BadSpecifierError(mkErrorInfo(LevelError, msg, node_info))
     };
@@ -548,21 +533,13 @@ mod "./language-c/src/Language/C/Analysis/SemError.hs" {
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Analysis/SemRep.hs"
 
+// ERROR: can't output "./language-c/src/Language/C/Analysis/TravMonad.hs"
 
-ERROR   - "./language-c/src/Language/C/Analysis/SemRep.hs"
+// ERROR: can't output "./language-c/src/Language/C/Analysis/TypeCheck.hs"
 
-
-
-ERROR   - "./language-c/src/Language/C/Analysis/TravMonad.hs"
-
-
-
-ERROR   - "./language-c/src/Language/C/Analysis/TypeCheck.hs"
-
-
-
-mod "./language-c/src/Language/C/Analysis/TypeConversions.hs" {
+mod Language_C_Analysis_TypeConversions {
     fn arithmeticConversion($$$: TypeName, $$$: TypeName) -> Maybe<TypeName> {
         Just(Operator("$"), TyComplex, Operator("$"), floatConversion, t1, t2)
     };
@@ -625,23 +602,15 @@ mod "./language-c/src/Language/C/Analysis/TypeConversions.hs" {
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Analysis/TypeUtils.hs"
 
-
-ERROR   - "./language-c/src/Language/C/Analysis/TypeUtils.hs"
-
-
-
-mod "./language-c/src/Language/C/Analysis.hs" {
+mod Language_C_Analysis {
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Data/Error.hs"
 
-
-ERROR   - "./language-c/src/Language/C/Data/Error.hs"
-
-
-
-mod "./language-c/src/Language/C/Data/Ident.hs" {
+mod Language_C_Data_Ident {
     fn bits14() -> Int {
         2(Operator("^"), 14(Operator("::"), Int))
     };
@@ -716,9 +685,7 @@ mod "./language-c/src/Language/C/Data/Ident.hs" {
 
 }
 
-
-
-mod "./language-c/src/Language/C/Data/InputStream.hs" {
+mod Language_C_Data_InputStream {
     fn countLines() -> Int {
         length(Operator("."), BSC.lines)
     };
@@ -781,9 +748,7 @@ mod "./language-c/src/Language/C/Data/InputStream.hs" {
 
 }
 
-
-
-mod "./language-c/src/Language/C/Data/Name.hs" {
+mod Language_C_Data_Name {
     fn namesStartingFrom(k: Int) -> Vec<Name> {
         Vector([Span([Ref(Ident("Name")), Ref(Ident("k.."))])])
     };
@@ -794,13 +759,9 @@ mod "./language-c/src/Language/C/Data/Name.hs" {
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Data/Node.hs"
 
-
-ERROR   - "./language-c/src/Language/C/Data/Node.hs"
-
-
-
-mod "./language-c/src/Language/C/Data/Position.hs" {
+mod Language_C_Data_Position {
     fn adjustPos(fname: FilePath, row: Int, $$$: Position) -> Position {
         Position(offs, fname, row, 1)
     };
@@ -887,61 +848,39 @@ mod "./language-c/src/Language/C/Data/Position.hs" {
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Data/RList.hs"
 
-
-ERROR   - "./language-c/src/Language/C/Data/RList.hs"
-
-
-
-mod "./language-c/src/Language/C/Data.hs" {
+mod Language_C_Data {
 
 }
 
-
-
-mod "./language-c/src/Language/C/Parser/Builtin.hs" {
+mod Language_C_Parser_Builtin {
     fn builtinTypeNames() -> Vec<Ident> {
         Vector([Span([Ref(Ident("builtinIdent")), Str("X19idWlsdGluX3ZhX2xpc3Q=")])])
     };
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Parser/Lexer.x"
 
+// ERROR: can't output "./language-c/src/Language/C/Parser/Parser.y"
 
-ERROR   - "./language-c/src/Language/C/Parser/Lexer.x"
+// ERROR: can't output "./language-c/src/Language/C/Parser/ParserMonad.hs"
 
+// ERROR: can't output "./language-c/src/Language/C/Parser/Tokens.hs"
 
-
-ERROR   - "./language-c/src/Language/C/Parser/Parser.y"
-
-
-
-ERROR   - "./language-c/src/Language/C/Parser/ParserMonad.hs"
-
-
-
-ERROR   - "./language-c/src/Language/C/Parser/Tokens.hs"
-
-
-
-mod "./language-c/src/Language/C/Parser.hs" {
+mod Language_C_Parser {
     fn execParser_(parser: P<a>, input: InputStream, pos: Position) -> Either<ParseError, a> {
         fmap(fst, Operator("$"), execParser, parser, input, pos, builtinTypeNames, newNameSupply)
     };
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Pretty.hs"
 
+// ERROR: can't output "./language-c/src/Language/C/Syntax/AST.hs"
 
-ERROR   - "./language-c/src/Language/C/Pretty.hs"
-
-
-
-ERROR   - "./language-c/src/Language/C/Syntax/AST.hs"
-
-
-
-mod "./language-c/src/Language/C/Syntax/Constants.hs" {
+mod Language_C_Syntax_Constants {
     fn _showWideFlag(flag: Bool) -> ShowS {
         if(flag, then, showString, "L".to_string(), else, id)
     };
@@ -1160,9 +1099,7 @@ mod "./language-c/src/Language/C/Syntax/Constants.hs" {
 
 }
 
-
-
-mod "./language-c/src/Language/C/Syntax/Ops.hs" {
+mod Language_C_Syntax_Ops {
     fn assignBinop(CAssignOp: CAssignOp) -> CBinaryOp {
         error("direct assignment has no binary operator".to_string())
     };
@@ -1229,23 +1166,17 @@ mod "./language-c/src/Language/C/Syntax/Ops.hs" {
 
 }
 
+// ERROR: can't output "./language-c/src/Language/C/Syntax/Utils.hs"
 
-
-ERROR   - "./language-c/src/Language/C/Syntax/Utils.hs"
-
-
-
-mod "./language-c/src/Language/C/Syntax.hs" {
+mod Language_C_Syntax {
 
 }
 
-
-
-mod "./language-c/src/Language/C/System/GCC.hs" {
+mod Language_C_System_GCC {
     fn buildCppArgs($$$: CppArgs) -> Vec<String> {
         {
-concatMap(tOption, options);
-}(Operator("++"), outputFileOpt, Operator("++"), Vector([Span([Str("LUU=")]), Span([Ref(Ident("input_file"))])]), Operator("++"), extra_args)
+            concatMap(tOption, options);
+        }(Operator("++"), outputFileOpt, Operator("++"), Vector([Span([Str("LUU=")]), Span([Ref(Ident("input_file"))])]), Operator("++"), extra_args)
     };
 
     fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String>)> {
@@ -1258,25 +1189,27 @@ concatMap(tOption, options);
 
 }
 
-
-
-mod "./language-c/src/Language/C/System/Preprocess.hs" {
+mod Language_C_System_Preprocess {
     fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
         cpp_args(hashmap! {
-"cppOptions" => opt(Operator(":"), cppOptions(cpp_args))
-})
+                "cppOptions" => opt(Operator(":"), cppOptions(cpp_args))
+            })
     };
 
     fn addExtraOption(cpp_args: CppArgs, extra: String) -> CppArgs {
         cpp_args(hashmap! {
-"extraOptions" => extra(Operator(":"), extraOptions(cpp_args))
-})
+                "extraOptions" => extra(Operator(":"), extraOptions(cpp_args))
+            })
     };
 
     fn cppFile(input_file: FilePath) -> CppArgs {
         CppArgs(hashmap! {
-"cppOptions" => Vector([]), "extraOptions" => Vector([]), "cppTmpDir" => Nothing, "inputFile" => input_file, "outputFile" => Nothing
-})
+                "cppOptions" => Vector([]),
+                "extraOptions" => Vector([]),
+                "cppTmpDir" => Nothing,
+                "inputFile" => input_file,
+                "outputFile" => Nothing
+            })
     };
 
     fn isPreprocessed() -> Bool {
@@ -1285,17 +1218,17 @@ mod "./language-c/src/Language/C/System/Preprocess.hs" {
 
     fn mkOutputFile(tmp_dir_opt: Maybe<FilePath>, input_file: FilePath) -> IO<FilePath> {
         {
-tmpDir(Operator("<-"), getTempDir, tmp_dir_opt);
-mkTmpFile(tmpDir, getOutputFileName(input_file));
-}
+                tmpDir(Operator("<-"), getTempDir, tmp_dir_opt);
+                mkTmpFile(tmpDir, getOutputFileName(input_file));
+            }
     };
 
     fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> IO<FilePath> {
         {
-path, file_handle(Operator("<-"), openTempFile, tmp_dir, file_templ);
-hClose(file_handle);
-return(path);
-}
+                path, file_handle(Operator("<-"), openTempFile, tmp_dir, file_templ);
+                hClose(file_handle);
+                return(path);
+            }
     };
 
     fn preprocessedExt() -> String {
@@ -1304,32 +1237,34 @@ return(path);
 
     fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
         CppArgs(hashmap! {
-"inputFile" => input_file, "cppOptions" => Vector([]), "extraOptions" => opts, "outputFile" => Nothing, "cppTmpDir" => Nothing
-})
+                "inputFile" => input_file,
+                "cppOptions" => Vector([]),
+                "extraOptions" => opts,
+                "outputFile" => Nothing,
+                "cppTmpDir" => Nothing
+            })
     };
 
     fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO<Either<ExitCode, InputStream>> {
         {
-    fn getActualOutFile() -> IO<FilePath> {
-        maybe(mkOutputFile(cppTmpDir(cpp_args), inputFile(cpp_args)), return, outputFile(cpp_args))
+                fn getActualOutFile() -> IO<FilePath> {
+                    maybe(mkOutputFile(cppTmpDir(cpp_args), inputFile(cpp_args)), return, outputFile(cpp_args))
+                };
+
+                let invokeCpp = |actual_out_file| {
+                    {
+                            exit_code(Operator("<-"), runCPP, cpp, cpp_args(hashmap! {
+                                        "outputFile" => Just(actual_out_file)
+                                    }));
+                            Case;
+                        }
+                };
+                let removeTmpOutFile = |out_file| {
+                    maybe(removeFile(out_file), Lambda(), outputFile(cpp_args))
+                };
+                bracket(getActualOutFile, removeTmpOutFile, invokeCpp);
+            }
     };
 
-    let invokeCpp = |actual_out_file| {
-        {
-exit_code(Operator("<-"), runCPP, cpp, cpp_args(hashmap! {
-"outputFile" => Just(actual_out_file)
-}));
-Case;
 }
-    };
-    let removeTmpOutFile = |out_file| {
-        maybe(removeFile(out_file), Lambda(), outputFile(cpp_args))
-    };
-bracket(getActualOutFile, removeTmpOutFile, invokeCpp);
-}
-    };
-
-}
-
-
 
