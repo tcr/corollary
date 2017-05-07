@@ -44,6 +44,7 @@ pub enum Statement {
 
 #[derive(Clone, Debug)]
 pub struct Module {
+    pub name: Ident,
     pub statements: Vec<Statement>,
 }
 

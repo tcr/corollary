@@ -96,6 +96,96 @@ where C: Debug, T: Debug, E: Debug {
     }
 }
 
+/// Convert indentation to something else.
+fn commify(val: &str) -> String {
+    let re_space = Regex::new(r#"^[ \t]+"#).unwrap();
+    let re_nl = Regex::new(r#"^\r?\n"#).unwrap();
+    let re_word = Regex::new(r#"[^ \t\r\n]+"#).unwrap();
+
+    let mut out = String::new();
+
+    let mut stash = vec![];
+    let mut trigger = false;
+    let mut indent = 0;
+    let mut first = true;
+
+    let commentless = strip_comments(val);
+    let mut v: &str = &commentless;
+    while v.len() > 0 {
+        if let Some(cap) = re_space.captures(v) {
+            let word = &cap[0];
+            out.push_str(word);
+            v = &v[word.len()..];
+
+            indent += word.len();
+        } else if let Some(cap) = re_nl.captures(v) {
+            let word = &cap[0];
+            out.push_str(word);
+            v = &v[word.len()..];
+
+            indent = 0;
+            first = true;
+            if stash.len() > 1 {
+                for _ in &stash[1..] {
+                    out.push_str(" ");
+                }
+            }
+        } else if let Some(cap) = re_word.captures(v) {
+            let word = &cap[0];
+
+            if first {
+                while {
+                    if let Some(i) = stash.last() {
+                        *i > indent
+                    } else {
+                        false
+                    }
+                } {
+                    stash.pop();
+                    out.push_str("}");
+                }
+
+                if let Some(i) = stash.last() {
+                    if *i == indent {
+                        out.push_str(";");
+                    }
+                }
+            }
+            first = false;
+
+            if trigger {
+                out.push_str("{");
+            }
+            out.push_str(word);
+            v = &v[word.len()..];
+
+            if trigger {
+                stash.push(indent);
+            }
+
+            indent += word.len();
+
+            if word == "do" || word == "where" || word == "of" || word == "let" {
+                trigger = true;
+            } else {
+                trigger = false;
+            }
+        } else {
+            panic!("unknown prop {:?}", v);
+        }
+    }
+    for _ in 0..stash.len() {
+        out.push_str("}");
+    }
+
+
+    let re = Regex::new(r#"where\s+;"#).unwrap();
+    let out = re.replace_all(&out, r#"where "#).to_string();
+
+    out
+}
+
+
 
 #[test]
 fn calculator() {
@@ -326,99 +416,11 @@ fn main() {
         let mut errors = Vec::new();
         if let Ok(v) = calculator::parse_Module(&mut errors, &input) {
             //continue;
-            println!("mod {:?} {{", p);
+            println!("mod {} {{", v.name.0.replace(".", "_"));
             println!("{}", print_statement_list(&v.statements));
             println!("}}\n\n\n");
         } else {
             println!("ERROR   - {:?}\n\n\n", p);
         }
     }
-}
-
-fn commify(val: &str) -> String {
-    let re_space = Regex::new(r#"^[ \t]+"#).unwrap();
-    let re_nl = Regex::new(r#"^\r?\n"#).unwrap();
-    let re_word = Regex::new(r#"[^ \t\r\n]+"#).unwrap();
-
-    let mut out = String::new();
-
-    let mut stash = vec![];
-    let mut trigger = false;
-    let mut indent = 0;
-    let mut first = true;
-
-    let commentless = strip_comments(val);
-    let mut v: &str = &commentless;
-    while v.len() > 0 {
-        if let Some(cap) = re_space.captures(v) {
-            let word = &cap[0];
-            out.push_str(word);
-            v = &v[word.len()..];
-
-            indent += word.len();
-        } else if let Some(cap) = re_nl.captures(v) {
-            let word = &cap[0];
-            out.push_str(word);
-            v = &v[word.len()..];
-
-            indent = 0;
-            first = true;
-            if stash.len() > 1 {
-                for _ in &stash[1..] {
-                    out.push_str(" ");
-                }
-            }
-        } else if let Some(cap) = re_word.captures(v) {
-            let word = &cap[0];
-
-            if first {
-                while {
-                    if let Some(i) = stash.last() {
-                        *i > indent
-                    } else {
-                        false
-                    }
-                } {
-                    stash.pop();
-                    out.push_str("}");
-                }
-
-                if let Some(i) = stash.last() {
-                    if *i == indent {
-                        out.push_str(";");
-                    }
-                }
-            }
-            first = false;
-
-            if trigger {
-                out.push_str("{");
-            }
-            out.push_str(word);
-            v = &v[word.len()..];
-
-            if trigger {
-                stash.push(indent);
-            }
-
-            indent += word.len();
-
-            if word == "do" || word == "where" || word == "of" || word == "let" {
-                trigger = true;
-            } else {
-                trigger = false;
-            }
-        } else {
-            panic!("unknown prop {:?}", v);
-        }
-    }
-    for _ in 0..stash.len() {
-        out.push_str("}");
-    }
-
-
-    let re = Regex::new(r#"where\s+;"#).unwrap();
-    let out = re.replace_all(&out, r#"where "#).to_string();
-
-    out
 }

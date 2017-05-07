@@ -35609,7 +35609,7 @@ pub fn __action82<
     errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>,
     input: &'input str,
     (_, _, _): (usize, &'input str, usize),
-    (_, _, _): (usize, Ident, usize),
+    (_, n, _): (usize, Ident, usize),
     (_, _, _): (usize, ::std::option::Option<(&'input str, Vec<i32>, &'input str)>, usize),
     (_, _, _): (usize, &'input str, usize),
     (_, _, _): (usize, &'input str, usize),
@@ -35618,6 +35618,7 @@ pub fn __action82<
 ) -> Module
 {
     Module {
+      name: n,
       statements: s,
     }
 }

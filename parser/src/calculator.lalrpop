@@ -198,8 +198,9 @@ ImportList: () = {
 };
 
 pub Module: Module = {
-  "module" Ident ("(" Comma<Section> ")")?
+  "module" <n:Ident> ("(" Comma<Section> ")")?
     "where" "{" <s:Semi<Statement>> "}" => Module {
+      name: n,
       statements: s,
     },
 };
