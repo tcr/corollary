@@ -233,6 +233,12 @@ impl PrintState {
         }
     }
 
+    fn untab(&self) -> PrintState {
+        PrintState {
+            level: if self.level == 0 { 0 } else { self.level - 1 }
+        }
+    }
+
     fn indent(&self) -> String {
         let mut out = String::new();
         for _ in 0..self.level {
@@ -262,10 +268,11 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                 out.push(print_statement_list(state.tab(), stats));
             }
 
-            for expr in exprset {
-                out.push(format!("{}{};", state.tab().indent(), print_expr(state.tab(), expr)));
+            for (i, expr) in exprset.iter().enumerate() {
+                let comm = if i == exprset.len() - 1 { "" } else { ";" };
+                out.push(format!("{}{}{}", state.indent(), print_expr(state.tab(), expr), comm));
             }
-            format!("{{\n{}\n{}}}", out.join("\n"), state.indent())
+            format!("{{\n{}\n{}}}", out.join("\n"), state.untab().indent())
         }
         Ref(ast::Ident(ref i)) => {
             format!("{}", i)
