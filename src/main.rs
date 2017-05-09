@@ -522,6 +522,17 @@ fn calculator() {
     println!("{:#?}", okay);
 }
 
+fn fix_lhs(s: &str) -> String {
+    let re = Regex::new(r"```haskell([\s\S]*?)```").unwrap();
+    let mut out = vec![];
+    for cap in re.captures_iter(&s) {
+        out.push(cap[1].to_string());
+    }
+
+    out.join("\n\n")
+}
+
+
 #[cfg(not(test))]
 fn main() {
     let dir = match env::args().nth(1) {
@@ -534,7 +545,10 @@ fn main() {
     for entry in WalkDir::new(dir) {
         let e = entry.unwrap();
         let p = e.path();
-        if !p.display().to_string().ends_with(".hs") {
+        let mut do_fix_lhs = false;
+        if p.display().to_string().ends_with(".lhs") {
+            do_fix_lhs = true;
+        } else if !p.display().to_string().ends_with(".hs") {
             continue;
         }
 
@@ -546,6 +560,10 @@ fn main() {
             _ => continue,
         };
 
+        if do_fix_lhs {
+            contents = fix_lhs(&contents);
+        }
+
         let input = commify(&contents);
         let mut errors = Vec::new();
         if let Ok(v) = calculator::parse_Module(&mut errors, &input) {
@@ -555,7 +573,7 @@ fn main() {
             println!("{}", print_statement_list(state.tab(), &v.statements));
             println!("}}\n");
         } else {
-            println!("// ERROR: cannot yet convert file \"{:?}\"\n", p);
+            println!("// ERROR: cannot yet convert file {:?}\n", p);
         }
     }
 }

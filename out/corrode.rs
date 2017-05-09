@@ -1,5 +1,9 @@
 // ERROR: cannot yet convert file ""./corrode/src/Language/Rust/AST.hs""
 
+// ERROR: cannot yet convert file ""./corrode/src/Language/Rust/Corrode/C.lhs""
+
+// ERROR: cannot yet convert file ""./corrode/src/Language/Rust/Corrode/CFG.lhs""
+
 // ERROR: cannot yet convert file ""./corrode/src/Language/Rust/Corrode/CrateMap.hs""
 
 mod Language_Rust_Idiomatic {
