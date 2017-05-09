@@ -1,4 +1,4 @@
-// ERROR: can't output "./language-c/src/Language/C/Analysis/AstAnalysis.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Analysis/AstAnalysis.hs""
 
 mod Language_C_Analysis_Builtins {
     fn builtins() -> DefTable {
@@ -7,13 +7,13 @@ mod Language_C_Analysis_Builtins {
 
 }
 
-// ERROR: can't output "./language-c/src/Language/C/Analysis/ConstEval.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Analysis/ConstEval.hs""
 
-// ERROR: can't output "./language-c/src/Language/C/Analysis/Debug.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Analysis/Debug.hs""
 
-// ERROR: can't output "./language-c/src/Language/C/Analysis/DeclAnalysis.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Analysis/DeclAnalysis.hs""
 
-// ERROR: can't output "./language-c/src/Language/C/Analysis/DefTable.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Analysis/DefTable.hs""
 
 mod Language_C_Analysis_Export {
     fn exportArraySize(__0: ArraySize) -> CArrSize {
@@ -286,11 +286,11 @@ mod Language_C_Analysis_SemError {
 
 }
 
-// ERROR: can't output "./language-c/src/Language/C/Analysis/SemRep.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Analysis/SemRep.hs""
 
-// ERROR: can't output "./language-c/src/Language/C/Analysis/TravMonad.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Analysis/TravMonad.hs""
 
-// ERROR: can't output "./language-c/src/Language/C/Analysis/TypeCheck.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Analysis/TypeCheck.hs""
 
 mod Language_C_Analysis_TypeConversions {
     fn arithmeticConversion(__0: TypeName, __1: TypeName) -> Maybe<TypeName> {
@@ -321,13 +321,13 @@ mod Language_C_Analysis_TypeConversions {
 
 }
 
-// ERROR: can't output "./language-c/src/Language/C/Analysis/TypeUtils.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Analysis/TypeUtils.hs""
 
 mod Language_C_Analysis {
 
 }
 
-// ERROR: can't output "./language-c/src/Language/C/Data/Error.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Data/Error.hs""
 
 mod Language_C_Data_Ident {
     fn bits14() -> Int {
@@ -460,7 +460,7 @@ mod Language_C_Data_Name {
 
 }
 
-// ERROR: can't output "./language-c/src/Language/C/Data/Node.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Data/Node.hs""
 
 mod Language_C_Data_Position {
     fn adjustPos(__0: FilePath, __1: Int, __2: Position) -> Position {
@@ -541,7 +541,7 @@ mod Language_C_Data_Position {
 
 }
 
-// ERROR: can't output "./language-c/src/Language/C/Data/RList.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Data/RList.hs""
 
 mod Language_C_Data {
 
@@ -554,9 +554,9 @@ mod Language_C_Parser_Builtin {
 
 }
 
-// ERROR: can't output "./language-c/src/Language/C/Parser/ParserMonad.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Parser/ParserMonad.hs""
 
-// ERROR: can't output "./language-c/src/Language/C/Parser/Tokens.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Parser/Tokens.hs""
 
 mod Language_C_Parser {
     fn execParser_(parser: P<a>, input: InputStream, pos: Position) -> Either<ParseError, a> {
@@ -565,9 +565,9 @@ mod Language_C_Parser {
 
 }
 
-// ERROR: can't output "./language-c/src/Language/C/Pretty.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Pretty.hs""
 
-// ERROR: can't output "./language-c/src/Language/C/Syntax/AST.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Syntax/AST.hs""
 
 mod Language_C_Syntax_Constants {
     fn _showWideFlag(flag: Bool) -> ShowS {
@@ -807,7 +807,7 @@ mod Language_C_Syntax_Ops {
 
 }
 
-// ERROR: can't output "./language-c/src/Language/C/Syntax/Utils.hs"
+// ERROR: cannot yet convert file ""./language-c/src/Language/C/Syntax/Utils.hs""
 
 mod Language_C_Syntax {
 

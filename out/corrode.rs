@@ -1,6 +1,6 @@
-// ERROR: can't output "./corrode/src/Language/Rust/AST.hs"
+// ERROR: cannot yet convert file ""./corrode/src/Language/Rust/AST.hs""
 
-// ERROR: can't output "./corrode/src/Language/Rust/Corrode/CrateMap.hs"
+// ERROR: cannot yet convert file ""./corrode/src/Language/Rust/Corrode/CrateMap.hs""
 
 mod Language_Rust_Idiomatic {
     fn itemIdioms(__0: Rust.Item) -> Rust.Item {

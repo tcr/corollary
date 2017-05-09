@@ -555,7 +555,7 @@ fn main() {
             println!("{}", print_statement_list(state.tab(), &v.statements));
             println!("}}\n");
         } else {
-            println!("// ERROR: can't output {:?}\n", p);
+            println!("// ERROR: cannot yet convert file \"{:?}\"\n", p);
         }
     }
 }
