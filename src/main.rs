@@ -187,21 +187,6 @@ fn commify(val: &str) -> String {
 
 
 
-#[test]
-fn calculator() {
-    let a = "./language-c/src/Language/C/System/Preprocess.hs";
-    println!("file: {}", a);
-    let mut file = File::open(a).unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let input = commify(&contents);
-    let mut errors = Vec::new();
-    let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));
-    println!("{:#?}", okay);
-}
-
-
 
 
 
@@ -326,18 +311,22 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             if span.len() == 1 {
                 print_expr(state.tab(), &span[0])
             } else {
-                // TODO
-                let mut span = span.clone();
-                let start = print_expr(state, &span.remove(0));
-                let mut end = "".to_string();
-                if span.len() > 0 {
-                    let mut out = vec![];
-                    for item in &span {
-                        out.push(print_expr(state.tab(), item));
+                if span.len() == 0 {
+                    format!("()") //TODO WHAT
+                } else {
+                    // TODO
+                    let mut span = span.clone();
+                    let start = print_expr(state, &span.remove(0));
+                    let mut end = "".to_string();
+                    if span.len() > 0 {
+                        let mut out = vec![];
+                        for item in &span {
+                            out.push(print_expr(state.tab(), item));
+                        }
+                        end = format!("({})", out.join(", "));
                     }
-                    end = format!("({})", out.join(", "));
+                    format!("{}{}", start, end)
                 }
-                format!("{}{}", start, end)
             }
         }
         Case(ref cond, ref rest) => {
@@ -514,6 +503,21 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     }
 
     out.join("\n")
+}
+
+
+#[test]
+fn calculator() {
+    let a = "./language-c/src/Language/C/Analysis/AstAnalysis.hs";
+    println!("file: {}", a);
+    let mut file = File::open(a).unwrap();
+    let mut contents = String::new();
+    file.read_to_string(&mut contents).unwrap();
+
+    let input = commify(&contents);
+    let mut errors = Vec::new();
+    let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));
+    println!("{:#?}", okay);
 }
 
 #[cfg(not(test))]
