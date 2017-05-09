@@ -13,6 +13,7 @@ use regex::{Regex, Captures};
 use std::io::prelude::*;
 use std::fs::{File};
 use std::fmt::Debug;
+use std::env;
 
 use lalrpop_util::{ParseError};
 use walkdir::WalkDir;
@@ -523,8 +524,14 @@ fn calculator() {
 
 #[cfg(not(test))]
 fn main() {
-    //for entry in WalkDir::new("./language-c/src/Language/C") {
-    for entry in WalkDir::new("./corrode/src/Language") {
+    let dir = match env::args().nth(1) {
+        Some(s) => s,
+        _ => {
+            panic!("Usage: cargo run <dir>");
+        }
+    };
+
+    for entry in WalkDir::new(dir) {
         let e = entry.unwrap();
         let p = e.path();
         if !p.display().to_string().ends_with(".hs") {
