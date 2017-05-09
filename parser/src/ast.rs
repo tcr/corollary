@@ -3,11 +3,11 @@ use std::fmt::{Debug, Formatter, Error};
 #[derive(Clone, Debug)]
 pub enum Expr {
     Number(i32),
-    Op(Box<Expr>, Opcode, Box<Expr>),
+    Op(Box<Expr>, String, Box<Expr>),
     Ref(Ident),
     Do(Vec<Expr>, Option<Vec<Statement>>),
     Parens(Vec<Expr>),
-    Case,
+    Case(Box<Expr>, Vec<CaseCond>),
     Let,
     Span(Vec<Expr>),
     Vector(Vec<Expr>),
@@ -17,6 +17,12 @@ pub enum Expr {
     Str(String),
     Error,
     Dummy,
+}
+
+#[derive(Clone, Debug)]
+pub enum CaseCond {
+    Matching(Vec<Ident>, Vec<(Expr, Expr)>),
+    Direct(Vec<Ident>, Expr),
 }
 
 #[derive(Copy, Clone, Debug)]

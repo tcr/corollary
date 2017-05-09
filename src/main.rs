@@ -6,7 +6,7 @@ extern crate regex;
 extern crate walkdir;
 
 use corroder_parser::ast;
-use corroder_parser::ast::Ty;
+use corroder_parser::ast::{Ty, Expr};
 use corroder_parser::calculator;
 
 use regex::{Regex, Captures};
@@ -197,10 +197,8 @@ fn calculator() {
 
     let input = commify(&contents);
     let mut errors = Vec::new();
-    {
-        let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));
-        println!("{:?}", okay);
-    }
+    let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));
+    println!("{:#?}", okay);
 }
 
 
@@ -248,6 +246,21 @@ impl PrintState {
     }
 }
 
+fn expr_explode(span: Vec<Expr>) -> Vec<Expr> {
+    if span.len() < 3 {
+        return span;
+    }
+    for i in 0..span.len() {
+        if let &ast::Expr::Operator(ref op) = &span[i] {
+            return vec![ast::Expr::Op(
+                Box::new(Expr::Span(expr_explode(span[0..i].to_vec().clone()))),
+                op.to_string(),
+                Box::new(Expr::Span(expr_explode(span[i+1..].to_vec().clone()))),
+            )];
+        }
+    }
+    span
+}
 
 
 fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
@@ -259,13 +272,20 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             for item in r {
                 out.push(print_expr(state, item));
             }
-            out.join(", ")
+            format!("({})", out.join(", "))
+        }
+        Vector(ref r) => {
+            let mut out = vec![];
+            for item in r {
+                out.push(print_expr(state, item));
+            }
+            format!("vec![{}]", out.join(", "))
         }
         Do(ref exprset, ref w) => {
             // where clause
             let mut out = vec![];
             if let &Some(ref stats) = w {
-                out.push(print_statement_list(state.tab(), stats));
+                out.push(print_statement_list(state, stats));
             }
 
             for (i, expr) in exprset.iter().enumerate() {
@@ -280,8 +300,16 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
         Number(n) => {
             format!("{}", n)
         }
-        Op(ref l, op, ref r) => {
-            format!("({:?} {:?} {:?})", l, op, r)
+        Op(ref l, ref op, ref r) => {
+            if op == "$" {
+                format!("{}({})", print_expr(state, l), print_expr(state, r))
+            } else if op == "." {
+                format!("({} . {})", print_expr(state, l), print_expr(state, r))
+            } else if op == "<-" {
+                format!("let {} = {}", print_expr(state, l), print_expr(state, r))
+            } else {
+                format!("{}({}, {})", op, print_expr(state, l), print_expr(state, r))
+            }
         }
         Record(ref items) => {
             let mut out = vec![];
@@ -294,6 +322,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             format!("{:?}.to_string()", String::from_utf8_lossy(&base64::decode(s).unwrap_or(b"\"\"".to_vec())))
         }
         Span(ref span) => {
+            let span = expr_explode(span.clone());
             if span.len() == 1 {
                 print_expr(state.tab(), &span[0])
             } else {
@@ -310,6 +339,33 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                 }
                 format!("{}{}", start, end)
             }
+        }
+        Case(ref cond, ref rest) => {
+            let mut out = vec![];
+            for item in rest {
+                match item.clone() {
+                    ast::CaseCond::Matching(label, arms) => {
+                        let mut inner = vec![];
+                        for (cond, arm) in arms {
+                            inner.push(format!("{} {{ {} }}",
+                                print_expr(state, &cond),
+                                print_expr(state, &arm),
+                            ));
+                        }
+                        out.push(format!("{}{} => if {},",
+                            state.indent(),
+                            label.iter().map(|x| x.0.to_string()).collect::<Vec<_>>().join(" "),
+                            inner.join("\n")));
+                    }
+                    ast::CaseCond::Direct(label, arm) => {
+                        out.push(format!("{}{} => {},",
+                            state.indent(),
+                            label.iter().map(|x| x.0.to_string()).collect::<Vec<_>>().join(" "),
+                            print_expr(state, &arm)));
+                    }
+                }
+            }
+            format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.untab().indent())
         }
         ref expr => {
             format!("{:?}", expr)
@@ -412,7 +468,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             if !types.contains_key(&key) {
                 // fallback to printing a lambda
                 out.push(
-                    format!("{}let {} = |{}| {{\n{}{}\n{}}};",
+                    format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
                         state.indent(),
                         key,
                         args.iter().map(|x| x.0.to_string()).collect::<Vec<_>>().join(", "),
@@ -434,7 +490,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 args_span.push(format!("{}: {}", arg, print_type(state.tab(), ty.clone())));
             }
             out.push(
-                format!("{}fn {}({}) -> {} {{\n{}{}\n{}}};\n",
+                format!("{}fn {}({}) -> {} {{\n{}{}\n{}}}\n",
                     state.indent(),
                     key,
                     args_span.join(", "),

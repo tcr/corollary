@@ -83,9 +83,9 @@ Section: i32 = {
     "module" Ident ("(" Comma<Section> ")")? => 0,
 };
 
-Case: () = {
-    Destructure+ ("|" Commaish<Expr> "->" Expr+)* => (),
-    Destructure+ "->" Expr+ => (),
+Case: CaseCond = {
+    <d:Destructure+> <v:("|" <ExprSpan> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
+    <d:Destructure+> "->" <v:ExprSpan> => CaseCond::Direct(d, v),
 };
 
 
@@ -136,7 +136,7 @@ Expr: Expr = {
     "::" => Expr::Operator(<>.to_string()),
     ".&." => Expr::Operator(<>.to_string()),
 
-    "case" Expr+ "of" "{" Semi<Case> "}" => Expr::Case,
+    "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
 
     "let" "{" Semi<Statement> "}" => Expr::Let,
 
@@ -233,7 +233,6 @@ Statement: Statement = {
 };
 
 Tier<Op,NextTier>: Box<Expr> = {
-    Tier<Op,NextTier> Op NextTier => Box::new(Expr::Op(<>)),
     NextTier
 };
 
