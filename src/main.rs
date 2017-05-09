@@ -522,10 +522,15 @@ fn calculator() {
 
 #[cfg(not(test))]
 fn main() {
-    for entry in WalkDir::new("./language-c/src/Language/C") {
-    //for entry in WalkDir::new("./corrode/src/Language") {
+    //for entry in WalkDir::new("./language-c/src/Language/C") {
+    for entry in WalkDir::new("./corrode/src/Language") {
         let e = entry.unwrap();
         let p = e.path();
+        if !p.display().to_string().ends_with(".hs") {
+            continue;
+        }
+
+
         let mut file = File::open(p).unwrap();
         let mut contents = String::new();
         match file.read_to_string(&mut contents) {
