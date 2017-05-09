@@ -107,7 +107,7 @@ Expr: Expr = {
     "(" "," ")" => Expr::Dummy,
     "(" Ident "->" Type ")" => Expr::Dummy,
 
-    r"\\[a-zA-Z_.][.a-zA-Z_0-9']*" Expr* "->" Expr => Expr::Lambda,
+    r"\\" r"[a-zA-Z_.][.a-zA-Z_0-9']*" Expr* "->" Expr => Expr::Lambda,
 
     "`" <Ident> "`" => Expr::Operator(<>.0),
     "\\" => Expr::Operator(<>.to_string()),

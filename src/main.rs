@@ -508,7 +508,8 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
 #[test]
 fn calculator() {
-    let a = "./language-c/src/Language/C/Analysis/AstAnalysis.hs";
+    //let a = "./language-c/src/Language/C/Analysis/AstAnalysis.hs";
+    let a = "./corrode/src/Language/Rust/Corrode/C.hs";
     println!("file: {}", a);
     let mut file = File::open(a).unwrap();
     let mut contents = String::new();
