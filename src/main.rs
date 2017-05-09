@@ -359,28 +359,16 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                     }
                     ast::CaseCond::Direct(label, arm) => {
                         out.push(format!("{}{} => {},",
-                            state.indent(),
+                            state.tab().indent(),
                             label.iter().map(|x| x.0.to_string()).collect::<Vec<_>>().join(" "),
-                            print_expr(state, &arm)));
+                            print_expr(state.tab(), &arm)));
                     }
                 }
             }
-            format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.untab().indent())
+            format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.indent())
         }
         ref expr => {
             format!("{:?}", expr)
-        }
-    }
-}
-
-fn print_stat(state: PrintState, stat: &ast::Statement) -> String {
-    use ast::Statement::*;
-    match stat {
-        &Assign(ast::Ident(ref i), ref args, ref e) => {
-            format!("{}let {} = {}\n", state.indent(), i, print_expr(state.tab(), e))
-        }
-        _ => {
-            "???".to_string()
         }
     }
 }
@@ -462,9 +450,33 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         }
     }
 
-    let mut out = vec![];
+    // Comprss guards
+    let mut new_cache = btreemap![];
     for (key, fnset) in cache {
+        if fnset.len() > 1 {
+            let args = (0..fnset[0].0.len()).map(|x| format!("__{}", x)).collect::<Vec<_>>();
+            new_cache.insert(key, vec![(
+                args.iter()
+                    .map(|x| ast::Ident(x.to_string()))
+                    .collect::<Vec<_>>(),
+                ast::Expr::Case(
+                    Box::new(ast::Expr::Parens(args.iter()
+                        .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
+                        .collect::<Vec<_>>())),
+                    fnset.iter().map(|x| {
+                        ast::CaseCond::Direct(x.0.clone(), x.1.clone())
+                    }).collect::<Vec<_>>(),
+                ),
+            )]);
+        } else {
+            new_cache.insert(key, fnset);
+        }
+    }
+
+    let mut out = vec![];
+    for (key, fnset) in new_cache {
         for (args, expr) in fnset {
+            // For type-less functions,
             if !types.contains_key(&key) {
                 // fallback to printing a lambda
                 out.push(

@@ -20,12 +20,11 @@ mod Language_C_Analysis_Builtins {
 // ERROR: can't output "./language-c/src/Language/C/Analysis/DefTable.hs"
 
 mod Language_C_Analysis_Export {
-    fn exportArraySize($$$: ArraySize) -> CArrSize {
-        CArrSize(static, e)
-    }
-
-    fn exportArraySize($$$: ArraySize) -> CArrSize {
-        CNoArrSize(complete)
+    fn exportArraySize(__0: ArraySize) -> CArrSize {
+        match (__0) {
+            $$$ => CArrSize(static, e),
+            $$$ => CNoArrSize(complete),
+        }
     }
 
     fn exportAttrs() -> Vec<CAttr> {
@@ -70,35 +69,34 @@ mod Language_C_Analysis_Export {
 
     fn exportFloatType(ty: FloatType) -> Vec<CTypeSpec> {
         match ty {
-            TyFloat => vec![CFloatType(ni)],
-            TyDouble => vec![CDoubleType(ni)],
-            TyLDouble => vec![CLongType(ni), CDoubleType(ni)],
-        }
+                TyFloat => vec![CFloatType(ni)],
+                TyDouble => vec![CDoubleType(ni)],
+                TyLDouble => vec![CLongType(ni), CDoubleType(ni)],
+            }
     }
 
     fn exportIntType(ty: IntType) -> Vec<CTypeSpec> {
         match ty {
-            TyBool => vec![CBoolType(ni)],
-            TyChar => vec![CCharType(ni)],
-            TySChar => vec![CSignedType(ni), CCharType(ni)],
-            TyUChar => vec![CUnsigType(ni), CCharType(ni)],
-            TyShort => vec![CShortType(ni)],
-            TyUShort => vec![CUnsigType(ni), CShortType(ni)],
-            TyInt => vec![CIntType(ni)],
-            TyUInt => vec![CUnsigType(ni), CIntType(ni)],
-            TyLong => vec![CLongType(ni)],
-            TyULong => vec![CUnsigType(ni), CLongType(ni)],
-            TyLLong => vec![CLongType(ni), CLongType(ni)],
-            TyULLong => vec![CUnsigType(ni), CLongType(ni), CLongType(ni)],
+                TyBool => vec![CBoolType(ni)],
+                TyChar => vec![CCharType(ni)],
+                TySChar => vec![CSignedType(ni), CCharType(ni)],
+                TyUChar => vec![CUnsigType(ni), CCharType(ni)],
+                TyShort => vec![CShortType(ni)],
+                TyUShort => vec![CUnsigType(ni), CShortType(ni)],
+                TyInt => vec![CIntType(ni)],
+                TyUInt => vec![CUnsigType(ni), CIntType(ni)],
+                TyLong => vec![CLongType(ni)],
+                TyULong => vec![CUnsigType(ni), CLongType(ni)],
+                TyLLong => vec![CLongType(ni), CLongType(ni)],
+                TyULLong => vec![CUnsigType(ni), CLongType(ni), CLongType(ni)],
+            }
+    }
+
+    fn exportMemberDecl(__0: MemberDecl) -> CDecl {
+        match (__0) {
+            $$$ => CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(Nothing, Nothing, Just(expr))], node_info),
+            $$$ => Let(in, CDecl, specs, vec![(Just(declarator), Nothing, bitfieldsz)], node_info),
         }
-    }
-
-    fn exportMemberDecl($$$: MemberDecl) -> CDecl {
-        CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(Nothing, Nothing, Just(expr))], node_info)
-    }
-
-    fn exportMemberDecl($$$: MemberDecl) -> CDecl {
-        Let(in, CDecl, specs, vec![(Just(declarator), Nothing, bitfieldsz)], node_info)
     }
 
     fn exportParamDecl(paramdecl: ParamDecl) -> CDecl {
@@ -109,36 +107,17 @@ mod Language_C_Analysis_Export {
         (Just . (internalIdent . show))
     }
 
-    fn exportStorage(NoStorage: Storage) -> Vec<CStorageSpec> {
-        vec![]
-    }
-
-    fn exportStorage($$$: Storage) -> Vec<CStorageSpec> {
-        if(reg, then, vec![CRegister(ni)], else, vec![])
-    }
-
-    fn exportStorage($$$: Storage) -> Vec<CStorageSpec> {
-        threadLocal(thread_local, vec![CStatic(ni)])
-    }
-
-    fn exportStorage($$$: Storage) -> Vec<CStorageSpec> {
-        threadLocal(thread_local, vec![CExtern(ni)])
-    }
-
-    fn exportStorage($$$: Storage) -> Vec<CStorageSpec> {
-        error("impossible storage: static without linkage".to_string())
-    }
-
-    fn exportStorage($$$: Storage) -> Vec<CStorageSpec> {
-        vec![CStatic(ni)]
-    }
-
-    fn exportStorage($$$: Storage) -> Vec<CStorageSpec> {
-        vec![]
-    }
-
-    fn exportStorage($$$: Storage) -> Vec<CStorageSpec> {
-        error("impossible storage: function without linkage".to_string())
+    fn exportStorage(__0: Storage) -> Vec<CStorageSpec> {
+        match (__0) {
+            NoStorage => vec![],
+            $$$ => if(reg, then, vec![CRegister(ni)], else, vec![]),
+            $$$ => threadLocal(thread_local, vec![CStatic(ni)]),
+            $$$ => threadLocal(thread_local, vec![CExtern(ni)]),
+            $$$ => error("impossible storage: static without linkage".to_string()),
+            $$$ => vec![CStatic(ni)],
+            $$$ => vec![],
+            $$$ => error("impossible storage: function without linkage".to_string()),
+        }
     }
 
     fn exportType(ty: Type) -> (Vec<CDeclSpec>, Vec<CDerivedDeclr>) {
@@ -163,43 +142,38 @@ mod Language_C_Analysis_Export {
 
     fn exportTypeSpec(tyname: TypeName) -> Vec<CTypeSpec> {
         match tyname {
-            TyVoid => vec![CVoidType(ni)],
-            TyIntegral ity => exportIntType(ity),
-            TyFloating fty => exportFloatType(fty),
-            TyComplex fty => exportComplexType(fty),
-            TyComp comp => exportCompTypeDecl(comp),
-            TyEnum enum => exportEnumTypeDecl(enum),
-            TyBuiltin TyVaList => vec![CTypeDef((internalIdent("va_list".to_string())), ni)],
-            TyBuiltin TyAny => vec![CTypeDef((internalIdent("__ty_any".to_string())), ni)],
-        }
+                TyVoid => vec![CVoidType(ni)],
+                TyIntegral ity => exportIntType(ity),
+                TyFloating fty => exportFloatType(fty),
+                TyComplex fty => exportComplexType(fty),
+                TyComp comp => exportCompTypeDecl(comp),
+                TyEnum enum => exportEnumTypeDecl(enum),
+                TyBuiltin TyVaList => vec![CTypeDef((internalIdent("va_list".to_string())), ni)],
+                TyBuiltin TyAny => vec![CTypeDef((internalIdent("__ty_any".to_string())), ni)],
+            }
     }
 
     fn exportVarDecl($$$: VarDecl) -> (Vec<CDeclSpec>, CDeclr) {
         exportDeclr((exportDeclAttrs(attrs)), ty, vec![], name)
     }
 
-    fn fromDirectType($$$: Type) -> TypeName {
-        ty
-    }
-
-    fn fromDirectType($$$: Type) -> TypeName {
-        maybe((error("undefined typeDef".to_string())), fromDirectType, ref)
-    }
-
-    fn fromDirectType(_: Type) -> TypeName {
-        error("fromDirectType".to_string())
+    fn fromDirectType(__0: Type) -> TypeName {
+        match (__0) {
+            $$$ => ty,
+            $$$ => maybe((error("undefined typeDef".to_string())), fromDirectType, ref),
+            _ => error("fromDirectType".to_string()),
+        }
     }
 
     fn ni() -> NodeInfo {
         undefNode
     }
 
-    fn threadLocal(False: Bool) -> Vec<CStorageSpec> {
-        id
-    }
-
-    fn threadLocal(True: Bool) -> Vec<CStorageSpec> {
-        ((CThread(ni))(Operator(":")))
+    fn threadLocal(__0: Bool) -> Vec<CStorageSpec> {
+        match (__0) {
+            False => id,
+            True => ((CThread(ni))(Operator(":"))),
+        }
     }
 
 }
@@ -209,12 +183,11 @@ mod Language_C_Analysis_NameSpaceMap {
         (NsMap((Map.insert(ident, def, gs)), lss), Map.lookup(ident, gs))
     }
 
-    fn defLocal(ns: NameSpaceMap<k, a>, $$$: k, $$$: a, ident: (NameSpaceMap<k, a>, Maybe<a>)) -> (NameSpaceMap<k, a>, Maybe<a>) {
-        defGlobal(ns, ident, def)
-    }
-
-    fn defLocal($$$: NameSpaceMap<k, a>, ident: k, def: a) -> (NameSpaceMap<k, a>, Maybe<a>) {
-        (NsMap(gs, (:((:((ident, def), ls)), lss))), Prelude.lookup(ident, ls))
+    fn defLocal(__0: NameSpaceMap<k, a>, __1: k, __2: a, __3: (NameSpaceMap<k, a>, Maybe<a>)) -> (NameSpaceMap<k, a>, Maybe<a>) {
+        match (__0, __1, __2, __3, __4) {
+            ns $$$ $$$ ident def => defGlobal(ns, ident, def),
+            $$$ ident def => (NsMap(gs, (:((:((ident, def), ls)), lss))), Prelude.lookup(ident, ls)),
+        }
     }
 
     fn enterNewScope($$$: NameSpaceMap<k, a>) -> NameSpaceMap<k, a> {
@@ -229,12 +202,11 @@ mod Language_C_Analysis_NameSpaceMap {
         not((null(l)))
     }
 
-    fn leaveScope($$$: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>) {
-        error("NsMaps.leaveScope: No local scope!".to_string())
-    }
-
-    fn leaveScope($$$: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>) {
-        (NsMap(gs, lss), ls)
+    fn leaveScope(__0: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>) {
+        match (__0) {
+            $$$ => error("NsMaps.leaveScope: No local scope!".to_string()),
+            $$$ => (NsMap(gs, lss), ls),
+        }
     }
 
     fn localNames($$$: NameSpaceMap<k, v>) -> Vec<Vec<(k, v)>> {
@@ -247,16 +219,16 @@ mod Language_C_Analysis_NameSpaceMap {
 
     fn lookupInnermostScope(nsm: NameSpaceMap<k, a>, $$$: k, $$$: Maybe<a>) -> Maybe<a> {
         match localDefs {
-            $$$ => Prelude.lookup(ident, ls),
-            $$$ => lookupGlobal(nsm, ident),
-        }
+                $$$ => Prelude.lookup(ident, ls),
+                $$$ => lookupGlobal(nsm, ident),
+            }
     }
 
     fn lookupName(ns: NameSpaceMap<k, a>, $$$: k, $$$: Maybe<a>) -> Maybe<a> {
         match (lookupLocal(localDefs)) {
-            Nothing => lookupGlobal(ns, ident),
-            Just def => Just(def),
-        }
+                Nothing => lookupGlobal(ns, ident),
+                Just def => Just(def),
+            }
     }
 
     fn mergeNameSpace($$$: NameSpaceMap<k, a>, $$$: NameSpaceMap<k, a>) -> NameSpaceMap<k, a> {
@@ -290,24 +262,14 @@ mod Language_C_Analysis_SemError {
         ++(ident, " redefined".to_string())
     }
 
-    fn redefErrReason($$$: RedefInfo) -> String {
-        ++("duplicate definition of ".to_string(), ident)
-    }
-
-    fn redefErrReason($$$: RedefInfo) -> String {
-        ++("this declaration of ".to_string(), ++(ident, " shadows a previous one".to_string()))
-    }
-
-    fn redefErrReason($$$: RedefInfo) -> String {
-        ++(ident, " previously declared as a different kind of symbol".to_string())
-    }
-
-    fn redefErrReason($$$: RedefInfo) -> String {
-        ++(ident, " previously declared with different linkage".to_string())
-    }
-
-    fn redefErrReason($$$: RedefInfo) -> String {
-        ++(ident, " previously declared without linkage".to_string())
+    fn redefErrReason(__0: RedefInfo) -> String {
+        match (__0) {
+            $$$ => ++("duplicate definition of ".to_string(), ident),
+            $$$ => ++("this declaration of ".to_string(), ++(ident, " shadows a previous one".to_string())),
+            $$$ => ++(ident, " previously declared as a different kind of symbol".to_string()),
+            $$$ => ++(ident, " previously declared with different linkage".to_string()),
+            $$$ => ++(ident, " previously declared without linkage".to_string()),
+        }
     }
 
     fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, $$$: ErrorInfo) -> ErrorInfo {
@@ -335,56 +297,22 @@ mod Language_C_Analysis_SemError {
 // ERROR: can't output "./language-c/src/Language/C/Analysis/TypeCheck.hs"
 
 mod Language_C_Analysis_TypeConversions {
-    fn arithmeticConversion($$$: TypeName, $$$: TypeName) -> Maybe<TypeName> {
-        Just(TyComplex(floatConversion(t1, t2)))
-    }
-
-    fn arithmeticConversion($$$: TypeName, $$$: TypeName) -> Maybe<TypeName> {
-        Just(TyComplex(floatConversion(t1, t2)))
-    }
-
-    fn arithmeticConversion($$$: TypeName, $$$: TypeName) -> Maybe<TypeName> {
-        Just(TyComplex(floatConversion(t1, t2)))
-    }
-
-    fn arithmeticConversion(t1: TypeName, $$$: TypeName, $$$: Maybe<TypeName>) -> Maybe<TypeName> {
-        Just(t1)
-    }
-
-    fn arithmeticConversion($$$: TypeName, t2: TypeName, $$$: Maybe<TypeName>) -> Maybe<TypeName> {
-        Just(t2)
-    }
-
-    fn arithmeticConversion($$$: TypeName, $$$: TypeName) -> Maybe<TypeName> {
-        Just(TyFloating(floatConversion(t1, t2)))
-    }
-
-    fn arithmeticConversion(t1: TypeName, $$$: TypeName, $$$: Maybe<TypeName>) -> Maybe<TypeName> {
-        Just(t1)
-    }
-
-    fn arithmeticConversion($$$: TypeName, t2: TypeName, $$$: Maybe<TypeName>) -> Maybe<TypeName> {
-        Just(t2)
-    }
-
-    fn arithmeticConversion($$$: TypeName, $$$: TypeName) -> Maybe<TypeName> {
-        Just(TyIntegral(intConversion(t1, t2)))
-    }
-
-    fn arithmeticConversion($$$: TypeName, $$$: TypeName) -> Maybe<TypeName> {
-        Just(TyIntegral(TyInt))
-    }
-
-    fn arithmeticConversion($$$: TypeName, t2: TypeName) -> Maybe<TypeName> {
-        Just(t2)
-    }
-
-    fn arithmeticConversion(t1: TypeName, $$$: TypeName) -> Maybe<TypeName> {
-        Just(t1)
-    }
-
-    fn arithmeticConversion(_: TypeName, _: TypeName) -> Maybe<TypeName> {
-        Nothing
+    fn arithmeticConversion(__0: TypeName, __1: TypeName) -> Maybe<TypeName> {
+        match (__0, __1) {
+            $$$ $$$ => Just(TyComplex(floatConversion(t1, t2))),
+            $$$ $$$ => Just(TyComplex(floatConversion(t1, t2))),
+            $$$ $$$ => Just(TyComplex(floatConversion(t1, t2))),
+            t1 $$$ $$$ $$$ => Just(t1),
+            $$$ t2 $$$ $$$ => Just(t2),
+            $$$ $$$ => Just(TyFloating(floatConversion(t1, t2))),
+            t1 $$$ $$$ $$$ => Just(t1),
+            $$$ t2 $$$ $$$ => Just(t2),
+            $$$ $$$ => Just(TyIntegral(intConversion(t1, t2))),
+            $$$ $$$ => Just(TyIntegral(TyInt)),
+            $$$ t2 => Just(t2),
+            t1 $$$ => Just(t1),
+            _ _ => Nothing,
+        }
     }
 
     fn floatConversion() -> FloatType {
@@ -442,12 +370,11 @@ mod Language_C_Data_Ident {
         Ident(s, (quad(s)), (mkNodeInfoPosLen(pos, (pos, length(s)))))
     }
 
-    fn isAnonymousRef($$$: SUERef) -> Bool {
-        True
-    }
-
-    fn isAnonymousRef(_: SUERef) -> Bool {
-        False
+    fn isAnonymousRef(__0: SUERef) -> Bool {
+        match (__0) {
+            $$$ => True,
+            _ => False,
+        }
     }
 
     fn isInternalIdent($$$: Ident) -> Bool {
@@ -458,87 +385,70 @@ mod Language_C_Data_Ident {
         Ident(s, (quad(s)), (mkNodeInfo'(pos, (pos, length(s)), name)))
     }
 
-    fn quad($$$: String) -> Int {
-        +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28)))
-    }
-
-    fn quad($$$: String) -> Int {
-        *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))
-    }
-
-    fn quad($$$: String) -> Int {
-        *(ord(c2), +(bits7, ord(c1)))
-    }
-
-    fn quad($$$: String) -> Int {
-        ord(c1)
-    }
-
-    fn quad($$$: String) -> Int {
-        0
+    fn quad(__0: String) -> Int {
+        match (__0) {
+            $$$ => +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28))),
+            $$$ => *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1))))),
+            $$$ => *(ord(c2), +(bits7, ord(c1))),
+            $$$ => ord(c1),
+            $$$ => 0,
+        }
     }
 
 }
 
 mod Language_C_Data_InputStream {
     fn countLines() -> Int {
-        (length . BSC.lines)
-    }
-
-    fn countLines() -> Int {
-        (length . lines)
-    }
-
-    fn inputStreamEmpty() -> Bool {
-        BSW.null
+        match () {
+             => (length . BSC.lines),
+             => (length . lines),
+        }
     }
 
     fn inputStreamEmpty() -> Bool {
-        null
+        match () {
+             => BSW.null,
+             => null,
+        }
     }
 
     fn inputStreamFromString() -> InputStream {
-        BSC.pack
-    }
-
-    fn inputStreamFromString() -> InputStream {
-        id
-    }
-
-    fn inputStreamToString() -> String {
-        BSC.unpack
+        match () {
+             => BSC.pack,
+             => id,
+        }
     }
 
     fn inputStreamToString() -> String {
-        id
+        match () {
+             => BSC.unpack,
+             => id,
+        }
     }
 
     fn readInputStream() -> IO<InputStream> {
-        BSW.readFile
-    }
-
-    fn readInputStream() -> IO<InputStream> {
-        readFile
+        match () {
+             => BSW.readFile,
+             => readFile,
+        }
     }
 
     fn takeByte(bs: InputStream) -> (Word8, InputStream) {
         seq(BSW.head(bs), (BSW.head(bs), BSW.tail(bs)))
     }
 
-    fn takeChar(bs: InputStream) -> (Char, InputStream) {
-        seq(BSC.head(bs), (BSC.head(bs), BSC.tail(bs)))
+    fn takeChar(__0: InputStream) -> (Char, InputStream) {
+        match (__0) {
+            bs => seq(BSC.head(bs), (BSC.head(bs), BSC.tail(bs))),
+            bs => (head(bs), tail(bs)),
+        }
     }
 
-    fn takeChar(bs: InputStream) -> (Char, InputStream) {
-        (head(bs), tail(bs))
-    }
-
-    fn takeChars($$$: Int, bstr: InputStream) -> Vec<Char> {
-        BSC.unpack(BSC.take(n, bstr))
-    }
-
-    fn takeChars(n: Int, str: InputStream) -> Vec<Char> {
-        take(n, str)
+    fn takeChars(__0: Int, __1: InputStream) -> Vec<Char> {
+        match (__0, __1) {
+            $$$ bstr => BSC.unpack(BSC.take(n, bstr)),
+            n str => take(n, str),
+        }
     }
 
 }
@@ -557,32 +467,29 @@ mod Language_C_Data_Name {
 // ERROR: can't output "./language-c/src/Language/C/Data/Node.hs"
 
 mod Language_C_Data_Position {
-    fn adjustPos(fname: FilePath, row: Int, $$$: Position) -> Position {
-        Position(offs, fname, row, 1)
-    }
-
-    fn adjustPos(_: FilePath, _: Int, p: Position) -> Position {
-        p
+    fn adjustPos(__0: FilePath, __1: Int, __2: Position) -> Position {
+        match (__0, __1, __2) {
+            fname row $$$ => Position(offs, fname, row, 1),
+            _ _ p => p,
+        }
     }
 
     fn builtinPos() -> Position {
         BuiltinPosition
     }
 
-    fn incOffset($$$: Position, n: Int) -> Position {
-        Position((+(o, n)), f, r, c)
+    fn incOffset(__0: Position, __1: Int) -> Position {
+        match (__0, __1) {
+            $$$ n => Position((+(o, n)), f, r, c),
+            p n => p,
+        }
     }
 
-    fn incOffset(p: Position, n: Int) -> Position {
-        p
-    }
-
-    fn incPos($$$: Position, n: Int) -> Position {
-        Position((+(offs, n)), fname, row, (+(col, n)))
-    }
-
-    fn incPos(p: Position, _: Int) -> Position {
-        p
+    fn incPos(__0: Position, __1: Int) -> Position {
+        match (__0, __1) {
+            $$$ n => Position((+(offs, n)), fname, row, (+(col, n))),
+            p _ => p,
+        }
     }
 
     fn initPos(file: FilePath) -> Position {
@@ -593,36 +500,32 @@ mod Language_C_Data_Position {
         InternalPosition
     }
 
-    fn isBuiltinPos(BuiltinPosition: Position) -> Bool {
-        True
+    fn isBuiltinPos(__0: Position) -> Bool {
+        match (__0) {
+            BuiltinPosition => True,
+            _ => False,
+        }
     }
 
-    fn isBuiltinPos(_: Position) -> Bool {
-        False
+    fn isInternalPos(__0: Position) -> Bool {
+        match (__0) {
+            InternalPosition => True,
+            _ => False,
+        }
     }
 
-    fn isInternalPos(InternalPosition: Position) -> Bool {
-        True
+    fn isNoPos(__0: Position) -> Bool {
+        match (__0) {
+            NoPosition => True,
+            _ => False,
+        }
     }
 
-    fn isInternalPos(_: Position) -> Bool {
-        False
-    }
-
-    fn isNoPos(NoPosition: Position) -> Bool {
-        True
-    }
-
-    fn isNoPos(_: Position) -> Bool {
-        False
-    }
-
-    fn isSourcePos($$$: Position) -> Bool {
-        True
-    }
-
-    fn isSourcePos(_: Position) -> Bool {
-        False
+    fn isSourcePos(__0: Position) -> Bool {
+        match (__0) {
+            $$$ => True,
+            _ => False,
+        }
     }
 
     fn nopos() -> Position {
@@ -633,12 +536,11 @@ mod Language_C_Data_Position {
         Position
     }
 
-    fn retPos($$$: Position) -> Position {
-        Position((+(offs, 1)), fname, (+(row, 1)), 1)
-    }
-
-    fn retPos(p: Position) -> Position {
-        p
+    fn retPos(__0: Position) -> Position {
+        match (__0) {
+            $$$ => Position((+(offs, 1)), fname, (+(row, 1)), 1),
+            p => p,
+        }
     }
 
 }
@@ -724,56 +626,32 @@ mod Language_C_Syntax_Constants {
         "\\\\\'".to_string()
     }
 
-    fn escapeChar($$$: Char) -> String {
-        "\\\\\\\\".to_string()
+    fn escapeChar(__0: Char) -> String {
+        match (__0) {
+            $$$ => "\\\\\\\\".to_string(),
+            $$$ => "\\\\a".to_string(),
+            $$$ => "\\\\b".to_string(),
+            $$$ => "\\\\e".to_string(),
+            $$$ => "\\\\f".to_string(),
+            $$$ => "\\\\n".to_string(),
+            $$$ => "\\\\r".to_string(),
+            $$$ => "\\\\t".to_string(),
+            $$$ => "\\\\v".to_string(),
+        }
     }
 
-    fn escapeChar($$$: Char) -> String {
-        "\\\\a".to_string()
+    fn getCChar(__0: CChar) -> Vec<Char> {
+        match (__0) {
+            $$$ => vec![c],
+            $$$ => cs,
+        }
     }
 
-    fn escapeChar($$$: Char) -> String {
-        "\\\\b".to_string()
-    }
-
-    fn escapeChar($$$: Char) -> String {
-        "\\\\e".to_string()
-    }
-
-    fn escapeChar($$$: Char) -> String {
-        "\\\\f".to_string()
-    }
-
-    fn escapeChar($$$: Char) -> String {
-        "\\\\n".to_string()
-    }
-
-    fn escapeChar($$$: Char) -> String {
-        "\\\\r".to_string()
-    }
-
-    fn escapeChar($$$: Char) -> String {
-        "\\\\t".to_string()
-    }
-
-    fn escapeChar($$$: Char) -> String {
-        "\\\\v".to_string()
-    }
-
-    fn getCChar($$$: CChar) -> Vec<Char> {
-        vec![c]
-    }
-
-    fn getCChar($$$: CChar) -> Vec<Char> {
-        cs
-    }
-
-    fn getCCharAsInt($$$: CChar) -> Integer {
-        fromIntegral((fromEnum(c)))
-    }
-
-    fn getCCharAsInt($$$: CChar) -> Integer {
-        error("integer value of multi-character character constants is implementation defined".to_string())
+    fn getCCharAsInt(__0: CChar) -> Integer {
+        match (__0) {
+            $$$ => fromIntegral((fromEnum(c))),
+            $$$ => error("integer value of multi-character character constants is implementation defined".to_string()),
+        }
     }
 
     fn getCInteger($$$: CInteger) -> Integer {
@@ -784,56 +662,40 @@ mod Language_C_Syntax_Constants {
         str
     }
 
-    fn head'(err: String, $$$: Vec<a>) -> a {
-        error(err)
-    }
-
-    fn head'(_: String, $$$: Vec<a>) -> a {
-        x
+    fn head'(__0: String, __1: Vec<a>) -> a {
+        match (__0, __1) {
+            err $$$ => error(err),
+            _ $$$ => x,
+        }
     }
 
     fn isAsciiSourceChar(c: Char) -> Bool {
         &&(isAscii(c), isPrint(c))
     }
 
-    fn isCChar($$$: Char) -> Bool {
-        False
+    fn isCChar(__0: Char) -> Bool {
+        match (__0) {
+            $$$ => False,
+            $$$ => False,
+            $$$ => False,
+            c => isAsciiSourceChar(c),
+        }
     }
 
-    fn isCChar($$$: Char) -> Bool {
-        False
+    fn isSChar(__0: Char) -> Bool {
+        match (__0) {
+            $$$ => False,
+            $$$ => False,
+            $$$ => False,
+            c => isAsciiSourceChar(c),
+        }
     }
 
-    fn isCChar($$$: Char) -> Bool {
-        False
-    }
-
-    fn isCChar(c: Char) -> Bool {
-        isAsciiSourceChar(c)
-    }
-
-    fn isSChar($$$: Char) -> Bool {
-        False
-    }
-
-    fn isSChar($$$: Char) -> Bool {
-        False
-    }
-
-    fn isSChar($$$: Char) -> Bool {
-        False
-    }
-
-    fn isSChar(c: Char) -> Bool {
-        isAsciiSourceChar(c)
-    }
-
-    fn isWideChar($$$: CChar) -> Bool {
-        wideFlag
-    }
-
-    fn isWideChar($$$: CChar) -> Bool {
-        wideFlag
+    fn isWideChar(__0: CChar) -> Bool {
+        match (__0) {
+            $$$ => wideFlag,
+            $$$ => wideFlag,
+        }
     }
 
     fn isWideString($$$: CString) -> Bool {
@@ -850,9 +712,9 @@ mod Language_C_Syntax_Constants {
 
     fn readCInteger(repr: CIntRepr, str: String) -> Either<String, CInteger> {
         match readNum(str) {
-            $$$ => mkCInt(n, suffix),
-            parseFailed => Left(++("Bad Integer literal: ".to_string(), show(parseFailed))),
-        }
+                $$$ => mkCInt(n, suffix),
+                parseFailed => Left(++("Bad Integer literal: ".to_string(), show(parseFailed))),
+            }
     }
 
     fn sQuote(s: String, t: ShowS) -> ShowS {
@@ -875,93 +737,60 @@ mod Language_C_Syntax_Constants {
         testBit(k, fromEnum(flag))
     }
 
-    fn unescapeChar($$$: String) -> (Char, String) {
-        match c {
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => ("\"\"".to_string(), cs),
-            $$$ => match head'("bad escape sequence".to_string(), (readHex(cs))) {
-                $$$ => (toEnum(i), cs'),
-            },
-            _ => match head'("bad escape sequence".to_string(), (readOct((:(c, cs))))) {
-                $$$ => (toEnum(i), cs'),
-            },
+    fn unescapeChar(__0: String) -> (Char, String) {
+        match (__0) {
+            $$$ => match c {
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => ("\"\"".to_string(), cs),
+                    $$$ => match head'("bad escape sequence".to_string(), (readHex(cs))) {
+                            $$$ => (toEnum(i), cs'),
+                        },
+                    _ => match head'("bad escape sequence".to_string(), (readOct((:(c, cs))))) {
+                            $$$ => (toEnum(i), cs'),
+                        },
+                },
+            $$$ => (c, cs),
+            $$$ => error("unescape char: empty string".to_string()),
         }
     }
 
-    fn unescapeChar($$$: String) -> (Char, String) {
-        (c, cs)
-    }
-
-    fn unescapeChar($$$: String) -> (Char, String) {
-        error("unescape char: empty string".to_string())
-    }
-
-    fn unescapeString($$$: String) -> String {
-        vec![]
-    }
-
-    fn unescapeString(cs: String) -> String {
-        match unescapeChar(cs) {
-            $$$ => :(c, unescapeString(cs')),
+    fn unescapeString(__0: String) -> String {
+        match (__0) {
+            $$$ => vec![],
+            cs => match unescapeChar(cs) {
+                    $$$ => :(c, unescapeString(cs')),
+                },
         }
     }
 
 }
 
 mod Language_C_Syntax_Ops {
-    fn assignBinop(CAssignOp: CAssignOp) -> CBinaryOp {
-        error("direct assignment has no binary operator".to_string())
-    }
-
-    fn assignBinop(CMulAssOp: CAssignOp) -> CBinaryOp {
-        CMulOp
-    }
-
-    fn assignBinop(CDivAssOp: CAssignOp) -> CBinaryOp {
-        CDivOp
-    }
-
-    fn assignBinop(CRmdAssOp: CAssignOp) -> CBinaryOp {
-        CRmdOp
-    }
-
-    fn assignBinop(CAddAssOp: CAssignOp) -> CBinaryOp {
-        CAddOp
-    }
-
-    fn assignBinop(CSubAssOp: CAssignOp) -> CBinaryOp {
-        CSubOp
-    }
-
-    fn assignBinop(CShlAssOp: CAssignOp) -> CBinaryOp {
-        CShlOp
-    }
-
-    fn assignBinop(CShrAssOp: CAssignOp) -> CBinaryOp {
-        CShrOp
-    }
-
-    fn assignBinop(CAndAssOp: CAssignOp) -> CBinaryOp {
-        CAndOp
-    }
-
-    fn assignBinop(CXorAssOp: CAssignOp) -> CBinaryOp {
-        CXorOp
-    }
-
-    fn assignBinop(COrAssOp: CAssignOp) -> CBinaryOp {
-        COrOp
+    fn assignBinop(__0: CAssignOp) -> CBinaryOp {
+        match (__0) {
+            CAssignOp => error("direct assignment has no binary operator".to_string()),
+            CMulAssOp => CMulOp,
+            CDivAssOp => CDivOp,
+            CRmdAssOp => CRmdOp,
+            CAddAssOp => CAddOp,
+            CSubAssOp => CSubOp,
+            CShlAssOp => CShlOp,
+            CShrAssOp => CShrOp,
+            CAndAssOp => CAndOp,
+            CXorAssOp => CXorOp,
+            COrAssOp => COrOp,
+        }
     }
 
     fn isBitOp(op: CBinaryOp) -> Bool {
@@ -1001,13 +830,13 @@ mod Language_C_System_GCC {
 
     fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String>)> {
         match mungeArgs(((Nothing, Nothing, RList.empty), (RList.empty, RList.empty)), args) {
-            Left err => Left(err),
-            Right $$$ => Left("No .c / .hc / .h source file given".to_string()),
-            Right $$$ => Right(((rawCppArgs((RList.reverse(extra_args)), input_file))(hashmap! {
-                        "outputFile" => output_file_opt,
-                        "cppOptions" => RList.reverse(cpp_opts)
-                    }), RList.reverse(other_args))),
-        }
+                Left err => Left(err),
+                Right $$$ => Left("No .c / .hc / .h source file given".to_string()),
+                Right $$$ => Right(((rawCppArgs((RList.reverse(extra_args)), input_file))(hashmap! {
+                            "outputFile" => output_file_opt,
+                            "cppOptions" => RList.reverse(cpp_opts)
+                        }), RList.reverse(other_args))),
+            }
     }
 
     fn newGCC() -> GCC {
@@ -1084,9 +913,9 @@ mod Language_C_System_Preprocess {
                                         "outputFile" => Just(actual_out_file)
                                     })));
                     match exit_code {
-                            ExitSuccess => liftM(Right, (readInputStream(actual_out_file))),
-                            ExitFailure _ => return(Left(exit_code)),
-                        }
+                                ExitSuccess => liftM(Right, (readInputStream(actual_out_file))),
+                                ExitFailure _ => return(Left(exit_code)),
+                            }
                 }
             };
 
