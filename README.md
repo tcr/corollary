@@ -8,7 +8,7 @@ This project has the goal of translating both libraries to Rust using a mix of a
 git clone http://github.com/tcr/corrode-but-in-rust --recursive
 ```
 
-This project contains a proof-of-concept cross-compiler from Haskell to Rust which is not designed to be either correct or generalizable. Instead, I expect the conversion to go like this:
+This project contains a proof-of-concept cross-compiler from Haskell to Rust which is not designed to be either correct or generalizable. Instead, it's tailored for these libraries, each written in a conventional programming style. I expect the conversion to go like this:
 
 * [x] Automate bulk cross-compilation as modules (see the `out/` directory for current status)
 * [x] Write a proof-of-concept parser for Haskell and compilation to Rust
@@ -18,12 +18,12 @@ This project contains a proof-of-concept cross-compiler from Haskell to Rust whi
 * [ ] Detect pointfree code and convert it into pointwise
 * [ ] Properly convert $ and . operators
 * [ ] Convert rest of operators into Rust equivalents or fn wrappers
-* [ ] Detect types better to switch between &str and String values, slice and Vecs
 * [ ] Successfully parse all files (except lexer.x parser.y) (failures currently output as // ERROR)
-* [ ] Parse flex-based lexer.x and parser.y files so they can be converted
-* [ ] language-c test bench
-* [ ] corrode test bench
-* [ ] Preserve literate Haskell comments into Rust
+* [ ] Find a way to parse flex-based lexer.x and parser.y files and cross-compile them
+* [ ] Switch to *manual* conversion for all remaining edge cases (&str and String conversion, undoing tricky code segments, etc.)
+* [ ] Pass language-c test bench
+* [ ] Pass corrode test bench
+* [ ] Port literate Haskell comments into Rust
 * [ ] Feature-complete
 
 ## Status
