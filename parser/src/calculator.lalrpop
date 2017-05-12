@@ -99,7 +99,7 @@ Expr: Expr = {
     Num => Expr::Number(<>),
 
     "\(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
-    "[" <CommaDef<ExprSpan>> "|" Expr+ "]" => Expr::Dummy,
+    "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
     "[" <CommaDef<ExprSpan>> "]" => Expr::Vector(<>),
     "[" "]" => Expr::Vector(vec![]),
     "(" <CommaDef<ExprSpan>> ")" => Expr::Parens(<>),

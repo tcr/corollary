@@ -550,7 +550,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
 #[test]
 fn calculator() {
-    let a = "./language-c/src/Language/C/Data/Ident.hs";
+    let a = "./corrode/src/Language/Rust/Corrode/CrateMap.hs";
     // let a = "./corrode/src/Language/Rust/Corrode/C.hs";
     // let a = "./test/input.hs";
     println!("file: {}", a);
