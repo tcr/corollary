@@ -84,8 +84,8 @@ Section: i32 = {
 };
 
 Case: CaseCond = {
-    <d:Destructure+> <v:("|" <ExprSpan> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
-    <d:Destructure+> "->" <v:ExprSpan> => CaseCond::Direct(d, v),
+    <d:TypeGroup> <v:("|" <ExprSpan> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
+    <d:TypeGroup> "->" <v:ExprSpan> => CaseCond::Direct(d, v),
 };
 
 
@@ -98,7 +98,7 @@ Expr: Expr = {
     <Ident> => Expr::Ref(<>),
     Num => Expr::Number(<>),
 
-    "\(" Ident+ ")" "->" Expr => Expr::Lambda,
+    "\(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
     "[" <CommaDef<ExprSpan>> "|" Expr+ "]" => Expr::Dummy,
     "[" <CommaDef<ExprSpan>> "]" => Expr::Vector(<>),
     "[" "]" => Expr::Vector(vec![]),
@@ -143,7 +143,7 @@ Expr: Expr = {
     "do" "{" <e:Semi<ExprSpan>>
       <w:("where" "{" <Semi<Statement>> "}")?> "}" => Expr::Do(e, w),
 
-    "{" <Comma<(<Ident> "=" <ExprSpan>)>> "}" => Expr::Record(<>),
+    "{" <Comma<(<Expr> "=" <ExprSpan>)>> "}" => Expr::Record(<>),
 };
 
 FnDef: Ty = {
@@ -158,43 +158,43 @@ Type: Ty = {
     <TypeSpan> => <>,
 };
 
+SimpleType: Ty = {
+    <a:TypeSub> "->" <b:SimpleType> => Ty::Pair(Box::new(a), Box::new(b)),
+    <TypeSpan> => <>,
+};
+
 TypeSub: Ty = {
-    "!" <Ident> => Ty::Not(Box::new(Ty::Ref(<>))),
+    "!" <TypeSub> => Ty::Not(Box::new(<>)),
     "[" <CommaDef<TypeSpan>> "]" => Ty::Brackets(<>),
-    "(" <CommaDef<TypeSpan>> ")" => Ty::Tuple(<>),
+    "[" "]" => Ty::Brackets(vec![]),
+    "(" <CommaDef<Type>> ")" => Ty::Tuple(<>),
     "(" ")" => Ty::EmptyParen,
+    "{" <Comma<(<Ident> "::" <TypeGroup>)>> "}" => Ty::RecordTODO,
     <Ident> => Ty::Ref(<>),
+    <Quote> => Ty::Str(<>),
+    <Num> => Ty::Num(<>),
+    ":" => Ty::EmptyParen,
+    "==" => Ty::EmptyParen,
+    "@" => Ty::EmptyParen,
+};
+
+TypeGroupInner: Ty = {
+  <a:TypeSub> "=>" <b:TypeSub> => b,
+  <TypeSub> => <>,
+};
+
+TypeGroup: Vec<Ty> = {
+    <TypeGroupInner+> => <>,
 };
 
 TypeSpan: Ty = {
     <TypeSub+> => Ty::Span(<>),
 };
 
-// TODO make a destructure type
-Destructure: Ident = {
-    Quote => Ident("$$$".to_string()),
-    "(" <Destructure*> ")" => Ident("$$$".to_string()),
-    "(" <Destructure*> "->" Destructure* ")" => Ident("$$$".to_string()),
-    "[" Destructure* "]" => Ident("$$$".to_string()),
-    <Ident> => <>,
-    "!" Destructure => Ident("$$$".to_string()),
-    ":" => Ident("$$$".to_string()),
-    "==" => Ident("$$$".to_string()),
-    "@" => Ident("$$$".to_string()),
-    ">>=" => Ident("$$$".to_string()),
-    "{" Comma<(Ident ("::" TypeSpan)?)> "}" => Ident("$$$".to_string()),
-    "`" Ident "`" => Ident("$$$".to_string()),
-
-    "," => Ident("$$$".to_string()), // TODO get rid of this
-
-    "<" => Ident("$$$".to_string()), //Remove
-    r"[0-9]+" => Ident("$$$".to_string()), //Remove
-};
-
-ImportList: () = {
-    "(" Commaish<(Ident ("(" ".." ")")?)> ")" => (),
-    "(" ")" => (),
-    Ident => (),
+ImportList: Vec<Ident> = {
+    "(" <a:Commaish<(<Ident> ("(" ".." ")")?)>> ")" => a,
+    "(" ")" => vec![],
+    <Ident> => vec![<>],
 };
 
 pub Module: Module = {
@@ -206,30 +206,30 @@ pub Module: Module = {
 };
 
 Statement: Statement = {
-  "class" Destructure+ ("=>" Ident+)?
+  "class" Type ("=>" Ident+)?
     "where" "{" Semi<Statement> "}" => Statement::Class,
 
   "instance" FnDef
     "where" "{" Semi<Statement> "}" => Statement::Instance,
   "import" ImportList+ => Statement::Import,
 
-  "data" <id:Ident+> "=" Pipe<Destructure+>
-    ("deriving" ImportList)? =>
-      Statement::Data(id[0].clone(), vec![], vec![]),
-  "newtype" <id:Ident+> "=" <p:Destructure+>
+  "data" <id:Ident+> "=" <p:Pipe<TypeGroup>>
+    <derives:("deriving" <ImportList>)?> =>
+      Statement::Data(id[0].clone(), p, derives),
+  "newtype" <id:Ident+> "=" <p:Type>
     ("deriving" ImportList)? =>
       Statement::Newtype,
 
   <i:Ident> "::" <d:FnDef> => Statement::Prototype(i, vec![d]),
 
-  "type" <d:Destructure> Destructure* "=" Expr+
+  "type" <d:Ident> <args:TypeGroup?> "=" Expr+
     ("where" "{" Semi<Statement> "}")? => Statement::Typedef(d),
 
-  Destructure Destructure* ("|" Commaish<Expr> "=" Expr+)*
+  <args:TypeGroup> ("|" Commaish<Expr> "=" Expr+)*
     ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
 
-  <d:Destructure> <args:Destructure*> "=" <e:ExprSpan>
-    ("where" "{" Semi<Statement> "}")? => Statement::Assign(d, args, e),
+  <args:TypeGroup> "=" <e:ExprSpan>
+    ("where" "{" Semi<Statement> "}")? => Statement::Assign(args[0].clone(), args[1..].to_vec(), e),
 };
 
 Tier<Op,NextTier>: Box<Expr> = {
@@ -255,6 +255,6 @@ Term: Box<Expr> = {
     ! => { errors.push(<>); Box::new(Expr::Error) },
 };
 
-Num: i32 = {
-    r"[0-9]+" => i32::from_str(<>).unwrap()
+Num: isize = {
+    r"[0-9]+" => isize::from_str(<>).unwrap()
 };

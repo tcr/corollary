@@ -2,7 +2,7 @@ use std::fmt::{Debug, Formatter, Error};
 
 #[derive(Clone, Debug)]
 pub enum Expr {
-    Number(i32),
+    Number(isize),
     Op(Box<Expr>, String, Box<Expr>),
     Ref(Ident),
     Do(Vec<Expr>, Option<Vec<Statement>>),
@@ -12,7 +12,7 @@ pub enum Expr {
     Span(Vec<Expr>),
     Vector(Vec<Expr>),
     Operator(String),
-    Record(Vec<(Ident, Expr)>),
+    Record(Vec<(Expr, Expr)>),
     Lambda,
     Str(String),
     Error,
@@ -21,8 +21,8 @@ pub enum Expr {
 
 #[derive(Clone, Debug)]
 pub enum CaseCond {
-    Matching(Vec<Ident>, Vec<(Expr, Expr)>),
-    Direct(Vec<Ident>, Expr),
+    Matching(Vec<Ty>, Vec<(Expr, Expr)>),
+    Direct(Vec<Ty>, Expr),
 }
 
 #[derive(Copy, Clone, Debug)]
@@ -35,7 +35,7 @@ pub enum Opcode {
 
 #[derive(Clone, Debug)]
 pub enum Statement {
-    Data(Ident, Vec<Ident>, Vec<Ident>),
+    Data(Ident, Vec<Vec<Ty>>, Option<Vec<Ident>>),
     Dummy,
     Class,
     Instance,
@@ -43,7 +43,7 @@ pub enum Statement {
     Newtype,
     Pipelist,
     GuardAssign,
-    Assign(Ident, Vec<Ident>, Expr),
+    Assign(Ty, Vec<Ty>, Expr),
     Typedef(Ident),
     Prototype(Ident, Vec<Ty>),
 }
@@ -63,6 +63,9 @@ pub enum Ty {
     Ref(Ident),
     Tuple(Vec<Ty>),
     Brackets(Vec<Ty>),
+    Str(String),
+    Num(isize),
+    RecordTODO,
     EmptyParen,
     Dummy,
 }

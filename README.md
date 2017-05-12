@@ -18,6 +18,7 @@ See the current cross-compiled files in the out/ directory. Equivalent to:
 ```
 cargo run "./corrode/src/Language" > out/corrode.rs
 cargo run "./language-c/src/Language/C" > out/language_c.rs
+cargo run "./test" > out/test.rs
 ```
 
 ## References

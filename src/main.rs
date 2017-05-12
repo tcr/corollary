@@ -299,8 +299,11 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
         }
         Record(ref items) => {
             let mut out = vec![];
-            for &(ast::Ident(ref i), ref v) in items {
-                out.push(format!("{}{:?} => {}", state.tab().indent(), i, print_expr(state.tab().tab(), v)));
+            for &(ref i, ref v) in items {
+                out.push(format!("{}{:?} => {}",
+                    state.indent(),
+                    print_expr(state.tab().tab(), i),
+                    print_expr(state.tab().tab(), v)));
             }
             format!("hashmap! {{\n{}\n{}}}", out.join(",\n"), state.indent())
         }
@@ -344,18 +347,18 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                         }
                         out.push(format!("{}{} => if {},",
                             state.indent(),
-                            label.iter().map(|x| x.0.to_string()).collect::<Vec<_>>().join(" "),
+                            label.iter().map(|x| print_type(state, x.clone())).collect::<Vec<_>>().join(" "),
                             inner.join("\n")));
                     }
                     ast::CaseCond::Direct(label, arm) => {
-                        out.push(format!("{}{} => {},",
+                        out.push(format!("{}{} => ({}).into(),",
                             state.tab().indent(),
-                            label.iter().map(|x| x.0.to_string()).collect::<Vec<_>>().join(" "),
+                            label.iter().map(|x| print_type(state, x.clone())).collect::<Vec<_>>().join(" "),
                             print_expr(state.tab(), &arm)));
                     }
                 }
             }
-            format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.indent())
+            format!("match ({}).as_ref() {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.indent())
         }
         ref expr => {
             format!("{:?}", expr)
@@ -379,7 +382,17 @@ fn unpack_fndef(t: Ty) -> Vec<Ty> {
 fn print_type(state: PrintState, t: Ty) -> String {
     match t {
         Ty::Ref(ast::Ident(ref s)) => {
-            s.to_string()
+            if s == "Int" {
+                format!("isize")
+            } else {
+                s.to_string()
+            }
+        }
+        Ty::Not(s) => {
+            print_type(state, *s)
+        }
+        Ty::Str(ref s) => {
+            format!("{:?}", String::from_utf8_lossy(&base64::decode(s).unwrap()).to_string())
         }
         Ty::Span(mut span) => {
             let mut out_span = print_type(state.tab(), span.remove(0));
@@ -388,7 +401,7 @@ fn print_type(state: PrintState, t: Ty) -> String {
                 for item in span {
                     type_span.push(print_type(state.tab(), item));
                 }
-                out_span.push_str(&format!("<{}>", type_span.join(", ")))
+                out_span.push_str(&format!("({})", type_span.join(", ")))
             }
             out_span
         }
@@ -426,17 +439,43 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         }
     }
 
+    // Print out data structures.
+    for item in stats {
+        if let ast::Statement::Data(name, data, derives) = item.clone() {
+            let derives = if let Some(d) = derives {
+                format!("#[derive({})]\n    ", d.iter().map(|x| {
+                    if x.0 == "Data" {
+                        format!("Clone")
+                    } else if x.0 == "Typeable" {
+                        format!("Debug")
+                    } else {
+                        x.0.to_string()
+                    }
+                }).collect::<Vec<_>>().join(", "))
+            } else {
+                format!("")
+            };
+            println!("    {}struct {}({});",
+                derives,
+                name.0,
+                data.iter().map(|tyset| {
+                    tyset.iter().map(|ty| print_type(state, ty.clone())).collect::<Vec<_>>().join(", ")
+                }).collect::<Vec<_>>().join(", "));
+            println!("");
+        }
+    }
+
     // Print out assignments as fns
     let mut cache = btreemap![];
     for item in stats {
-        if let ast::Statement::Assign(ast::Ident(s), args, expr) = item.clone() {
+        if let ast::Statement::Assign(s, args, expr) = item.clone() {
             //if !types.contains_key(&s) {
             //    println!("this shouldn't happen {:?}", s);
             //}
             //if cache.contains_key(&s) {
             //    panic!("this shouldn't happen {:?}", s);
             //}
-            cache.entry(s).or_insert(vec![]).push((args, expr));
+            cache.entry(print_type(PrintState::new(), s)).or_insert(vec![]).push((args, expr));
         }
     }
 
@@ -447,7 +486,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             let args = (0..fnset[0].0.len()).map(|x| format!("__{}", x)).collect::<Vec<_>>();
             new_cache.insert(key, vec![(
                 args.iter()
-                    .map(|x| ast::Ident(x.to_string()))
+                    .map(|x| ast::Ty::Ref(ast::Ident(x.to_string())))
                     .collect::<Vec<_>>(),
                 ast::Expr::Case(
                     Box::new(ast::Expr::Parens(args.iter()
@@ -473,7 +512,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
                         state.indent(),
                         key,
-                        args.iter().map(|x| x.0.to_string()).collect::<Vec<_>>().join(", "),
+                        args.iter().map(|x| print_type(state, x.clone())).collect::<Vec<_>>().join(", "),
                         state.tab().indent(),
                         print_expr(state.tab(), &expr),
                         state.indent()));
@@ -488,8 +527,8 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             //println!("hm {:?}", types[&key]);
             //println!("hm {:?}", t);
             let mut args_span = vec![];
-            for (&ast::Ident(ref arg), ty) in args.iter().zip(t.iter()) {
-                args_span.push(format!("{}: {}", arg, print_type(state.tab(), ty.clone())));
+            for (arg, ty) in args.iter().zip(t.iter()) {
+                args_span.push(format!("{}: {}", print_type(state, arg.clone()), print_type(state.tab(), ty.clone())));
             }
             out.push(
                 format!("{}fn {}({}) -> {} {{\n{}{}\n{}}}\n",
@@ -509,8 +548,9 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
 #[test]
 fn calculator() {
-    //let a = "./language-c/src/Language/C/Analysis/AstAnalysis.hs";
-    let a = "./corrode/src/Language/Rust/Corrode/C.hs";
+    let a = "./language-c/src/Language/C/Data/Ident.hs";
+    // let a = "./corrode/src/Language/Rust/Corrode/C.hs";
+    // let a = "./test/input.hs";
     println!("file: {}", a);
     let mut file = File::open(a).unwrap();
     let mut contents = String::new();
@@ -576,4 +616,7 @@ fn main() {
             println!("// ERROR: cannot yet convert file {:?}\n", p);
         }
     }
+    println!("");
+    println!("");
+    println!("fn main() {{ }}")
 }
