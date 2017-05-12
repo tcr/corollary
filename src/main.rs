@@ -10,6 +10,7 @@ use corroder_parser::ast::{Ty, Expr};
 use corroder_parser::calculator;
 
 use regex::{Regex, Captures};
+use std::borrow::Borrow;
 use std::io::prelude::*;
 use std::fs::{File};
 use std::fmt::Debug;
@@ -347,13 +348,13 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                         }
                         out.push(format!("{}{} => if {},",
                             state.indent(),
-                            label.iter().map(|x| print_type(state, x.clone())).collect::<Vec<_>>().join(" "),
+                            label.iter().map(|x| print_type(state, x)).collect::<Vec<_>>().join(" "),
                             inner.join("\n")));
                     }
                     ast::CaseCond::Direct(label, arm) => {
                         out.push(format!("{}{} => {},",
                             state.tab().indent(),
-                            label.iter().map(|x| print_type(state, x.clone())).collect::<Vec<_>>().join(" "),
+                            label.iter().map(|x| print_type(state, x)).collect::<Vec<_>>().join(" "),
                             print_expr(state.tab(), &arm)));
                     }
                 }
@@ -379,8 +380,8 @@ fn unpack_fndef(t: Ty) -> Vec<Ty> {
     }
 }
 
-fn print_type(state: PrintState, t: Ty) -> String {
-    match t {
+fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
+    match *t.borrow() {
         Ty::Ref(ast::Ident(ref s)) => {
             if s == "Int" {
                 format!("isize")
@@ -388,13 +389,14 @@ fn print_type(state: PrintState, t: Ty) -> String {
                 s.to_string()
             }
         }
-        Ty::Not(s) => {
-            print_type(state, *s)
+        Ty::Not(ref s) => {
+            print_type(state, &**s)
         }
         Ty::Str(ref s) => {
             format!("{:?}", String::from_utf8_lossy(&base64::decode(s).unwrap_or("@@WEIRD BAD BASE64 STR@@".as_bytes().to_vec())).to_string())
         }
-        Ty::Span(mut span) => {
+        Ty::Span(ref span) => {
+            let mut span = span.clone();
             let mut out_span = print_type(state.tab(), span.remove(0));
             if span.len() > 0 {
                 let mut type_span = vec![];
@@ -405,9 +407,9 @@ fn print_type(state: PrintState, t: Ty) -> String {
             }
             out_span
         }
-        Ty::Tuple(spans) => {
+        Ty::Tuple(ref spans) => {
             if spans.len() == 1 {
-                print_type(state.tab(), spans[0].clone())
+                print_type(state.tab(), &spans[0])
             } else {
                 format!("({})", spans.into_iter()
                     .map(|x| print_type(state.tab(), x))
@@ -415,13 +417,13 @@ fn print_type(state: PrintState, t: Ty) -> String {
                     .join(", "))
             }
         }
-        Ty::Brackets(spans) => {
+        Ty::Brackets(ref spans) => {
             format!("Vec<{}>", spans.into_iter()
                 .map(|x| print_type(state.tab(), x))
                 .collect::<Vec<_>>()
                 .join(", "))
         }
-        t => {
+        ref t => {
             format!("{:?}", t)
         }
     }
@@ -459,7 +461,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 derives,
                 name.0,
                 data.iter().map(|tyset| {
-                    tyset.iter().map(|ty| print_type(state, ty.clone())).collect::<Vec<_>>().join(", ")
+                    tyset.iter().map(|ty| print_type(state, ty)).collect::<Vec<_>>().join(", ")
                 }).collect::<Vec<_>>().join(", "));
             println!("");
         }
@@ -512,7 +514,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
                         state.indent(),
                         key,
-                        args.iter().map(|x| print_type(state, x.clone())).collect::<Vec<_>>().join(", "),
+                        args.iter().map(|x| print_type(state, x)).collect::<Vec<_>>().join(", "),
                         state.tab().indent(),
                         print_expr(state.tab(), &expr),
                         state.indent()));
@@ -528,14 +530,14 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             //println!("hm {:?}", t);
             let mut args_span = vec![];
             for (arg, ty) in args.iter().zip(t.iter()) {
-                args_span.push(format!("{}: {}", print_type(state, arg.clone()), print_type(state.tab(), ty.clone())));
+                args_span.push(format!("{}: {}", print_type(state, arg), print_type(state.tab(), ty)));
             }
             out.push(
                 format!("{}fn {}({}) -> {} {{\n{}{}\n{}}}\n",
                     state.indent(),
                     key,
                     args_span.join(", "),
-                    print_type(state.tab(), t.last().unwrap().clone()),
+                    print_type(state.tab(), t.last().unwrap()),
                     state.tab().indent(),
                     print_expr(state.tab(), &expr),
                     state.indent()));
