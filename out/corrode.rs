@@ -4,7 +4,33 @@
 
 // ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/CFG.lhs"
 
-// ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/CrateMap.hs"
+mod Language_Rust_Corrode_CrateMap {
+    #[derive(Eq, Ord, Show)]
+    struct ItemKind(Enum, Struct, Union, Type, Symbol);
+
+    fn mergeCrateMaps() -> Map.Map(String, CrateMap) {
+        Map.fromListWith((Map.unionWith((Operator("++")))))
+    }
+
+    fn parseCrateMap() -> Either(String, CrateMap) {
+        (fmap(root) . (foldrM(parseLine, (Map.empty, vec![])) . (filter(((not . null))) . (map(cleanLine) . lines))))
+    }
+
+    fn rewritesFromCratesMap(crates: CratesMap) -> ItemRewrites {
+        Map.fromList(Dummy)
+    }
+
+    fn splitModuleMap(modName: String, crates: CratesMap) -> (ModuleMap, CratesMap) {
+        fromMaybe((vec![], crates))({
+                let thisCrate = Map.lookup("".to_string(), crates);
+                let thisModule = Map.lookup(modName, thisCrate);
+                Let;
+                Let;
+                return((thisModule, crates'))
+            })
+    }
+
+}
 
 mod Language_Rust_Idiomatic {
     fn itemIdioms(__0: Rust.Item) -> Rust.Item {
