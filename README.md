@@ -1,8 +1,6 @@
 # porting Corrode to Rust
 
-It'd be cool if [Corrode, the C to Rust translator written in Haskell](https://github.com/jameysharp/corrode) were also written in Rust. A large blocker is the lack of an extensive C parsing library like Haskell has.
-
-This project has the goal of translating both libraries to Rust using a mix of automated translation and manual cleanup. Much like Corrode!
+It'd be cool if there existed a port of [Corrode, the C to Rust translator written in Haskell](https://github.com/jameysharp/corrode), into Rust. A large blocker is the lack of an extensive C parsing library like Haskell has. This project has the goal of translating both libraries into idiomatic Rust using a mix of automated translation and manual cleanup. (Much like Corrode itself!)
 
 ```
 git clone http://github.com/tcr/corrode-but-in-rust --recursive
