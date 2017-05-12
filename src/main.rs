@@ -351,14 +351,14 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                             inner.join("\n")));
                     }
                     ast::CaseCond::Direct(label, arm) => {
-                        out.push(format!("{}{} => ({}).into(),",
+                        out.push(format!("{}{} => {},",
                             state.tab().indent(),
                             label.iter().map(|x| print_type(state, x.clone())).collect::<Vec<_>>().join(" "),
                             print_expr(state.tab(), &arm)));
                     }
                 }
             }
-            format!("match ({}).as_ref() {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.indent())
+            format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.indent())
         }
         ref expr => {
             format!("{:?}", expr)
@@ -392,7 +392,7 @@ fn print_type(state: PrintState, t: Ty) -> String {
             print_type(state, *s)
         }
         Ty::Str(ref s) => {
-            format!("{:?}", String::from_utf8_lossy(&base64::decode(s).unwrap()).to_string())
+            format!("{:?}", String::from_utf8_lossy(&base64::decode(s).unwrap_or("@@WEIRD BAD BASE64 STR@@".as_bytes().to_vec())).to_string())
         }
         Ty::Span(mut span) => {
             let mut out_span = print_type(state.tab(), span.remove(0));
@@ -618,5 +618,5 @@ fn main() {
     }
     println!("");
     println!("");
-    println!("fn main() {{ }}")
+    println!("fn main() {{ /* demo */ }}")
 }

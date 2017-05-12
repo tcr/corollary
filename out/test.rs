@@ -6,18 +6,18 @@ mod test_module {
     struct Ident(String, isize, NodeInfo);
 
     fn applyRenames(ident: Ident) -> String {
-        match (identToString(ident)).as_ref() {
-                "final" => ("final_".to_string()).into(),
-                "fn" => ("fn_".to_string()).into(),
-                "in" => ("in_".to_string()).into(),
-                "let" => ("let_".to_string()).into(),
-                "main" => ("_c_main".to_string()).into(),
-                "match" => ("match_".to_string()).into(),
-                "mod" => ("mod_".to_string()).into(),
-                "proc" => ("proc_".to_string()).into(),
-                "type" => ("type_".to_string()).into(),
-                "where" => ("where_".to_string()).into(),
-                name => (name).into(),
+        match identToString(ident) {
+                "final" => "final_".to_string(),
+                "fn" => "fn_".to_string(),
+                "in" => "in_".to_string(),
+                "let" => "let_".to_string(),
+                "main" => "_c_main".to_string(),
+                "match" => "match_".to_string(),
+                "mod" => "mod_".to_string(),
+                "proc" => "proc_".to_string(),
+                "type" => "type_".to_string(),
+                "where" => "where_".to_string(),
+                name => name,
             }
     }
 
@@ -29,4 +29,4 @@ mod test_module {
 
 
 
-fn main() { }
+fn main() { /* demo */ }

@@ -21,19 +21,19 @@ mod Language_C_Analysis_AstAnalysis {
     }
 
     fn analyseExt(__0: CExtDecl) -> m(EmptyParen) {
-        match ((__0)).as_ref() {
-            CAsmExt(asm, _) => (handleAsmBlock(asm)).into(),
-            CFDefExt(fundef) => (analyseFunDef(fundef)).into(),
-            CDeclExt(decl) => (analyseDecl(False, decl)).into(),
+        match (__0) {
+            CAsmExt(asm, _) => handleAsmBlock(asm),
+            CFDefExt(fundef) => analyseFunDef(fundef),
+            CDeclExt(decl) => analyseDecl(False, decl),
         }
     }
 
     fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info): CFunDef) -> m(EmptyParen) {
         {
             let improveFunDefType = |__0| {
-                match ((__0)).as_ref() {
-                    FunctionType(FunTypeIncomplete(return_ty), attrs) => (return(FunctionType((FunType(return_ty, vec![], False)), attrs))).into(),
-                    ty => (return(ty)).into(),
+                match (__0) {
+                    FunctionType(FunTypeIncomplete(return_ty), attrs) => return(FunctionType((FunType(return_ty, vec![], False)), attrs)),
+                    ty => return(ty),
                 }
             };
 
@@ -51,26 +51,26 @@ mod Language_C_Analysis_AstAnalysis {
     }
 
     fn analyseFunctionBody(__0: NodeInfo, __1: VarDecl, __2: CStat, __3: m(Stmt)) -> m(Stmt) {
-        match ((__0, __1, __2, __3, __4)).as_ref() {
-            node_info decl s EmptyParen CCompound(localLabels, items, _) => ({
+        match (__0, __1, __2, __3, __4) {
+            node_info decl s EmptyParen CCompound(localLabels, items, _) => {
                 enterFunctionScope;
                 mapM_(((withDefTable . defineLabel)), (++(localLabels, getLabels(s))));
                 defineParams(node_info, decl);
                 mapM_((tBlockItem(vec![FunCtx(decl)])), items);
                 leaveFunctionScope;
                 return(s)
-            }).into(),
-            _ _ s => (astError((nodeInfo(s)), "Function body is no compound statement".to_string())).into(),
+            },
+            _ _ s => astError((nodeInfo(s)), "Function body is no compound statement".to_string()),
         }
     }
 
     fn analyseTypeDef(handle_sue_def: Bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, node_info: NodeInfo) -> m(EmptyParen) {
         {
             let checkValidTypeDef = |__0, __1, __2| {
-                match ((__0, __1, __2)).as_ref() {
-                    True _ _ => (astError(node_info, "inline specifier for typeDef".to_string())).into(),
-                    _ NoStorageSpec _ => (return(())).into(),
-                    _ bad_storage _ => (astError(node_info)(++("storage specified for typeDef: ".to_string(), show(bad_storage)))).into(),
+                match (__0, __1, __2) {
+                    True _ _ => astError(node_info, "inline specifier for typeDef".to_string()),
+                    _ NoStorageSpec _ => return(()),
+                    _ bad_storage _ => astError(node_info)(++("storage specified for typeDef: ".to_string(), show(bad_storage))),
                 }
             };
 
@@ -83,10 +83,10 @@ mod Language_C_Analysis_AstAnalysis {
     }
 
     fn builtinType(__0: CBuiltin) -> m(Type) {
-        match ((__0)).as_ref() {
-            CBuiltinVaArg(_, d, _) => (analyseTypeDecl(d)).into(),
-            CBuiltinOffsetOf(_, _, _) => (return(size_tType)).into(),
-            CBuiltinTypesCompatible(_, _, _) => (return(boolType)).into(),
+        match (__0) {
+            CBuiltinVaArg(_, d, _) => analyseTypeDecl(d),
+            CBuiltinOffsetOf(_, _, _) => return(size_tType),
+            CBuiltinTypesCompatible(_, _, _) => return(boolType),
         }
     }
 
@@ -95,43 +95,43 @@ mod Language_C_Analysis_AstAnalysis {
     }
 
     fn checkInits(__0: Type, __1: Vec<CDesignator>, __2: CInitList) -> m(EmptyParen) {
-        match ((__0, __1, __2)).as_ref() {
-            _ _ Vec<> => (return(())).into(),
-            t dds (ds, i)(EmptyParen, is) => ({
-                let (dds', ds') = match ((dds, ds)).as_ref() {
-                                (Vec<>, Vec<>) => (typeError((nodeInfo(i)), "excess elements in initializer".to_string())).into(),
-                                (dd'(EmptyParen, rest), Vec<>) => (return((rest, vec![dd']))).into(),
-                                (_, d(EmptyParen, _)) => (return((advanceDesigList(dds, d), ds))).into(),
+        match (__0, __1, __2) {
+            _ _ Vec<> => return(()),
+            t dds (ds, i)(EmptyParen, is) => {
+                let (dds', ds') = match (dds, ds) {
+                                (Vec<>, Vec<>) => typeError((nodeInfo(i)), "excess elements in initializer".to_string()),
+                                (dd'(EmptyParen, rest), Vec<>) => return((rest, vec![dd'])),
+                                (_, d(EmptyParen, _)) => return((advanceDesigList(dds, d), ds)),
                             };
                 let t' = tDesignator(t, ds');
                 tInit(t', i);
                 checkInits(t, dds', is)
-            }).into(),
+            },
         }
     }
 
     fn complexBaseType(ni: NodeInfo, c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m(Type) {
         {
             let t = tExpr(c, side, e);
-            match (canonicalType(t)).as_ref() {
-                        DirectType TyComplex(ft) quals attrs => (return(DirectType((TyFloating(ft)), quals, attrs))).into(),
-                        _ => (typeError(ni)(++("expected complex type, got: ".to_string(), pType(t)))).into(),
+            match canonicalType(t) {
+                        DirectType TyComplex(ft) quals attrs => return(DirectType((TyFloating(ft)), quals, attrs)),
+                        _ => typeError(ni)(++("expected complex type, got: ".to_string(), pType(t))),
                     }
         }
     }
 
     fn computeFunDefStorage(__0: Ident, __1: StorageSpec) -> m(Storage) {
-        match ((__0, __1)).as_ref() {
-            _ StaticSpec(b) => (return(FunLinkage(InternalLinkage))).into(),
-            ident other_spec => ({
+        match (__0, __1) {
+            _ StaticSpec(b) => return(FunLinkage(InternalLinkage)),
+            ident other_spec => {
                 let obj_opt = lookupObject(ident);
                 Let;
-                match (other_spec).as_ref() {
-                            NoStorageSpec => (return(maybe(defaultSpec, declStorage, obj_opt))).into(),
-                            ExternSpec(False) => (return(maybe(defaultSpec, declStorage, obj_opt))).into(),
-                            bad_spec => (throwTravError(badSpecifierError((nodeInfo(ident)))(++("unexpected function storage specifier (only static or extern is allowed)".to_string(), show(bad_spec))))).into(),
+                match other_spec {
+                            NoStorageSpec => return(maybe(defaultSpec, declStorage, obj_opt)),
+                            ExternSpec(False) => return(maybe(defaultSpec, declStorage, obj_opt)),
+                            bad_spec => throwTravError(badSpecifierError((nodeInfo(ident)))(++("unexpected function storage specifier (only static or extern is allowed)".to_string(), show(bad_spec)))),
                         }
-            }).into(),
+            },
         }
     }
 
@@ -151,17 +151,17 @@ mod Language_C_Analysis_AstAnalysis {
     }
 
     fn defineParams(ni: NodeInfo, decl: VarDecl) -> m(EmptyParen) {
-        match ((getParams(declType(decl)))).as_ref() {
-                Nothing => (astError(ni, "expecting complete function type in function definition".to_string())).into(),
-                Just params => (mapM_(handleParamDecl, params)).into(),
+        match (getParams(declType(decl))) {
+                Nothing => astError(ni, "expecting complete function type in function definition".to_string()),
+                Just params => mapM_(handleParamDecl, params),
             }
     }
 
     fn enclosingFunctionType(__0: Vec<StmtCtx>) -> Maybe(Type) {
-        match ((__0)).as_ref() {
-            Vec<> => (Nothing).into(),
-            FunCtx(vd, EmptyParen, _) => (Just(declType(vd))).into(),
-            _(EmptyParen, cs) => (enclosingFunctionType(cs)).into(),
+        match (__0) {
+            Vec<> => Nothing,
+            FunCtx(vd, EmptyParen, _) => Just(declType(vd)),
+            _(EmptyParen, cs) => enclosingFunctionType(cs),
         }
     }
 
@@ -188,16 +188,16 @@ mod Language_C_Analysis_AstAnalysis {
     }
 
     fn getParams(__0: Type) -> Maybe(Vec<ParamDecl>) {
-        match ((__0)).as_ref() {
-            FunctionType(FunType(_, params, _), _) => (Just(params)).into(),
-            _ => (Nothing).into(),
+        match (__0) {
+            FunctionType(FunType(_, params, _), _) => Just(params),
+            _ => Nothing,
         }
     }
 
     fn hasTypeDef(declspecs: Vec<CDeclSpec>) -> Maybe(Vec<CDeclSpec>) {
-        match (foldr(hasTypeDefSpec, (False, vec![]), declspecs)).as_ref() {
-                (True, specs') => (Just(specs')).into(),
-                (False, _) => (Nothing).into(),
+        match foldr(hasTypeDefSpec, (False, vec![]), declspecs) {
+                (True, specs') => Just(specs'),
+                (False, _) => Nothing,
             }
     }
 
@@ -219,275 +219,275 @@ mod Language_C_Analysis_AstAnalysis {
     }
 
     fn matchDesignator(__0: CDesignator, __1: CDesignator) -> Bool {
-        match ((__0, __1)).as_ref() {
-            CMemberDesig(m1, _) CMemberDesig(m2, _) => (==(m1, m2)).into(),
-            _ _ => (True).into(),
+        match (__0, __1) {
+            CMemberDesig(m1, _) CMemberDesig(m2, _) => ==(m1, m2),
+            _ _ => True,
         }
     }
 
     fn tBlockItem(__0: Vec<StmtCtx>, __1: CBlockItem) -> m(Type) {
-        match ((__0, __1)).as_ref() {
-            c CBlockStmt(s) => (tStmt(c, s)).into(),
-            _ CBlockDecl(d) => (>(analyseDecl(True, d), >((), return(voidType)))).into(),
-            _ CNestedFunDef(fd) => (>(analyseFunDef(fd), >((), return(voidType)))).into(),
+        match (__0, __1) {
+            c CBlockStmt(s) => tStmt(c, s),
+            _ CBlockDecl(d) => >(analyseDecl(True, d), >((), return(voidType))),
+            _ CNestedFunDef(fd) => >(analyseFunDef(fd), >((), return(voidType))),
         }
     }
 
     fn tDesignator(__0: Type, __1: Vec<CDesignator>) -> m(Type) {
-        match ((__0, __1)).as_ref() {
-            ArrayType(bt, _, _, _) CArrDesig(e, ni, EmptyParen, ds) => ({
+        match (__0, __1) {
+            ArrayType(bt, _, _, _) CArrDesig(e, ni, EmptyParen, ds) => {
                 >>=(tExpr(vec![], RValue, e), checkIntegral'(ni));
                 tDesignator(bt, ds)
-            }).into(),
-            ArrayType(bt, _, _, _) CRangeDesig(e1, e2, ni, EmptyParen, ds) => ({
+            },
+            ArrayType(bt, _, _, _) CRangeDesig(e1, e2, ni, EmptyParen, ds) => {
                 >>=(tExpr(vec![], RValue, e1), checkIntegral'(ni));
                 >>=(tExpr(vec![], RValue, e2), checkIntegral'(ni));
                 tDesignator(bt, ds)
-            }).into(),
-            ArrayType(_, _, _, _) d(EmptyParen, ds) => (typeError((nodeInfo(d)), "member designator in array initializer".to_string())).into(),
-            t EmptyParen DirectType(TyComp(_), _, _) CMemberDesig(m, ni, EmptyParen, ds) => ({
+            },
+            ArrayType(_, _, _, _) d(EmptyParen, ds) => typeError((nodeInfo(d)), "member designator in array initializer".to_string()),
+            t EmptyParen DirectType(TyComp(_), _, _) CMemberDesig(m, ni, EmptyParen, ds) => {
                 let mt = fieldType(ni, m, t);
                 tDesignator((canonicalType(mt)), ds)
-            }).into(),
-            t EmptyParen DirectType(TyComp(_), _, _) d(EmptyParen, _) => (typeError((nodeInfo(d)), "array designator in compound initializer".to_string())).into(),
-            t Vec<> => (return(t)).into(),
+            },
+            t EmptyParen DirectType(TyComp(_), _, _) d(EmptyParen, _) => typeError((nodeInfo(d)), "array designator in compound initializer".to_string()),
+            t Vec<> => return(t),
         }
     }
 
     fn tExpr(c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m(Type) {
-        match (nameOfNode((nodeInfo(e)))).as_ref() {
-                Just n => ({
+        match nameOfNode((nodeInfo(e))) {
+                Just n => {
                     let dt = getDefTable;
-                    match (lookupType(dt, n)).as_ref() {
-                                Just t => (return(t)).into(),
-                                Nothing => ({
+                    match lookupType(dt, n) {
+                                Just t => return(t),
+                                Nothing => {
                                     let t = tExpr'(c, side, e);
                                     withDefTable((Lambda))
-                                }).into(),
+                                },
                             }
-                }).into(),
-                Nothing => (tExpr'(c, side, e)).into(),
+                },
+                Nothing => tExpr'(c, side, e),
             }
     }
 
     fn tExpr'(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m(Type) {
-        match ((__0, __1, __2)).as_ref() {
-            c side CBinary(op, le, re, ni) => ({
+        match (__0, __1, __2) {
+            c side CBinary(op, le, re, ni) => {
                 when((==(side, LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
                 let rt = tExpr(c, RValue, re);
                 binopType'(ni, op, lt, rt)
-            }).into(),
-            c side CUnary(CAdrOp, e, ni) => ({
+            },
+            c side CUnary(CAdrOp, e, ni) => {
                 when((==(side, LValue)))(typeError(ni, "address-of operator as lvalue".to_string()));
-                match (e).as_ref() {
-                            CCompoundLit _ _ _ => (liftM(simplePtr, tExpr(c, RValue, e))).into(),
-                            CVar i _ => (>>=(lookupObject(i), (typeErrorOnLeft(ni) . maybe((notFound(i)), varAddrType)))).into(),
-                            _ => (liftM(simplePtr, tExpr(c, LValue, e))).into(),
+                match e {
+                            CCompoundLit _ _ _ => liftM(simplePtr, tExpr(c, RValue, e)),
+                            CVar i _ => >>=(lookupObject(i), (typeErrorOnLeft(ni) . maybe((notFound(i)), varAddrType))),
+                            _ => liftM(simplePtr, tExpr(c, LValue, e)),
                         }
-            }).into(),
-            c _ CUnary(CIndOp, e, ni) => (>>=(tExpr(c, RValue, e), ((typeErrorOnLeft(ni) . derefType)))).into(),
-            c _ CUnary(CCompOp, e, ni) => ({
+            },
+            c _ CUnary(CIndOp, e, ni) => >>=(tExpr(c, RValue, e), ((typeErrorOnLeft(ni) . derefType))),
+            c _ CUnary(CCompOp, e, ni) => {
                 let t = tExpr(c, RValue, e);
                 checkIntegral'(ni, t);
                 return(t)
-            }).into(),
-            c side CUnary(CNegOp, e, ni) => ({
+            },
+            c side CUnary(CNegOp, e, ni) => {
                 when((==(side, LValue)))(typeError(ni, "logical negation used as lvalue".to_string()));
                 >>=(tExpr(c, RValue, e), checkScalar'(ni));
                 return(boolType)
-            }).into(),
-            c side CUnary(op, e, _) => (tExpr(c, (if(isEffectfulOp, op, then, LValue, else, side)), e)).into(),
-            c _ CIndex(b, i, ni) => ({
+            },
+            c side CUnary(op, e, _) => tExpr(c, (if(isEffectfulOp, op, then, LValue, else, side)), e),
+            c _ CIndex(b, i, ni) => {
                 let bt = tExpr(c, RValue, b);
                 let it = tExpr(c, RValue, i);
                 let addrTy = binopType'(ni, CAddOp, bt, it);
                 typeErrorOnLeft(ni)(derefType(addrTy))
-            }).into(),
-            c side CCond(e1, me2, e3, ni) => ({
+            },
+            c side CCond(e1, me2, e3, ni) => {
                 let t1 = tExpr(c, RValue, e1);
                 checkScalar'((nodeInfo(e1)), t1);
                 let t3 = tExpr(c, side, e3);
-                match (me2).as_ref() {
-                            Just e2 => ({
+                match me2 {
+                            Just e2 => {
                                 let t2 = tExpr(c, side, e2);
                                 conditionalType'(ni, t2, t3)
-                            }).into(),
-                            Nothing => (conditionalType'(ni, t1, t3)).into(),
+                            },
+                            Nothing => conditionalType'(ni, t1, t3),
                         }
-            }).into(),
-            c side CMember(e, m, deref, ni) => ({
+            },
+            c side CMember(e, m, deref, ni) => {
                 let t = tExpr(c, RValue, e);
                 let bt = if(deref, then, typeErrorOnLeft, ni, (derefType(t)), else, return, t);
                 fieldType(ni, m, bt)
-            }).into(),
-            c side CComma(es, _) => (>>=(mapM((tExpr(c, side)), es), (return . last))).into(),
-            c side CCast(d, e, ni) => ({
+            },
+            c side CComma(es, _) => >>=(mapM((tExpr(c, side)), es), (return . last)),
+            c side CCast(d, e, ni) => {
                 let dt = analyseTypeDecl(d);
                 let et = tExpr(c, side, e);
                 typeErrorOnLeft(ni)(castCompatible(dt, et));
                 return(dt)
-            }).into(),
-            c side CSizeofExpr(e, ni) => ({
+            },
+            c side CSizeofExpr(e, ni) => {
                 when((==(side, LValue)))(typeError(ni, "sizeof as lvalue".to_string()));
                 tExpr(c, RValue, e);
                 return(size_tType)
-            }).into(),
-            c side CAlignofExpr(e, ni) => ({
+            },
+            c side CAlignofExpr(e, ni) => {
                 when((==(side, LValue)))(typeError(ni, "alignof as lvalue".to_string()));
                 tExpr(c, RValue, e);
                 return(size_tType)
-            }).into(),
-            c side CComplexReal(e, ni) => (complexBaseType(ni, c, side, e)).into(),
-            c side CComplexImag(e, ni) => (complexBaseType(ni, c, side, e)).into(),
-            _ side CLabAddrExpr(_, ni) => ({
+            },
+            c side CComplexReal(e, ni) => complexBaseType(ni, c, side, e),
+            c side CComplexImag(e, ni) => complexBaseType(ni, c, side, e),
+            _ side CLabAddrExpr(_, ni) => {
                 when((==(side, LValue)))(typeError(ni, "label address as lvalue".to_string()));
                 return(PtrType(voidType, noTypeQuals, vec![]))
-            }).into(),
-            _ side CCompoundLit(d, initList, ni) => ({
+            },
+            _ side CCompoundLit(d, initList, ni) => {
                 when((==(side, LValue)))(typeError(ni, "compound literal as lvalue".to_string()));
                 let lt = analyseTypeDecl(d);
                 tInitList(ni, (canonicalType(lt)), initList);
                 return(lt)
-            }).into(),
-            _ RValue CAlignofType(_, _) => (return(size_tType)).into(),
-            _ RValue CSizeofType(_, _) => (return(size_tType)).into(),
-            _ LValue CAlignofType(_, ni) => (typeError(ni, "alignoftype as lvalue".to_string())).into(),
-            _ LValue CSizeofType(_, ni) => (typeError(ni, "sizeoftype as lvalue".to_string())).into(),
-            _ side CVar(i, ni) => (>>=(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), ((return . declType))))).into(),
-            _ _ CConst(c) => (constType(c)).into(),
-            _ _ CBuiltinExpr(b) => (builtinType(b)).into(),
-            c _ CCall(fe, args, ni) => ({
+            },
+            _ RValue CAlignofType(_, _) => return(size_tType),
+            _ RValue CSizeofType(_, _) => return(size_tType),
+            _ LValue CAlignofType(_, ni) => typeError(ni, "alignoftype as lvalue".to_string()),
+            _ LValue CSizeofType(_, ni) => typeError(ni, "sizeoftype as lvalue".to_string()),
+            _ side CVar(i, ni) => >>=(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), ((return . declType)))),
+            _ _ CConst(c) => constType(c),
+            _ _ CBuiltinExpr(b) => builtinType(b),
+            c _ CCall(fe, args, ni) => {
                 Let;
-                let t = match (fe).as_ref() {
-                                CVar i _ => (>>=(lookupObject(i), maybe((fallback(i)), (const(tExpr(c, RValue, fe)))))).into(),
-                                _ => (tExpr(c, RValue, fe)).into(),
+                let t = match fe {
+                                CVar i _ => >>=(lookupObject(i), maybe((fallback(i)), (const(tExpr(c, RValue, fe))))),
+                                _ => tExpr(c, RValue, fe),
                             };
                 let atys = mapM((tExpr(c, RValue)), args);
-                match (canonicalType(t)).as_ref() {
-                            PtrType FunctionType(FunType(rt, pdecls, varargs), _) _ _ => ({
+                match canonicalType(t) {
+                            PtrType FunctionType(FunType(rt, pdecls, varargs), _) _ _ => {
                                 Let;
                                 mapM_(checkArg)(zip3(ptys, atys, args));
                                 unless(varargs)(when((/=(length(atys), length(ptys))))(typeError(ni, "incorrect number of arguments".to_string())));
                                 return(canonicalType(rt))
-                            }).into(),
-                            PtrType FunctionType(FunTypeIncomplete(rt), _) _ _ => ({
+                            },
+                            PtrType FunctionType(FunTypeIncomplete(rt), _) _ _ => {
                                 return(canonicalType(rt))
-                            }).into(),
-                            _ => (typeError(ni)(++("attempt to call non-function of type ".to_string(), pType(t)))).into(),
+                            },
+                            _ => typeError(ni)(++("attempt to call non-function of type ".to_string(), pType(t))),
                         }
-            }).into(),
-            c _ CAssign(op, le, re, ni) => ({
+            },
+            c _ CAssign(op, le, re, ni) => {
                 let lt = tExpr(c, LValue, le);
                 let rt = tExpr(c, RValue, re);
                 when((constant(typeQuals(lt))))(typeError(ni)(++("assignment to lvalue with `constant\' qualifier: ".to_string(), ((render . pretty))(le))));
-                match ((canonicalType(lt), re)).as_ref() {
+                match (canonicalType(lt), re) {
                         (lt', CConst(CIntConst(i, _))) => if &&(isPointerType(lt'), ==(getCInteger(i), 0)) { return(()) },
-                            (_, _) => (assignCompatible'(ni, op, lt, rt)).into(),
+                            (_, _) => assignCompatible'(ni, op, lt, rt),
                         };
                 return(lt)
-            }).into(),
-            c _ CStatExpr(s, _) => ({
+            },
+            c _ CStatExpr(s, _) => {
                 enterBlockScope;
                 mapM_(((withDefTable . defineLabel)), (getLabels(s)));
                 let t = tStmt(c, s);
                 leaveBlockScope;
                 return(t)
-            }).into(),
+            },
         }
     }
 
     fn tInit(__0: Type, __1: CInit, __2: m(Initializer)) -> m(Initializer) {
-        match ((__0, __1, __2, __3)).as_ref() {
-            t i EmptyParen CInitExpr(e, ni) => ({
+        match (__0, __1, __2, __3) {
+            t i EmptyParen CInitExpr(e, ni) => {
                 let it = tExpr(vec![], RValue, e);
                 assignCompatible'(ni, CAssignOp, t, it);
                 return(i)
-            }).into(),
-            t i EmptyParen CInitList(initList, ni) => (>(tInitList(ni, (canonicalType(t)), initList), >((), return(i)))).into(),
+            },
+            t i EmptyParen CInitList(initList, ni) => >(tInitList(ni, (canonicalType(t)), initList), >((), return(i))),
         }
     }
 
     fn tInitList(__0: NodeInfo, __1: Type, __2: CInitList, __3: m(EmptyParen)) -> m(EmptyParen) {
-        match ((__0, __1, __2, __3, __4)).as_ref() {
-            ni t EmptyParen ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _) Vec<(Vec<>, CInitExpr(e, EmptyParen, CConst(CStrConst(_, _)), _))> => (>(tExpr(vec![], RValue, e), >((), return(())))).into(),
-            ni t EmptyParen ArrayType(_, _, _, _) initList => ({
+        match (__0, __1, __2, __3, __4) {
+            ni t EmptyParen ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _) Vec<(Vec<>, CInitExpr(e, EmptyParen, CConst(CStrConst(_, _)), _))> => >(tExpr(vec![], RValue, e), >((), return(()))),
+            ni t EmptyParen ArrayType(_, _, _, _) initList => {
                 Let;
                 checkInits(t, default_ds, initList)
-            }).into(),
-            ni t EmptyParen DirectType(TyComp(ctr), _, _) initList => ({
+            },
+            ni t EmptyParen DirectType(TyComp(ctr), _, _) initList => {
                 let td = lookupSUE(ni, (sueRef(ctr)));
                 let ms = tagMembers(ni, td);
                 Let;
                 checkInits(t, default_ds, initList)
-            }).into(),
-            ni PtrType(DirectType(TyVoid, _, _), _, _) _ => (return(())).into(),
-            _ t Vec<(Vec<>, i)> => (>(tInit(t, i), >((), return(())))).into(),
-            ni t _ => (typeError(ni)(++("initializer list for type: ".to_string(), pType(t)))).into(),
+            },
+            ni PtrType(DirectType(TyVoid, _, _), _, _) _ => return(()),
+            _ t Vec<(Vec<>, i)> => >(tInit(t, i), >((), return(()))),
+            ni t _ => typeError(ni)(++("initializer list for type: ".to_string(), pType(t))),
         }
     }
 
     fn tStmt(__0: Vec<StmtCtx>, __1: CStat) -> m(Type) {
-        match ((__0, __1)).as_ref() {
-            c CLabel(_, s, _, _) => (tStmt(c, s)).into(),
-            c CExpr(e, _) => (maybe((return(voidType)), (tExpr(c, RValue)), e)).into(),
-            c CCompound(ls, body, _) => ({
+        match (__0, __1) {
+            c CLabel(_, s, _, _) => tStmt(c, s),
+            c CExpr(e, _) => maybe((return(voidType)), (tExpr(c, RValue)), e),
+            c CCompound(ls, body, _) => {
                 enterBlockScope;
                 mapM_(((withDefTable . defineLabel)), ls);
                 let t = foldM((const(tBlockItem(c))), voidType, body);
                 leaveBlockScope;
                 return(t)
-            }).into(),
-            c CIf(e, sthen, selse, _) => (>(checkGuard(c, e), >((), >(tStmt(c, sthen), >((), >(maybe((return(())), (>(Lambda(c, s), >((), return(())))), selse), >((), return(voidType)))))))).into(),
-            c CSwitch(e, s, ni) => (>>=(tExpr(c, RValue, e), >(checkIntegral'(ni), >((), tStmt((:(SwitchCtx, c)), s))))).into(),
-            c CWhile(e, s, _, _) => (>(checkGuard(c, e), >((), tStmt((:(LoopCtx, c)), s)))).into(),
-            _ CGoto(l, ni) => ({
+            },
+            c CIf(e, sthen, selse, _) => >(checkGuard(c, e), >((), >(tStmt(c, sthen), >((), >(maybe((return(())), (>(Lambda(c, s), >((), return(())))), selse), >((), return(voidType))))))),
+            c CSwitch(e, s, ni) => >>=(tExpr(c, RValue, e), >(checkIntegral'(ni), >((), tStmt((:(SwitchCtx, c)), s)))),
+            c CWhile(e, s, _, _) => >(checkGuard(c, e), >((), tStmt((:(LoopCtx, c)), s))),
+            _ CGoto(l, ni) => {
                 let dt = getDefTable;
-                match (lookupLabel(l, dt)).as_ref() {
-                            Just _ => (return(voidType)).into(),
-                            Nothing => (typeError(ni)(++("undefined label in goto: ".to_string(), identToString(l)))).into(),
+                match lookupLabel(l, dt) {
+                            Just _ => return(voidType),
+                            Nothing => typeError(ni)(++("undefined label in goto: ".to_string(), identToString(l))),
                         }
-            }).into(),
-            c CCont(ni) => ({
+            },
+            c CCont(ni) => {
                 unless((inLoop(c)))(astError(ni, "continue statement outside of loop".to_string()));
                 return(voidType)
-            }).into(),
-            c CBreak(ni) => ({
+            },
+            c CBreak(ni) => {
                 unless((||(inLoop(c), inSwitch(c))))(astError(ni, "break statement outside of loop or switch statement".to_string()));
                 return(voidType)
-            }).into(),
-            c CReturn(Just(e), ni) => ({
+            },
+            c CReturn(Just(e), ni) => {
                 let t = tExpr(c, RValue, e);
-                let rt = match (enclosingFunctionType(c)).as_ref() {
-                                Just FunctionType(FunType(rt, _, _), _) => (return(rt)).into(),
-                                Just FunctionType(FunTypeIncomplete(rt), _) => (return(rt)).into(),
-                                Just ft => (astError(ni)(++("bad function type: ".to_string(), pType(ft)))).into(),
-                                Nothing => (astError(ni, "return statement outside function".to_string())).into(),
+                let rt = match enclosingFunctionType(c) {
+                                Just FunctionType(FunType(rt, _, _), _) => return(rt),
+                                Just FunctionType(FunTypeIncomplete(rt), _) => return(rt),
+                                Just ft => astError(ni)(++("bad function type: ".to_string(), pType(ft))),
+                                Nothing => astError(ni, "return statement outside function".to_string()),
                             };
-                match ((rt, t)).as_ref() {
-                            (DirectType(TyVoid, _, _), DirectType(TyVoid, _, _)) => (return(())).into(),
-                            _ => (assignCompatible'(ni, CAssignOp, rt, t)).into(),
+                match (rt, t) {
+                            (DirectType(TyVoid, _, _), DirectType(TyVoid, _, _)) => return(()),
+                            _ => assignCompatible'(ni, CAssignOp, rt, t),
                         };
                 return(voidType)
-            }).into(),
-            _ CReturn(Nothing, _) => (return(voidType)).into(),
-            _ CAsm(_, _) => (return(voidType)).into(),
-            c CCase(e, s, ni) => ({
+            },
+            _ CReturn(Nothing, _) => return(voidType),
+            _ CAsm(_, _) => return(voidType),
+            c CCase(e, s, ni) => {
                 unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
                 >>=(tExpr(c, RValue, e), checkIntegral'(ni));
                 tStmt(c, s)
-            }).into(),
-            c CCases(e1, e2, s, ni) => ({
+            },
+            c CCases(e1, e2, s, ni) => {
                 unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
                 >>=(tExpr(c, RValue, e1), checkIntegral'(ni));
                 >>=(tExpr(c, RValue, e2), checkIntegral'(ni));
                 tStmt(c, s)
-            }).into(),
-            c CDefault(s, ni) => ({
+            },
+            c CDefault(s, ni) => {
                 unless((inSwitch(c)))(astError(ni, "default statement outside of switch statement".to_string()));
                 tStmt(c, s)
-            }).into(),
-            c CFor(i, g, inc, s, _) => ({
+            },
+            c CFor(i, g, inc, s, _) => {
                 enterBlockScope;
                 either((maybe((return(())), checkExpr)), (analyseDecl(True)), i);
                 maybe((return(())), (checkGuard(c)), g);
@@ -495,14 +495,14 @@ mod Language_C_Analysis_AstAnalysis {
                 tStmt((:(LoopCtx, c)), s);
                 leaveBlockScope;
                 return(voidType)
-            }).into(),
-            c CGotoPtr(e, ni) => ({
+            },
+            c CGotoPtr(e, ni) => {
                 let t = tExpr(c, RValue, e);
-                match (t).as_ref() {
-                            PtrType(_, _, _) => (return(voidType)).into(),
-                            _ => (typeError(ni, "can\'t goto non-pointer".to_string())).into(),
+                match t {
+                            PtrType(_, _, _) => return(voidType),
+                            _ => typeError(ni, "can\'t goto non-pointer".to_string()),
                         }
-            }).into(),
+            },
         }
     }
 
@@ -550,9 +550,9 @@ mod Language_C_Analysis_Debug {
 
 mod Language_C_Analysis_Export {
     fn exportArraySize(__0: ArraySize) -> CArrSize {
-        match ((__0)).as_ref() {
-            ArraySize(static, e) => (CArrSize(static, e)).into(),
-            UnknownArraySize(complete) => (CNoArrSize(complete)).into(),
+        match (__0) {
+            ArraySize(static, e) => CArrSize(static, e),
+            UnknownArraySize(complete) => CNoArrSize(complete),
         }
     }
 
@@ -597,34 +597,34 @@ mod Language_C_Analysis_Export {
     }
 
     fn exportFloatType(ty: FloatType) -> Vec<CTypeSpec> {
-        match (ty).as_ref() {
-                TyFloat => (vec![CFloatType(ni)]).into(),
-                TyDouble => (vec![CDoubleType(ni)]).into(),
-                TyLDouble => (vec![CLongType(ni), CDoubleType(ni)]).into(),
+        match ty {
+                TyFloat => vec![CFloatType(ni)],
+                TyDouble => vec![CDoubleType(ni)],
+                TyLDouble => vec![CLongType(ni), CDoubleType(ni)],
             }
     }
 
     fn exportIntType(ty: IntType) -> Vec<CTypeSpec> {
-        match (ty).as_ref() {
-                TyBool => (vec![CBoolType(ni)]).into(),
-                TyChar => (vec![CCharType(ni)]).into(),
-                TySChar => (vec![CSignedType(ni), CCharType(ni)]).into(),
-                TyUChar => (vec![CUnsigType(ni), CCharType(ni)]).into(),
-                TyShort => (vec![CShortType(ni)]).into(),
-                TyUShort => (vec![CUnsigType(ni), CShortType(ni)]).into(),
-                TyInt => (vec![CIntType(ni)]).into(),
-                TyUInt => (vec![CUnsigType(ni), CIntType(ni)]).into(),
-                TyLong => (vec![CLongType(ni)]).into(),
-                TyULong => (vec![CUnsigType(ni), CLongType(ni)]).into(),
-                TyLLong => (vec![CLongType(ni), CLongType(ni)]).into(),
-                TyULLong => (vec![CUnsigType(ni), CLongType(ni), CLongType(ni)]).into(),
+        match ty {
+                TyBool => vec![CBoolType(ni)],
+                TyChar => vec![CCharType(ni)],
+                TySChar => vec![CSignedType(ni), CCharType(ni)],
+                TyUChar => vec![CUnsigType(ni), CCharType(ni)],
+                TyShort => vec![CShortType(ni)],
+                TyUShort => vec![CUnsigType(ni), CShortType(ni)],
+                TyInt => vec![CIntType(ni)],
+                TyUInt => vec![CUnsigType(ni), CIntType(ni)],
+                TyLong => vec![CLongType(ni)],
+                TyULong => vec![CUnsigType(ni), CLongType(ni)],
+                TyLLong => vec![CLongType(ni), CLongType(ni)],
+                TyULLong => vec![CUnsigType(ni), CLongType(ni), CLongType(ni)],
             }
     }
 
     fn exportMemberDecl(__0: MemberDecl) -> CDecl {
-        match ((__0)).as_ref() {
-            AnonBitField(ty, expr, node_info) => (CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(Nothing, Nothing, Just(expr))], node_info)).into(),
-            MemberDecl(vardecl, bitfieldsz, node_info) => (Let(in, CDecl, specs, vec![(Just(declarator), Nothing, bitfieldsz)], node_info)).into(),
+        match (__0) {
+            AnonBitField(ty, expr, node_info) => CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(Nothing, Nothing, Just(expr))], node_info),
+            MemberDecl(vardecl, bitfieldsz, node_info) => Let(in, CDecl, specs, vec![(Just(declarator), Nothing, bitfieldsz)], node_info),
         }
     }
 
@@ -637,15 +637,15 @@ mod Language_C_Analysis_Export {
     }
 
     fn exportStorage(__0: Storage) -> Vec<CStorageSpec> {
-        match ((__0)).as_ref() {
-            NoStorage => (vec![]).into(),
-            Auto(reg) => (if(reg, then, vec![CRegister(ni)], else, vec![])).into(),
-            Static(InternalLinkage, thread_local) => (threadLocal(thread_local, vec![CStatic(ni)])).into(),
-            Static(ExternalLinkage, thread_local) => (threadLocal(thread_local, vec![CExtern(ni)])).into(),
-            Static(NoLinkage, _) => (error("impossible storage: static without linkage".to_string())).into(),
-            FunLinkage(InternalLinkage) => (vec![CStatic(ni)]).into(),
-            FunLinkage(ExternalLinkage) => (vec![]).into(),
-            FunLinkage(NoLinkage) => (error("impossible storage: function without linkage".to_string())).into(),
+        match (__0) {
+            NoStorage => vec![],
+            Auto(reg) => if(reg, then, vec![CRegister(ni)], else, vec![]),
+            Static(InternalLinkage, thread_local) => threadLocal(thread_local, vec![CStatic(ni)]),
+            Static(ExternalLinkage, thread_local) => threadLocal(thread_local, vec![CExtern(ni)]),
+            Static(NoLinkage, _) => error("impossible storage: static without linkage".to_string()),
+            FunLinkage(InternalLinkage) => vec![CStatic(ni)],
+            FunLinkage(ExternalLinkage) => vec![],
+            FunLinkage(NoLinkage) => error("impossible storage: function without linkage".to_string()),
         }
     }
 
@@ -670,15 +670,15 @@ mod Language_C_Analysis_Export {
     }
 
     fn exportTypeSpec(tyname: TypeName) -> Vec<CTypeSpec> {
-        match (tyname).as_ref() {
-                TyVoid => (vec![CVoidType(ni)]).into(),
-                TyIntegral ity => (exportIntType(ity)).into(),
-                TyFloating fty => (exportFloatType(fty)).into(),
-                TyComplex fty => (exportComplexType(fty)).into(),
-                TyComp comp => (exportCompTypeDecl(comp)).into(),
-                TyEnum enum => (exportEnumTypeDecl(enum)).into(),
-                TyBuiltin TyVaList => (vec![CTypeDef((internalIdent("va_list".to_string())), ni)]).into(),
-                TyBuiltin TyAny => (vec![CTypeDef((internalIdent("__ty_any".to_string())), ni)]).into(),
+        match tyname {
+                TyVoid => vec![CVoidType(ni)],
+                TyIntegral ity => exportIntType(ity),
+                TyFloating fty => exportFloatType(fty),
+                TyComplex fty => exportComplexType(fty),
+                TyComp comp => exportCompTypeDecl(comp),
+                TyEnum enum => exportEnumTypeDecl(enum),
+                TyBuiltin TyVaList => vec![CTypeDef((internalIdent("va_list".to_string())), ni)],
+                TyBuiltin TyAny => vec![CTypeDef((internalIdent("__ty_any".to_string())), ni)],
             }
     }
 
@@ -687,10 +687,10 @@ mod Language_C_Analysis_Export {
     }
 
     fn fromDirectType(__0: Type) -> TypeName {
-        match ((__0)).as_ref() {
-            DirectType(ty, _, _) => (ty).into(),
-            TypeDefType(TypeDefRef(_, ref, _), _, _) => (maybe((error("undefined typeDef".to_string())), fromDirectType, ref)).into(),
-            _ => (error("fromDirectType".to_string())).into(),
+        match (__0) {
+            DirectType(ty, _, _) => ty,
+            TypeDefType(TypeDefRef(_, ref, _), _, _) => maybe((error("undefined typeDef".to_string())), fromDirectType, ref),
+            _ => error("fromDirectType".to_string()),
         }
     }
 
@@ -699,9 +699,9 @@ mod Language_C_Analysis_Export {
     }
 
     fn threadLocal(__0: Bool) -> Vec<CStorageSpec> {
-        match ((__0)).as_ref() {
-            False => (id).into(),
-            True => (((CThread(ni))(Operator(":")))).into(),
+        match (__0) {
+            False => id,
+            True => ((CThread(ni))(Operator(":"))),
         }
     }
 
@@ -715,9 +715,9 @@ mod Language_C_Analysis_NameSpaceMap {
     }
 
     fn defLocal(__0: NameSpaceMap(k, a), __1: k, __2: a, __3: (NameSpaceMap(k, a), Maybe(a))) -> (NameSpaceMap(k, a), Maybe(a)) {
-        match ((__0, __1, __2, __3, __4)).as_ref() {
-            ns EmptyParen NsMap(_, Vec<>) ident def => (defGlobal(ns, ident, def)).into(),
-            NsMap(gs, ls(EmptyParen, lss)) ident def => ((NsMap(gs, (:((:((ident, def), ls)), lss))), Prelude.lookup(ident, ls))).into(),
+        match (__0, __1, __2, __3, __4) {
+            ns EmptyParen NsMap(_, Vec<>) ident def => defGlobal(ns, ident, def),
+            NsMap(gs, ls(EmptyParen, lss)) ident def => (NsMap(gs, (:((:((ident, def), ls)), lss))), Prelude.lookup(ident, ls)),
         }
     }
 
@@ -734,9 +734,9 @@ mod Language_C_Analysis_NameSpaceMap {
     }
 
     fn leaveScope(__0: NameSpaceMap(k, a)) -> (NameSpaceMap(k, a), Vec<(k, a)>) {
-        match ((__0)).as_ref() {
-            NsMap(_, Vec<>) => (error("NsMaps.leaveScope: No local scope!".to_string())).into(),
-            NsMap(gs, ls(EmptyParen, lss)) => ((NsMap(gs, lss), ls)).into(),
+        match (__0) {
+            NsMap(_, Vec<>) => error("NsMaps.leaveScope: No local scope!".to_string()),
+            NsMap(gs, ls(EmptyParen, lss)) => (NsMap(gs, lss), ls),
         }
     }
 
@@ -749,16 +749,16 @@ mod Language_C_Analysis_NameSpaceMap {
     }
 
     fn lookupInnermostScope(nsm: NameSpaceMap(k, a), EmptyParen: k, NsMap(_gs, localDefs): Maybe(a)) -> Maybe(a) {
-        match (localDefs).as_ref() {
-                ls(EmptyParen, _lss) => (Prelude.lookup(ident, ls)).into(),
-                Vec<> => (lookupGlobal(nsm, ident)).into(),
+        match localDefs {
+                ls(EmptyParen, _lss) => Prelude.lookup(ident, ls),
+                Vec<> => lookupGlobal(nsm, ident),
             }
     }
 
     fn lookupName(ns: NameSpaceMap(k, a), EmptyParen: k, NsMap(_, localDefs): Maybe(a)) -> Maybe(a) {
-        match ((lookupLocal(localDefs))).as_ref() {
-                Nothing => (lookupGlobal(ns, ident)).into(),
-                Just def => (Just(def)).into(),
+        match (lookupLocal(localDefs)) {
+                Nothing => lookupGlobal(ns, ident),
+                Just def => Just(def),
             }
     }
 
@@ -804,12 +804,12 @@ mod Language_C_Analysis_SemError {
     }
 
     fn redefErrReason(__0: RedefInfo) -> String {
-        match ((__0)).as_ref() {
-            RedefInfo(ident, DuplicateDef, _, _) => (++("duplicate definition of ".to_string(), ident)).into(),
-            RedefInfo(ident, ShadowedDef, _, _) => (++("this declaration of ".to_string(), ++(ident, " shadows a previous one".to_string()))).into(),
-            RedefInfo(ident, DiffKindRedecl, _, _) => (++(ident, " previously declared as a different kind of symbol".to_string())).into(),
-            RedefInfo(ident, DisagreeLinkage, _, _) => (++(ident, " previously declared with different linkage".to_string())).into(),
-            RedefInfo(ident, NoLinkageOld, _, _) => (++(ident, " previously declared without linkage".to_string())).into(),
+        match (__0) {
+            RedefInfo(ident, DuplicateDef, _, _) => ++("duplicate definition of ".to_string(), ident),
+            RedefInfo(ident, ShadowedDef, _, _) => ++("this declaration of ".to_string(), ++(ident, " shadows a previous one".to_string())),
+            RedefInfo(ident, DiffKindRedecl, _, _) => ++(ident, " previously declared as a different kind of symbol".to_string()),
+            RedefInfo(ident, DisagreeLinkage, _, _) => ++(ident, " previously declared with different linkage".to_string()),
+            RedefInfo(ident, NoLinkageOld, _, _) => ++(ident, " previously declared without linkage".to_string()),
         }
     }
 
@@ -933,11 +933,11 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn declLinkage(decl: d) -> Linkage {
-        match (declStorage(decl)).as_ref() {
-                NoStorage => (undefined).into(),
-                Auto _ => (NoLinkage).into(),
-                Static linkage _ => (linkage).into(),
-                FunLinkage linkage => (linkage).into(),
+        match declStorage(decl) {
+                NoStorage => undefined,
+                Auto _ => NoLinkage,
+                Static linkage _ => linkage,
+                FunLinkage linkage => linkage,
             }
     }
 
@@ -950,8 +950,8 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn declStorage(d: d) -> Storage {
-        match (declAttrs(d)).as_ref() {
-                DeclAttrs(_, st, _) => (st).into(),
+        match declAttrs(d) {
+                DeclAttrs(_, st, _) => st,
             }
     }
 
@@ -972,10 +972,10 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn hasLinkage(__0: Storage) -> Bool {
-        match ((__0)).as_ref() {
-            Auto(_) => (False).into(),
-            Static(NoLinkage, _) => (False).into(),
-            _ => (True).into(),
+        match (__0) {
+            Auto(_) => False,
+            Static(NoLinkage, _) => False,
+            _ => True,
         }
     }
 
@@ -984,9 +984,9 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn identOfVarName(__0: VarName) -> Ident {
-        match ((__0)).as_ref() {
-            NoName => (error("identOfVarName: NoName".to_string())).into(),
-            VarName(ident, _) => (ident).into(),
+        match (__0) {
+            NoName => error("identOfVarName: NoName".to_string()),
+            VarName(ident, _) => ident,
         }
     }
 
@@ -995,9 +995,9 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn isNoName(__0: VarName) -> Bool {
-        match ((__0)).as_ref() {
-            NoName => (True).into(),
-            _ => (False).into(),
+        match (__0) {
+            NoName => True,
+            _ => False,
         }
     }
 
@@ -1026,11 +1026,11 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn objKindDescr(__0: IdentDecl) -> String {
-        match ((__0)).as_ref() {
-            Declaration(_) => ("declaration".to_string()).into(),
-            ObjectDef(_) => ("object definition".to_string()).into(),
-            FunctionDef(_) => ("function definition".to_string()).into(),
-            EnumeratorDef(_) => ("enumerator definition".to_string()).into(),
+        match (__0) {
+            Declaration(_) => "declaration".to_string(),
+            ObjectDef(_) => "object definition".to_string(),
+            FunctionDef(_) => "function definition".to_string(),
+            EnumeratorDef(_) => "enumerator definition".to_string(),
         }
     }
 
@@ -1047,9 +1047,9 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn typeOfTagDef(__0: TagDef) -> TypeName {
-        match ((__0)).as_ref() {
-            CompDef(comptype) => (typeOfCompDef(comptype)).into(),
-            EnumDef(enumtype) => (typeOfEnumDef(enumtype)).into(),
+        match (__0) {
+            CompDef(comptype) => typeOfCompDef(comptype),
+            EnumDef(enumtype) => typeOfEnumDef(enumtype),
         }
     }
 
@@ -1061,20 +1061,20 @@ mod Language_C_Analysis_SemRep {
 
 mod Language_C_Analysis_TypeConversions {
     fn arithmeticConversion(__0: TypeName, __1: TypeName) -> Maybe(TypeName) {
-        match ((__0, __1)).as_ref() {
-            TyComplex(t1) TyComplex(t2) => (Just(TyComplex(floatConversion(t1, t2)))).into(),
-            TyComplex(t1) TyFloating(t2) => (Just(TyComplex(floatConversion(t1, t2)))).into(),
-            TyFloating(t1) TyComplex(t2) => (Just(TyComplex(floatConversion(t1, t2)))).into(),
-            t1 EmptyParen TyComplex(_) TyIntegral(_) => (Just(t1)).into(),
-            TyIntegral(_) t2 EmptyParen TyComplex(_) => (Just(t2)).into(),
-            TyFloating(t1) TyFloating(t2) => (Just(TyFloating(floatConversion(t1, t2)))).into(),
-            t1 EmptyParen TyFloating(_) TyIntegral(_) => (Just(t1)).into(),
-            TyIntegral(_) t2 EmptyParen TyFloating(_) => (Just(t2)).into(),
-            TyIntegral(t1) TyIntegral(t2) => (Just(TyIntegral(intConversion(t1, t2)))).into(),
-            TyEnum(_) TyEnum(_) => (Just(TyIntegral(TyInt))).into(),
-            TyEnum(_) t2 => (Just(t2)).into(),
-            t1 TyEnum(_) => (Just(t1)).into(),
-            _ _ => (Nothing).into(),
+        match (__0, __1) {
+            TyComplex(t1) TyComplex(t2) => Just(TyComplex(floatConversion(t1, t2))),
+            TyComplex(t1) TyFloating(t2) => Just(TyComplex(floatConversion(t1, t2))),
+            TyFloating(t1) TyComplex(t2) => Just(TyComplex(floatConversion(t1, t2))),
+            t1 EmptyParen TyComplex(_) TyIntegral(_) => Just(t1),
+            TyIntegral(_) t2 EmptyParen TyComplex(_) => Just(t2),
+            TyFloating(t1) TyFloating(t2) => Just(TyFloating(floatConversion(t1, t2))),
+            t1 EmptyParen TyFloating(_) TyIntegral(_) => Just(t1),
+            TyIntegral(_) t2 EmptyParen TyFloating(_) => Just(t2),
+            TyIntegral(t1) TyIntegral(t2) => Just(TyIntegral(intConversion(t1, t2))),
+            TyEnum(_) TyEnum(_) => Just(TyIntegral(TyInt)),
+            TyEnum(_) t2 => Just(t2),
+            t1 TyEnum(_) => Just(t1),
+            _ _ => Nothing,
         }
     }
 
@@ -1209,9 +1209,9 @@ mod Language_C_Data_Ident {
     }
 
     fn isAnonymousRef(__0: SUERef) -> Bool {
-        match ((__0)).as_ref() {
-            AnonymousRef(_) => (True).into(),
-            _ => (False).into(),
+        match (__0) {
+            AnonymousRef(_) => True,
+            _ => False,
         }
     }
 
@@ -1224,12 +1224,12 @@ mod Language_C_Data_Ident {
     }
 
     fn quad(__0: String) -> isize {
-        match ((__0)).as_ref() {
-            c1(EmptyParen, c2, EmptyParen, c3, EmptyParen, c4, EmptyParen, s) => (+((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28)))).into(),
-            c1(EmptyParen, c2, EmptyParen, c3, EmptyParen, Vec<>) => (*(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))).into(),
-            c1(EmptyParen, c2, EmptyParen, Vec<>) => (*(ord(c2), +(bits7, ord(c1)))).into(),
-            c1(EmptyParen, Vec<>) => (ord(c1)).into(),
-            Vec<> => (0).into(),
+        match (__0) {
+            c1(EmptyParen, c2, EmptyParen, c3, EmptyParen, c4, EmptyParen, s) => +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28))),
+            c1(EmptyParen, c2, EmptyParen, c3, EmptyParen, Vec<>) => *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1))))),
+            c1(EmptyParen, c2, EmptyParen, Vec<>) => *(ord(c2), +(bits7, ord(c1))),
+            c1(EmptyParen, Vec<>) => ord(c1),
+            Vec<> => 0,
         }
     }
 
@@ -1237,37 +1237,37 @@ mod Language_C_Data_Ident {
 
 mod Language_C_Data_InputStream {
     fn countLines() -> isize {
-        match (()).as_ref() {
-             => ((length . BSC.lines)).into(),
-             => ((length . lines)).into(),
+        match () {
+             => (length . BSC.lines),
+             => (length . lines),
         }
     }
 
     fn inputStreamEmpty() -> Bool {
-        match (()).as_ref() {
-             => (BSW.null).into(),
-             => (null).into(),
+        match () {
+             => BSW.null,
+             => null,
         }
     }
 
     fn inputStreamFromString() -> InputStream {
-        match (()).as_ref() {
-             => (BSC.pack).into(),
-             => (id).into(),
+        match () {
+             => BSC.pack,
+             => id,
         }
     }
 
     fn inputStreamToString() -> String {
-        match (()).as_ref() {
-             => (BSC.unpack).into(),
-             => (id).into(),
+        match () {
+             => BSC.unpack,
+             => id,
         }
     }
 
     fn readInputStream() -> IO(InputStream) {
-        match (()).as_ref() {
-             => (BSW.readFile).into(),
-             => (readFile).into(),
+        match () {
+             => BSW.readFile,
+             => readFile,
         }
     }
 
@@ -1276,16 +1276,16 @@ mod Language_C_Data_InputStream {
     }
 
     fn takeChar(__0: InputStream) -> (Char, InputStream) {
-        match ((__0)).as_ref() {
-            bs => (seq(BSC.head(bs), (BSC.head(bs), BSC.tail(bs)))).into(),
-            bs => ((head(bs), tail(bs))).into(),
+        match (__0) {
+            bs => seq(BSC.head(bs), (BSC.head(bs), BSC.tail(bs))),
+            bs => (head(bs), tail(bs)),
         }
     }
 
     fn takeChars(__0: isize, __1: InputStream) -> Vec<Char> {
-        match ((__0, __1)).as_ref() {
-            n bstr => (BSC.unpack(BSC.take(n, bstr))).into(),
-            n str => (take(n, str)).into(),
+        match (__0, __1) {
+            n bstr => BSC.unpack(BSC.take(n, bstr)),
+            n str => take(n, str),
         }
     }
 
@@ -1309,9 +1309,9 @@ mod Language_C_Data_Position {
     struct Position(Position, RecordTODO, NoPosition, BuiltinPosition, InternalPosition);
 
     fn adjustPos(__0: FilePath, __1: isize, __2: Position) -> Position {
-        match ((__0, __1, __2)).as_ref() {
-            fname row Position(offs, _, _, _) => (Position(offs, fname, row, 1)).into(),
-            _ _ p => (p).into(),
+        match (__0, __1, __2) {
+            fname row Position(offs, _, _, _) => Position(offs, fname, row, 1),
+            _ _ p => p,
         }
     }
 
@@ -1320,16 +1320,16 @@ mod Language_C_Data_Position {
     }
 
     fn incOffset(__0: Position, __1: isize) -> Position {
-        match ((__0, __1)).as_ref() {
-            Position(o, f, r, c) n => (Position((+(o, n)), f, r, c)).into(),
-            p n => (p).into(),
+        match (__0, __1) {
+            Position(o, f, r, c) n => Position((+(o, n)), f, r, c),
+            p n => p,
         }
     }
 
     fn incPos(__0: Position, __1: isize) -> Position {
-        match ((__0, __1)).as_ref() {
-            Position(offs, fname, row, col) n => (Position((+(offs, n)), fname, row, (+(col, n)))).into(),
-            p _ => (p).into(),
+        match (__0, __1) {
+            Position(offs, fname, row, col) n => Position((+(offs, n)), fname, row, (+(col, n))),
+            p _ => p,
         }
     }
 
@@ -1342,30 +1342,30 @@ mod Language_C_Data_Position {
     }
 
     fn isBuiltinPos(__0: Position) -> Bool {
-        match ((__0)).as_ref() {
-            BuiltinPosition => (True).into(),
-            _ => (False).into(),
+        match (__0) {
+            BuiltinPosition => True,
+            _ => False,
         }
     }
 
     fn isInternalPos(__0: Position) -> Bool {
-        match ((__0)).as_ref() {
-            InternalPosition => (True).into(),
-            _ => (False).into(),
+        match (__0) {
+            InternalPosition => True,
+            _ => False,
         }
     }
 
     fn isNoPos(__0: Position) -> Bool {
-        match ((__0)).as_ref() {
-            NoPosition => (True).into(),
-            _ => (False).into(),
+        match (__0) {
+            NoPosition => True,
+            _ => False,
         }
     }
 
     fn isSourcePos(__0: Position) -> Bool {
-        match ((__0)).as_ref() {
-            Position(_, _, _, _) => (True).into(),
-            _ => (False).into(),
+        match (__0) {
+            Position(_, _, _, _) => True,
+            _ => False,
         }
     }
 
@@ -1378,9 +1378,9 @@ mod Language_C_Data_Position {
     }
 
     fn retPos(__0: Position) -> Position {
-        match ((__0)).as_ref() {
-            Position(offs, fname, row, _) => (Position((+(offs, 1)), fname, (+(row, 1)), 1)).into(),
-            p => (p).into(),
+        match (__0) {
+            Position(offs, fname, row, _) => Position((+(offs, 1)), fname, (+(row, 1)), 1),
+            p => p,
         }
     }
 
@@ -1497,10 +1497,10 @@ mod Language_C_Syntax_AST {
     }
 
     fn isSUEDef(__0: CTypeSpecifier(a)) -> Bool {
-        match ((__0)).as_ref() {
-            CSUType(CStruct(_, _, Just(_), _, _), _) => (True).into(),
-            CEnumType(CEnum(_, Just(_), _, _), _) => (True).into(),
-            _ => (False).into(),
+        match (__0) {
+            CSUType(CStruct(_, _, Just(_), _, _), _) => True,
+            CEnumType(CEnum(_, Just(_), _, _), _) => True,
+            _ => False,
         }
     }
 
@@ -1533,3 +1533,430 @@ mod Language_C_Syntax_Constants {
     #[derive(Eq, Ord, Clone, Debug)]
     struct CString(CString, Vec<Char>, Bool);
 
+    fn _showWideFlag(flag: Bool) -> ShowS {
+        if(flag, then, showString, "L".to_string(), else, id)
+    }
+
+    fn cChar(c: Char) -> CChar {
+        CChar(c, False)
+    }
+
+    fn cChar_w(c: Char) -> CChar {
+        CChar(c, True)
+    }
+
+    fn cChars() -> CChar {
+        CChars
+    }
+
+    fn cFloat() -> CFloat {
+        (CFloat . show)
+    }
+
+    fn cInteger(i: Integer) -> CInteger {
+        CInteger(i, DecRepr, noFlags)
+    }
+
+    fn cString(str: String) -> CString {
+        CString(str, False)
+    }
+
+    fn cString_w(str: String) -> CString {
+        CString(str, True)
+    }
+
+    fn clearFlag(flag: f, Flags(k): Flags(f)) -> Flags(f) {
+        Flags(clearBit(k, fromEnum(flag)))
+    }
+
+    fn concatCStrings(cs: Vec<CString>) -> CString {
+        CString((concatMap(getCString, cs)), (any(isWideString, cs)))
+    }
+
+    fn dQuote(s: String, t: ShowS) -> ShowS {
+        ++((:("\"\"".to_string(), s)), ++("\\\"".to_string(), t))
+    }
+
+    fn escapeCChar("@@WEIRD BAD BASE64 STR@@": Char) -> String {
+        "\\\\\'".to_string()
+    }
+
+    fn escapeChar(__0: Char) -> String {
+        match (__0) {
+            "@@WEIRD BAD BASE64 STR@@" => "\\\\\\\\".to_string(),
+            "@@WEIRD BAD BASE64 STR@@" => "\\\\a".to_string(),
+            "@@WEIRD BAD BASE64 STR@@" => "\\\\b".to_string(),
+            "@@WEIRD BAD BASE64 STR@@" => "\\\\e".to_string(),
+            "@@WEIRD BAD BASE64 STR@@" => "\\\\f".to_string(),
+            "@@WEIRD BAD BASE64 STR@@" => "\\\\n".to_string(),
+            "@@WEIRD BAD BASE64 STR@@" => "\\\\r".to_string(),
+            "@@WEIRD BAD BASE64 STR@@" => "\\\\t".to_string(),
+            "@@WEIRD BAD BASE64 STR@@" => "\\\\v".to_string(),
+        }
+    }
+
+    fn getCChar(__0: CChar) -> Vec<Char> {
+        match (__0) {
+            CChar(c, _) => vec![c],
+            CChars(cs, _) => cs,
+        }
+    }
+
+    fn getCCharAsInt(__0: CChar) -> Integer {
+        match (__0) {
+            CChar(c, _) => fromIntegral((fromEnum(c))),
+            CChars(_cs, _) => error("integer value of multi-character character constants is implementation defined".to_string()),
+        }
+    }
+
+    fn getCInteger(CInteger(i, _, _): CInteger) -> Integer {
+        i
+    }
+
+    fn getCString(CString(str, _): CString) -> String {
+        str
+    }
+
+    fn head'(__0: String, __1: Vec<a>) -> a {
+        match (__0, __1) {
+            err Vec<> => error(err),
+            _ x(EmptyParen, _) => x,
+        }
+    }
+
+    fn isAsciiSourceChar(c: Char) -> Bool {
+        &&(isAscii(c), isPrint(c))
+    }
+
+    fn isCChar(__0: Char) -> Bool {
+        match (__0) {
+            "@@WEIRD BAD BASE64 STR@@" => False,
+            "@@WEIRD BAD BASE64 STR@@" => False,
+            "@@WEIRD BAD BASE64 STR@@" => False,
+            c => isAsciiSourceChar(c),
+        }
+    }
+
+    fn isSChar(__0: Char) -> Bool {
+        match (__0) {
+            "@@WEIRD BAD BASE64 STR@@" => False,
+            "@@WEIRD BAD BASE64 STR@@" => False,
+            "@@WEIRD BAD BASE64 STR@@" => False,
+            c => isAsciiSourceChar(c),
+        }
+    }
+
+    fn isWideChar(__0: CChar) -> Bool {
+        match (__0) {
+            CChar(_, wideFlag) => wideFlag,
+            CChars(_, wideFlag) => wideFlag,
+        }
+    }
+
+    fn isWideString(CString(_, wideflag): CString) -> Bool {
+        wideflag
+    }
+
+    fn noFlags() -> Flags(f) {
+        Flags(0)
+    }
+
+    fn readCFloat() -> CFloat {
+        CFloat
+    }
+
+    fn readCInteger(repr: CIntRepr, str: String) -> Either(String, CInteger) {
+        match readNum(str) {
+                Vec<(n, suffix)> => mkCInt(n, suffix),
+                parseFailed => Left(++("Bad Integer literal: ".to_string(), show(parseFailed))),
+            }
+    }
+
+    fn sQuote(s: String, t: ShowS) -> ShowS {
+        ++("\'".to_string(), ++(s, ++("\'".to_string(), t)))
+    }
+
+    fn setFlag(flag: f, Flags(k): Flags(f)) -> Flags(f) {
+        Flags(setBit(k, fromEnum(flag)))
+    }
+
+    fn showCharConst(c: Char) -> ShowS {
+        sQuote(escapeCChar(c))
+    }
+
+    fn showStringLit() -> ShowS {
+        (dQuote . concatMap(showStringChar))
+    }
+
+    fn testFlag(flag: f, Flags(k): Flags(f)) -> Bool {
+        testBit(k, fromEnum(flag))
+    }
+
+    fn unescapeChar(__0: String) -> (Char, String) {
+        match (__0) {
+            "@@WEIRD BAD BASE64 STR@@"(EmptyParen, c, EmptyParen, cs) => match c {
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
+                    "@@WEIRD BAD BASE64 STR@@" => match head'("bad escape sequence".to_string(), (readHex(cs))) {
+                            (i, cs') => (toEnum(i), cs'),
+                        },
+                    _ => match head'("bad escape sequence".to_string(), (readOct((:(c, cs))))) {
+                            (i, cs') => (toEnum(i), cs'),
+                        },
+                },
+            c(EmptyParen, cs) => (c, cs),
+            Vec<> => error("unescape char: empty string".to_string()),
+        }
+    }
+
+    fn unescapeString(__0: String) -> String {
+        match (__0) {
+            Vec<> => vec![],
+            cs => match unescapeChar(cs) {
+                    (c, cs') => :(c, unescapeString(cs')),
+                },
+        }
+    }
+
+}
+
+mod Language_C_Syntax_Ops {
+    #[derive(Eq, Ord, Show, Clone, Debug)]
+    struct CAssignOp(CAssignOp, CMulAssOp, CDivAssOp, CRmdAssOp, CAddAssOp, CSubAssOp, CShlAssOp, CShrAssOp, CAndAssOp, CXorAssOp, COrAssOp);
+
+    #[derive(Eq, Ord, Show, Clone, Debug)]
+    struct CBinaryOp(CMulOp, CDivOp, CRmdOp, CAddOp, CSubOp, CShlOp, CShrOp, CLeOp, CGrOp, CLeqOp, CGeqOp, CEqOp, CNeqOp, CAndOp, CXorOp, COrOp, CLndOp, CLorOp);
+
+    #[derive(Eq, Ord, Show, Clone, Debug)]
+    struct CUnaryOp(CPreIncOp, CPreDecOp, CPostIncOp, CPostDecOp, CAdrOp, CIndOp, CPlusOp, CMinOp, CCompOp, CNegOp);
+
+    fn assignBinop(__0: CAssignOp) -> CBinaryOp {
+        match (__0) {
+            CAssignOp => error("direct assignment has no binary operator".to_string()),
+            CMulAssOp => CMulOp,
+            CDivAssOp => CDivOp,
+            CRmdAssOp => CRmdOp,
+            CAddAssOp => CAddOp,
+            CSubAssOp => CSubOp,
+            CShlAssOp => CShlOp,
+            CShrAssOp => CShrOp,
+            CAndAssOp => CAndOp,
+            CXorAssOp => CXorOp,
+            COrAssOp => COrOp,
+        }
+    }
+
+    fn isBitOp(op: CBinaryOp) -> Bool {
+        elem(op, vec![CShlOp, CShrOp, CAndOp, COrOp, CXorOp])
+    }
+
+    fn isCmpOp(op: CBinaryOp) -> Bool {
+        elem(op, vec![CLeqOp, CGeqOp, CLeOp, CGrOp, CEqOp, CNeqOp])
+    }
+
+    fn isEffectfulOp(op: CUnaryOp) -> Bool {
+        elem(op, vec![CPreIncOp, CPreDecOp, CPostIncOp, CPostDecOp])
+    }
+
+    fn isLogicOp(op: CBinaryOp) -> Bool {
+        elem(op, vec![CLndOp, CLorOp])
+    }
+
+    fn isPtrOp(op: CBinaryOp) -> Bool {
+        elem(op, vec![CAddOp, CSubOp])
+    }
+
+}
+
+mod Language_C_Syntax_Utils {
+    fn compoundSubStmts(__0: CBlockItem) -> Vec<CStat> {
+        match (__0) {
+            CBlockStmt(s) => vec![s],
+            CBlockDecl(_) => vec![],
+            CNestedFunDef(_) => vec![],
+        }
+    }
+
+    fn getLabels(__0: CStat) -> Vec<Ident> {
+        match (__0) {
+            CLabel(l, s, _, _) => :(l, getLabels(s)),
+            CCompound(ls, body, _) => \\(concatMap(((concatMap(getLabels) . compoundSubStmts)), body), ls),
+            stmt => concatMap(getLabels, (getSubStmts(stmt))),
+        }
+    }
+
+    fn getSubStmts(__0: CStat) -> Vec<CStat> {
+        match (__0) {
+            CLabel(_, s, _, _) => vec![s],
+            CCase(_, s, _) => vec![s],
+            CCases(_, _, s, _) => vec![s],
+            CDefault(s, _) => vec![s],
+            CExpr(_, _) => vec![],
+            CCompound(_, body, _) => concatMap(compoundSubStmts, body),
+            CIf(_, sthen, selse, _) => maybe(vec![sthen], (Lambda), selse),
+            CSwitch(_, s, _) => vec![s],
+            CWhile(_, s, _, _) => vec![s],
+            CFor(_, _, _, s, _) => vec![s],
+            CGoto(_, _) => vec![],
+            CGotoPtr(_, _) => vec![],
+            CCont(_) => vec![],
+            CBreak(_) => vec![],
+            CReturn(_, _) => vec![],
+            CAsm(_, _) => vec![],
+        }
+    }
+
+    fn mapBlockItemStmts(__0: Pair(Span([Ref(Ident("CStat"))]), Span([Ref(Ident("Bool"))])), __1: Pair(Span([Ref(Ident("CStat"))]), Span([Ref(Ident("CStat"))])), __2: CBlockItem) -> CBlockItem {
+        match (__0, __1, __2) {
+            stop f CBlockStmt(s) => CBlockStmt((mapSubStmts(stop, f, s))),
+            _ _ bi => bi,
+        }
+    }
+
+    fn mapSubStmts(__0: Pair(Span([Ref(Ident("CStat"))]), Span([Ref(Ident("Bool"))])), __1: Pair(Span([Ref(Ident("CStat"))]), Span([Ref(Ident("CStat"))])), __2: CStat) -> CStat {
+        match (__0, __1, __2) {
+            stop f CLabel(i, s, attrs, ni) => f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni))),
+            stop f CCase(e, s, ni) => f((CCase(e, (mapSubStmts(stop, f, s)), ni))),
+            stop f CCases(e1, e2, s, ni) => f((CCases(e1, e2, (mapSubStmts(stop, f, s)), ni))),
+            stop f CDefault(s, ni) => f((CDefault((mapSubStmts(stop, f, s)), ni))),
+            stop f CCompound(ls, body, ni) => f((CCompound(ls, (map((mapBlockItemStmts(stop, f)), body)), ni))),
+            stop f CIf(e, sthen, selse, ni) => f((CIf(e, (mapSubStmts(stop, f, sthen)), (maybe(Nothing, ((Just . mapSubStmts(stop, f))), selse)), ni))),
+            stop f CSwitch(e, s, ni) => f((CSwitch(e, (mapSubStmts(stop, f, s)), ni))),
+            stop f CWhile(e, s, isdo, ni) => f((CWhile(e, (mapSubStmts(stop, f, s)), isdo, ni))),
+            stop f CFor(i, t, a, s, ni) => f((CFor(i, t, a, (mapSubStmts(stop, f, s)), ni))),
+            _ f s => f(s),
+        }
+    }
+
+}
+
+mod Language_C_Syntax {
+
+}
+
+mod Language_C_System_GCC {
+    fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
+        ++({
+                (concatMap(tOption, options))
+            }, ++(outputFileOpt, ++(vec!["-E".to_string(), input_file], extra_args)))
+    }
+
+    fn gccParseCPPArgs(args: Vec<String>) -> Either(String, (CppArgs, Vec<String>)) {
+        match mungeArgs(((Nothing, Nothing, RList.empty), (RList.empty, RList.empty)), args) {
+                Left err => Left(err),
+                Right ((Nothing, _, _), _) => Left("No .c / .hc / .h source file given".to_string()),
+                Right ((Just(input_file), output_file_opt, cpp_opts), (extra_args, other_args)) => Right(((rawCppArgs((RList.reverse(extra_args)), input_file))(hashmap! {
+                        "outputFile" => output_file_opt,
+                        "cppOptions" => RList.reverse(cpp_opts)
+                        }), RList.reverse(other_args))),
+            }
+    }
+
+    fn newGCC() -> GCC {
+        GCC
+    }
+
+}
+
+mod Language_C_System_Preprocess {
+    struct CppOption(IncludeDir, FilePath, Define, String, String, Undefine, String, IncludeFile, FilePath);
+
+    struct CppArgs(CppArgs, RecordTODO);
+
+    fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
+        cpp_args(hashmap! {
+            "cppOptions" => :(opt, (cppOptions(cpp_args)))
+            })
+    }
+
+    fn addExtraOption(cpp_args: CppArgs, extra: String) -> CppArgs {
+        cpp_args(hashmap! {
+            "extraOptions" => :(extra, (extraOptions(cpp_args)))
+            })
+    }
+
+    fn cppFile(input_file: FilePath) -> CppArgs {
+        CppArgs(hashmap! {
+            "cppOptions" => vec![],
+            "extraOptions" => vec![],
+            "cppTmpDir" => Nothing,
+            "inputFile" => input_file,
+            "outputFile" => Nothing
+            })
+    }
+
+    fn isPreprocessed() -> Bool {
+        (".i".to_string()(Operator("isSuffixOf")))
+    }
+
+    fn mkOutputFile(tmp_dir_opt: Maybe(FilePath), input_file: FilePath) -> IO(FilePath) {
+        {
+            let tmpDir = getTempDir(tmp_dir_opt);
+            mkTmpFile(tmpDir, (getOutputFileName(input_file)))
+        }
+    }
+
+    fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> IO(FilePath) {
+        {
+            let (path, file_handle) = openTempFile(tmp_dir, file_templ);
+            hClose(file_handle);
+            return(path)
+        }
+    }
+
+    fn preprocessedExt() -> String {
+        ".i".to_string()
+    }
+
+    fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
+        CppArgs(hashmap! {
+            "inputFile" => input_file,
+            "cppOptions" => vec![],
+            "extraOptions" => opts,
+            "outputFile" => Nothing,
+            "cppTmpDir" => Nothing
+            })
+    }
+
+    fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO(Either(ExitCode, InputStream)) {
+        {
+            fn getActualOutFile() -> IO(FilePath) {
+                maybe((mkOutputFile((cppTmpDir(cpp_args)), (inputFile(cpp_args)))), return, (outputFile(cpp_args)))
+            }
+
+            let invokeCpp = |actual_out_file| {
+                {
+                    let exit_code = runCPP(cpp, (cpp_args(hashmap! {
+                                    "outputFile" => Just(actual_out_file)
+                                    })));
+                    match exit_code {
+                                ExitSuccess => liftM(Right, (readInputStream(actual_out_file))),
+                                ExitFailure _ => return(Left(exit_code)),
+                            }
+                }
+            };
+
+            let removeTmpOutFile = |out_file| {
+                maybe((removeFile(out_file)), (Lambda(())), (outputFile(cpp_args)))
+            };
+
+            bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
+        }
+    }
+
+}
+
+
+
+fn main() { /* demo */ }
