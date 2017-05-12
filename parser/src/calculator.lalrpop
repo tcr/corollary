@@ -232,29 +232,6 @@ Statement: Statement = {
     ("where" "{" Semi<Statement> "}")? => Statement::Assign(args[0].clone(), args[1..].to_vec(), e),
 };
 
-Tier<Op,NextTier>: Box<Expr> = {
-    NextTier
-};
-
-Arith = Tier<ExprOp, Factor>;
-Factor = Tier<FactorOp, Term>;
-
-ExprOp: Opcode = { // (3)
-    "+" => Opcode::Add,
-    "-" => Opcode::Sub,
-};
-
-FactorOp: Opcode = {
-    "*" => Opcode::Mul,
-    "/" => Opcode::Div,
-};
-
-Term: Box<Expr> = {
-    Num => Box::new(Expr::Number(<>)),
-    "(" <Arith> ")",
-    ! => { errors.push(<>); Box::new(Expr::Error) },
-};
-
 Num: isize = {
     r"[0-9]+" => isize::from_str(<>).unwrap()
 };
