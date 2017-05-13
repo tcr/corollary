@@ -25,6 +25,10 @@ mod test_module {
         s
     }
 
+    let tailBlock = |Rust.Block(b, Just(Arrow(Ident("tailExpr"), Span([Ref(Ident("Just")), Ref(Ident("e"))]))))| {
+        Rust.Block(b, e)
+    };
+
 }
 
 
