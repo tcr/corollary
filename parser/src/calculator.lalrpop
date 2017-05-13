@@ -162,7 +162,7 @@ TypeSub: Ty = {
     "!" <TypeSub> => Ty::Not(Box::new(<>)),
     "[" <Type> "]" => Ty::Brackets(Box::new(<>)),
     "(" <CommaDef<Type>> ")" => Ty::Tuple(<>),
-    "{" <Comma<(<Ident> "::" <TypeGroup>)>> "}" => Ty::RecordTODO,
+    "{" <Comma<(<Ident> "::" <FnDef>)>> "}" => Ty::RecordTODO,
     "(" ")" => Ty::EmptyParen,
     <Ident> => Ty::Ref(<>),
 };

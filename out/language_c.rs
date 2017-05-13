@@ -12,13 +12,214 @@ mod Language_C_Analysis_Builtins {
 
 }
 
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/ConstEval.hs"
-Error: Unrecognized token `->`:
- 21 | ;data MachineDesc =
- 22 |   MachineDesc
- 23 |   { iSize        :: IntType -> Integer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Analysis_ConstEval {
+    struct MachineDesc(MachineDesc, { /* struct def */ });
+
+    fn alignofType(__0: MachineDesc, __1: n, __2: Type) -> m(Integer) {
+        match (__0, __1, __2) {
+            md, _, DirectType(TyVoid, _, _) => return(voidAlign(md)),
+            md, _, DirectType(TyIntegral(it), _, _) => return(iAlign(md, it)),
+            md, _, DirectType(TyFloating(ft), _, _) => return(fAlign(md, ft)),
+            md, _, DirectType(TyComplex(ft), _, _) => return(fAlign(md, ft)),
+            md, _, DirectType(TyEnum(_), _, _) => return(iAlign(md, TyInt)),
+            md, _, DirectType(TyBuiltin(b), _, _) => return(builtinAlign(md, b)),
+            md, _, PtrType(_, _, _) => return(ptrAlign(md)),
+            md, n, ArrayType(bt, UnknownArraySize(_), _, _) => return(ptrAlign(md)),
+            md, n, ArrayType(bt, ArraySize(_, sz), _, _) => alignofType(md, n, bt),
+            md, n, TypeDefType(TypeDefRef(_, Just(t), _), _, _) => alignofType(md, n, t),
+            _, n, t => astError((nodeInfo(n)))(++("can\'t find alignment of type: ".to_string(), ((render . pretty))(t))),
+        }
+    }
+
+    fn boolValue(__0: CExpr) -> Maybe(Bool) {
+        match (__0) {
+            CConst(CIntConst(i, _)) => Just(/=(getCInteger(i), 0)),
+            CConst(CCharConst(c, _)) => Just(/=(getCCharAsInt(c), 0)),
+            CConst(CStrConst(_, _)) => Just(True),
+            _ => Nothing,
+        }
+    }
+
+    fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m(Integer) {
+        {
+            let dt = getDefTable;
+            match lookupTag((sueRef(ctr)), dt) {
+                        Just, Left(_) => astError((nodeInfo(ctr)), "composite declared but not defined".to_string()),
+                        Just, Right(CompDef(CompType(_, tag, ms, _, ni))) => {
+                            Let;
+                            let sizes = mapM((sizeofType(md, ni)), ts);
+                            match tag {
+                                        StructTag => return(sum(sizes)),
+                                        UnionTag => return(maximum(sizes)),
+                                    }
+                        },
+                        Just, Right(EnumDef(_)) => return(iSize(md, TyInt)),
+                        Nothing => astError((nodeInfo(ctr)), "unknown composite".to_string()),
+                    }
+        }
+    }
+
+    fn constEval(__0: MachineDesc, __1: Map.Map(Ident, CExpr), __2: CExpr) -> m(CExpr) {
+        match (__0, __1, __2) {
+            md, env, CCond(e1, me2, e3, ni) => {
+                let e1' = constEval(md, env, e1);
+                let me2' = maybe((return(Nothing)), (liftM(Lambda, constEval(md, env, e))), me2);
+                let e3' = constEval(md, env, e3);
+                match boolValue(e1') {
+                            Just, True => return(fromMaybe(e1', me2')),
+                            Just, False => return(e3'),
+                            Nothing => return(CCond(e1', me2', e3', ni)),
+                        }
+            },
+            md, env, e, <todo>, CBinary(op, e1, e2, ni) => {
+                let e1' = constEval(md, env, e1);
+                let e2' = constEval(md, env, e2);
+                let t = tExpr(vec![], RValue, e);
+                let bytes = liftM(fromIntegral, sizeofType(md, e, t));
+                match (intValue(e1'), intValue(e2')) {
+                            (Just(i1), Just(i2)) => intExpr(ni, (withWordBytes(bytes, (intOp(op, i1, i2))))),
+                            (_, _) => return(CBinary(op, e1', e2', ni)),
+                        }
+            },
+            md, env, CUnary(op, e, ni) => {
+                let e' = constEval(md, env, e);
+                let t = tExpr(vec![], RValue, e);
+                let bytes = liftM(fromIntegral, sizeofType(md, e, t));
+                match intValue(e') {
+                            Just, i => match intUnOp(op, i) {
+                                    Just, i' => intExpr(ni, (withWordBytes(bytes, i'))),
+                                    Nothing => astError(ni, "invalid unary operator applied to constant".to_string()),
+                                },
+                            Nothing => return(CUnary(op, e', ni)),
+                        }
+            },
+            md, env, CCast(d, e, ni) => {
+                let e' = constEval(md, env, e);
+                let t = analyseTypeDecl(d);
+                let bytes = liftM(fromIntegral, sizeofType(md, d, t));
+                match intValue(e') {
+                            Just, i => intExpr(ni, (withWordBytes(bytes, i))),
+                            Nothing => return(CCast(d, e', ni)),
+                        }
+            },
+            md, _, CSizeofExpr(e, ni) => {
+                let t = tExpr(vec![], RValue, e);
+                let sz = sizeofType(md, e, t);
+                intExpr(ni, sz)
+            },
+            md, _, CSizeofType(d, ni) => {
+                let t = analyseTypeDecl(d);
+                let sz = sizeofType(md, d, t);
+                intExpr(ni, sz)
+            },
+            md, _, CAlignofExpr(e, ni) => {
+                let t = tExpr(vec![], RValue, e);
+                let sz = alignofType(md, e, t);
+                intExpr(ni, sz)
+            },
+            md, _, CAlignofType(d, ni) => {
+                let t = analyseTypeDecl(d);
+                let sz = alignofType(md, d, t);
+                intExpr(ni, sz)
+            },
+            md, env, e, <todo>, CVar(i, _) => {
+                let t = tExpr(vec![], RValue, e);
+                match derefTypeDef(t) {
+                            DirectType, TyEnum(etr), _, _ => {
+                                let dt = getDefTable;
+                                match lookupTag((sueRef(etr)), dt) {
+                                            Just, Right(EnumDef(EnumType(_, es, _, _))) => {
+                                                let env' = foldM(enumConst, env, es);
+                                                return(fromMaybe(e)(Map.lookup(i, env')))
+                                            },
+                                            _ => return(e),
+                                        }
+                            },
+                            _ => return(e),
+                        }
+            },
+            _, _, e => return(e),
+        }
+    }
+
+    fn intExpr(n: n, i: Integer) -> m(CExpr) {
+        >>=(genName, Lambda(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
+    }
+
+    fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
+        match (__0, __1, __2) {
+            CAddOp, i1, i2 => +(i1, i2),
+            CSubOp, i1, i2 => -(i1, i2),
+            CMulOp, i1, i2 => *(i1, i2),
+            CDivOp, i1, i2 => div(i1, i2),
+            CRmdOp, i1, i2 => mod(i1, i2),
+            CShlOp, i1, i2 => shiftL(i1, fromInteger(i2)),
+            CShrOp, i1, i2 => shiftR(i1, fromInteger(i2)),
+            CLeOp, i1, i2 => toInteger(fromEnum(<(i1, i2))),
+            CGrOp, i1, i2 => toInteger(fromEnum(>(i1, i2))),
+            CLeqOp, i1, i2 => toInteger(fromEnum(<=(i1, i2))),
+            CGeqOp, i1, i2 => toInteger(fromEnum(>=(i1, i2))),
+            CEqOp, i1, i2 => toInteger(fromEnum(==(i1, i2))),
+            CNeqOp, i1, i2 => toInteger(fromEnum(/=(i1, i2))),
+            CAndOp, i1, i2 => .&.(i1, i2),
+            CXorOp, i1, i2 => xor(i1, i2),
+            COrOp, i1, i2 => .|.(i1, i2),
+            CLndOp, i1, i2 => toInteger(fromEnum(&&((/=(i1, 0)), (/=(i2, 0))))),
+            CLorOp, i1, i2 => toInteger(fromEnum(||((/=(i1, 0)), (/=(i2, 0))))),
+        }
+    }
+
+    fn intUnOp(__0: CUnaryOp, __1: Integer) -> Maybe(Integer) {
+        match (__0, __1) {
+            CPlusOp, i => Just(i),
+            CMinOp, i => Just(Operator("-")(i)),
+            CCompOp, i => Just(complement(i)),
+            CNegOp, i => Just(toInteger(fromEnum(==(i, 0)))),
+            _, _ => Nothing,
+        }
+    }
+
+    fn intValue(__0: CExpr) -> Maybe(Integer) {
+        match (__0) {
+            CConst(CIntConst(i, _)) => Just(getCInteger(i)),
+            CConst(CCharConst(c, _)) => Just(getCCharAsInt(c)),
+            _ => Nothing,
+        }
+    }
+
+    fn sizeofType(__0: MachineDesc, __1: n, __2: Type) -> m(Integer) {
+        match (__0, __1, __2) {
+            md, _, DirectType(TyVoid, _, _) => return(voidSize(md)),
+            md, _, DirectType(TyIntegral(it), _, _) => return(iSize(md, it)),
+            md, _, DirectType(TyFloating(ft), _, _) => return(fSize(md, ft)),
+            md, _, DirectType(TyComplex(ft), _, _) => return(*(2, fSize(md, ft))),
+            md, _, DirectType(TyComp(ctr), _, _) => compSize(md, ctr),
+            md, _, DirectType(TyEnum(_), _, _) => return(iSize(md, TyInt)),
+            md, _, DirectType(TyBuiltin(b), _, _) => return(builtinSize(md, b)),
+            md, _, PtrType(_, _, _) => return(ptrSize(md)),
+            md, n, ArrayType(bt, UnknownArraySize(_), _, _) => return(ptrSize(md)),
+            md, n, ArrayType(bt, ArraySize(_, sz), _, _) => {
+                let sz' = constEval(md, Map.empty, sz);
+                match sz' {
+                            CConst, CIntConst(i, _) => {
+                                let s = sizeofType(md, n, bt);
+                                return(*(getCInteger(i), s))
+                            },
+                            _ => return(ptrSize(md)),
+                        }
+            },
+            md, n, TypeDefType(TypeDefRef(_, Just(t), _), _, _) => sizeofType(md, n, t),
+            md, _, FunctionType(_, _) => return(ptrSize(md)),
+            _, n, t => astError((nodeInfo(n)))(++("can\'t find size of type: ".to_string(), ((render . pretty))(t))),
+        }
+    }
+
+    fn withWordBytes(bytes: isize, n: Integer) -> Integer {
+        rem(n, (shiftL(1, (shiftL(bytes, 3)))))
+    }
+
+}
+
 mod Language_C_Analysis_Debug {
     fn globalDeclStats(file_filter: fn(FilePath) -> Bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
         vec![("Enumeration Constants".to_string(), Map.size(enumerators)), ("Total Object/Function Declarations".to_string(), Map.size(all_decls)), ("Object definitions".to_string(), Map.size(objDefs)), ("Function Definitions".to_string(), Map.size(funDefs)), ("Tag definitions".to_string(), Map.size(tagDefs)), ("TypeDefs".to_string(), Map.size(typeDefs))]
@@ -568,11 +769,11 @@ mod Language_C_Analysis_SemRep {
 }
 
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TravMonad.hs"
-Error: Unrecognized token `->`:
-371 |
-372 |
-373 | ;newtype Trav s a = Trav { unTrav :: TravState s -> Either CError (a,
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+Error: Unrecognized token `>>=`:
+405 |  };instance Monad (Trav s) where
+406 |     {return x  = Trav (\s -> Right (x,s))
+407 |      ;m >>= k   = Trav (\s -> case unTrav m s of
+~~~~~~~~~~~~~~^
 */
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeCheck.hs"
 Error: Unrecognized token `>>=`:
