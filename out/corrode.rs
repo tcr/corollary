@@ -1,9 +1,24 @@
-// ERROR: cannot yet convert file "./corrode/src/Language/Rust/AST.hs"
-
-// ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/C.lhs"
-
-// ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/CFG.lhs"
-
+/* ERROR: cannot yet convert file "./corrode/src/Language/Rust/AST.hs"
+Error: Unrecognized token `where`:
+ 38 |           ;LitBool b -> text $ if b then "dHJ1ZQ==" else "ZmFsc2U="
+ 39 |           ;LitInt i repr (TypeName ty) -> text $ s ++ ty
+ 40 |               where
+~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/C.lhs"
+Error: Unrecognized token `{`:
+ 32 |
+ 33 | ;data FunctionContext = FunctionContext
+ 34 |     { functionReturnType :: Maybe CType
+~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/CFG.lhs"
+Error: Unrecognized token `;`:
+ 49 |
+ 50 |  };data Unordered
+ 51 | ;data DepthFirst
+~~~~~~^
+*/
 mod Language_Rust_Corrode_CrateMap {
     #[derive(Eq, Ord, Show)]
     struct ItemKind(Enum, Struct, Union, Type, Symbol);
@@ -66,6 +81,10 @@ mod Language_Rust_Idiomatic {
                 },
         }
     }
+
+}
+
+mod Language_Rust {
 
 }
 

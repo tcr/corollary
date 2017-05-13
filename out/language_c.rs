@@ -1,5 +1,10 @@
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/AstAnalysis.hs"
-
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/AstAnalysis.hs"
+Error: Unrecognized token `where`:
+613 |
+614 |                              ;return ()
+615 |                           }where {matches =
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
 mod Language_C_Analysis_Builtins {
     fn builtins() -> DefTable {
         foldr(doIdent, (foldr(doTypeDef, emptyDefTable, typedefs)), idents)
@@ -7,8 +12,13 @@ mod Language_C_Analysis_Builtins {
 
 }
 
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/ConstEval.hs"
-
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/ConstEval.hs"
+Error: Unrecognized token `{`:
+ 21 | ;data MachineDesc =
+ 22 |   MachineDesc
+ 23 |   { iSize        :: IntType -> Integer
+~~~~~~~~^
+*/
 mod Language_C_Analysis_Debug {
     fn globalDeclStats(file_filter: fn(FilePath) -> Bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
         vec![("Enumeration Constants".to_string(), Map.size(enumerators)), ("Total Object/Function Declarations".to_string(), Map.size(all_decls)), ("Object definitions".to_string(), Map.size(objDefs)), ("Function Definitions".to_string(), Map.size(funDefs)), ("Tag definitions".to_string(), Map.size(tagDefs)), ("TypeDefs".to_string(), Map.size(typeDefs))]
@@ -36,10 +46,20 @@ mod Language_C_Analysis_Debug {
 
 }
 
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/DeclAnalysis.hs"
-
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/DefTable.hs"
-
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/DeclAnalysis.hs"
+Error: Unrecognized token `,`:
+364 |                 {Unsigned -> TyUInt
+365 |                  ;_        -> TyInt
+366 | intbase, signed, sizemod)    | optBase BaseInt intbase, optSign Signed
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/DefTable.hs"
+Error: Unrecognized token `(`:
+ 38 | ;import Language.C.Analysis.SemRep
+ 39 |
+ 40 | ;import Control.Applicative ((<|>))
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
 mod Language_C_Analysis_Export {
     fn exportArraySize(__0: ArraySize) -> CArrSize {
         match (__0) {
@@ -323,12 +343,27 @@ mod Language_C_Analysis_SemError {
 
 }
 
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/SemRep.hs"
-
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TravMonad.hs"
-
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeCheck.hs"
-
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/SemRep.hs"
+Error: Unrecognized token `{`:
+152 |
+153 |
+154 |   }};data GlobalDecls = GlobalDecls {
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TravMonad.hs"
+Error: Unrecognized token `{`:
+371 |
+372 |
+373 | ;newtype Trav s a = Trav { unTrav :: TravState s -> Either CError (a,
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeCheck.hs"
+Error: Unrecognized token `>>=`:
+ 26 | ;instance Monad (Either String) where
+ 27 |     {return        = Right
+ 28 |      ;Left  l >>= _ = Left l
+~~~~~~~~~~~~~~~~~~~~^
+*/
 mod Language_C_Analysis_TypeConversions {
     fn arithmeticConversion(__0: TypeName, __1: TypeName) -> Maybe(TypeName) {
         match (__0, __1) {
@@ -358,8 +393,13 @@ mod Language_C_Analysis_TypeConversions {
 
 }
 
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeUtils.hs"
-
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeUtils.hs"
+Error: Unrecognized token `<=`:
+ 42 |
+ 43 |  };instance Ord TypeQuals where
+ 44 |   {(<=) (TypeQuals c1 v1 r1) (TypeQuals c2 v2 r2) =
+~~~~~~~~~~^
+*/
 mod Language_C_Analysis {
 
 }
@@ -505,16 +545,41 @@ mod Language_C_Data_Ident {
 
 }
 
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Data/InputStream.hs"
-
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Name.hs"
-
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Node.hs"
-
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Position.hs"
-
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Data/RList.hs"
-
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/InputStream.hs"
+Error: Unrecognized token `!`:
+ 73 | ;inputStreamEmpty = BSW.null
+ 74 |
+ 75 | ;takeChars !n bstr = BSC.unpack $ BSC.take n bstr
+~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Name.hs"
+Error: Unrecognized token `{`:
+ 19 |
+ 20 |
+ 21 | ;newtype Name = Name { nameId :: Int } deriving (Show, Read, Eq, Ord,
+~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Node.hs"
+Error: Unrecognized token `<=`:
+ 43 |
+ 44 |  };instance Ord NodeInfo where
+ 45 |   {(NodeInfo   _ _ id1) <= (NodeInfo   _ _ id2) = id1 <= id2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Position.hs"
+Error: Unrecognized token `{`:
+ 31 |
+ 32 |
+ 33 | ;data Position = Position { posOffset ::  !Int
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/RList.hs"
+Error: Unrecognized token ```:
+ 31 | ;snoc :: Reversed [a] -> a -> Reversed [a]
+ 32 | ;snoc (Reversed xs) x = Reversed (x : xs)
+ 33 | ;infixr 5 `snoc`
+~~~~~~~~~~~~~~~~^
+*/
 mod Language_C_Data {
 
 }
@@ -526,10 +591,20 @@ mod Language_C_Parser_Builtin {
 
 }
 
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Parser/ParserMonad.hs"
-
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Parser/Tokens.hs"
-
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Parser/ParserMonad.hs"
+Error: Unrecognized token `CTokEof`:
+ 45 | ;import Language.C.Data.Name    (Name)
+ 46 | ;import Language.C.Data.Ident    (Ident)
+ 47 | ;import Language.C.Parser.Tokens (CToken(CTokEof))
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Parser/Tokens.hs"
+Error: Invalid token:
+255 |    ;showsPrec _ (CTokTilde    _  ) = showString "fg=="
+256 |    ;showsPrec _ (CTokInc      _  ) = showString "Kys="
+257 | QcmVjIF8gKENUb2tTbGFzaCAgICBfICApID0gc2hvd1N0cmluZyA="/"CiAgc2hvd3NQcm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
 mod Language_C_Parser {
     fn execParser_(parser: P(a), input: InputStream, pos: Position) -> Either(ParseError, a) {
         fmap(fst)(execParser(parser, input, pos, builtinTypeNames, newNameSupply))
@@ -537,8 +612,13 @@ mod Language_C_Parser {
 
 }
 
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Pretty.hs"
-
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/Pretty.hs"
+Error: Unrecognized token `->`:
+384 |          parenPrec p 26 $ prettyPrec 26 expr <> text "Kys="
+385 |      ;prettyPrec p (CUnary CPostDecOp expr _) =
+386 | gICAgICAgICAgICAgICA8PiB0ZXh0IChpZiBkZXJlZiB0aGVuIA=="->"IGVsc2Ug"."KS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
 mod Language_C_Syntax_AST {
     #[derive(Show, Clone, Debug)]
     struct CTranslationUnit(CTranslUnit, Vec<CExternalDeclaration(a)>, a);
@@ -972,10 +1052,20 @@ mod Language_C_Syntax {
 
 }
 
-// ERROR: cannot yet convert file "./language-c/src/Language/C/System/GCC.hs"
-
-// ERROR: cannot yet convert file "./language-c/src/Language/C/System/Preprocess.hs"
-
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/System/GCC.hs"
+Error: Unrecognized token `{`:
+ 23 |
+ 24 |
+ 25 | ;newtype GCC = GCC { gccPath :: FilePath }
+~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./language-c/src/Language/C/System/Preprocess.hs"
+Error: Unrecognized token `{`:
+ 47 |
+ 48 |
+ 49 | ;data CppArgs = CppArgs {
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+*/
 
 
 fn main() { /* demo */ }
