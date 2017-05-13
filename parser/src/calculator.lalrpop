@@ -196,9 +196,9 @@ PatSub: Pat = {
     <Ident> => Pat::Ref(<>),
     <Quote> => Pat::Str(<>),
     <Num> => Pat::Num(<>),
-    ":" => Pat::EmptyParen,
-    "==" => Pat::EmptyParen,
-    "@" => Pat::EmptyParen,
+    ":" => Pat::Dummy,
+    "==" => Pat::Dummy,
+    "@" => Pat::Dummy,
 };
 
 // for matching (Ctor arg arg ...)

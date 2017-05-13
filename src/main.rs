@@ -341,6 +341,7 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
                 .unwrap_or_else(|_| "@@WEIRD BAD BASE64 STR@@".to_string());
             format!("{:?}", decoded)
         }
+        Pat::Num(n) => format!("{}", n),
         Pat::Tuple(ref pats) => {
             if pats.len() == 1 {
                 print_pattern(state.tab(), &pats[0])
@@ -351,9 +352,12 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
         Pat::Brackets(ref pats) => {
             format!("[{}]", print_patterns(state.tab(), pats))
         }
-        ref t => {
-            format!("{:?}", t)
+        Pat::Arrow(ast::Ident(ref s), ref p) => {
+            format!("({} -> {})", s, print_pattern(state.tab(), &**p))
         }
+        Pat::Not(ref s) => print_pattern(state, &**s),
+        Pat::EmptyParen => format!("()"),
+        Pat::Dummy => format!("<todo>"),
     }
 }
 

@@ -228,8 +228,8 @@ mod Language_C_Analysis_NameSpaceMap {
 
     fn defLocal(__0: NameSpaceMap(k, a), __1: k, __2: a, __3: (NameSpaceMap(k, a), Maybe(a))) -> (NameSpaceMap(k, a), Maybe(a)) {
         match (__0, __1, __2, __3, __4) {
-            ns, EmptyParen, NsMap(_, []), ident, def => defGlobal(ns, ident, def),
-            NsMap(gs, ls(EmptyParen, lss)), ident, def => (NsMap(gs, (:((:((ident, def), ls)), lss))), Prelude.lookup(ident, ls)),
+            ns, <todo>, NsMap(_, []), ident, def => defGlobal(ns, ident, def),
+            NsMap(gs, ls(<todo>, lss)), ident, def => (NsMap(gs, (:((:((ident, def), ls)), lss))), Prelude.lookup(ident, ls)),
         }
     }
 
@@ -248,7 +248,7 @@ mod Language_C_Analysis_NameSpaceMap {
     fn leaveScope(__0: NameSpaceMap(k, a)) -> (NameSpaceMap(k, a), Vec<(k, a)>) {
         match (__0) {
             NsMap(_, []) => error("NsMaps.leaveScope: No local scope!".to_string()),
-            NsMap(gs, ls(EmptyParen, lss)) => (NsMap(gs, lss), ls),
+            NsMap(gs, ls(<todo>, lss)) => (NsMap(gs, lss), ls),
         }
     }
 
@@ -260,14 +260,14 @@ mod Language_C_Analysis_NameSpaceMap {
         Map.lookup(ident, gs)
     }
 
-    fn lookupInnermostScope(nsm: NameSpaceMap(k, a), EmptyParen: k, NsMap(_gs, localDefs): Maybe(a)) -> Maybe(a) {
+    fn lookupInnermostScope(nsm: NameSpaceMap(k, a), <todo>: k, NsMap(_gs, localDefs): Maybe(a)) -> Maybe(a) {
         match localDefs {
-                ls(EmptyParen, _lss) => Prelude.lookup(ident, ls),
+                ls(<todo>, _lss) => Prelude.lookup(ident, ls),
                 [] => lookupGlobal(nsm, ident),
             }
     }
 
-    fn lookupName(ns: NameSpaceMap(k, a), EmptyParen: k, NsMap(_, localDefs): Maybe(a)) -> Maybe(a) {
+    fn lookupName(ns: NameSpaceMap(k, a), <todo>: k, NsMap(_, localDefs): Maybe(a)) -> Maybe(a) {
         match (lookupLocal(localDefs)) {
                 Nothing => lookupGlobal(ns, ident),
                 Just, def => Just(def),
@@ -325,7 +325,7 @@ mod Language_C_Analysis_SemError {
         }
     }
 
-    fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, EmptyParen: ErrorInfo) -> ErrorInfo {
+    fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, <todo>: ErrorInfo) -> ErrorInfo {
         ErrorInfo(lvl, (posOfNode(node)), (++(vec![redefErrReason(info)], prevDeclMsg(old_node))))
     }
 
@@ -587,11 +587,11 @@ mod Language_C_Analysis_TypeConversions {
             TyComplex(t1), TyComplex(t2) => Just(TyComplex(floatConversion(t1, t2))),
             TyComplex(t1), TyFloating(t2) => Just(TyComplex(floatConversion(t1, t2))),
             TyFloating(t1), TyComplex(t2) => Just(TyComplex(floatConversion(t1, t2))),
-            t1, EmptyParen, TyComplex(_), TyIntegral(_) => Just(t1),
-            TyIntegral(_), t2, EmptyParen, TyComplex(_) => Just(t2),
+            t1, <todo>, TyComplex(_), TyIntegral(_) => Just(t1),
+            TyIntegral(_), t2, <todo>, TyComplex(_) => Just(t2),
             TyFloating(t1), TyFloating(t2) => Just(TyFloating(floatConversion(t1, t2))),
-            t1, EmptyParen, TyFloating(_), TyIntegral(_) => Just(t1),
-            TyIntegral(_), t2, EmptyParen, TyFloating(_) => Just(t2),
+            t1, <todo>, TyFloating(_), TyIntegral(_) => Just(t1),
+            TyIntegral(_), t2, <todo>, TyFloating(_) => Just(t2),
             TyIntegral(t1), TyIntegral(t2) => Just(TyIntegral(intConversion(t1, t2))),
             TyEnum(_), TyEnum(_) => Just(TyIntegral(TyInt)),
             TyEnum(_), t2 => Just(t2),
@@ -752,10 +752,10 @@ mod Language_C_Data_Ident {
 
     fn quad(__0: String) -> isize {
         match (__0) {
-            c1(EmptyParen, c2, EmptyParen, c3, EmptyParen, c4, EmptyParen, s) => +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28))),
-            c1(EmptyParen, c2, EmptyParen, c3, EmptyParen, []) => *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1))))),
-            c1(EmptyParen, c2, EmptyParen, []) => *(ord(c2), +(bits7, ord(c1))),
-            c1(EmptyParen, []) => ord(c1),
+            c1(<todo>, c2, <todo>, c3, <todo>, c4, <todo>, s) => +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28))),
+            c1(<todo>, c2, <todo>, c3, <todo>, []) => *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1))))),
+            c1(<todo>, c2, <todo>, []) => *(ord(c2), +(bits7, ord(c1))),
+            c1(<todo>, []) => ord(c1),
             [] => 0,
         }
     }
@@ -811,7 +811,7 @@ mod Language_C_Data_InputStream {
 
     fn takeChars(__0: isize, __1: InputStream) -> Vec<Char> {
         match (__0, __1) {
-            Not(Ref(Ident("n"))), bstr => BSC.unpack(BSC.take(n, bstr)),
+            n, bstr => BSC.unpack(BSC.take(n, bstr)),
             n, str => take(n, str),
         }
     }
@@ -1172,7 +1172,7 @@ mod Language_C_Syntax_Constants {
     fn head'(__0: String, __1: Vec<a>) -> a {
         match (__0, __1) {
             err, [] => error(err),
-            _, x(EmptyParen, _) => x,
+            _, x(<todo>, _) => x,
         }
     }
 
@@ -1246,7 +1246,7 @@ mod Language_C_Syntax_Constants {
 
     fn unescapeChar(__0: String) -> (Char, String) {
         match (__0) {
-            "@@WEIRD BAD BASE64 STR@@"(EmptyParen, c, EmptyParen, cs) => match c {
+            "@@WEIRD BAD BASE64 STR@@"(<todo>, c, <todo>, cs) => match c {
                     "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
                     "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
                     "@@WEIRD BAD BASE64 STR@@" => ("\"\"".to_string(), cs),
@@ -1267,7 +1267,7 @@ mod Language_C_Syntax_Constants {
                             (i, cs') => (toEnum(i), cs'),
                         },
                 },
-            c(EmptyParen, cs) => (c, cs),
+            c(<todo>, cs) => (c, cs),
             [] => error("unescape char: empty string".to_string()),
         }
     }

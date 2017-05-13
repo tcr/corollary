@@ -57,8 +57,8 @@ mod Language_Rust_Idiomatic {
 
     fn tailBlock(__0: Rust.Block) -> Rust.Block {
         match (__0) {
-            Rust.Block(b, Just(Arrow(Ident("tailExpr"), Span([Ref(Ident("Just")), Ref(Ident("e"))])))) => Rust.Block(b, e),
-            Rust.Block(Arrow(Ident("unsnoc"), Span([Ref(Ident("Just")), Tuple([Span([Ref(Ident("b"))]), Span([Ref(Ident("Rust.Stmt")), Arrow(Ident("tailExpr"), Span([Ref(Ident("Just")), Ref(Ident("e"))]))])])])), Nothing) => Rust.Block(b, e),
+            Rust.Block(b, Just((tailExpr -> Just(e)))) => Rust.Block(b, e),
+            Rust.Block((unsnoc -> Just((b, Rust.Stmt((tailExpr -> Just(e)))))), Nothing) => Rust.Block(b, e),
             b => b,
         }
     }
@@ -75,7 +75,7 @@ mod Language_Rust_Idiomatic {
     fn unsnoc(__0: Vec<a>) -> Maybe((Vec<a>, a)) {
         match (__0) {
             [] => Nothing,
-            x(EmptyParen, xs) => match unsnoc(xs) {
+            x(<todo>, xs) => match unsnoc(xs) {
                     Just, (a, b) => Just((:(x, a), b)),
                     Nothing => Just((vec![], x)),
                 },
