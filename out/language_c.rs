@@ -13,11 +13,11 @@ mod Language_C_Analysis_Builtins {
 }
 
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/ConstEval.hs"
-Error: Unrecognized token `{`:
+Error: Unrecognized token `->`:
  21 | ;data MachineDesc =
  22 |   MachineDesc
  23 |   { iSize        :: IntType -> Integer
-~~~~~~~~^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 mod Language_C_Analysis_Debug {
     fn globalDeclStats(file_filter: fn(FilePath) -> Bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
@@ -343,19 +343,236 @@ mod Language_C_Analysis_SemError {
 
 }
 
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/SemRep.hs"
-Error: Unrecognized token `{`:
-152 |
-153 |
-154 |   }};data GlobalDecls = GlobalDecls {
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Analysis_SemRep {
+    #[derive(Debug, Clone)]
+    struct TagDef(CompDef, CompType, EnumDef, EnumType);
+
+    #[derive(Debug, Clone)]
+    struct IdentDecl(Declaration, Decl, ObjectDef, ObjDef, FunctionDef, FunDef, EnumeratorDef, Enumerator);
+
+    struct GlobalDecls(GlobalDecls, { /* struct def */ });
+
+    #[derive()]
+    struct DeclEvent(TagEvent, TagDef, DeclEvent, IdentDecl, ParamEvent, ParamDecl, LocalEvent, IdentDecl, TypeDefEvent, TypeDef, AsmEvent, AsmBlock);
+
+    #[derive(Debug, Clone)]
+    struct Decl(Decl, VarDecl, NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct ObjDef(ObjDef, VarDecl, Maybe(Initializer), NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct FunDef(FunDef, VarDecl, Stmt, NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct ParamDecl(ParamDecl, VarDecl, NodeInfo, AbstractParamDecl, VarDecl, NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct MemberDecl(MemberDecl, VarDecl, Maybe(Expr), NodeInfo, AnonBitField, Type, Expr, NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct TypeDef(TypeDef, Ident, Type, Attributes, NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct VarDecl(VarDecl, VarName, DeclAttrs, Type);
+
+    #[derive(Debug, Clone)]
+    struct DeclAttrs(DeclAttrs, Bool, Storage, Attributes);
+
+    #[derive(Debug, Clone, Show, Eq, Ord)]
+    struct Storage(NoStorage, Auto, Register, Static, Linkage, ThreadLocal, FunLinkage, Linkage);
+
+    #[derive(Debug, Clone, Show, Eq, Ord)]
+    struct Linkage(NoLinkage, InternalLinkage, ExternalLinkage);
+
+    #[derive(Debug, Clone)]
+    struct Type(DirectType, TypeName, TypeQuals, Attributes, PtrType, Type, TypeQuals, Attributes, ArrayType, Type, ArraySize, TypeQuals, Attributes, FunctionType, FunType, Attributes, TypeDefType, TypeDefRef, TypeQuals, Attributes);
+
+    #[derive(Debug, Clone)]
+    struct FunType(FunType, Type, Vec<ParamDecl>, Bool, FunTypeIncomplete, Type);
+
+    #[derive(Debug, Clone)]
+    struct ArraySize(UnknownArraySize, Bool, ArraySize, Bool, Expr);
+
+    #[derive(Debug, Clone)]
+    struct TypeName(TyVoid, TyIntegral, IntType, TyFloating, FloatType, TyComplex, FloatType, TyComp, CompTypeRef, TyEnum, EnumTypeRef, TyBuiltin, BuiltinType);
+
+    #[derive(Debug, Clone)]
+    struct BuiltinType(TyVaList, TyAny);
+
+    #[derive(Debug, Clone)]
+    struct TypeDefRef(TypeDefRef, Ident, Maybe(Type), NodeInfo);
+
+    #[derive(Debug, Clone, Eq, Ord)]
+    struct IntType(TyBool, TyChar, TySChar, TyUChar, TyShort, TyUShort, TyInt, TyUInt, TyLong, TyULong, TyLLong, TyULLong);
+
+    #[derive(Debug, Clone, Eq, Ord)]
+    struct FloatType(TyFloat, TyDouble, TyLDouble);
+
+    #[derive(Debug, Clone)]
+    struct CompTypeRef(CompTypeRef, SUERef, CompTyKind, NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct EnumTypeRef(EnumTypeRef, SUERef, NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct CompType(CompType, SUERef, CompTyKind, Vec<MemberDecl>, Attributes, NodeInfo);
+
+    #[derive(Eq, Ord, Debug, Clone)]
+    struct CompTyKind(StructTag, UnionTag);
+
+    #[derive(Debug, Clone)]
+    struct EnumType(EnumType, SUERef, Vec<Enumerator>, Attributes, NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct Enumerator(Enumerator, Ident, Expr, EnumType, NodeInfo);
+
+    #[derive(Debug, Clone)]
+    struct TypeQuals(TypeQuals, { /* struct def */ });
+
+    #[derive(Debug, Clone)]
+    struct VarName(VarName, Ident, Maybe(AsmName), NoName);
+
+    #[derive(Debug, Clone)]
+    struct Attr(Attr, Ident, Vec<Expr>, NodeInfo);
+
+    fn declAttrs() -> DeclAttrs {
+        ((Lambda) . getVarDecl)
+    }
+
+    fn declIdent() -> Ident {
+        (identOfVarName . declName)
+    }
+
+    fn declLinkage(decl: d) -> Linkage {
+        match declStorage(decl) {
+                NoStorage => undefined,
+                Auto, _ => NoLinkage,
+                Static, linkage, _ => linkage,
+                FunLinkage, linkage => linkage,
+            }
+    }
+
+    fn declName() -> VarName {
+        ((Lambda) . getVarDecl)
+    }
+
+    fn declOfDef(def: n) -> Decl {
+        Let
+    }
+
+    fn declStorage(d: d) -> Storage {
+        match declAttrs(d) {
+                DeclAttrs(_, st, _) => st,
+            }
+    }
+
+    fn declType() -> Type {
+        ((Lambda) . getVarDecl)
+    }
+
+    fn emptyGlobalDecls() -> GlobalDecls {
+        GlobalDecls(Map.empty, Map.empty, Map.empty)
+    }
+
+    fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> Bool, gmap: GlobalDecls) -> GlobalDecls {
+        GlobalDecls(hashmap! {
+            "gObjs" => Map.filter(((decl_filter . DeclEvent)), (gObjs(gmap))),
+            "gTags" => Map.filter(((decl_filter . TagEvent)), (gTags(gmap))),
+            "gTypeDefs" => Map.filter(((decl_filter . TypeDefEvent)), (gTypeDefs(gmap)))
+            })
+    }
+
+    fn hasLinkage(__0: Storage) -> Bool {
+        match (__0) {
+            Auto(_) => False,
+            Static(NoLinkage, _) => False,
+            _ => True,
+        }
+    }
+
+    fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
+        ide
+    }
+
+    fn identOfVarName(__0: VarName) -> Ident {
+        match (__0) {
+            NoName => error("identOfVarName: NoName".to_string()),
+            VarName(ident, _) => ident,
+        }
+    }
+
+    fn isExtDecl() -> Bool {
+        (hasLinkage . declStorage)
+    }
+
+    fn isNoName(__0: VarName) -> Bool {
+        match (__0) {
+            NoName => True,
+            _ => False,
+        }
+    }
+
+    fn mergeAttributes() -> Attributes {
+        (Operator("++"))
+    }
+
+    fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
+        GlobalDecls(hashmap! {
+            "gObjs" => Map.union((gObjs(gmap1)), (gObjs(gmap2))),
+            "gTags" => Map.union((gTags(gmap1)), (gTags(gmap2))),
+            "gTypeDefs" => Map.union((gTypeDefs(gmap1)), (gTypeDefs(gmap2)))
+            })
+    }
+
+    fn mergeTypeQuals(TypeQuals(c1, v1, r1): TypeQuals, TypeQuals(c2, v2, r2): TypeQuals) -> TypeQuals {
+        TypeQuals((&&(c1, c2)), (&&(v1, v2)), (&&(r1, r2)))
+    }
+
+    fn noAttributes() -> Attributes {
+        vec![]
+    }
+
+    fn noTypeQuals() -> TypeQuals {
+        TypeQuals(False, False, False)
+    }
+
+    fn objKindDescr(__0: IdentDecl) -> String {
+        match (__0) {
+            Declaration(_) => "declaration".to_string(),
+            ObjectDef(_) => "object definition".to_string(),
+            FunctionDef(_) => "function definition".to_string(),
+            EnumeratorDef(_) => "enumerator definition".to_string(),
+        }
+    }
+
+    fn splitIdentDecls(include_all: Bool) -> (Map(Ident, Decl), (Map(Ident, Enumerator), Map(Ident, ObjDef), Map(Ident, FunDef))) {
+        Map.foldWithKey((if(include_all, then, deal, else, deal')), (Map.empty, (Map.empty, Map.empty, Map.empty)))
+    }
+
+    fn typeOfCompDef(CompType(ref, tag, _, _, _): CompType) -> TypeName {
+        TyComp((CompTypeRef(ref, tag, undefNode)))
+    }
+
+    fn typeOfEnumDef(EnumType(ref, _, _, _): EnumType) -> TypeName {
+        TyEnum((EnumTypeRef(ref, undefNode)))
+    }
+
+    fn typeOfTagDef(__0: TagDef) -> TypeName {
+        match (__0) {
+            CompDef(comptype) => typeOfCompDef(comptype),
+            EnumDef(enumtype) => typeOfEnumDef(enumtype),
+        }
+    }
+
+}
+
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TravMonad.hs"
-Error: Unrecognized token `{`:
+Error: Unrecognized token `->`:
 371 |
 372 |
 373 | ;newtype Trav s a = Trav { unTrav :: TravState s -> Either CError (a,
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeCheck.hs"
 Error: Unrecognized token `>>=`:
@@ -552,13 +769,17 @@ Error: Unrecognized token `!`:
  75 | ;takeChars !n bstr = BSC.unpack $ BSC.take n bstr
 ~~~~~~~~~~~~~~~~~^
 */
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Name.hs"
-Error: Unrecognized token `{`:
- 19 |
- 20 |
- 21 | ;newtype Name = Name { nameId :: Int } deriving (Show, Read, Eq, Ord,
-~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Data_Name {
+    fn namesStartingFrom(k: isize) -> Vec<Name> {
+        vec![Name(k..)]
+    }
+
+    fn newNameSupply() -> Vec<Name> {
+        namesStartingFrom(0)
+    }
+
+}
+
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Node.hs"
 Error: Unrecognized token `<=`:
  43 |
@@ -566,13 +787,88 @@ Error: Unrecognized token `<=`:
  45 |   {(NodeInfo   _ _ id1) <= (NodeInfo   _ _ id2) = id1 <= id2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Position.hs"
-Error: Unrecognized token `{`:
- 31 |
- 32 |
- 33 | ;data Position = Position { posOffset ::  !Int
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Data_Position {
+    #[derive(Eq, Ord, Debug, Clone)]
+    struct Position(Position, { /* struct def */ }, NoPosition, BuiltinPosition, InternalPosition);
+
+    fn adjustPos(__0: FilePath, __1: isize, __2: Position) -> Position {
+        match (__0, __1, __2) {
+            fname, row, Position(offs, _, _, _) => Position(offs, fname, row, 1),
+            _, _, p => p,
+        }
+    }
+
+    fn builtinPos() -> Position {
+        BuiltinPosition
+    }
+
+    fn incOffset(__0: Position, __1: isize) -> Position {
+        match (__0, __1) {
+            Position(o, f, r, c), n => Position((+(o, n)), f, r, c),
+            p, n => p,
+        }
+    }
+
+    fn incPos(__0: Position, __1: isize) -> Position {
+        match (__0, __1) {
+            Position(offs, fname, row, col), n => Position((+(offs, n)), fname, row, (+(col, n))),
+            p, _ => p,
+        }
+    }
+
+    fn initPos(file: FilePath) -> Position {
+        Position(0, file, 1, 1)
+    }
+
+    fn internalPos() -> Position {
+        InternalPosition
+    }
+
+    fn isBuiltinPos(__0: Position) -> Bool {
+        match (__0) {
+            BuiltinPosition => True,
+            _ => False,
+        }
+    }
+
+    fn isInternalPos(__0: Position) -> Bool {
+        match (__0) {
+            InternalPosition => True,
+            _ => False,
+        }
+    }
+
+    fn isNoPos(__0: Position) -> Bool {
+        match (__0) {
+            NoPosition => True,
+            _ => False,
+        }
+    }
+
+    fn isSourcePos(__0: Position) -> Bool {
+        match (__0) {
+            Position(_, _, _, _) => True,
+            _ => False,
+        }
+    }
+
+    fn nopos() -> Position {
+        NoPosition
+    }
+
+    fn position() -> Position {
+        Position
+    }
+
+    fn retPos(__0: Position) -> Position {
+        match (__0) {
+            Position(offs, fname, row, _) => Position((+(offs, 1)), fname, (+(row, 1)), 1),
+            p => p,
+        }
+    }
+
+}
+
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/RList.hs"
 Error: Unrecognized token ```:
  31 | ;snoc :: Reversed [a] -> a -> Reversed [a]
@@ -1052,20 +1348,118 @@ mod Language_C_Syntax {
 
 }
 
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/System/GCC.hs"
-Error: Unrecognized token `{`:
- 23 |
- 24 |
- 25 | ;newtype GCC = GCC { gccPath :: FilePath }
-~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/System/Preprocess.hs"
-Error: Unrecognized token `{`:
- 47 |
- 48 |
- 49 | ;data CppArgs = CppArgs {
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_System_GCC {
+    fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
+        ++({
+                (concatMap(tOption, options))
+            }, ++(outputFileOpt, ++(vec!["-E".to_string(), input_file], extra_args)))
+    }
+
+    fn gccParseCPPArgs(args: Vec<String>) -> Either(String, (CppArgs, Vec<String>)) {
+        match mungeArgs(((Nothing, Nothing, RList.empty), (RList.empty, RList.empty)), args) {
+                Left, err => Left(err),
+                Right, ((Nothing, _, _), _) => Left("No .c / .hc / .h source file given".to_string()),
+                Right, ((Just(input_file), output_file_opt, cpp_opts), (extra_args, other_args)) => Right(((rawCppArgs((RList.reverse(extra_args)), input_file))(hashmap! {
+                        "outputFile" => output_file_opt,
+                        "cppOptions" => RList.reverse(cpp_opts)
+                        }), RList.reverse(other_args))),
+            }
+    }
+
+    fn newGCC() -> GCC {
+        GCC
+    }
+
+}
+
+mod Language_C_System_Preprocess {
+    struct CppOption(IncludeDir, FilePath, Define, String, String, Undefine, String, IncludeFile, FilePath);
+
+    struct CppArgs(CppArgs, { /* struct def */ });
+
+    fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
+        cpp_args(hashmap! {
+            "cppOptions" => :(opt, (cppOptions(cpp_args)))
+            })
+    }
+
+    fn addExtraOption(cpp_args: CppArgs, extra: String) -> CppArgs {
+        cpp_args(hashmap! {
+            "extraOptions" => :(extra, (extraOptions(cpp_args)))
+            })
+    }
+
+    fn cppFile(input_file: FilePath) -> CppArgs {
+        CppArgs(hashmap! {
+            "cppOptions" => vec![],
+            "extraOptions" => vec![],
+            "cppTmpDir" => Nothing,
+            "inputFile" => input_file,
+            "outputFile" => Nothing
+            })
+    }
+
+    fn isPreprocessed() -> Bool {
+        (".i".to_string()(Operator("isSuffixOf")))
+    }
+
+    fn mkOutputFile(tmp_dir_opt: Maybe(FilePath), input_file: FilePath) -> IO(FilePath) {
+        {
+            let tmpDir = getTempDir(tmp_dir_opt);
+            mkTmpFile(tmpDir, (getOutputFileName(input_file)))
+        }
+    }
+
+    fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> IO(FilePath) {
+        {
+            let (path, file_handle) = openTempFile(tmp_dir, file_templ);
+            hClose(file_handle);
+            return(path)
+        }
+    }
+
+    fn preprocessedExt() -> String {
+        ".i".to_string()
+    }
+
+    fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
+        CppArgs(hashmap! {
+            "inputFile" => input_file,
+            "cppOptions" => vec![],
+            "extraOptions" => opts,
+            "outputFile" => Nothing,
+            "cppTmpDir" => Nothing
+            })
+    }
+
+    fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO(Either(ExitCode, InputStream)) {
+        {
+            fn getActualOutFile() -> IO(FilePath) {
+                maybe((mkOutputFile((cppTmpDir(cpp_args)), (inputFile(cpp_args)))), return, (outputFile(cpp_args)))
+            }
+
+            let invokeCpp = |actual_out_file| {
+                {
+                    let exit_code = runCPP(cpp, (cpp_args(hashmap! {
+                                    "outputFile" => Just(actual_out_file)
+                                    })));
+                    match exit_code {
+                                ExitSuccess => liftM(Right, (readInputStream(actual_out_file))),
+                                ExitFailure, _ => return(Left(exit_code)),
+                            }
+                }
+            };
+
+            let removeTmpOutFile = |out_file| {
+                maybe((removeFile(out_file)), (Lambda(())), (outputFile(cpp_args)))
+            };
+
+            bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
+        }
+    }
+
+}
+
 
 
 fn main() { /* demo */ }

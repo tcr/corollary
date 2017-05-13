@@ -6,11 +6,11 @@ Error: Unrecognized token `where`:
 ~~~~~~~~~~~~~~~~~~~~^
 */
 /* ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/C.lhs"
-Error: Unrecognized token `{`:
- 32 |
- 33 | ;data FunctionContext = FunctionContext
- 34 |     { functionReturnType :: Maybe CType
-~~~~~~~~~~^
+Error: Unrecognized token `where`:
+267 |     {Left msg -> Left msg
+268 |      ;Right _ -> Right items'
+269 |      ;where {initFlow = FunctionContext
+~~~~~~~~~~~~^
 */
 /* ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/CFG.lhs"
 Error: Unrecognized token `;`:

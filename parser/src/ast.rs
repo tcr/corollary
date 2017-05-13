@@ -61,6 +61,7 @@ pub enum Ty {
     Ident(Ident),
     Tuple(Vec<Ty>),
     Brackets(Box<Ty>),
+    RecordTODO,
     EmptyParen,
 }
 
@@ -73,7 +74,6 @@ pub enum Pat {
     Brackets(Vec<Pat>),
     Str(String),
     Num(isize),
-    RecordTODO,
     EmptyParen,
     Dummy,
 }

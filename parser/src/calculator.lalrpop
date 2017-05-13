@@ -162,6 +162,7 @@ TypeSub: Ty = {
     "!" <TypeSub> => Ty::Not(Box::new(<>)),
     "[" <Type> "]" => Ty::Brackets(Box::new(<>)),
     "(" <CommaDef<Type>> ")" => Ty::Tuple(<>),
+    "{" <Comma<(<Ident> "::" <TypeGroup>)>> "}" => Ty::RecordTODO,
     "(" ")" => Ty::EmptyParen,
     <Ident> => Ty::Ident(<>),
 };
@@ -191,7 +192,6 @@ PatSub: Pat = {
     },
     "(" <i:Ident> "->" <s: PatSpan> ")" => Pat::Arrow(i, Box::new(s)),
     "(" ")" => Pat::EmptyParen,
-    "{" <Comma<(<Ident> "::" <TypeGroup>)>> "}" => Pat::RecordTODO,
     <Ident> => Pat::Ref(<>),
     <Quote> => Pat::Str(<>),
     <Num> => Pat::Num(<>),
