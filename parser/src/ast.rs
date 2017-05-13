@@ -19,8 +19,8 @@ pub enum Expr {
 
 #[derive(Clone, Debug)]
 pub enum CaseCond {
-    Matching(Vec<Ty>, Vec<(Expr, Expr)>),
-    Direct(Vec<Ty>, Expr),
+    Matching(Vec<Pat>, Vec<(Expr, Expr)>),
+    Direct(Vec<Pat>, Expr),
 }
 
 #[derive(Copy, Clone, Debug)]
@@ -41,7 +41,7 @@ pub enum Statement {
     Newtype,
     Pipelist,
     GuardAssign,
-    Assign(Ty, Vec<Ty>, Expr),
+    Assign(Pat, Vec<Pat>, Expr),
     Typedef(Ident),
     Prototype(Ident, Vec<Ty>),
 }
@@ -58,9 +58,19 @@ pub enum Ty {
     Where(Box<Ty>, Box<Ty>),
     Pair(Box<Ty>, Box<Ty>),
     Not(Box<Ty>),
-    Ref(Ident),
+    Ident(Ident),
     Tuple(Vec<Ty>),
-    Brackets(Vec<Ty>),
+    Brackets(Box<Ty>),
+    EmptyParen,
+}
+
+#[derive(Clone, Debug)]
+pub enum Pat {
+    Span(Vec<Pat>),
+    Arrow(Ident, Box<Pat>),
+    Ref(Ident),
+    Tuple(Vec<Pat>),
+    Brackets(Vec<Pat>),
     Str(String),
     Num(isize),
     RecordTODO,
