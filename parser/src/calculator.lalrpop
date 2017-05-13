@@ -98,7 +98,7 @@ Expr: Expr = {
     <Ident> => Expr::Ref(<>),
     Num => Expr::Number(<>),
 
-    "\(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
+    r"\\" "(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
     "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
     "[" <CommaDef<ExprSpan>> "]" => Expr::Vector(<>),
     "[" "]" => Expr::Vector(vec![]),
@@ -110,10 +110,10 @@ Expr: Expr = {
     r"\\" r"[a-zA-Z_.][.a-zA-Z_0-9']*" Expr* "->" Expr => Expr::Lambda,
 
     "`" <Ident> "`" => Expr::Operator(<>.0),
-    "\\" => Expr::Operator(<>.to_string()),
     ":" => Expr::Operator(<>.to_string()),
     "." => Expr::Operator(<>.to_string()),
     "/=" => Expr::Operator(<>.to_string()),
+    "/" => Expr::Operator(<>.to_string()),
     "==" => Expr::Operator(<>.to_string()),
     ".." => Expr::Operator(<>.to_string()),
     "++" => Expr::Operator(<>.to_string()),
@@ -136,14 +136,40 @@ Expr: Expr = {
     "::" => Expr::Operator(<>.to_string()),
     ".&." => Expr::Operator(<>.to_string()),
 
-    "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
+    "case" <e:ExprSpan> "of" "{" <s:Semi<Case>>
+      <w:("where" "{" <Semi<Statement>> "}")?> "}" => Expr::Case(Box::new(e), s),
 
-    "let" "{" Semi<Statement> "}" => Expr::Let,
+    "let" "{" Semi<LetInner> "}" => Expr::Let,
 
     "do" "{" <e:Semi<ExprSpan>>
       <w:("where" "{" <Semi<Statement>> "}")?> "}" => Expr::Do(e, w),
 
     "{" <Comma<(<Expr> "=" <ExprSpan>)>> "}" => Expr::Record(<>),
+};
+
+
+LetInner: () = {
+  "class" Type ("=>" Ident+)?
+    "where" "{" Semi<Statement> "}" => (),
+
+  "instance" FnDef
+    "where" "{" Semi<Statement> "}" => (),
+  "import" ImportList+ => (),
+
+  "data" <id:Ident+> "=" <p:Pipe<TypeGroup>>
+    <derives:("deriving" <ImportList>)?> =>
+      (),
+  "newtype" <id:Ident+> "=" <p:Type>
+    ("deriving" ImportList)? =>
+      (),
+
+  "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
+    ("where" "{" Semi<Statement> "}")? => (),
+
+  <ExprSpan> "=" <ExprSpan> => (),
+  <ExprSpan> => (),
+
+  "where" "{" <Semi<Statement>> "}" => (),
 };
 
 FnDef: Ty = {
@@ -243,7 +269,7 @@ Statement: Statement = {
 
   <i:Ident> "::" <d:FnDef> => Statement::Prototype(i, vec![d]),
 
-  "type" <d:Ident> <args:TypeGroup?> "=" Expr+
+  "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
     ("where" "{" Semi<Statement> "}")? => Statement::Typedef(d),
 
   <args:PatList> ("|" Commaish<Expr> "=" Expr+)*

@@ -43,7 +43,11 @@ fn strip_comments(text: &str) -> String {
     text
 }
 
-/// Convert indentation to something else.
+fn word_is_block_word(word: &str) -> bool {
+    word == "do" || word == "where" || word == "of" || word == "let"
+}
+
+/// Convert indentation to semicolon-delimited brackets, so it can be parsed more easily.
 fn commify(val: &str) -> String {
     let re_space = Regex::new(r#"^[ \t]+"#).unwrap();
     let re_nl = Regex::new(r#"^\r?\n"#).unwrap();
@@ -51,9 +55,13 @@ fn commify(val: &str) -> String {
 
     let mut out = String::new();
 
-    let mut stash = vec![];
-    let mut trigger = false;
+    // Collection of previous indentation levels
+    let mut stash: Vec<usize> = vec![];
+    // Previous word was a block starting word, option containing its indent level.
+    let mut trigger = None;
+    // How many spaces to indent.
     let mut indent = 0;
+    // Check if this is the first word in the line.
     let mut first = true;
 
     let commentless = strip_comments(val);
@@ -81,42 +89,45 @@ fn commify(val: &str) -> String {
             let word = &cap[0];
 
             if first {
+
                 while {
-                    if let Some(i) = stash.last() {
-                        *i > indent
+                    if let Some(last_level) = stash.last().map(|x| *x) {
+                        // Check if we decreased our indent level
+                        last_level > indent
                     } else {
                         false
                     }
                 } {
+                    // out.push_str(&format!("[{:?}{:?}]", last_level, stash.last()));
                     stash.pop();
                     out.push_str("}");
                 }
 
                 if let Some(i) = stash.last() {
-                    if *i == indent {
+                    if *i == indent && trigger.is_none() {
                         out.push_str(";");
                     }
                 }
             }
-            first = false;
 
-            if trigger {
-                out.push_str("{");
-            }
             out.push_str(word);
             v = &v[word.len()..];
 
-            if trigger {
-                stash.push(indent);
+            if trigger.is_some() {
+                if first {
+                    stash.push(indent);
+                } else {
+                    stash.push(trigger.unwrap());
+                }
+            }
+            first = false;
+
+            trigger = if word_is_block_word(word) { Some(indent) } else { None };
+            if trigger.is_some() {
+                out.push_str("{");
             }
 
             indent += word.len();
-
-            if word == "do" || word == "where" || word == "of" || word == "let" {
-                trigger = true;
-            } else {
-                trigger = false;
-            }
         } else {
             panic!("unknown prop {:?}", v);
         }
@@ -126,6 +137,8 @@ fn commify(val: &str) -> String {
     }
 
 
+    // Replace trailing commas after where statements
+    // TODO fix these above
     let re = Regex::new(r#"where\s+;"#).unwrap();
     let out = re.replace_all(&out, r#"where "#).to_string();
 
@@ -537,7 +550,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
 #[test]
 fn calculator() {
-    let a = "./corrode/src/Language/Rust/Corrode/CrateMap.hs";
+    let a = "./corrode/src/Language/Rust/Corrode/C.lhs";
     // let a = "./corrode/src/Language/Rust/Corrode/C.hs";
     // let a = "./test/input.hs";
     println!("file: {}", a);
@@ -545,7 +558,14 @@ fn calculator() {
     let mut contents = String::new();
     file.read_to_string(&mut contents).unwrap();
 
+    if a.ends_with(".lhs") {
+        contents = fix_lhs(&contents);
+    }
     let input = commify(&contents);
+
+    let mut a = ::std::fs::File::create("temp.hs").unwrap();
+    a.write_all(input.as_bytes());
+
     let mut errors = Vec::new();
     match calculator::parse_Module(&mut errors, &input) {
         Ok(okay) => println!("{:#?}", okay),
