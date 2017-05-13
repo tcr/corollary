@@ -58,7 +58,7 @@ pub enum Ty {
     Where(Box<Ty>, Box<Ty>),
     Pair(Box<Ty>, Box<Ty>),
     Not(Box<Ty>),
-    Ident(Ident),
+    Ref(Ident),
     Tuple(Vec<Ty>),
     Brackets(Box<Ty>),
     RecordTODO,
@@ -69,6 +69,7 @@ pub enum Ty {
 pub enum Pat {
     Span(Vec<Pat>),
     Arrow(Ident, Box<Pat>),
+    Not(Box<Pat>),
     Ref(Ident),
     Tuple(Vec<Pat>),
     Brackets(Vec<Pat>),

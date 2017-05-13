@@ -360,7 +360,7 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
 
 fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
     match *t.borrow() {
-        Ty::Ident(ast::Ident(ref s)) => {
+        Ty::Ref(ast::Ident(ref s)) => {
             if s == "Int" {
                 format!("isize")
             } else {
@@ -391,6 +391,7 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Pair(ref a, ref b) => {
             format!("fn({}) -> {}", print_type(state, &**a), print_type(state, &**b))
         }
+        Ty::RecordTODO => "{ /* struct def */ }".to_string(),
         Ty::EmptyParen => "()".to_string(),
     }
 }
@@ -532,8 +533,8 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
 #[test]
 fn calculator() {
-    let a = "./corrode/src/Language/Rust/Corrode/CrateMap.hs";
-    // let a = "./corrode/src/Language/Rust/Corrode/C.hs";
+    // let a = "./corrode/src/Language/Rust/Corrode/CrateMap.hs";
+    let a = "language-c/src/Language/C/Analysis/AstAnalysis.hs";
     // let a = "./test/input.hs";
     println!("file: {}", a);
     let mut file = File::open(a).unwrap();

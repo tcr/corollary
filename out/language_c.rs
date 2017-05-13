@@ -762,13 +762,62 @@ mod Language_C_Data_Ident {
 
 }
 
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/InputStream.hs"
-Error: Unrecognized token `!`:
- 73 | ;inputStreamEmpty = BSW.null
- 74 |
- 75 | ;takeChars !n bstr = BSC.unpack $ BSC.take n bstr
-~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Data_InputStream {
+    fn countLines() -> isize {
+        match () {
+             => (length . BSC.lines),
+             => (length . lines),
+        }
+    }
+
+    fn inputStreamEmpty() -> Bool {
+        match () {
+             => BSW.null,
+             => null,
+        }
+    }
+
+    fn inputStreamFromString() -> InputStream {
+        match () {
+             => BSC.pack,
+             => id,
+        }
+    }
+
+    fn inputStreamToString() -> String {
+        match () {
+             => BSC.unpack,
+             => id,
+        }
+    }
+
+    fn readInputStream() -> IO(InputStream) {
+        match () {
+             => BSW.readFile,
+             => readFile,
+        }
+    }
+
+    fn takeByte(bs: InputStream) -> (Word8, InputStream) {
+        seq(BSW.head(bs), (BSW.head(bs), BSW.tail(bs)))
+    }
+
+    fn takeChar(__0: InputStream) -> (Char, InputStream) {
+        match (__0) {
+            bs => seq(BSC.head(bs), (BSC.head(bs), BSC.tail(bs))),
+            bs => (head(bs), tail(bs)),
+        }
+    }
+
+    fn takeChars(__0: isize, __1: InputStream) -> Vec<Char> {
+        match (__0, __1) {
+            Not(Ref(Ident("n"))), bstr => BSC.unpack(BSC.take(n, bstr)),
+            n, str => take(n, str),
+        }
+    }
+
+}
+
 mod Language_C_Data_Name {
     fn namesStartingFrom(k: isize) -> Vec<Name> {
         vec![Name(k..)]
