@@ -348,13 +348,13 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                         }
                         out.push(format!("{}{} => if {},",
                             state.indent(),
-                            label.iter().map(|x| print_type(state, x)).collect::<Vec<_>>().join(" "),
+                            print_patterns(state, label),
                             inner.join("\n")));
                     }
                     ast::CaseCond::Direct(label, arm) => {
                         out.push(format!("{}{} => {},",
                             state.tab().indent(),
-                            label.iter().map(|x| print_type(state, x)).collect::<Vec<_>>().join(" "),
+                            print_patterns(state, label),
                             print_expr(state.tab(), &arm)));
                     }
                 }
@@ -411,22 +411,32 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
             if spans.len() == 1 {
                 print_type(state.tab(), &spans[0])
             } else {
-                format!("({})", spans.into_iter()
-                    .map(|x| print_type(state.tab(), x))
-                    .collect::<Vec<_>>()
-                    .join(", "))
+                format!("({})", print_types(state.tab(), spans))
             }
         }
         Ty::Brackets(ref spans) => {
-            format!("Vec<{}>", spans.into_iter()
-                .map(|x| print_type(state.tab(), x))
-                .collect::<Vec<_>>()
-                .join(", "))
+            format!("Vec<{}>", print_types(state.tab(), spans))
         }
         ref t => {
             format!("{:?}", t)
         }
     }
+}
+
+fn print_types<I, T>(state: PrintState, iter: I) -> String
+where
+    I: IntoIterator<Item = T>,
+    T: Borrow<Ty>,
+{
+    iter.into_iter().map(|t| print_type(state, t)).collect::<Vec<_>>().join(", ")
+}
+
+fn print_patterns<I, T>(state: PrintState, iter: I) -> String
+where
+    I: IntoIterator<Item = T>,
+    T: Borrow<Ty>, // switch to Pattern
+{
+    iter.into_iter().map(|p| print_type(state, p)).collect::<Vec<_>>().join(" ")
 }
 
 fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
@@ -461,7 +471,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 derives,
                 name.0,
                 data.iter().map(|tyset| {
-                    tyset.iter().map(|ty| print_type(state, ty)).collect::<Vec<_>>().join(", ")
+                    print_types(state, tyset)
                 }).collect::<Vec<_>>().join(", "));
             println!("");
         }
@@ -514,7 +524,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
                         state.indent(),
                         key,
-                        args.iter().map(|x| print_type(state, x)).collect::<Vec<_>>().join(", "),
+                        print_types(state, args),
                         state.tab().indent(),
                         print_expr(state.tab(), &expr),
                         state.indent()));
