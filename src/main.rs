@@ -8,15 +8,14 @@ extern crate walkdir;
 use corroder_parser::ast;
 use corroder_parser::ast::{Expr, Pat, Ty};
 use corroder_parser::calculator;
+use corroder_parser::util::{print_parse_error, simplify_parse_error};
 
 use regex::{Regex, Captures};
 use std::borrow::Borrow;
 use std::io::prelude::*;
 use std::fs::{File};
-use std::fmt::Debug;
 use std::env;
 
-use lalrpop_util::{ParseError};
 use walkdir::WalkDir;
 
 fn strip_comments(text: &str) -> String {
@@ -42,60 +41,6 @@ fn strip_comments(text: &str) -> String {
     }).to_string();
 
     text
-}
-
-pub fn codelist(code: &str) {
-    for (i, line) in code.lines().enumerate() {
-        println!("{:>3} | {}", i+1, line);
-    }
-}
-
-pub fn code_error(code: &str, tok_pos: usize) {
-    let code = format!("\n\n{}", code);
-    let code = code.lines().collect::<Vec<_>>();
-    let mut pos: isize = 0;
-    for (i, lines) in (&code[..]).windows(3).enumerate() {
-        if pos + lines[2].len() as isize >= tok_pos as isize {
-            if i > 1 {
-                println!("{:>3} | {}", i - 1, lines[0]);
-            }
-            if i > 0 {
-                println!("{:>3} | {}", i, lines[1]);
-            }
-            println!("{:>3} | {}", i + 1, lines[2]);
-
-            println!("{}^", (0..(tok_pos as isize) - (pos - 6)).map(|_| "~").collect::<String>());
-            return;
-        }
-        pos += (lines[2].len() as isize) + 1;
-    }
-}
-
-pub fn parse_results<C,T,E>(code: &str, res: Result<C, ParseError<usize,T,E>>) -> C
-where C: Debug, T: Debug, E: Debug {
-    match res {
-        Ok(value) => {
-            return value;
-        }
-        Err(ParseError::InvalidToken {
-            location: loc
-        }) => {
-            println!("Error: Invalid token:");
-            code_error(code, loc);
-            panic!("{:?}", res);
-        }
-        Err(ParseError::UnrecognizedToken {
-            token: Some((loc, _, _)),
-            ..
-        }) => {
-            println!("Error: Unrecognized token:");
-            code_error(code, loc);
-            panic!("{:?}", res);
-        }
-        err => {
-            panic!("{:?}", err);
-        }
-    }
 }
 
 /// Convert indentation to something else.
@@ -597,8 +542,14 @@ fn calculator() {
 
     let input = commify(&contents);
     let mut errors = Vec::new();
-    let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));
-    println!("{:#?}", okay);
+    match calculator::parse_Module(&mut errors, &input) {
+        Ok(okay) => println!("{:#?}", okay),
+        Err(e) => {
+            let e = simplify_parse_error(e);
+            print_parse_error(&input, &e);
+            panic!(e);
+        }
+    }
 }
 
 fn fix_lhs(s: &str) -> String {
@@ -645,14 +596,18 @@ fn main() {
 
         let input = commify(&contents);
         let mut errors = Vec::new();
-        if let Ok(v) = calculator::parse_Module(&mut errors, &input) {
-            //continue;
-            println!("mod {} {{", v.name.0.replace(".", "_"));
-            let state = PrintState::new();
-            println!("{}", print_statement_list(state.tab(), &v.statements));
-            println!("}}\n");
-        } else {
-            println!("// ERROR: cannot yet convert file {:?}\n", p);
+        match calculator::parse_Module(&mut errors, &input) {
+            Ok(v) => {
+                println!("mod {} {{", v.name.0.replace(".", "_"));
+                let state = PrintState::new();
+                println!("{}", print_statement_list(state.tab(), &v.statements));
+                println!("}}\n");
+            }
+            Err(e) => {
+                println!("/* ERROR: cannot yet convert file {:?}", p);
+                print_parse_error(&input, &simplify_parse_error(e));
+                println!("*/");
+            }
         }
     }
     println!("");
