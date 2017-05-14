@@ -411,7 +411,7 @@ mod Language_C_Data_Error {
     }
 
     fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) -> String {
-        ++(header, showMsgLines((:(if(null, short_msg, then, msgs, else, short_msg), msgs))))
+        ++(header, showMsgLines((if(null, short_msg, then, msgs, else, short_msg:msgs))))
     }
 
     fn unsupportedFeature(msg: String, a: a) -> UnsupportedFeature {
@@ -488,10 +488,10 @@ mod Language_C_Data_Ident {
 
     fn quad(__0: String) -> isize {
         match (__0) {
-            c1(EmptyParen, c2, EmptyParen, c3, EmptyParen, c4, EmptyParen, s) => +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28))),
-            c1(EmptyParen, c2, EmptyParen, c3, EmptyParen, Vec<>) => *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1))))),
-            c1(EmptyParen, c2, EmptyParen, Vec<>) => *(ord(c2), +(bits7, ord(c1))),
-            c1(EmptyParen, Vec<>) => ord(c1),
+            c1:c2:c3:c4:s => +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28))),
+            c1:c2:c3:(Vec<>) => *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1))))),
+            c1:c2:(Vec<>) => *(ord(c2), +(bits7, ord(c1))),
+            c1:(Vec<>) => ord(c1),
             Vec<> => 0,
         }
     }
@@ -649,7 +649,47 @@ mod Language_C_Data_Position {
 
 }
 
-// ERROR: cannot yet convert file "./language-c/src/Language/C/Data/RList.hs"
+mod Language_C_Data_RList {
+    fn appendr(xs: Vec<a>, Reversed(ys): Reversed(Vec<a>)) -> Reversed(Vec<a>) {
+        Reversed((++(ys, List.reverse(xs))))
+    }
+
+    fn empty() -> Reversed(Vec<a>) {
+        Reversed(vec![])
+    }
+
+    fn rappend(Reversed(xs): Reversed(Vec<a>), ys: Vec<a>) -> Reversed(Vec<a>) {
+        Reversed((++(List.reverse(ys), xs)))
+    }
+
+    fn rappendr(Reversed(xs): Reversed(Vec<a>), Reversed(ys): Reversed(Vec<a>)) -> Reversed(Vec<a>) {
+        Reversed((++(ys, xs)))
+    }
+
+    fn reverse(Reversed(xs): Reversed(Vec<a>)) -> Vec<a> {
+        List.reverse(xs)
+    }
+
+    fn rmap(f: Pair(Span([Ref(Ident("a"))]), Span([Ref(Ident("b"))])), Reversed(xs): Reversed(Vec<a>)) -> Reversed(Vec<b>) {
+        Reversed((map(f, xs)))
+    }
+
+    fn singleton(x: a) -> Reversed(Vec<a>) {
+        Reversed(vec![x])
+    }
+
+    fn snoc(Reversed(xs): Reversed(Vec<a>), x: a) -> Reversed(Vec<a>) {
+        Reversed((:(x, xs)))
+    }
+
+    fn viewr(__0: Reversed(Vec<a>)) -> (Reversed(Vec<a>), a) {
+        match (__0) {
+            Reversed(Vec<>) => error("viewr: empty RList".to_string()),
+            Reversed(x:xs) => (Reversed(xs), x),
+        }
+    }
+
+}
 
 mod Language_C_Data {
 
@@ -833,29 +873,7 @@ mod Language_C_Syntax {
 
 }
 
-mod Language_C_System_GCC {
-    fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
-        ++({
-                (concatMap(tOption, options))
-            }, ++(outputFileOpt, ++(vec!["-E".to_string(), input_file], extra_args)))
-    }
-
-    fn gccParseCPPArgs(args: Vec<String>) -> Either(String, (CppArgs, Vec<String>)) {
-        match mungeArgs(((Nothing, Nothing, RList.empty), (RList.empty, RList.empty)), args) {
-                Left err => Left(err),
-                Right ((Nothing, _, _), _) => Left("No .c / .hc / .h source file given".to_string()),
-                Right ((Just(input_file), output_file_opt, cpp_opts), (extra_args, other_args)) => Right(((rawCppArgs((RList.reverse(extra_args)), input_file))(hashmap! {
-                        "outputFile" => output_file_opt,
-                        "cppOptions" => RList.reverse(cpp_opts)
-                        }), RList.reverse(other_args))),
-            }
-    }
-
-    fn newGCC() -> GCC {
-        GCC
-    }
-
-}
+// ERROR: cannot yet convert file "./language-c/src/Language/C/System/GCC.hs"
 
 mod Language_C_System_Preprocess {
     struct CppOption(IncludeDir, FilePath, Define, String, String, Undefine, String, IncludeFile, FilePath);
@@ -890,22 +908,13 @@ mod Language_C_System_Preprocess {
 
     fn mkOutputFile(tmp_dir_opt: Maybe(FilePath), input_file: FilePath) -> IO(FilePath) {
         {
-            let getTempDir = |__0| {
-                match (__0) {
-                    Just(tmpdir) => return(tmpdir),
-                    Nothing => getTemporaryDirectory,
-                }
-            };
 
-            let tmpDir = getTempDir(tmp_dir_opt, mkTmpFile, tmpDir, (getOutputFileName(input_file)))
         }
     }
 
     fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> IO(FilePath) {
         {
-            let (path, file_handle) = openTempFile(tmp_dir, file_templ);
-            hClose(file_handle);
-            return(path)
+
         }
     }
 
@@ -925,27 +934,7 @@ mod Language_C_System_Preprocess {
 
     fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO(Either(ExitCode, InputStream)) {
         {
-            fn getActualOutFile() -> IO(FilePath) {
-                maybe((mkOutputFile((cppTmpDir(cpp_args)), (inputFile(cpp_args)))), return, (outputFile(cpp_args)))
-            }
 
-            let invokeCpp = |actual_out_file| {
-                {
-                    let exit_code = runCPP(cpp, (cpp_args(hashmap! {
-                                    "outputFile" => Just(actual_out_file)
-                                    })));
-                    match exit_code {
-                                ExitSuccess => liftM(Right, (readInputStream(actual_out_file))),
-                                ExitFailure _ => return(Left(exit_code)),
-                            }
-                }
-            };
-
-            let removeTmpOutFile = |out_file| {
-                maybe((removeFile(out_file)), (Lambda(())), (outputFile(cpp_args)))
-            };
-
-            bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
         }
     }
 

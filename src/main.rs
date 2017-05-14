@@ -98,7 +98,7 @@ fn commify(val: &str) -> String {
                 }
             }
         } else if let Some(cap) = re_word.captures(v) {
-            let mut word = &cap[0];
+            let word = &cap[0];
 
             if first {
                 while {
@@ -123,17 +123,13 @@ fn commify(val: &str) -> String {
             }
 
             if ["]", ")", "}"].contains(&word) {
-                let a = braces.len();
                 if let Some(brace) = braces.last_mut() {
                     *brace -= 1;
-                    // out.push_str(&format!("[{:?},{:?}]", brace, a));
                 }
             }
             if ["[", "(", "{"].contains(&word) {
-                let a = braces.len();
                 if let Some(brace) = braces.last_mut() {
                     *brace += 1;
-                    // out.push_str(&format!("[{:?},{:?}]", brace, a));
                 }
             }
 
@@ -593,8 +589,8 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 }
 
 
-#[test]
-fn calculator() {
+#[test] #[ignore]
+fn test_single_file() {
     let a = "./corrode/src/Language/Rust/Corrode/C.lhs";
     // let a = "./corrode/src/Language/Rust/Corrode/C.hs";
     // let a = "./test/input.hs";
@@ -622,6 +618,70 @@ fn calculator() {
     }
 }
 
+#[test]
+fn test_no_regressions() {
+    let a = vec![
+        // "./corrode/src/Language/Rust/AST.hs",
+        "./corrode/src/Language/Rust/Corrode/C.lhs",
+        // "./corrode/src/Language/Rust/Corrode/CFG.lhs",
+        "./corrode/src/Language/Rust/Corrode/CrateMap.hs",
+        "./corrode/src/Language/Rust/Idiomatic.hs",
+        "./corrode/src/Language/Rust.hs",
+
+        // "./language-c/src/Language/C/Analysis/AstAnalysis.hs",
+        // "./language-c/src/Language/C/Analysis/Builtins.hs",
+        // "./language-c/src/Language/C/Analysis/ConstEval.hs",
+        "./language-c/src/Language/C/Analysis/Debug.hs",
+        // "./language-c/src/Language/C/Analysis/DeclAnalysis.hs",
+        // "./language-c/src/Language/C/Analysis/DefTable.hs",
+        // "./language-c/src/Language/C/Analysis/Export.hs",
+        // "./language-c/src/Language/C/Analysis/NameSpaceMap.hs",
+        "./language-c/src/Language/C/Analysis/SemError.hs",
+        "./language-c/src/Language/C/Analysis/SemRep.hs",
+        // "./language-c/src/Language/C/Analysis/TravMonad.hs",
+        // "./language-c/src/Language/C/Analysis/TypeCheck.hs",
+        "./language-c/src/Language/C/Analysis/TypeConversions.hs",
+        // "./language-c/src/Language/C/Analysis/TypeUtils.hs",
+        "./language-c/src/Language/C/Analysis.hs",
+        "./language-c/src/Language/C/Data/Error.hs",
+        "./language-c/src/Language/C/Data/Ident.hs",
+        "./language-c/src/Language/C/Data/InputStream.hs",
+        "./language-c/src/Language/C/Data/Name.hs",
+        // "./language-c/src/Language/C/Data/Node.hs",
+        "./language-c/src/Language/C/Data/Position.hs",
+        "./language-c/src/Language/C/Data/RList.hs",
+        "./language-c/src/Language/C/Data.hs",
+        "./language-c/src/Language/C/Parser/Builtin.hs",
+        // "./language-c/src/Language/C/Parser/ParserMonad.hs",
+        // "./language-c/src/Language/C/Parser/Tokens.hs",
+        "./language-c/src/Language/C/Parser.hs",
+        // "./language-c/src/Language/C/Pretty.hs",
+        "./language-c/src/Language/C/Syntax/AST.hs",
+        // "./language-c/src/Language/C/Syntax/Constants.hs",
+        "./language-c/src/Language/C/Syntax/Ops.hs",
+        // "./language-c/src/Language/C/Syntax/Utils.hs",
+        "./language-c/src/Language/C/Syntax.hs",
+        // "./language-c/src/Language/C/System/GCC.hs",
+        "./language-c/src/Language/C/System/Preprocess.hs",
+
+        "./test/input.hs",
+    ];
+
+    for path in a {
+        let mut file = File::open(path).unwrap();
+        let mut contents = String::new();
+        file.read_to_string(&mut contents).unwrap();
+
+        if path.ends_with(".lhs") {
+            contents = fix_lhs(&contents);
+        }
+        let input = commify(&contents);
+
+        let mut errors = Vec::new();
+        let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));
+    }
+}
+
 fn fix_lhs(s: &str) -> String {
     let re = Regex::new(r"```haskell([\s\S]*?)```").unwrap();
     let mut out = vec![];
@@ -645,6 +705,7 @@ fn main() {
     for entry in WalkDir::new(dir) {
         let e = entry.unwrap();
         let p = e.path();
+
         let mut do_fix_lhs = false;
         if p.display().to_string().ends_with(".lhs") {
             do_fix_lhs = true;
@@ -668,6 +729,8 @@ fn main() {
         let mut errors = Vec::new();
         match calculator::parse_Module(&mut errors, &input) {
             Ok(v) => {
+                // println!("{:?}", p);
+                // continue;
                 println!("mod {} {{", v.name.0.replace(".", "_"));
                 let state = PrintState::new();
                 println!("{}", print_statement_list(state.tab(), &v.statements));
