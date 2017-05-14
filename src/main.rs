@@ -51,12 +51,14 @@ fn word_is_block_word(word: &str) -> bool {
 fn commify(val: &str) -> String {
     let re_space = Regex::new(r#"^[ \t]+"#).unwrap();
     let re_nl = Regex::new(r#"^\r?\n"#).unwrap();
-    let re_word = Regex::new(r#"[^ \t\r\n]+"#).unwrap();
+    let re_word = Regex::new(r#"([\(\{\[\]\}\)]|[^ \t\r\n\(\{\[\]\}\)]+)"#).unwrap();
 
     let mut out = String::new();
 
-    // Collection of previous indentation levels
+    // Previous indentation levels
     let mut stash: Vec<usize> = vec![];
+    // Previous brace nesting levels.
+    let mut braces: Vec<isize> = vec![];
     // Previous word was a block starting word, option containing its indent level.
     let mut trigger = None;
     // How many spaces to indent.
@@ -86,10 +88,9 @@ fn commify(val: &str) -> String {
                 }
             }
         } else if let Some(cap) = re_word.captures(v) {
-            let word = &cap[0];
+            let mut word = &cap[0];
 
             if first {
-
                 while {
                     if let Some(last_level) = stash.last().map(|x| *x) {
                         // Check if we decreased our indent level
@@ -100,6 +101,7 @@ fn commify(val: &str) -> String {
                 } {
                     // out.push_str(&format!("[{:?}{:?}]", last_level, stash.last()));
                     stash.pop();
+                    braces.pop();
                     out.push_str("}");
                 }
 
@@ -110,10 +112,40 @@ fn commify(val: &str) -> String {
                 }
             }
 
+            if ["]", ")", "}"].contains(&word) {
+                let a = braces.len();
+                if let Some(brace) = braces.last_mut() {
+                    *brace -= 1;
+                    // out.push_str(&format!("[{:?},{:?}]", brace, a));
+                }
+            }
+            if ["[", "(", "{"].contains(&word) {
+                let a = braces.len();
+                if let Some(brace) = braces.last_mut() {
+                    *brace += 1;
+                    // out.push_str(&format!("[{:?},{:?}]", brace, a));
+                }
+            }
+
+            // End braces insertion when meeting an unbalanced ending ), }, or ]
+            while {
+                if let Some(brace) = braces.last().map(|x| *x) {
+                    brace < 0
+                } else {
+                    false
+                }
+            } {
+                stash.pop();
+                braces.pop();
+                out.push_str("}");
+            }
+
             out.push_str(word);
             v = &v[word.len()..];
 
             if trigger.is_some() {
+                // Determine which column to start determining whitespace. Where the first word is
+                // or where the keyword is?
                 if first {
                     stash.push(indent);
                 } else {
@@ -125,11 +157,14 @@ fn commify(val: &str) -> String {
             trigger = if word_is_block_word(word) { Some(indent) } else { None };
             if trigger.is_some() {
                 out.push_str("{");
+
+                // Trace brace indentation level.
+                braces.push(0);
             }
 
             indent += word.len();
         } else {
-            panic!("unknown prop {:?}", v);
+            unreachable!("unknown prop {:?}", v);
         }
     }
     for _ in 0..stash.len() {
@@ -563,7 +598,7 @@ fn calculator() {
     }
     let input = commify(&contents);
 
-    let mut a = ::std::fs::File::create("temp.hs").unwrap();
+    let mut a = ::std::fs::File::create("temp.txt").unwrap();
     a.write_all(input.as_bytes());
 
     let mut errors = Vec::new();
