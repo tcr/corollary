@@ -55,17 +55,17 @@ import Control.Monad
              , outputExterns = mempty
              , outputIncomplete = mempty
              }
-
-
-
+     
+ 
+ 
          ;mappend a b = Output
              { outputItems = outputItems a `mappend` outputItems b
              , outputExterns = outputExterns a `mappend` outputExterns b
              , outputIncomplete = outputIncomplete a `mappend` outputIncomplete b
              }
-
-
-
+     
+ 
+ 
  };emitItems :: [Rust.Item] -> EnvMonad s ()
 ;emitItems items = lift $ tell mempty { outputItems = items }
 
@@ -77,9 +77,9 @@ import Control.Monad
      ;unless (Map.member (kind, identToString ident) rewrites) $
          lift $ tell mempty { outputIncomplete = Set.singleton (identToString ident) }
      ;return (IsIncomplete ident)
-
-
-
+ 
+ 
+ 
  };completeType :: CType -> EnvMonad s CType
 ;completeType orig@(IsIncomplete ident) = do{
     mty <- getTagIdent ident
@@ -120,10 +120,11 @@ import Control.Monad
 ;modifyGlobal f = lift $ do{
     st <- get
      ;let{ (global', a) = f (globalState st)
+      ;put st { globalState = global' }
       ;return a
-
-
-
+  
+  
+  
   }};applyRenames :: Ident -> String
 ;applyRenames ident = case identToString ident of{
     "ZmluYWw=" -> "ZmluYWxf"
@@ -137,9 +138,9 @@ import Control.Monad
      ;"dHlwZQ==" -> "dHlwZV8="
      ;"d2hlcmU=" -> "d2hlcmVf"
      ;name -> name
-
-
-
+ 
+ 
+ 
  };getSymbolIdent :: Ident -> EnvMonad s (Maybe Result)
 ;getSymbolIdent ident = do{
     env <- lift get
@@ -153,12 +154,13 @@ import Control.Monad
        }};where{
      getFunctionName def = do{
           name <- lift (asks functionName)
-           ;return $ Just Result
-               { resultType = IsArray Rust.Immutable (length name' + 1) charType
-               , resultMutable = Rust.Immutable
-               , result = Rust.Deref (Rust.Lit (Rust.LitByteStr (name' ++ "MA==")))
-               }
-       };builtinSymbols =
+           ;let{ name' = fromMaybe def name
+            ;return $ Just Result
+                { resultType = IsArray Rust.Immutable (length name' + 1) charType
+                , resultMutable = Rust.Immutable
+                , result = Rust.Deref (Rust.Lit (Rust.LitByteStr (name' ++ "Tg==")))
+                }
+        }};builtinSymbols =
           [ ("X19idWlsdGluX2Jzd2Fw" ++ show w, Result
               { resultType = IsFunc (IsInt Unsigned (BitWidth w))
                   [(Nothing, IsInt Unsigned (BitWidth w))] False
@@ -181,38 +183,43 @@ import Control.Monad
               , result = Rust.Call (Rust.Var (Rust.VarName "bGluZSE=")) []
               })
           ]
-
+  
   }};getTypedefIdent :: Ident -> EnvMonad s (String, Maybe (EnvMonad s IntermediateType))
 ;getTypedefIdent ident = lift $ do{
     env <- gets typedefEnvironment
      ;return (identToString ident, lookup ident env)
-
+ 
  };getTagIdent :: Ident -> EnvMonad s (Maybe (EnvMonad s CType))
 ;getTagIdent ident = lift $ do{
     env <- gets tagEnvironment
      ;return $ lookup ident env
-
-
-
+ 
+ 
+ 
  };addSymbolIdent :: Ident -> (Rust.Mutable, CType) -> EnvMonad s String
 ;addSymbolIdent ident (mut, ty) = do{
     let{ name = applyRenames ident
+      ;addSymbolIdentAction ident $ return Result
+          { resultType = ty
+          , resultMutable = mut
+          , result = Rust.Path (Rust.PathSegments [name])
+          }
       ;return name
-
+  
   }};addSymbolIdentAction :: Ident -> EnvMonad s Result -> EnvMonad s ()
 ;addSymbolIdentAction ident action = lift $ do{
     modify $ \ st -> st { symbolEnvironment = (ident, action) : symbolEnvironment st }
-
+ 
  };addTypedefIdent :: Ident -> EnvMonad s IntermediateType -> EnvMonad s ()
 ;addTypedefIdent ident ty = lift $ do{
     modify $ \ st -> st { typedefEnvironment = (ident, ty) : typedefEnvironment st }
-
+ 
  };addTagIdent :: Ident -> EnvMonad s CType -> EnvMonad s ()
 ;addTagIdent ident ty = lift $ do{
     modify $ \ st -> st { tagEnvironment = (ident, ty) : tagEnvironment st }
-
-
-
+ 
+ 
+ 
  };addExternIdent
     :: Ident
     -> EnvMonad s IntermediateType
@@ -225,13 +232,15 @@ import Control.Monad
           ;path <- case Map.lookup (Symbol, identToString ident) rewrites of{
               Just renamed -> return ("" : renamed)
                ;Nothing -> do{
-                   lift $ tell mempty { outputExterns = Map.singleton name (mkItem name ty) }
-                    ;return [name]
-            }};return (typeToResult itype (Rust.Path (Rust.PathSegments path)))
+                   let{ name = applyRenames ident
+                     ;let{ ty = (typeMutable itype, typeRep itype)
+                      ;lift $ tell mempty { outputExterns = Map.singleton name (mkItem name ty) }
+                      ;return [name]
+              }}}};return (typeToResult itype (Rust.Path (Rust.PathSegments path)))
       };addSymbolIdentAction ident action
-
-
-
+ 
+ 
+ 
  };noTranslation :: (Pretty node, Pos node) => node -> String -> EnvMonad s a
 ;noTranslation node msg = throwE $ concat
     [ show (posOf node)
@@ -259,9 +268,9 @@ import Control.Monad
     Left msg -> Left msg
      ;Right _ -> Right items'
      ;where{
-
-
-
+ 
+ 
+ 
      initFlow = FunctionContext
           { functionReturnType = Nothing
           , functionName = Nothing
@@ -277,17 +286,17 @@ import Control.Monad
               }
           }
       ;(err, output) = runST (evalRWST (runExceptT (mapM_ perDecl decls)) initFlow initState)
-
-
-
+  
+  
+  
       ;perDecl (CFDefExt f) = interpretFunction f
       ;perDecl (CDeclExt decl') = do{
           binds <- interpretDeclarations makeStaticBinding decl'
            ;emitItems binds
        };perDecl decl = unimplemented decl
-
-
-
+  
+  
+  
       ;completeTypes = Set.fromList $ catMaybes
           [ case item of{
               Rust.Item _ _ (Rust.Struct name _) -> Just name
@@ -299,9 +308,9 @@ import Control.Monad
           [ Rust.Item [] Rust.Private (Rust.Enum name [])
           | name <- Set.toList incompleteTypes
           ]
-
-
-
+  
+  
+  
       ;itemNames = catMaybes
           [ case item of{
               Rust.Item _ _ (Rust.Function _ name _ _ _) -> Just name
@@ -309,25 +318,25 @@ import Control.Monad
                ;_ -> Nothing
            }| item <- outputItems output
           ]
-
+  
       ;externs' =
           [ extern
           | (name, extern) <- Map.toList (outputExterns output)
           , name `notElem` itemNames
           ]
-
-
-
+  
+  
+  
       ;items = incompleteItems ++ outputItems output
-
-
-
+  
+  
+  
       ;items' = if null externs'
           then items
           else Rust.Item [] Rust.Private (Rust.Extern externs') : items
-
-
-
+  
+  
+  
   }};type MakeBinding s a = (Rust.ItemKind -> a, Rust.Mutable -> Rust.Var -> CType -> NodeInfo -> Maybe CInit -> EnvMonad s a)
 
 
@@ -340,60 +349,60 @@ import Control.Monad
           ;return $ Rust.Item attrs Rust.Public
               (Rust.Static mut var (toRustType ty) expr)
       };attrs = [Rust.Attribute "bm9fbWFuZ2xl"]
-
+ 
  };makeLetBinding :: MakeBinding s Rust.Stmt
 ;makeLetBinding = (Rust.StmtItem [], makeBinding)
     where{
     makeBinding mut var ty _ minit = do{
          mexpr <- mapM (interpretInitializer ty) minit
           ;return $ Rust.Let mut var (Just (toRustType ty)) mexpr
-
-
-
+  
+  
+  
   }};interpretDeclarations :: MakeBinding s b -> CDecl -> EnvMonad s [b]
 ;interpretDeclarations (fromItem, makeBinding) declaration@(CDecl specs decls _) = do{
 
 
 
     (storagespecs, baseTy) <- baseTypeOf specs
-
-
-
+ 
+ 
+ 
      ;mbinds <- forM decls $ \ declarator -> do{
-
-
-
+ 
+ 
+ 
          (decl, minit) <- case declarator of{
               (Just decl, minit, Nothing) -> return (decl, minit)
                ;(Nothing, _, _) -> badSource declaration "YWJzZW50IGRlY2xhcmF0b3I="
                ;(_, _, Just _) -> badSource declaration "Yml0ZmllbGQgZGVjbGFyYXRvcg=="
-
-
+   
+           
            };(ident, derived) <- case decl of{
               CDeclr (Just ident) derived _ _ _ -> return (ident, derived)
                ;_ -> badSource decl "YWJzdHJhY3QgZGVjbGFyYXRvcg=="
-
+   
            };deferred <- derivedDeferredTypeOf baseTy decl []
           ;case (storagespecs, derived) of{
-
-
-
+  
+  
+  
               (Just (CTypedef _), _) -> do{
                    when (isJust minit) (badSource decl "aW5pdGlhbGl6ZXIgb24gdHlwZWRlZg==")
                     ;addTypedefIdent ident deferred
                     ;return Nothing
-
-
-
+    
+    
+    
                 };(Just (CStatic _), CFunDeclr{} : _) -> do{
                    addSymbolIdentAction ident $ do{
                         itype <- deferred
                          ;useForwardRef ident
                          ;return (typeToResult itype (Rust.Path (Rust.PathSegments [applyRenames ident])))
                      };return Nothing
-
-
-
+    
+    
+    
                 };(_, CFunDeclr{} : _) -> do{
                    addExternIdent ident deferred $ \ name (_mut, ty) -> case ty of{
                         IsFunc retTy args variadic ->
@@ -405,16 +414,16 @@ import Control.Monad
                               ;in Rust.ExternFn name formals variadic (toRustRetType retTy)
                           };_ -> error (show ident ++ "IGlzIGJvdGggYSBmdW5jdGlvbiBhbmQgbm90IGEgZnVuY3Rpb24/")
                      };return Nothing
-
-
-
+    
+    
+    
                 };(Just (CExtern _), _) -> do{
                    addExternIdent ident deferred $ \ name (mut, ty) ->
                         Rust.ExternStatic mut (Rust.VarName name) (toRustType ty)
                     ;return Nothing
-
-
-
+    
+    
+    
                 };(Just (CStatic _), _) -> do{
                    IntermediateType
                         { typeMutable = mut
@@ -423,9 +432,9 @@ import Control.Monad
                     ;expr <- interpretInitializer ty (fromMaybe (CInitList [] (nodeInfo decl)) minit)
                     ;return (Just (fromItem
                         (Rust.Static mut (Rust.VarName name) (toRustType ty) expr)))
-
-
-
+    
+    
+    
                 };_ -> do{
                    IntermediateType
                         { typeMutable = mut
@@ -433,13 +442,13 @@ import Control.Monad
                     ;name <- addSymbolIdent ident (mut, ty)
                     ;binding <- makeBinding mut (Rust.VarName name) ty (nodeInfo decl) minit
                     ;return (Just binding)
-
-
-
+    
+    
+    
         }}};return (catMaybes mbinds)
-
-
-
+ 
+ 
+ 
  };interpretDeclarations _ node@(CStaticAssert {}) = unimplemented node
 
 
@@ -463,15 +472,15 @@ import Control.Monad
 
 
         mempty = Initializer Nothing IntMap.empty
-
-
-
+     
+ 
+ 
          ;mappend _ b@(Initializer (Just _) _) = b
          ;mappend (Initializer m a) (Initializer Nothing b) =
              Initializer m (IntMap.unionWith mappend a b)
-
-
-
+     
+ 
+ 
  };type CurrentObject = Maybe Designator
 
 ;data Designator
@@ -506,9 +515,9 @@ import Control.Monad
                ;(earlier, (_, ty') : rest) ->
                    go ty' ds (From ty' (length earlier) (map snd rest) obj)
        }};go ty' (d : _) _ = badSource d ("ZGVzaWduYXRvciBmb3Ig" ++ show ty')
-
-
-
+ 
+ 
+ 
  };nextObject :: Designator -> CurrentObject
 ;nextObject Base{} = Nothing
 ;nextObject (From _ i (ty : remaining) base) = Just (From ty (i+1) remaining base)
@@ -531,35 +540,40 @@ import Control.Monad
      ;IsStruct _ ((_ , ty') : fields) ->
          nestedObject ty (From ty' 0 (map snd fields) desig)
      ;_ -> Nothing
-
-
-
+ 
+ 
+ 
  };translateInitList :: CType -> CInitList -> EnvMonad s Initializer
 ;translateInitList ty list = do{
 
     objectsAndInitializers <- forM list $ \ (desigs, initial) -> do{
          currObj <- objectFromDesignators ty desigs
           ;pure (currObj, initial)
-
-
-
+  
+  
+  
       };let{ base = case ty of{
                       IsArray _ size el -> From el 0 (replicate (size - 1) el) (Base ty)
                        ;IsStruct _ ((_,ty'):fields) -> From ty' 0 (map snd fields) (Base ty)
                        ;_ -> Base ty
-
-
-
-   }}};resolveCurrentObject
+   
+   
+   
+       };(_, initializer) <- foldM resolveCurrentObject (Just base, mempty) objectsAndInitializers
+      ;return initializer
+  
+  
+  
+  }};resolveCurrentObject
     :: (CurrentObject, Initializer)
     -> (CurrentObject, CInit)
     -> EnvMonad s (CurrentObject, Initializer)
 ;resolveCurrentObject (obj0, prior) (obj1, cinitial) = case obj1 `mplus` obj0 of{
     Nothing -> return (Nothing, prior)
      ;Just obj -> do{
-
-
-
+ 
+ 
+ 
          (obj', initial) <- case cinitial of{
               CInitList list' _ -> do{
                    initial <- translateInitList (designatorType obj) list'
@@ -571,14 +585,19 @@ import Control.Monad
                          ;Just obj' -> do{
                              let{ s = castTo (designatorType obj') expr'
                                ;return (obj', scalar s)
-
-
-
-               }}}}};return (nextObject obj', prior `mappend` initializer)
-
-
-
-  }};interpretInitializer ty initial = do{
+       
+       
+       
+               }}}}};let{ indices = unfoldr (\o -> case o of{
+                                    Base{} -> Nothing
+                                     ;From _ j _ p -> Just (j,p)}) obj'
+           ;let{ initializer = foldl (\a j -> Initializer Nothing (IntMap.singleton j a)) initial indices
+    
+            ;return (nextObject obj', prior `mappend` initializer)
+    
+    
+    
+    }}}};interpretInitializer ty initial = do{
     initial' <- case initial of{
          CInitExpr expr _ -> do{
               expr' <- interpretExpr True expr
@@ -586,14 +605,14 @@ import Control.Monad
                    then pure $ scalar (castTo ty expr')
                    else badSource initial "aW5pdGlhbGl6ZXIgZm9yIGluY29tcGF0aWJsZSB0eXBl"
            };CInitList list _ -> translateInitList ty list
-
+  
       };zeroed <- zeroInitialize initial' ty
      ;helper ty zeroed
-
+ 
      ;where{
-
-
-
+ 
+ 
+ 
      zeroInitialize i@(Initializer Nothing initials) origTy = completeType origTy >>= \ t -> case t of{
           IsBool{} -> return $ scalar (Rust.Lit (Rust.LitBool False))
            ;IsVoid{} -> badSource initial "aW5pdGlhbGl6ZXIgZm9yIHZvaWQ="
@@ -614,9 +633,9 @@ import Control.Monad
               }}};IsEnum{} -> unimplemented initial
            ;IsIncomplete _ -> badSource initial "aW5pdGlhbGl6YXRpb24gb2YgaW5jb21wbGV0ZSB0eXBl"
        };zeroInitialize i _ = return i
-
-
-
+  
+  
+  
       ;helper _ (Initializer (Just expr) initials) | IntMap.null initials = return expr
       ;helper (IsArray _ _ el) (Initializer expr initials) = case expr of{
           Nothing -> Rust.ArrayExpr <$> mapM (helper el) (IntMap.elems initials)
@@ -631,9 +650,9 @@ import Control.Monad
                      ;return (field, value')
                  };[] -> noTranslation initial ("aW50ZXJuYWwgZXJyb3I6IA==" ++ show strTy ++ "IGRvZXNuJ3QgaGF2ZSBlbm91Z2ggZmllbGRzIHRvIGluaXRpYWxpemUgZmllbGQg" ++ show idx)
         }};helper _ _ = badSource initial "aW5pdGlhbGl6ZXI="
-
-
-
+  
+  
+  
   }};interpretFunction :: CFunDef -> EnvMonad s ()
 ;interpretFunction (CFunDef specs declr@(CDeclr mident _ _ _ _) argtypes body _) = do{
 
@@ -644,32 +663,32 @@ import Control.Monad
          Nothing -> return ([Rust.Attribute "bm9fbWFuZ2xl"], Rust.Public)
           ;Just (CStatic _) -> return ([], Rust.Private)
           ;Just s -> badSource s "c3RvcmFnZSBjbGFzcyBzcGVjaWZpZXIgZm9yIGZ1bmN0aW9u"
-
-
-
+  
+  
+  
       };let{ go name funTy = do{
-
-
-
+  
+  
+  
               (retTy, args) <- case funTy of{
                    IsFunc _ _ True -> unimplemented declr
                     ;IsFunc retTy args False -> return (retTy, args)
                     ;_ -> badSource declr "ZnVuY3Rpb24gZGVmaW5pdGlvbg=="
-
-
-
+    
+    
+    
                 };when (name == "X2NfbWFpbg==") (wrapMain declr name (map snd args))
-
-
-
+   
+   
+   
                ;let{ setRetTy flow = flow
                         { functionReturnType = Just retTy
                         , functionName = Just name
                         }
                 ;f' <- mapExceptT (local setRetTy) $ scope $ do{
-
-
-
+    
+    
+    
                     formals <- sequence
                          [ case arg of{
                              Just (mut, argident) -> do{
@@ -678,28 +697,31 @@ import Control.Monad
                                };Nothing -> badSource declr "YW5vbnltb3VzIHBhcmFtZXRlcg=="
                           }| (arg, ty) <- args
                          ]
-
-
-
-
-
-
-                     ;body' <- cfgToRust declr (interpretStatement body (return ([returnStatement], Unreachable)))
-
-
-
+     
+     
+     
+                     ;let{
+                         returnValue = if name == "X2NfbWFpbg==" then Just 0 else Nothing
+                          ;returnStatement = Rust.Stmt (Rust.Return returnValue)
+      
+      
+      
+                      };body' <- cfgToRust declr (interpretStatement body (return ([returnStatement], Unreachable)))
+     
+     
+     
                      ;return (Rust.Item attrs vis
                          (Rust.Function [Rust.UnsafeFn, Rust.ExternABI Nothing] name formals (toRustRetType retTy)
                              (statementsToBlock body')))
-
+     
                  };emitItems [f']
-
-
-
+    
+    
+    
         }};ident <- case mident of{
           Nothing -> badSource declr "YW5vbnltb3VzIGZ1bmN0aW9uIGRlZmluaXRpb24="
            ;Just ident -> return ident
-
+   
        };let{ name = applyRenames ident
        ;let{ funTy itype = typeToResult itype (Rust.Path (Rust.PathSegments [name]))
         ;deferred <- fmap (fmap funTy) (derivedDeferredTypeOf baseTy declr argtypes)
@@ -715,18 +737,18 @@ import Control.Monad
                  ty <- deferred
                   ;addSymbolIdentAction ident $ return ty
                   ;go name (resultType ty)
-
-
-
+      
+      
+      
       }}}}}};wrapMain :: CDeclr -> String -> [CType] -> EnvMonad s ()
 ;wrapMain declr realName argTypes = do{
 
 
 
     (setup, args) <- wrapArgv argTypes
-
-
-
+ 
+ 
+ 
      ;let{ ret = Rust.VarName "cmV0"
       ;emitItems [Rust.Item [] Rust.Private (
           Rust.Function [] "bWFpbg==" [] (Rust.TypeName "KCk=") (statementsToBlock (
@@ -737,26 +759,28 @@ import Control.Monad
               exprToStatements (call "OjpzdGQ6OnByb2Nlc3M6OmV4aXQ=" [Rust.Var ret])
           )))]
       ;where{
-
-
-
+  
+  
+  
           bind mut var val = Rust.Let mut var Nothing (Just val)
-
-
-
+       
+   
+   
            ;call fn args = Rust.Call (Rust.Var (Rust.VarName fn)) args
-
-
-
+       
+   
+   
            ;chain method args obj = Rust.MethodCall obj (Rust.VarName method) args
-
-
-
+       
+   
+   
        };wrapArgv [] = return ([], [])
-
-
-
-      ;wrapArgv (argcType@(IsInt Signed (BitWidth 32))) do{
+  
+  
+  
+      ;wrapArgv (argcType@(IsInt Signed (BitWidth 32))
+              : IsPtr Rust.Mutable (IsPtr Rust.Mutable ty)
+              : rest) | ty == charType = do{
           (envSetup, envArgs) <- wrapEnvp rest
            ;return (setup ++ envSetup, args ++ envArgs)
            ;where{
@@ -765,9 +789,9 @@ import Control.Monad
             ;str = Rust.VarName "c3Ry"
             ;vec = Rust.VarName "dmVj"
             ;setup =
-
-
-
+    
+    
+    
                 [ Rust.StmtItem [] (Rust.Use "OjpzdGQ6Om9zOjp1bml4OjpmZmk6Ok9zU3RyaW5nRXh0")
                 , bind Rust.Mutable argv_storage $
                     chain "Y29sbGVjdDo6PFZlYzxfPj4=" [] $
@@ -780,9 +804,9 @@ import Control.Monad
                             ) (Just (Rust.Var vec))))
                     ] $
                     call "OjpzdGQ6OmVudjo6YXJnc19vcw==" []
-
-
-
+    
+    
+    
                 , bind Rust.Mutable argv $
                     chain "Y29sbGVjdDo6PFZlYzxfPj4=" [] $
                     chain "Y2hhaW4=" [call "U29tZQ==" [call "OjpzdGQ6OnB0cjo6bnVsbF9tdXQ=" []]] $
@@ -792,25 +816,34 @@ import Control.Monad
                     chain "aXRlcl9tdXQ=" [] $
                     Rust.Var argv_storage
                 ]
-
-
-
+    
+    
+    
             ;args =
                 [ Rust.Cast (chain "bGVu" [] (Rust.Var argv_storage)) (toRustType argcType)
                 , chain "YXNfbXV0X3B0cg==" [] (Rust.Var argv)
                 ]
-
-
-
+    
+    
+    
         }};wrapArgv _ = unimplemented declr
-
-
-
+  
+  
+  
       ;wrapEnvp [] = return ([], [])
-      ;wrapEnvp _ = unimplemented declr
-
-
-
+      ;wrapEnvp [arg@(IsPtr Rust.Mutable (IsPtr Rust.Mutable ty))] | ty == charType
+          = return (setup, args)
+          where{
+          environ = Rust.VarName "ZW52aXJvbg=="
+           ;setup =
+               [ Rust.StmtItem [] $
+                   Rust.Extern [Rust.ExternStatic Rust.Immutable environ (toRustType arg)]
+               ]
+           ;args = [Rust.Var environ]
+       };wrapEnvp _ = unimplemented declr
+  
+  
+  
   }};data OuterLabels = OuterLabels
     { onBreak :: Maybe Label
     , onContinue :: Maybe Label
@@ -819,10 +852,20 @@ import Control.Monad
 
 ;newtype SwitchCases = SwitchCases (IntMap.IntMap (Maybe Result))
 
-
-
-
-;type CSourceBuildCFGT s = BuildCFGT (RWST OuterLabels SwitchCases (Map.Map Ident Label) (EnvMonad s)) [Rust.Stmt] Result
+;instance Monoid SwitchCases where{
+    mempty = SwitchCases IntMap.empty
+     ;SwitchCases a `mappend` SwitchCases b = SwitchCases $
+         IntMap.unionWith (liftM2 eitherCase) a b
+         where{
+         eitherCase lhs rhs = Result
+              { resultType = IsBool
+              , resultMutable = Rust.Immutable
+              , result = Rust.LOr (toBool lhs) (toBool rhs)
+              }
+  
+  
+  
+  }};type CSourceBuildCFGT s = BuildCFGT (RWST OuterLabels SwitchCases (Map.Map Ident Label) (EnvMonad s)) [Rust.Stmt] Result
 
 ;interpretStatement :: CStat -> CSourceBuildCFGT s ([Rust.Stmt], Terminator Result) -> CSourceBuildCFGT s ([Rust.Stmt], Terminator Result)
 
@@ -833,9 +876,9 @@ import Control.Monad
      ;(rest, end) <- interpretStatement body next
      ;addBlock label rest end
      ;return ([], Branch label)
-
-
-
+ 
+ 
+ 
  };interpretStatement stmt@(CCase expr body node) next = do{
     selector <- getSwitchExpression stmt
      ;let{ condition = CBinary CEqOp selector expr node
@@ -860,18 +903,18 @@ import Control.Monad
     expr' <- lift $ lift $ interpretExpr False expr
      ;(rest, end) <- next
      ;return (resultToStatements expr' ++ rest, end)
-
-
-
+ 
+ 
+ 
  };interpretStatement (CCompound [] items _) next = mapBuildCFGT (mapRWST scope) $ do{
     foldr interpretBlockItem next items
-
-
-
+ 
+ 
+ 
  };interpretStatement (CIf c t mf _) next = do{
     c' <- lift $ lift $ interpretExpr True c
      ;after <- newLabel
-
+ 
      ;falseLabel <- case mf of{
          Nothing -> return after
           ;Just f -> do{
@@ -879,18 +922,18 @@ import Control.Monad
                ;falseLabel <- newLabel
                ;addBlock falseLabel falseEntry falseTerm
                ;return falseLabel
-
+   
        }};(trueEntry, trueTerm) <- interpretStatement t (return ([], Branch after))
      ;trueLabel <- newLabel
      ;addBlock trueLabel trueEntry trueTerm
-
+ 
      ;(rest, end) <- next
      ;addBlock after rest end
-
+ 
      ;return ([], CondBranch c' trueLabel falseLabel)
-
-
-
+ 
+ 
+ 
  };interpretStatement stmt@(CSwitch expr body node) next = do{
     (bindings, expr') <- case expr of{
          CVar{} -> return ([], expr)
@@ -902,57 +945,60 @@ import Control.Monad
                    ( [Rust.Let Rust.Immutable (Rust.VarName var) Nothing (Just (result rhs))]
                    , CVar ident node
                    )
-
+   
        }};after <- newLabel
      ;(_, SwitchCases cases) <- getSwitchCases expr' $ setBreak after $
          interpretStatement body (return ([], Branch after))
-
-     ;let{ (conditions, defaults) = IntMap.mapEither isDefault cases
+ 
+     ;let{
+         isDefault (Just condition) = Left condition
+          ;isDefault Nothing = Right ()
+      };let{ (conditions, defaults) = IntMap.mapEither isDefault cases
       ;defaultCase <- case IntMap.keys defaults of{
           [] -> return after
            ;[defaultCase] -> return defaultCase
            ;_ -> lift $ lift $ badSource stmt "ZHVwbGljYXRlIGRlZmF1bHQgY2FzZXM="
-
+   
        };entry <- foldrM conditionBlock defaultCase (IntMap.toList conditions)
-
+  
       ;(rest, end) <- next
       ;addBlock after rest end
-
+  
       ;return (bindings, Branch entry)
       ;where{
       conditionBlock (target, condition) defaultCase = do{
            label <- newLabel
             ;addBlock label [] (CondBranch condition target defaultCase)
             ;return label
-
-
-
+    
+    
+    
     }}}};interpretStatement (CWhile c body doWhile _) next = do{
     c' <- lift $ lift $ interpretExpr True c
      ;after <- newLabel
-
+ 
      ;headerLabel <- newLabel
      ;(bodyEntry, bodyTerm) <- setBreak after $ setContinue headerLabel $
          interpretStatement body (return ([], Branch headerLabel))
-
+ 
      ;bodyLabel <- newLabel
      ;addBlock bodyLabel bodyEntry bodyTerm
-
+ 
      ;addBlock headerLabel [] $ case toBool c' of{
          Rust.Lit (Rust.LitBool cont) | cont /= doWhile ->
               Branch (if cont then bodyLabel else after)
           ;_ -> CondBranch c' bodyLabel after
-
+  
       };(rest, end) <- next
      ;addBlock after rest end
-
+ 
      ;return ([], Branch (if doWhile then bodyLabel else headerLabel))
-
-
-
+ 
+ 
+ 
  };interpretStatement (CFor initial mcond mincr body _) next = do{
     after <- newLabel
-
+ 
      ;ret <- mapBuildCFGT (mapRWST scope) $ do{
          prefix <- case initial of{
               Left Nothing -> return []
@@ -960,7 +1006,7 @@ import Control.Monad
                    expr' <- lift $ lift $ interpretExpr False expr
                     ;return (resultToStatements expr')
                 };Right decls -> lift $ lift $ interpretDeclarations makeLetBinding decls
-
+   
            };headerLabel <- newLabel
           ;incrLabel <- case mincr of{
               Nothing -> return headerLabel
@@ -969,36 +1015,36 @@ import Control.Monad
                     ;incrLabel <- newLabel
                     ;addBlock incrLabel (resultToStatements incr') (Branch headerLabel)
                     ;return incrLabel
-
+    
             }};(bodyEntry, bodyTerm) <- setBreak after $ setContinue incrLabel $
               interpretStatement body (return ([], Branch incrLabel))
-
+  
           ;bodyLabel <- newLabel
           ;addBlock bodyLabel bodyEntry bodyTerm
-
+  
           ;cond <- case mcond of{
               Just cond -> do{
                    cond' <- lift $ lift $ interpretExpr True cond
                     ;return (CondBranch cond' bodyLabel after)
                 };Nothing -> return (Branch bodyLabel)
            };addBlock headerLabel [] cond
-
+  
           ;return (prefix, Branch headerLabel)
-
+  
       };(rest, end) <- next
      ;addBlock after rest end
-
+ 
      ;return ret
-
-
-
+ 
+ 
+ 
  };interpretStatement (CGoto ident _) next = do{
     _ <- next
      ;label <- gotoLabel ident
      ;return ([], Branch label)
-
-
-
+ 
+ 
+ 
  };interpretStatement stmt@(CCont _) next = do{
     _ <- next
      ;val <- lift (asks onContinue)
@@ -1011,9 +1057,9 @@ import Control.Monad
      ;case val of{
          Just label -> return ([], Branch label)
           ;Nothing -> lift $ lift $ badSource stmt "YnJlYWsgb3V0c2lkZSBsb29w"
-
-
-
+  
+  
+  
   }};interpretStatement stmt@(CReturn expr _) next = do{
     _ <- next
      ;lift $ lift $ do{
@@ -1023,9 +1069,9 @@ import Control.Monad
                ;Just retTy -> do{
                    expr' <- mapM (fmap (castTo retTy) . interpretExpr True) expr
                     ;return (exprToStatements (Rust.Return expr'), Unreachable)
-
-
-
+    
+    
+    
     }}}};interpretStatement stmt _ = lift $ lift $ unimplemented stmt
 
 
@@ -1046,7 +1092,7 @@ import Control.Monad
      ;case mexpr of{
          Nothing -> lift $ lift $ badSource stmt "Y2FzZSBvdXRzaWRlIHN3aXRjaA=="
           ;Just expr -> return expr
-
+  
   }};addSwitchCase :: Maybe CExpr -> CStat -> CSourceBuildCFGT s ([Rust.Stmt], Terminator Result) -> CSourceBuildCFGT s ([Rust.Stmt], Terminator Result)
 ;addSwitchCase condition body next = do{
     condition' <- lift $ lift $ mapM (interpretExpr True) condition
@@ -1059,7 +1105,7 @@ import Control.Monad
                ;return label
        }};lift $ tell $ SwitchCases $ IntMap.singleton label condition'
      ;return ([], Branch label)
-
+ 
  };getSwitchCases :: CExpr -> CSourceBuildCFGT s a -> CSourceBuildCFGT s (a, SwitchCases)
 ;getSwitchCases expr = mapBuildCFGT wrap
     where{
@@ -1068,9 +1114,9 @@ import Control.Monad
               $ local (\ flow -> flow { switchExpression = Just expr })
               $ listen body
           ;return ((a, cases), st)
-
-
-
+  
+  
+  
   }};gotoLabel :: Ident -> CSourceBuildCFGT s Label
 ;gotoLabel ident = do{
     labels <- lift get
@@ -1080,9 +1126,9 @@ import Control.Monad
                ;lift (put (Map.insert ident label labels))
                ;return label
            };Just label -> return label
-
-
-
+  
+  
+  
   }};cfgToRust :: (Pretty node, Pos node) => node -> CSourceBuildCFGT s ([Rust.Stmt], Terminator Result) -> EnvMonad s [Rust.Stmt]
 ;cfgToRust _node build = do{
     let{ builder = buildCFG $ do{
@@ -1091,45 +1137,45 @@ import Control.Monad
                ;addBlock entry early term
                ;return entry
        };(rawCFG, _) <- evalRWST builder (OuterLabels Nothing Nothing Nothing) Map.empty
-
-
-
+  
+  
+  
       ;let{ cfg = depthFirstOrder (removeEmptyBlocks rawCFG)
        ;let{ (hasGoto, structured) = structureCFG mkBreak mkContinue mkLoop mkIf mkGoto mkMatch cfg
         ;return $ if hasGoto then declCurrent : structured else structured
         ;where{
-
-
-
+    
+    
+    
         loopLabel l = Rust.Lifetime ("bG9vcA==" ++ show l)
          ;mkBreak l = exprToStatements (Rust.Break (fmap loopLabel l))
          ;mkContinue l = exprToStatements (Rust.Continue (fmap loopLabel l))
          ;mkLoop l b = exprToStatements (Rust.Loop (Just (loopLabel l)) (statementsToBlock b))
          ;mkIf c t f = exprToStatements (simplifyIf c (statementsToBlock t) (statementsToBlock f))
-
+     
          ;currentBlock = Rust.VarName "X2N1cnJlbnRCbG9jaw=="
          ;declCurrent = Rust.Let Rust.Mutable currentBlock Nothing Nothing
-         ;mkGoto l = exprToStatements (Rust.Assign (Rust.Var currentBlock) (Rust.K) (fromIntegral l))
+         ;mkGoto l = exprToStatements (Rust.Assign (Rust.Var currentBlock) (Rust.:=) (fromIntegral l))
          ;mkMatch = flip (foldr go)
              where{
              go (l, t) f = exprToStatements (Rust.IfThenElse (Rust.CmpEQ (Rust.Var currentBlock) (fromIntegral l)) (statementsToBlock t) (statementsToBlock f))
-
-
-
+      
+      
+      
               ;simplifyIf c (Rust.Block [] Nothing) (Rust.Block [] Nothing) =
                   result c
-
-
-
+          
+      
+      
               ;simplifyIf c (Rust.Block [] Nothing) f =
                   Rust.IfThenElse (toNotBool c) f (Rust.Block [] Nothing)
-
-
-
+          
+      
+      
               ;simplifyIf c t f = Rust.IfThenElse (toBool c) t f
-
-
-
+          
+      
+      
       }}}}}};interpretBlockItem :: CBlockItem -> CSourceBuildCFGT s ([Rust.Stmt], Terminator Result) -> CSourceBuildCFGT s ([Rust.Stmt], Terminator Result)
 ;interpretBlockItem (CBlockStmt stmt) next = interpretStatement stmt next
 ;interpretBlockItem (CBlockDecl decl) next = do{
@@ -1142,22 +1188,22 @@ import Control.Monad
 
 ;scope :: EnvMonad s a -> EnvMonad s a
 ;scope m = do{
-
+    
     old <- lift get
      ;a <- m
-
+     
      ;lift (modify (\ st -> old { globalState = globalState st }))
      ;return a
-
-
-
+ 
+ 
+ 
  };blockToStatements :: Rust.Block -> [Rust.Stmt]
 ;blockToStatements (Rust.Block stmts mexpr) = case mexpr of{
     Just expr -> stmts ++ exprToStatements expr
      ;Nothing -> stmts
-
-
-
+ 
+ 
+ 
  };statementsToBlock :: [Rust.Stmt] -> Rust.Block
 ;statementsToBlock [Rust.Stmt (Rust.BlockExpr stmts)] = stmts
 ;statementsToBlock stmts = Rust.Block stmts Nothing
@@ -1209,16 +1255,16 @@ import Control.Monad
           , resultMutable = maybe Rust.Immutable resultMutable mfinal'
           , result = Rust.BlockExpr (Rust.Block (concat effects') (fmap result mfinal'))
           }
-
-
-
+  
+  
+  
   }};interpretExpr demand expr@(CAssign op lhs rhs _) = do{
     lhs' <- interpretExpr True lhs
      ;rhs' <- interpretExpr True rhs
      ;compound expr False demand op lhs' rhs'
-
-
-
+ 
+ 
+ 
  };interpretExpr demand expr@(CCond c (Just t) f _) = do{
     c' <- fmap toBool (interpretExpr True c)
      ;t' <- interpretExpr demand t
@@ -1232,16 +1278,16 @@ import Control.Monad
              }
      ;where{
      mkIf c' t' f' = Rust.IfThenElse c' (Rust.Block [] (Just t')) (Rust.Block [] (Just f'))
-
-
-
+  
+  
+  
   }};interpretExpr _ expr@(CBinary op lhs rhs _) = do{
     lhs' <- interpretExpr True lhs
      ;rhs' <- interpretExpr True rhs
      ;binop expr op lhs' rhs'
-
-
-
+ 
+ 
+ 
  };interpretExpr _ (CCast decl expr _) = do{
     (_mut, ty) <- typeName decl
      ;expr' <- interpretExpr (ty /= IsVoid) expr
@@ -1250,17 +1296,17 @@ import Control.Monad
          , resultMutable = Rust.Immutable
          , result = (if ty == IsVoid then result else castTo ty) expr'
          }
-
-
-
+ 
+ 
+ 
  };interpretExpr demand node@(CUnary op expr _) = case op of{
     CPreIncOp -> incdec False CAddAssOp
      ;CPreDecOp -> incdec False CSubAssOp
      ;CPostIncOp -> incdec True CAddAssOp
      ;CPostDecOp -> incdec True CSubAssOp
-
-
-
+ 
+ 
+ 
      ;CAdrOp -> do{
          expr' <- interpretExpr True expr
           ;let{ ty' = IsPtr (resultMutable expr') (resultType expr')
@@ -1269,9 +1315,9 @@ import Control.Monad
                , resultMutable = Rust.Immutable
                , result = Rust.Cast (Rust.Borrow (resultMutable expr') (result expr')) (toRustType ty')
                }
-
-
-
+   
+   
+   
        }};CIndOp -> do{
          expr' <- interpretExpr True expr
           ;case resultType expr' of{
@@ -1282,9 +1328,9 @@ import Control.Monad
                    }
                ;IsFunc{} -> return expr'
                ;_ -> badSource node "ZGVyZWZlcmVuY2Ugb2Ygbm9uLXBvaW50ZXI="
-
-
-
+   
+   
+   
        }};CPlusOp -> do{
          expr' <- interpretExpr demand expr
           ;let{ ty' = intPromote (resultType expr')
@@ -1293,17 +1339,17 @@ import Control.Monad
                , resultMutable = Rust.Immutable
                , result = castTo ty' expr'
                }
-
-
-
+   
+   
+   
        }};CMinOp -> fmap wrapping $ simple Rust.Neg
-
-
-
+ 
+ 
+ 
      ;CCompOp -> simple Rust.Not
-
-
-
+ 
+ 
+ 
      ;CNegOp -> do{
          expr' <- interpretExpr True expr
           ;return Result
@@ -1311,9 +1357,9 @@ import Control.Monad
               , resultMutable = Rust.Immutable
               , result = toNotBool expr'
               }
-
-
-
+  
+  
+  
       };where{
      incdec returnOld assignop = do{
           expr' <- interpretExpr True expr
@@ -1330,9 +1376,9 @@ import Control.Monad
                 , resultMutable = Rust.Immutable
                 , result = f (castTo ty' expr')
                 }
-
-
-
+    
+    
+    
     }}}};interpretExpr _ (CSizeofExpr e _) = do{
     e' <- interpretExpr True e
      ;return (rustSizeOfType (toRustType (resultType e')))
@@ -1345,9 +1391,9 @@ import Control.Monad
  };interpretExpr _ (CAlignofType decl _) = do{
     (_mut, ty) <- typeName decl
      ;return (rustAlignOfType (toRustType ty))
-
-
-
+ 
+ 
+ 
  };interpretExpr _ expr@(CIndex lhs rhs _) = do{
     lhs' <- interpretExpr True lhs
      ;rhs' <- interpretExpr True rhs
@@ -1369,9 +1415,9 @@ import Control.Monad
           , resultMutable = mut
           , result = Rust.Index arr (castTo (IsInt Unsigned WordWidth) idx)
           }
-
-
-
+  
+  
+  
   }};interpretExpr _ expr@(CCall func args _) = do{
     func' <- interpretExpr True func
      ;case resultType func' of{
@@ -1384,9 +1430,9 @@ import Control.Monad
                    }
            };_ -> badSource expr "ZnVuY3Rpb24gY2FsbCB0byBub24tZnVuY3Rpb24="
       };where{
-
-
-
+ 
+ 
+ 
      castArgs _ [] [] = return []
       ;castArgs variadic (ty : tys) (arg : rest) = do{
           arg' <- interpretExpr True arg
@@ -1395,17 +1441,17 @@ import Control.Monad
        };castArgs True [] rest = mapM (fmap promoteArg . interpretExpr True) rest
       ;castArgs False [] _ = badSource expr "YXJndW1lbnRzICh0b28gbWFueSk="
       ;castArgs _ _ [] = badSource expr "YXJndW1lbnRzICh0b28gZmV3KQ=="
-
-
-
+  
+  
+  
       ;promoteArg :: Result -> Rust.Expr
       ;promoteArg r = case resultType r of{
           IsFloat _ -> castTo (IsFloat 64) r
            ;IsArray mut _ el -> castTo (IsPtr mut el) r
            ;ty -> castTo (intPromote ty) r
-
-
-
+   
+   
+   
    }}};interpretExpr _ expr@(CMember obj ident deref node) = do{
     obj' <- interpretExpr True $ if deref then CUnary CIndOp obj node else obj
      ;objTy <- completeType (resultType obj')
@@ -1421,15 +1467,15 @@ import Control.Monad
           , resultMutable = resultMutable obj'
           , result = Rust.Member (result obj') (Rust.VarName field)
           }
-
-
-
+  
+  
+  
   }};interpretExpr _ expr@(CVar ident _) = do{
     sym <- getSymbolIdent ident
      ;maybe (badSource expr "dW5kZWZpbmVkIHZhcmlhYmxl") return sym
-
-
-
+ 
+ 
+ 
  };interpretExpr _ expr@(CConst c) = case c of{
 
 
@@ -1437,6 +1483,7 @@ import Control.Monad
     CIntConst (CInteger v repr flags) _ ->
          let{
              allow_signed = not (testFlag FlagUnsigned flags)
+              ;allow_unsigned = not allow_signed || repr /= DecRepr
               ;widths =
                   [ (32 :: Int,
                       if any (`testFlag` flags) [FlagLongLong, FlagLong]
@@ -1460,35 +1507,35 @@ import Control.Monad
          (v, "") -> return (literalNumber (IsFloat 64) (Rust.LitFloat v))
           ;(v, [_]) -> return (literalNumber (IsFloat 32) (Rust.LitFloat v))
           ;_ -> badSource expr "ZmxvYXQ="
-
-
-
+  
+  
+  
       };CCharConst (CChar ch False) _ -> return Result
          { resultType = charType
          , resultMutable = Rust.Immutable
          , result = Rust.Lit (Rust.LitByteChar ch)
          }
-
-
-
+ 
+ 
+ 
      ;CStrConst (CString str False) _ -> return Result
          { resultType = IsArray Rust.Immutable (length str + 1) charType
          , resultMutable = Rust.Immutable
-         , result = Rust.Deref (Rust.Lit (Rust.LitByteStr (str ++ "MA==")))
+         , result = Rust.Deref (Rust.Lit (Rust.LitByteStr (str ++ "Tg==")))
          }
      ;_ -> unimplemented expr
      ;where{
-
-
-
+ 
+ 
+ 
      literalNumber ty lit = Result
           { resultType = ty
           , resultMutable = Rust.Immutable
           , result = Rust.Lit (lit (toRustType ty))
           }
-
-
-
+  
+  
+  
   }};interpretExpr _ (CCompoundLit decl initials info) = do{
     (mut, ty) <- typeName decl
      ;final <- interpretInitializer ty (CInitList initials info)
@@ -1497,9 +1544,9 @@ import Control.Monad
          , resultMutable = mut
          , result = final
          }
-
-
-
+ 
+ 
+ 
  };interpretExpr demand stat@(CStatExpr (CCompound [] stmts _) _) = scope $ do{
     let{ (effects, final) = case last stmts of{
               CBlockStmt (CExpr expr _) | demand -> (init stmts, expr)
@@ -1511,17 +1558,30 @@ import Control.Monad
           , resultMutable = maybe Rust.Immutable resultMutable final'
           , result = Rust.BlockExpr (Rust.Block effects' (fmap result final'))
           }
-
-
-
+  
+  
+  
   }};interpretExpr _ expr = unimplemented expr
 
 
 
 ;wrapping :: Result -> Result
-;wrapping r = r
+;wrapping r@(Result { resultType = IsInt Unsigned _ }) = case result r of{
+    Rust.Add lhs rhs -> r { result = Rust.MethodCall lhs (Rust.VarName "d3JhcHBpbmdfYWRk") [rhs] }
+     ;Rust.Sub lhs rhs -> r { result = Rust.MethodCall lhs (Rust.VarName "d3JhcHBpbmdfc3Vi") [rhs] }
+     ;Rust.Mul lhs rhs -> r { result = Rust.MethodCall lhs (Rust.VarName "d3JhcHBpbmdfbXVs") [rhs] }
+     ;Rust.Div lhs rhs -> r { result = Rust.MethodCall lhs (Rust.VarName "d3JhcHBpbmdfZGl2") [rhs] }
+     ;Rust.Mod lhs rhs -> r { result = Rust.MethodCall lhs (Rust.VarName "d3JhcHBpbmdfcmVt") [rhs] }
+     ;Rust.Neg e -> r { result = Rust.MethodCall e (Rust.VarName "d3JhcHBpbmdfbmVn") [] }
+     ;_ -> r
+ };wrapping r = r
 
 ;toPtr :: Result -> Maybe Result
+;toPtr ptr@(Result { resultType = IsArray mut _ el }) = Just ptr
+    { resultType = IsPtr mut el
+    , result = castTo (IsPtr mut el) ptr
+    }
+;toPtr ptr@(Result { resultType = IsPtr{} }) = Just ptr
 ;toPtr _ = Nothing
 
 ;binop :: CExpr -> CBinaryOp -> Result -> Result -> EnvMonad s Result
@@ -1547,7 +1607,7 @@ import Control.Monad
                  ;return Result
                      { resultType = ty
                      , resultMutable = Rust.Immutable
-                     , result = (Rust.MethodCall (castTo ty lhs') (Rust.VarName "d3JhcHBpbmdfc3Vi") [castTo ty rhs']) castTo ty size
+                     , result = (Rust.MethodCall (castTo ty lhs') (Rust.VarName "d3JhcHBpbmdfc3Vi") [castTo ty rhs']) / castTo ty size
                      }
              }}};(Just ptr, _) -> return ptr { result = Rust.MethodCall (result ptr) (Rust.VarName "b2Zmc2V0") [Rust.Neg (castTo (IsInt Signed WordWidth) rhs)] }
           ;_ -> promote expr Rust.Sub lhs rhs
@@ -1576,9 +1636,9 @@ import Control.Monad
        };comparison op' = do{
           res <- promotePtr expr op' lhs rhs
            ;return res { resultType = IsBool }
-
-
-
+   
+   
+   
    }}};compound :: CExpr -> Bool -> Bool -> CAssignOp -> Result -> Result -> EnvMonad s Result
 ;compound expr returnOld demand op lhs rhs = do{
     let{ op' = case op of{
@@ -1593,28 +1653,30 @@ import Control.Monad
                ;CAndAssOp -> Just CAndOp
                ;CXorAssOp -> Just CXorOp
                ;COrAssOp  -> Just COrOp
-
-
-
+   
+   
+   
        };let{ duplicateLHS = isJust op' || demand
-
-
-
+   
+   
+   
        ;let{ (bindings1, dereflhs, boundrhs) =
                 if not duplicateLHS || hasNoSideEffects (result lhs)
                 then ([], lhs, rhs)
                 else
-                    let{ lhsvar = Rust.VarName "X2xocw=="
-                     ;in ([ Rust.Let Rust.Immutable rhsvar Nothing (Just (result rhs))
-                         , Rust.Let Rust.Immutable lhsvar Nothing (Just (Rust.Borrow Rust.Mutable (result lhs)))
-                         ], lhs { result = Rust.Deref (Rust.Var lhsvar) }, rhs { result = Rust.Var rhsvar })
-         };rhs' <- case op' of{
+                    let{
+                        lhsvar = Rust.VarName "X2xocw=="
+                         ;rhsvar = Rust.VarName "X3Jocw=="
+                     }in ([ Rust.Let Rust.Immutable rhsvar Nothing (Just (result rhs))
+                        , Rust.Let Rust.Immutable lhsvar Nothing (Just (Rust.Borrow Rust.Mutable (result lhs)))
+                        ], lhs { result = Rust.Deref (Rust.Var lhsvar) }, rhs { result = Rust.Var rhsvar })
+        ;rhs' <- case op' of{
             Just o -> binop expr o dereflhs boundrhs
              ;Nothing -> return boundrhs
-         };let{ assignment = Rust.Assign (result dereflhs) (Rust.K) (castTo (resultType lhs) rhs')
-
-
-
+         };let{ assignment = Rust.Assign (result dereflhs) (Rust.:=) (castTo (resultType lhs) rhs')
+     
+     
+     
          ;let{ (bindings2, ret) =
                   if not demand
                   then ([], Nothing)
@@ -1623,9 +1685,9 @@ import Control.Monad
                   else
                       let{ oldvar = Rust.VarName "X29sZA=="
                        ;in ([Rust.Let Rust.Immutable oldvar Nothing (Just (result dereflhs))], Just (Rust.Var oldvar))
-
-
-
+       
+       
+       
            };return $ case Rust.Block (bindings1 ++ bindings2 ++ exprToStatements assignment) ret of{
               b@(Rust.Block body Nothing) -> Result
                    { resultType = IsVoid
@@ -1636,17 +1698,17 @@ import Control.Monad
                     }}
                ;b -> lhs { result = Rust.BlockExpr b }
            };where{
-
-
-
+      
+      
+      
           hasNoSideEffects (Rust.Var{}) = True
            ;hasNoSideEffects (Rust.Path{}) = True
            ;hasNoSideEffects (Rust.Member e _) = hasNoSideEffects e
            ;hasNoSideEffects (Rust.Deref p) = hasNoSideEffects p
            ;hasNoSideEffects _ = False
-
-
-
+       
+       
+       
        }}}}}}};rustSizeOfType :: Rust.Type -> Result
 ;rustSizeOfType (Rust.TypeName ty) = Result
         { resultType = IsInt Unsigned WordWidth
@@ -1674,7 +1736,27 @@ import Control.Monad
 
 
 
-;castTo IsBool source = toBool source
+;castTo target (Result { resultType = IsArray mut _ el, result = source }) =
+    castTo target Result
+        { resultType = IsPtr mut el
+        , resultMutable = Rust.Immutable
+        , result = Rust.MethodCall source (Rust.VarName method) []
+        }
+    where{
+    method = case mut of{
+         Rust.Immutable -> "YXNfcHRy"
+          ;Rust.Mutable -> "YXNfbXV0X3B0cg=="
+  
+  
+  
+  }};castTo IsBool source = toBool source
+
+
+
+;castTo target@(IsInt{}) (Result { result = Rust.Lit (Rust.LitInt n repr _) })
+    = Rust.Lit (Rust.LitInt n repr (toRustType target))
+;castTo (IsInt Signed w) (Result { result = Rust.Neg (Rust.Lit (Rust.LitInt n repr _)) })
+    = Rust.Neg (Rust.Lit (Rust.LitInt n repr (toRustType (IsInt Signed w))))
 
 
 
@@ -1686,22 +1768,39 @@ import Control.Monad
 
 
 
+;toBool (Result { result = Rust.Lit (Rust.LitInt 0 _ _) })
+    = Rust.Lit (Rust.LitBool False)
+;toBool (Result { result = Rust.Lit (Rust.LitInt 1 _ _) })
+    = Rust.Lit (Rust.LitBool True)
+;toBool (Result { resultType = t, result = v }) = case t of{
 
 
 
     IsBool -> v
-
-
-
-    IsPtr _ _ -> Rust.Not (Rust.MethodCall v (Rust.VarName "aXNfbnVsbA==") [])
-
-
-
-    _ -> Rust.CmpNE v 0
-
-
-
-;intPromote :: CType -> CType
+ 
+ 
+ 
+     ;IsPtr _ _ -> Rust.Not (Rust.MethodCall v (Rust.VarName "aXNfbnVsbA==") [])
+ 
+ 
+ 
+     ;_ -> Rust.CmpNE v 0
+ 
+ 
+ 
+ };toNotBool :: Result -> Rust.Expr
+;toNotBool (Result { result = Rust.Lit (Rust.LitInt 0 _ _) })
+    = Rust.Lit (Rust.LitBool True)
+;toNotBool (Result { result = Rust.Lit (Rust.LitInt 1 _ _) })
+    = Rust.Lit (Rust.LitBool False)
+;toNotBool (Result { resultType = t, result = v }) = case t of{
+    IsBool -> Rust.Not v
+     ;IsPtr _ _ -> Rust.MethodCall v (Rust.VarName "aXNfbnVsbA==") []
+     ;_ -> Rust.CmpEQ v 0
+ 
+ 
+ 
+ };intPromote :: CType -> CType
 
 
 
@@ -1727,9 +1826,9 @@ import Control.Monad
 
 
         (a, b) | a == b -> Just a
-
-
-
+     
+ 
+ 
          ;(IsInt Signed sw, IsInt Unsigned uw) -> mixedSign sw uw
          ;(IsInt Unsigned uw, IsInt Signed sw) -> mixedSign sw uw
          ;(IsInt as aw, IsInt _bs bw) -> do{
@@ -1737,25 +1836,25 @@ import Control.Monad
               ;Just (IsInt as (if rank == GT then aw else bw))
           };_ -> Nothing
          ;where{
-
-
-
+     
+ 
+ 
          mixedSign sw uw = do{
               rank <- integerConversionRank uw sw
                ;Just $ case rank of{
                    GT -> IsInt Unsigned uw
                     ;EQ -> IsInt Unsigned uw
-
-
-
+        
+    
+    
                     ;_ | bitWidth 64 uw < bitWidth 32 sw -> IsInt Signed sw
-
-
-
+        
+    
+    
                     ;_ -> IsInt Unsigned sw
-
-
-
+        
+    
+    
     }}}};integerConversionRank :: IntWidth -> IntWidth -> Maybe Ordering
 ;integerConversionRank (BitWidth a) (BitWidth b) = Just (compare a b)
 ;integerConversionRank WordWidth WordWidth = Just EQ
@@ -1786,9 +1885,9 @@ import Control.Monad
          , "IGFuZCA="
          , show (resultType b)
          ]
-
-
-
+ 
+ 
+ 
  };compatiblePtr :: CType -> CType -> CType
 ;compatiblePtr (IsPtr _ IsVoid) b = b
 ;compatiblePtr (IsArray mut _ el) b = compatiblePtr (IsPtr mut el) b
@@ -1828,9 +1927,9 @@ import Control.Monad
           , resultMutable = Rust.Immutable
           , result = op (castTo ty a) (castTo ty b)
           }
-
-
-
+  
+  
+  
   }};data Signed = Signed | Unsigned
     deriving (Show, Eq)
 
@@ -1875,11 +1974,12 @@ import Control.Monad
      ;IsEnum aName == IsEnum bName = aName == bName
      ;IsIncomplete aName == IsIncomplete bName = aName == bName
      ;_ == _ = False
-
-
-
+ 
+ 
+ 
  };toRustType :: CType -> Rust.Type
 ;toRustType IsBool = Rust.TypeName "Ym9vbA=="
+;toRustType (IsInt s w) = Rust.TypeName ((case s of{ Signed -> '0'; Unsigned -> '0'}) : (case w of{ BitWidth b -> show b; WordWidth -> "c2l6ZQ=="}))
 ;toRustType (IsFloat w) = Rust.TypeName ('0' : show w)
 ;toRustType IsVoid = Rust.TypeName "OjpzdGQ6Om9zOjpyYXc6OmNfdm9pZA=="
 ;toRustType (IsFunc retTy args variadic) = Rust.TypeName $ concat
@@ -1943,12 +2043,12 @@ import Control.Monad
                     ;lift $ lift $ writeSTRef cacheRef (Right val)
                     ;return val
                 };Right val -> return val
-
-
-
+   
+   
+   
    }}};baseTypeOf :: [CDeclSpec] -> EnvMonad s (Maybe CStorageSpec, EnvMonad s IntermediateType)
 ;baseTypeOf specs = do{
-
+    
     let{ (storage, _attributes, basequals, basespecs, _inlineNoReturn, _align) = partitionDeclSpecs specs
       ;mstorage <- case storage of{
           [] -> return Nothing
@@ -1957,21 +2057,21 @@ import Control.Monad
        };base <- typedef (mutable basequals) basespecs
       ;return (mstorage, base)
       ;where{
-
-
-
+  
+  
+  
       typedef mut [spec@(CTypeDef ident _)] = do{
-
-
-
+   
+   
+   
            (name, mty) <- getTypedefIdent ident
             ;case mty of{
                 Just deferred | mut == Rust.Immutable ->
                      return (fmap (\ itype -> itype { typeMutable = Rust.Immutable }) deferred)
                  ;Just deferred -> return deferred
-
-
-
+     
+     
+     
                  ;Nothing | name == "X19idWlsdGluX3ZhX2xpc3Q=" -> runOnce $ do{
                      ty <- emitIncomplete Type ident
                       ;return IntermediateType
@@ -1980,32 +2080,32 @@ import Control.Monad
                           , typeRep = IsPtr Rust.Mutable ty
                           }
                   };Nothing -> badSource spec "dW5kZWZpbmVkIHR5cGU="
-
-
-
+     
+     
+     
          }};typedef mut other = do{
            deferred <- singleSpec other
             ;return (fmap (simple mut) deferred)
-
+    
         };simple mut ty = IntermediateType
            { typeMutable = mut
            , typeIsFunc = False
            , typeRep = ty
            }
-
-
-
+   
+   
+   
        ;singleSpec [CVoidType _] = return (return IsVoid)
        ;singleSpec [CBoolType _] = return (return IsBool)
-
-
-
+   
+   
+   
        ;singleSpec [CSUType (CStruct CStructTag (Just ident) Nothing _ _) _] = do{
            mty <- getTagIdent ident
             ;return $ fromMaybe (emitIncomplete Struct ident) mty
-
-
-
+    
+    
+    
         };singleSpec [CSUType (CStruct CStructTag mident (Just declarations) _ _) _] = do{
            deferredFields <- fmap concat $ forM declarations $ \ declaration -> case declaration of{
               CStaticAssert {} -> return []
@@ -2021,13 +2121,13 @@ import Control.Monad
                         };(_, Nothing, Just _size) -> do{
                            return ("PGJpdGZpZWxkPg==", unimplemented declaration)
                         };_ -> badSource declaration "ZmllbGQgaW4gc3RydWN0"
-
-
-
+       
+       
+       
                }}};deferred <- runOnce $ do{
-
-
-
+    
+    
+    
                 (shouldEmit, name) <- case mident of{
                      Just ident -> do{
                           rewrites <- lift (asks itemRewrites)
@@ -2037,31 +2137,31 @@ import Control.Monad
                         }};Nothing -> do{
                           name <- uniqueName "U3RydWN0"
                            ;return (True, name)
-
-
-
+       
+       
+       
                    }};fields <- forM deferredFields $ \ (fieldName, deferred) -> do{
                      itype <- deferred
                       ;return (fieldName, typeRep itype)
-
-
-
+      
+      
+      
                   };let{ attrs = [Rust.Attribute "ZGVyaXZlKENvcHkp", Rust.Attribute "cmVwcihDKQ=="]
                   ;when shouldEmit $ emitItems
                       [ Rust.Item attrs Rust.Public (Rust.Struct name [ (field, toRustType fieldTy) | (field, fieldTy) <- fields ])
                       , Rust.Item [] Rust.Private (Rust.CloneImpl (Rust.TypeName name))
                       ]
                   ;return (IsStruct name fields)
-
-
-
+      
+      
+      
               }};case mident of{
                 Just ident -> addTagIdent ident deferred
                  ;Nothing -> return ()
              };return deferred
-
-
-
+    
+    
+    
         };singleSpec [CSUType (CStruct CUnionTag mident _ _ _) node] = runOnce $ do{
            ident <- case mident of{
                 Just ident -> return ident
@@ -2069,17 +2169,17 @@ import Control.Monad
                      name <- uniqueName "VW5pb24="
                       ;return (internalIdentAt (posOfNode node) name)
               }};emitIncomplete Union ident
-
-
-
+    
+    
+    
         };singleSpec [spec@(CEnumType (CEnum (Just ident) Nothing _ _) _)] = do{
            mty <- getTagIdent ident
             ;case mty of{
                 Just ty -> return ty
                  ;Nothing -> badSource spec "dW5kZWZpbmVkIGVudW0="
-
-
-
+     
+     
+     
          }};singleSpec [CEnumType (CEnum mident (Just items) _ _) _] = do{
            deferred <- runOnce $ do{
                 (shouldEmit, name) <- case mident of{
@@ -2091,9 +2191,9 @@ import Control.Monad
                         }};Nothing -> do{
                           name <- uniqueName "RW51bQ=="
                            ;return (True, name)
-
-
-
+       
+                   
+                   
                    }};enums <- forM items $ \ (ident, mexpr) -> do{
                      let{ enumName = applyRenames ident
                        ;case mexpr of{
@@ -2101,9 +2201,9 @@ import Control.Monad
                             ;Just expr -> do{
                                 expr' <- interpretExpr True expr
                                  ;return (Rust.EnumeratorExpr enumName (castTo enumReprType expr'))
-
-
-
+         
+         
+         
                      }}}};let{ Rust.TypeName repr = toRustType enumReprType
                   ;let{ attrs = [ Rust.Attribute "ZGVyaXZlKENsb25lLCBDb3B5KQ=="
                                , Rust.Attribute (concat [ "cmVwcig=", repr, "KQ==" ])
@@ -2111,7 +2211,7 @@ import Control.Monad
                    ;when shouldEmit $
                        emitItems [Rust.Item attrs Rust.Public (Rust.Enum name enums)]
                    ;return (IsEnum name)
-
+       
                }}};forM_ items $ \ (ident, _mexpr) -> addSymbolIdentAction ident $ do{
                 IsEnum name <- deferred
                  ;return Result
@@ -2119,16 +2219,16 @@ import Control.Monad
                      , resultMutable = Rust.Immutable
                      , result = Rust.Path (Rust.PathSegments [name, applyRenames ident])
                      }
-
+     
              };case mident of{
                 Just ident -> addTagIdent ident deferred
                  ;Nothing -> return ()
              };return deferred
-
-
-
+    
+    
+    
         };singleSpec other = return (foldrM arithmetic (IsInt Signed (BitWidth 32)) other)
-
+   
        ;arithmetic :: CTypeSpec -> CType -> EnvMonad s CType
        ;arithmetic (CSignedType _) (IsInt _ width) = return (IsInt Signed width)
        ;arithmetic (CUnsigType _) (IsInt _ width) = return (IsInt Unsigned width)
@@ -2140,9 +2240,9 @@ import Control.Monad
        ;arithmetic (CFloatType _) _ = return (IsFloat 32)
        ;arithmetic (CDoubleType _) _ = return (IsFloat 64)
        ;arithmetic spec _ = unimplemented spec
-
-
-
+   
+   
+   
    }}};derivedTypeOf :: EnvMonad s IntermediateType -> CDeclr -> EnvMonad s IntermediateType
 ;derivedTypeOf deferred declr = join (derivedDeferredTypeOf deferred declr [])
 
@@ -2157,9 +2257,9 @@ import Control.Monad
          basetype <- deferred
           ;foldrM ($) basetype derived'
       };where{
-
-
-
+ 
+ 
+ 
      derive (CPtrDeclr quals _) = return $ \ itype ->
           if typeIsFunc itype
           then return itype { typeIsFunc = False }
@@ -2179,9 +2279,9 @@ import Control.Monad
                    { typeMutable = mutable quals
                    , typeRep = IsArray (typeMutable itype) (fromInteger size) (typeRep itype)
                    }
-
-
-
+   
+   
+   
        };derive (CFunDeclr foo _ _) = do{
           let{ preAnsiArgs = Map.fromList
                     [ (argname, CDecl argspecs [(Just declr', Nothing, Nothing)] pos)
@@ -2217,9 +2317,9 @@ import Control.Monad
                                     ;orig -> orig
                             };return (fmap ((,) (typeMutable itype)) argname, ty)
                    }}}| arg@(CDecl argspecs declr' _) <-
-
-
-
+    
+    
+    
                     case args of{
                     [CDecl [CTypeSpec (CVoidType _)] [] _] -> []
                      ;_ -> args
@@ -2231,9 +2331,9 @@ import Control.Monad
                      { typeIsFunc = True
                      , typeRep = IsFunc (typeRep itype) args'' variadic
                      }
-
-
-
+     
+     
+     
      }}}}};mutable :: [CTypeQualifier a] -> Rust.Mutable
 ;mutable quals = if any (\ q -> case q of{ CConstQual _ -> True; _ -> False}) quals then Rust.Immutable else Rust.Mutable
 

@@ -31,6 +31,9 @@ fn strip_comments(text: &str) -> String {
     let re = Regex::new(r"(?m)^#(if|ifn?def|endif|else).*").unwrap();
     let text = re.replace_all(&text, "").to_string();
 
+    let re = Regex::new(r#"\\NUL"#).unwrap();
+    let text = re.replace_all(&text, r#"N"#).to_string();
+
     let re = Regex::new(r#"'(\\.|[^']|\\ESC)'"#).unwrap();
     let text = re.replace_all(&text, r#"'0'"#).to_string();
 
@@ -66,7 +69,14 @@ fn commify(val: &str) -> String {
     // Check if this is the first word in the line.
     let mut first = true;
 
-    let commentless = strip_comments(val);
+    let mut commentless = strip_comments(val);
+
+    // HACK
+    commentless = commentless.replace("let lhsvar", "let\n                    lhsvar");
+    commentless = commentless.replace("let allow_signed", "let\n            allow_signed");
+    commentless = commentless.replace("let isDefault", "let\n        isDefault");
+    commentless = commentless.replace("let returnValue", "let\n                    returnValue");
+
     let mut v: &str = &commentless;
     while v.len() > 0 {
         if let Some(cap) = re_space.captures(v) {
