@@ -1,9 +1,24 @@
-// ERROR: cannot yet convert file "./corrode/src/Language/Rust/AST.hs"
-
-// ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/C.lhs"
-
-// ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/CFG.lhs"
-
+/* ERROR: cannot yet convert file "./corrode/src/Language/Rust/AST.hs"
+Error: Unrecognized token `where`:
+ 38 |           ;LitBool b -> text $ if b then "dHJ1ZQ==" else "ZmFsc2U="
+ 39 |           ;LitInt i repr (TypeName ty) -> text $ s ++ ty
+ 40 |               where
+~~~~~~~~~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/C.lhs"
+Error: Unrecognized token `where`:
+267 |     {Left msg -> Left msg
+268 |      ;Right _ -> Right items'
+269 |      ;where {initFlow = FunctionContext
+~~~~~~~~~~~~^
+*/
+/* ERROR: cannot yet convert file "./corrode/src/Language/Rust/Corrode/CFG.lhs"
+Error: Unrecognized token `;`:
+ 49 |
+ 50 |  };data Unordered
+ 51 | ;data DepthFirst
+~~~~~~^
+*/
 mod Language_Rust_Corrode_CrateMap {
     #[derive(Eq, Ord, Show)]
     struct ItemKind(Enum, Struct, Union, Type, Symbol);
@@ -42,8 +57,8 @@ mod Language_Rust_Idiomatic {
 
     fn tailBlock(__0: Rust.Block) -> Rust.Block {
         match (__0) {
-            Rust.Block(b, Just(Pair(Span([Ref(Ident("tailExpr"))]), Span([Ref(Ident("Just")), Ref(Ident("e"))])))) => Rust.Block(b, e),
-            Rust.Block(Pair(Span([Ref(Ident("unsnoc"))]), Span([Ref(Ident("Just")), Tuple([Span([Ref(Ident("b"))]), Span([Ref(Ident("Rust.Stmt")), Tuple([Pair(Span([Ref(Ident("tailExpr"))]), Span([Ref(Ident("Just")), Ref(Ident("e"))]))])])])])), Nothing) => Rust.Block(b, e),
+            Rust.Block(b, Just((tailExpr -> Just(e)))) => Rust.Block(b, e),
+            Rust.Block((unsnoc -> Just((b, Rust.Stmt((tailExpr -> Just(e)))))), Nothing) => Rust.Block(b, e),
             b => b,
         }
     }
@@ -59,9 +74,9 @@ mod Language_Rust_Idiomatic {
 
     fn unsnoc(__0: Vec<a>) -> Maybe((Vec<a>, a)) {
         match (__0) {
-            Vec<> => Nothing,
-            x(EmptyParen, xs) => match unsnoc(xs) {
-                    Just (a, b) => Just((:(x, a), b)),
+            [] => Nothing,
+            x(<todo>, xs) => match unsnoc(xs) {
+                    Just, (a, b) => Just((:(x, a), b)),
                     Nothing => Just((vec![], x)),
                 },
         }

@@ -6,7 +6,7 @@ extern crate regex;
 extern crate walkdir;
 
 use corroder_parser::ast;
-use corroder_parser::ast::{Ty, Expr};
+use corroder_parser::ast::{Expr, Pat, Ty};
 use corroder_parser::calculator;
 use corroder_parser::util::{print_parse_error, simplify_parse_error};
 
@@ -293,13 +293,13 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                         }
                         out.push(format!("{}{} => if {},",
                             state.indent(),
-                            label.iter().map(|x| print_type(state, x)).collect::<Vec<_>>().join(" "),
+                            print_patterns(state, label),
                             inner.join("\n")));
                     }
                     ast::CaseCond::Direct(label, arm) => {
                         out.push(format!("{}{} => {},",
                             state.tab().indent(),
-                            label.iter().map(|x| print_type(state, x)).collect::<Vec<_>>().join(" "),
+                            print_patterns(state, label),
                             print_expr(state.tab(), &arm)));
                     }
                 }
@@ -325,6 +325,43 @@ fn unpack_fndef(t: Ty) -> Vec<Ty> {
     }
 }
 
+fn print_pattern(state: PrintState, pat: &Pat) -> String {
+    match *pat {
+        Pat::Ref(ast::Ident(ref s)) => s.to_string(),
+        Pat::Span(ref span) => {
+            let mut out_span = print_pattern(state.tab(), &span[0]);
+            if span.len() > 1 {
+                out_span.push_str(&format!("({})", print_patterns(state.tab(), &span[1..])));
+            }
+            out_span
+        }
+        Pat::Str(ref s) => {
+            let decoded = &base64::decode(s)
+                .map(|vec| String::from_utf8_lossy(&vec).into_owned())
+                .unwrap_or_else(|_| "@@WEIRD BAD BASE64 STR@@".to_string());
+            format!("{:?}", decoded)
+        }
+        Pat::Num(n) => format!("{}", n),
+        Pat::Tuple(ref pats) => {
+            if pats.len() == 1 {
+                print_pattern(state.tab(), &pats[0])
+            } else {
+                format!("({})", print_patterns(state.tab(), pats))
+            }
+        }
+        Pat::Brackets(ref pats) => {
+            format!("[{}]", print_patterns(state.tab(), pats))
+        }
+        Pat::Arrow(ast::Ident(ref s), ref p) => {
+            format!("({} -> {})", s, print_pattern(state.tab(), &**p))
+        }
+        Pat::Not(ref s) => print_pattern(state, &**s),
+        Pat::EmptyParen => format!("()"),
+        Pat::Dummy => format!("<todo>"),
+    }
+}
+
+
 fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
     match *t.borrow() {
         Ty::Ref(ast::Ident(ref s)) => {
@@ -337,18 +374,10 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Not(ref s) => {
             print_type(state, &**s)
         }
-        Ty::Str(ref s) => {
-            format!("{:?}", String::from_utf8_lossy(&base64::decode(s).unwrap_or("@@WEIRD BAD BASE64 STR@@".as_bytes().to_vec())).to_string())
-        }
         Ty::Span(ref span) => {
-            let mut span = span.clone();
-            let mut out_span = print_type(state.tab(), span.remove(0));
-            if span.len() > 0 {
-                let mut type_span = vec![];
-                for item in span {
-                    type_span.push(print_type(state.tab(), item));
-                }
-                out_span.push_str(&format!("({})", type_span.join(", ")))
+            let mut out_span = print_type(state.tab(), &span[0]);
+            if span.len() > 1 {
+                out_span.push_str(&format!("({})", print_types(state.tab(), &span[1..])));
             }
             out_span
         }
@@ -356,22 +385,35 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
             if spans.len() == 1 {
                 print_type(state.tab(), &spans[0])
             } else {
-                format!("({})", spans.into_iter()
-                    .map(|x| print_type(state.tab(), x))
-                    .collect::<Vec<_>>()
-                    .join(", "))
+                format!("({})", print_types(state.tab(), spans))
             }
         }
-        Ty::Brackets(ref spans) => {
-            format!("Vec<{}>", spans.into_iter()
-                .map(|x| print_type(state.tab(), x))
-                .collect::<Vec<_>>()
-                .join(", "))
+        Ty::Brackets(ref t) => {
+            format!("Vec<{}>", print_type(state.tab(), &**t))
         }
-        ref t => {
-            format!("{:?}", t)
+        Ty::Where(_, ref t) => print_type(state, &**t), // temp
+        Ty::Pair(ref a, ref b) => {
+            format!("fn({}) -> {}", print_type(state, &**a), print_type(state, &**b))
         }
+        Ty::RecordTODO => "{ /* struct def */ }".to_string(),
+        Ty::EmptyParen => "()".to_string(),
     }
+}
+
+fn print_types<I, T>(state: PrintState, iter: I) -> String
+where
+    I: IntoIterator<Item = T>,
+    T: Borrow<Ty>,
+{
+    iter.into_iter().map(|t| print_type(state, t)).collect::<Vec<_>>().join(", ")
+}
+
+fn print_patterns<I, T>(state: PrintState, iter: I) -> String
+where
+    I: IntoIterator<Item = T>,
+    T: Borrow<Pat>,
+{
+    iter.into_iter().map(|p| print_pattern(state, p.borrow())).collect::<Vec<_>>().join(", ")
 }
 
 fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
@@ -406,7 +448,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 derives,
                 name.0,
                 data.iter().map(|tyset| {
-                    tyset.iter().map(|ty| print_type(state, ty)).collect::<Vec<_>>().join(", ")
+                    print_types(state, tyset)
                 }).collect::<Vec<_>>().join(", "));
             println!("");
         }
@@ -422,7 +464,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             //if cache.contains_key(&s) {
             //    panic!("this shouldn't happen {:?}", s);
             //}
-            cache.entry(print_type(PrintState::new(), s)).or_insert(vec![]).push((args, expr));
+            cache.entry(print_pattern(PrintState::new(), &s)).or_insert(vec![]).push((args, expr));
         }
     }
 
@@ -433,7 +475,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             let args = (0..fnset[0].0.len()).map(|x| format!("__{}", x)).collect::<Vec<_>>();
             new_cache.insert(key, vec![(
                 args.iter()
-                    .map(|x| ast::Ty::Ref(ast::Ident(x.to_string())))
+                    .map(|x| Pat::Ref(ast::Ident(x.to_string())))
                     .collect::<Vec<_>>(),
                 ast::Expr::Case(
                     Box::new(ast::Expr::Parens(args.iter()
@@ -459,7 +501,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
                         state.indent(),
                         key,
-                        args.iter().map(|x| print_type(state, x)).collect::<Vec<_>>().join(", "),
+                        print_patterns(state, args),
                         state.tab().indent(),
                         print_expr(state.tab(), &expr),
                         state.indent()));
@@ -475,7 +517,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             //println!("hm {:?}", t);
             let mut args_span = vec![];
             for (arg, ty) in args.iter().zip(t.iter()) {
-                args_span.push(format!("{}: {}", print_type(state, arg), print_type(state.tab(), ty)));
+                args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
             }
             out.push(
                 format!("{}fn {}({}) -> {} {{\n{}{}\n{}}}\n",
@@ -495,8 +537,8 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
 #[test]
 fn calculator() {
-    let a = "./corrode/src/Language/Rust/Corrode/CrateMap.hs";
-    // let a = "./corrode/src/Language/Rust/Corrode/C.hs";
+    // let a = "./corrode/src/Language/Rust/Corrode/CrateMap.hs";
+    let a = "language-c/src/Language/C/Analysis/AstAnalysis.hs";
     // let a = "./test/input.hs";
     println!("file: {}", a);
     let mut file = File::open(a).unwrap();
