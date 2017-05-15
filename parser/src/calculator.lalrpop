@@ -192,7 +192,6 @@ Type: Ty = {
 
 TypeRecord: () = {
   <Ident> "::" <TypeGroup> => (),
-  <Ident> "=" <TypeGroup> => (),
 };
 
 TypeSub: Ty = {
@@ -230,6 +229,7 @@ PatSub: Pat = {
     },
     "(" <i:Ident> "->" <s: PatSpan> ")" => Pat::Arrow(i, Box::new(s)),
     "(" ")" => Pat::EmptyParen,
+    "{" <Comma<PatRecord>> "}" => Pat::RecordTODO,
     <Ident> => Pat::Ref(<>),
     <Quote> => Pat::Str(<>),
     <Num> => Pat::Num(<>),
@@ -243,6 +243,11 @@ PatSub: Pat = {
 
     // HACK
     "`" Ident "`" => Pat::Dummy,
+};
+
+PatRecord: () = {
+  <Ident> "=" <PatSpan> => (),
+  ".." => (), // RecordWildCards
 };
 
 // for matching (Ctor arg arg ...)

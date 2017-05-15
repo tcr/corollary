@@ -426,6 +426,7 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
         Pat::Brackets(ref pats) => {
             format!("[{}]", print_patterns(state.tab(), pats))
         }
+        Pat::RecordTODO => format!("{{ .. }}"),
         Pat::Arrow(ast::Ident(ref s), ref p) => {
             format!("({} -> {})", s, print_pattern(state.tab(), &**p))
         }

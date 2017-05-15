@@ -74,6 +74,7 @@ pub enum Pat {
     Ref(Ident),
     Tuple(Vec<Pat>),
     Brackets(Vec<Pat>),
+    RecordTODO,
     Str(String),
     Num(isize),
     EmptyParen,
