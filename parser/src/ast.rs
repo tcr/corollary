@@ -20,7 +20,8 @@ pub enum Expr {
 #[derive(Clone, Debug)]
 pub enum CaseCond {
     Matching(Vec<Pat>, Vec<(Vec<Expr>, Expr)>),
-    Direct(Vec<Pat>, Expr),
+    Direct(Vec<Pat>, Vec<Expr>),
+    Where,
 }
 
 #[derive(Copy, Clone, Debug)]

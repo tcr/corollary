@@ -87,6 +87,8 @@ fn commify(val: &str) -> String {
     commentless = commentless.replace("let returnValue", "let\n                    returnValue");
     // DeclAnalysis.hs
     commentless = commentless.replace("of ShortMod", "of\n                                     ShortMod");
+    // CFG.hs
+    commentless = commentless.replace("let (returns", "let\n        (returns");
 
     let mut v: &str = &commentless;
     while v.len() > 0 {
@@ -190,9 +192,13 @@ fn commify(val: &str) -> String {
 
 
     // Replace trailing commas after where statements
-    // TODO fix these above
+    // TODO fix this in the parser instead
     let re = Regex::new(r#"where\s+;"#).unwrap();
     let out = re.replace_all(&out, r#"where "#).to_string();
+    // let re = Regex::new(r#"\};\s*where\b"#).unwrap();
+    // let out = re.replace_all(&out, r#"} where"#).to_string();
+    let re = Regex::new(r#"\};\}"#).unwrap();
+    let out = re.replace_all(&out, r#"}}"#).to_string();
 
     out
 }
@@ -361,11 +367,14 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                             print_patterns(state, label),
                             inner.join("\n")));
                     }
-                    ast::CaseCond::Direct(label, arm) => {
-                        out.push(format!("{}{} => {},",
+                    ast::CaseCond::Direct(label, arms) => {
+                        out.push(format!("{}{} => {{ {} }},",
                             state.tab().indent(),
                             print_patterns(state, label),
-                            print_expr(state.tab(), &arm)));
+                            arms.iter().map(|x| print_expr(state.tab(), x)).collect::<Vec<_>>().join("; ")));
+                    }
+                    ast::CaseCond::Where => {
+                        // TODO
                     }
                 }
             }
@@ -533,7 +542,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         }
     }
 
-    // Comprss guards
+    // Convert guards into basically case statements
     let mut new_cache = btreemap![];
     for (key, fnset) in cache {
         if fnset.len() > 1 {
@@ -547,7 +556,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                         .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
                         .collect::<Vec<_>>())),
                     fnset.iter().map(|x| {
-                        ast::CaseCond::Direct(x.0.clone(), x.1.clone())
+                        ast::CaseCond::Direct(x.0.clone(), vec![x.1.clone()])
                     }).collect::<Vec<_>>(),
                 ),
             )]);
@@ -632,9 +641,9 @@ fn test_single_file() {
 #[test]
 fn test_no_regressions() {
     let a = vec![
-        // "./corrode/src/Language/Rust/AST.hs",
+        "./corrode/src/Language/Rust/AST.hs",
         "./corrode/src/Language/Rust/Corrode/C.lhs",
-        // "./corrode/src/Language/Rust/Corrode/CFG.lhs",
+        "./corrode/src/Language/Rust/Corrode/CFG.lhs",
         "./corrode/src/Language/Rust/Corrode/CrateMap.hs",
         "./corrode/src/Language/Rust/Idiomatic.hs",
         "./corrode/src/Language/Rust.hs",
@@ -687,6 +696,9 @@ fn test_no_regressions() {
             contents = fix_lhs(&contents);
         }
         let input = commify(&contents);
+
+        let mut a = ::std::fs::File::create("temp.txt").unwrap();
+        a.write_all(input.as_bytes());
 
         let mut errors = Vec::new();
         let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));

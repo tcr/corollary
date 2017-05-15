@@ -84,8 +84,10 @@ Section: i32 = {
 };
 
 Case: CaseCond = {
+    // TODO commas can be used in expr spans, see AST.hs
     <d:PatList> <v:("|" <CommaDef<ExprSpan>> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
-    <d:PatList> "->" <v:ExprSpan> => CaseCond::Direct(d, v),
+    <d:PatList> "->" <v:CommaDef<ExprSpan>> ("where" "{" Semi<Statement> "}")? => CaseCond::Direct(d, v),
+    "where" "{" <Semi<Statement>> "}" => CaseCond::Where,
 };
 
 
@@ -126,6 +128,7 @@ Expr: Expr = {
     "<=" => Expr::Operator(<>.to_string()),
     "<-" => Expr::Operator(<>.to_string()),
     ">" => Expr::Operator(<>.to_string()),
+    "<>" => Expr::Operator(<>.to_string()),
     ">=" => Expr::Operator(<>.to_string()),
     "=<<" => Expr::Operator(<>.to_string()),
     ".|." => Expr::Operator(<>.to_string()),
@@ -137,9 +140,10 @@ Expr: Expr = {
     "^" => Expr::Operator(<>.to_string()),
     "::" => Expr::Operator(<>.to_string()),
     ".&." => Expr::Operator(<>.to_string()),
+    "<+>" => Expr::Operator(<>.to_string()),
+    "<*>" => Expr::Operator(<>.to_string()),
 
-    "case" <e:ExprSpan> "of" "{" <s:Semi<Case>>
-      <w:("where" "{" <Semi<Statement>> "}")?> "}" => Expr::Case(Box::new(e), s),
+    "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
 
     "let" "{" Semi<LetInner> "}" => Expr::Let,
 
@@ -169,7 +173,7 @@ LetInner: () = {
 
   <ExprSpan> "=" <ExprSpan> => (),
   <ExprSpan> "|" <ExprSpan> "=" <ExprSpan> ("where" "{" Semi<Statement> "}")? => (),
-  <ExprSpan> => (),
+  <ExprSpan> ("where" "{" <Semi<Statement>> "}")? => (), // TODO this should be associated with parent "do", not with its inner contents
 
   "where" "{" <Semi<Statement>> "}" => (),
 };
@@ -232,6 +236,10 @@ PatSub: Pat = {
     ":" => Pat::Dummy,
     "==" => Pat::Dummy,
     "@" => Pat::Dummy,
+    r"[:=+^*%&|&<>/-]+" => Pat::Dummy,
+
+    // ??? See AST.hs (+)
+    r"\([+:=*/-]\)" => Pat::Dummy,
 
     // HACK
     "`" Ident "`" => Pat::Dummy,
@@ -271,6 +279,9 @@ Statement: Statement = {
   "instance" FnDef
     "where" "{" Semi<Statement> "}" => Statement::Instance,
   "import" ImportList+ => Statement::Import,
+
+  // TODO change data enum to support this
+  "data" <id:Ident+> => Statement::Class,
 
   "data" <id:Ident+> "=" <p:Pipe<TypeGroup>>
     <derives:("deriving" <ImportList>)?> =>
