@@ -77,6 +77,10 @@ Ident: Ident = {
   r"[a-zA-Z_.][.a-zA-Z_0-9':=]*" => Ident((<>).to_string()),
 };
 
+Ctor: Ident = {
+    r":[!#$%&*+./<=>?@^|~:\\-]*" => Ident(<>.to_string()),
+};
+
 Section: i32 = {
     Ident ("(" ".." ")")? => 0,
     Ident "(" Ident* ")" => 0,
@@ -201,6 +205,7 @@ TypeSub: Ty = {
     "(" ")" => Ty::EmptyParen,
     "{" <Comma<TypeRecord>> "}" => Ty::RecordTODO,
     <Ident> => Ty::Ref(<>),
+    <Ctor> => Ty::Ref(<>),
 };
 
 TypeGroupInner: Ty = {
@@ -231,15 +236,13 @@ PatSub: Pat = {
     "(" ")" => Pat::EmptyParen,
     "{" <Comma<PatRecord>> "}" => Pat::RecordTODO,
     <Ident> => Pat::Ref(<>),
+    <Ctor> => Pat::Ref(<>),
     <Quote> => Pat::Str(<>),
     <Num> => Pat::Num(<>),
     ":" => Pat::Dummy,
     "==" => Pat::Dummy,
     "@" => Pat::Dummy,
-    r"[:=+^*%&|&<>/-]+" => Pat::Dummy,
-
-    // ??? See AST.hs (+)
-    r"\([+:=*/-]\)" => Pat::Dummy,
+    //r"[:=+^*%&|&<>/\\-]+" => Pat::Dummy,
 
     // HACK
     "`" Ident "`" => Pat::Dummy,
