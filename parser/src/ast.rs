@@ -19,7 +19,7 @@ pub enum Expr {
 
 #[derive(Clone, Debug)]
 pub enum CaseCond {
-    Matching(Vec<Pat>, Vec<(Expr, Expr)>),
+    Matching(Vec<Pat>, Vec<(Vec<Expr>, Expr)>),
     Direct(Vec<Pat>, Expr),
 }
 

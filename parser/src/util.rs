@@ -64,6 +64,7 @@ fn code_error(code: &str, tok_pos: usize) {
     }
 }
 
+// Print out errors smartly
 pub fn print_parse_error(code: &str, err: &ParseError<usize, String, ()>) {
     match *err {
         ParseError::InvalidToken { location: loc } => {

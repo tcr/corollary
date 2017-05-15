@@ -18,25 +18,33 @@ use std::env;
 
 use walkdir::WalkDir;
 
+// TODO rename "strip comments and other stuff too i guess"
 fn strip_comments(text: &str) -> String {
+    // Strip comments
     let re = Regex::new(r"--[^\n\r]*").unwrap();
     let text = re.replace_all(&text, "").to_string();
-
     let re = Regex::new(r"\{-[\s\S]*?-\}").unwrap();
     let text = re.replace_all(&text, "").to_string();
 
+    // Strip trailing semicolons (so we don't have "empty statements")
     let re = Regex::new(r"(?m);+\s*$").unwrap();
     let text = re.replace_all(&text, "").to_string();
 
+    // Strip preprocessor decls
     let re = Regex::new(r"(?m)^#(if|ifn?def|endif|else).*").unwrap();
     let text = re.replace_all(&text, "").to_string();
 
+    // TODO this should be handled in the parser
     let re = Regex::new(r#"\\NUL"#).unwrap();
     let text = re.replace_all(&text, r#"N"#).to_string();
 
+    // TODO ESC should be handled in the parser
     let re = Regex::new(r#"'(\\.|[^']|\\ESC)'"#).unwrap();
     let text = re.replace_all(&text, r#"'0'"#).to_string();
 
+    // Replace all strings with a base64 encoded version to make the parser simpler.
+    // If its possible to get LALRPOP to not complain with proper string regexes, should just use
+    // that instead
     let re = Regex::new(r#""([^"\\]|\\.)*?""#).unwrap();
     let text = re.replace_all(&text, |caps: &Captures| {
         let v = &caps[0][1..caps[0].len()-1];
@@ -71,11 +79,14 @@ fn commify(val: &str) -> String {
 
     let mut commentless = strip_comments(val);
 
-    // HACK
+    // HACK Until the indentation logic below is fixed (unsure what the right approach is), we need these
+    // C.hs
     commentless = commentless.replace("let lhsvar", "let\n                    lhsvar");
     commentless = commentless.replace("let allow_signed", "let\n            allow_signed");
     commentless = commentless.replace("let isDefault", "let\n        isDefault");
     commentless = commentless.replace("let returnValue", "let\n                    returnValue");
+    // DeclAnalysis.hs
+    commentless = commentless.replace("of ShortMod", "of\n                                     ShortMod");
 
     let mut v: &str = &commentless;
     while v.len() > 0 {
@@ -341,7 +352,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                         let mut inner = vec![];
                         for (cond, arm) in arms {
                             inner.push(format!("{} {{ {} }}",
-                                print_expr(state, &cond),
+                                cond.iter().map(|x| print_expr(state, x)).collect::<Vec<_>>().join(" && "),
                                 print_expr(state, &arm),
                             ));
                         }
@@ -632,8 +643,8 @@ fn test_no_regressions() {
         // "./language-c/src/Language/C/Analysis/Builtins.hs",
         // "./language-c/src/Language/C/Analysis/ConstEval.hs",
         "./language-c/src/Language/C/Analysis/Debug.hs",
-        // "./language-c/src/Language/C/Analysis/DeclAnalysis.hs",
-        // "./language-c/src/Language/C/Analysis/DefTable.hs",
+        "./language-c/src/Language/C/Analysis/DeclAnalysis.hs",
+        "./language-c/src/Language/C/Analysis/DefTable.hs",
         // "./language-c/src/Language/C/Analysis/Export.hs",
         // "./language-c/src/Language/C/Analysis/NameSpaceMap.hs",
         "./language-c/src/Language/C/Analysis/SemError.hs",
@@ -659,7 +670,7 @@ fn test_no_regressions() {
         "./language-c/src/Language/C/Syntax/AST.hs",
         // "./language-c/src/Language/C/Syntax/Constants.hs",
         "./language-c/src/Language/C/Syntax/Ops.hs",
-        // "./language-c/src/Language/C/Syntax/Utils.hs",
+        "./language-c/src/Language/C/Syntax/Utils.hs",
         "./language-c/src/Language/C/Syntax.hs",
         // "./language-c/src/Language/C/System/GCC.hs",
         "./language-c/src/Language/C/System/Preprocess.hs",

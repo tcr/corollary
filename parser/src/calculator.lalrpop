@@ -84,7 +84,7 @@ Section: i32 = {
 };
 
 Case: CaseCond = {
-    <d:PatList> <v:("|" <ExprSpan> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
+    <d:PatList> <v:("|" <CommaDef<ExprSpan>> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
     <d:PatList> "->" <v:ExprSpan> => CaseCond::Direct(d, v),
 };
 
@@ -97,6 +97,8 @@ Expr: Expr = {
     Quote => Expr::Str(<>),
     <Ident> => Expr::Ref(<>),
     Num => Expr::Number(<>),
+
+    r"\\\\" => Expr::Operator(<>.to_string()),
 
     r"\\" "(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
     "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
@@ -250,6 +252,8 @@ ImportList: Vec<Ident> = {
     "(" <a:Commaish<(<Ident> ("(" ".." ")")?)>> ")" => a,
     "(" ")" => vec![],
     <Ident> => vec![<>],
+
+    "(" "(<|>)" ")" => vec![], // ??? see DefTable.hs
 };
 
 pub Module: Module = {
