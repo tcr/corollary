@@ -9,5 +9,7 @@ authors = [
 [build-dependencies.lalrpop]
 version = "0.12.5"
 
-[dependencies.lalrpop-util]
-version = "0.12.5"
+[dependencies]
+lalrpop-util = "0.12.5"
+regex = "0.2.1"
+base64 = "0.5.2"
