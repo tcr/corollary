@@ -13,6 +13,7 @@ pub enum Expr {
     Record(Vec<(Expr, Expr)>),
     Lambda,
     Str(String),
+    Char(String),
     Error,
     Dummy,
 }
@@ -79,6 +80,7 @@ pub enum Pat {
     Brackets(Vec<Pat>),
     RecordTODO,
     Str(String),
+    Char(String),
     Num(isize),
     EmptyParen,
     Dummy,
