@@ -339,15 +339,15 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                 format!("{}({}, {})", op, print_expr(state, l), print_expr(state, r))
             }
         }
-        Record(ref items) => {
+        Record(ast::Ident(ref ctor), ref items) => {
             let mut out = vec![];
-            for &(ref i, ref v) in items {
-                out.push(format!("{}{:?} => {}",
+            for &(ast::Ident(ref i), ref v) in items {
+                out.push(format!("{}{}: {}",
                     state.indent(),
-                    print_expr(state.tab().tab(), i),
+                    i,
                     print_expr(state.tab().tab(), v)));
             }
-            format!("hashmap! {{\n{}\n{}}}", out.join(",\n"), state.indent())
+            format!("{} {{\n{}\n{}}}", ctor, out.join(",\n"), state.indent())
         }
         Str(ref s) => {
             format!("{:?}.to_string()", decode_literal(s))
