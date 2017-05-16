@@ -60,13 +60,14 @@ CommaDef<T>: Vec<T> = { // (0)
 };
 
 Quote: String = {
-    // r#"'\\["]'"# => (),
-
-    r#"'[^']'"# => {
+    r#""[^"]*""# => {
       let a = <>;
       a[1..a.len()-1].to_string()
-    },
-    r#""[^"]*""# => {
+    }
+};
+
+SingleQuote: String = {
+    r"'[^']*'" => {
       let a = <>;
       a[1..a.len()-1].to_string()
     }
@@ -110,6 +111,7 @@ ExprSpan: Expr = {
 
 Expr: Expr = {
     Quote => Expr::Str(<>),
+    SingleQuote => Expr::Char(<>),
     <Ident> => Expr::Ref(<>),
     Num => Expr::Number(<>),
 
@@ -227,6 +229,7 @@ PatSub: Pat = {
     <Ctor> => Pat::Ref(<>),
     <Operator> => Pat::Ref(Ident(<>)),
     <Quote> => Pat::Str(<>),
+    <SingleQuote> => Pat::Char(<>),
     <Num> => Pat::Num(<>),
     "==" => Pat::Dummy,
     "@" => Pat::Dummy,

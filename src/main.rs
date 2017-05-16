@@ -36,23 +36,47 @@ fn strip_comments(text: &str) -> String {
     let text = re.replace_all(&text, "").to_string();
 
     // TODO this should be handled in the parser
-    let re = Regex::new(r#"\\NUL"#).unwrap();
-    let text = re.replace_all(&text, r#"N"#).to_string();
-
-    // TODO ESC should be handled in the parser
-    let re = Regex::new(r#"'(\\.|[^']|\\ESC)'"#).unwrap();
-    let text = re.replace_all(&text, r#"'0'"#).to_string();
+    let escape_re = Regex::new(r#"\\([nrt'"\\0]|NUL|ESC)"#).unwrap();
+    let decode_escapes = |text: &str| {
+        let text = escape_re.replace_all(text, |caps: &Captures| {
+            match &caps[1] {
+                "n" => "\n",
+                "r" => "\r",
+                "t" => "\t",
+                "'" => "'",
+                "\"" => "\"",
+                "\\" => "\\",
+                "0" | "NUL" => "\0",
+                "ESC" => "\x1b",
+                s => panic!("str escape {}", s),
+            }.into()
+        });
+        text.to_string()
+    };
 
     // Replace all strings with a base64 encoded version to make the parser simpler.
     // If its possible to get LALRPOP to not complain with proper string regexes, should just use
     // that instead
-    let re = Regex::new(r#""([^"\\]|\\.)*?""#).unwrap();
+    let re = Regex::new(r#""(([^"\\]|\\.)*?)""#).unwrap();
     let text = re.replace_all(&text, |caps: &Captures| {
-        let v = &caps[0][1..caps[0].len()-1];
-        format!("\"{}\"", base64::encode(v))
+        let v = decode_escapes(&caps[1]);
+        format!("\"{}\"", base64::encode(&v))
+    }).to_string();
+
+    // Char literals.
+    let re = Regex::new(r"'([^'\\]|\\.{1,3})'").unwrap();
+    let text = re.replace_all(&text, |caps: &Captures| {
+        let v = decode_escapes(&caps[1]);
+        assert!(v.len() == 1, "multi char literal {:?}", v);
+        format!("'{}'", base64::encode(&v))
     }).to_string();
 
     text
+}
+
+fn decode_literal(s: &str) -> String {
+    let vec = base64::decode(s).expect("invalid base64");
+    String::from_utf8(vec).expect("invalid UTF-8")
 }
 
 fn word_is_block_word(word: &str) -> bool {
@@ -326,7 +350,12 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             format!("hashmap! {{\n{}\n{}}}", out.join(",\n"), state.indent())
         }
         Str(ref s) => {
-            format!("{:?}.to_string()", String::from_utf8_lossy(&base64::decode(s).unwrap_or(b"\"\"".to_vec())))
+            format!("{:?}.to_string()", decode_literal(s))
+        }
+        Char(ref s) => {
+            let decoded = decode_literal(s);
+            assert!(decoded.len() == 1, "char lit {:?}", decoded);
+            format!("{:?}", decoded.chars().next().unwrap())
         }
         Span(ref span) => {
             let span = expr_explode(span.clone());
@@ -411,10 +440,12 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
             out_span
         }
         Pat::Str(ref s) => {
-            let decoded = &base64::decode(s)
-                .map(|vec| String::from_utf8_lossy(&vec).into_owned())
-                .unwrap_or_else(|_| "@@WEIRD BAD BASE64 STR@@".to_string());
-            format!("{:?}", decoded)
+            format!("{:?}", decode_literal(s))
+        }
+        Pat::Char(ref s) => {
+            let decoded = decode_literal(s);
+            assert!(decoded.len() == 1, "char lit {:?}", decoded);
+            format!("{:?}", decoded.chars().next().unwrap())
         }
         Pat::Num(n) => format!("{}", n),
         Pat::Tuple(ref pats) => {

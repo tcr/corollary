@@ -456,7 +456,7 @@ mod Language_Rust_Corrode_C {
                     CStrConst, CString(str, False), _ => { return(Result, hashmap! {
                         "resultType" => IsArray(Rust.Immutable, (+(length(str), 1)), charType),
                         "resultMutable" => Rust.Immutable,
-                        "result" => Rust.Deref((Rust.Lit((Rust.LitByteStr((++(str, "N".to_string())))))))
+                        "result" => Rust.Deref((Rust.Lit((Rust.LitByteStr((++(str, "\u{0}".to_string())))))))
                         }) },
                     _ => { unimplemented(expr) },
                 } },
@@ -572,7 +572,7 @@ mod Language_Rust_Corrode_C {
     }
 
     fn noTranslation(node: node, msg: String) -> EnvMonad(s, a) {
-        throwE(concat(vec![show((posOf(node))), ": ".to_string(), msg, ":\\n".to_string(), render((nest(4, (pretty(node)))))]))
+        throwE(concat(vec![show((posOf(node))), ": ".to_string(), msg, ":\n".to_string(), render((nest(4, (pretty(node)))))]))
     }
 
     fn objectFromDesignators(__0: CType, __1: Vec<CDesignator>) -> EnvMonad(s, CurrentObject) {
@@ -713,13 +713,13 @@ mod Language_Rust_Corrode_C {
         match (__0) {
             IsBool => { Rust.TypeName("bool".to_string()) },
             IsInt(s, w) => { Rust.TypeName((:((match s {
-                                Signed => { "\"\"".to_string() },
-                                Unsigned => { "\"\"".to_string() },
+                                Signed => { 'i' },
+                                Unsigned => { 'u' },
                             }), (match w {
                                 BitWidth, b => { show(b) },
                                 WordWidth => { "size".to_string() },
                             })))) },
-            IsFloat(w) => { Rust.TypeName((:("\"\"".to_string(), show(w)))) },
+            IsFloat(w) => { Rust.TypeName((:('f', show(w)))) },
             IsVoid => { Rust.TypeName("::std::os::raw::c_void".to_string()) },
             IsFunc(retTy, args, variadic) => { Rust.TypeName(concat(vec!["unsafe extern fn(".to_string(), args', ")".to_string(), /=(if(retTy), ++(IsVoid(then, " -> ".to_string()), typename(retTy, else, "".to_string())))])) },
             IsPtr(mut, to) => { Let },
