@@ -144,7 +144,7 @@ Expr: Expr = {
     "{" <Comma<(<Expr> "=" <ExprSpan>)>> "}" => Expr::Record(<>),
 };
 
-
+// TODO combine this with Statement + Expr for proper AST
 LetInner: () = {
   "class" Type ("=>" Ident+)?
     "where" "{" Semi<Statement> "}" => (),
