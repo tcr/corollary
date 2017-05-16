@@ -33,7 +33,7 @@ mod Language_C_Analysis_Debug {
     }
 
     fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
-        text(label)(()((nest(8))((vcat(map(prettyEntry, theMap))))))
+        $$(text(label), (nest(8))((vcat(map(prettyEntry, theMap)))))
     }
 
     fn terminateSemi() -> Doc {
@@ -129,7 +129,7 @@ mod Language_C_Analysis_DeclAnalysis {
     fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) -> m(Vec<CDerivedDeclr>) {
         match (__0, __1, __2) {
             _node, [], declrs => { return(declrs) },
-            node, oldstyle_params, CFunDeclr(params, attrs, fdnode, <todo>, dds) => { match params {
+            node, oldstyle_params, CFunDeclr(params, attrs, fdnode, :, dds) => { match params {
                     Left, list => { {
 
                     } },
@@ -765,18 +765,18 @@ mod Language_C_Analysis_SemRep {
 }
 
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TravMonad.hs"
-Error: Unrecognized token `>>`:
-303 |                        ->
-304 | nodeInfo ident) $ "dW5ib3VuZCB0eXBlRGVmOiA=" ++ identToString ident
-305 | (TypeDef def_ident ty _ _)) -> addRef ident def_ident >> return ty
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+Error: Unrecognized token `->`:
+372 |
+373 |
+374 | ;newtype Trav s a = Trav { unTrav :: TravState s -> Either CError (a,
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeCheck.hs"
-Error: Unrecognized token `>>=`:
- 26 | ;instance Monad (Either String) where{
- 27 |     return        = Right
- 28 |      ;Left  l >>= _ = Left l
-~~~~~~~~~~~~~~~~~~~~^
+Error: Unrecognized token `|`:
+ 95 |   do{ n <- genName
+ 96 |       let{ charType | wide      = TyInt
+ 97 |                     | otherwise = TyChar
+~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 mod Language_C_Analysis_TypeConversions {
     fn arithmeticConversion(__0: TypeName, __1: TypeName) -> Maybe(TypeName) {
@@ -808,11 +808,11 @@ mod Language_C_Analysis_TypeConversions {
 }
 
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeUtils.hs"
-Error: Unrecognized token `<=`:
- 42 |
- 43 |  };instance Ord TypeQuals where{
- 44 |   (<=) (TypeQuals c1 v1 r1) (TypeQuals c2 v2 r2) =
-~~~~~~~~~^
+Error: Unrecognized token `->`:
+136 | ;isFunctionType ty =
+137 |     case ty of{  TypeDefType (TypeDefRef _ (Just actual_ty) _) _ _ ->
+138 |                  TypeDefType _ _ _ -> error "aXNGdW5jdGlvblR5cGU6IHVuc
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 mod Language_C_Analysis {
 
@@ -1027,11 +1027,11 @@ mod Language_C_Data_Name {
 }
 
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Node.hs"
-Error: Unrecognized token `<=`:
- 43 |
- 44 |  };instance Ord NodeInfo where{
- 45 |   (NodeInfo   _ _ id1) <= (NodeInfo   _ _ id2) = id1 <= id2
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+Error: Unrecognized token `->`:
+ 56 |     where{
+ 57 |     len = case ni of{ NodeInfo firstPos lastTok _ -> computeLength fir
+ 58 |                        OnlyPos firstPos lastTok -> computeLength first
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 mod Language_C_Data_Position {
     #[derive(Eq, Ord, Debug, Clone)]
@@ -1176,10 +1176,10 @@ Error: Unrecognized token `CTokEof`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Parser/Tokens.hs"
-Error: Unrecognized token `%`:
+Error: Unrecognized token `|`:
 255 |    ;showsPrec _ (CTokTilde    _  ) = showString "fg=="
 256 |    ;showsPrec _ (CTokInc      _  ) = showString "Kys="
-257 | QcmVjIF8gKENUb2tQZXJjZW50ICBfICApID0gc2hvd1N0cmluZyA="%"CiAgc2hvd3NQcm
+257 | QcmVjIF8gKENUb2tCYXIgICAgICBfICApID0gc2hvd1N0cmluZyA="|"CiAgc2hvd3NQcm
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 mod Language_C_Parser {
