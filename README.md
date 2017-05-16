@@ -6,23 +6,9 @@ It'd be cool if there existed a port of [Corrode, the C to Rust translator writt
 git clone http://github.com/tcr/corrode-but-in-rust --recursive
 ```
 
-This project contains a proof-of-concept cross-compiler from Haskell to Rust which is not designed to be either correct or generalizable. Instead, it's tailored for these libraries, each written in a conventional programming style. I expect the conversion to go like this:
+This project contains a proof-of-concept cross-compiler from Haskell to Rust which is not designed to be either correct or generalizable. Instead, it's tailored for these libraries, each written in a conventional programming style.
 
-* [x] Automate bulk cross-compilation as modules (see the `out/` directory for current status)
-* [x] Write a proof-of-concept parser for Haskell and compilation to Rust
-* [x] Support functions, variables, literals, types
-* [x] Support case statements and guards
-* [ ] Convert instances and data structures correctly
-* [ ] Detect pointfree code and convert it into pointwise
-* [ ] Properly convert $ and . operators
-* [ ] Convert rest of operators into Rust equivalents or fn wrappers
-* [ ] Successfully parse all files (except lexer.x parser.y) (failures currently output as // ERROR)
-* [ ] Find a way to parse flex-based lexer.x and parser.y files and cross-compile them
-* [ ] Switch to *manual* conversion for all remaining edge cases (&str and String conversion, undoing tricky code segments, etc.)
-* [ ] Pass language-c test bench
-* [ ] Pass corrode test bench
-* [ ] Port literate Haskell comments into Rust
-* [ ] Feature-complete
+**[Follow along in the tracking issue.](https://github.com/tcr/corrode-but-in-rust/issues/1)**
 
 ## Status
 
