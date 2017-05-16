@@ -1,5 +1,5 @@
 mod Language_Rust_AST {
-    #[derive(Eq, Debug)]
+    #[derive(Debug, Eq)]
     struct LitIntRepr(DecRepr, OctalRepr, HexRepr);
 
     #[derive(Debug, Eq)]
@@ -71,7 +71,7 @@ mod Language_Rust_Corrode_C {
 
     struct Result(Result, { /* struct def */ });
 
-    #[derive(Eq, Debug)]
+    #[derive(Debug, Eq)]
     struct Signed(Signed, Unsigned);
 
     #[derive(Debug, Eq)]
@@ -941,7 +941,7 @@ mod Language_Rust_Corrode_CFG {
 }
 
 mod Language_Rust_Corrode_CrateMap {
-    #[derive(Eq, Debug, Ord)]
+    #[derive(Debug, Eq, Ord)]
     struct ItemKind(Enum, Struct, Union, Type, Symbol);
 
     fn mergeCrateMaps() -> Map.Map(String, CrateMap) {

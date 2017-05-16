@@ -47,15 +47,15 @@ mod Language_C_Analysis_Debug {
 }
 
 mod Language_C_Analysis_DeclAnalysis {
-    #[derive(Ord, Debug, Eq, Read)]
+    #[derive(Debug, Eq, Ord, Read)]
     struct StorageSpec(NoStorageSpec, AutoSpec, RegSpec, ThreadSpec, StaticSpec, Bool, ExternSpec, Bool);
 
     struct VarDeclInfo(VarDeclInfo, VarName, Bool, StorageSpec, Attributes, Type, NodeInfo);
 
-    #[derive(Ord, Eq)]
+    #[derive(Eq, Ord)]
     struct NumBaseType(NoBaseType, BaseChar, BaseInt, BaseFloat, BaseDouble);
 
-    #[derive(Ord, Eq)]
+    #[derive(Eq, Ord)]
     struct SignSpec(NoSignSpec, Signed, Unsigned);
 
     #[derive(Eq, Ord)]
@@ -271,7 +271,7 @@ mod Language_C_Analysis_DefTable {
 
     struct DefTable(DefTable, { /* struct def */ });
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct DeclarationStatus(NewDecl, Redeclared, t, KeepDef, t, Shadowed, t, KindMismatch, t);
 
     #[derive(Eq, Ord)]
@@ -544,26 +544,26 @@ mod Language_C_Analysis_SemRep {
     #[derive(Clone, Debug)]
     struct TagDef(CompDef, CompType, EnumDef, EnumType);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct IdentDecl(Declaration, Decl, ObjectDef, ObjDef, FunctionDef, FunDef, EnumeratorDef, Enumerator);
 
     struct GlobalDecls(GlobalDecls, { /* struct def */ });
 
     struct DeclEvent(TagEvent, TagDef, DeclEvent, IdentDecl, ParamEvent, ParamDecl, LocalEvent, IdentDecl, TypeDefEvent, TypeDef, AsmEvent, AsmBlock);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct Decl(Decl, VarDecl, NodeInfo);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct ObjDef(ObjDef, VarDecl, Maybe(Initializer), NodeInfo);
 
     #[derive(Clone, Debug)]
     struct FunDef(FunDef, VarDecl, Stmt, NodeInfo);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct ParamDecl(ParamDecl, VarDecl, NodeInfo, AbstractParamDecl, VarDecl, NodeInfo);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct MemberDecl(MemberDecl, VarDecl, Maybe(Expr), NodeInfo, AnonBitField, Type, Expr, NodeInfo);
 
     #[derive(Clone, Debug)]
@@ -572,13 +572,13 @@ mod Language_C_Analysis_SemRep {
     #[derive(Clone, Debug)]
     struct VarDecl(VarDecl, VarName, DeclAttrs, Type);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct DeclAttrs(DeclAttrs, Bool, Storage, Attributes);
 
-    #[derive(Clone, Ord, Debug, Eq)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct Storage(NoStorage, Auto, Register, Static, Linkage, ThreadLocal, FunLinkage, Linkage);
 
-    #[derive(Debug, Clone, Eq, Ord)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct Linkage(NoLinkage, InternalLinkage, ExternalLinkage);
 
     #[derive(Clone, Debug)]
@@ -590,43 +590,43 @@ mod Language_C_Analysis_SemRep {
     #[derive(Clone, Debug)]
     struct ArraySize(UnknownArraySize, Bool, ArraySize, Bool, Expr);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct TypeName(TyVoid, TyIntegral, IntType, TyFloating, FloatType, TyComplex, FloatType, TyComp, CompTypeRef, TyEnum, EnumTypeRef, TyBuiltin, BuiltinType);
 
     #[derive(Clone, Debug)]
     struct BuiltinType(TyVaList, TyAny);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct TypeDefRef(TypeDefRef, Ident, Maybe(Type), NodeInfo);
 
-    #[derive(Ord, Clone, Eq, Debug)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct IntType(TyBool, TyChar, TySChar, TyUChar, TyShort, TyUShort, TyInt, TyUInt, TyLong, TyULong, TyLLong, TyULLong);
 
-    #[derive(Eq, Debug, Clone, Ord)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct FloatType(TyFloat, TyDouble, TyLDouble);
 
     #[derive(Clone, Debug)]
     struct CompTypeRef(CompTypeRef, SUERef, CompTyKind, NodeInfo);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct EnumTypeRef(EnumTypeRef, SUERef, NodeInfo);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CompType(CompType, SUERef, CompTyKind, Vec<MemberDecl>, Attributes, NodeInfo);
 
-    #[derive(Eq, Ord, Clone, Debug)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct CompTyKind(StructTag, UnionTag);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct EnumType(EnumType, SUERef, Vec<Enumerator>, Attributes, NodeInfo);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct Enumerator(Enumerator, Ident, Expr, EnumType, NodeInfo);
 
     #[derive(Clone, Debug)]
     struct TypeQuals(TypeQuals, { /* struct def */ });
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct VarName(VarName, Ident, Maybe(AsmName), NoName);
 
     #[derive(Clone, Debug)]
@@ -818,7 +818,7 @@ mod Language_C_Analysis {
 }
 
 mod Language_C_Data_Error {
-    #[derive(Ord, Eq)]
+    #[derive(Eq, Ord)]
     struct ErrorLevel(LevelWarn, LevelError, LevelFatal);
 
     #[derive(Debug)]
@@ -889,10 +889,10 @@ mod Language_C_Data_Error {
 }
 
 mod Language_C_Data_Ident {
-    #[derive(Eq, Debug, Clone, Ord)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct SUERef(AnonymousRef, Name, NamedRef, Ident);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct Ident(Ident, String, isize, NodeInfo);
 
     fn bits14() -> isize {
@@ -1033,7 +1033,7 @@ Error: Unrecognized token `->`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 mod Language_C_Data_Position {
-    #[derive(Ord, Clone, Debug, Eq)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct Position(Position, { /* struct def */ }, NoPosition, BuiltinPosition, InternalPosition);
 
     fn adjustPos(__0: FilePath, __1: isize, __2: Position) -> Position {
@@ -1196,7 +1196,7 @@ Error: Unrecognized token `->`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 mod Language_C_Syntax_AST {
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CTranslationUnit(CTranslUnit, Vec<CExternalDeclaration(a)>, a);
 
     #[derive(Clone, Debug)]
@@ -1205,13 +1205,13 @@ mod Language_C_Syntax_AST {
     #[derive(Clone, Debug)]
     struct CFunctionDef(CFunDef, Vec<CDeclarationSpecifier(a)>, CDeclarator(a), Vec<CDeclaration(a)>, CStatement(a), a);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CDeclaration(CDecl, Vec<CDeclarationSpecifier(a)>, Vec<(Maybe(CDeclarator(a)), Maybe(CInitializer(a)), Maybe(CExpression(a)))>, a);
 
     #[derive(Clone, Debug)]
     struct CDeclarator(CDeclr, Maybe(Ident), Vec<CDerivedDeclarator(a)>, Maybe(CStringLiteral(a)), Vec<CAttribute(a)>, a);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CDerivedDeclarator(CPtrDeclr, Vec<CTypeQualifier(a)>, a, CArrDeclr, Vec<CTypeQualifier(a)>, CArraySize(a), a, CFunDeclr, Either(Vec<Ident>, (Vec<CDeclaration(a)>, Bool)), Vec<CAttribute(a)>, a);
 
     #[derive(Clone, Debug)]
@@ -1220,10 +1220,10 @@ mod Language_C_Syntax_AST {
     #[derive(Clone, Debug)]
     struct CStatement(CLabel, Ident, CStatement(a), Vec<CAttribute(a)>, a, CCase, CExpression(a), CStatement(a), a, CCases, CExpression(a), CExpression(a), CStatement(a), a, CDefault, CStatement(a), a, CExpr, Maybe(CExpression(a)), a, CCompound, Vec<Ident>, Vec<CCompoundBlockItem(a)>, a, CIf, CExpression(a), CStatement(a), Maybe(CStatement(a)), a, CSwitch, CExpression(a), CStatement(a), a, CWhile, CExpression(a), CStatement(a), Bool, a, CFor, Either(Maybe(CExpression(a)), CDeclaration(a)), Maybe(CExpression(a)), Maybe(CExpression(a)), CStatement(a), a, CGoto, Ident, a, CGotoPtr, CExpression(a), a, CCont, a, CBreak, a, CReturn, Maybe(CExpression(a)), a, CAsm, CAssemblyStatement(a), a);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CAssemblyStatement(CAsmStmt, Maybe(CTypeQualifier(a)), CStringLiteral(a), Vec<CAssemblyOperand(a)>, Vec<CAssemblyOperand(a)>, Vec<CStringLiteral(a)>, a);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CAssemblyOperand(CAsmOperand, Maybe(Ident), CStringLiteral(a), CExpression(a), a);
 
     #[derive(Clone, Debug)]
@@ -1232,19 +1232,19 @@ mod Language_C_Syntax_AST {
     #[derive(Clone, Debug)]
     struct CDeclarationSpecifier(CStorageSpec, CStorageSpecifier(a), CTypeSpec, CTypeSpecifier(a), CTypeQual, CTypeQualifier(a));
 
-    #[derive(Clone, Eq, Ord, Debug)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct CStorageSpecifier(CAuto, a, CRegister, a, CStatic, a, CExtern, a, CTypedef, a, CThread, a);
 
     #[derive(Clone, Debug)]
     struct CTypeSpecifier(CVoidType, a, CCharType, a, CShortType, a, CIntType, a, CLongType, a, CFloatType, a, CDoubleType, a, CSignedType, a, CUnsigType, a, CBoolType, a, CComplexType, a, CSUType, CStructureUnion(a), a, CEnumType, CEnumeration(a), a, CTypeDef, Ident, a, CTypeOfExpr, CExpression(a), a, CTypeOfType, CDeclaration(a), a);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CTypeQualifier(CConstQual, a, CVolatQual, a, CRestrQual, a, CInlineQual, a, CAttrQual, CAttribute(a));
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CStructureUnion(CStruct, CStructTag, Maybe(Ident), Maybe(Vec<CDeclaration(a)>), Vec<CAttribute(a)>, a);
 
-    #[derive(Debug, Eq, Clone)]
+    #[derive(Clone, Debug, Eq)]
     struct CStructTag(CStructTag, CUnionTag);
 
     #[derive(Clone, Debug)]
@@ -1265,10 +1265,10 @@ mod Language_C_Syntax_AST {
     #[derive(Clone, Debug)]
     struct CBuiltinThing(CBuiltinVaArg, CExpression(a), CDeclaration(a), a, CBuiltinOffsetOf, CDeclaration(a), Vec<CPartDesignator(a)>, a, CBuiltinTypesCompatible, CDeclaration(a), CDeclaration(a), a);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CConstant(CIntConst, CInteger, a, CCharConst, CChar, a, CFloatConst, CFloat, a, CStrConst, CString, a);
 
-    #[derive(Debug, Clone)]
+    #[derive(Clone, Debug)]
     struct CStringLiteral(CStrLit, CString, a);
 
     fn cstringOfLit(CStrLit(cstr, _): CStringLiteral(a)) -> CString {
@@ -1308,10 +1308,10 @@ mod Language_C_Syntax_Ops {
     #[derive(Clone, Debug, Eq, Ord)]
     struct CAssignOp(CAssignOp, CMulAssOp, CDivAssOp, CRmdAssOp, CAddAssOp, CSubAssOp, CShlAssOp, CShrAssOp, CAndAssOp, CXorAssOp, COrAssOp);
 
-    #[derive(Clone, Ord, Debug, Eq)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct CBinaryOp(CMulOp, CDivOp, CRmdOp, CAddOp, CSubOp, CShlOp, CShrOp, CLeOp, CGrOp, CLeqOp, CGeqOp, CEqOp, CNeqOp, CAndOp, CXorOp, COrOp, CLndOp, CLorOp);
 
-    #[derive(Clone, Ord, Debug, Eq)]
+    #[derive(Clone, Debug, Eq, Ord)]
     struct CUnaryOp(CPreIncOp, CPreDecOp, CPostIncOp, CPostDecOp, CAdrOp, CIndOp, CPlusOp, CMinOp, CCompOp, CNegOp);
 
     fn assignBinop(__0: CAssignOp) -> CBinaryOp {

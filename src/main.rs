@@ -15,7 +15,7 @@ use std::borrow::Borrow;
 use std::io::prelude::*;
 use std::fs::{File};
 use std::env;
-use std::collections::HashSet;
+use std::collections::BTreeSet;
 
 use walkdir::WalkDir;
 
@@ -518,7 +518,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                         x.0.to_string()
                     }
                 })
-                .collect::<HashSet<_>>()
+                .collect::<BTreeSet<_>>()
                 .into_iter()
                 .collect::<Vec<_>>();
 
