@@ -98,12 +98,12 @@ mod Language_C_Analysis_DeclAnalysis {
     }
 
     fn emptyNumTypeSpec() -> NumTypeSpec {
-        NumTypeSpec(hashmap! {
-            "base" => NoBaseType,
-            "signSpec" => NoSignSpec,
-            "sizeMod" => NoSizeMod,
-            "isComplex" => False
-            })
+        NumTypeSpec {
+            base: NoBaseType,
+            signSpec: NoSignSpec,
+            sizeMod: NoSizeMod,
+            isComplex: False
+            }
     }
 
     fn getOnlyDeclr(__0: CDecl) -> m(CDeclr) {
@@ -300,9 +300,9 @@ mod Language_C_Analysis_DefTable {
 
     fn declareTag(sueref: SUERef, decl: TagFwdDecl, deftbl: DefTable) -> (DeclarationStatus(TagEntry), DefTable) {
         match lookupTag(sueref, deftbl) {
-                Nothing => { (NewDecl, deftbl(hashmap! {
-                        "tagDecls" => fst(defLocal((tagDecls(deftbl)), sueref, (Left(decl))))
-                        })) },
+                Nothing => { (NewDecl, deftbl {
+                        tagDecls: fst(defLocal((tagDecls(deftbl)), sueref, (Left(decl))))
+                        }) },
             Just, old_def => if ==(tagKind(old_def), tagKind((Left(decl)))) { (KeepDef(old_def), deftbl) }
 otherwise { (KindMismatch(old_def), deftbl) },
             }
@@ -327,9 +327,9 @@ otherwise { KindMismatch(def') },
     }
 
     fn defineGlobalIdent(ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus(IdentEntry), DefTable) {
-        (defRedeclStatus(compatIdentEntry, (Right(def)), oldDecl), deftbl(hashmap! {
-                "identDecls" => decls'
-                }))
+        (defRedeclStatus(compatIdentEntry, (Right(def)), oldDecl), deftbl {
+                identDecls: decls'
+                })
     }
 
     fn defineLabel(ident: Ident, deftbl: DefTable) -> (DeclarationStatus(Ident), DefTable) {
@@ -341,21 +341,21 @@ otherwise { KindMismatch(def') },
     }
 
     fn defineScopedIdentWhen(override_def: fn(IdentDecl) -> Bool, ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus(IdentEntry), DefTable) {
-        (redecl_status, deftbl(hashmap! {
-                "identDecls" => decls'
-                }))
+        (redecl_status, deftbl {
+                identDecls: decls'
+                })
     }
 
     fn defineTag(sueref: SUERef, def: TagDef, deftbl: DefTable) -> (DeclarationStatus(TagEntry), DefTable) {
-        (redeclStatus, deftbl(hashmap! {
-                "tagDecls" => decls'
-                }))
+        (redeclStatus, deftbl {
+                tagDecls: decls'
+                })
     }
 
     fn defineTypeDef(ident: Ident, tydef: TypeDef, deftbl: DefTable) -> (DeclarationStatus(IdentEntry), DefTable) {
-        (defRedeclStatus(compatIdentEntry, (Left(tydef)), oldDecl), deftbl(hashmap! {
-                "identDecls" => decls'
-                }))
+        (defRedeclStatus(compatIdentEntry, (Left(tydef)), oldDecl), deftbl {
+                identDecls: decls'
+                })
     }
 
     fn emptyDefTable() -> DefTable {
@@ -363,28 +363,28 @@ otherwise { KindMismatch(def') },
     }
 
     fn enterBlockScope(deftbl: DefTable) -> DefTable {
-        enterLocalScope(deftbl(hashmap! {
-                "labelDefs" => enterNewScope((labelDefs(deftbl)))
-                }))
+        enterLocalScope(deftbl {
+                labelDefs: enterNewScope((labelDefs(deftbl)))
+                })
     }
 
     fn enterFunctionScope(deftbl: DefTable) -> DefTable {
-        enterLocalScope(deftbl(hashmap! {
-                "labelDefs" => enterNewScope((labelDefs(deftbl)))
-                }))
+        enterLocalScope(deftbl {
+                labelDefs: enterNewScope((labelDefs(deftbl)))
+                })
     }
 
     fn enterLocalScope(deftbl: DefTable) -> DefTable {
-        deftbl(hashmap! {
-            "identDecls" => enterNewScope((identDecls(deftbl))),
-            "tagDecls" => enterNewScope((tagDecls(deftbl)))
-            })
+        deftbl {
+            identDecls: enterNewScope((identDecls(deftbl))),
+            tagDecls: enterNewScope((tagDecls(deftbl)))
+            }
     }
 
     fn enterMemberDecl(deftbl: DefTable) -> DefTable {
-        deftbl(hashmap! {
-            "memberDecls" => enterNewScope((memberDecls(deftbl)))
-            })
+        deftbl {
+            memberDecls: enterNewScope((memberDecls(deftbl)))
+            }
     }
 
     fn globalDefs(deftbl: DefTable) -> GlobalDecls {
@@ -400,28 +400,28 @@ otherwise { KindMismatch(def') },
     }
 
     fn insertType(dt: DefTable, n: Name, t: Type) -> DefTable {
-        dt(hashmap! {
-            "typeTable" => IntMap.insert((nameId(n)), t, (typeTable(dt)))
-            })
+        dt {
+            typeTable: IntMap.insert((nameId(n)), t, (typeTable(dt)))
+            }
     }
 
     fn leaveBlockScope(deftbl: DefTable) -> DefTable {
-        leaveLocalScope(deftbl(hashmap! {
-                "labelDefs" => leaveScope_((labelDefs(deftbl)))
-                }))
+        leaveLocalScope(deftbl {
+                labelDefs: leaveScope_((labelDefs(deftbl)))
+                })
     }
 
     fn leaveFunctionScope(deftbl: DefTable) -> DefTable {
-        leaveLocalScope(deftbl(hashmap! {
-                "labelDefs" => leaveScope_((labelDefs(deftbl)))
-                }))
+        leaveLocalScope(deftbl {
+                labelDefs: leaveScope_((labelDefs(deftbl)))
+                })
     }
 
     fn leaveLocalScope(deftbl: DefTable) -> DefTable {
-        deftbl(hashmap! {
-            "identDecls" => leaveScope_((identDecls(deftbl))),
-            "tagDecls" => leaveScope_((tagDecls(deftbl)))
-            })
+        deftbl {
+            identDecls: leaveScope_((identDecls(deftbl))),
+            tagDecls: leaveScope_((tagDecls(deftbl)))
+            }
     }
 
     fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
@@ -672,11 +672,11 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> Bool, gmap: GlobalDecls) -> GlobalDecls {
-        GlobalDecls(hashmap! {
-            "gObjs" => Map.filter(((decl_filter . DeclEvent)), (gObjs(gmap))),
-            "gTags" => Map.filter(((decl_filter . TagEvent)), (gTags(gmap))),
-            "gTypeDefs" => Map.filter(((decl_filter . TypeDefEvent)), (gTypeDefs(gmap)))
-            })
+        GlobalDecls {
+            gObjs: Map.filter(((decl_filter . DeclEvent)), (gObjs(gmap))),
+            gTags: Map.filter(((decl_filter . TagEvent)), (gTags(gmap))),
+            gTypeDefs: Map.filter(((decl_filter . TypeDefEvent)), (gTypeDefs(gmap)))
+            }
     }
 
     fn hasLinkage(__0: Storage) -> Bool {
@@ -714,11 +714,11 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
-        GlobalDecls(hashmap! {
-            "gObjs" => Map.union((gObjs(gmap1)), (gObjs(gmap2))),
-            "gTags" => Map.union((gTags(gmap1)), (gTags(gmap2))),
-            "gTypeDefs" => Map.union((gTypeDefs(gmap1)), (gTypeDefs(gmap2)))
-            })
+        GlobalDecls {
+            gObjs: Map.union((gObjs(gmap1)), (gObjs(gmap2))),
+            gTags: Map.union((gTags(gmap1)), (gTags(gmap2))),
+            gTypeDefs: Map.union((gTypeDefs(gmap1)), (gTypeDefs(gmap2)))
+            }
     }
 
     fn mergeTypeQuals(TypeQuals(c1, v1, r1): TypeQuals, TypeQuals(c2, v2, r2): TypeQuals) -> TypeQuals {
@@ -1431,25 +1431,25 @@ mod Language_C_System_Preprocess {
     struct CppArgs(CppArgs, { /* struct def */ });
 
     fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
-        cpp_args(hashmap! {
-            "cppOptions" => :(opt, (cppOptions(cpp_args)))
-            })
+        cpp_args {
+            cppOptions: :(opt, (cppOptions(cpp_args)))
+            }
     }
 
     fn addExtraOption(cpp_args: CppArgs, extra: String) -> CppArgs {
-        cpp_args(hashmap! {
-            "extraOptions" => :(extra, (extraOptions(cpp_args)))
-            })
+        cpp_args {
+            extraOptions: :(extra, (extraOptions(cpp_args)))
+            }
     }
 
     fn cppFile(input_file: FilePath) -> CppArgs {
-        CppArgs(hashmap! {
-            "cppOptions" => vec![],
-            "extraOptions" => vec![],
-            "cppTmpDir" => Nothing,
-            "inputFile" => input_file,
-            "outputFile" => Nothing
-            })
+        CppArgs {
+            cppOptions: vec![],
+            extraOptions: vec![],
+            cppTmpDir: Nothing,
+            inputFile: input_file,
+            outputFile: Nothing
+            }
     }
 
     fn isPreprocessed() -> Bool {
@@ -1473,13 +1473,13 @@ mod Language_C_System_Preprocess {
     }
 
     fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
-        CppArgs(hashmap! {
-            "inputFile" => input_file,
-            "cppOptions" => vec![],
-            "extraOptions" => opts,
-            "outputFile" => Nothing,
-            "cppTmpDir" => Nothing
-            })
+        CppArgs {
+            inputFile: input_file,
+            cppOptions: vec![],
+            extraOptions: opts,
+            outputFile: Nothing,
+            cppTmpDir: Nothing
+            }
     }
 
     fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO(Either(ExitCode, InputStream)) {

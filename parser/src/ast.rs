@@ -10,7 +10,7 @@ pub enum Expr {
     Span(Vec<Expr>),
     Vector(Vec<Expr>),
     Operator(String),
-    Record(Vec<(Expr, Expr)>),
+    Record(Ident, Vec<(Ident, Expr)>),
     Lambda,
     Str(String),
     Char(String),

@@ -158,8 +158,8 @@ mod Language_Rust_Corrode_C {
                             (Just(lhs'), Just(rhs')) => { {
 
                             } },
-                            (Just(ptr), _) => { return(ptr, hashmap! {
-                                "result" => Rust.MethodCall((result(ptr)), (Rust.VarName("offset".to_string())), vec![Rust.Neg((castTo((IsInt(Signed, WordWidth)), rhs)))])
+                            (Just(ptr), _) => { return(ptr {
+                                result: Rust.MethodCall((result(ptr)), (Rust.VarName("offset".to_string())), vec![Rust.Neg((castTo((IsInt(Signed, WordWidth)), rhs)))])
                                 }) },
                             _ => { promote(expr, Rust.Sub, lhs, rhs) },
                         } },
@@ -174,15 +174,15 @@ mod Language_Rust_Corrode_C {
                     CAndOp => { promote(expr, Rust.And, lhs, rhs) },
                     CXorOp => { promote(expr, Rust.Xor, lhs, rhs) },
                     COrOp => { promote(expr, Rust.Or, lhs, rhs) },
-                    CLndOp => { return(Result, hashmap! {
-                        "resultType" => IsBool,
-                        "resultMutable" => Rust.Immutable,
-                        "result" => Rust.LAnd((toBool(lhs)), (toBool(rhs)))
+                    CLndOp => { return(Result {
+                        resultType: IsBool,
+                        resultMutable: Rust.Immutable,
+                        result: Rust.LAnd((toBool(lhs)), (toBool(rhs)))
                         }) },
-                    CLorOp => { return(Result, hashmap! {
-                        "resultType" => IsBool,
-                        "resultMutable" => Rust.Immutable,
-                        "result" => Rust.LOr((toBool(lhs)), (toBool(rhs)))
+                    CLorOp => { return(Result {
+                        resultType: IsBool,
+                        resultMutable: Rust.Immutable,
+                        result: Rust.LOr((toBool(lhs)), (toBool(rhs)))
                         }) },
                 })
     }
@@ -203,10 +203,10 @@ mod Language_Rust_Corrode_C {
 
     fn castTo(__0: CType, __1: Result) -> Rust.Expr {
         match (__0, __1) {
-            target, Result({ .. }) => { castTo(target, Result, hashmap! {
-                "resultType" => IsPtr(mut, el),
-                "resultMutable" => Rust.Immutable,
-                "result" => Rust.MethodCall(source, (Rust.VarName(method)), vec![])
+            target, Result({ .. }) => { castTo(target, Result {
+                resultType: IsPtr(mut, el),
+                resultMutable: Rust.Immutable,
+                result: Rust.MethodCall(source, (Rust.VarName(method)), vec![])
                 }) },
             IsBool, source => { toBool(source) },
             target, <todo>, IsInt({ .. }), Result({ .. }) => { Rust.Lit((Rust.LitInt(n, repr, (toRustType(target))))) },
@@ -284,8 +284,8 @@ mod Language_Rust_Corrode_C {
     }
 
     fn emitItems(items: Vec<Rust.Item>) -> EnvMonad(s, ()) {
-        lift(tell(mempty, hashmap! {
-                "outputItems" => items
+        lift(tell(mempty {
+                outputItems: items
                 }))
     }
 
@@ -448,15 +448,15 @@ mod Language_Rust_Corrode_C {
                             (v, [_]) => { return((literalNumber((IsFloat(32)), (Rust.LitFloat(v))))) },
                             _ => { badSource(expr, "float".to_string()) },
                         } },
-                    CCharConst, CChar(ch, False), _ => { return(Result, hashmap! {
-                        "resultType" => charType,
-                        "resultMutable" => Rust.Immutable,
-                        "result" => Rust.Lit((Rust.LitByteChar(ch)))
+                    CCharConst, CChar(ch, False), _ => { return(Result {
+                        resultType: charType,
+                        resultMutable: Rust.Immutable,
+                        result: Rust.Lit((Rust.LitByteChar(ch)))
                         }) },
-                    CStrConst, CString(str, False), _ => { return(Result, hashmap! {
-                        "resultType" => IsArray(Rust.Immutable, (+(length(str), 1)), charType),
-                        "resultMutable" => Rust.Immutable,
-                        "result" => Rust.Deref((Rust.Lit((Rust.LitByteStr((++(str, "\u{0}".to_string())))))))
+                    CStrConst, CString(str, False), _ => { return(Result {
+                        resultType: IsArray(Rust.Immutable, (+(length(str), 1)), charType),
+                        resultMutable: Rust.Immutable,
+                        result: Rust.Deref((Rust.Lit((Rust.LitByteStr((++(str, "\u{0}".to_string())))))))
                         }) },
                     _ => { unimplemented(expr) },
                 } },
@@ -584,10 +584,10 @@ mod Language_Rust_Corrode_C {
 
     fn promote(node: node, op: fn(Rust.Expr) -> fn(Rust.Expr) -> Rust.Expr, a: Result, b: Result) -> EnvMonad(s, Result) {
         match usual((resultType(a)), (resultType(b))) {
-                Just, rt => { return(Result, hashmap! {
-                    "resultType" => rt,
-                    "resultMutable" => Rust.Immutable,
-                    "result" => op((castTo(rt, a)), (castTo(rt, b)))
+                Just, rt => { return(Result {
+                    resultType: rt,
+                    resultMutable: Rust.Immutable,
+                    result: op((castTo(rt, a)), (castTo(rt, b)))
                     }) },
                 Nothing => { badSource(node)(concat(vec!["arithmetic combination for ".to_string(), show((resultType(a))), " and ".to_string(), show((resultType(b)))])) },
             }
@@ -623,19 +623,19 @@ mod Language_Rust_Corrode_C {
     }
 
     fn rustAlignOfType(Rust.TypeName(ty): Rust.Type) -> Result {
-        Result(hashmap! {
-            "resultType" => IsInt(Unsigned, WordWidth),
-            "resultMutable" => Rust.Immutable,
-            "result" => Rust.Call((Rust.Var((Rust.VarName((++("::std::mem::align_of::<".to_string(), ++(ty, ">".to_string()))))))), vec![])
-            })
+        Result {
+            resultType: IsInt(Unsigned, WordWidth),
+            resultMutable: Rust.Immutable,
+            result: Rust.Call((Rust.Var((Rust.VarName((++("::std::mem::align_of::<".to_string(), ++(ty, ">".to_string()))))))), vec![])
+            }
     }
 
     fn rustSizeOfType(Rust.TypeName(ty): Rust.Type) -> Result {
-        Result(hashmap! {
-            "resultType" => IsInt(Unsigned, WordWidth),
-            "resultMutable" => Rust.Immutable,
-            "result" => Rust.Call((Rust.Var((Rust.VarName((++("::std::mem::size_of::<".to_string(), ++(ty, ">".to_string()))))))), vec![])
-            })
+        Result {
+            resultType: IsInt(Unsigned, WordWidth),
+            resultMutable: Rust.Immutable,
+            result: Rust.Call((Rust.Var((Rust.VarName((++("::std::mem::size_of::<".to_string(), ++(ty, ">".to_string()))))))), vec![])
+            }
     }
 
     fn scalar(expr: Rust.Expr) -> Initializer {
@@ -649,15 +649,11 @@ mod Language_Rust_Corrode_C {
     }
 
     fn setBreak(label: Label) -> CSourceBuildCFGT(s, a) {
-        mapBuildCFGT((local((Lambda(hashmap! {
-                    "onBreak" => Just(label)
-                    })))))
+        mapBuildCFGT((local((Lambda))))
     }
 
     fn setContinue(label: Label) -> CSourceBuildCFGT(s, a) {
-        mapBuildCFGT((local((Lambda(hashmap! {
-                    "onContinue" => Just(label)
-                    })))))
+        mapBuildCFGT((local((Lambda))))
     }
 
     fn statementsToBlock(__0: Vec<Rust.Stmt>) -> Rust.Block {
@@ -693,9 +689,9 @@ mod Language_Rust_Corrode_C {
 
     fn toPtr(__0: Result, __1: Maybe(Result)) -> Maybe(Result) {
         match (__0, __1, __2) {
-            ptr, <todo>, Result({ .. }) => { Just(ptr, hashmap! {
-                "resultType" => IsPtr(mut, el),
-                "result" => castTo((IsPtr(mut, el)), ptr)
+            ptr, <todo>, Result({ .. }) => { Just(ptr {
+                resultType: IsPtr(mut, el),
+                result: castTo((IsPtr(mut, el)), ptr)
                 }) },
             ptr, <todo>, Result({ .. }) => { Just(ptr) },
             _ => { Nothing },
@@ -746,11 +742,11 @@ mod Language_Rust_Corrode_C {
     }
 
     fn typeToResult(itype: IntermediateType, expr: Rust.Expr) -> Result {
-        Result(hashmap! {
-            "resultType" => typeRep(itype),
-            "resultMutable" => typeMutable(itype),
-            "result" => expr
-            })
+        Result {
+            resultType: typeRep(itype),
+            resultMutable: typeMutable(itype),
+            result: expr
+            }
     }
 
     fn unimplemented(node: node) -> EnvMonad(s, a) {
@@ -791,24 +787,24 @@ mod Language_Rust_Corrode_C {
     fn wrapping(__0: Result, __1: Result) -> Result {
         match (__0, __1, __2) {
             r, <todo>, Result({ .. }) => { match result(r) {
-                    Rust.Add, lhs, rhs => { r(hashmap! {
-                        "result" => Rust.MethodCall(lhs, (Rust.VarName("wrapping_add".to_string())), vec![rhs])
-                        }) },
-                    Rust.Sub, lhs, rhs => { r(hashmap! {
-                        "result" => Rust.MethodCall(lhs, (Rust.VarName("wrapping_sub".to_string())), vec![rhs])
-                        }) },
-                    Rust.Mul, lhs, rhs => { r(hashmap! {
-                        "result" => Rust.MethodCall(lhs, (Rust.VarName("wrapping_mul".to_string())), vec![rhs])
-                        }) },
-                    Rust.Div, lhs, rhs => { r(hashmap! {
-                        "result" => Rust.MethodCall(lhs, (Rust.VarName("wrapping_div".to_string())), vec![rhs])
-                        }) },
-                    Rust.Mod, lhs, rhs => { r(hashmap! {
-                        "result" => Rust.MethodCall(lhs, (Rust.VarName("wrapping_rem".to_string())), vec![rhs])
-                        }) },
-                    Rust.Neg, e => { r(hashmap! {
-                        "result" => Rust.MethodCall(e, (Rust.VarName("wrapping_neg".to_string())), vec![])
-                        }) },
+                    Rust.Add, lhs, rhs => { r {
+                        result: Rust.MethodCall(lhs, (Rust.VarName("wrapping_add".to_string())), vec![rhs])
+                        } },
+                    Rust.Sub, lhs, rhs => { r {
+                        result: Rust.MethodCall(lhs, (Rust.VarName("wrapping_sub".to_string())), vec![rhs])
+                        } },
+                    Rust.Mul, lhs, rhs => { r {
+                        result: Rust.MethodCall(lhs, (Rust.VarName("wrapping_mul".to_string())), vec![rhs])
+                        } },
+                    Rust.Div, lhs, rhs => { r {
+                        result: Rust.MethodCall(lhs, (Rust.VarName("wrapping_div".to_string())), vec![rhs])
+                        } },
+                    Rust.Mod, lhs, rhs => { r {
+                        result: Rust.MethodCall(lhs, (Rust.VarName("wrapping_rem".to_string())), vec![rhs])
+                        } },
+                    Rust.Neg, e => { r {
+                        result: Rust.MethodCall(e, (Rust.VarName("wrapping_neg".to_string())), vec![])
+                        } },
                     _ => { r },
                 } },
             r => { r },
@@ -890,27 +886,27 @@ mod Language_Rust_Corrode_CFG {
         Let(in, match (IntSet.toList(noreturns), IntSet.toList(returns)) {
                 ([], []) => { vec![] },
                 ([entry], []) => { match IntMap.updateLookupWithKey((Lambda), entry, blocks) {
-                        (Just((s, term)), blocks') => { :(Structure(hashmap! {
-                                "structureEntries" => entries,
-                                "structureBody" => Simple(s, term)
-                                }), relooper((successors((s, term))), blocks')) },
-                        (Nothing, _) => { :(Structure(hashmap! {
-                                "structureEntries" => entries,
-                                "structureBody" => Simple(mempty, (Branch((GoTo(entry)))))
-                                }), vec![]) },
+                        (Just((s, term)), blocks') => { :(Structure {
+                                structureEntries: entries,
+                                structureBody: Simple(s, term)
+                                }, relooper((successors((s, term))), blocks')) },
+                        (Nothing, _) => { :(Structure {
+                                structureEntries: entries,
+                                structureBody: Simple(mempty, (Branch((GoTo(entry)))))
+                                }, vec![]) },
                     } },
-            _ => if not((IntSet.null(absent))) { :(if(IntSet.null, present, then, vec![], else, Structure, hashmap! {
-                    "structureEntries" => entries,
-                    "structureBody" => Multiple((IntMap.fromSet((const(vec![])), absent)), (relooper(present, blocks)))
+            _ => if not((IntSet.null(absent))) { :(if(IntSet.null, present, then, vec![], else, Structure {
+                    structureEntries: entries,
+                    structureBody: Multiple((IntMap.fromSet((const(vec![])), absent)), (relooper(present, blocks)))
                     }), vec![]) },
-                ([], _) => { :(Structure(hashmap! {
-                        "structureEntries" => entries,
-                        "structureBody" => Loop((relooper(entries, blocks')))
-                        }), relooper(followEntries, followBlocks)) },
-                _ => { :(Structure(hashmap! {
-                        "structureEntries" => entries,
-                        "structureBody" => Multiple(handlers, unhandled)
-                        }), relooper(followEntries, followBlocks)) },
+                ([], _) => { :(Structure {
+                        structureEntries: entries,
+                        structureBody: Loop((relooper(entries, blocks')))
+                        }, relooper(followEntries, followBlocks)) },
+                _ => { :(Structure {
+                        structureEntries: entries,
+                        structureBody: Multiple(handlers, unhandled)
+                        }, relooper(followEntries, followBlocks)) },
             })
     }
 
