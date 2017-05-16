@@ -851,7 +851,7 @@ mod Language_C_Data_Error {
     }
 
     fn internalErr(msg: String) -> a {
-        error((++(internalErrPrefix, ++("\\n".to_string(), ++(indentLines(msg), "\\n".to_string())))))
+        error((++(internalErrPrefix, ++("\n".to_string(), ++(indentLines(msg), "\n".to_string())))))
     }
 
     fn internalErrPrefix() -> String {
