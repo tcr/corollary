@@ -1,17 +1,332 @@
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/AstAnalysis.hs"
-Error: Unrecognized token `->`:
-117 |     | null declrs =
-118 |         case typedef_spec of{ Just _  -> astError node "YmFkIHR5cGVkZW
-119 |                               Nothing -> analyseTypeDecl decl >> retur
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/Builtins.hs"
-Error: Unrecognized token `=`:
- 10 | ;builtins = foldr doIdent (foldr doTypeDef emptyDefTable typedefs) ide
- 11 |   where{ doTypeDef d = snd . defineTypeDef (identOfTypeDef d) d
- 12 |          doIdent   d = snd . defineGlobalIdent (declIdent d) d
-~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Analysis_AstAnalysis {
+    struct StmtCtx(FunCtx, VarDecl, LoopCtx, SwitchCtx);
+
+    #[derive(Debug, Eq)]
+    struct ExprSide(LValue, RValue);
+
+    fn advanceDesigList(ds: Vec<CDesignator>, d: CDesignator) -> Vec<CDesignator> {
+        drop(1)(dropWhile(((not . matchDesignator(d))), ds))
+    }
+
+    fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m(GlobalDecls) {
+        {
+
+        }
+    }
+
+    fn analyseExt(__0: CExtDecl) -> m(()) {
+        match (__0) {
+            CAsmExt(asm, _) => { handleAsmBlock(asm) },
+            CFDefExt(fundef) => { analyseFunDef(fundef) },
+            CDeclExt(decl) => { analyseDecl(False, decl) },
+        }
+    }
+
+    fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info): CFunDef) -> m(()) {
+        {
+
+        }
+    }
+
+    fn analyseFunctionBody(__0: NodeInfo, __1: VarDecl, __2: CStat, __3: m(Stmt)) -> m(Stmt) {
+        match (__0, __1, __2, __3, __4) {
+            node_info, decl, s, <todo>, CCompound(localLabels, items, _) => { {
+
+            } },
+            _, _, s => { astError((nodeInfo(s)), "Function body is no compound statement".to_string()) },
+        }
+    }
+
+    fn analyseTypeDef(handle_sue_def: Bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, node_info: NodeInfo) -> m(()) {
+        {
+
+        }
+    }
+
+    fn builtinType(__0: CBuiltin) -> m(Type) {
+        match (__0) {
+            CBuiltinVaArg(_, d, _) => { analyseTypeDecl(d) },
+            CBuiltinOffsetOf(_, _, _) => { return(size_tType) },
+            CBuiltinTypesCompatible(_, _, _) => { return(boolType) },
+        }
+    }
+
+    fn checkGuard(c: Vec<StmtCtx>, e: CExpr) -> m(()) {
+        >>=(tExpr(c, RValue, e), checkScalar'((nodeInfo(e))))
+    }
+
+    fn checkInits(__0: Type, __1: Vec<CDesignator>, __2: CInitList) -> m(()) {
+        match (__0, __1, __2) {
+            _, _, [] => { return(()) },
+            t, dds, (ds, i)(:, is) => { {
+
+            } },
+        }
+    }
+
+    fn complexBaseType(ni: NodeInfo, c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m(Type) {
+        {
+
+        }
+    }
+
+    fn computeFunDefStorage(__0: Ident, __1: StorageSpec) -> m(Storage) {
+        match (__0, __1) {
+            _, StaticSpec(b) => { return(FunLinkage(InternalLinkage)) },
+            ident, other_spec => { {
+
+            } },
+        }
+    }
+
+    fn defaultMD() -> MachineDesc {
+        MachineDesc {
+            iSize: Lambda,
+            fSize: Lambda,
+            builtinSize: Lambda,
+            ptrSize: 4,
+            voidSize: 1,
+            iAlign: Lambda,
+            fAlign: Lambda,
+            builtinAlign: Lambda,
+            ptrAlign: 4,
+            voidAlign: 1
+            }
+    }
+
+    fn defineParams(ni: NodeInfo, decl: VarDecl) -> m(()) {
+        match (getParams(declType(decl))) {
+                Nothing => { astError(ni, "expecting complete function type in function definition".to_string()) },
+                Just, params => { mapM_(handleParamDecl, params) },
+            }
+    }
+
+    fn enclosingFunctionType(__0: Vec<StmtCtx>) -> Maybe(Type) {
+        match (__0) {
+            [] => { Nothing },
+            FunCtx(vd, :, _) => { Just(declType(vd)) },
+            _(:, cs) => { enclosingFunctionType(cs) },
+        }
+    }
+
+    fn extFunProto(VarDeclInfo(var_name, is_inline, storage_spec, attrs, ty, node_info): VarDeclInfo) -> m(()) {
+        {
+
+        }
+    }
+
+    fn extVarDecl(VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Maybe(Initializer)) -> m(()) {
+        {
+
+        }
+    }
+
+    fn getParams(__0: Type) -> Maybe(Vec<ParamDecl>) {
+        match (__0) {
+            FunctionType(FunType(_, params, _), _) => { Just(params) },
+            _ => { Nothing },
+        }
+    }
+
+    fn hasTypeDef(declspecs: Vec<CDeclSpec>) -> Maybe(Vec<CDeclSpec>) {
+        match foldr(hasTypeDefSpec, (False, vec![]), declspecs) {
+                (True, specs') => { Just(specs') },
+                (False, _) => { Nothing },
+            }
+    }
+
+    fn inLoop(c: Vec<StmtCtx>) -> Bool {
+        any(isLoop, c)
+    }
+
+    fn inSwitch(c: Vec<StmtCtx>) -> Bool {
+        any(isSwitch, c)
+    }
+
+    fn localVarDecl(VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Maybe(Initializer)) -> m(()) {
+        {
+
+        }
+    }
+
+    fn matchDesignator(__0: CDesignator, __1: CDesignator) -> Bool {
+        match (__0, __1) {
+            CMemberDesig(m1, _), CMemberDesig(m2, _) => { ==(m1, m2) },
+            _, _ => { True },
+        }
+    }
+
+    fn tBlockItem(__0: Vec<StmtCtx>, __1: CBlockItem) -> m(Type) {
+        match (__0, __1) {
+            c, CBlockStmt(s) => { tStmt(c, s) },
+            _, CBlockDecl(d) => { >>(analyseDecl(True, d), return(voidType)) },
+            _, CNestedFunDef(fd) => { >>(analyseFunDef(fd), return(voidType)) },
+        }
+    }
+
+    fn tDesignator(__0: Type, __1: Vec<CDesignator>) -> m(Type) {
+        match (__0, __1) {
+            ArrayType(bt, _, _, _), CArrDesig(e, ni, :, ds) => { {
+
+            } },
+            ArrayType(bt, _, _, _), CRangeDesig(e1, e2, ni, :, ds) => { {
+
+            } },
+            ArrayType(_, _, _, _), d(:, ds) => { typeError((nodeInfo(d)), "member designator in array initializer".to_string()) },
+            t, <todo>, DirectType(TyComp(_), _, _), CMemberDesig(m, ni, :, ds) => { {
+
+            } },
+            t, <todo>, DirectType(TyComp(_), _, _), d(:, _) => { typeError((nodeInfo(d)), "array designator in compound initializer".to_string()) },
+            t, [] => { return(t) },
+        }
+    }
+
+    fn tExpr(c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m(Type) {
+        match nameOfNode((nodeInfo(e))) {
+                Just, n => { {
+
+                } },
+                Nothing => { tExpr'(c, side, e) },
+            }
+    }
+
+    fn tExpr'(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m(Type) {
+        match (__0, __1, __2) {
+            c, side, CBinary(op, le, re, ni) => { {
+
+            } },
+            c, side, CUnary(CAdrOp, e, ni) => { {
+
+            } },
+            c, _, CUnary(CIndOp, e, ni) => { >>=(tExpr(c, RValue, e), ((typeErrorOnLeft(ni) . derefType))) },
+            c, _, CUnary(CCompOp, e, ni) => { {
+
+            } },
+            c, side, CUnary(CNegOp, e, ni) => { {
+
+            } },
+            c, side, CUnary(op, e, _) => { tExpr(c, (if(isEffectfulOp, op, then, LValue, else, side)), e) },
+            c, _, CIndex(b, i, ni) => { {
+
+            } },
+            c, side, CCond(e1, me2, e3, ni) => { {
+
+            } },
+            c, side, CMember(e, m, deref, ni) => { {
+
+            } },
+            c, side, CComma(es, _) => { >>=(mapM((tExpr(c, side)), es), (return . last)) },
+            c, side, CCast(d, e, ni) => { {
+
+            } },
+            c, side, CSizeofExpr(e, ni) => { {
+
+            } },
+            c, side, CAlignofExpr(e, ni) => { {
+
+            } },
+            c, side, CComplexReal(e, ni) => { complexBaseType(ni, c, side, e) },
+            c, side, CComplexImag(e, ni) => { complexBaseType(ni, c, side, e) },
+            _, side, CLabAddrExpr(_, ni) => { {
+
+            } },
+            _, side, CCompoundLit(d, initList, ni) => { {
+
+            } },
+            _, RValue, CAlignofType(_, _) => { return(size_tType) },
+            _, RValue, CSizeofType(_, _) => { return(size_tType) },
+            _, LValue, CAlignofType(_, ni) => { typeError(ni, "alignoftype as lvalue".to_string()) },
+            _, LValue, CSizeofType(_, ni) => { typeError(ni, "sizeoftype as lvalue".to_string()) },
+            _, side, CVar(i, ni) => { >>=(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), ((return . declType)))) },
+            _, _, CConst(c) => { constType(c) },
+            _, _, CBuiltinExpr(b) => { builtinType(b) },
+            c, _, CCall(fe, args, ni) => { {
+
+            } },
+            c, _, CAssign(op, le, re, ni) => { {
+
+            } },
+            c, _, CStatExpr(s, _) => { {
+
+            } },
+        }
+    }
+
+    fn tInit(__0: Type, __1: CInit, __2: m(Initializer)) -> m(Initializer) {
+        match (__0, __1, __2, __3) {
+            t, i, <todo>, CInitExpr(e, ni) => { {
+
+            } },
+            t, i, <todo>, CInitList(initList, ni) => { >>(tInitList(ni, (canonicalType(t)), initList), return(i)) },
+        }
+    }
+
+    fn tInitList(__0: NodeInfo, __1: Type, __2: CInitList, __3: m(())) -> m(()) {
+        match (__0, __1, __2, __3, __4) {
+            ni, t, <todo>, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [([], CInitExpr(e, <todo>, CConst(CStrConst(_, _)), _))] => { >>(tExpr(vec![], RValue, e), return(())) },
+            ni, t, <todo>, ArrayType(_, _, _, _), initList => { {
+
+            } },
+            ni, t, <todo>, DirectType(TyComp(ctr), _, _), initList => { {
+
+            } },
+            ni, PtrType(DirectType(TyVoid, _, _), _, _), _ => { return(()) },
+            _, t, [([], i)] => { >>(tInit(t, i), return(())) },
+            ni, t, _ => { typeError(ni)(++("initializer list for type: ".to_string(), pType(t))) },
+        }
+    }
+
+    fn tStmt(__0: Vec<StmtCtx>, __1: CStat) -> m(Type) {
+        match (__0, __1) {
+            c, CLabel(_, s, _, _) => { tStmt(c, s) },
+            c, CExpr(e, _) => { maybe((return(voidType)), (tExpr(c, RValue)), e) },
+            c, CCompound(ls, body, _) => { {
+
+            } },
+            c, CIf(e, sthen, selse, _) => { >>(checkGuard(c, e), >>(tStmt(c, sthen), >>(maybe((return(())), (>>(Lambda(c, s), return(()))), selse), return(voidType)))) },
+            c, CSwitch(e, s, ni) => { >>=(tExpr(c, RValue, e), >>(checkIntegral'(ni), tStmt((:(SwitchCtx, c)), s))) },
+            c, CWhile(e, s, _, _) => { >>(checkGuard(c, e), tStmt((:(LoopCtx, c)), s)) },
+            _, CGoto(l, ni) => { {
+
+            } },
+            c, CCont(ni) => { {
+
+            } },
+            c, CBreak(ni) => { {
+
+            } },
+            c, CReturn(Just(e), ni) => { {
+
+            } },
+            _, CReturn(Nothing, _) => { return(voidType) },
+            _, CAsm(_, _) => { return(voidType) },
+            c, CCase(e, s, ni) => { {
+
+            } },
+            c, CCases(e1, e2, s, ni) => { {
+
+            } },
+            c, CDefault(s, ni) => { {
+
+            } },
+            c, CFor(i, g, inc, s, _) => { {
+
+            } },
+            c, CGotoPtr(e, ni) => { {
+
+            } },
+        }
+    }
+
+}
+
+mod Language_C_Analysis_Builtins {
+    fn builtins() -> DefTable {
+        foldr(doIdent, (foldr(doTypeDef, emptyDefTable, typedefs)), idents)
+    }
+
+}
+
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/ConstEval.hs"
 Error: Unrecognized token `->`:
  21 | ;data MachineDesc =
@@ -164,7 +479,7 @@ mod Language_C_Analysis_DeclAnalysis {
         match declrs {
                 [] => { internalErr("splitCDecl applied to empty declaration".to_string()) },
                 [declr] => { return(vec![decl]) },
-                d1:ds => { Let },
+                d1:ds => { Let(return)(:((CDecl(declspecs, vec![d1], node)), Dummy)) },
             }
     }
 
@@ -333,7 +648,9 @@ otherwise { KindMismatch(def') },
     }
 
     fn defineLabel(ident: Ident, deftbl: DefTable) -> (DeclarationStatus(Ident), DefTable) {
-        Let
+        Let(in, (maybe(NewDecl, Redeclared, old_label), deftbl {
+                labelDefs: labels'
+                }))
     }
 
     fn defineScopedIdent() -> (DeclarationStatus(IdentEntry), DefTable) {
@@ -425,7 +742,9 @@ otherwise { KindMismatch(def') },
     }
 
     fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
-        Let
+        Let(in, Dummy, (map(snd, members)), (deftbl {
+                memberDecls: decls'
+                }))
     }
 
     fn leaveScope_() -> NameSpaceMap(k, a) {
@@ -471,20 +790,234 @@ otherwise { KindMismatch(def') },
 
 }
 
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/Export.hs"
-Error: Unrecognized token `->`:
- 35 |     (specs,derived) = exportType ty
- 36 |      ;(ident,asmname) = case name of{ (VarName vident asmname_opt) ->
- 37 |                                      _ -> (Nothing,Nothing)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/NameSpaceMap.hs"
-Error: Unrecognized token `=`:
-152 |   where{ localUnion (l1:ls1) (l2:ls2) =
-153 |            List.unionBy (\p1 p2 -> fst p1 == fst p2) l1 l2 : localUnio
-154 |          localUnion [] ls2 = ls2
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Analysis_Export {
+    fn exportArraySize(__0: ArraySize) -> CArrSize {
+        match (__0) {
+            ArraySize(static, e) => { CArrSize(static, e) },
+            UnknownArraySize(complete) => { CNoArrSize(complete) },
+        }
+    }
+
+    fn exportAttrs() -> Vec<CAttr> {
+        map(exportAttr)
+    }
+
+    fn exportCompType(CompType(sue_ref, comp_tag, members, attrs, node_info): CompType) -> Vec<CTypeSpec> {
+        vec![CSUType(comp, ni)]
+    }
+
+    fn exportCompTypeDecl(ty: CompTypeRef) -> Vec<CTypeSpec> {
+        vec![CSUType((exportComp(ty)), ni)]
+    }
+
+    fn exportCompTypeRef(CompType(sue_ref, com_tag, _, _, node_info): CompType) -> Vec<CTypeSpec> {
+        exportCompTypeDecl((CompTypeRef(sue_ref, com_tag, node_info)))
+    }
+
+    fn exportComplexType(ty: FloatType) -> Vec<CTypeSpec> {
+        :((CComplexType(ni)), exportFloatType(ty))
+    }
+
+    fn exportDeclAttrs(DeclAttrs(inline, storage, attrs): DeclAttrs) -> Vec<CDeclSpec> {
+        ++((if(inline, then, vec![CTypeQual((CInlineQual(ni)))], else, vec![])), ++(map((CStorageSpec), (exportStorage(storage))), map(((CTypeQual . CAttrQual)), (exportAttrs(attrs)))))
+    }
+
+    fn exportDeclr(other_specs: Vec<CDeclSpec>, ty: Type, attrs: Attributes, name: VarName) -> (Vec<CDeclSpec>, CDeclr) {
+        (++(other_specs, specs), CDeclr(ident, derived, asmname, (exportAttrs(attrs)), ni))
+    }
+
+    fn exportEnumType(EnumType(sue_ref, enumerators, attrs, node_info): EnumType) -> Vec<CTypeSpec> {
+        vec![CEnumType(enum, ni)]
+    }
+
+    fn exportEnumTypeDecl(ty: EnumTypeRef) -> Vec<CTypeSpec> {
+        vec![CEnumType((exportEnum(ty)), ni)]
+    }
+
+    fn exportEnumTypeRef(EnumType(sue_ref, _, _, node_info): EnumType) -> Vec<CTypeSpec> {
+        exportEnumTypeDecl((EnumTypeRef(sue_ref, node_info)))
+    }
+
+    fn exportFloatType(ty: FloatType) -> Vec<CTypeSpec> {
+        match ty {
+                TyFloat => { vec![CFloatType(ni)] },
+                TyDouble => { vec![CDoubleType(ni)] },
+                TyLDouble => { vec![CLongType(ni), CDoubleType(ni)] },
+            }
+    }
+
+    fn exportIntType(ty: IntType) -> Vec<CTypeSpec> {
+        match ty {
+                TyBool => { vec![CBoolType(ni)] },
+                TyChar => { vec![CCharType(ni)] },
+                TySChar => { vec![CSignedType(ni), CCharType(ni)] },
+                TyUChar => { vec![CUnsigType(ni), CCharType(ni)] },
+                TyShort => { vec![CShortType(ni)] },
+                TyUShort => { vec![CUnsigType(ni), CShortType(ni)] },
+                TyInt => { vec![CIntType(ni)] },
+                TyUInt => { vec![CUnsigType(ni), CIntType(ni)] },
+                TyLong => { vec![CLongType(ni)] },
+                TyULong => { vec![CUnsigType(ni), CLongType(ni)] },
+                TyLLong => { vec![CLongType(ni), CLongType(ni)] },
+                TyULLong => { vec![CUnsigType(ni), CLongType(ni), CLongType(ni)] },
+            }
+    }
+
+    fn exportMemberDecl(__0: MemberDecl) -> CDecl {
+        match (__0) {
+            AnonBitField(ty, expr, node_info) => { CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(Nothing, Nothing, Just(expr))], node_info) },
+            MemberDecl(vardecl, bitfieldsz, node_info) => { Let(in, CDecl, specs, vec![(Just(declarator), Nothing, bitfieldsz)], node_info) },
+        }
+    }
+
+    fn exportParamDecl(paramdecl: ParamDecl) -> CDecl {
+        Let(in, CDecl, specs, vec![(Just(declr), Nothing, Nothing)], (nodeInfo(paramdecl)))
+    }
+
+    fn exportSUERef() -> Maybe(Ident) {
+        (Just . (internalIdent . show))
+    }
+
+    fn exportStorage(__0: Storage) -> Vec<CStorageSpec> {
+        match (__0) {
+            NoStorage => { vec![] },
+            Auto(reg) => { if(reg, then, vec![CRegister(ni)], else, vec![]) },
+            Static(InternalLinkage, thread_local) => { threadLocal(thread_local, vec![CStatic(ni)]) },
+            Static(ExternalLinkage, thread_local) => { threadLocal(thread_local, vec![CExtern(ni)]) },
+            Static(NoLinkage, _) => { error("impossible storage: static without linkage".to_string()) },
+            FunLinkage(InternalLinkage) => { vec![CStatic(ni)] },
+            FunLinkage(ExternalLinkage) => { vec![] },
+            FunLinkage(NoLinkage) => { error("impossible storage: function without linkage".to_string()) },
+        }
+    }
+
+    fn exportType(ty: Type) -> (Vec<CDeclSpec>, Vec<CDerivedDeclr>) {
+        exportTy(vec![], ty)
+    }
+
+    fn exportTypeDecl(ty: Type) -> CDecl {
+        CDecl(declspecs, declrs, ni)
+    }
+
+    fn exportTypeDef(TypeDef(ident, ty, attrs, node_info): TypeDef) -> CDecl {
+        CDecl((:(CStorageSpec((CTypedef(ni))), declspecs)), vec![declr], node_info)
+    }
+
+    fn exportTypeQuals(quals: TypeQuals) -> Vec<CTypeQual> {
+        mapMaybe(select, vec![(constant, CConstQual(ni)), (volatile, CVolatQual(ni)), (restrict, CRestrQual(ni))])
+    }
+
+    fn exportTypeQualsAttrs(tyqs: TypeQuals, attrs: Attributes) -> Vec<CTypeQual> {
+        (++(exportTypeQuals(tyqs), map(CAttrQual, (exportAttrs(attrs)))))
+    }
+
+    fn exportTypeSpec(tyname: TypeName) -> Vec<CTypeSpec> {
+        match tyname {
+                TyVoid => { vec![CVoidType(ni)] },
+                TyIntegral, ity => { exportIntType(ity) },
+                TyFloating, fty => { exportFloatType(fty) },
+                TyComplex, fty => { exportComplexType(fty) },
+                TyComp, comp => { exportCompTypeDecl(comp) },
+                TyEnum, enum => { exportEnumTypeDecl(enum) },
+                TyBuiltin, TyVaList => { vec![CTypeDef((internalIdent("va_list".to_string())), ni)] },
+                TyBuiltin, TyAny => { vec![CTypeDef((internalIdent("__ty_any".to_string())), ni)] },
+            }
+    }
+
+    fn exportVarDecl(VarDecl(name, attrs, ty): VarDecl) -> (Vec<CDeclSpec>, CDeclr) {
+        exportDeclr((exportDeclAttrs(attrs)), ty, vec![], name)
+    }
+
+    fn fromDirectType(__0: Type) -> TypeName {
+        match (__0) {
+            DirectType(ty, _, _) => { ty },
+            TypeDefType(TypeDefRef(_, ref, _), _, _) => { maybe((error("undefined typeDef".to_string())), fromDirectType, ref) },
+            _ => { error("fromDirectType".to_string()) },
+        }
+    }
+
+    fn ni() -> NodeInfo {
+        undefNode
+    }
+
+    fn threadLocal(__0: Bool) -> Vec<CStorageSpec> {
+        match (__0) {
+            False => { id },
+            True => { ((CThread(ni))(Operator(":"))) },
+        }
+    }
+
+}
+
+mod Language_C_Analysis_NameSpaceMap {
+    struct NameSpaceMap(NsMap, Map(k, v), Vec<Vec<(k, v)>>);
+
+    fn defGlobal(NsMap(gs, lss): NameSpaceMap(k, a), ident: k, def: a) -> (NameSpaceMap(k, a), Maybe(a)) {
+        (NsMap((Map.insert(ident, def, gs)), lss), Map.lookup(ident, gs))
+    }
+
+    fn defLocal(__0: NameSpaceMap(k, a), __1: k, __2: a, __3: (NameSpaceMap(k, a), Maybe(a))) -> (NameSpaceMap(k, a), Maybe(a)) {
+        match (__0, __1, __2, __3, __4) {
+            ns, <todo>, NsMap(_, []), ident, def => { defGlobal(ns, ident, def) },
+            NsMap(gs, ls:lss), ident, def => { (NsMap(gs, (:((:((ident, def), ls)), lss))), Prelude.lookup(ident, ls)) },
+        }
+    }
+
+    fn enterNewScope(NsMap(gs, lss): NameSpaceMap(k, a)) -> NameSpaceMap(k, a) {
+        NsMap(gs, (:(vec![], lss)))
+    }
+
+    fn globalNames(NsMap(g, _): NameSpaceMap(k, v)) -> Map(k, v) {
+        g
+    }
+
+    fn hasLocalNames(NsMap(_, l): NameSpaceMap(k, v)) -> Bool {
+        not((null(l)))
+    }
+
+    fn leaveScope(__0: NameSpaceMap(k, a)) -> (NameSpaceMap(k, a), Vec<(k, a)>) {
+        match (__0) {
+            NsMap(_, []) => { error("NsMaps.leaveScope: No local scope!".to_string()) },
+            NsMap(gs, ls:lss) => { (NsMap(gs, lss), ls) },
+        }
+    }
+
+    fn localNames(NsMap(_, l): NameSpaceMap(k, v)) -> Vec<Vec<(k, v)>> {
+        l
+    }
+
+    fn lookupGlobal(NsMap(gs, _): NameSpaceMap(k, a), ident: k) -> Maybe(a) {
+        Map.lookup(ident, gs)
+    }
+
+    fn lookupInnermostScope(nsm: NameSpaceMap(k, a), <todo>: k, NsMap(_gs, localDefs): Maybe(a)) -> Maybe(a) {
+        match localDefs {
+                ls(:, _lss) => { Prelude.lookup(ident, ls) },
+                [] => { lookupGlobal(nsm, ident) },
+            }
+    }
+
+    fn lookupName(ns: NameSpaceMap(k, a), <todo>: k, NsMap(_, localDefs): Maybe(a)) -> Maybe(a) {
+        match (lookupLocal(localDefs)) {
+                Nothing => { lookupGlobal(ns, ident) },
+                Just, def => { Just(def) },
+            }
+    }
+
+    fn mergeNameSpace(NsMap(global1, local1): NameSpaceMap(k, a), NsMap(global2, local2): NameSpaceMap(k, a)) -> NameSpaceMap(k, a) {
+        NsMap((Map.union(global1, global2)), (localUnion(local1, local2)))
+    }
+
+    fn nameSpaceMap() -> NameSpaceMap(k, v) {
+        NsMap(Map.empty, vec![])
+    }
+
+    fn nsMapToList(NsMap(gs, lss): NameSpaceMap(k, a)) -> Vec<(k, a)> {
+        ++(concat(lss), Map.toList(gs))
+    }
+
+}
+
 mod Language_C_Analysis_SemError {
     #[derive(Debug)]
     struct RedefError(RedefError, ErrorLevel, RedefInfo);
@@ -773,7 +1306,7 @@ Error: Unrecognized token `->`:
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeCheck.hs"
 Error: Unrecognized token `|`:
  95 |   do{ n <- genName
- 96 |       let{ charType | wide      = TyInt
+ 96 |       ;let{ charType | wide      = TyInt
  97 |                     | otherwise = TyChar
 ~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
@@ -806,13 +1339,180 @@ mod Language_C_Analysis_TypeConversions {
 
 }
 
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Analysis/TypeUtils.hs"
-Error: Unrecognized token `->`:
-136 | ;isFunctionType ty =
-137 |     case ty of{  TypeDefType (TypeDefRef _ (Just actual_ty) _) _ _ ->
-138 |                  TypeDefType _ _ _ -> error "aXNGdW5jdGlvblR5cGU6IHVuc
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Analysis_TypeUtils {
+    fn baseType(__0: Type) -> Type {
+        match (__0) {
+            PtrType(t, _, _) => { t },
+            ArrayType(t, _, _, _) => { t },
+            _ => { error("base of non-pointer type".to_string()) },
+        }
+    }
+
+    fn boolType() -> Type {
+        integral(TyInt)
+    }
+
+    fn canonicalType(t: Type) -> Type {
+        match deepDerefTypeDef(t) {
+                FunctionType, ft, attrs => { simplePtr((FunctionType(ft, attrs))) },
+                t' => { t' },
+            }
+    }
+
+    fn charPtr() -> Type {
+        simplePtr((integral(TyChar)))
+    }
+
+    fn constCharPtr() -> Type {
+        constPtr((integral(TyChar)))
+    }
+
+    fn constPtr(t: Type) -> Type {
+        PtrType(t, (TypeQuals(True, False, False)), vec![])
+    }
+
+    fn constVoidPtr() -> Type {
+        constPtr(voidType)
+    }
+
+    fn deepDerefTypeDef(__0: Type) -> Type {
+        match (__0) {
+            PtrType(t, quals, attrs) => { PtrType((deepDerefTypeDef(t)), quals, attrs) },
+            ArrayType(t, size, quals, attrs) => { ArrayType((deepDerefTypeDef(t)), size, quals, attrs) },
+            FunctionType(FunType(rt, params, varargs), attrs) => { FunctionType((FunType((deepDerefTypeDef(rt)), params, varargs)), attrs) },
+            FunctionType(FunTypeIncomplete(rt), attrs) => { FunctionType((FunTypeIncomplete((deepDerefTypeDef(rt)))), attrs) },
+            TypeDefType(TypeDefRef(_, Just(t), _), q, a) => { ((typeAttrsUpd((mergeAttributes(a))) . typeQualsUpd((mergeTypeQuals(q)))))((deepDerefTypeDef(t))) },
+            t => { t },
+        }
+    }
+
+    fn derefTypeDef(__0: Type) -> Type {
+        match (__0) {
+            TypeDefType(TypeDefRef(_, Just(t), _), q, a) => { ((typeAttrsUpd((mergeAttributes(a))) . typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t))) },
+            ty => { ty },
+        }
+    }
+
+    fn floating(ty: FloatType) -> Type {
+        DirectType((TyFloating(ty)), noTypeQuals, noAttributes)
+    }
+
+    fn integral(ty: IntType) -> Type {
+        DirectType((TyIntegral(ty)), noTypeQuals, noAttributes)
+    }
+
+    fn isFloatingType(__0: Type) -> Bool {
+        match (__0) {
+            DirectType(TyFloating(_), _, _) => { True },
+            _ => { False },
+        }
+    }
+
+    fn isFunctionType(ty: Type) -> Bool {
+        match ty {
+                TypeDefType, TypeDefRef(_, Just(actual_ty), _), _, _ => { isFunctionType(actual_ty) },
+                TypeDefType, _, _, _ => { error("isFunctionType: unresolved typeDef".to_string()) },
+                FunctionType, _, _ => { True },
+                _ => { False },
+            }
+    }
+
+    fn isIntegralType(__0: Type) -> Bool {
+        match (__0) {
+            DirectType(TyIntegral(_), _, _) => { True },
+            DirectType(TyEnum(_), _, _) => { True },
+            _ => { False },
+        }
+    }
+
+    fn isPointerType(__0: Type) -> Bool {
+        match (__0) {
+            PtrType(_, _, _) => { True },
+            ArrayType(_, _, _, _) => { True },
+            _ => { False },
+        }
+    }
+
+    fn isScalarType(t: Type) -> Bool {
+        ||(isIntegralType(t), ||(isPointerType(t), isFloatingType(t)))
+    }
+
+    fn ptrDiffType() -> Type {
+        integral(TyInt)
+    }
+
+    fn simplePtr(t: Type) -> Type {
+        PtrType(t, noTypeQuals, vec![])
+    }
+
+    fn size_tType() -> Type {
+        integral(TyInt)
+    }
+
+    fn stringType() -> Type {
+        ArrayType((DirectType((TyIntegral(TyChar)), (TypeQuals(True, False, False)), noAttributes)), (UnknownArraySize(False)), noTypeQuals, vec![])
+    }
+
+    fn testFlags(flags: Vec<f>, fi: Flags(f)) -> Bool {
+        and(map(((flip(testFlag))(fi)), flags))
+    }
+
+    fn typeAttrs(__0: Type) -> Attributes {
+        match (__0) {
+            DirectType(_, _, a) => { a },
+            PtrType(_, _, a) => { a },
+            ArrayType(_, _, _, a) => { a },
+            FunctionType(_, a) => { a },
+            TypeDefType(TypeDefRef(_, Nothing, _), _, a) => { a },
+            TypeDefType(TypeDefRef(_, Just(t), _), _, a) => { mergeAttributes(a, (typeAttrs(t))) },
+        }
+    }
+
+    fn typeAttrsUpd(f: fn(Attributes) -> Attributes, ty: Type) -> Type {
+        match ty {
+                DirectType, ty_name, ty_quals, ty_attrs => { DirectType(ty_name, ty_quals, (f(ty_attrs))) },
+                PtrType, ty_inner, ty_quals, ty_attrs => { PtrType(ty_inner, ty_quals, (f(ty_attrs))) },
+                ArrayType, ty_inner, sz, ty_quals, ty_attrs => { ArrayType(ty_inner, sz, ty_quals, (f(ty_attrs))) },
+                FunctionType, ty_inner, ty_attrs => { FunctionType(ty_inner, (f(ty_attrs))) },
+                TypeDefType, ty_ref, ty_quals, ty_attrs => { TypeDefType(ty_ref, ty_quals, (f(ty_attrs))) },
+            }
+    }
+
+    fn typeQuals(__0: Type) -> TypeQuals {
+        match (__0) {
+            DirectType(_, q, _) => { q },
+            PtrType(_, q, _) => { q },
+            ArrayType(_, _, q, _) => { q },
+            FunctionType(_, _) => { noTypeQuals },
+            TypeDefType(TypeDefRef(_, Nothing, _), q, _) => { q },
+            TypeDefType(TypeDefRef(_, Just(t), _), q, _) => { mergeTypeQuals(q, (typeQuals(t))) },
+        }
+    }
+
+    fn typeQualsUpd(f: fn(TypeQuals) -> TypeQuals, ty: Type) -> Type {
+        match ty {
+                DirectType, ty_name, ty_quals, ty_attrs => { DirectType(ty_name, (f(ty_quals)), ty_attrs) },
+                PtrType, ty_inner, ty_quals, ty_attrs => { PtrType(ty_inner, (f(ty_quals)), ty_attrs) },
+                ArrayType, ty_inner, sz, ty_quals, ty_attrs => { ArrayType(ty_inner, sz, (f(ty_quals)), ty_attrs) },
+                FunctionType, ty_inner, ty_attrs => { FunctionType(ty_inner, ty_attrs) },
+                TypeDefType, ty_ref, ty_quals, ty_attrs => { TypeDefType(ty_ref, (f(ty_quals)), ty_attrs) },
+            }
+    }
+
+    fn valistType() -> Type {
+        DirectType((TyBuiltin(TyVaList)), noTypeQuals, noAttributes)
+    }
+
+    fn voidPtr() -> Type {
+        simplePtr(voidType)
+    }
+
+    fn voidType() -> Type {
+        DirectType(TyVoid, noTypeQuals, noAttributes)
+    }
+
+}
+
 mod Language_C_Analysis {
 
 }
@@ -1025,13 +1725,73 @@ mod Language_C_Data_Name {
 
 }
 
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Data/Node.hs"
-Error: Unrecognized token `->`:
- 56 |     where{
- 57 |     len = case ni of{ NodeInfo firstPos lastTok _ -> computeLength fir
- 58 |                        OnlyPos firstPos lastTok -> computeLength first
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Data_Node {
+    #[derive(Clone, Debug)]
+    struct NodeInfo(OnlyPos, Position, PosLength, NodeInfo, Position, PosLength, Name);
+
+    fn eqByName(obj1: a, obj2: a) -> Bool {
+        ==((nodeInfo(obj1)), (nodeInfo(obj2)))
+    }
+
+    fn fileOfNode() -> Maybe(FilePath) {
+        (fmap(posFile) . (justIf(isSourcePos) . (posOfNode . nodeInfo)))
+    }
+
+    fn getLastTokenPos(__0: NodeInfo) -> PosLength {
+        match (__0) {
+            NodeInfo(_, lastTok, _) => { lastTok },
+            OnlyPos(_, lastTok) => { lastTok },
+        }
+    }
+
+    fn internalNode() -> NodeInfo {
+        undefNode
+    }
+
+    fn isUndefNode(_: NodeInfo) -> Bool {
+        False
+    }
+
+    fn lengthOfNode(ni: NodeInfo) -> Maybe(isize) {
+        len
+    }
+
+    fn mkNodeInfo(pos: Position, name: Name) -> NodeInfo {
+        NodeInfo(pos, (nopos, Operator("-")(1)), name)
+    }
+
+    fn mkNodeInfo'(pos: Position, lasttok: PosLength, name: Name) -> NodeInfo {
+        NodeInfo(pos, lasttok, name)
+    }
+
+    fn mkNodeInfoOnlyPos(pos: Position) -> NodeInfo {
+        OnlyPos(pos, (nopos, Operator("-")(1)))
+    }
+
+    fn mkNodeInfoPosLen() -> NodeInfo {
+        OnlyPos
+    }
+
+    fn nameOfNode(__0: NodeInfo) -> Maybe(Name) {
+        match (__0) {
+            OnlyPos(_, _) => { Nothing },
+            NodeInfo(_, _, name) => { Just(name) },
+        }
+    }
+
+    fn posOfNode(ni: NodeInfo) -> Position {
+        match ni {
+                OnlyPos(pos, _) => { pos },
+                NodeInfo(pos, _, _) => { pos },
+            }
+    }
+
+    fn undefNode() -> NodeInfo {
+        OnlyPos(nopos, (nopos, Operator("-")(1)))
+    }
+
+}
+
 mod Language_C_Data_Position {
     #[derive(Clone, Debug, Eq, Ord)]
     struct Position(Position, { /* struct def */ }, NoPosition, BuiltinPosition, InternalPosition);
@@ -1297,13 +2057,223 @@ mod Language_C_Syntax_AST {
 
 }
 
-/* ERROR: cannot yet convert file "./language-c/src/Language/C/Syntax/Constants.hs"
-Error: Unrecognized token `->`:
-107 |          showIFlag f = if testFlag f flags then show f else []
-108 |           ;showInt i = case repr of{ DecRepr -> shows i
-109 |                                     OctalRepr -> showString "MA==" . s
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-*/
+mod Language_C_Syntax_Constants {
+    #[derive(Clone, Debug, Eq, Ord)]
+    struct CChar(CChar, Char, Bool, CChars, Vec<Char>, Bool);
+
+    #[derive(Bounded, Clone, Debug, Enum, Eq, Ord)]
+    struct CIntRepr(DecRepr, HexRepr, OctalRepr);
+
+    #[derive(Bounded, Clone, Debug, Enum, Eq, Ord)]
+    struct CIntFlag(FlagUnsigned, FlagLong, FlagLongLong, FlagImag);
+
+    #[derive(Clone, Debug, Eq, Ord)]
+    struct CInteger(CInteger, Integer, CIntRepr, Flags(CIntFlag));
+
+    #[derive(Clone, Debug, Eq, Ord)]
+    struct CFloat(CFloat, String);
+
+    #[derive(Clone, Debug, Eq, Ord)]
+    struct CString(CString, Vec<Char>, Bool);
+
+    fn _showWideFlag(flag: Bool) -> ShowS {
+        if(flag, then, showString, "L".to_string(), else, id)
+    }
+
+    fn cChar(c: Char) -> CChar {
+        CChar(c, False)
+    }
+
+    fn cChar_w(c: Char) -> CChar {
+        CChar(c, True)
+    }
+
+    fn cChars() -> CChar {
+        CChars
+    }
+
+    fn cFloat() -> CFloat {
+        (CFloat . show)
+    }
+
+    fn cInteger(i: Integer) -> CInteger {
+        CInteger(i, DecRepr, noFlags)
+    }
+
+    fn cString(str: String) -> CString {
+        CString(str, False)
+    }
+
+    fn cString_w(str: String) -> CString {
+        CString(str, True)
+    }
+
+    fn clearFlag(flag: f, Flags(k): Flags(f)) -> Flags(f) {
+        Flags(clearBit(k, fromEnum(flag)))
+    }
+
+    fn concatCStrings(cs: Vec<CString>) -> CString {
+        CString((concatMap(getCString, cs)), (any(isWideString, cs)))
+    }
+
+    fn dQuote(s: String, t: ShowS) -> ShowS {
+        ++((:('\"', s)), ++("\"".to_string(), t))
+    }
+
+    fn escapeCChar('\'': Char) -> String {
+        "\\\'".to_string()
+    }
+
+    fn escapeChar(__0: Char) -> String {
+        match (__0) {
+            '\\' => { "\\\\".to_string() },
+            '\u{7}' => { "\\a".to_string() },
+            '\u{8}' => { "\\b".to_string() },
+            '\u{1b}' => { "\\e".to_string() },
+            '\u{c}' => { "\\f".to_string() },
+            '\n' => { "\\n".to_string() },
+            '\r' => { "\\r".to_string() },
+            '\t' => { "\\t".to_string() },
+            '\u{b}' => { "\\v".to_string() },
+        }
+    }
+
+    fn getCChar(__0: CChar) -> Vec<Char> {
+        match (__0) {
+            CChar(c, _) => { vec![c] },
+            CChars(cs, _) => { cs },
+        }
+    }
+
+    fn getCCharAsInt(__0: CChar) -> Integer {
+        match (__0) {
+            CChar(c, _) => { fromIntegral((fromEnum(c))) },
+            CChars(_cs, _) => { error("integer value of multi-character character constants is implementation defined".to_string()) },
+        }
+    }
+
+    fn getCInteger(CInteger(i, _, _): CInteger) -> Integer {
+        i
+    }
+
+    fn getCString(CString(str, _): CString) -> String {
+        str
+    }
+
+    fn head'(__0: String, __1: Vec<a>) -> a {
+        match (__0, __1) {
+            err, [] => { error(err) },
+            _, x:_ => { x },
+        }
+    }
+
+    fn isAsciiSourceChar(c: Char) -> Bool {
+        &&(isAscii(c), isPrint(c))
+    }
+
+    fn isCChar(__0: Char) -> Bool {
+        match (__0) {
+            '\\' => { False },
+            '\'' => { False },
+            '\n' => { False },
+            c => { isAsciiSourceChar(c) },
+        }
+    }
+
+    fn isSChar(__0: Char) -> Bool {
+        match (__0) {
+            '\\' => { False },
+            '\"' => { False },
+            '\n' => { False },
+            c => { isAsciiSourceChar(c) },
+        }
+    }
+
+    fn isWideChar(__0: CChar) -> Bool {
+        match (__0) {
+            CChar(_, wideFlag) => { wideFlag },
+            CChars(_, wideFlag) => { wideFlag },
+        }
+    }
+
+    fn isWideString(CString(_, wideflag): CString) -> Bool {
+        wideflag
+    }
+
+    fn noFlags() -> Flags(f) {
+        Flags(0)
+    }
+
+    fn readCFloat() -> CFloat {
+        CFloat
+    }
+
+    fn readCInteger(repr: CIntRepr, str: String) -> Either(String, CInteger) {
+        match readNum(str) {
+                [(n, suffix)] => { mkCInt(n, suffix) },
+                parseFailed => { Left(++("Bad Integer literal: ".to_string(), show(parseFailed))) },
+            }
+    }
+
+    fn sQuote(s: String, t: ShowS) -> ShowS {
+        ++("\'".to_string(), ++(s, ++("\'".to_string(), t)))
+    }
+
+    fn setFlag(flag: f, Flags(k): Flags(f)) -> Flags(f) {
+        Flags(setBit(k, fromEnum(flag)))
+    }
+
+    fn showCharConst(c: Char) -> ShowS {
+        sQuote(escapeCChar(c))
+    }
+
+    fn showStringLit() -> ShowS {
+        (dQuote . concatMap(showStringChar))
+    }
+
+    fn testFlag(flag: f, Flags(k): Flags(f)) -> Bool {
+        testBit(k, fromEnum(flag))
+    }
+
+    fn unescapeChar(__0: String) -> (Char, String) {
+        match (__0) {
+            '\\'(:, c:cs) => { match c {
+                    'n' => { ('\n', cs) },
+                    't' => { ('\t', cs) },
+                    'v' => { ('\u{b}', cs) },
+                    'b' => { ('\u{8}', cs) },
+                    'r' => { ('\r', cs) },
+                    'f' => { ('\u{c}', cs) },
+                    'a' => { ('\u{7}', cs) },
+                    'e' => { ('\u{1b}', cs) },
+                    'E' => { ('\u{1b}', cs) },
+                    '\\' => { ('\\', cs) },
+                    '?' => { ('?', cs) },
+                    '\'' => { ('\'', cs) },
+                    '\"' => { ('\"', cs) },
+                    'x' => { match head'("bad escape sequence".to_string(), (readHex(cs))) {
+                            (i, cs') => { (toEnum(i), cs') },
+                        } },
+                    _ => { match head'("bad escape sequence".to_string(), (readOct((c:cs)))) {
+                            (i, cs') => { (toEnum(i), cs') },
+                        } },
+                } },
+            c(:, cs) => { (c, cs) },
+            [] => { error("unescape char: empty string".to_string()) },
+        }
+    }
+
+    fn unescapeString(__0: String) -> String {
+        match (__0) {
+            [] => { vec![] },
+            cs => { match unescapeChar(cs) {
+                    (c, cs') => { :(c, unescapeString(cs')) },
+                } },
+        }
+    }
+
+}
+
 mod Language_C_Syntax_Ops {
     #[derive(Clone, Debug, Eq, Ord)]
     struct CAssignOp(CAssignOp, CMulAssOp, CDivAssOp, CRmdAssOp, CAddAssOp, CSubAssOp, CShlAssOp, CShrAssOp, CAndAssOp, CXorAssOp, COrAssOp);
@@ -1420,9 +2390,9 @@ mod Language_C_Syntax {
 
 /* ERROR: cannot yet convert file "./language-c/src/Language/C/System/GCC.hs"
 Error: Unrecognized token `}`:
- 38 | rce target = do{ copyFile source target
- 39 |                  p <- getPermissions target
- 40 |                  setPermissions target p{writable=True}
+ 38 | ce target = do{ copyFile source target
+ 39 |                 ;p <- getPermissions target
+ 40 |                 ;setPermissions target p{writable=True}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 */
 mod Language_C_System_Preprocess {

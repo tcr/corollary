@@ -461,26 +461,26 @@ fn test_no_regressions() {
         "./corrode/src/Language/Rust/Idiomatic.hs",
         "./corrode/src/Language/Rust.hs",
 
-        // "./language-c/src/Language/C/Analysis/AstAnalysis.hs",
-        // "./language-c/src/Language/C/Analysis/Builtins.hs",
+        "./language-c/src/Language/C/Analysis/AstAnalysis.hs",
+        "./language-c/src/Language/C/Analysis/Builtins.hs",
         // "./language-c/src/Language/C/Analysis/ConstEval.hs",
         "./language-c/src/Language/C/Analysis/Debug.hs",
         "./language-c/src/Language/C/Analysis/DeclAnalysis.hs",
         "./language-c/src/Language/C/Analysis/DefTable.hs",
-        // "./language-c/src/Language/C/Analysis/Export.hs",
-        // "./language-c/src/Language/C/Analysis/NameSpaceMap.hs",
+        "./language-c/src/Language/C/Analysis/Export.hs",
+        "./language-c/src/Language/C/Analysis/NameSpaceMap.hs",
         "./language-c/src/Language/C/Analysis/SemError.hs",
         "./language-c/src/Language/C/Analysis/SemRep.hs",
         // "./language-c/src/Language/C/Analysis/TravMonad.hs",
         // "./language-c/src/Language/C/Analysis/TypeCheck.hs",
         "./language-c/src/Language/C/Analysis/TypeConversions.hs",
-        // "./language-c/src/Language/C/Analysis/TypeUtils.hs",
+        "./language-c/src/Language/C/Analysis/TypeUtils.hs",
         "./language-c/src/Language/C/Analysis.hs",
         "./language-c/src/Language/C/Data/Error.hs",
         "./language-c/src/Language/C/Data/Ident.hs",
         "./language-c/src/Language/C/Data/InputStream.hs",
         "./language-c/src/Language/C/Data/Name.hs",
-        // "./language-c/src/Language/C/Data/Node.hs",
+        "./language-c/src/Language/C/Data/Node.hs",
         "./language-c/src/Language/C/Data/Position.hs",
         "./language-c/src/Language/C/Data/RList.hs",
         "./language-c/src/Language/C/Data.hs",
@@ -490,7 +490,7 @@ fn test_no_regressions() {
         "./language-c/src/Language/C/Parser.hs",
         // "./language-c/src/Language/C/Pretty.hs",
         "./language-c/src/Language/C/Syntax/AST.hs",
-        // "./language-c/src/Language/C/Syntax/Constants.hs",
+        "./language-c/src/Language/C/Syntax/Constants.hs",
         "./language-c/src/Language/C/Syntax/Ops.hs",
         "./language-c/src/Language/C/Syntax/Utils.hs",
         "./language-c/src/Language/C/Syntax.hs",
@@ -521,8 +521,8 @@ fn test_no_regressions() {
             }
             Err(e) => {
                 //TODO print_parse_error return string, feed to panic
+                print_parse_error(&contents, &simplify_parse_error(e));
                 panic!("cannot convert file {:?}", path);
-                //print_parse_error(&input, &simplify_parse_error(e));
             }
         }
     }
