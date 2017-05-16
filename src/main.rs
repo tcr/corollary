@@ -698,11 +698,20 @@ fn test_no_regressions() {
         }
         let input = commify(&contents);
 
-        let mut a = ::std::fs::File::create("temp.txt").unwrap();
-        a.write_all(input.as_bytes());
+        // Do not output test.txt
+        //let mut a = ::std::fs::File::create("temp.txt").unwrap();
+        //a.write_all(input.as_bytes());
 
         let mut errors = Vec::new();
-        let okay = parse_results(&input, calculator::parse_Module(&mut errors, &input));
+        match calculator::parse_Module(&mut errors, &input) {
+            Ok(v) => {
+            }
+            Err(e) => {
+                //TODO print_parse_error return string, feed to panic
+                panic!("cannot convert file {:?}", path);
+                //print_parse_error(&input, &simplify_parse_error(e));
+            }
+        }
     }
 }
 
