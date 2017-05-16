@@ -34,8 +34,8 @@ pub enum Opcode {
 
 #[derive(Clone, Debug)]
 pub enum Statement {
-    Data(Ident, Vec<Vec<Ty>>, Option<Vec<Ident>>),
-    Dummy,
+    // Name, Inner Types, Deriving IDs
+    Data(Ident, Vec<Vec<Ty>>, Vec<Ident>),
     Class,
     Instance,
     Import,
@@ -45,6 +45,9 @@ pub enum Statement {
     Assign(Pat, Vec<Pat>, Expr),
     Typedef(Ident),
     Prototype(Ident, Vec<Ty>),
+
+    // TODO remove this
+    Dummy,
 }
 
 #[derive(Clone, Debug)]

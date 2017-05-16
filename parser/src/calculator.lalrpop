@@ -280,7 +280,7 @@ Statement: Statement = {
 
   "data" <id:Ident+> "=" <p:Pipe<TypeGroup>>
     <derives:("deriving" <ImportList>)?> =>
-      Statement::Data(id[0].clone(), p, derives),
+      Statement::Data(id[0].clone(), p, derives.unwrap_or(vec![])),
   "newtype" <id:Ident+> "=" <p:Type>
     ("deriving" ImportList)? =>
       Statement::Newtype,

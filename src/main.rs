@@ -15,6 +15,7 @@ use std::borrow::Borrow;
 use std::io::prelude::*;
 use std::fs::{File};
 use std::env;
+use std::collections::HashSet;
 
 use walkdir::WalkDir;
 
@@ -506,21 +507,27 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     // Print out data structures.
     for item in stats {
         if let ast::Statement::Data(name, data, derives) = item.clone() {
-            let derives = if let Some(d) = derives {
-                format!("#[derive({})]\n    ", d.iter().map(|x| {
+            let derive_rust = derives.iter()
+                .map(|x| {
+                    // Convert common Haskell "derive" terms into Rust's
                     if x.0 == "Data" {
                         format!("Clone")
-                    } else if x.0 == "Typeable" {
+                    } else if x.0 == "Typeable" || x.0 == "Show" {
                         format!("Debug")
                     } else {
                         x.0.to_string()
                     }
-                }).collect::<Vec<_>>().join(", "))
-            } else {
-                format!("")
-            };
+                })
+                .collect::<HashSet<_>>()
+                .into_iter()
+                .collect::<Vec<_>>();
+
             println!("    {}struct {}({});",
-                derives,
+                if derive_rust.len() > 0 {
+                    format!("#[derive({})]\n    ", derive_rust.join(", "))
+                } else {
+                    format!("")
+                },
                 name.0,
                 data.iter().map(|tyset| {
                     print_types(state, tyset)
