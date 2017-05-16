@@ -10,7 +10,6 @@ authors = [
 regex = "0.2.1"
 maplit = "*"
 walkdir = "1"
-base64 = "0.5.2"
 lalrpop-util = "0.12.5"
 
 [dependencies.parser-haskell]

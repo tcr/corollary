@@ -25,13 +25,17 @@ fn strip_comments(text: &str) -> String {
     let text = re.replace_all(&text, "").to_string();
 
     // TODO this should be handled in the parser
-    let escape_re = Regex::new(r#"\\([nrt'"\\0]|NUL|ESC)"#).unwrap();
+    let escape_re = Regex::new(r#"\\([abfnrtv'"\\0]|NUL|ESC)"#).unwrap();
     let decode_escapes = |text: &str| {
         let text = escape_re.replace_all(text, |caps: &Captures| {
             match &caps[1] {
+                "a" => "\u{0007}",
+                "b" => "\u{0008}",
+                "f" => "\u{000C}",
                 "n" => "\n",
                 "r" => "\r",
                 "t" => "\t",
+                "v" => "\u{000B}",
                 "'" => "'",
                 "\"" => "\"",
                 "\\" => "\\",
@@ -43,6 +47,14 @@ fn strip_comments(text: &str) -> String {
         text.to_string()
     };
 
+    // Char literals.
+    let re = Regex::new(r"'([^'\\]|\\[A-Z]{1,3}|\\.)'").unwrap();
+    let text = re.replace_all(&text, |caps: &Captures| {
+        let v = decode_escapes(&caps[1]);
+        assert!(v.len() == 1, "multi char literal {:?}", v);
+        format!("'{}'", base64::encode(&v))
+    }).to_string();
+
     // Replace all strings with a base64 encoded version to make the parser simpler.
     // If its possible to get LALRPOP to not complain with proper string regexes, should just use
     // that instead
@@ -52,19 +64,11 @@ fn strip_comments(text: &str) -> String {
         format!("\"{}\"", base64::encode(&v))
     }).to_string();
 
-    // Char literals.
-    let re = Regex::new(r"'([^'\\]|\\.{1,3})'").unwrap();
-    let text = re.replace_all(&text, |caps: &Captures| {
-        let v = decode_escapes(&caps[1]);
-        assert!(v.len() == 1, "multi char literal {:?}", v);
-        format!("'{}'", base64::encode(&v))
-    }).to_string();
-
     text
 }
 
 fn decode_literal(s: &str) -> String {
-    let vec = base64::decode(s).expect("invalid base64");
+    let vec = base64::decode(s).expect(&format!("invalid base64: {:?}", s));
     String::from_utf8(vec).expect("invalid UTF-8")
 }
 

@@ -1,6 +1,7 @@
 use std::str::FromStr;
 use ast::*;
 use lalrpop_util::ErrorRecovery;
+use decode_literal;
 
 grammar<'err>(errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>);
 
@@ -110,8 +111,8 @@ ExprSpan: Expr = {
 };
 
 Expr: Expr = {
-    Quote => Expr::Str(<>),
-    SingleQuote => Expr::Char(<>),
+    Quote => Expr::Str(decode_literal(&<>)),
+    SingleQuote => Expr::Char(decode_literal(&<>)),
     <Ident> => Expr::Ref(<>),
     Num => Expr::Number(<>),
 
@@ -228,8 +229,8 @@ PatSub: Pat = {
     <Ident> => Pat::Ref(<>),
     <Ctor> => Pat::Ref(<>),
     <Operator> => Pat::Ref(Ident(<>)),
-    <Quote> => Pat::Str(<>),
-    <SingleQuote> => Pat::Char(<>),
+    <Quote> => Pat::Str(decode_literal(&<>)),
+    <SingleQuote> => Pat::Char(decode_literal(&<>)),
     <Num> => Pat::Num(<>),
     "==" => Pat::Dummy,
     "@" => Pat::Dummy,

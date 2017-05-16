@@ -1,5 +1,4 @@
 #[macro_use] extern crate maplit;
-extern crate base64;
 extern crate parser_haskell;
 extern crate lalrpop_util;
 extern crate regex;
@@ -127,12 +126,11 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             format!("{} {{\n{}\n{}}}", ctor, out.join(",\n"), state.indent())
         }
         Str(ref s) => {
-            format!("{:?}.to_string()", decode_literal(s))
+            format!("{:?}.to_string()", s)
         }
         Char(ref s) => {
-            let decoded = decode_literal(s);
-            assert!(decoded.len() == 1, "char lit {:?}", decoded);
-            format!("{:?}", decoded.chars().next().unwrap())
+            assert!(s.len() == 1, "char lit {:?}", s);
+            format!("{:?}", s.chars().next().unwrap())
         }
         Span(ref span) => {
             let span = expr_explode(span.clone());
@@ -217,12 +215,11 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
             out_span
         }
         Pat::Str(ref s) => {
-            format!("{:?}", decode_literal(s))
+            format!("{:?}", s)
         }
         Pat::Char(ref s) => {
-            let decoded = decode_literal(s);
-            assert!(decoded.len() == 1, "char lit {:?}", decoded);
-            format!("{:?}", decoded.chars().next().unwrap())
+            assert!(s.len() == 1, "char lit {:?}", s);
+            format!("{:?}", s.chars().next().unwrap())
         }
         Pat::Num(n) => format!("{}", n),
         Pat::Tuple(ref pats) => {
@@ -438,17 +435,17 @@ fn test_single_file() {
     if a.ends_with(".lhs") {
         contents = fix_lhs(&contents);
     }
-    let contents = parser_haskell::preprocess(contents);
+    let contents = parser_haskell::preprocess(&contents);
 
     let mut a = ::std::fs::File::create("temp.txt").unwrap();
     a.write_all(contents.as_bytes());
 
     let mut errors = Vec::new();
-    match parser_haskell::parse(&mut errors, &input) {
+    match parser_haskell::parse(&mut errors, &contents) {
         Ok(okay) => println!("{:#?}", okay),
         Err(e) => {
             let e = simplify_parse_error(e);
-            print_parse_error(&input, &e);
+            print_parse_error(&contents, &e);
             panic!(e);
         }
     }
@@ -511,13 +508,14 @@ fn test_no_regressions() {
         if path.ends_with(".lhs") {
             contents = fix_lhs(&contents);
         }
+        let contents = parser_haskell::preprocess(&contents);
 
-        // Do not output test.txt
+        // Do not output preprocessed data temp.txt
+        //println!("{:?}", path);
         //let mut a = ::std::fs::File::create("temp.txt").unwrap();
-        //a.write_all(input.as_bytes());
+        //a.write_all(contents.as_bytes());
 
         let mut errors = Vec::new();
-        let contents = parser_haskell::preprocess(contents);
         match parser_haskell::parse(&mut errors, &contents) {
             Ok(v) => {
             }
