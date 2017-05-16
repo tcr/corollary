@@ -84,8 +84,8 @@ Section: i32 = {
 };
 
 Case: CaseCond = {
-    <d:TypeGroup> <v:("|" <ExprSpan> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
-    <d:TypeGroup> "->" <v:ExprSpan> => CaseCond::Direct(d, v),
+    <d:PatList> <v:("|" <ExprSpan> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
+    <d:PatList> "->" <v:ExprSpan> => CaseCond::Direct(d, v),
 };
 
 
@@ -105,7 +105,7 @@ Expr: Expr = {
     "(" <CommaDef<ExprSpan>> ")" => Expr::Parens(<>),
     "(" ")" => Expr::Parens(vec![]),
     "(" "," ")" => Expr::Dummy,
-    "(" Ident "->" Type ")" => Expr::Dummy,
+    "(" Ident "->" PatList ")" => Expr::Dummy,
 
     r"\\" r"[a-zA-Z_.][.a-zA-Z_0-9']*" Expr* "->" Expr => Expr::Lambda,
 
@@ -158,24 +158,13 @@ Type: Ty = {
     <TypeSpan> => <>,
 };
 
-SimpleType: Ty = {
-    <a:TypeSub> "->" <b:SimpleType> => Ty::Pair(Box::new(a), Box::new(b)),
-    <TypeSpan> => <>,
-};
-
 TypeSub: Ty = {
     "!" <TypeSub> => Ty::Not(Box::new(<>)),
-    "[" <CommaDef<TypeSpan>> "]" => Ty::Brackets(<>),
-    "[" "]" => Ty::Brackets(vec![]),
+    "[" <Type> "]" => Ty::Brackets(Box::new(<>)),
     "(" <CommaDef<Type>> ")" => Ty::Tuple(<>),
     "(" ")" => Ty::EmptyParen,
-    "{" <Comma<(<Ident> "::" <TypeGroup>)>> "}" => Ty::RecordTODO,
+    "{" <Comma<(<Ident> "::" <FnDef>)>> "}" => Ty::RecordTODO,
     <Ident> => Ty::Ref(<>),
-    <Quote> => Ty::Str(<>),
-    <Num> => Ty::Num(<>),
-    ":" => Ty::EmptyParen,
-    "==" => Ty::EmptyParen,
-    "@" => Ty::EmptyParen,
 };
 
 TypeGroupInner: Ty = {
@@ -190,6 +179,38 @@ TypeGroup: Vec<Ty> = {
 TypeSpan: Ty = {
     <TypeSub+> => Ty::Span(<>),
 };
+
+
+PatSub: Pat = {
+    "!" <PatSub> => Pat::Not(Box::new(<>)),
+    "[" <CommaDef<PatSpan>> "]" => Pat::Brackets(<>),
+    "[" "]" => Pat::Brackets(vec![]),
+    "(" <PatSpan> ")" => <>,
+    "(" <h:PatSpan> "," <t:CommaDef<PatSpan>> ")" => {
+        let mut vec = vec![h];
+        vec.extend_from_slice(&t);
+        Pat::Tuple(vec)
+    },
+    "(" <i:Ident> "->" <s: PatSpan> ")" => Pat::Arrow(i, Box::new(s)),
+    "(" ")" => Pat::EmptyParen,
+    <Ident> => Pat::Ref(<>),
+    <Quote> => Pat::Str(<>),
+    <Num> => Pat::Num(<>),
+    ":" => Pat::Dummy,
+    "==" => Pat::Dummy,
+    "@" => Pat::Dummy,
+};
+
+// for matching (Ctor arg arg ...)
+PatSpan: Pat = {
+    <PatList> => Pat::Span(<>),
+};
+
+// for matching e.g. multiple function args
+PatList: Vec<Pat> = {
+    <PatSub+> => <>,
+};
+
 
 ImportList: Vec<Ident> = {
     "(" <a:Commaish<(<Ident> ("(" ".." ")")?)>> ")" => a,
@@ -225,10 +246,10 @@ Statement: Statement = {
   "type" <d:Ident> <args:TypeGroup?> "=" Expr+
     ("where" "{" Semi<Statement> "}")? => Statement::Typedef(d),
 
-  <args:TypeGroup> ("|" Commaish<Expr> "=" Expr+)*
+  <args:PatList> ("|" Commaish<Expr> "=" Expr+)*
     ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
 
-  <args:TypeGroup> "=" <e:ExprSpan>
+  <args:PatList> "=" <e:ExprSpan>
     ("where" "{" Semi<Statement> "}")? => Statement::Assign(args[0].clone(), args[1..].to_vec(), e),
 };
 
