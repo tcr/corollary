@@ -76,7 +76,7 @@ SingleQuote: String = {
 
 
 Ident: Ident = {
-  r"[a-zA-Z_.][.a-zA-Z_0-9':=]*" => Ident((<>).to_string()),
+  r"[a-zA-Z_.][.a-zA-Z_0-9':]*(:[.+/*=-]+)?" => Ident((<>).to_string()),
 };
 
 Ctor: Ident = {
@@ -125,7 +125,7 @@ Expr: Expr = {
     "(" "," ")" => Expr::Dummy,
     "(" Ident "->" PatList ")" => Expr::Dummy,
 
-    r"\\" r"[a-zA-Z_.][.a-zA-Z_0-9':=]*" Expr* "->" Expr => Expr::Lambda,
+    r"\\" Ident Expr* "->" Expr => Expr::Lambda,
 
     "`" <Ident> "`" => Expr::Operator(<>.0),
     <Ctor> => Expr::Operator(<>.0),
@@ -137,6 +137,7 @@ Expr: Expr = {
     // these special operators should not be exprs:
     "::" => Expr::Operator(<>.to_string()),
     "@" => Expr::Operator(<>.to_string()),
+    ":" => Expr::Operator(<>.to_string()),
 
     "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
 
@@ -144,7 +145,7 @@ Expr: Expr = {
 
     "do" "{" <e:Semi<LetInner>> "}" => Expr::Do(vec![], None),
 
-    <i:Ident> "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> "}" => Expr::Record(i, r),
+    "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
 };
 
 // TODO combine this with Statement + Expr for proper AST
@@ -167,7 +168,7 @@ LetInner: () = {
     ("where" "{" Semi<Statement> "}")? => (),
 
   <ExprSpan> "=" <ExprSpan> => (),
-  <ExprSpan> "|" <ExprSpan> "=" <ExprSpan> ("where" "{" Semi<Statement> "}")? => (),
+  <ExprSpan> ("|" <ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => (),
   <ExprSpan> ("where" "{" <Semi<Statement>> "}")? => (), // TODO this should be associated with parent "do", not with its inner contents
 
   "where" "{" <Semi<Statement>> "}" => (),
@@ -201,6 +202,7 @@ TypeSub: Ty = {
 
 TypeGroupInner: Ty = {
   <a:TypeSub> "=>" <b:TypeSub> => b,
+  <a:TypeSub> "->" <b:TypeSub> => b,
   <TypeSub> => <>,
 };
 
@@ -234,6 +236,7 @@ PatSub: Pat = {
     <Num> => Pat::Num(<>),
     "==" => Pat::Dummy,
     "@" => Pat::Dummy,
+    ":" => Pat::Dummy,
 
     // HACK
     "`" Ident "`" => Pat::Dummy,
@@ -254,9 +257,13 @@ PatList: Vec<Pat> = {
     <PatSub+> => <>,
 };
 
+ImportName: () = {
+  Ident => (),
+  ".." => (),
+};
 
 ImportList: Vec<Ident> = {
-    "(" <a:Commaish<(<Ident> ("(" ".." ")")?)>> ")" => a,
+    "(" <a:Commaish<(<Ident> ("(" ImportName ")")?)>> ")" => a,
     "(" ")" => vec![],
     <Ident> => vec![<>],
 

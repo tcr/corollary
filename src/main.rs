@@ -115,7 +115,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                 format!("{}({}, {})", op, print_expr(state, l), print_expr(state, r))
             }
         }
-        Record(ast::Ident(ref ctor), ref items) => {
+        Record(ref items) => {
             let mut out = vec![];
             for &(ast::Ident(ref i), ref v) in items {
                 out.push(format!("{}{}: {}",
@@ -123,7 +123,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                     i,
                     print_expr(state.tab().tab(), v)));
             }
-            format!("{} {{\n{}\n{}}}", ctor, out.join(",\n"), state.indent())
+            format!("{{\n{}\n{}}}", out.join(",\n"), state.indent())
         }
         Str(ref s) => {
             format!("{:?}.to_string()", s)
@@ -463,7 +463,7 @@ fn test_no_regressions() {
 
         "./language-c/src/Language/C/Analysis/AstAnalysis.hs",
         "./language-c/src/Language/C/Analysis/Builtins.hs",
-        // "./language-c/src/Language/C/Analysis/ConstEval.hs",
+        "./language-c/src/Language/C/Analysis/ConstEval.hs",
         "./language-c/src/Language/C/Analysis/Debug.hs",
         "./language-c/src/Language/C/Analysis/DeclAnalysis.hs",
         "./language-c/src/Language/C/Analysis/DefTable.hs",
@@ -471,8 +471,8 @@ fn test_no_regressions() {
         "./language-c/src/Language/C/Analysis/NameSpaceMap.hs",
         "./language-c/src/Language/C/Analysis/SemError.hs",
         "./language-c/src/Language/C/Analysis/SemRep.hs",
-        // "./language-c/src/Language/C/Analysis/TravMonad.hs",
-        // "./language-c/src/Language/C/Analysis/TypeCheck.hs",
+        "./language-c/src/Language/C/Analysis/TravMonad.hs",
+        "./language-c/src/Language/C/Analysis/TypeCheck.hs",
         "./language-c/src/Language/C/Analysis/TypeConversions.hs",
         "./language-c/src/Language/C/Analysis/TypeUtils.hs",
         "./language-c/src/Language/C/Analysis.hs",
@@ -485,16 +485,16 @@ fn test_no_regressions() {
         "./language-c/src/Language/C/Data/RList.hs",
         "./language-c/src/Language/C/Data.hs",
         "./language-c/src/Language/C/Parser/Builtin.hs",
-        // "./language-c/src/Language/C/Parser/ParserMonad.hs",
-        // "./language-c/src/Language/C/Parser/Tokens.hs",
+        "./language-c/src/Language/C/Parser/ParserMonad.hs",
+        "./language-c/src/Language/C/Parser/Tokens.hs",
         "./language-c/src/Language/C/Parser.hs",
-        // "./language-c/src/Language/C/Pretty.hs",
+        "./language-c/src/Language/C/Pretty.hs",
         "./language-c/src/Language/C/Syntax/AST.hs",
         "./language-c/src/Language/C/Syntax/Constants.hs",
         "./language-c/src/Language/C/Syntax/Ops.hs",
         "./language-c/src/Language/C/Syntax/Utils.hs",
         "./language-c/src/Language/C/Syntax.hs",
-        // "./language-c/src/Language/C/System/GCC.hs",
+        "./language-c/src/Language/C/System/GCC.hs",
         "./language-c/src/Language/C/System/Preprocess.hs",
 
         "./test/input.hs",

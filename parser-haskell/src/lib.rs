@@ -11,10 +11,15 @@ use regex::{Captures, Regex};
 // TODO rename "strip comments and other stuff too i guess"
 fn strip_comments(text: &str) -> String {
     // Strip comments
-    let re = Regex::new(r"--[^\n\r]*").unwrap();
-    let text = re.replace_all(&text, "").to_string();
     let re = Regex::new(r"\{-[\s\S]*?-\}").unwrap();
     let text = re.replace_all(&text, "").to_string();
+    // To prevent double dashes in quotation marks, we trivially ignore quotes
+    // that immediately follow the comment.
+    // TODO find a better way to do this
+    let re = Regex::new(r#"--[^\n\r"][^\n\r]*"#).unwrap();
+    let text = re.replace_all(&text, "").to_string();
+    let re = Regex::new(r#"--([\n\r])"#).unwrap();
+    let text = re.replace_all(&text, "$1").to_string();
 
     // Strip trailing semicolons (so we don't have "empty statements")
     let re = Regex::new(r"(?m);+\s*$").unwrap();
