@@ -145,7 +145,7 @@ Expr: Expr = {
 
     "do" "{" <e:Semi<LetInner>> "}" => Expr::Do(vec![], None),
 
-    <i:Ident> "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(i, r),
+    "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
 };
 
 // TODO combine this with Statement + Expr for proper AST
