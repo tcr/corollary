@@ -68,7 +68,7 @@ fn strip_comments(text: &str) -> String {
 }
 
 fn decode_literal(s: &str) -> String {
-    let vec = base64::decode(s).expect(&format!("invalid base64: {:?}", s));
+    let vec = base64::decode(s).unwrap_or_else(|_| panic!("invalid base64: {:?}", s));
     String::from_utf8(vec).expect("invalid UTF-8")
 }
 
