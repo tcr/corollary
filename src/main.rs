@@ -485,7 +485,7 @@ fn test_no_regressions() {
         "./language-c/src/Language/C/Data/RList.hs",
         "./language-c/src/Language/C/Data.hs",
         "./language-c/src/Language/C/Parser/Builtin.hs",
-        // "./language-c/src/Language/C/Parser/ParserMonad.hs",
+         "./language-c/src/Language/C/Parser/ParserMonad.hs",
         "./language-c/src/Language/C/Parser/Tokens.hs",
         "./language-c/src/Language/C/Parser.hs",
         "./language-c/src/Language/C/Pretty.hs",
