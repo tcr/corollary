@@ -82,7 +82,8 @@ fn commify(val: &str) -> String {
     let re_nl = Regex::new(r#"^\r?\n"#).unwrap();
     let re_word = Regex::new(r#"([\(\{\[\]\}\)]|[^ \t\r\n\(\{\[\]\}\)]+)"#).unwrap();
 
-    let mut out = String::new();
+    // Strip out all comments from the contents.
+    let commentless = strip_comments(val);
 
     // Previous indentation levels
     let mut stash: Vec<usize> = vec![];
@@ -95,19 +96,7 @@ fn commify(val: &str) -> String {
     // Check if this is the first word in the line.
     let mut first = true;
 
-    let mut commentless = strip_comments(val);
-
-    // HACK Until the indentation logic below is fixed (unsure what the right approach is), we need these
-    // C.hs
-    commentless = commentless.replace("let lhsvar", "let\n                    lhsvar");
-    commentless = commentless.replace("let allow_signed", "let\n            allow_signed");
-    commentless = commentless.replace("let isDefault", "let\n        isDefault");
-    commentless = commentless.replace("let returnValue", "let\n                    returnValue");
-    // DeclAnalysis.hs
-    commentless = commentless.replace("of ShortMod", "of\n                                     ShortMod");
-    // CFG.hs
-    commentless = commentless.replace("let (returns", "let\n        (returns");
-
+    let mut out = String::new();
     let mut v: &str = &commentless;
     while v.len() > 0 {
         if let Some(cap) = re_space.captures(v) {
@@ -181,13 +170,8 @@ fn commify(val: &str) -> String {
             v = &v[word.len()..];
 
             if trigger.is_some() {
-                // Determine which column to start determining whitespace. Where the first word is
-                // or where the keyword is?
-                if first {
-                    stash.push(indent);
-                } else {
-                    stash.push(trigger.unwrap());
-                }
+                // The next word after a block word is where the whitespace column begins.
+                stash.push(indent);
             }
             first = false;
 
