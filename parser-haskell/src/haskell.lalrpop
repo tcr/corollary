@@ -167,7 +167,7 @@ LetInner: () = {
     ("where" "{" Semi<Statement> "}")? => (),
 
   <ExprSpan> "=" <ExprSpan> => (),
-  <ExprSpan> "|" <ExprSpan> "=" <ExprSpan> ("where" "{" Semi<Statement> "}")? => (),
+  <ExprSpan> ("|" <ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => (),
   <ExprSpan> ("where" "{" <Semi<Statement>> "}")? => (), // TODO this should be associated with parent "do", not with its inner contents
 
   "where" "{" <Semi<Statement>> "}" => (),

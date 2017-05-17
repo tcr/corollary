@@ -472,7 +472,7 @@ fn test_no_regressions() {
         "./language-c/src/Language/C/Analysis/SemError.hs",
         "./language-c/src/Language/C/Analysis/SemRep.hs",
         "./language-c/src/Language/C/Analysis/TravMonad.hs",
-        // "./language-c/src/Language/C/Analysis/TypeCheck.hs",
+         "./language-c/src/Language/C/Analysis/TypeCheck.hs",
         "./language-c/src/Language/C/Analysis/TypeConversions.hs",
         "./language-c/src/Language/C/Analysis/TypeUtils.hs",
         "./language-c/src/Language/C/Analysis.hs",
