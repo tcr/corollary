@@ -1,16 +1,15 @@
 [package]
-name = "corrode-but-in-rust"
+name = "parser-haskell"
 version = "0.1.0"
 authors = [
   "Tim Ryan <tim@timryan.org>",
   "Paul Collier <paul@paulcollier.ca>"
 ]
 
-[dependencies]
-regex = "0.2.1"
-maplit = "*"
-walkdir = "1"
-lalrpop-util = "0.12.5"
+[build-dependencies.lalrpop]
+version = "0.12.5"
 
-[dependencies.parser-haskell]
-path = "./parser-haskell"
+[dependencies]
+lalrpop-util = "0.12.5"
+regex = "0.2.1"
+base64 = "0.5.2"
