@@ -254,9 +254,13 @@ PatList: Vec<Pat> = {
     <PatSub+> => <>,
 };
 
+ImportName: () = {
+  Ident => (),
+  ".." => (),
+};
 
 ImportList: Vec<Ident> = {
-    "(" <a:Commaish<(<Ident> ("(" ".." ")")?)>> ")" => a,
+    "(" <a:Commaish<(<Ident> ("(" ImportName ")")?)>> ")" => a,
     "(" ")" => vec![],
     <Ident> => vec![<>],
 
