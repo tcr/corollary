@@ -463,7 +463,7 @@ fn test_no_regressions() {
 
         "./language-c/src/Language/C/Analysis/AstAnalysis.hs",
         "./language-c/src/Language/C/Analysis/Builtins.hs",
-        // "./language-c/src/Language/C/Analysis/ConstEval.hs",
+        "./language-c/src/Language/C/Analysis/ConstEval.hs",
         "./language-c/src/Language/C/Analysis/Debug.hs",
         "./language-c/src/Language/C/Analysis/DeclAnalysis.hs",
         "./language-c/src/Language/C/Analysis/DefTable.hs",
@@ -471,7 +471,7 @@ fn test_no_regressions() {
         "./language-c/src/Language/C/Analysis/NameSpaceMap.hs",
         "./language-c/src/Language/C/Analysis/SemError.hs",
         "./language-c/src/Language/C/Analysis/SemRep.hs",
-        // "./language-c/src/Language/C/Analysis/TravMonad.hs",
+        "./language-c/src/Language/C/Analysis/TravMonad.hs",
         // "./language-c/src/Language/C/Analysis/TypeCheck.hs",
         "./language-c/src/Language/C/Analysis/TypeConversions.hs",
         "./language-c/src/Language/C/Analysis/TypeUtils.hs",

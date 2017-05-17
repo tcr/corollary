@@ -201,6 +201,7 @@ TypeSub: Ty = {
 
 TypeGroupInner: Ty = {
   <a:TypeSub> "=>" <b:TypeSub> => b,
+  <a:TypeSub> "->" <b:TypeSub> => b,
   <TypeSub> => <>,
 };
 
