@@ -7,16 +7,18 @@ grammar<'err>(errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), (
 
 pub Exprs = Comma<Expr>;
 
-Dot<T>: Vec<T> = { // (0)
-    <v:(<T> ".")+> <e:T> => { // (1)
+// A bunch of macros.
+
+Dot<T>: Vec<T> = {
+    <v:(<T> ".")+> <e:T> => {
         let mut v = v;
         v.push(e);
         v
     }
 };
 
-Semi<T>: Vec<T> = { // (0)
-    <v:(<T> ";")*> <e:T?> => match e { // (1)
+Semi<T>: Vec<T> = {
+    <v:(<T> ";")*> <e:T?> => match e {
         None=> v,
         Some(e) => {
             let mut v = v;
@@ -26,8 +28,8 @@ Semi<T>: Vec<T> = { // (0)
     }
 };
 
-Comma<T>: Vec<T> = { // (0)
-    <v:(<T> ",")*> <e:T?> => match e { // (1)
+Comma<T>: Vec<T> = {
+    <v:(<T> ",")*> <e:T?> => match e {
         None=> v,
         Some(e) => {
             let mut v = v;
@@ -37,8 +39,8 @@ Comma<T>: Vec<T> = { // (0)
     }
 };
 
-Pipe<T>: Vec<T> = { // (0)
-    <v:(<T> "|")*> <e:T?> => match e { // (1)
+Pipe<T>: Vec<T> = {
+    <v:(<T> "|")*> <e:T?> => match e {
         None=> v,
         Some(e) => {
             let mut v = v;
@@ -48,17 +50,19 @@ Pipe<T>: Vec<T> = { // (0)
     }
 };
 
-Commaish<T>: Vec<T> = { // (0)
+Commaish<T>: Vec<T> = {
     <(<T> ","?)+> => <>,
 };
 
-CommaDef<T>: Vec<T> = { // (0)
+CommaDef<T>: Vec<T> = {
     <v:(<T> ",")*> <e:T> => {
         let mut v = v;
         v.push(e);
         v
     },
 };
+
+// Common patterns.
 
 Quote: String = {
     r#""[^"]*""# => {
@@ -95,11 +99,7 @@ Operator: String = {
     "-" => <>.to_string(),
 };
 
-Section: i32 = {
-    Ident ("(" ".." ")")? => 0,
-    Ident "(" Ident* ")" => 0,
-    "module" Ident ("(" Comma<Section> ")")? => 0,
-};
+// Code structures
 
 Case: CaseCond = {
     // TODO commas can be used in expr spans, see AST.hs
@@ -108,7 +108,6 @@ Case: CaseCond = {
     "where" "{" <Semi<Statement>> "}" => CaseCond::Where,
 };
 
-
 ExprSpan: Expr = {
     <Expr+> => Expr::Span(<>),
 };
@@ -116,41 +115,34 @@ ExprSpan: Expr = {
 Expr: Expr = {
     Quote => Expr::Str(decode_literal(&<>)),
     SingleQuote => Expr::Char(decode_literal(&<>)),
-    <Ident> => Expr::Ref(<>),
     Num => Expr::Number(<>),
 
+    <Ident> => Expr::Ref(<>),
+    <Ctor> => Expr::Operator(<>.0),
+    <Operator> => Expr::Operator(<>),
+
+    r"\\" Ident Expr* "->" Expr => Expr::Lambda,
     r"\\" "(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
+
     "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
     "[" <CommaDef<ExprSpan>> ("::" PatSpan)? "]" => Expr::Vector(<>),
     "[" "]" => Expr::Vector(vec![]),
-    "(" <CommaDef<(<ExprSpan> ("::" FnDef)?)>>  ")" => Expr::Parens(<>),
+    "(" <CommaDef<(<ExprSpan> ("::" PatSpan)?)>>  ")" => Expr::Parens(<>),
     "(" ")" => Expr::Parens(vec![]),
     "(" "," ")" => Expr::Dummy,
     "(" Ident "->" PatList ")" => Expr::Dummy,
 
-    r"\\" Ident Expr* "->" Expr => Expr::Lambda,
-
     "`" <Ident> "`" => Expr::Operator(<>.0),
-    <Ctor> => Expr::Operator(<>.0),
-    <Operator> => Expr::Operator(<>),
     "!" => Expr::Operator(<>.to_string()),
-    "$" => Expr::Operator(<>.to_string()),
-    "==" => Expr::Operator(<>.to_string()),
     r"\\\\" => Expr::Operator(<>.to_string()),
 
-    // these special operators should not be exprs:
-    "@" => Expr::Operator(<>.to_string()),
-    ":" => Expr::Operator(<>.to_string()),
-
     "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
-
     "let" "{" Semi<Statement> "}" => Expr::Let,
-
     "do" "{" <e:Semi<StatementWhere>> "}" => Expr::Do(vec![], None),
-
     "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
 };
 
+// TODO Why is "where"" needed for end of do and let statements but is special cased elsewhere
 StatementWhere: Statement = {
     <Statement> => <>,
     "where" "{" Semi<Statement> "}" => Statement::Dummy,
@@ -160,7 +152,7 @@ Statement: Statement = {
   "class" Type ("=>" Ident+)?
     "where" "{" Semi<Statement> "}" => Statement::Dummy,
 
-  "instance" FnDef
+  "instance" TypeGroup
     "where" "{" Semi<Statement> "}" => Statement::Dummy,
   "import" ImportList+ => Statement::Dummy,
 
@@ -176,26 +168,12 @@ Statement: Statement = {
   "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
     ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
 
-  <ExprSpan> ("::" FnDef) => Statement::Dummy,
+  // TODO left expr should be PatSpans
+  <ExprSpan> ("::" TypeGroup) => Statement::Dummy,
   <ExprSpan> "=" <ExprSpan>
     ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
   <ExprSpan> ("|" Commaish<Expr> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
-
-  // TODO this should be associated with parent "do", not with its inner contents
-  <ExprSpan> ("where" "{" <Semi<Statement>> "}")? => Statement::Dummy,
-
-};
-
-FnDef: Ty = {
-    //<a:Type> "=>" <b:Type> => Ty::Where(Box::new(a), Box::new(b)),
-
-    <a:Type> "=>" <b:Type> => b,
-    <Type> => <>,
-};
-
-Type: Ty = {
-    <a:TypeSpan> "->" <b:Type> => Ty::Pair(Box::new(a), Box::new(b)),
-    <TypeSpan> => <>,
+  <ExprSpan> ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
 };
 
 TypeRecord: () = {
@@ -212,18 +190,23 @@ TypeSub: Ty = {
     <Ctor> => Ty::Ref(<>),
 };
 
+TypeSpan: Ty = {
+    <TypeSub+> => Ty::Span(<>),
+};
+
+Type: Ty = {
+    <a:TypeSpan> "->" <b:Type> => Ty::Pair(Box::new(a), Box::new(b)),
+    <TypeSpan> => <>,
+};
+
 TypeGroupInner: Ty = {
-  <a:TypeSub> "=>" <b:TypeSub> => b,
-  <a:TypeSub> "->" <b:TypeSub> => b,
+  <a:TypeSub> "=>" <b:TypeGroupInner> => b,
+  <a:TypeSub> "->" <b:TypeGroupInner> => b,
   <TypeSub> => <>,
 };
 
 TypeGroup: Vec<Ty> = {
     <TypeGroupInner+> => <>,
-};
-
-TypeSpan: Ty = {
-    <TypeSub+> => Ty::Span(<>),
 };
 
 PatSub: Pat = {
@@ -239,15 +222,13 @@ PatSub: Pat = {
     "(" <i:Ident> "->" <s: PatSpan> ")" => Pat::Arrow(i, Box::new(s)),
     "(" ")" => Pat::EmptyParen,
     "{" <Comma<PatRecord>> "}" => Pat::RecordTODO,
+
     <Ident> => Pat::Ref(<>),
     <Ctor> => Pat::Ref(<>),
     <Operator> => Pat::Ref(Ident(<>)),
     <Quote> => Pat::Str(decode_literal(&<>)),
     <SingleQuote> => Pat::Char(decode_literal(&<>)),
     <Num> => Pat::Num(<>),
-    "==" => Pat::Dummy,
-    "@" => Pat::Dummy,
-    ":" => Pat::Dummy,
 
     // HACK
     "`" Ident "`" => Pat::Dummy,
@@ -279,6 +260,12 @@ ImportList: Vec<Ident> = {
     <Ident> => vec![<>],
 
     "(" "(<|>)" ")" => vec![], // ??? see DefTable.hs
+};
+
+Section: () = {
+    Ident ("(" ".." ")")? => (),
+    Ident "(" Ident* ")" => (),
+    "module" Ident ("(" Comma<Section> ")")? => (),
 };
 
 pub Module: Module = {
