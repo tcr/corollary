@@ -74,6 +74,9 @@ SingleQuote: String = {
     }
 };
 
+Num: isize = {
+    r"[0-9]+" => isize::from_str(<>).unwrap()
+};
 
 Ident: Ident = {
   r"[a-zA-Z_.][.a-zA-Z_0-9':]*(:[.+/*=-]+)?" => Ident((<>).to_string()),
@@ -118,9 +121,9 @@ Expr: Expr = {
 
     r"\\" "(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
     "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
-    "[" <CommaDef<ExprSpan>> "]" => Expr::Vector(<>),
+    "[" <CommaDef<ExprSpan>> ("::" PatSpan)? "]" => Expr::Vector(<>),
     "[" "]" => Expr::Vector(vec![]),
-    "(" <CommaDef<ExprSpan>> ")" => Expr::Parens(<>),
+    "(" <CommaDef<(<ExprSpan> ("::" FnDef)?)>>  ")" => Expr::Parens(<>),
     "(" ")" => Expr::Parens(vec![]),
     "(" "," ")" => Expr::Dummy,
     "(" Ident "->" PatList ")" => Expr::Dummy,
@@ -130,48 +133,53 @@ Expr: Expr = {
     "`" <Ident> "`" => Expr::Operator(<>.0),
     <Ctor> => Expr::Operator(<>.0),
     <Operator> => Expr::Operator(<>),
+    "!" => Expr::Operator(<>.to_string()),
     "$" => Expr::Operator(<>.to_string()),
     "==" => Expr::Operator(<>.to_string()),
     r"\\\\" => Expr::Operator(<>.to_string()),
 
     // these special operators should not be exprs:
-    "::" => Expr::Operator(<>.to_string()),
     "@" => Expr::Operator(<>.to_string()),
     ":" => Expr::Operator(<>.to_string()),
 
     "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
 
-    "let" "{" Semi<LetInner> "}" => Expr::Let,
+    "let" "{" Semi<Statement> "}" => Expr::Let,
 
-    "do" "{" <e:Semi<LetInner>> "}" => Expr::Do(vec![], None),
+    "do" "{" <e:Semi<Statement>> "}" => Expr::Do(vec![], None),
 
     "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
 };
 
-// TODO combine this with Statement + Expr for proper AST
-LetInner: () = {
+Statement: Statement = {
   "class" Type ("=>" Ident+)?
-    "where" "{" Semi<Statement> "}" => (),
+    "where" "{" Semi<Statement> "}" => Statement::Class,
 
   "instance" FnDef
-    "where" "{" Semi<Statement> "}" => (),
-  "import" ImportList+ => (),
+    "where" "{" Semi<Statement> "}" => Statement::Class,
+  "import" ImportList+ => Statement::Class,
 
+  "data" <id:Ident+> =>
+      Statement::Class,
   "data" <id:Ident+> "=" <p:Pipe<TypeGroup>>
     <derives:("deriving" <ImportList>)?> =>
-      (),
+      Statement::Class,
   "newtype" <id:Ident+> "=" <p:Type>
     ("deriving" ImportList)? =>
-      (),
+      Statement::Class,
 
   "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
-    ("where" "{" Semi<Statement> "}")? => (),
+    ("where" "{" Semi<Statement> "}")? => Statement::Class,
 
-  <ExprSpan> "=" <ExprSpan> => (),
-  <ExprSpan> ("|" <ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => (),
-  <ExprSpan> ("where" "{" <Semi<Statement>> "}")? => (), // TODO this should be associated with parent "do", not with its inner contents
+  <ExprSpan> ("::" FnDef) => Statement::Class,
+  <ExprSpan> "=" <ExprSpan>
+    ("where" "{" Semi<Statement> "}")? => Statement::Class,
+  <ExprSpan> ("|" Commaish<Expr> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::Class,
 
-  "where" "{" <Semi<Statement>> "}" => (),
+  // TODO this should be associated with parent "do", not with its inner contents
+  <ExprSpan> ("where" "{" <Semi<Statement>> "}")? => Statement::Class,
+
+  "where" "{" <Semi<Statement>> "}" => Statement::Class,
 };
 
 FnDef: Ty = {
@@ -213,7 +221,6 @@ TypeGroup: Vec<Ty> = {
 TypeSpan: Ty = {
     <TypeSub+> => Ty::Span(<>),
 };
-
 
 PatSub: Pat = {
     "!" <PatSub> => Pat::Not(Box::new(<>)),
@@ -276,38 +283,4 @@ pub Module: Module = {
       name: n,
       statements: s,
     },
-};
-
-Statement: Statement = {
-  "class" Type ("=>" Ident+)?
-    "where" "{" Semi<Statement> "}" => Statement::Class,
-
-  "instance" FnDef
-    "where" "{" Semi<Statement> "}" => Statement::Instance,
-  "import" ImportList+ => Statement::Import,
-
-  // TODO change data enum to support this
-  "data" <id:Ident+> => Statement::Class,
-
-  "data" <id:Ident+> "=" <p:Pipe<TypeGroup>>
-    <derives:("deriving" <ImportList>)?> =>
-      Statement::Data(id[0].clone(), p, derives.unwrap_or(vec![])),
-  "newtype" <id:Ident+> "=" <p:Type>
-    ("deriving" ImportList)? =>
-      Statement::Newtype,
-
-  <i:Ident> "::" <d:FnDef> => Statement::Prototype(i, vec![d]),
-
-  "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
-    ("where" "{" Semi<Statement> "}")? => Statement::Typedef(d),
-
-  <args:PatList> ("|" Commaish<Expr> "=" Expr+)*
-    ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
-
-  <args:PatList> "=" <e:ExprSpan>
-    ("where" "{" Semi<Statement> "}")? => Statement::Assign(args[0].clone(), args[1..].to_vec(), e),
-};
-
-Num: isize = {
-    r"[0-9]+" => isize::from_str(<>).unwrap()
 };
