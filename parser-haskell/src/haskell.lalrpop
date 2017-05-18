@@ -39,17 +39,6 @@ Comma<T>: Vec<T> = {
     }
 };
 
-Pipe<T>: Vec<T> = {
-    <v:(<T> "|")*> <e:T?> => match e {
-        None=> v,
-        Some(e) => {
-            let mut v = v;
-            v.push(e);
-            v
-        }
-    }
-};
-
 Commaish<T>: Vec<T> = {
     <(<T> ","?)+> => <>,
 };
@@ -60,6 +49,17 @@ CommaDef<T>: Vec<T> = {
         v.push(e);
         v
     },
+};
+
+Pipe<T>: Vec<T> = {
+    <v:(<T> "|")*> <e:T?> => match e {
+        None=> v,
+        Some(e) => {
+            let mut v = v;
+            v.push(e);
+            v
+        }
+    }
 };
 
 // Common patterns.
@@ -137,9 +137,10 @@ Expr: Expr = {
     r"\\\\" => Expr::Operator(<>.to_string()),
 
     "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
-    "let" "{" Semi<Statement> "}" => Expr::Let,
+    "let" "{" Semi<StatementWhere> "}" => Expr::Let,
     "do" "{" <e:Semi<StatementWhere>> "}" => Expr::Do(vec![], None),
-    "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
+    "{" "}" => Expr::Record(vec![]),
+    "{" <r:CommaDef<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
 };
 
 // TODO Why is "where"" needed for end of do and let statements but is special cased elsewhere
@@ -169,10 +170,10 @@ Statement: Statement = {
     ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
 
   // TODO left expr should be PatSpans
-  <ExprSpan> ("::" TypeGroup) => Statement::Dummy,
-  <ExprSpan> "=" <ExprSpan>
+  <CommaDef<ExprSpan>> ("::" TypeGroup) => Statement::Dummy,
+  <CommaDef<ExprSpan>> "=" <ExprSpan>
     ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
-  <ExprSpan> ("|" Commaish<Expr> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
+  <ExprSpan> ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
   <ExprSpan> ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
 };
 
@@ -185,7 +186,8 @@ TypeSub: Ty = {
     "[" <Type> "]" => Ty::Brackets(Box::new(<>)),
     "(" <CommaDef<Type>> ")" => Ty::Tuple(<>),
     "(" ")" => Ty::EmptyParen,
-    "{" <Comma<TypeRecord>> "}" => Ty::RecordTODO,
+    "{" "}" => Ty::RecordTODO,
+    "{" <CommaDef<TypeRecord>> "}" => Ty::RecordTODO,
     <Ident> => Ty::Ref(<>),
     <Ctor> => Ty::Ref(<>),
 };
@@ -221,7 +223,8 @@ PatSub: Pat = {
     },
     "(" <i:Ident> "->" <s: PatSpan> ")" => Pat::Arrow(i, Box::new(s)),
     "(" ")" => Pat::EmptyParen,
-    "{" <Comma<PatRecord>> "}" => Pat::RecordTODO,
+    "{" "}" => Pat::RecordTODO,
+    "{" <CommaDef<PatRecord>> "}" => Pat::RecordTODO,
 
     <Ident> => Pat::Ref(<>),
     <Ctor> => Pat::Ref(<>),
@@ -265,7 +268,7 @@ ImportList: Vec<Ident> = {
 Section: () = {
     Ident ("(" ".." ")")? => (),
     Ident "(" Ident* ")" => (),
-    "module" Ident ("(" Comma<Section> ")")? => (),
+    "module" Ident ("(" CommaDef<Section> ")")? => (),
 };
 
 pub Module: Module = {
