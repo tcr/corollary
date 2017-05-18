@@ -146,40 +146,44 @@ Expr: Expr = {
 
     "let" "{" Semi<Statement> "}" => Expr::Let,
 
-    "do" "{" <e:Semi<Statement>> "}" => Expr::Do(vec![], None),
+    "do" "{" <e:Semi<StatementWhere>> "}" => Expr::Do(vec![], None),
 
     "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
 };
 
+StatementWhere: Statement = {
+    <Statement> => <>,
+    "where" "{" Semi<Statement> "}" => Statement::Dummy,
+};
+
 Statement: Statement = {
   "class" Type ("=>" Ident+)?
-    "where" "{" Semi<Statement> "}" => Statement::Class,
+    "where" "{" Semi<Statement> "}" => Statement::Dummy,
 
   "instance" FnDef
-    "where" "{" Semi<Statement> "}" => Statement::Class,
-  "import" ImportList+ => Statement::Class,
+    "where" "{" Semi<Statement> "}" => Statement::Dummy,
+  "import" ImportList+ => Statement::Dummy,
 
   "data" <id:Ident+> =>
-      Statement::Class,
+      Statement::Dummy,
   "data" <id:Ident+> "=" <p:Pipe<TypeGroup>>
     <derives:("deriving" <ImportList>)?> =>
-      Statement::Class,
+      Statement::Dummy,
   "newtype" <id:Ident+> "=" <p:Type>
     ("deriving" ImportList)? =>
-      Statement::Class,
+      Statement::Dummy,
 
   "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
-    ("where" "{" Semi<Statement> "}")? => Statement::Class,
+    ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
 
-  <ExprSpan> ("::" FnDef) => Statement::Class,
+  <ExprSpan> ("::" FnDef) => Statement::Dummy,
   <ExprSpan> "=" <ExprSpan>
-    ("where" "{" Semi<Statement> "}")? => Statement::Class,
-  <ExprSpan> ("|" Commaish<Expr> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::Class,
+    ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
+  <ExprSpan> ("|" Commaish<Expr> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
 
   // TODO this should be associated with parent "do", not with its inner contents
-  <ExprSpan> ("where" "{" <Semi<Statement>> "}")? => Statement::Class,
+  <ExprSpan> ("where" "{" <Semi<Statement>> "}")? => Statement::Dummy,
 
-  "where" "{" <Semi<Statement>> "}" => Statement::Class,
 };
 
 FnDef: Ty = {
