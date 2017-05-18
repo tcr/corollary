@@ -319,70 +319,70 @@ lexC cont = do
   tok <- lexToken
   cont tok
 
-alex_action_1 =  \pos len str -> setPos (adjustLineDirective len (takeChars len str) pos) >> lexToken' False
-alex_action_4 =  \pos len str -> idkwtok (takeChars len str) pos
-alex_action_5 =  token_plus CTokILit readCOctal
-alex_action_6 =  token_plus CTokILit (readCInteger DecRepr)
-alex_action_7 =  token_plus CTokILit (readCInteger HexRepr . drop 2)
-alex_action_8 =  token_fail "Invalid integer constant suffix"
-alex_action_9 =  token CTokCLit (cChar . fst . unescapeChar . tail)
-alex_action_10 =  token CTokCLit (cChar_w . fst . unescapeChar . tail . tail)
-alex_action_11 =  token CTokCLit (flip cChars False . unescapeMultiChars .tail)
-alex_action_12 =  token CTokCLit (flip cChars True . unescapeMultiChars . tail . tail)
-alex_action_13 =  token CTokFLit readCFloat
-alex_action_14 =  token CTokFLit readCFloat
-alex_action_15 =  token_fail "Hexadecimal floating constant requires an exponent"
-alex_action_16 =  token CTokSLit (cString . unescapeString . init . tail)
-alex_action_17 =  token CTokSLit (cString_w . unescapeString . init . tail . tail)
-alex_action_18 =  token_fail "Universal character names are unsupported"
-alex_action_19 =  token_fail "Invalid escape sequence"
+alex_action_1 =  \pos len str -> setPos (adjustLineDirective len (takeChars len str) pos) >> lexToken' False 
+alex_action_4 =  \pos len str -> idkwtok (takeChars len str) pos 
+alex_action_5 =  token_plus CTokILit readCOctal 
+alex_action_6 =  token_plus CTokILit (readCInteger DecRepr) 
+alex_action_7 =  token_plus CTokILit (readCInteger HexRepr . drop 2) 
+alex_action_8 =  token_fail "Invalid integer constant suffix" 
+alex_action_9 =  token CTokCLit (cChar . fst . unescapeChar . tail) 
+alex_action_10 =  token CTokCLit (cChar_w . fst . unescapeChar . tail . tail) 
+alex_action_11 =  token CTokCLit (flip cChars False . unescapeMultiChars .tail) 
+alex_action_12 =  token CTokCLit (flip cChars True . unescapeMultiChars . tail . tail) 
+alex_action_13 =  token CTokFLit readCFloat 
+alex_action_14 =  token CTokFLit readCFloat 
+alex_action_15 =  token_fail "Hexadecimal floating constant requires an exponent" 
+alex_action_16 =  token CTokSLit (cString . unescapeString . init . tail) 
+alex_action_17 =  token CTokSLit (cString_w . unescapeString . init . tail . tail) 
+alex_action_18 =  token_fail "Universal character names are unsupported" 
+alex_action_19 =  token_fail "Invalid escape sequence" 
 alex_action_20 =  token_fail "Universal character names in string literals are unsupported"
-alex_action_21 =  token_ 1 CTokLParen
-alex_action_22 =  token_ 1 CTokRParen
-alex_action_23 =  token_ 1 CTokLBracket
-alex_action_24 =  token_ 1 CTokRBracket
-alex_action_25 =  token_ 2 CTokArrow
-alex_action_26 =  token_ 1 CTokDot
-alex_action_27 =  token_ 1 CTokExclam
-alex_action_28 =  token_ 1 CTokTilde
-alex_action_29 =  token_ 2 CTokInc
-alex_action_30 =  token_ 2 CTokDec
-alex_action_31 =  token_ 1 CTokPlus
-alex_action_32 =  token_ 1 CTokMinus
-alex_action_33 =  token_ 1 CTokStar
-alex_action_34 =  token_ 1 CTokSlash
-alex_action_35 =  token_ 1 CTokPercent
-alex_action_36 =  token_ 1 CTokAmper
-alex_action_37 =  token_ 2 CTokShiftL
-alex_action_38 =  token_ 2 CTokShiftR
-alex_action_39 =  token_ 1 CTokLess
-alex_action_40 =  token_ 2 CTokLessEq
-alex_action_41 =  token_ 1 CTokHigh
-alex_action_42 =  token_ 2 CTokHighEq
-alex_action_43 =  token_ 2 CTokEqual
-alex_action_44 =  token_ 2 CTokUnequal
-alex_action_45 =  token_ 1 CTokHat
-alex_action_46 =  token_ 1 CTokBar
-alex_action_47 =  token_ 2 CTokAnd
-alex_action_48 =  token_ 2 CTokOr
-alex_action_49 =  token_ 1 CTokQuest
-alex_action_50 =  token_ 1 CTokColon
-alex_action_51 =  token_ 1 CTokAssign
-alex_action_52 =  token_ 2 CTokPlusAss
-alex_action_53 =  token_ 2 CTokMinusAss
-alex_action_54 =  token_ 2 CTokStarAss
-alex_action_55 =  token_ 2 CTokSlashAss
-alex_action_56 =  token_ 2 CTokPercAss
-alex_action_57 =  token_ 2 CTokAmpAss
-alex_action_58 =  token_ 2 CTokHatAss
-alex_action_59 =  token_ 2 CTokBarAss
-alex_action_60 =  token_ 3 CTokSLAss
-alex_action_61 =  token_ 3 CTokSRAss
-alex_action_62 =  token_ 1 CTokComma
-alex_action_63 =  token_ 1 CTokSemic
-alex_action_64 =  token_ 1 CTokLBrace
-alex_action_65 =  token_ 1 CTokRBrace
-alex_action_66 =  token_ 3 CTokEllipsis
+alex_action_21 =  token_ 1 CTokLParen 
+alex_action_22 =  token_ 1 CTokRParen  
+alex_action_23 =  token_ 1 CTokLBracket 
+alex_action_24 =  token_ 1 CTokRBracket 
+alex_action_25 =  token_ 2 CTokArrow 
+alex_action_26 =  token_ 1 CTokDot 
+alex_action_27 =  token_ 1 CTokExclam 
+alex_action_28 =  token_ 1 CTokTilde 
+alex_action_29 =  token_ 2 CTokInc 
+alex_action_30 =  token_ 2 CTokDec 
+alex_action_31 =  token_ 1 CTokPlus 
+alex_action_32 =  token_ 1 CTokMinus 
+alex_action_33 =  token_ 1 CTokStar 
+alex_action_34 =  token_ 1 CTokSlash 
+alex_action_35 =  token_ 1 CTokPercent 
+alex_action_36 =  token_ 1 CTokAmper 
+alex_action_37 =  token_ 2 CTokShiftL 
+alex_action_38 =  token_ 2 CTokShiftR 
+alex_action_39 =  token_ 1 CTokLess 
+alex_action_40 =  token_ 2 CTokLessEq 
+alex_action_41 =  token_ 1 CTokHigh 
+alex_action_42 =  token_ 2 CTokHighEq 
+alex_action_43 =  token_ 2 CTokEqual 
+alex_action_44 =  token_ 2 CTokUnequal 
+alex_action_45 =  token_ 1 CTokHat 
+alex_action_46 =  token_ 1 CTokBar 
+alex_action_47 =  token_ 2 CTokAnd 
+alex_action_48 =  token_ 2 CTokOr 
+alex_action_49 =  token_ 1 CTokQuest 
+alex_action_50 =  token_ 1 CTokColon 
+alex_action_51 =  token_ 1 CTokAssign 
+alex_action_52 =  token_ 2 CTokPlusAss 
+alex_action_53 =  token_ 2 CTokMinusAss 
+alex_action_54 =  token_ 2 CTokStarAss 
+alex_action_55 =  token_ 2 CTokSlashAss 
+alex_action_56 =  token_ 2 CTokPercAss 
+alex_action_57 =  token_ 2 CTokAmpAss 
+alex_action_58 =  token_ 2 CTokHatAss 
+alex_action_59 =  token_ 2 CTokBarAss 
+alex_action_60 =  token_ 3 CTokSLAss 
+alex_action_61 =  token_ 3 CTokSRAss 
+alex_action_62 =  token_ 1 CTokComma 
+alex_action_63 =  token_ 1 CTokSemic 
+alex_action_64 =  token_ 1 CTokLBrace 
+alex_action_65 =  token_ 1 CTokRBrace 
+alex_action_66 =  token_ 3 CTokEllipsis 
 {-# LINE 1 "templates/GenericTemplate.hs" #-}
 {-# LINE 1 "templates/GenericTemplate.hs" #-}
 {-# LINE 1 "<built-in>" #-}
@@ -671,6 +671,30 @@ alex_scan_tkn user orig_input len input s last_acc =
   new_acc = (check_accs (alex_accept `quickIndex` (s)))
   in
   new_acc `seq`
+  case alexGetByte input of
+     Nothing -> (new_acc, input)
+     Just (c, new_input) ->
+
+
+
+      case fromIntegral c of { (ord_c) ->
+        let
+                base   = alexIndexInt32OffAddr alex_base s
+                offset = (base + ord_c)
+                check  = alexIndexInt16OffAddr alex_check offset
+
+                new_s = if (offset >= (0)) && (check == ord_c)
+                          then alexIndexInt16OffAddr alex_table offset
+                          else alexIndexInt16OffAddr alex_deflt s
+        in
+        case new_s of
+            (-1) -> (new_acc, input)
+                -- on an error, we want to keep the input *before* the
+                -- character that failed, not after.
+            _ -> alex_scan_tkn user orig_input (if c < 0x80 || c >= 0xC0 then (len + (1)) else len)
+                                                -- note that the length is increased ONLY if this is the 1st byte in a char encoding)
+                        new_input new_s new_acc
+      }
   where
         check_accs (AlexAccNone) = last_acc
         check_accs (AlexAcc a  ) = AlexLastAcc a input (len)
@@ -725,3 +749,4 @@ alexRightContext (sc) user _ _ input =
         -- TODO: there's no need to find the longest
         -- match when checking the right context, just
         -- the first match will do.
+
