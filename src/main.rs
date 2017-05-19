@@ -497,6 +497,9 @@ fn test_no_regressions() {
         "./language-c/src/Language/C/System/GCC.hs",
         "./language-c/src/Language/C/System/Preprocess.hs",
 
+        "./gen/Lexer.hs",
+        "./gen/Parser.hs",
+
         "./test/input.hs",
     ];
 

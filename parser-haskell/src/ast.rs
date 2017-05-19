@@ -37,10 +37,10 @@ pub enum Opcode {
 pub enum Statement {
     // Name, Inner Types, Deriving IDs
     Data(Ident, Vec<Vec<Ty>>, Vec<Ident>),
+    Newtype(Ident, Ty, Vec<Ident>),
     Class,
     Instance,
     Import,
-    Newtype,
     Pipelist,
     GuardAssign,
     Assign(Pat, Vec<Pat>, Expr),
