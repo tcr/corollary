@@ -88,13 +88,10 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
         Do(ref exprset, ref w) => {
             // where clause
             let mut out = vec![];
-            if let &Some(ref stats) = w {
-                out.push(print_statement_list(state, stats));
-            }
-
+            out.push(print_statement_list(state, w));
             for (i, expr) in exprset.iter().enumerate() {
                 let comm = if i == exprset.len() - 1 { "" } else { ";" };
-                out.push(format!("{}{}{}", state.indent(), print_expr(state.tab(), expr), comm));
+                out.push(format!("{}{}{}", state.indent(), print_statement_list(state.tab(), &[expr.clone()]), comm));
             }
             format!("{{\n{}\n{}}}", out.join("\n"), state.untab().indent())
         }

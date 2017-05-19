@@ -137,8 +137,8 @@ Expr: Expr = {
     r"\\\\" => Expr::Operator(<>.to_string()),
 
     "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
-    "let" "{" Semi<StatementWhere> "}" => Expr::Let,
-    "do" "{" <e:Semi<StatementWhere>> "}" => Expr::Do(vec![], None),
+    "let" "{" <stats:Semi<StatementWhere>> "}" => Expr::Let(stats, vec![]),
+    "do" "{" <stats:Semi<StatementWhere>> "}" => Expr::Do(stats, vec![]),
     "{" "}" => Expr::Record(vec![]),
     "{" <r:CommaDef<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
 };
