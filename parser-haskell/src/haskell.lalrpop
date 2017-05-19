@@ -173,11 +173,11 @@ Statement: Statement = {
     "where" "{" Semi<Statement> "}" => Statement::Instance,
 
   // TODO left expr should be PatSpans
-  <CommaDef<ExprSpan>> ("::" TypeGroup) => Statement::Prototype,
-  <CommaDef<ExprSpan>> "=" <ExprSpan>
-    ("where" "{" Semi<Statement> "}")? => Statement::Assign,
+  <ids:CommaDef<ExprSpan>> <t:("::" <TypeGroup>)> => Statement::Prototype(ids, t),
+  <ids:CommaDef<ExprSpan>> "=" <value:ExprSpan>
+    ("where" "{" Semi<Statement> "}")? => Statement::Assign(ids, value),
   <ExprSpan> ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
-  <ExprSpan> ("where" "{" Semi<Statement> "}")? => Statement::Expr,
+  <e:ExprSpan> <w:("where" "{" <Semi<Statement>> "}")?> => Statement::Expression(e, w.unwrap_or(vec![])),
 };
 
 TypeRecord: () = {

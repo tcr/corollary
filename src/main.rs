@@ -301,11 +301,14 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     let mut types = btreemap![];
     for item in stats {
         // println!("well {:?}", item);
-        if let ast::Statement::Prototype(ast::Ident(s), d) = item.clone() {
-            if types.contains_key(&s) {
-                panic!("that shouldn't happen {:?}", s);
+        if let ast::Statement::Prototype(exprs, d) = item.clone() {
+            for expr in exprs {
+                let s = print_expr(PrintState::new(), &expr);
+                if types.contains_key(&s) {
+                    panic!("that shouldn't happen {:?}", s);
+                }
+                types.insert(s, d.clone());
             }
-            types.insert(s, d);
         }
     }
 
@@ -344,14 +347,15 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     // Print out assignments as fns
     let mut cache = btreemap![];
     for item in stats {
-        if let ast::Statement::Assign(s, args, expr) = item.clone() {
+        if let ast::Statement::Assign(s, expr) = item.clone() {
             //if !types.contains_key(&s) {
             //    println!("this shouldn't happen {:?}", s);
             //}
             //if cache.contains_key(&s) {
             //    panic!("this shouldn't happen {:?}", s);
             //}
-            cache.entry(print_pattern(PrintState::new(), &s)).or_insert(vec![]).push((args, expr));
+            let ident = s[0].clone();
+            cache.entry(print_expr(PrintState::new(), &ident)).or_insert(vec![]).push((s[1..].to_vec(), expr));
         }
     }
 
@@ -369,12 +373,14 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                         .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
                         .collect::<Vec<_>>())),
                     fnset.iter().map(|x| {
-                        ast::CaseCond::Direct(x.0.clone(), vec![x.1.clone()])
+                        // TODO first arg should be x.0.clone()
+                        ast::CaseCond::Direct(vec![ast::Pat::Dummy], vec![x.1.clone()])
                     }).collect::<Vec<_>>(),
                 ),
             )]);
         } else {
-            new_cache.insert(key, fnset);
+            //TODO waitaminute
+            //new_cache.insert(key, fnset);
         }
     }
 
@@ -396,7 +402,8 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             }
 
             let d = types[&key].clone();
-            assert!(d.len() == 1);
+            //assert!(d.len() == 1);
+            //TODO what did this assert do
             let t = unpack_fndef(d[0].clone());
             assert!(t.len() >= 1);
 

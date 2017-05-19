@@ -44,8 +44,8 @@ pub enum Statement {
     Class,
     Instance,
 
-    Prototype(Ident, Vec<Ty>),
-    Assign(Pat, Vec<Pat>, Expr),
+    Prototype(Vec<Expr>, Vec<Ty>),
+    Assign(Vec<Expr>, Expr),
     GuardAssign,
     // Expression, where clause
     Expression(Expr, Vec<Statement>),
