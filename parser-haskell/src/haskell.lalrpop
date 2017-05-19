@@ -149,25 +149,28 @@ StatementWhere: Statement = {
     "where" "{" Semi<Statement> "}" => Statement::Dummy,
 };
 
+SContext: () = {
+  Ident+ "=>" => (),
+  "(" CommaDef<Ident+> ")" "=>" => (),
+};
+
 Statement: Statement = {
-  "class" Type ("=>" Ident+)?
-    "where" "{" Semi<Statement> "}" => Statement::Dummy,
-
-  "instance" TypeGroup
-    "where" "{" Semi<Statement> "}" => Statement::Dummy,
-  "import" ImportList+ => Statement::Dummy,
-
-  "data" <id:Ident+> =>
-      Statement::Dummy,
-  "data" <id:Ident+> "=" <p:Pipe<TypeGroup>>
-    <derives:("deriving" <ImportList>)?> =>
-      Statement::Dummy,
-  "newtype" <id:Ident+> "=" <p:Type>
-    ("deriving" ImportList)? =>
-      Statement::Dummy,
+  "import" ImportList+ => Statement::Import,
 
   "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
     ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
+  "data" <id:Ident> =>
+      Statement::Data(id, vec![], vec![]),
+  "data" <id:Ident> <args:TypeGroup?> "=" <p:Pipe<TypeGroup>>
+    <derives:("deriving" <ImportList>)?> =>
+      Statement::Data(id, p, derives.unwrap_or(vec![])),
+  "newtype" SContext? <id:Ident+> "=" <p:Type>
+    <derives:("deriving" <ImportList>)?> =>
+      Statement::Newtype(id[0].clone(), p, derives.unwrap_or(vec![])),
+  "class" SContext? Ident+
+    "where" "{" Semi<Statement> "}" => Statement::Class,
+  "instance" TypeGroup
+    "where" "{" Semi<Statement> "}" => Statement::Instance,
 
   // TODO left expr should be PatSpans
   <CommaDef<ExprSpan>> ("::" TypeGroup) => Statement::Dummy,

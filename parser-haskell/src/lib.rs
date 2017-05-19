@@ -169,7 +169,7 @@ fn commify(val: &str) -> String {
                 stash.pop();
                 braces.pop();
                 out.push_str("}");
-                if (braces.len() > 0) {
+                if braces.len() > 0 {
                     *braces.last_mut().unwrap() -= 1;
                 }
             }
