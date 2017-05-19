@@ -422,6 +422,19 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         }
     }
 
+    //Expressions
+    for item in stats {
+        if let ast::Statement::Expression(expr, wh) = item.clone() {
+            //if !types.contains_key(&s) {
+            //    println!("this shouldn't happen {:?}", s);
+            //}
+            //if cache.contains_key(&s) {
+            //    panic!("this shouldn't happen {:?}", s);
+            //}
+            out.push(print_expr(PrintState::new(), &expr));
+        }
+    }
+
     out.join("\n")
 }
 

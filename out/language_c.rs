@@ -7,20 +7,20 @@ mod Language_C_Analysis_AstAnalysis {
     let @(analyseFunctionBody(node_info, decl, s), (CCompound(localLabels, items, _))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            
+            enterFunctionScope;
+            mapM_(((withDefTable . defineLabel)), (++(localLabels, getLabels(s))));
+            defineParams(node_info, decl);
+            mapM_((tBlockItem(vec![FunCtx(decl)])), items);
+            leaveFunctionScope;
+            return(s)
         }
     };
 
     let @(tDesignator(t), (DirectType((TyComp(_)), _, _))((:(CMemberDesig(m, ni), ds)))) = |()| {
         {
 
-            ;
-            
+            let mt = fieldType(ni, m, t);
+            tDesignator((canonicalType(mt)), ds)
         }
     };
 
@@ -31,9 +31,9 @@ mod Language_C_Analysis_AstAnalysis {
     let @(tInit(t, i), (CInitExpr(e, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            let it = tExpr(vec![], RValue, e);
+            assignCompatible'(ni, CAssignOp, t, it);
+            return(i)
         }
     };
 
@@ -48,18 +48,18 @@ mod Language_C_Analysis_AstAnalysis {
     let @(tInitList(ni, t), (ArrayType(_, _, _, _))(initList)) = |()| {
         {
 
-            ;
-            
+            Let([Assign([Span([Ref(Ident("default_ds"))])], Span([Ref(Ident("repeat")), Parens([Span([Ref(Ident("CArrDesig")), Parens([Span([Ref(Ident("CConst")), Parens([Span([Ref(Ident("CIntConst")), Parens([Span([Ref(Ident("cInteger")), Number(0)])]), Ref(Ident("ni"))])])])]), Ref(Ident("ni"))])])]))], []);
+            checkInits(t, default_ds, initList)
         }
     };
 
     let @(tInitList(ni, t), (DirectType((TyComp(ctr)), _, _))(initList)) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let td = lookupSUE(ni, (sueRef(ctr)));
+            let ms = tagMembers(ni, td);
+            Let([Assign([Span([Ref(Ident("default_ds"))])], Span([Ref(Ident("map")), Parens([Span([Lambda, Parens([Span([Ref(Ident("fst")), Ref(Ident("m"))])]), Ref(Ident("ni"))])]), Ref(Ident("ms"))]))], []);
+            checkInits(t, default_ds, initList)
         }
     };
 
@@ -70,9 +70,9 @@ mod Language_C_Analysis_AstAnalysis {
     let analyseAST((CTranslUnit(decls, _file_node))) = |()| {
         {
 
-            ;
-            ;
-            ;
+            mapRecoverM_(analyseExt, decls);
+            >>=(getDefTable, Lambda((not((inFileScope(dt)))))(error("Internal Error: Not in filescope after analysis".to_string())));
+            liftM(globalDefs, getDefTable);
             
         }
     };
@@ -92,16 +92,16 @@ mod Language_C_Analysis_AstAnalysis {
     let analyseFunDef((CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
+            let var_decl_info = analyseVarDecl'(True, declspecs, declr, oldstyle_decls, Nothing);
+            Let([Assign([Span([Parens([Span([Ref(Ident("VarDeclInfo")), Ref(Ident("name")), Ref(Ident("is_inline")), Ref(Ident("storage_spec")), Ref(Ident("attrs")), Ref(Ident("ty")), Ref(Ident("declr_node"))])])])], Span([Ref(Ident("var_decl_info"))]))], []);
+            when((isNoName(name)))(astError(node_info, "NoName in analyseFunDef".to_string()));
+            Let([Assign([Span([Ref(Ident("ident"))])], Span([Ref(Ident("identOfVarName")), Ref(Ident("name"))]))], []);
+            let ty' = improveFunDefType(ty);
+            let fun_storage = computeFunDefStorage(ident, storage_spec);
+            Let([Assign([Span([Ref(Ident("var_decl"))])], Span([Ref(Ident("VarDecl")), Ref(Ident("name")), Parens([Span([Ref(Ident("DeclAttrs")), Ref(Ident("is_inline")), Ref(Ident("fun_storage")), Ref(Ident("attrs"))])]), Ref(Ident("ty\'"))]))], []);
+            handleVarDecl(False, (Decl(var_decl, node_info)));
+            let stmt' = analyseFunctionBody(node_info, var_decl, stmt);
+            handleFunDef(ident, (FunDef(var_decl, stmt', node_info)));
             
         }
     };
@@ -113,11 +113,11 @@ mod Language_C_Analysis_AstAnalysis {
     let analyseTypeDef(handle_sue_def, declspecs, declr, node_info) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
+            let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl'(handle_sue_def, declspecs, declr, vec![], Nothing);
+            checkValidTypeDef(is_inline, storage_spec, attrs);
+            when((isNoName(name)))(astError(node_info, "NoName in analyseTypeDef".to_string()));
+            Let([Assign([Span([Ref(Ident("ident"))])], Span([Ref(Ident("identOfVarName")), Ref(Ident("name"))]))], []);
+            handleTypeDef((TypeDef(ident, ty, attrs, node_info)));
             
         }
     };
@@ -145,18 +145,25 @@ mod Language_C_Analysis_AstAnalysis {
     let checkInits(t, dds, (:((ds, i), is))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let (dds', ds') = match (dds, ds) {
+            ([], []) => { typeError((nodeInfo(i)), "excess elements in initializer".to_string()) },
+            (dd'(:, rest), []) => { return((rest, vec![dd'])) },
+            (_, d(:, _)) => { return((advanceDesigList(dds, d), ds)) },
+        };
+            let t' = tDesignator(t, ds');
+            tInit(t', i);
+            checkInits(t, dds', is)
         }
     };
 
     let complexBaseType(ni, c, side, e) = |()| {
         {
 
-            ;
-            
+            let t = tExpr(c, side, e);
+            match canonicalType(t) {
+        DirectType, TyComplex(ft), quals, attrs => { return(DirectType((TyFloating(ft)), quals, attrs)) },
+        _ => { typeError(ni)(++("expected complex type, got: ".to_string(), pType(t))) },
+    }
         }
     };
 
@@ -167,9 +174,13 @@ mod Language_C_Analysis_AstAnalysis {
     let computeFunDefStorage(ident, other_spec) = |()| {
         {
 
-            ;
-            ;
-            
+            let obj_opt = lookupObject(ident);
+            Let([Assign([Span([Ref(Ident("defaultSpec"))])], Span([Ref(Ident("FunLinkage")), Ref(Ident("ExternalLinkage"))]))], []);
+            match other_spec {
+        NoStorageSpec => { return(maybe(defaultSpec, declStorage, obj_opt)) },
+        ExternSpec(False) => { return(maybe(defaultSpec, declStorage, obj_opt)) },
+        bad_spec => { throwTravError(badSpecifierError((nodeInfo(ident)))(++("unexpected function storage specifier (only static or extern is allowed)".to_string(), show(bad_spec)))) },
+    }
         }
     };
 
@@ -210,24 +221,24 @@ mod Language_C_Analysis_AstAnalysis {
     let extFunProto((VarDeclInfo(var_name, is_inline, storage_spec, attrs, ty, node_info))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            
+            when((isNoName(var_name)))(astError(node_info, "NoName in extFunProto".to_string()));
+            let old_fun = lookupObject((identOfVarName(var_name)));
+            checkValidSpecs;
+            Let([Assign([Span([Ref(Ident("decl"))])], Span([Ref(Ident("VarDecl")), Ref(Ident("var_name")), Parens([Span([Ref(Ident("DeclAttrs")), Ref(Ident("is_inline")), Parens([Span([Ref(Ident("funDeclLinkage")), Ref(Ident("old_fun"))])]), Ref(Ident("attrs"))])]), Ref(Ident("ty"))]))], []);
+            handleVarDecl(False, (Decl(decl, node_info)));
+            enterPrototypeScope;
+            maybe((return(())), (mapM_(handleParamDecl)), (getParams(ty)));
+            leavePrototypeScope
         }
     };
 
     let extVarDecl((VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info)), init_opt) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            when((isNoName(var_name)))(astError(node_info, "NoName in extVarDecl".to_string()));
+            let (storage, is_def) = globalStorage(storage_spec);
+            Let([Assign([Span([Ref(Ident("vardecl"))])], Span([Ref(Ident("VarDecl")), Ref(Ident("var_name")), Parens([Span([Ref(Ident("DeclAttrs")), Ref(Ident("is_inline")), Ref(Ident("storage")), Ref(Ident("attrs"))])]), Ref(Ident("typ"))]))], []);
+            if(is_def, then, handleObjectDef, False, ident)(ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, False)(Decl(vardecl, node_info)))
         }
     };
 
@@ -257,10 +268,10 @@ mod Language_C_Analysis_AstAnalysis {
     let localVarDecl((VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info)), init_opt) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            when((isNoName(var_name)))(astError(node_info, "NoName in localVarDecl".to_string()));
+            let (storage, is_def) = localStorage(storage_spec);
+            Let([Assign([Span([Ref(Ident("vardecl"))])], Span([Ref(Ident("VarDecl")), Ref(Ident("var_name")), Parens([Span([Ref(Ident("DeclAttrs")), Ref(Ident("is_inline")), Ref(Ident("storage")), Ref(Ident("attrs"))])]), Ref(Ident("typ"))]))], []);
+            if(is_def, then, handleObjectDef, True, ident, (ObjDef(vardecl, init_opt, node_info)), else, handleVarDecl, True, (Decl(vardecl, node_info)))
         }
     };
 
@@ -291,17 +302,17 @@ mod Language_C_Analysis_AstAnalysis {
     let tDesignator((ArrayType(bt, _, _, _)), (:(CArrDesig(e, ni), ds))) = |()| {
         {
 
-            ;
-            
+            >>=(tExpr(vec![], RValue, e), checkIntegral'(ni));
+            tDesignator(bt, ds)
         }
     };
 
     let tDesignator((ArrayType(bt, _, _, _)), (:(CRangeDesig(e1, e2, ni), ds))) = |()| {
         {
 
-            ;
-            ;
-            
+            >>=(tExpr(vec![], RValue, e1), checkIntegral'(ni));
+            >>=(tExpr(vec![], RValue, e2), checkIntegral'(ni));
+            tDesignator(bt, ds)
         }
     };
 
@@ -336,18 +347,18 @@ mod Language_C_Analysis_AstAnalysis {
     let tExpr'(_, side, (CCompoundLit(d, initList, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            when((==(side, LValue)))(typeError(ni, "compound literal as lvalue".to_string()));
+            let lt = analyseTypeDecl(d);
+            tInitList(ni, (canonicalType(lt)), initList);
+            return(lt)
         }
     };
 
     let tExpr'(_, side, (CLabAddrExpr(_, ni))) = |()| {
         {
 
-            ;
-            
+            when((==(side, LValue)))(typeError(ni, "label address as lvalue".to_string()));
+            return(PtrType(voidType, noTypeQuals, vec![]))
         }
     };
 
@@ -358,51 +369,70 @@ mod Language_C_Analysis_AstAnalysis {
     let tExpr'(c, _, (CAssign(op, le, re, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            let lt = tExpr(c, LValue, le);
+            let rt = tExpr(c, RValue, re);
+            when((constant(typeQuals(lt))))(typeError(ni)(++("assignment to lvalue with `constant\' qualifier: ".to_string(), ((render . pretty))(le))));
+            match (canonicalType(lt), re) {
+    (lt', CConst(CIntConst(i, _))) => if &&(isPointerType(lt'), ==(getCInteger(i), 0)) { return(()) },
+        (_, _) => { assignCompatible'(ni, op, lt, rt) },
+    };
+            return(lt)
         }
     };
 
     let tExpr'(c, _, (CCall(fe, args, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            Let([Assign([Span([Ref(Ident("defType"))])], Span([Ref(Ident("FunctionType")), Parens([Span([Ref(Ident("FunTypeIncomplete")), Parens([Span([Ref(Ident("DirectType")), Parens([Span([Ref(Ident("TyIntegral")), Ref(Ident("TyInt"))])]), Ref(Ident("noTypeQuals")), Ref(Ident("noAttributes"))])])])]), Ref(Ident("noAttributes"))])), Assign([Span([Ref(Ident("fallback")), Ref(Ident("i"))])], Span([Do([Expression(Span([Ref(Ident("warn")), Operator("$"), Ref(Ident("invalidAST")), Ref(Ident("ni")), Operator("$"), Str("unknown function: "), Operator("++"), Ref(Ident("identToString")), Ref(Ident("i"))]), []), Expression(Span([Ref(Ident("return")), Ref(Ident("defType"))]), [])], [])]))], []);
+            let t = match fe {
+            CVar, i, _ => { >>=(lookupObject(i), maybe((fallback(i)), (const(tExpr(c, RValue, fe))))) },
+            _ => { tExpr(c, RValue, fe) },
+        };
+            let atys = mapM((tExpr(c, RValue)), args);
+            match canonicalType(t) {
+        PtrType, FunctionType(FunType(rt, pdecls, varargs), _), _, _ => { {
+
+            Let([Assign([Span([Ref(Ident("ptys"))])], Span([Ref(Ident("map")), Ref(Ident("declType")), Ref(Ident("pdecls"))]))], []);
+            mapM_(checkArg)(zip3(ptys, atys, args));
+            unless(varargs)(when((/=(length(atys), length(ptys))))(typeError(ni, "incorrect number of arguments".to_string())));
+            return(canonicalType(rt))
+        } },
+        PtrType, FunctionType(FunTypeIncomplete(rt), _), _, _ => { {
+
+            return(canonicalType(rt))
+        } },
+        _ => { typeError(ni)(++("attempt to call non-function of type ".to_string(), pType(t))) },
+    }
         }
     };
 
     let tExpr'(c, _, (CIndex(b, i, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let bt = tExpr(c, RValue, b);
+            let it = tExpr(c, RValue, i);
+            let addrTy = binopType'(ni, CAddOp, bt, it);
+            typeErrorOnLeft(ni)(derefType(addrTy))
         }
     };
 
     let tExpr'(c, _, (CStatExpr(s, _))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            enterBlockScope;
+            mapM_(((withDefTable . defineLabel)), (getLabels(s)));
+            let t = tStmt(c, s);
+            leaveBlockScope;
+            return(t)
         }
     };
 
     let tExpr'(c, _, (CUnary(CCompOp, e, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            let t = tExpr(c, RValue, e);
+            checkIntegral'(ni, t);
+            return(t)
         }
     };
 
@@ -413,29 +443,29 @@ mod Language_C_Analysis_AstAnalysis {
     let tExpr'(c, side, (CAlignofExpr(e, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            when((==(side, LValue)))(typeError(ni, "alignof as lvalue".to_string()));
+            tExpr(c, RValue, e);
+            return(size_tType)
         }
     };
 
     let tExpr'(c, side, (CBinary(op, le, re, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            when((==(side, LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+            let lt = tExpr(c, RValue, le);
+            let rt = tExpr(c, RValue, re);
+            binopType'(ni, op, lt, rt)
         }
     };
 
     let tExpr'(c, side, (CCast(d, e, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let dt = analyseTypeDecl(d);
+            let et = tExpr(c, side, e);
+            typeErrorOnLeft(ni)(castCompatible(dt, et));
+            return(dt)
         }
     };
 
@@ -454,45 +484,56 @@ mod Language_C_Analysis_AstAnalysis {
     let tExpr'(c, side, (CCond(e1, me2, e3, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let t1 = tExpr(c, RValue, e1);
+            checkScalar'((nodeInfo(e1)), t1);
+            let t3 = tExpr(c, side, e3);
+            match me2 {
+        Just, e2 => { {
+
+            let t2 = tExpr(c, side, e2);
+            conditionalType'(ni, t2, t3)
+        } },
+        Nothing => { conditionalType'(ni, t1, t3) },
+    }
         }
     };
 
     let tExpr'(c, side, (CMember(e, m, deref, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            let t = tExpr(c, RValue, e);
+            let bt = if(deref, then, typeErrorOnLeft, ni, (derefType(t)), else, return, t);
+            fieldType(ni, m, bt)
         }
     };
 
     let tExpr'(c, side, (CSizeofExpr(e, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            when((==(side, LValue)))(typeError(ni, "sizeof as lvalue".to_string()));
+            tExpr(c, RValue, e);
+            return(size_tType)
         }
     };
 
     let tExpr'(c, side, (CUnary(CAdrOp, e, ni))) = |()| {
         {
 
-            ;
-            
+            when((==(side, LValue)))(typeError(ni, "address-of operator as lvalue".to_string()));
+            match e {
+        CCompoundLit, _, _, _ => { liftM(simplePtr, tExpr(c, RValue, e)) },
+        CVar, i, _ => { >>=(lookupObject(i), (typeErrorOnLeft(ni) . maybe((notFound(i)), varAddrType))) },
+        _ => { liftM(simplePtr, tExpr(c, LValue, e)) },
+    }
         }
     };
 
     let tExpr'(c, side, (CUnary(CNegOp, e, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            when((==(side, LValue)))(typeError(ni, "logical negation used as lvalue".to_string()));
+            >>=(tExpr(c, RValue, e), checkScalar'(ni));
+            return(boolType)
         }
     };
 
@@ -504,8 +545,15 @@ mod Language_C_Analysis_AstAnalysis {
         match nameOfNode((nodeInfo(e))) {
                 Just, n => { {
 
-                    ;
-                    
+                    let dt = getDefTable;
+                    match lookupType(dt, n) {
+        Just, t => { return(t) },
+        Nothing => { {
+
+            let t = tExpr'(c, side, e);
+            withDefTable((Lambda))
+        } },
+    }
                 } },
                 Nothing => { tExpr'(c, side, e) },
             }
@@ -530,8 +578,11 @@ mod Language_C_Analysis_AstAnalysis {
     let tStmt(_, (CGoto(l, ni))) = |()| {
         {
 
-            ;
-            
+            let dt = getDefTable;
+            match lookupLabel(l, dt) {
+        Just, _ => { return(voidType) },
+        Nothing => { typeError(ni)(++("undefined label in goto: ".to_string(), identToString(l))) },
+    }
         }
     };
 
@@ -542,54 +593,54 @@ mod Language_C_Analysis_AstAnalysis {
     let tStmt(c, (CBreak(ni))) = |()| {
         {
 
-            ;
-            
+            unless((||(inLoop(c), inSwitch(c))))(astError(ni, "break statement outside of loop or switch statement".to_string()));
+            return(voidType)
         }
     };
 
     let tStmt(c, (CCase(e, s, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
+            >>=(tExpr(c, RValue, e), checkIntegral'(ni));
+            tStmt(c, s)
         }
     };
 
     let tStmt(c, (CCases(e1, e2, s, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
+            >>=(tExpr(c, RValue, e1), checkIntegral'(ni));
+            >>=(tExpr(c, RValue, e2), checkIntegral'(ni));
+            tStmt(c, s)
         }
     };
 
     let tStmt(c, (CCompound(ls, body, _))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            enterBlockScope;
+            mapM_(((withDefTable . defineLabel)), ls);
+            let t = foldM((const(tBlockItem(c))), voidType, body);
+            leaveBlockScope;
+            return(t)
         }
     };
 
     let tStmt(c, (CCont(ni))) = |()| {
         {
 
-            ;
-            
+            unless((inLoop(c)))(astError(ni, "continue statement outside of loop".to_string()));
+            return(voidType)
         }
     };
 
     let tStmt(c, (CDefault(s, ni))) = |()| {
         {
 
-            ;
-            
+            unless((inSwitch(c)))(astError(ni, "default statement outside of switch statement".to_string()));
+            tStmt(c, s)
         }
     };
 
@@ -600,21 +651,24 @@ mod Language_C_Analysis_AstAnalysis {
     let tStmt(c, (CFor(i, g, inc, s, _))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            
+            enterBlockScope;
+            either((maybe((return(())), checkExpr)), (analyseDecl(True)), i);
+            maybe((return(())), (checkGuard(c)), g);
+            maybe((return(())), checkExpr, inc);
+            tStmt((:(LoopCtx, c)), s);
+            leaveBlockScope;
+            return(voidType)
         }
     };
 
     let tStmt(c, (CGotoPtr(e, ni))) = |()| {
         {
 
-            ;
-            
+            let t = tExpr(c, RValue, e);
+            match t {
+        PtrType(_, _, _) => { return(voidType) },
+        _ => { typeError(ni, "can\'t goto non-pointer".to_string()) },
+    }
         }
     };
 
@@ -629,10 +683,18 @@ mod Language_C_Analysis_AstAnalysis {
     let tStmt(c, (CReturn((Just(e)), ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let t = tExpr(c, RValue, e);
+            let rt = match enclosingFunctionType(c) {
+            Just, FunctionType(FunType(rt, _, _), _) => { return(rt) },
+            Just, FunctionType(FunTypeIncomplete(rt), _) => { return(rt) },
+            Just, ft => { astError(ni)(++("bad function type: ".to_string(), pType(ft))) },
+            Nothing => { astError(ni, "return statement outside function".to_string()) },
+        };
+            match (rt, t) {
+        (DirectType(TyVoid, _, _), DirectType(TyVoid, _, _)) => { return(()) },
+        _ => { assignCompatible'(ni, CAssignOp, rt, t) },
+    };
+            return(voidType)
         }
     };
 
@@ -659,19 +721,36 @@ mod Language_C_Analysis_ConstEval {
     let @(constEval(md, env, e), (CBinary(op, e1, e2, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            let e1' = constEval(md, env, e1);
+            let e2' = constEval(md, env, e2);
+            let t = tExpr(vec![], RValue, e);
+            let bytes = liftM(fromIntegral, sizeofType(md, e, t));
+            match (intValue(e1'), intValue(e2')) {
+        (Just(i1), Just(i2)) => { intExpr(ni, (withWordBytes(bytes, (intOp(op, i1, i2))))) },
+        (_, _) => { return(CBinary(op, e1', e2', ni)) },
+    }
         }
     };
 
     let @(constEval(md, env, e), (CVar(i, _))) = |()| {
         {
 
-            ;
-            
+            let t = tExpr(vec![], RValue, e);
+            match derefTypeDef(t) {
+        DirectType, TyEnum(etr), _, _ => { {
+
+            let dt = getDefTable;
+            match lookupTag((sueRef(etr)), dt) {
+        Just, Right(EnumDef(EnumType(_, es, _, _))) => { {
+
+            let env' = foldM(enumConst, env, es);
+            return(fromMaybe(e)(Map.lookup(i, env')))
+        } },
+        _ => { return(e) },
+    }
+        } },
+        _ => { return(e) },
+    }
         }
     };
 
@@ -738,8 +817,21 @@ mod Language_C_Analysis_ConstEval {
     let compSize(md, ctr) = |()| {
         {
 
-            ;
-            
+            let dt = getDefTable;
+            match lookupTag((sueRef(ctr)), dt) {
+        Just, Left(_) => { astError((nodeInfo(ctr)), "composite declared but not defined".to_string()) },
+        Just, Right(CompDef(CompType(_, tag, ms, _, ni))) => { {
+
+            Let([Assign([Span([Ref(Ident("ts"))])], Span([Ref(Ident("map")), Ref(Ident("declType")), Ref(Ident("ms"))]))], []);
+            let sizes = mapM((sizeofType(md, ni)), ts);
+            match tag {
+        StructTag => { return(sum(sizes)) },
+        UnionTag => { return(maximum(sizes)) },
+    }
+        } },
+        Just, Right(EnumDef(_)) => { return(iSize(md, TyInt)) },
+        Nothing => { astError((nodeInfo(ctr)), "unknown composite".to_string()) },
+    }
         }
     };
 
@@ -750,66 +842,79 @@ mod Language_C_Analysis_ConstEval {
     let constEval(md, _, (CAlignofExpr(e, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            let t = tExpr(vec![], RValue, e);
+            let sz = alignofType(md, e, t);
+            intExpr(ni, sz)
         }
     };
 
     let constEval(md, _, (CAlignofType(d, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            let t = analyseTypeDecl(d);
+            let sz = alignofType(md, d, t);
+            intExpr(ni, sz)
         }
     };
 
     let constEval(md, _, (CSizeofExpr(e, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            let t = tExpr(vec![], RValue, e);
+            let sz = sizeofType(md, e, t);
+            intExpr(ni, sz)
         }
     };
 
     let constEval(md, _, (CSizeofType(d, ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            let t = analyseTypeDecl(d);
+            let sz = sizeofType(md, d, t);
+            intExpr(ni, sz)
         }
     };
 
     let constEval(md, env, (CCast(d, e, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let e' = constEval(md, env, e);
+            let t = analyseTypeDecl(d);
+            let bytes = liftM(fromIntegral, sizeofType(md, d, t));
+            match intValue(e') {
+        Just, i => { intExpr(ni, (withWordBytes(bytes, i))) },
+        Nothing => { return(CCast(d, e', ni)) },
+    }
         }
     };
 
     let constEval(md, env, (CCond(e1, me2, e3, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let e1' = constEval(md, env, e1);
+            let me2' = maybe((return(Nothing)), (liftM(Lambda, constEval(md, env, e))), me2);
+            let e3' = constEval(md, env, e3);
+            match boolValue(e1') {
+        Just, True => { return(fromMaybe(e1', me2')) },
+        Just, False => { return(e3') },
+        Nothing => { return(CCond(e1', me2', e3', ni)) },
+    }
         }
     };
 
     let constEval(md, env, (CUnary(op, e, ni))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let e' = constEval(md, env, e);
+            let t = tExpr(vec![], RValue, e);
+            let bytes = liftM(fromIntegral, sizeofType(md, e, t));
+            match intValue(e') {
+        Just, i => { match intUnOp(op, i) {
+                Just, i' => { intExpr(ni, (withWordBytes(bytes, i'))) },
+                Nothing => { astError(ni, "invalid unary operator applied to constant".to_string()) },
+            } },
+        Nothing => { return(CUnary(op, e', ni)) },
+    }
         }
     };
 
@@ -964,8 +1069,15 @@ mod Language_C_Analysis_ConstEval {
     let sizeofType(md, n, (ArrayType(bt, (ArraySize(_, sz)), _, _))) = |()| {
         {
 
-            ;
-            
+            let sz' = constEval(md, Map.empty, sz);
+            match sz' {
+        CConst, CIntConst(i, _) => { {
+
+            let s = sizeofType(md, n, bt);
+            return(*(getCInteger(i), s))
+        } },
+        _ => { return(ptrSize(md)) },
+    }
         }
     };
 
@@ -1040,20 +1152,20 @@ mod Language_C_Analysis_DeclAnalysis {
     let analyseVarDecl'(handle_sue_def, declspecs, declr, oldstyle, init_opt) = |()| {
         {
 
-            ;
-            ;
-            
+            Let([Assign([Span([Parens([Span([Ref(Ident("storage_specs"))]), Span([Ref(Ident("attrs"))]), Span([Ref(Ident("type_quals"))]), Span([Ref(Ident("type_specs"))]), Span([Ref(Ident("inline"))])])])], Span([Ref(Ident("partitionDeclSpecs")), Ref(Ident("declspecs"))]))], []);
+            let canonTySpecs = canonicalTypeSpec(type_specs);
+            analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, inline, declr, oldstyle, init_opt)
         }
     };
 
     let analyseVarDecl(handle_sue_def, storage_specs, decl_attrs, typequals, canonTySpecs, inline, (CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node)), oldstyle_params, init_opt) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            let storage_spec = canonicalStorageSpec(storage_specs);
+            let typ = tType(handle_sue_def, node, typequals, canonTySpecs, derived_declrs, oldstyle_params);
+            let attrs' = mapM(tAttr, (++(decl_attrs, declr_attrs)));
+            let name = mkVarName(node, name_opt, asmname_opt);
+            return(VarDeclInfo(name, inline, storage_spec, attrs', typ, node))
         }
     };
 
@@ -1130,11 +1242,11 @@ mod Language_C_Analysis_DeclAnalysis {
         match params {
                 Left, list => { {
 
-                    ;
-                    ;
-                    ;
-                    ;
-                    
+                    let oldstyle_params' = liftM(concat)(mapM(splitCDecl, oldstyle_params));
+                    let param_map = liftM(Map.fromList)(mapM(attachNameOfDecl, oldstyle_params'));
+                    let (newstyle_params, param_map') = foldrM(insertParamDecl, (vec![], param_map), list);
+                    when((not(Map.null(param_map'))))(astError(node)(++("declarations for parameter(s) ".to_string(), ++(showParamMap(param_map'), " but no such parameter".to_string()))));
+                    return((:(CFunDeclr((Right((newstyle_params, False))), attrs, fdnode), dds)))
                 } },
                 Right, _newstyle => { astError(node, "oldstyle parameter list, but newstyle function declaration".to_string()) },
             }
@@ -1185,30 +1297,51 @@ mod Language_C_Analysis_DeclAnalysis {
     let tCompTypeDecl(handle_def, (CStruct(tag, ident_opt, member_decls_opt, attrs, node_info))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            
+            let sue_ref = createSUERef(node_info, ident_opt);
+            Let([Assign([Span([Ref(Ident("tag\'"))])], Span([Ref(Ident("tTag")), Ref(Ident("tag"))]))], []);
+            let attrs' = mapM(tAttr, attrs);
+            Let([Assign([Span([Ref(Ident("decl"))])], Span([Ref(Ident("CompTypeRef")), Ref(Ident("sue_ref")), Ref(Ident("tag\'")), Ref(Ident("node_info"))]))], []);
+            handleTagDecl((CompDecl(decl)));
+            when((handle_def))({
+
+        maybeM(member_decls_opt)(>>=(Lambda(sue_ref, tag', decls, (attrs'), node_info), (handleTagDef.CompDef)))
+    });
+            return(decl)
         }
     };
 
     let tDirectType(handle_sue_def, node, ty_quals, canonTySpec) = |()| {
         {
 
-            ;
-            ;
-            
+            let (quals, attrs) = tTypeQuals(ty_quals);
+            Let([Assign([Span([Ref(Ident("baseType")), Ref(Ident("ty_name"))])], Span([Ref(Ident("DirectType")), Ref(Ident("ty_name")), Ref(Ident("quals")), Ref(Ident("attrs"))]))], []);
+            match canonTySpec {
+        TSNone => { return(baseType((TyIntegral(TyInt)))) },
+        TSVoid => { return(baseType(TyVoid)) },
+        TSBool => { return(baseType((TyIntegral(TyBool)))) },
+        TSNum, tsnum => { {
+
+            let numType = tNumType(tsnum);
+            (return . baseType(match numType {
+            Left, (floatType, iscomplex) => if iscomplex { TyComplex(floatType) }
+otherwise { TyFloating(floatType) },
+                Right, intType => { TyIntegral(intType) },
+            }))
+        } },
+        TSTypeDef, tdr => { return(TypeDefType(tdr, quals, attrs)) },
+        TSNonBasic, CSUType(su, _tnode) => { liftM(((baseType . TyComp)))(tCompTypeDecl(handle_sue_def, su)) },
+        TSNonBasic, CEnumType(enum, _tnode) => { liftM(((baseType . TyEnum)))(tEnumTypeDecl(handle_sue_def, enum)) },
+        TSType, t => { mergeTypeAttributes(node, quals, attrs, t) },
+        TSNonBasic, _ => { astError(node, "Unexpected typespec".to_string()) },
+    }
         }
     };
 
     let tEnumType(sue_ref, enumerators, attrs, node) = |()| {
         {
 
-            ;
-            ;
+            mapM_(handleEnumeratorDef, enumerators');
+            return(ty);
             
         }
     };
@@ -1220,11 +1353,14 @@ mod Language_C_Analysis_DeclAnalysis {
     let tMemberDecls((CDecl(declspecs, vec![], node))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            Let([Assign([Span([Parens([Span([Ref(Ident("storage_specs"))]), Span([Ref(Ident("_attrs"))]), Span([Ref(Ident("typequals"))]), Span([Ref(Ident("typespecs"))]), Span([Ref(Ident("is_inline"))])])])], Span([Ref(Ident("partitionDeclSpecs")), Ref(Ident("declspecs"))]))], []);
+            when(is_inline)(astError(node, "member declaration with inline specifier".to_string()));
+            let canonTySpecs = canonicalTypeSpec(typespecs);
+            let ty = tType(True, node, typequals, canonTySpecs, vec![], vec![]);
+            match ty {
+        DirectType, TyComp(_), _, _ => { return(vec![MemberDecl((VarDecl(NoName, (DeclAttrs(False, NoStorage, vec![])), ty)), Nothing, node)]) },
+        _ => { astError(node, "anonymous member has a non-composite type".to_string()) },
+    }
         }
     };
 
@@ -1259,12 +1395,12 @@ otherwise { intType(TyChar) },
     let tParamDecl((CDecl(declspecs, declrs, node))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            
+            let declr = getParamDeclr;
+            let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl'(True, declspecs, declr, vec![], Nothing);
+            when((is_inline))(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
+            let storage = throwOnLeft(computeParamStorage(node, storage_spec));
+            Let([Assign([Span([Ref(Ident("paramDecl"))])], Span([Ref(Ident("mkParamDecl")), Ref(Ident("name")), Ref(Ident("storage")), Ref(Ident("attrs")), Ref(Ident("ty")), Ref(Ident("declr_node"))]))], []);
+            return(paramDecl)
         }
     };
 
@@ -2089,20 +2225,20 @@ mod Language_C_Analysis_TravMonad {
     let @(handleParamDecl(pd), (ParamDecl(vardecl, node))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            Let([Assign([Span([Ref(Ident("def"))])], Span([Ref(Ident("ObjectDef")), Parens([Span([Ref(Ident("ObjDef")), Ref(Ident("vardecl")), Ref(Ident("Nothing")), Ref(Ident("node"))])])]))], []);
+            let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
+            checkVarRedef(def, redecl);
+            handleDecl((ParamEvent(pd)))
         }
     };
 
     let @(handleTypeDef(typeDef), (TypeDef(ident, _, _, _))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let redecl = withDefTable(defineTypeDef(ident, typeDef));
+            checkRedef((show(ident)), typeDef, redecl);
+            handleDecl((TypeDefEvent(typeDef)));
+            return(())
         }
     };
 
@@ -2174,10 +2310,10 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     let enterDecl(decl, cond) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            Let([Assign([Span([Ref(Ident("def"))])], Span([Ref(Ident("Declaration")), Ref(Ident("decl"))]))], []);
+            let redecl = withDefTable(defineScopedIdentWhen(cond, (declIdent(def)), def));
+            checkVarRedef(def, redecl);
+            return(def)
         }
     };
 
@@ -2216,30 +2352,30 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     let handleEnumeratorDef(enumerator) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            Let([Assign([Span([Ref(Ident("ident"))])], Span([Ref(Ident("declIdent")), Ref(Ident("enumerator"))]))], []);
+            let redecl = withDefTable(defineScopedIdent(ident, (EnumeratorDef(enumerator))));
+            checkRedef((show(ident)), ident, redecl);
+            return(())
         }
     };
 
     let handleFunDef(ident, fun_def) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            Let([Assign([Span([Ref(Ident("def"))])], Span([Ref(Ident("FunctionDef")), Ref(Ident("fun_def"))]))], []);
+            let redecl = withDefTable(defineScopedIdentWhen(isDeclaration, ident, def));
+            checkVarRedef(def, redecl);
+            handleDecl((DeclEvent(def)))
         }
     };
 
     let handleObjectDef(local, ident, obj_def) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
+            Let([Assign([Span([Ref(Ident("def"))])], Span([Ref(Ident("ObjectDef")), Ref(Ident("obj_def"))]))], []);
+            let redecl = withDefTable(defineScopedIdentWhen((Lambda(def, old)), ident, def));
+            checkVarRedef(def, redecl);
+            handleDecl(((if(local, then, LocalEvent, else, DeclEvent))(def)));
             
         }
     };
@@ -2247,17 +2383,17 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     let handleTagDecl(decl) = |()| {
         {
 
-            ;
-            
+            let redecl = withDefTable(declareTag((sueRef(decl)), decl));
+            checkRedef((show(sueRef(decl))), decl, redecl)
         }
     };
 
     let handleTagDef(def) = |()| {
         {
 
-            ;
-            ;
-            
+            let redecl = withDefTable(defineTag((sueRef(def)), def));
+            checkRedef((show(sueRef(def))), def, redecl);
+            handleDecl((TagEvent(def)))
         }
     };
 
@@ -2268,8 +2404,8 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     let handleVarDecl(is_local, decl) = |()| {
         {
 
-            ;
-            
+            let def = enterDecl(decl, (const(False)));
+            handleDecl(((if(is_local, then, LocalEvent, else, DeclEvent))(def)))
         }
     };
 
@@ -2309,8 +2445,8 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     let lookupObject(ident) = |()| {
         {
 
-            ;
-            
+            let old_decl = liftM((lookupIdent(ident)), getDefTable);
+            mapMaybeM(old_decl)(Lambda)
         }
     };
 
@@ -2369,9 +2505,9 @@ otherwise { Right((v, ts)) },
     let runTrav_(t) = |()| {
         (fmap(fst) . runTrav(())({
 
-                    ;
-                    ;
-                    
+                    let r = t;
+                    let es = getErrors;
+                    return((r, es))
                 }))
     };
 
@@ -2398,8 +2534,10 @@ otherwise { Right((v, ts)) },
     let withExtDeclHandler(action, handler) = |()| {
         {
 
-            ;
-            
+            modify(Lambda({
+        doHandleExtDecl: handler
+        }));
+            action
         }
     };
 
@@ -2409,8 +2547,28 @@ mod Language_C_Analysis_TypeCheck {
     let @(compositeType(t1), @((DirectType(tn1, q1, a1))(t2), (DirectType(tn2, q2, a2)))) = |()| {
         {
 
-            ;
-            
+            let tn = match (tn1, tn2) {
+            (TyVoid, TyVoid) => { return(TyVoid) },
+            (TyIntegral(_), TyEnum(_)) => { return(tn1) },
+            (TyEnum(_), TyIntegral(_)) => { return(tn2) },
+            (TyIntegral(i1), TyIntegral(i2)) => { return(TyIntegral((intConversion(i1, i2)))) },
+            (TyFloating(f1), TyFloating(f2)) => { return(TyFloating((floatConversion(f1, f2)))) },
+            (TyComplex(f1), TyComplex(f2)) => { return(TyComplex((floatConversion(f1, f2)))) },
+            (TyComp(c1), TyComp(c2)) => { {
+
+                when((/=(sueRef(c1), sueRef(c2))))(fail(++("incompatible composite types: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))));
+                return(tn1)
+            } },
+            (TyEnum(e1), TyEnum(e2)) => { {
+
+                when((/=(sueRef(e1), sueRef(e2))))(fail(++("incompatible enumeration types: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))));
+                return(TyEnum(e1))
+            } },
+            (TyBuiltin(TyVaList), TyBuiltin(TyVaList)) => { return(TyBuiltin(TyVaList)) },
+            (TyBuiltin(_), TyBuiltin(_)) => { fail(++("incompatible builtin types: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))) },
+            (_, _) => { fail(++("incompatible direct types: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))) },
+        };
+            return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
         }
     };
 
@@ -2427,7 +2585,7 @@ mod Language_C_Analysis_TypeCheck {
             (PtrType(_, _, _), t2') => if isIntegralType(t2') { return(()) },
             (t1', t2') => if &&(isPointerType(t1'), isPointerType(t2')) { {
 
-                
+                compatible((baseType(t1')), (baseType(t2')))
             } },
             (DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) => if ==(sueRef(c1), sueRef(c2)) { return(()) }
 otherwise { fail(++("incompatible compound types in assignment: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))) },
@@ -2473,8 +2631,11 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
             (CAddOp, t1', ArrayType(_, _, _, _)) => if isIntegralType(t1') { return(t2) },
                 (_, DirectType(tn1, q1, a1), DirectType(tn2, q2, a2)) => { {
 
-                    ;
-                    
+                    when((isBitOp(op)), (>>(checkIntegral(t1), checkIntegral(t2))));
+                    match arithmeticConversion(tn1, tn2) {
+        Just, tn => { return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2)))) },
+        Nothing => { fail(render(<+>(text("invalid binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2)))))) },
+    }
                 } },
                 (_, _, _) => { fail(render(<+>(text("unhandled binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2)))))) },
             }
@@ -2515,8 +2676,8 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
     let compositeParamDecl'(f, (VarDecl(n1, attrs1, t1)), (VarDecl(n2, attrs2, t2)), dni) = |()| {
         {
 
-            ;
-            
+            let vd = compositeVarDecl((VarDecl(n1, attrs1, t1')), (VarDecl(n2, attrs2, t2')));
+            return(f(vd, dni))
         }
     };
 
@@ -2547,10 +2708,10 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
     let compositeType((ArrayType(t1, s1, q1, a1)), (ArrayType(t2, s2, q2, a2))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let t = compositeType(t1, t2);
+            let s = compositeSize(s1, s2);
+            Let([Assign([Span([Ref(Ident("quals"))])], Span([Ref(Ident("mergeTypeQuals")), Ref(Ident("q1")), Ref(Ident("q2"))])), Assign([Span([Ref(Ident("attrs"))])], Span([Ref(Ident("mergeAttrs")), Ref(Ident("a1")), Ref(Ident("a2"))]))], []);
+            return((ArrayType(t, s, quals, attrs)))
         }
     };
 
@@ -2562,16 +2723,16 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
         match (ft1, ft2) {
                 (FunType(rt1, args1, varargs1), FunType(rt2, args2, varargs2)) => { {
 
-                    ;
-                    ;
-                    
+                    let args = mapM((uncurry(compositeParamDecl)), (zip(args1, args2)));
+                    when((/=(varargs1, varargs2)))(fail("incompatible varargs declarations".to_string()));
+                    doFunType(rt1, rt2, args, varargs1)
                 } },
                 (FunType(rt1, args1, varargs1), FunTypeIncomplete(rt2)) => { doFunType(rt1, rt2, args1, varargs1) },
                 (FunTypeIncomplete(rt1), FunType(rt2, args2, varargs2)) => { doFunType(rt1, rt2, args2, varargs2) },
                 (FunTypeIncomplete(rt1), FunTypeIncomplete(rt2)) => { {
 
-                    ;
-                    
+                    let rt = compositeType(rt1, rt2);
+                    return((FunctionType((FunTypeIncomplete(rt)), (mergeAttrs(attrs1, attrs2)))))
                 } },
             }
     };
@@ -2603,8 +2764,8 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
     let compositeVarDecl((VarDecl(n1, attrs1, t1)), (VarDecl(_, attrs2, t2))) = |()| {
         {
 
-            ;
-            
+            let t = compositeType(t1, t2);
+            return((VarDecl(n1, (compositeDeclAttrs(attrs1, attrs2)), t)))
         }
     };
 
@@ -2618,8 +2779,8 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
             (t1', PtrType(DirectType(TyVoid, _, _), _, _)) => if isPointerType(t1') { return(t1) },
                 (ArrayType(t1', _, q1, a1), ArrayType(t2', _, q2, a2)) => { {
 
-                    ;
-                    
+                    let t = compositeType(t1', t2');
+                    return(ArrayType(t, (UnknownArraySize(False)), (mergeTypeQuals(q1, q2)), (mergeAttrs(a1, a2))))
                 } },
                 (t1'(@, DirectType(tn1, q1, a1)), t2'(@, DirectType(tn2, q2, a2))) => { match arithmeticConversion(tn1, tn2) {
                         Just, tn => { return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2)))) },
@@ -2652,9 +2813,9 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
     let constType((CStrConst((CString(chars, wide)), ni))) = |()| {
         {
 
-            ;
-            ;
-            
+            let n = genName;
+            Let([GuardAssign, Assign([Span([Ref(Ident("ni\'"))])], Span([Ref(Ident("mkNodeInfo")), Parens([Span([Ref(Ident("posOf")), Ref(Ident("ni"))])]), Ref(Ident("n"))])), Assign([Span([Ref(Ident("arraySize"))])], Span([Ref(Ident("ArraySize")), Ref(Ident("True")), Parens([Span([Ref(Ident("CConst")), Parens([Span([Ref(Ident("CIntConst")), Parens([Span([Ref(Ident("cInteger")), Parens([Span([Ref(Ident("toInteger")), Parens([Span([Ref(Ident("length")), Ref(Ident("chars"))])])])])])]), Ref(Ident("ni\'"))])])])])]))], []);
+            return(ArrayType((DirectType((TyIntegral(charType)), noTypeQuals, noAttributes)), arraySize, noTypeQuals, vec![]))
         }
     };
 
@@ -2722,9 +2883,12 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
         match canonicalType(t) {
                 DirectType, TyComp(ctr), _, _ => { {
 
-                    ;
-                    ;
-                    
+                    let td = lookupSUE(ni, (sueRef(ctr)));
+                    let ms = tagMembers(ni, td);
+                    match lookup(m, ms) {
+        Just, ft => { return(ft) },
+        Nothing => { typeError(ni)(++("field not found: ".to_string(), identToString(m))) },
+    }
                 } },
                 _t' => { astError(ni)(++("field of non-composite type: ".to_string(), ++(identToString(m), ++(", ".to_string(), pType(t))))) },
             }
@@ -2733,8 +2897,11 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
     let lookupSUE(ni, sue) = |()| {
         {
 
-            ;
-            
+            let dt = getDefTable;
+            match lookupTag(sue, dt) {
+        Just, Right(td) => { return(td) },
+        _ => { typeError(ni)(++("unknown composite type: ".to_string(), ((render . pretty))(sue))) },
+    }
         }
     };
 
@@ -2761,8 +2928,13 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
     let sueAttrs(ni, sue) = |()| {
         {
 
-            ;
-            
+            let dt = getDefTable;
+            match lookupTag(sue, dt) {
+        Nothing => { astError(ni)(++("SUE not found: ".to_string(), render((pretty(sue))))) },
+        Just, Left(_) => { return(vec![]) },
+        Just, Right(CompDef(CompType(_, _, _, attrs, _))) => { return(attrs) },
+        Just, Right(EnumDef(EnumType(_, _, attrs, _))) => { return(attrs) },
+    }
         }
     };
 
@@ -2776,8 +2948,12 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
     let typeDefAttrs(ni, i) = |()| {
         {
 
-            ;
-            
+            let dt = getDefTable;
+            match lookupIdent(i, dt) {
+        Nothing => { astError(ni)(++("can\'t find typedef name: ".to_string(), identToString(i))) },
+        Just, Left(TypeDef(_, t, attrs, _)) => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
+        Just, Right(_) => { astError(ni)(++("not a typedef name: ".to_string(), identToString(i))) },
+    }
         }
     };
 
@@ -2796,8 +2972,14 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
     let varAddrType(d) = |()| {
         {
 
-            ;
-            
+            match declStorage(d) {
+        Auto, True => { fail("address of register variable".to_string()) },
+        _ => { return(()) },
+    };
+            match t {
+        ArrayType, _, _, q, a => { return(PtrType(t, q, a)) },
+        _ => { return(simplePtr(t)) },
+    }
         }
     };
 
@@ -3517,6 +3699,7 @@ mod Language_C_Data_RList {
         error("viewr: empty RList".to_string())
     };
 
+snoc(infixr(5), ())
 }
 
 mod Language_C_Data {
@@ -4739,7 +4922,7 @@ mod Language_C_System_GCC {
     let buildCppArgs((CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt))) = |()| {
         ++({
 
-                
+                (concatMap(tOption, options))
             }, ++(outputFileOpt, ++(vec!["-E".to_string(), input_file], extra_args)))
     };
 
@@ -4794,17 +4977,17 @@ mod Language_C_System_Preprocess {
     let mkOutputFile(tmp_dir_opt, input_file) = |()| {
         {
 
-            ;
-            
+            let tmpDir = getTempDir(tmp_dir_opt);
+            mkTmpFile(tmpDir, (getOutputFileName(input_file)))
         }
     };
 
     let mkTmpFile(tmp_dir, file_templ) = |()| {
         {
 
-            ;
-            ;
-            
+            let (path, file_handle) = openTempFile(tmp_dir, file_templ);
+            hClose(file_handle);
+            return(path)
         }
     };
 
@@ -4825,7 +5008,7 @@ mod Language_C_System_Preprocess {
     let runPreprocessor(cpp, cpp_args) = |()| {
         {
 
-            ;
+            bracket(getActualOutFile, removeTmpOutFile, invokeCpp);
             
         }
     };

@@ -94,16 +94,20 @@ mod Language_Rust_Corrode_C {
     let @(completeType(orig), (IsIncomplete(ident))) = |()| {
         {
 
-            ;
-            
+            let mty = getTagIdent(ident);
+            fromMaybe((return(orig)), mty)
         }
     };
 
     let @(derivedDeferredTypeOf(deferred, declr), (CDeclr(_, derived, _, _, _))(argtypes)) = |()| {
         {
 
-            ;
-            ;
+            let derived' = mapM(derive, derived);
+            return({
+
+        let basetype = deferred;
+        foldrM((Operator("$")), basetype, derived')
+    });
             
         }
     };
@@ -111,9 +115,9 @@ mod Language_Rust_Corrode_C {
     let @(interpretDeclarations((fromItem, makeBinding), declaration), (CDecl(specs, decls, _))) = |()| {
         {
 
-            ;
-            ;
-            
+            let (storagespecs, baseTy) = baseTypeOf(specs);
+            let mbinds = forM(decls)(Lambda);
+            return((catMaybes(mbinds)))
         }
     };
 
@@ -126,17 +130,28 @@ mod Language_Rust_Corrode_C {
     let @(interpretExpr(_, expr), (CBinary(op, lhs, rhs, _))) = |()| {
         {
 
-            ;
-            ;
-            
+            let lhs' = interpretExpr(True, lhs);
+            let rhs' = interpretExpr(True, rhs);
+            binop(expr, op, lhs', rhs')
         }
     };
 
     let @(interpretExpr(_, expr), (CCall(func, args, _))) = |()| {
         {
 
-            ;
-            ;
+            let func' = interpretExpr(True, func);
+            match resultType(func') {
+        IsFunc, retTy, argTys, variadic => { {
+
+            let args' = castArgs(variadic, (map(snd, argTys)), args);
+            return(Result, {
+    resultType: retTy,
+    resultMutable: Rust.Immutable,
+    result: Rust.Call((result(func')), args')
+    })
+        } },
+        _ => { badSource(expr, "function call to non-function".to_string()) },
+    };
             
         }
     };
@@ -169,9 +184,24 @@ mod Language_Rust_Corrode_C {
     let @(interpretExpr(_, expr), (CIndex(lhs, rhs, _))) = |()| {
         {
 
-            ;
-            ;
-            ;
+            let lhs' = interpretExpr(True, lhs);
+            let rhs' = interpretExpr(True, rhs);
+            match (resultType(lhs'), resultType(rhs')) {
+        (IsArray(mut, _, el), _) => { return((subscript(mut, el, (result(lhs')), rhs'))) },
+        (_, IsArray(mut, _, el)) => { return((subscript(mut, el, (result(rhs')), lhs'))) },
+        _ => { {
+
+            let ptr = binop(expr, CAddOp, lhs', rhs');
+            match resultType(ptr) {
+        IsPtr, mut, ty => { return(Result, {
+            resultType: ty,
+            resultMutable: mut,
+            result: Rust.Deref((result(ptr)))
+            }) },
+        _ => { badSource(expr, "array subscript of non-pointer".to_string()) },
+    }
+        } },
+    };
             
         }
     };
@@ -179,39 +209,53 @@ mod Language_Rust_Corrode_C {
     let @(interpretExpr(_, expr), (CMember(obj, ident, deref, node))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            
+            let obj' = interpretExpr(True)(if(deref, then, CUnary, CIndOp, obj, node, else, obj));
+            let objTy = completeType((resultType(obj')));
+            let fields = match objTy {
+            IsStruct, _, fields => { return(fields) },
+            _ => { badSource(expr, "member access of non-struct".to_string()) },
+        };
+            Let([Assign([Span([Ref(Ident("field"))])], Span([Ref(Ident("applyRenames")), Ref(Ident("ident"))]))], []);
+            let ty = match lookup(field, fields) {
+            Just, ty => { return(ty) },
+            Nothing => { badSource(expr, "request for non-existent field".to_string()) },
+        };
+            return(Result, {
+    resultType: ty,
+    resultMutable: resultMutable(obj'),
+    result: Rust.Member((result(obj')), (Rust.VarName(field)))
+    })
         }
     };
 
     let @(interpretExpr(_, expr), (CVar(ident, _))) = |()| {
         {
 
-            ;
-            
+            let sym = getSymbolIdent(ident);
+            maybe((badSource(expr, "undefined variable".to_string())), return, sym)
         }
     };
 
     let @(interpretExpr(demand, expr), (CAssign(op, lhs, rhs, _))) = |()| {
         {
 
-            ;
-            ;
-            
+            let lhs' = interpretExpr(True, lhs);
+            let rhs' = interpretExpr(True, rhs);
+            compound(expr, False, demand, op, lhs', rhs')
         }
     };
 
     let @(interpretExpr(demand, expr), (CCond(c, (Just(t)), f, _))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
+            let c' = fmap(toBool, (interpretExpr(True, c)));
+            let t' = interpretExpr(demand, t);
+            let f' = interpretExpr(demand, f);
+            if(demand, then, promotePtr, expr, (mkIf(c')), t', f', else, return, Result, {
+    resultType: IsVoid,
+    resultMutable: Rust.Immutable,
+    result: mkIf(c', (result(t')), (result(f')))
+    });
             
         }
     };
@@ -224,27 +268,47 @@ mod Language_Rust_Corrode_C {
                 CPostDecOp => { incdec(True, CSubAssOp) },
                 CAdrOp => { {
 
-                    ;
-                    ;
-                    
+                    let expr' = interpretExpr(True, expr);
+                    Let([Assign([Span([Ref(Ident("ty\'"))])], Span([Ref(Ident("IsPtr")), Parens([Span([Ref(Ident("resultMutable")), Ref(Ident("expr\'"))])]), Parens([Span([Ref(Ident("resultType")), Ref(Ident("expr\'"))])])]))], []);
+                    return(Result, {
+    resultType: ty',
+    resultMutable: Rust.Immutable,
+    result: Rust.Cast((Rust.Borrow((resultMutable(expr')), (result(expr')))), (toRustType(ty')))
+    })
                 } },
                 CIndOp => { {
 
-                    ;
-                    
+                    let expr' = interpretExpr(True, expr);
+                    match resultType(expr') {
+        IsPtr, mut', ty' => { return(Result, {
+            resultType: ty',
+            resultMutable: mut',
+            result: Rust.Deref((result(expr')))
+            }) },
+        IsFunc, { .. } => { return(expr') },
+        _ => { badSource(node, "dereference of non-pointer".to_string()) },
+    }
                 } },
                 CPlusOp => { {
 
-                    ;
-                    ;
-                    
+                    let expr' = interpretExpr(demand, expr);
+                    Let([Assign([Span([Ref(Ident("ty\'"))])], Span([Ref(Ident("intPromote")), Parens([Span([Ref(Ident("resultType")), Ref(Ident("expr\'"))])])]))], []);
+                    return(Result, {
+    resultType: ty',
+    resultMutable: Rust.Immutable,
+    result: castTo(ty', expr')
+    })
                 } },
                 CMinOp => { fmap(wrapping)(simple(Rust.Neg)) },
                 CCompOp => { simple(Rust.Not) },
                 CNegOp => { {
 
-                    ;
-                    
+                    let expr' = interpretExpr(True, expr);
+                    return(Result, {
+    resultType: IsBool,
+    resultMutable: Rust.Immutable,
+    result: toNotBool(expr')
+    })
                 } },
             }
     };
@@ -252,70 +316,104 @@ mod Language_Rust_Corrode_C {
     let @(interpretExpr(demand, stat), (CStatExpr((CCompound(vec![], stmts, _)), _))) = |()| {
         scope({
 
-                ;
-                ;
-                ;
-                
+                Let([Assign([Span([Parens([Span([Ref(Ident("effects"))]), Span([Ref(Ident("final"))])])])], Span([Case(Span([Ref(Ident("last")), Ref(Ident("stmts"))]), [Matching([Ref(Ident("CBlockStmt")), Span([Ref(Ident("CExpr")), Ref(Ident("expr")), Ref(Ident("_"))])], [([Span([Ref(Ident("demand"))])], Span([Parens([Span([Ref(Ident("init")), Ref(Ident("stmts"))]), Span([Ref(Ident("expr"))])])]))]), Direct([Ref(Ident("_"))], [Span([Parens([Span([Ref(Ident("stmts"))]), Span([Ref(Ident("Nothing"))])])])])])]))], []);
+                let effects' = cfgToRust(stat, (foldr(interpretBlockItem, (return((vec![], Unreachable))), effects)));
+                let final' = mapM((interpretExpr(True)), final);
+                return(Result, {
+    resultType: maybe(IsVoid, resultType, final'),
+    resultMutable: maybe(Rust.Immutable, resultMutable, final'),
+    result: Rust.BlockExpr((Rust.Block(effects', (fmap(result, final')))))
+    })
             })
     };
 
     let @(interpretStatement(stmt), (CBreak(_))(next)) = |()| {
         {
 
-            ;
-            ;
-            
+            let _ = next;
+            let val = lift((asks(onBreak)));
+            match val {
+        Just, label => { return((vec![], Branch(label))) },
+        Nothing => { lift(lift(badSource(stmt, "break outside loop".to_string()))) },
+    }
         }
     };
 
     let @(interpretStatement(stmt), (CCase(expr, body, node))(next)) = |()| {
         {
 
-            ;
-            ;
-            
+            let selector = getSwitchExpression(stmt);
+            Let([Assign([Span([Ref(Ident("condition"))])], Span([Ref(Ident("CBinary")), Ref(Ident("CEqOp")), Ref(Ident("selector")), Ref(Ident("expr")), Ref(Ident("node"))]))], []);
+            addSwitchCase((Just(condition)), body, next)
         }
     };
 
     let @(interpretStatement(stmt), (CCases(lower, upper, body, node))(next)) = |()| {
         {
 
-            ;
-            ;
-            
+            let selector = getSwitchExpression(stmt);
+            Let([Assign([Span([Ref(Ident("condition"))])], Span([Ref(Ident("CBinary")), Ref(Ident("CLndOp")), Parens([Span([Ref(Ident("CBinary")), Ref(Ident("CGeqOp")), Ref(Ident("selector")), Ref(Ident("lower")), Ref(Ident("node"))])]), Parens([Span([Ref(Ident("CBinary")), Ref(Ident("CLeqOp")), Ref(Ident("selector")), Ref(Ident("upper")), Ref(Ident("node"))])]), Ref(Ident("node"))]))], []);
+            addSwitchCase((Just(condition)), body, next)
         }
     };
 
     let @(interpretStatement(stmt), (CCont(_))(next)) = |()| {
         {
 
-            ;
-            ;
-            
+            let _ = next;
+            let val = lift((asks(onContinue)));
+            match val {
+        Just, label => { return((vec![], Branch(label))) },
+        Nothing => { lift(lift(badSource(stmt, "continue outside loop".to_string()))) },
+    }
         }
     };
 
     let @(interpretStatement(stmt), (CReturn(expr, _))(next)) = |()| {
         {
 
-            ;
-            
+            let _ = next;
+            lift(lift({
+
+            let val = lift((asks(functionReturnType)));
+            match val {
+        Nothing => { badSource(stmt, "return statement outside function".to_string()) },
+        Just, retTy => { {
+
+            let expr' = mapM(((fmap((castTo(retTy))) . interpretExpr(True))), expr);
+            return((exprToStatements((Rust.Return(expr'))), Unreachable))
+        } },
+    }
+        }))
         }
     };
 
     let @(interpretStatement(stmt), (CSwitch(expr, body, node))(next)) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
+            let (bindings, expr') = match expr {
+            CVar, { .. } => { return((vec![], expr)) },
+            _ => { lift(lift({
+
+                        let ident = fmap(internalIdent, (uniqueName("switch".to_string())));
+                        let rhs = interpretExpr(True, expr);
+                        let var = addSymbolIdent(ident, (Rust.Immutable, resultType(rhs)));
+                        return((vec![Rust.Let(Rust.Immutable, (Rust.VarName(var)), Nothing, (Just((result(rhs)))))], CVar(ident, node)))
+                    })) },
+        };
+            let after = newLabel;
+            let (_, SwitchCases(cases)) = getSwitchCases(expr')(setBreak(after)(interpretStatement(body, (return((vec![], Branch(after)))))));
+            Let([Assign([Span([Ref(Ident("isDefault")), Parens([Span([Ref(Ident("Just")), Ref(Ident("condition"))])])])], Span([Ref(Ident("Left")), Ref(Ident("condition"))])), Assign([Span([Ref(Ident("isDefault")), Ref(Ident("Nothing"))])], Span([Ref(Ident("Right")), Parens([])]))], []);
+            Let([Assign([Span([Parens([Span([Ref(Ident("conditions"))]), Span([Ref(Ident("defaults"))])])])], Span([Ref(Ident("IntMap.mapEither")), Ref(Ident("isDefault")), Ref(Ident("cases"))]))], []);
+            let defaultCase = match IntMap.keys(defaults) {
+            [] => { return(after) },
+            [defaultCase] => { return(defaultCase) },
+            _ => { lift(lift(badSource(stmt, "duplicate default cases".to_string()))) },
+        };
+            let entry = foldrM(conditionBlock, defaultCase, (IntMap.toList(conditions)));
+            let (rest, end) = next;
+            addBlock(after, rest, end);
+            return((bindings, Branch(entry)));
             
         }
     };
@@ -340,11 +438,18 @@ mod Language_Rust_Corrode_C {
     let @(typeName(decl), (CDecl(spec, declarators, _))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            let (storage, base) = baseTypeOf(spec);
+            match storage {
+        Just, s => { badSource(s, "storage class specifier in type name".to_string()) },
+        Nothing => { return(()) },
+    };
+            let itype = match declarators {
+            [] => { base },
+            [(Just(declr, @, CDeclr(Nothing, _, _, _, _)), Nothing, Nothing)] => { derivedTypeOf(base, declr) },
+            _ => { badSource(decl, "type name".to_string()) },
+        };
+            when((typeIsFunc(itype)), (badSource(decl, "use of function type".to_string())));
+            return((typeMutable(itype), typeRep(itype)))
         }
     };
 
@@ -391,49 +496,84 @@ mod Language_Rust_Corrode_C {
     let addExternIdent(ident, deferred, mkItem) = |()| {
         {
 
-            ;
-            
+            let action = runOnce({
+
+            let itype = deferred;
+            let rewrites = lift(asks(itemRewrites));
+            let path = match Map.lookup((Symbol, identToString(ident)), rewrites) {
+            Just, renamed => { return((:("".to_string(), renamed))) },
+            Nothing => { {
+
+                Let([Assign([Span([Ref(Ident("name"))])], Span([Ref(Ident("applyRenames")), Ref(Ident("ident"))]))], []);
+                Let([Assign([Span([Ref(Ident("ty"))])], Span([Parens([Span([Ref(Ident("typeMutable")), Ref(Ident("itype"))]), Span([Ref(Ident("typeRep")), Ref(Ident("itype"))])])]))], []);
+                lift(tell(mempty, {
+        outputExterns: Map.singleton(name, (mkItem(name, ty)))
+        }));
+                return(vec![name])
+            } },
+        };
+            return((typeToResult(itype, (Rust.Path((Rust.PathSegments(path)))))))
+        });
+            addSymbolIdentAction(ident, action)
         }
     };
 
     let addSwitchCase(condition, body, next) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            let condition' = lift(lift(mapM((interpretExpr(True)), condition)));
+            let next' = interpretStatement(body, next);
+            let label = match next' {
+            ([], Branch(to)) => { return(to) },
+            (rest, end) => { {
+
+                let label = newLabel;
+                addBlock(label, rest, end);
+                return(label)
+            } },
+        };
+            lift(tell(SwitchCases(IntMap.singleton(label, condition'))));
+            return((vec![], Branch(label)))
         }
     };
 
     let addSymbolIdent(ident, (mut, ty)) = |()| {
         {
 
-            ;
-            ;
-            
+            Let([Assign([Span([Ref(Ident("name"))])], Span([Ref(Ident("applyRenames")), Ref(Ident("ident"))]))], []);
+            addSymbolIdentAction(ident)(return(Result, {
+        resultType: ty,
+        resultMutable: mut,
+        result: Rust.Path((Rust.PathSegments(vec![name])))
+        }));
+            return(name)
         }
     };
 
     let addSymbolIdentAction(ident, action) = |()| {
         lift({
 
-                
+                modify(Lambda({
+        symbolEnvironment: :((ident, action), symbolEnvironment(st))
+        }))
             })
     };
 
     let addTagIdent(ident, ty) = |()| {
         lift({
 
-                
+                modify(Lambda({
+        tagEnvironment: :((ident, ty), tagEnvironment(st))
+        }))
             })
     };
 
     let addTypedefIdent(ident, ty) = |()| {
         lift({
 
-                
+                modify(Lambda({
+        typedefEnvironment: :((ident, ty), typedefEnvironment(st))
+        }))
             })
     };
 
@@ -460,10 +600,14 @@ mod Language_Rust_Corrode_C {
     let baseTypeOf(specs) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
+            Let([Assign([Span([Parens([Span([Ref(Ident("storage"))]), Span([Ref(Ident("_attributes"))]), Span([Ref(Ident("basequals"))]), Span([Ref(Ident("basespecs"))]), Span([Ref(Ident("_inlineNoReturn"))]), Span([Ref(Ident("_align"))])])])], Span([Ref(Ident("partitionDeclSpecs")), Ref(Ident("specs"))]))], []);
+            let mstorage = match storage {
+            [] => { return(Nothing) },
+            [spec] => { return((Just(spec))) },
+            _, :, excess, :, _ => { badSource(excess, "extra storage class specifier".to_string()) },
+        };
+            let base = typedef((mutable(basequals)), basespecs);
+            return((mstorage, base));
             
         }
     };
@@ -481,10 +625,17 @@ mod Language_Rust_Corrode_C {
                     CSubOp => { match (toPtr(lhs), toPtr(rhs)) {
                             (Just(lhs'), Just(rhs')) => { {
 
-                                ;
-                                ;
-                                ;
-                                
+                                let ptrTo = match compatiblePtr((resultType(lhs')), (resultType(rhs'))) {
+            IsPtr, _, ptrTo => { return(ptrTo) },
+            _ => { badSource(expr, "pointer subtraction of incompatible pointers".to_string()) },
+        };
+                                Let([Assign([Span([Ref(Ident("ty"))])], Span([Ref(Ident("IsInt")), Ref(Ident("Signed")), Ref(Ident("WordWidth"))]))], []);
+                                Let([Assign([Span([Ref(Ident("size"))])], Span([Ref(Ident("rustSizeOfType")), Parens([Span([Ref(Ident("toRustType")), Ref(Ident("ptrTo"))])])]))], []);
+                                return(Result, {
+    resultType: ty,
+    resultMutable: Rust.Immutable,
+    result: /((Rust.MethodCall((castTo(ty, lhs')), (Rust.VarName("wrapping_sub".to_string())), vec![castTo(ty, rhs')])), castTo(ty, size))
+    })
                             } },
                             (Just(ptr), _) => { return(ptr, {
                                 result: Rust.MethodCall((result(ptr)), (Rust.VarName("offset".to_string())), vec![Rust.Neg((castTo((IsInt(Signed, WordWidth)), rhs)))])
@@ -558,11 +709,11 @@ mod Language_Rust_Corrode_C {
     let cfgToRust(_node, build) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
+            Let([Assign([Span([Ref(Ident("builder"))])], Span([Ref(Ident("buildCFG")), Operator("$"), Do([Expression(Span([Parens([Span([Ref(Ident("early"))]), Span([Ref(Ident("term"))])]), Operator("<-"), Ref(Ident("build"))]), []), Expression(Span([Ref(Ident("entry")), Operator("<-"), Ref(Ident("newLabel"))]), []), Expression(Span([Ref(Ident("addBlock")), Ref(Ident("entry")), Ref(Ident("early")), Ref(Ident("term"))]), []), Expression(Span([Ref(Ident("return")), Ref(Ident("entry"))]), [])], [])]))], []);
+            let (rawCFG, _) = evalRWST(builder, (OuterLabels(Nothing, Nothing, Nothing)), Map.empty);
+            Let([Assign([Span([Ref(Ident("cfg"))])], Span([Ref(Ident("depthFirstOrder")), Parens([Span([Ref(Ident("removeEmptyBlocks")), Ref(Ident("rawCFG"))])])]))], []);
+            Let([Assign([Span([Parens([Span([Ref(Ident("hasGoto"))]), Span([Ref(Ident("structured"))])])])], Span([Ref(Ident("structureCFG")), Ref(Ident("mkBreak")), Ref(Ident("mkContinue")), Ref(Ident("mkLoop")), Ref(Ident("mkIf")), Ref(Ident("mkGoto")), Ref(Ident("mkMatch")), Ref(Ident("cfg"))]))], []);
+            return(:(if(hasGoto, then, declCurrent), structured(else, structured)));
             
         }
     };
@@ -622,13 +773,28 @@ mod Language_Rust_Corrode_C {
     let compound(expr, returnOld, demand, op, lhs, rhs) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
+            Let([Assign([Span([Ref(Ident("op\'"))])], Span([Case(Span([Ref(Ident("op"))]), [Direct([Ref(Ident("CAssignOp"))], [Span([Ref(Ident("Nothing"))])]), Direct([Ref(Ident("CMulAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("CMulOp"))])]), Direct([Ref(Ident("CDivAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("CDivOp"))])]), Direct([Ref(Ident("CRmdAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("CRmdOp"))])]), Direct([Ref(Ident("CAddAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("CAddOp"))])]), Direct([Ref(Ident("CSubAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("CSubOp"))])]), Direct([Ref(Ident("CShlAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("CShlOp"))])]), Direct([Ref(Ident("CShrAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("CShrOp"))])]), Direct([Ref(Ident("CAndAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("CAndOp"))])]), Direct([Ref(Ident("CXorAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("CXorOp"))])]), Direct([Ref(Ident("COrAssOp"))], [Span([Ref(Ident("Just")), Ref(Ident("COrOp"))])])])]))], []);
+            Let([Assign([Span([Ref(Ident("duplicateLHS"))])], Span([Ref(Ident("isJust")), Ref(Ident("op\'")), Operator("||"), Ref(Ident("demand"))]))], []);
+            Let([Assign([Span([Parens([Span([Ref(Ident("bindings1"))]), Span([Ref(Ident("dereflhs"))]), Span([Ref(Ident("boundrhs"))])])])], Span([Ref(Ident("if")), Ref(Ident("not")), Ref(Ident("duplicateLHS")), Operator("||"), Ref(Ident("hasNoSideEffects")), Parens([Span([Ref(Ident("result")), Ref(Ident("lhs"))])]), Ref(Ident("then")), Parens([Span([Vector([])]), Span([Ref(Ident("lhs"))]), Span([Ref(Ident("rhs"))])]), Ref(Ident("else")), Let([Assign([Span([Ref(Ident("lhsvar"))])], Span([Ref(Ident("Rust.VarName")), Str("_lhs")])), Assign([Span([Ref(Ident("rhsvar"))])], Span([Ref(Ident("Rust.VarName")), Str("_rhs")]))], []), Ref(Ident("in")), Parens([Span([Vector([Span([Ref(Ident("Rust.Let")), Ref(Ident("Rust.Immutable")), Ref(Ident("rhsvar")), Ref(Ident("Nothing")), Parens([Span([Ref(Ident("Just")), Parens([Span([Ref(Ident("result")), Ref(Ident("rhs"))])])])])]), Span([Ref(Ident("Rust.Let")), Ref(Ident("Rust.Immutable")), Ref(Ident("lhsvar")), Ref(Ident("Nothing")), Parens([Span([Ref(Ident("Just")), Parens([Span([Ref(Ident("Rust.Borrow")), Ref(Ident("Rust.Mutable")), Parens([Span([Ref(Ident("result")), Ref(Ident("lhs"))])])])])])])])])]), Span([Ref(Ident("lhs")), Record([(Ident("result"), Span([Ref(Ident("Rust.Deref")), Parens([Span([Ref(Ident("Rust.Var")), Ref(Ident("lhsvar"))])])]))])]), Span([Ref(Ident("rhs")), Record([(Ident("result"), Span([Ref(Ident("Rust.Var")), Ref(Ident("rhsvar"))]))])])])]))], []);
+            let rhs' = match op' {
+            Just, o => { binop(expr, o, dereflhs, boundrhs) },
+            Nothing => { return(boundrhs) },
+        };
+            Let([Assign([Span([Ref(Ident("assignment"))])], Span([Ref(Ident("Rust.Assign")), Parens([Span([Ref(Ident("result")), Ref(Ident("dereflhs"))])]), Parens([Span([Ref(Ident("Rust.:="))])]), Parens([Span([Ref(Ident("castTo")), Parens([Span([Ref(Ident("resultType")), Ref(Ident("lhs"))])]), Ref(Ident("rhs\'"))])])]))], []);
+            Let([Assign([Span([Parens([Span([Ref(Ident("bindings2"))]), Span([Ref(Ident("ret"))])])])], Span([Ref(Ident("if")), Ref(Ident("not")), Ref(Ident("demand")), Ref(Ident("then")), Parens([Span([Vector([])]), Span([Ref(Ident("Nothing"))])]), Ref(Ident("else")), Ref(Ident("if")), Ref(Ident("not")), Ref(Ident("returnOld")), Ref(Ident("then")), Parens([Span([Vector([])]), Span([Ref(Ident("Just")), Parens([Span([Ref(Ident("result")), Ref(Ident("dereflhs"))])])])]), Ref(Ident("else")), Let([Assign([Span([Ref(Ident("oldvar"))])], Span([Ref(Ident("Rust.VarName")), Str("_old")]))], []), Ref(Ident("in")), Parens([Span([Vector([Span([Ref(Ident("Rust.Let")), Ref(Ident("Rust.Immutable")), Ref(Ident("oldvar")), Ref(Ident("Nothing")), Parens([Span([Ref(Ident("Just")), Parens([Span([Ref(Ident("result")), Ref(Ident("dereflhs"))])])])])])])]), Span([Ref(Ident("Just")), Parens([Span([Ref(Ident("Rust.Var")), Ref(Ident("oldvar"))])])])])]))], []);
+            return(match Rust.Block((++(bindings1, ++(bindings2, exprToStatements(assignment)))), ret) {
+            b, @, Rust.Block(body, Nothing) => { Result({
+                resultType: IsVoid,
+                resultMutable: Rust.Immutable,
+                result: match body {
+                                [Rust.Stmt(e)] => { e },
+                                _ => { Rust.BlockExpr(b) },
+                            }
+                }) },
+            b => { lhs({
+                result: Rust.BlockExpr(b)
+                }) },
+        });
             
         }
     };
@@ -648,9 +814,11 @@ mod Language_Rust_Corrode_C {
     let emitIncomplete(kind, ident) = |()| {
         {
 
-            ;
-            ;
-            
+            let rewrites = lift((asks(itemRewrites)));
+            unless((Map.member((kind, identToString(ident)), rewrites)))(lift(tell(mempty, {
+            outputIncomplete: Set.singleton((identToString(ident)))
+            })));
+            return((IsIncomplete(ident)))
         }
     };
 
@@ -683,16 +851,27 @@ mod Language_Rust_Corrode_C {
     let getSwitchExpression(stmt) = |()| {
         {
 
-            ;
-            
+            let mexpr = lift(asks(switchExpression));
+            match mexpr {
+        Nothing => { lift(lift(badSource(stmt, "case outside switch".to_string()))) },
+        Just, expr => { return(expr) },
+    }
         }
     };
 
     let getSymbolIdent(ident) = |()| {
         {
 
-            ;
-            ;
+            let env = lift(get);
+            match lookup(ident, (symbolEnvironment(env))) {
+        Just, symbol => { fmap(Just, symbol) },
+        Nothing => { match identToString(ident) {
+                "__func__" => { getFunctionName("".to_string()) },
+                "__FUNCTION__" => { getFunctionName("".to_string()) },
+                "__PRETTY_FUNCTION__" => { getFunctionName("top level".to_string()) },
+                name => { return(lookup(name, builtinSymbols)) },
+            } },
+    };
             
         }
     };
@@ -700,24 +879,32 @@ mod Language_Rust_Corrode_C {
     let getTagIdent(ident) = |()| {
         lift({
 
-                ;
-                
+                let env = gets(tagEnvironment);
+                return(lookup(ident, env))
             })
     };
 
     let getTypedefIdent(ident) = |()| {
         lift({
 
-                ;
-                
+                let env = gets(typedefEnvironment);
+                return((identToString(ident), lookup(ident, env)))
             })
     };
 
     let gotoLabel(ident) = |()| {
         {
 
-            ;
-            
+            let labels = lift(get);
+            match Map.lookup(ident, labels) {
+        Nothing => { {
+
+            let label = newLabel;
+            lift((put((Map.insert(ident, label, labels)))));
+            return(label)
+        } },
+        Just, label => { return(label) },
+    }
         }
     };
 
@@ -748,9 +935,9 @@ mod Language_Rust_Corrode_C {
     let interpretBlockItem((CBlockDecl(decl)), next) = |()| {
         {
 
-            ;
-            ;
-            
+            let decl' = lift(lift((interpretDeclarations(makeLetBinding, decl))));
+            let (rest, end) = next;
+            return((++(decl', rest), end))
         }
     };
 
@@ -773,50 +960,58 @@ mod Language_Rust_Corrode_C {
     let interpretExpr(_, (CAlignofExpr(e, _))) = |()| {
         {
 
-            ;
-            
+            let e' = interpretExpr(True, e);
+            return((rustAlignOfType((toRustType((resultType(e')))))))
         }
     };
 
     let interpretExpr(_, (CAlignofType(decl, _))) = |()| {
         {
 
-            ;
-            
+            let (_mut, ty) = typeName(decl);
+            return((rustAlignOfType((toRustType(ty)))))
         }
     };
 
     let interpretExpr(_, (CCast(decl, expr, _))) = |()| {
         {
 
-            ;
-            ;
-            
+            let (_mut, ty) = typeName(decl);
+            let expr' = interpretExpr((/=(ty, IsVoid)), expr);
+            return(Result, {
+    resultType: ty,
+    resultMutable: Rust.Immutable,
+    result: (==(if(ty), IsVoid(then, result, else, castTo, ty)))(expr')
+    })
         }
     };
 
     let interpretExpr(_, (CCompoundLit(decl, initials, info))) = |()| {
         {
 
-            ;
-            ;
-            
+            let (mut, ty) = typeName(decl);
+            let final = interpretInitializer(ty, (CInitList(initials, info)));
+            return(Result, {
+    resultType: ty,
+    resultMutable: mut,
+    result: final
+    })
         }
     };
 
     let interpretExpr(_, (CSizeofExpr(e, _))) = |()| {
         {
 
-            ;
-            
+            let e' = interpretExpr(True, e);
+            return((rustSizeOfType((toRustType((resultType(e')))))))
         }
     };
 
     let interpretExpr(_, (CSizeofType(decl, _))) = |()| {
         {
 
-            ;
-            
+            let (_mut, ty) = typeName(decl);
+            return((rustSizeOfType((toRustType(ty)))))
         }
     };
 
@@ -827,34 +1022,69 @@ mod Language_Rust_Corrode_C {
     let interpretExpr(demand, (CComma(exprs, _))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            Let([Assign([Span([Parens([Span([Ref(Ident("effects"))]), Span([Ref(Ident("mfinal"))])])])], Span([Ref(Ident("if")), Ref(Ident("demand")), Ref(Ident("then")), Parens([Span([Ref(Ident("init")), Ref(Ident("exprs"))]), Span([Ref(Ident("Just")), Parens([Span([Ref(Ident("last")), Ref(Ident("exprs"))])])])]), Ref(Ident("else")), Parens([Span([Ref(Ident("exprs"))]), Span([Ref(Ident("Nothing"))])])]))], []);
+            let effects' = mapM(((fmap(resultToStatements) . interpretExpr(False))), effects);
+            let mfinal' = mapM((interpretExpr(True)), mfinal);
+            return(Result, {
+    resultType: maybe(IsVoid, resultType, mfinal'),
+    resultMutable: maybe(Rust.Immutable, resultMutable, mfinal'),
+    result: Rust.BlockExpr((Rust.Block((concat(effects')), (fmap(result, mfinal')))))
+    })
         }
     };
 
     let interpretFunction((@(CFunDef(specs, declr), (CDeclr(mident, _, _, _, _))(argtypes, body, _)))) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            
+            let (storage, baseTy) = baseTypeOf(specs);
+            let (attrs, vis) = match storage {
+            Nothing => { return((vec![Rust.Attribute("no_mangle".to_string())], Rust.Public)) },
+            Just, CStatic(_) => { return((vec![], Rust.Private)) },
+            Just, s => { badSource(s, "storage class specifier for function".to_string()) },
+        };
+            Let([Assign([Span([Ref(Ident("go")), Ref(Ident("name")), Ref(Ident("funTy"))])], Span([Do([Expression(Span([Parens([Span([Ref(Ident("retTy"))]), Span([Ref(Ident("args"))])]), Operator("<-"), Case(Span([Ref(Ident("funTy"))]), [Direct([Ref(Ident("IsFunc")), Ref(Ident("_")), Ref(Ident("_")), Ref(Ident("True"))], [Span([Ref(Ident("unimplemented")), Ref(Ident("declr"))])]), Direct([Ref(Ident("IsFunc")), Ref(Ident("retTy")), Ref(Ident("args")), Ref(Ident("False"))], [Span([Ref(Ident("return")), Parens([Span([Ref(Ident("retTy"))]), Span([Ref(Ident("args"))])])])]), Direct([Ref(Ident("_"))], [Span([Ref(Ident("badSource")), Ref(Ident("declr")), Str("function definition")])])])]), []), Expression(Span([Ref(Ident("when")), Parens([Span([Ref(Ident("name")), Operator("=="), Str("_c_main")])]), Parens([Span([Ref(Ident("wrapMain")), Ref(Ident("declr")), Ref(Ident("name")), Parens([Span([Ref(Ident("map")), Ref(Ident("snd")), Ref(Ident("args"))])])])])]), []), Expression(Span([Let([Assign([Span([Ref(Ident("setRetTy")), Ref(Ident("flow"))])], Span([Ref(Ident("flow")), Record([(Ident("functionReturnType"), Span([Ref(Ident("Just")), Ref(Ident("retTy"))])), (Ident("functionName"), Span([Ref(Ident("Just")), Ref(Ident("name"))]))])]))], [])]), []), Expression(Span([Ref(Ident("f\'")), Operator("<-"), Ref(Ident("mapExceptT")), Parens([Span([Ref(Ident("local")), Ref(Ident("setRetTy"))])]), Operator("$"), Ref(Ident("scope")), Operator("$"), Do([Expression(Span([Ref(Ident("formals")), Operator("<-"), Ref(Ident("sequence")), Dummy]), []), Expression(Span([Let([Assign([Span([Ref(Ident("returnValue"))])], Span([Ref(Ident("if")), Ref(Ident("name")), Operator("=="), Str("_c_main"), Ref(Ident("then")), Ref(Ident("Just")), Number(0), Ref(Ident("else")), Ref(Ident("Nothing"))])), Assign([Span([Ref(Ident("returnStatement"))])], Span([Ref(Ident("Rust.Stmt")), Parens([Span([Ref(Ident("Rust.Return")), Ref(Ident("returnValue"))])])]))], [])]), []), Expression(Span([Ref(Ident("body\'")), Operator("<-"), Ref(Ident("cfgToRust")), Ref(Ident("declr")), Parens([Span([Ref(Ident("interpretStatement")), Ref(Ident("body")), Parens([Span([Ref(Ident("return")), Parens([Span([Vector([Span([Ref(Ident("returnStatement"))])])]), Span([Ref(Ident("Unreachable"))])])])])])])]), []), Expression(Span([Ref(Ident("return")), Parens([Span([Ref(Ident("Rust.Item")), Ref(Ident("attrs")), Ref(Ident("vis")), Parens([Span([Ref(Ident("Rust.Function")), Vector([Span([Ref(Ident("Rust.UnsafeFn"))]), Span([Ref(Ident("Rust.ExternABI")), Ref(Ident("Nothing"))])]), Ref(Ident("name")), Ref(Ident("formals")), Parens([Span([Ref(Ident("toRustRetType")), Ref(Ident("retTy"))])]), Parens([Span([Ref(Ident("statementsToBlock")), Ref(Ident("body\'"))])])])])])])]), [])], [])]), []), Expression(Span([Ref(Ident("emitItems")), Vector([Span([Ref(Ident("f\'"))])])]), [])], [])]))], []);
+            let ident = match mident {
+            Nothing => { badSource(declr, "anonymous function definition".to_string()) },
+            Just, ident => { return(ident) },
+        };
+            Let([Assign([Span([Ref(Ident("name"))])], Span([Ref(Ident("applyRenames")), Ref(Ident("ident"))]))], []);
+            Let([Assign([Span([Ref(Ident("funTy")), Ref(Ident("itype"))])], Span([Ref(Ident("typeToResult")), Ref(Ident("itype")), Parens([Span([Ref(Ident("Rust.Path")), Parens([Span([Ref(Ident("Rust.PathSegments")), Vector([Span([Ref(Ident("name"))])])])])])])]))], []);
+            let deferred = fmap((fmap(funTy)), (derivedDeferredTypeOf(baseTy, declr, argtypes)));
+            let alreadyUsed = lift(gets(((usedForwardRefs . globalState))));
+            match vis {
+    Rust.Private => if Set.notMember(ident, alreadyUsed) { {
+
+        let action = runOnce({
+
+            let ty = deferred;
+            go(name, (resultType(ty)));
+            return(ty)
+        });
+        addSymbolIdentAction(ident, action)
+    } },
+        _ => { {
+
+            let ty = deferred;
+            addSymbolIdentAction(ident)(return(ty));
+            go(name, (resultType(ty)))
+        } },
+    }
         }
     };
 
     let interpretInitializer(ty, initial) = |()| {
         {
 
-            ;
-            ;
-            ;
+            let initial' = match initial {
+            CInitExpr, expr, _ => { {
+
+                let expr' = interpretExpr(True, expr);
+                compatibleInitializer(if(resultType, expr'), ty(then, pure)(scalar((castTo(ty, expr')), else, badSource, initial, "initializer for incompatible type".to_string())))
+            } },
+            CInitList, list, _ => { translateInitList(ty, list) },
+        };
+            let zeroed = zeroInitialize(initial', ty);
+            helper(ty, zeroed);
             
         }
     };
@@ -862,7 +1092,7 @@ mod Language_Rust_Corrode_C {
     let interpretStatement((CCompound(vec![], items, _)), next) = |()| {
         mapBuildCFGT((mapRWST(scope)))({
 
-                
+                foldr(interpretBlockItem, next, items)
             })
     };
 
@@ -873,9 +1103,9 @@ mod Language_Rust_Corrode_C {
     let interpretStatement((CExpr((Just(expr)), _)), next) = |()| {
         {
 
-            ;
-            ;
-            
+            let expr' = lift(lift(interpretExpr(False, expr)));
+            let (rest, end) = next;
+            return((++(resultToStatements(expr'), rest), end))
         }
     };
 
@@ -886,61 +1116,108 @@ mod Language_Rust_Corrode_C {
     let interpretStatement((CFor(initial, mcond, mincr, body, _)), next) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            let after = newLabel;
+            let ret = mapBuildCFGT((mapRWST(scope)))({
+
+            let prefix = match initial {
+            Left, Nothing => { return(vec![]) },
+            Left, Just(expr) => { {
+
+                let expr' = lift(lift(interpretExpr(False, expr)));
+                return((resultToStatements(expr')))
+            } },
+            Right, decls => { lift(lift(interpretDeclarations(makeLetBinding, decls))) },
+        };
+            let headerLabel = newLabel;
+            let incrLabel = match mincr {
+            Nothing => { return(headerLabel) },
+            Just, incr => { {
+
+                let incr' = lift(lift(interpretExpr(False, incr)));
+                let incrLabel = newLabel;
+                addBlock(incrLabel, (resultToStatements(incr')), (Branch(headerLabel)));
+                return(incrLabel)
+            } },
+        };
+            let (bodyEntry, bodyTerm) = setBreak(after)(setContinue(incrLabel)(interpretStatement(body, (return((vec![], Branch(incrLabel)))))));
+            let bodyLabel = newLabel;
+            addBlock(bodyLabel, bodyEntry, bodyTerm);
+            let cond = match mcond {
+            Just, cond => { {
+
+                let cond' = lift(lift(interpretExpr(True, cond)));
+                return((CondBranch(cond', bodyLabel, after)))
+            } },
+            Nothing => { return((Branch(bodyLabel))) },
+        };
+            addBlock(headerLabel, vec![], cond);
+            return((prefix, Branch(headerLabel)))
+        });
+            let (rest, end) = next;
+            addBlock(after, rest, end);
+            return(ret)
         }
     };
 
     let interpretStatement((CGoto(ident, _)), next) = |()| {
         {
 
-            ;
-            ;
-            
+            let _ = next;
+            let label = gotoLabel(ident);
+            return((vec![], Branch(label)))
         }
     };
 
     let interpretStatement((CIf(c, t, mf, _)), next) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            
+            let c' = lift(lift(interpretExpr(True, c)));
+            let after = newLabel;
+            let falseLabel = match mf {
+            Nothing => { return(after) },
+            Just, f => { {
+
+                let (falseEntry, falseTerm) = interpretStatement(f, (return((vec![], Branch(after)))));
+                let falseLabel = newLabel;
+                addBlock(falseLabel, falseEntry, falseTerm);
+                return(falseLabel)
+            } },
+        };
+            let (trueEntry, trueTerm) = interpretStatement(t, (return((vec![], Branch(after)))));
+            let trueLabel = newLabel;
+            addBlock(trueLabel, trueEntry, trueTerm);
+            let (rest, end) = next;
+            addBlock(after, rest, end);
+            return((vec![], CondBranch(c', trueLabel, falseLabel)))
         }
     };
 
     let interpretStatement((CLabel(ident, body, _, _)), next) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let label = gotoLabel(ident);
+            let (rest, end) = interpretStatement(body, next);
+            addBlock(label, rest, end);
+            return((vec![], Branch(label)))
         }
     };
 
     let interpretStatement((CWhile(c, body, doWhile, _)), next) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            
+            let c' = lift(lift(interpretExpr(True, c)));
+            let after = newLabel;
+            let headerLabel = newLabel;
+            let (bodyEntry, bodyTerm) = setBreak(after)(setContinue(headerLabel)(interpretStatement(body, (return((vec![], Branch(headerLabel)))))));
+            let bodyLabel = newLabel;
+            addBlock(bodyLabel, bodyEntry, bodyTerm);
+            addBlock(headerLabel, vec![])(match toBool(c') {
+        Rust.Lit, Rust.LitBool(cont) => if /=(cont, doWhile) { Branch((if(cont, then, bodyLabel, else, after))) },
+            _ => { CondBranch(c', bodyLabel, after) },
+        });
+            let (rest, end) = next;
+            addBlock(after, rest, end);
+            return((vec![], Branch((if(doWhile, then, bodyLabel, else, headerLabel)))))
         }
     };
 
@@ -966,10 +1243,12 @@ mod Language_Rust_Corrode_C {
     let modifyGlobal(f) = |()| {
         lift({
 
-                ;
-                ;
-                ;
-                
+                let st = get;
+                Let([Assign([Span([Parens([Span([Ref(Ident("global\'"))]), Span([Ref(Ident("a"))])])])], Span([Ref(Ident("f")), Parens([Span([Ref(Ident("globalState")), Ref(Ident("st"))])])]))], []);
+                put(st, {
+    globalState: global'
+    });
+                return(a)
             })
     };
 
@@ -1038,10 +1317,28 @@ mod Language_Rust_Corrode_C {
                 Nothing => { return((Nothing, prior)) },
                 Just, obj => { {
 
-                    ;
-                    ;
-                    ;
-                    
+                    let (obj', initial) = match cinitial {
+            CInitList, list', _ => { {
+
+                let initial = translateInitList((designatorType(obj)), list');
+                return((obj, initial))
+            } },
+            CInitExpr, expr, _ => { {
+
+                let expr' = interpretExpr(True, expr);
+                match nestedObject((resultType(expr')), obj) {
+        Nothing => { badSource(cinitial, "type in initializer".to_string()) },
+        Just, obj' => { {
+
+            Let([Assign([Span([Ref(Ident("s"))])], Span([Ref(Ident("castTo")), Parens([Span([Ref(Ident("designatorType")), Ref(Ident("obj\'"))])]), Ref(Ident("expr\'"))]))], []);
+            return((obj', scalar(s)))
+        } },
+    }
+            } },
+        };
+                    Let([Assign([Span([Ref(Ident("indices"))])], Span([Ref(Ident("unfoldr")), Parens([Span([Lambda])]), Ref(Ident("obj\'"))]))], []);
+                    Let([Assign([Span([Ref(Ident("initializer"))])], Span([Ref(Ident("foldl")), Parens([Span([Lambda, Ref(Ident("Nothing")), Parens([Span([Ref(Ident("IntMap.singleton")), Ref(Ident("j")), Ref(Ident("a"))])])])]), Ref(Ident("initial")), Ref(Ident("indices"))]))], []);
+                    return((nextObject(obj'), mappend(prior, initializer)))
                 } },
             }
     };
@@ -1053,8 +1350,21 @@ mod Language_Rust_Corrode_C {
     let runOnce(action) = |()| {
         {
 
-            ;
-            
+            let cacheRef = lift(lift(newSTRef((Left(action)))));
+            return({
+
+        let cache = lift(lift(readSTRef(cacheRef)));
+        match cache {
+        Left, todo => { {
+
+            lift(lift(writeSTRef(cacheRef)(Left(fail("internal error: runOnce action depends on itself, leading to an infinite loop".to_string())))));
+            let val = todo;
+            lift(lift(writeSTRef(cacheRef, (Right(val)))));
+            return(val)
+        } },
+        Right, val => { return(val) },
+    }
+    })
         }
     };
 
@@ -1081,10 +1391,12 @@ mod Language_Rust_Corrode_C {
     let scope(m) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let old = lift(get);
+            let a = m;
+            lift((modify((Lambda({
+            globalState: globalState(st)
+            })))));
+            return(a)
         }
     };
 
@@ -1215,10 +1527,10 @@ mod Language_Rust_Corrode_C {
     let translateInitList(ty, list) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let objectsAndInitializers = forM(list)(Lambda);
+            Let([Assign([Span([Ref(Ident("base"))])], Span([Case(Span([Ref(Ident("ty"))]), [Direct([Ref(Ident("IsArray")), Ref(Ident("_")), Ref(Ident("size")), Ref(Ident("el"))], [Span([Ref(Ident("From")), Ref(Ident("el")), Number(0), Parens([Span([Ref(Ident("replicate")), Parens([Span([Ref(Ident("size")), Operator("-"), Number(1)])]), Ref(Ident("el"))])]), Parens([Span([Ref(Ident("Base")), Ref(Ident("ty"))])])])]), Direct([Ref(Ident("IsStruct")), Ref(Ident("_")), Span([Tuple([Span([Ref(Ident("_"))]), Span([Ref(Ident("ty\'"))])]), Ref(Ident(":")), Ref(Ident("fields"))])], [Span([Ref(Ident("From")), Ref(Ident("ty\'")), Number(0), Parens([Span([Ref(Ident("map")), Ref(Ident("snd")), Ref(Ident("fields"))])]), Parens([Span([Ref(Ident("Base")), Ref(Ident("ty"))])])])]), Direct([Ref(Ident("_"))], [Span([Ref(Ident("Base")), Ref(Ident("ty"))])])])]))], []);
+            let (_, initializer) = foldM(resolveCurrentObject, (Just(base), mempty), objectsAndInitializers);
+            return(initializer)
         }
     };
 
@@ -1253,8 +1565,8 @@ mod Language_Rust_Corrode_C {
                 (IsInt(Unsigned, uw), IsInt(Signed, sw)) => { mixedSign(sw, uw) },
                 (IsInt(as, aw), IsInt(_bs, bw)) => { {
 
-                    ;
-                    
+                    let rank = integerConversionRank(aw, bw);
+                    Just((IsInt(as, (==(if(rank), GT(then, aw, else, bw))))))
                 } },
                 _ => { Nothing },
             }
@@ -1263,9 +1575,9 @@ mod Language_Rust_Corrode_C {
     let wrapMain(declr, realName, argTypes) = |()| {
         {
 
-            ;
-            ;
-            ;
+            let (setup, args) = wrapArgv(argTypes);
+            Let([Assign([Span([Ref(Ident("ret"))])], Span([Ref(Ident("Rust.VarName")), Str("ret")]))], []);
+            emitItems(vec![Rust.Item(vec![], Rust.Private, (Rust.Function(vec![], "main".to_string(), vec![], (Rust.TypeName("()".to_string())), (statementsToBlock((++(setup, ++(vec![bind(Rust.Immutable, ret)(Rust.UnsafeExpr(Rust.Block(vec![])(Just(call(realName, args)))))], exprToStatements((call("::std::process::exit".to_string(), vec![Rust.Var(ret)])))))))))))]);
             ;
                             let wrapArgv(vec![]) = |()| {
                     return((vec![], vec![]))
@@ -1320,15 +1632,17 @@ mod Language_Rust_Corrode_CFG {
     let addBlock(label, stmt, terminator) = |()| {
         {
 
-            
+            modify(Lambda({
+        buildBlocks: IntMap.insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
+        }))
         }
     };
 
     let buildCFG(root) = |()| {
         {
 
-            ;
-            
+            let (label, final) = runStateT(root, (BuildState(0, IntMap.empty)));
+            return((CFG(label, (buildBlocks(final)))))
         }
     };
 
@@ -1351,9 +1665,11 @@ mod Language_Rust_Corrode_CFG {
     fn newLabel() -> Monad {
         {
 
-            ;
-            ;
-            
+            let old = get;
+            put(old, {
+    buildLabel: +(buildLabel(old), 1)
+    });
+            return((buildLabel(old)))
         }
     }
 
@@ -1446,11 +1762,11 @@ mod Language_Rust_Corrode_CrateMap {
     let splitModuleMap(modName, crates) = |()| {
         fromMaybe((vec![], crates))({
 
-                ;
-                ;
-                ;
-                ;
-                
+                let thisCrate = Map.lookup("".to_string(), crates);
+                let thisModule = Map.lookup(modName, thisCrate);
+                Let([Assign([Span([Ref(Ident("thisCrate\'"))])], Span([Ref(Ident("Map.delete")), Ref(Ident("modName")), Ref(Ident("thisCrate"))]))], []);
+                Let([Assign([Span([Ref(Ident("crates\'"))])], Span([Ref(Ident("Map.insert")), Str(""), Ref(Ident("thisCrate\'")), Ref(Ident("crates"))]))], []);
+                return((thisModule, crates'))
             })
     };
 

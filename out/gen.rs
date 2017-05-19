@@ -667,8 +667,8 @@ mod Language_C_Parser_Lexer {
     let lexC(cont) = |()| {
         {
 
-            ;
-            
+            let tok = lexToken;
+            cont(tok)
         }
     };
 
@@ -679,26 +679,47 @@ mod Language_C_Parser_Lexer {
     let lexToken'(modifyCache) = |()| {
         {
 
-            ;
-            ;
-            
+            let pos = getPos;
+            let inp = getInput;
+            match alexScan((pos, inp), 0) {
+        AlexEOF => { {
+
+            handleEofToken;
+            return(CTokEof)
+        } },
+        AlexError, inp' => { lexicalError },
+        AlexSkip, (pos', inp'), len => { {
+
+            setPos(pos');
+            setInput(inp');
+            lexToken'(modifyCache)
+        } },
+        AlexToken, (pos', inp'), len, action => { {
+
+            setPos(pos');
+            setInput(inp');
+            let tok = action(pos, len, inp);
+            when(modifyCache)(setLastToken(tok));
+            return(tok)
+        } },
+    }
         }
     };
 
     fn lexicalError() -> P {
         {
 
-            ;
-            ;
-            
+            let pos = getPos;
+            let (c, cs) = liftM(takeChar, getInput);
+            failP(pos, vec!["Lexical error !".to_string(), ++("The character ".to_string(), ++(show(c), " does not fit here.".to_string()))])
         }
     }
 
     fn parseError() -> P {
         {
 
-            ;
-            
+            let tok = getLastToken;
+            failP((posOf(tok)), vec!["Syntax error !".to_string(), ++("The symbol `".to_string(), ++(show(tok), "\' does not fit here.".to_string()))])
         }
     }
 
@@ -737,6 +758,9 @@ mod Language_C_Parser_Lexer {
         error("Unexpected end of multi-char constant".to_string())
     };
 
+#((), include("ghcconfig.h".to_string()))
+#((), elif(defined, (__GLASGOW_HASKELL__)))
+#((), include("config.h".to_string()))
 }
 
 mod Language_C_Parser_Parser {
@@ -44093,9 +44117,9 @@ otherwise { shadowTypedef(ident) },
         happyThen(((Let([Assign([Span([Ref(Ident("decls"))])], Span([Ref(Ident("reverse")), Ref(Ident("happy_var_1"))]))], [])(in, match decls {
                         [] => { {
 
-                            ;
-                            ;
-                            
+                            let n = getNewName;
+                            let p = getCurrentPosition;
+                            return(CTranslUnit(decls, (mkNodeInfo'(p, (p, 0), n))))
                         } },
                         d:ds => { withNodeInfo(d)(CTranslUnit(decls)) },
                     }))), (Lambda((HappyAbsSyn7(r)))))
@@ -44841,36 +44865,36 @@ otherwise { shadowTypedef(ident) },
     let happyReduction_91((HappyStk((HappyAbsSyn91(happy_var_4)), HappyStk((HappyAbsSyn35(happy_var_3)), HappyStk((HappyAbsSyn63(happy_var_2)), HappyStk((HappyAbsSyn38(happy_var_1)), happyRest))))), tk) = |()| {
         happyThen(((Let([Assign([Span([Ref(Ident("declspecs"))])], Span([Ref(Ident("reverse")), Ref(Ident("happy_var_1"))]))], [])(in, {
 
-                    ;
-                    ;
-                    
+                    let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
+                    doDeclIdent(declspecs, declr);
+                    withNodeInfo(happy_var_1)(CDecl(declspecs, vec![(Just((reverseDeclr(declr))), happy_var_4, Nothing)]))
                 }))), (Lambda((HappyAbsSyn32(r)))))
     };
 
     let happyReduction_92((HappyStk((HappyAbsSyn91(happy_var_4)), HappyStk((HappyAbsSyn35(happy_var_3)), HappyStk((HappyAbsSyn63(happy_var_2)), HappyStk((HappyAbsSyn62(happy_var_1)), happyRest))))), tk) = |()| {
         happyThen(((Let([Assign([Span([Ref(Ident("declspecs"))])], Span([Ref(Ident("liftTypeQuals")), Ref(Ident("happy_var_1"))]))], [])(in, {
 
-                    ;
-                    ;
-                    
+                    let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
+                    doDeclIdent(declspecs, declr);
+                    withNodeInfo(happy_var_1)(CDecl(declspecs, vec![(Just((reverseDeclr(declr))), happy_var_4, Nothing)]))
                 }))), (Lambda((HappyAbsSyn32(r)))))
     };
 
     let happyReduction_93((HappyStk((HappyAbsSyn91(happy_var_5)), HappyStk((HappyAbsSyn35(happy_var_4)), HappyStk((HappyAbsSyn63(happy_var_3)), HappyStk((HappyAbsSyn126(happy_var_2)), HappyStk((HappyAbsSyn62(happy_var_1)), happyRest)))))), tk) = |()| {
         happyThen(((Let([Assign([Span([Ref(Ident("declspecs"))])], Span([Ref(Ident("liftTypeQuals")), Ref(Ident("happy_var_1"))]))], [])(in, {
 
-                    ;
-                    ;
-                    
+                    let declr = withAsmNameAttrs(happy_var_4, happy_var_3);
+                    doDeclIdent(declspecs, declr);
+                    withNodeInfo(happy_var_1)(CDecl((++(declspecs, liftCAttrs(happy_var_2))), vec![(Just((reverseDeclr(declr))), happy_var_5, Nothing)]))
                 }))), (Lambda((HappyAbsSyn32(r)))))
     };
 
     let happyReduction_94((HappyStk((HappyAbsSyn91(happy_var_4)), HappyStk((HappyAbsSyn35(happy_var_3)), HappyStk((HappyAbsSyn63(happy_var_2)), HappyStk((HappyAbsSyn126(happy_var_1)), happyRest))))), tk) = |()| {
         happyThen(((Let([Assign([Span([Ref(Ident("declspecs"))])], Span([Ref(Ident("liftCAttrs")), Ref(Ident("happy_var_1"))]))], [])(in, {
 
-                    ;
-                    ;
-                    
+                    let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
+                    doDeclIdent(declspecs, declr);
+                    withNodeInfo(happy_var_1)(CDecl(declspecs, vec![(Just((reverseDeclr(declr))), happy_var_4, Nothing)]))
                 }))), (Lambda((HappyAbsSyn32(r)))))
     };
 
@@ -44878,9 +44902,9 @@ otherwise { shadowTypedef(ident) },
         happyThen(((match happy_var_1 {
                         CDecl, declspecs, dies, at => { {
 
-                            ;
-                            ;
-                            
+                            let declr = withAsmNameAttrs((fst(happy_var_5), ++(snd(happy_var_5), happy_var_3)), happy_var_4);
+                            doDeclIdent(declspecs, declr);
+                            withLength(at)(CDecl(declspecs, (:((Just((reverseDeclr(declr))), happy_var_6, Nothing), dies))))
                         } },
                     })), (Lambda((HappyAbsSyn32(r)))))
     };
@@ -44896,18 +44920,18 @@ otherwise { shadowTypedef(ident) },
     let happyReduction_97((HappyStk((HappyAbsSyn91(happy_var_4)), HappyStk((HappyAbsSyn35(happy_var_3)), HappyStk((HappyAbsSyn63(happy_var_2)), HappyStk((HappyAbsSyn37(happy_var_1)), happyRest))))), tk) = |()| {
         happyThen((({
 
-                    ;
-                    ;
-                    
+                    let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
+                    doDeclIdent(happy_var_1, declr);
+                    withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Just((reverseDeclr(declr))), happy_var_4, Nothing)]))
                 })), (Lambda((HappyAbsSyn32(r)))))
     };
 
     let happyReduction_98((HappyStk((HappyAbsSyn91(happy_var_4)), HappyStk((HappyAbsSyn35(happy_var_3)), HappyStk((HappyAbsSyn63(happy_var_2)), HappyStk((HappyAbsSyn37(happy_var_1)), happyRest))))), tk) = |()| {
         happyThen((({
 
-                    ;
-                    ;
-                    
+                    let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
+                    doDeclIdent(happy_var_1, declr);
+                    withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Just((reverseDeclr(declr))), happy_var_4, Nothing)]))
                 })), (Lambda((HappyAbsSyn32(r)))))
     };
 
@@ -44915,9 +44939,9 @@ otherwise { shadowTypedef(ident) },
         happyThen(((match happy_var_1 {
                         CDecl, declspecs, dies, at => { {
 
-                            ;
-                            ;
-                            
+                            let declr = withAsmNameAttrs((fst(happy_var_5), ++(snd(happy_var_5), happy_var_3)), happy_var_4);
+                            doDeclIdent(declspecs, declr);
+                            return((CDecl(declspecs, (:((Just((reverseDeclr(declr))), happy_var_6, Nothing), dies)), at)))
                         } },
                     })), (Lambda((HappyAbsSyn32(r)))))
     };
@@ -45036,44 +45060,45 @@ otherwise { shadowTypedef(ident) },
     let withAttribute(node, cattrs, mkDeclrNode) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let name = getNewName;
+            Let([Assign([Span([Ref(Ident("attrs"))])], Span([Ref(Ident("mkNodeInfo")), Parens([Span([Ref(Ident("posOf")), Ref(Ident("node"))])]), Ref(Ident("name"))]))], []);
+            Let([Assign([Span([Ref(Ident("newDeclr"))])], Span([Ref(Ident("appendDeclrAttrs")), Ref(Ident("cattrs")), Operator("$"), Ref(Ident("mkDeclrNode")), Ref(Ident("attrs"))]))], []);
+            seq(attrs, seq(newDeclr, return(newDeclr)))
         }
     };
 
     let withAttributePF(node, cattrs, mkDeclrCtor) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let name = getNewName;
+            Let([Assign([Span([Ref(Ident("attrs"))])], Span([Ref(Ident("mkNodeInfo")), Parens([Span([Ref(Ident("posOf")), Ref(Ident("node"))])]), Ref(Ident("name"))]))], []);
+            Let([Assign([Span([Ref(Ident("newDeclr"))])], Span([Ref(Ident("appendDeclrAttrs")), Ref(Ident("cattrs")), Operator("."), Ref(Ident("mkDeclrCtor")), Ref(Ident("attrs"))]))], []);
+            seq(attrs, seq(newDeclr, return(newDeclr)))
         }
     };
 
     let withLength(nodeinfo, mkAttrNode) = |()| {
         {
 
-            ;
-            ;
-            ;
-            
+            let lastTok = getSavedToken;
+            Let([Assign([Span([Ref(Ident("firstPos"))])], Span([Ref(Ident("posOfNode")), Ref(Ident("nodeinfo"))]))], []);
+            Let([Assign([Span([Ref(Ident("attrs"))])], Span([Ref(Ident("mkNodeInfo\'")), Ref(Ident("firstPos")), Parens([Span([Ref(Ident("posLenOfTok")), Operator("$!"), Ref(Ident("lastTok"))])]), Parens([Span([Ref(Ident("maybe")), Parens([Span([Ref(Ident("error")), Str("nameOfNode")])]), Ref(Ident("id")), Parens([Span([Ref(Ident("nameOfNode")), Ref(Ident("nodeinfo"))])])])])]))], []);
+            seq(attrs, return((mkAttrNode(attrs))))
         }
     };
 
     let withNodeInfo(node, mkAttrNode) = |()| {
         {
 
-            ;
-            ;
-            ;
-            ;
-            
+            let name = getNewName;
+            let lastTok = getSavedToken;
+            Let([Assign([Span([Ref(Ident("firstPos"))])], Span([Ref(Ident("posOf")), Ref(Ident("node"))]))], []);
+            Let([Assign([Span([Ref(Ident("attrs"))])], Span([Ref(Ident("mkNodeInfo\'")), Ref(Ident("firstPos")), Parens([Span([Ref(Ident("posLenOfTok")), Operator("$!"), Ref(Ident("lastTok"))])]), Ref(Ident("name"))]))], []);
+            seq(attrs, return((mkAttrNode(attrs))))
         }
     };
 
+HappyStk(infixr(9), ())
 }
 
 
