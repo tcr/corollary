@@ -35,17 +35,20 @@ pub enum Opcode {
 
 #[derive(Clone, Debug)]
 pub enum Statement {
+    Import,
+
     // Name, Inner Types, Deriving IDs
+    Type,
     Data(Ident, Vec<Vec<Ty>>, Vec<Ident>),
     Newtype(Ident, Ty, Vec<Ident>),
     Class,
     Instance,
-    Import,
-    Pipelist,
-    GuardAssign,
-    Assign(Pat, Vec<Pat>, Expr),
-    Typedef(Ident),
+
     Prototype(Ident, Vec<Ty>),
+    Assign(Pat, Vec<Pat>, Expr),
+    GuardAssign,
+    // Expression, where clause
+    Expression(Expr, Vec<Statement>),
 
     // TODO remove this
     Dummy,

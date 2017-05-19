@@ -160,7 +160,7 @@ Statement: Statement = {
   "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
     ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
   "data" <id:Ident> =>
-      Statement::Data(id, vec![], vec![]),
+    Statement::Data(id, vec![], vec![]),
   "data" <id:Ident> <args:TypeGroup?> "=" <p:Pipe<TypeGroup>>
     <derives:("deriving" <ImportList>)?> =>
       Statement::Data(id, p, derives.unwrap_or(vec![])),
@@ -173,11 +173,11 @@ Statement: Statement = {
     "where" "{" Semi<Statement> "}" => Statement::Instance,
 
   // TODO left expr should be PatSpans
-  <CommaDef<ExprSpan>> ("::" TypeGroup) => Statement::Dummy,
+  <CommaDef<ExprSpan>> ("::" TypeGroup) => Statement::Prototype,
   <CommaDef<ExprSpan>> "=" <ExprSpan>
-    ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
-  <ExprSpan> ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
-  <ExprSpan> ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
+    ("where" "{" Semi<Statement> "}")? => Statement::Assign,
+  <ExprSpan> ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
+  <ExprSpan> ("where" "{" Semi<Statement> "}")? => Statement::Expr,
 };
 
 TypeRecord: () = {
