@@ -363,7 +363,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             let args = (0..fnset[0].0.len()).map(|x| format!("__{}", x)).collect::<Vec<_>>();
             new_cache.insert(key, vec![(
                 args.iter()
-                    .map(|x| Pat::Ref(ast::Ident(x.to_string())))
+                    .map(|x| Expr::Ref(ast::Ident(x.to_string())))
                     .collect::<Vec<_>>(),
                 ast::Expr::Case(
                     Box::new(ast::Expr::Parens(args.iter()
@@ -377,7 +377,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             )]);
         } else {
             //TODO waitaminute
-            //new_cache.insert(key, fnset);
+            new_cache.insert(key, fnset);
         }
     }
 
@@ -391,7 +391,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
                         state.indent(),
                         key,
-                        print_patterns(state, args),
+                        print_expr(state, &ast::Expr::Span(args)),
                         state.tab().indent(),
                         print_expr(state.tab(), &expr),
                         state.indent()));
@@ -408,7 +408,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             //println!("hm {:?}", t);
             let mut args_span = vec![];
             for (arg, ty) in args.iter().zip(t.iter()) {
-                args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
+                args_span.push(format!("{}: {}", print_expr(state, arg), print_type(state.tab(), ty)));
             }
             out.push(
                 format!("{}fn {}({}) -> {} {{\n{}{}\n{}}}\n",
