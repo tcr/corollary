@@ -3,109 +3,105 @@ mod Language_C_Analysis_AstAnalysis {
         FunCtx(VarDecl),
         LoopCtx,
         SwitchCtx
-    };
+    }
 
     #[derive(Debug, Eq)]
     enum ExprSide {
         LValue,
         RValue
-    };
+    }
 
-        fn advanceDesigList(ds: Vec<CDesignator>) -> Vec<CDesignator> {
+    fn advanceDesigList(ds: Vec<CDesignator>) -> Vec<CDesignator> {
         drop(1)(dropWhile(((not . matchDesignator(d))), ds))
     }
 
     fn analyseAST((CTranslUnit(decls, _file_node)): m) -> m {
-        {
+        /* do */ {
 
-                mapRecoverM_(analyseExt, decls);
-                __op_bind(getDefTable, Lambda((not((inFileScope(dt)))))(error("Internal Error: Not in filescope after analysis".to_string())));
-                liftM(globalDefs, getDefTable);
-            
+            mapRecoverM_(analyseExt, decls);
+            __op_bind(getDefTable, Lambda((not((inFileScope(dt)))))(error("Internal Error: Not in filescope after analysis".to_string())));
+            liftM(globalDefs, getDefTable);
         }
     }
 
     fn analyseExt(__0: m) -> m {
         match (__0) {
-            <todo> => { handleAsmBlock(asm) },
-            <todo> => { analyseFunDef(fundef) },
-            <todo> => { analyseDecl(False, decl) },
+            CAsmExt(asm, _) => { handleAsmBlock(asm) },
+            CFDefExt(fundef) => { analyseFunDef(fundef) },
+            CDeclExt(decl) => { analyseDecl(False, decl) },
         }
     }
 
     fn analyseFunDef((CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info)): m) -> m {
-        {
+        /* do */ {
 
-                let var_decl_info = analyseVarDecl_q(True, declspecs, declr, oldstyle_decls, Nothing);
-                {
+            let var_decl_info = analyseVarDecl_q(True, declspecs, declr, oldstyle_decls, Nothing);
+            {
 
             let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = || {
             var_decl_info
         };
 
 };
-                when((isNoName(name)))(astError(node_info, "NoName in analyseFunDef".to_string()));
-                {
+            when((isNoName(name)))(astError(node_info, "NoName in analyseFunDef".to_string()));
+            {
 
             let ident = || {
             identOfVarName(name)
         };
 
 };
-                let ty_q = improveFunDefType(ty);
-                let fun_storage = computeFunDefStorage(ident, storage_spec);
-                {
+            let ty_q = improveFunDefType(ty);
+            let fun_storage = computeFunDefStorage(ident, storage_spec);
+            {
 
             let var_decl = || {
             VarDecl(name, (DeclAttrs(is_inline, fun_storage, attrs)), ty_q)
         };
 
 };
-                handleVarDecl(False, (Decl(var_decl, node_info)));
-                let stmt_q = analyseFunctionBody(node_info, var_decl, stmt);
-                handleFunDef(ident, (FunDef(var_decl, stmt_q, node_info)));
-            
+            handleVarDecl(False, (Decl(var_decl, node_info)));
+            let stmt_q = analyseFunctionBody(node_info, var_decl, stmt);
+            handleFunDef(ident, (FunDef(var_decl, stmt_q, node_info)));
         }
     }
 
     fn analyseFunctionBody(__0: m) -> m {
         match (__0, __1, __2, __3, __4) {
-            <todo> => { {
+            node_info, decl, s, <todo>, CCompound(localLabels, items, _) => { /* do */ {
 
-                    enterFunctionScope;
-                    mapM_(((withDefTable . defineLabel)), (__op_concat(localLabels, getLabels(s))));
-                    defineParams(node_info, decl);
-                    mapM_((tBlockItem(vec![FunCtx(decl)])), items);
-                    leaveFunctionScope;
-                    return(s)
-            } },
-            <todo> => { astError((nodeInfo(s)), "Function body is no compound statement".to_string()) },
+                enterFunctionScope;
+                mapM_(((withDefTable . defineLabel)), (__op_concat(localLabels, getLabels(s))));
+                defineParams(node_info, decl);
+                mapM_((tBlockItem(vec![FunCtx(decl)])), items);
+                leaveFunctionScope;
+                return(s)} },
+            _, _, s => { astError((nodeInfo(s)), "Function body is no compound statement".to_string()) },
         }
     }
 
     fn analyseTypeDef(handle_sue_def: m) -> m {
-        {
+        /* do */ {
 
-                let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], Nothing);
-                checkValidTypeDef(is_inline, storage_spec, attrs);
-                when((isNoName(name)))(astError(node_info, "NoName in analyseTypeDef".to_string()));
-                {
+            let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], Nothing);
+            checkValidTypeDef(is_inline, storage_spec, attrs);
+            when((isNoName(name)))(astError(node_info, "NoName in analyseTypeDef".to_string()));
+            {
 
             let ident = || {
             identOfVarName(name)
         };
 
 };
-                handleTypeDef((TypeDef(ident, ty, attrs, node_info)));
-            
+            handleTypeDef((TypeDef(ident, ty, attrs, node_info)));
         }
     }
 
     fn builtinType(__0: MonadTrav) -> MonadTrav {
         match (__0) {
-            <todo> => { analyseTypeDecl(d) },
-            <todo> => { return(size_tType) },
-            <todo> => { return(boolType) },
+            CBuiltinVaArg(_, d, _) => { analyseTypeDecl(d) },
+            CBuiltinOffsetOf(_, _, _) => { return(size_tType) },
+            CBuiltinTypesCompatible(_, _, _) => { return(boolType) },
         }
     }
 
@@ -115,51 +111,48 @@ mod Language_C_Analysis_AstAnalysis {
 
     fn checkInits(__0: MonadTrav) -> MonadTrav {
         match (__0, __1, __2) {
-            <todo> => { return(()) },
-            <todo> => { {
+            _, _, [] => { return(()) },
+            t, dds, ds(i)(<todo>, is) => { /* do */ {
 
-                    let (dds_q, ds_q) = match (dds, ds) {
+                let (dds_q, ds_q) = match (dds, ds) {
             ([], []) => { typeError((nodeInfo(i)), "excess elements in initializer".to_string()) },
             (dd_q(:, rest), []) => { return((rest, vec![dd_q])) },
             (_, d(:, _)) => { return((advanceDesigList(dds, d), ds)) },
         };
-                    let t_q = tDesignator(t, ds_q);
-                    tInit(t_q, i);
-                    checkInits(t, dds_q, is)
-            } },
+                let t_q = tDesignator(t, ds_q);
+                tInit(t_q, i);
+                checkInits(t, dds_q, is)} },
         }
     }
 
     fn complexBaseType(ni: MonadTrav) -> MonadTrav {
-        {
+        /* do */ {
 
-                let t = tExpr(c, side, e);
-                match canonicalType(t) {
+            let t = tExpr(c, side, e);
+            match canonicalType(t) {
         DirectType, TyComplex(ft), quals, attrs => { return(DirectType((TyFloating(ft)), quals, attrs)) },
         _ => { typeError(ni)(__op_concat("expected complex type, got: ".to_string(), pType(t))) },
-    }
-        }
+    }}
     }
 
     fn computeFunDefStorage(__0: m) -> m {
         match (__0, __1) {
-            <todo> => { return(FunLinkage(InternalLinkage)) },
-            <todo> => { {
+            _, StaticSpec(b) => { return(FunLinkage(InternalLinkage)) },
+            ident, other_spec => { /* do */ {
 
-                    let obj_opt = lookupObject(ident);
-                    {
+                let obj_opt = lookupObject(ident);
+                {
 
             let defaultSpec = || {
             FunLinkage(ExternalLinkage)
         };
 
 };
-                    match other_spec {
+                match other_spec {
         NoStorageSpec => { return(maybe(defaultSpec, declStorage, obj_opt)) },
         ExternSpec(False) => { return(maybe(defaultSpec, declStorage, obj_opt)) },
         bad_spec => { throwTravError(badSpecifierError((nodeInfo(ident)))(__op_concat("unexpected function storage specifier (only static or extern is allowed)".to_string(), show(bad_spec)))) },
-    }
-            } },
+    }} },
         }
     }
 
@@ -187,52 +180,50 @@ mod Language_C_Analysis_AstAnalysis {
 
     fn enclosingFunctionType(__0: Maybe) -> Maybe {
         match (__0) {
-            <todo> => { Nothing },
-            <todo> => { Just(declType(vd)) },
-            <todo> => { enclosingFunctionType(cs) },
+            [] => { Nothing },
+            FunCtx(vd, <todo>, _) => { Just(declType(vd)) },
+            _(<todo>, cs) => { enclosingFunctionType(cs) },
         }
     }
 
     fn extFunProto((VarDeclInfo(var_name, is_inline, storage_spec, attrs, ty, node_info)): m) -> m {
-        {
+        /* do */ {
 
-                when((isNoName(var_name)))(astError(node_info, "NoName in extFunProto".to_string()));
-                let old_fun = lookupObject((identOfVarName(var_name)));
-                checkValidSpecs;
-                {
+            when((isNoName(var_name)))(astError(node_info, "NoName in extFunProto".to_string()));
+            let old_fun = lookupObject((identOfVarName(var_name)));
+            checkValidSpecs;
+            {
 
             let decl = || {
             VarDecl(var_name, (DeclAttrs(is_inline, (funDeclLinkage(old_fun)), attrs)), ty)
         };
 
 };
-                handleVarDecl(False, (Decl(decl, node_info)));
-                enterPrototypeScope;
-                maybe((return(())), (mapM_(handleParamDecl)), (getParams(ty)));
-                leavePrototypeScope
-        }
+            handleVarDecl(False, (Decl(decl, node_info)));
+            enterPrototypeScope;
+            maybe((return(())), (mapM_(handleParamDecl)), (getParams(ty)));
+            leavePrototypeScope}
     }
 
     fn extVarDecl((VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info)): m) -> m {
-        {
+        /* do */ {
 
-                when((isNoName(var_name)))(astError(node_info, "NoName in extVarDecl".to_string()));
-                let (storage, is_def) = globalStorage(storage_spec);
-                {
+            when((isNoName(var_name)))(astError(node_info, "NoName in extVarDecl".to_string()));
+            let (storage, is_def) = globalStorage(storage_spec);
+            {
 
             let vardecl = || {
             VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ)
         };
 
 };
-                if(is_def, then, handleObjectDef, False, ident)(ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, False)(Decl(vardecl, node_info)))
-        }
+            if(is_def, then, handleObjectDef, False, ident)(ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, False)(Decl(vardecl, node_info)))}
     }
 
     fn getParams(__0: Maybe) -> Maybe {
         match (__0) {
-            <todo> => { Just(params) },
-            <todo> => { Nothing },
+            FunctionType(FunType(_, params, _), _) => { Just(params) },
+            _ => { Nothing },
         }
     }
 
@@ -252,381 +243,343 @@ mod Language_C_Analysis_AstAnalysis {
     }
 
     fn localVarDecl((VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info)): m) -> m {
-        {
+        /* do */ {
 
-                when((isNoName(var_name)))(astError(node_info, "NoName in localVarDecl".to_string()));
-                let (storage, is_def) = localStorage(storage_spec);
-                {
+            when((isNoName(var_name)))(astError(node_info, "NoName in localVarDecl".to_string()));
+            let (storage, is_def) = localStorage(storage_spec);
+            {
 
             let vardecl = || {
             VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ)
         };
 
 };
-                if(is_def, then, handleObjectDef, True, ident, (ObjDef(vardecl, init_opt, node_info)), else, handleVarDecl, True, (Decl(vardecl, node_info)))
-        }
+            if(is_def, then, handleObjectDef, True, ident, (ObjDef(vardecl, init_opt, node_info)), else, handleVarDecl, True, (Decl(vardecl, node_info)))}
     }
 
     fn matchDesignator(__0: Bool) -> Bool {
         match (__0, __1) {
-            <todo> => { (m1 == m2) },
-            <todo> => { True },
+            CMemberDesig(m1, _), CMemberDesig(m2, _) => { (m1 == m2) },
+            _, _ => { True },
         }
     }
 
     fn tBlockItem(__0: MonadTrav) -> MonadTrav {
         match (__0, __1) {
-            <todo> => { tStmt(c, s) },
-            <todo> => { >>(analyseDecl(True, d), return(voidType)) },
-            <todo> => { >>(analyseFunDef(fd), return(voidType)) },
+            c, CBlockStmt(s) => { tStmt(c, s) },
+            _, CBlockDecl(d) => { >>(analyseDecl(True, d), return(voidType)) },
+            _, CNestedFunDef(fd) => { >>(analyseFunDef(fd), return(voidType)) },
         }
     }
 
     fn tDesignator(__0: MonadTrav) -> MonadTrav {
         match (__0, __1) {
-            <todo> => { {
+            ArrayType(bt, _, _, _), CArrDesig(e, ni, <todo>, ds) => { /* do */ {
 
-                    __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                    tDesignator(bt, ds)
-            } },
-            <todo> => { {
+                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                tDesignator(bt, ds)} },
+            ArrayType(bt, _, _, _), CRangeDesig(e1, e2, ni, <todo>, ds) => { /* do */ {
 
-                    __op_bind(tExpr(vec![], RValue, e1), checkIntegral_q(ni));
-                    __op_bind(tExpr(vec![], RValue, e2), checkIntegral_q(ni));
-                    tDesignator(bt, ds)
-            } },
-            <todo> => { typeError((nodeInfo(d)), "member designator in array initializer".to_string()) },
-            <todo> => { {
+                __op_bind(tExpr(vec![], RValue, e1), checkIntegral_q(ni));
+                __op_bind(tExpr(vec![], RValue, e2), checkIntegral_q(ni));
+                tDesignator(bt, ds)} },
+            ArrayType(_, _, _, _), d(<todo>, ds) => { typeError((nodeInfo(d)), "member designator in array initializer".to_string()) },
+            t, <todo>, DirectType(TyComp(_), _, _), CMemberDesig(m, ni, <todo>, ds) => { /* do */ {
 
-                    let mt = fieldType(ni, m, t);
-                    tDesignator((canonicalType(mt)), ds)
-            } },
-            <todo> => { typeError((nodeInfo(d)), "array designator in compound initializer".to_string()) },
-            <todo> => { return(t) },
+                let mt = fieldType(ni, m, t);
+                tDesignator((canonicalType(mt)), ds)} },
+            t, <todo>, DirectType(TyComp(_), _, _), d(<todo>, _) => { typeError((nodeInfo(d)), "array designator in compound initializer".to_string()) },
+            t, [] => { return(t) },
         }
     }
 
     fn tExpr(c: MonadTrav) -> MonadTrav {
         match nameOfNode((nodeInfo(e))) {
-                Just, n => { {
+                Just, n => { /* do */ {
 
-                        let dt = getDefTable;
-                        match lookupType(dt, n) {
+                    let dt = getDefTable;
+                    match lookupType(dt, n) {
         Just, t => { return(t) },
-        Nothing => { {
+        Nothing => { /* do */ {
 
-                let t = tExpr_q(c, side, e);
-                withDefTable((Lambda))
-        } },
-    }
-                } },
+            let t = tExpr_q(c, side, e);
+            withDefTable((Lambda))} },
+    }} },
                 Nothing => { tExpr_q(c, side, e) },
             }
     }
 
     fn tExpr_q(__0: MonadTrav) -> MonadTrav {
         match (__0, __1, __2) {
-            <todo> => { {
+            c, side, CBinary(op, le, re, ni) => { /* do */ {
 
-                    when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
-                    let lt = tExpr(c, RValue, le);
-                    let rt = tExpr(c, RValue, re);
-                    binopType_q(ni, op, lt, rt)
-            } },
-            <todo> => { {
+                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                let lt = tExpr(c, RValue, le);
+                let rt = tExpr(c, RValue, re);
+                binopType_q(ni, op, lt, rt)} },
+            c, side, CUnary(CAdrOp, e, ni) => { /* do */ {
 
-                    when(((side == LValue)))(typeError(ni, "address-of operator as lvalue".to_string()));
-                    match e {
+                when(((side == LValue)))(typeError(ni, "address-of operator as lvalue".to_string()));
+                match e {
         CCompoundLit, _, _, _ => { liftM(simplePtr, tExpr(c, RValue, e)) },
         CVar, i, _ => { __op_bind(lookupObject(i), (typeErrorOnLeft(ni) . maybe((notFound(i)), varAddrType))) },
         _ => { liftM(simplePtr, tExpr(c, LValue, e)) },
-    }
-            } },
-            <todo> => { __op_bind(tExpr(c, RValue, e), ((typeErrorOnLeft(ni) . derefType))) },
-            <todo> => { {
+    }} },
+            c, _, CUnary(CIndOp, e, ni) => { __op_bind(tExpr(c, RValue, e), ((typeErrorOnLeft(ni) . derefType))) },
+            c, _, CUnary(CCompOp, e, ni) => { /* do */ {
 
-                    let t = tExpr(c, RValue, e);
-                    checkIntegral_q(ni, t);
-                    return(t)
-            } },
-            <todo> => { {
+                let t = tExpr(c, RValue, e);
+                checkIntegral_q(ni, t);
+                return(t)} },
+            c, side, CUnary(CNegOp, e, ni) => { /* do */ {
 
-                    when(((side == LValue)))(typeError(ni, "logical negation used as lvalue".to_string()));
-                    __op_bind(tExpr(c, RValue, e), checkScalar_q(ni));
-                    return(boolType)
-            } },
-            <todo> => { tExpr(c, (if(isEffectfulOp, op, then, LValue, else, side)), e) },
-            <todo> => { {
+                when(((side == LValue)))(typeError(ni, "logical negation used as lvalue".to_string()));
+                __op_bind(tExpr(c, RValue, e), checkScalar_q(ni));
+                return(boolType)} },
+            c, side, CUnary(op, e, _) => { tExpr(c, (if(isEffectfulOp, op, then, LValue, else, side)), e) },
+            c, _, CIndex(b, i, ni) => { /* do */ {
 
-                    let bt = tExpr(c, RValue, b);
-                    let it = tExpr(c, RValue, i);
-                    let addrTy = binopType_q(ni, CAddOp, bt, it);
-                    typeErrorOnLeft(ni)(derefType(addrTy))
-            } },
-            <todo> => { {
+                let bt = tExpr(c, RValue, b);
+                let it = tExpr(c, RValue, i);
+                let addrTy = binopType_q(ni, CAddOp, bt, it);
+                typeErrorOnLeft(ni)(derefType(addrTy))} },
+            c, side, CCond(e1, me2, e3, ni) => { /* do */ {
 
-                    let t1 = tExpr(c, RValue, e1);
-                    checkScalar_q((nodeInfo(e1)), t1);
-                    let t3 = tExpr(c, side, e3);
-                    match me2 {
-        Just, e2 => { {
+                let t1 = tExpr(c, RValue, e1);
+                checkScalar_q((nodeInfo(e1)), t1);
+                let t3 = tExpr(c, side, e3);
+                match me2 {
+        Just, e2 => { /* do */ {
 
-                let t2 = tExpr(c, side, e2);
-                conditionalType_q(ni, t2, t3)
-        } },
+            let t2 = tExpr(c, side, e2);
+            conditionalType_q(ni, t2, t3)} },
         Nothing => { conditionalType_q(ni, t1, t3) },
-    }
-            } },
-            <todo> => { {
+    }} },
+            c, side, CMember(e, m, deref, ni) => { /* do */ {
 
-                    let t = tExpr(c, RValue, e);
-                    let bt = if(deref, then, typeErrorOnLeft, ni, (derefType(t)), else, return, t);
-                    fieldType(ni, m, bt)
-            } },
-            <todo> => { __op_bind(mapM((tExpr(c, side)), es), (return . last)) },
-            <todo> => { {
+                let t = tExpr(c, RValue, e);
+                let bt = if(deref, then, typeErrorOnLeft, ni, (derefType(t)), else, return, t);
+                fieldType(ni, m, bt)} },
+            c, side, CComma(es, _) => { __op_bind(mapM((tExpr(c, side)), es), (return . last)) },
+            c, side, CCast(d, e, ni) => { /* do */ {
 
-                    let dt = analyseTypeDecl(d);
-                    let et = tExpr(c, side, e);
-                    typeErrorOnLeft(ni)(castCompatible(dt, et));
-                    return(dt)
-            } },
-            <todo> => { {
+                let dt = analyseTypeDecl(d);
+                let et = tExpr(c, side, e);
+                typeErrorOnLeft(ni)(castCompatible(dt, et));
+                return(dt)} },
+            c, side, CSizeofExpr(e, ni) => { /* do */ {
 
-                    when(((side == LValue)))(typeError(ni, "sizeof as lvalue".to_string()));
-                    tExpr(c, RValue, e);
-                    return(size_tType)
-            } },
-            <todo> => { {
+                when(((side == LValue)))(typeError(ni, "sizeof as lvalue".to_string()));
+                tExpr(c, RValue, e);
+                return(size_tType)} },
+            c, side, CAlignofExpr(e, ni) => { /* do */ {
 
-                    when(((side == LValue)))(typeError(ni, "alignof as lvalue".to_string()));
-                    tExpr(c, RValue, e);
-                    return(size_tType)
-            } },
-            <todo> => { complexBaseType(ni, c, side, e) },
-            <todo> => { complexBaseType(ni, c, side, e) },
-            <todo> => { {
+                when(((side == LValue)))(typeError(ni, "alignof as lvalue".to_string()));
+                tExpr(c, RValue, e);
+                return(size_tType)} },
+            c, side, CComplexReal(e, ni) => { complexBaseType(ni, c, side, e) },
+            c, side, CComplexImag(e, ni) => { complexBaseType(ni, c, side, e) },
+            _, side, CLabAddrExpr(_, ni) => { /* do */ {
 
-                    when(((side == LValue)))(typeError(ni, "label address as lvalue".to_string()));
-                    return(PtrType(voidType, noTypeQuals, vec![]))
-            } },
-            <todo> => { {
+                when(((side == LValue)))(typeError(ni, "label address as lvalue".to_string()));
+                return(PtrType(voidType, noTypeQuals, vec![]))} },
+            _, side, CCompoundLit(d, initList, ni) => { /* do */ {
 
-                    when(((side == LValue)))(typeError(ni, "compound literal as lvalue".to_string()));
-                    let lt = analyseTypeDecl(d);
-                    tInitList(ni, (canonicalType(lt)), initList);
-                    return(lt)
-            } },
-            <todo> => { return(size_tType) },
-            <todo> => { return(size_tType) },
-            <todo> => { typeError(ni, "alignoftype as lvalue".to_string()) },
-            <todo> => { typeError(ni, "sizeoftype as lvalue".to_string()) },
-            <todo> => { __op_bind(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), ((return . declType)))) },
-            <todo> => { constType(c) },
-            <todo> => { builtinType(b) },
-            <todo> => { {
+                when(((side == LValue)))(typeError(ni, "compound literal as lvalue".to_string()));
+                let lt = analyseTypeDecl(d);
+                tInitList(ni, (canonicalType(lt)), initList);
+                return(lt)} },
+            _, RValue, CAlignofType(_, _) => { return(size_tType) },
+            _, RValue, CSizeofType(_, _) => { return(size_tType) },
+            _, LValue, CAlignofType(_, ni) => { typeError(ni, "alignoftype as lvalue".to_string()) },
+            _, LValue, CSizeofType(_, ni) => { typeError(ni, "sizeoftype as lvalue".to_string()) },
+            _, side, CVar(i, ni) => { __op_bind(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), ((return . declType)))) },
+            _, _, CConst(c) => { constType(c) },
+            _, _, CBuiltinExpr(b) => { builtinType(b) },
+            c, _, CCall(fe, args, ni) => { /* do */ {
 
-                    {
+                {
 
             let defType = || {
             FunctionType((FunTypeIncomplete((DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)))), noAttributes)
         };
 ;
             let fallback = |i| {
-            {
+            /* do */ {
 
-                    warn(invalidAST(ni)(__op_concat("unknown function: ".to_string(), identToString(i))));
-                    return(defType)
-            }
+                warn(invalidAST(ni)(__op_concat("unknown function: ".to_string(), identToString(i))));
+                return(defType)}
         };
 
 };
-                    let t = match fe {
+                let t = match fe {
             CVar, i, _ => { __op_bind(lookupObject(i), maybe((fallback(i)), (const(tExpr(c, RValue, fe))))) },
             _ => { tExpr(c, RValue, fe) },
         };
-                    let atys = mapM((tExpr(c, RValue)), args);
-                    match canonicalType(t) {
-        PtrType, FunctionType(FunType(rt, pdecls, varargs), _), _, _ => { {
+                let atys = mapM((tExpr(c, RValue)), args);
+                match canonicalType(t) {
+        PtrType, FunctionType(FunType(rt, pdecls, varargs), _), _, _ => { /* do */ {
 
-                {
+            {
 
             let ptys = || {
             map(declType, pdecls)
         };
 
 };
-                mapM_(checkArg)(zip3(ptys, atys, args));
-                unless(varargs)(when((/=(length(atys), length(ptys))))(typeError(ni, "incorrect number of arguments".to_string())));
-                return(canonicalType(rt))
-        } },
-        PtrType, FunctionType(FunTypeIncomplete(rt), _), _, _ => { {
+            mapM_(checkArg)(zip3(ptys, atys, args));
+            unless(varargs)(when((/=(length(atys), length(ptys))))(typeError(ni, "incorrect number of arguments".to_string())));
+            return(canonicalType(rt))} },
+        PtrType, FunctionType(FunTypeIncomplete(rt), _), _, _ => { /* do */ {
 
-                return(canonicalType(rt))
-        } },
+            return(canonicalType(rt))} },
         _ => { typeError(ni)(__op_concat("attempt to call non-function of type ".to_string(), pType(t))) },
-    }
-            } },
-            <todo> => { {
+    }} },
+            c, _, CAssign(op, le, re, ni) => { /* do */ {
 
-                    let lt = tExpr(c, LValue, le);
-                    let rt = tExpr(c, RValue, re);
-                    when((constant(typeQuals(lt))))(typeError(ni)(__op_concat("assignment to lvalue with `constant\' qualifier: ".to_string(), ((render . pretty))(le))));
-                    match (canonicalType(lt), re) {
+                let lt = tExpr(c, LValue, le);
+                let rt = tExpr(c, RValue, re);
+                when((constant(typeQuals(lt))))(typeError(ni)(__op_concat("assignment to lvalue with `constant\' qualifier: ".to_string(), ((render . pretty))(le))));
+                match (canonicalType(lt), re) {
     (lt_q, CConst(CIntConst(i, _))) => if (isPointerType(lt_q) && (getCInteger(i) == 0)) { return(()) },
         (_, _) => { assignCompatible_q(ni, op, lt, rt) },
     };
-                    return(lt)
-            } },
-            <todo> => { {
+                return(lt)} },
+            c, _, CStatExpr(s, _) => { /* do */ {
 
-                    enterBlockScope;
-                    mapM_(((withDefTable . defineLabel)), (getLabels(s)));
-                    let t = tStmt(c, s);
-                    leaveBlockScope;
-                    return(t)
-            } },
+                enterBlockScope;
+                mapM_(((withDefTable . defineLabel)), (getLabels(s)));
+                let t = tStmt(c, s);
+                leaveBlockScope;
+                return(t)} },
         }
     }
 
     fn tInit(__0: MonadTrav) -> MonadTrav {
         match (__0, __1, __2, __3) {
-            <todo> => { {
+            t, i, <todo>, CInitExpr(e, ni) => { /* do */ {
 
-                    let it = tExpr(vec![], RValue, e);
-                    assignCompatible_q(ni, CAssignOp, t, it);
-                    return(i)
-            } },
-            <todo> => { >>(tInitList(ni, (canonicalType(t)), initList), return(i)) },
+                let it = tExpr(vec![], RValue, e);
+                assignCompatible_q(ni, CAssignOp, t, it);
+                return(i)} },
+            t, i, <todo>, CInitList(initList, ni) => { >>(tInitList(ni, (canonicalType(t)), initList), return(i)) },
         }
     }
 
     fn tInitList(__0: MonadTrav) -> MonadTrav {
         match (__0, __1, __2, __3, __4) {
-            <todo> => { >>(tExpr(vec![], RValue, e), return(())) },
-            <todo> => { {
+            ni, t, <todo>, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [[](CInitExpr(e, <todo>, CConst(CStrConst(_, _)), _))] => { >>(tExpr(vec![], RValue, e), return(())) },
+            ni, t, <todo>, ArrayType(_, _, _, _), initList => { /* do */ {
 
-                    {
+                {
 
             let default_ds = || {
             repeat((CArrDesig((CConst((CIntConst((cInteger(0)), ni)))), ni)))
         };
 
 };
-                    checkInits(t, default_ds, initList)
-            } },
-            <todo> => { {
+                checkInits(t, default_ds, initList)} },
+            ni, t, <todo>, DirectType(TyComp(ctr), _, _), initList => { /* do */ {
 
-                    let td = lookupSUE(ni, (sueRef(ctr)));
-                    let ms = tagMembers(ni, td);
-                    {
+                let td = lookupSUE(ni, (sueRef(ctr)));
+                let ms = tagMembers(ni, td);
+                {
 
             let default_ds = || {
             map((Lambda((fst(m)), ni)), ms)
         };
 
 };
-                    checkInits(t, default_ds, initList)
-            } },
-            <todo> => { return(()) },
-            <todo> => { >>(tInit(t, i), return(())) },
-            <todo> => { typeError(ni)(__op_concat("initializer list for type: ".to_string(), pType(t))) },
+                checkInits(t, default_ds, initList)} },
+            ni, PtrType(DirectType(TyVoid, _, _), _, _), _ => { return(()) },
+            _, t, [[](i)] => { >>(tInit(t, i), return(())) },
+            ni, t, _ => { typeError(ni)(__op_concat("initializer list for type: ".to_string(), pType(t))) },
         }
     }
 
     fn tStmt(__0: MonadTrav) -> MonadTrav {
         match (__0, __1) {
-            <todo> => { tStmt(c, s) },
-            <todo> => { maybe((return(voidType)), (tExpr(c, RValue)), e) },
-            <todo> => { {
+            c, CLabel(_, s, _, _) => { tStmt(c, s) },
+            c, CExpr(e, _) => { maybe((return(voidType)), (tExpr(c, RValue)), e) },
+            c, CCompound(ls, body, _) => { /* do */ {
 
-                    enterBlockScope;
-                    mapM_(((withDefTable . defineLabel)), ls);
-                    let t = foldM((const(tBlockItem(c))), voidType, body);
-                    leaveBlockScope;
-                    return(t)
-            } },
-            <todo> => { >>(checkGuard(c, e), >>(tStmt(c, sthen), >>(maybe((return(())), (>>(Lambda(c, s), return(()))), selse), return(voidType)))) },
-            <todo> => { __op_bind(tExpr(c, RValue, e), >>(checkIntegral_q(ni), tStmt((:(SwitchCtx, c)), s))) },
-            <todo> => { >>(checkGuard(c, e), tStmt((:(LoopCtx, c)), s)) },
-            <todo> => { {
+                enterBlockScope;
+                mapM_(((withDefTable . defineLabel)), ls);
+                let t = foldM((const(tBlockItem(c))), voidType, body);
+                leaveBlockScope;
+                return(t)} },
+            c, CIf(e, sthen, selse, _) => { >>(checkGuard(c, e), >>(tStmt(c, sthen), >>(maybe((return(())), (>>(Lambda(c, s), return(()))), selse), return(voidType)))) },
+            c, CSwitch(e, s, ni) => { __op_bind(tExpr(c, RValue, e), >>(checkIntegral_q(ni), tStmt((:(SwitchCtx, c)), s))) },
+            c, CWhile(e, s, _, _) => { >>(checkGuard(c, e), tStmt((:(LoopCtx, c)), s)) },
+            _, CGoto(l, ni) => { /* do */ {
 
-                    let dt = getDefTable;
-                    match lookupLabel(l, dt) {
+                let dt = getDefTable;
+                match lookupLabel(l, dt) {
         Just, _ => { return(voidType) },
         Nothing => { typeError(ni)(__op_concat("undefined label in goto: ".to_string(), identToString(l))) },
-    }
-            } },
-            <todo> => { {
+    }} },
+            c, CCont(ni) => { /* do */ {
 
-                    unless((inLoop(c)))(astError(ni, "continue statement outside of loop".to_string()));
-                    return(voidType)
-            } },
-            <todo> => { {
+                unless((inLoop(c)))(astError(ni, "continue statement outside of loop".to_string()));
+                return(voidType)} },
+            c, CBreak(ni) => { /* do */ {
 
-                    unless((||(inLoop(c), inSwitch(c))))(astError(ni, "break statement outside of loop or switch statement".to_string()));
-                    return(voidType)
-            } },
-            <todo> => { {
+                unless((||(inLoop(c), inSwitch(c))))(astError(ni, "break statement outside of loop or switch statement".to_string()));
+                return(voidType)} },
+            c, CReturn(Just(e), ni) => { /* do */ {
 
-                    let t = tExpr(c, RValue, e);
-                    let rt = match enclosingFunctionType(c) {
+                let t = tExpr(c, RValue, e);
+                let rt = match enclosingFunctionType(c) {
             Just, FunctionType(FunType(rt, _, _), _) => { return(rt) },
             Just, FunctionType(FunTypeIncomplete(rt), _) => { return(rt) },
             Just, ft => { astError(ni)(__op_concat("bad function type: ".to_string(), pType(ft))) },
             Nothing => { astError(ni, "return statement outside function".to_string()) },
         };
-                    match (rt, t) {
+                match (rt, t) {
         (DirectType(TyVoid, _, _), DirectType(TyVoid, _, _)) => { return(()) },
         _ => { assignCompatible_q(ni, CAssignOp, rt, t) },
     };
-                    return(voidType)
-            } },
-            <todo> => { return(voidType) },
-            <todo> => { return(voidType) },
-            <todo> => { {
+                return(voidType)} },
+            _, CReturn(Nothing, _) => { return(voidType) },
+            _, CAsm(_, _) => { return(voidType) },
+            c, CCase(e, s, ni) => { /* do */ {
 
-                    unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
-                    __op_bind(tExpr(c, RValue, e), checkIntegral_q(ni));
-                    tStmt(c, s)
-            } },
-            <todo> => { {
+                unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
+                __op_bind(tExpr(c, RValue, e), checkIntegral_q(ni));
+                tStmt(c, s)} },
+            c, CCases(e1, e2, s, ni) => { /* do */ {
 
-                    unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
-                    __op_bind(tExpr(c, RValue, e1), checkIntegral_q(ni));
-                    __op_bind(tExpr(c, RValue, e2), checkIntegral_q(ni));
-                    tStmt(c, s)
-            } },
-            <todo> => { {
+                unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
+                __op_bind(tExpr(c, RValue, e1), checkIntegral_q(ni));
+                __op_bind(tExpr(c, RValue, e2), checkIntegral_q(ni));
+                tStmt(c, s)} },
+            c, CDefault(s, ni) => { /* do */ {
 
-                    unless((inSwitch(c)))(astError(ni, "default statement outside of switch statement".to_string()));
-                    tStmt(c, s)
-            } },
-            <todo> => { {
+                unless((inSwitch(c)))(astError(ni, "default statement outside of switch statement".to_string()));
+                tStmt(c, s)} },
+            c, CFor(i, g, inc, s, _) => { /* do */ {
 
-                    enterBlockScope;
-                    either((maybe((return(())), checkExpr)), (analyseDecl(True)), i);
-                    maybe((return(())), (checkGuard(c)), g);
-                    maybe((return(())), checkExpr, inc);
-                    tStmt((:(LoopCtx, c)), s);
-                    leaveBlockScope;
-                    return(voidType)
-            } },
-            <todo> => { {
+                enterBlockScope;
+                either((maybe((return(())), checkExpr)), (analyseDecl(True)), i);
+                maybe((return(())), (checkGuard(c)), g);
+                maybe((return(())), checkExpr, inc);
+                tStmt((:(LoopCtx, c)), s);
+                leaveBlockScope;
+                return(voidType)} },
+            c, CGotoPtr(e, ni) => { /* do */ {
 
-                    let t = tExpr(c, RValue, e);
-                    match t {
+                let t = tExpr(c, RValue, e);
+                match t {
         PtrType(_, _, _) => { return(voidType) },
         _ => { typeError(ni, "can\'t goto non-pointer".to_string()) },
-    }
-            } },
+    }} },
         }
     }
 
 }
 
 mod Language_C_Analysis_Builtins {
-        fn builtins() -> DefTable {
+    fn builtins() -> DefTable {
         foldr(doIdent, (foldr(doTypeDef, emptyDefTable, typedefs)), idents)
     }
 
@@ -635,149 +588,136 @@ mod Language_C_Analysis_Builtins {
 mod Language_C_Analysis_ConstEval {
     struct MachineDesc(MachineDesc, { /* struct def */ });
 
-        fn alignofType(__0: m) -> m {
+    fn alignofType(__0: m) -> m {
         match (__0, __1, __2) {
-            <todo> => { return(voidAlign(md)) },
-            <todo> => { return(iAlign(md, it)) },
-            <todo> => { return(fAlign(md, ft)) },
-            <todo> => { return(fAlign(md, ft)) },
-            <todo> => { return(iAlign(md, TyInt)) },
-            <todo> => { return(builtinAlign(md, b)) },
-            <todo> => { return(ptrAlign(md)) },
-            <todo> => { return(ptrAlign(md)) },
-            <todo> => { alignofType(md, n, bt) },
-            <todo> => { alignofType(md, n, t) },
-            <todo> => { astError((nodeInfo(n)))(__op_concat("can\'t find alignment of type: ".to_string(), ((render . pretty))(t))) },
+            md, _, DirectType(TyVoid, _, _) => { return(voidAlign(md)) },
+            md, _, DirectType(TyIntegral(it), _, _) => { return(iAlign(md, it)) },
+            md, _, DirectType(TyFloating(ft), _, _) => { return(fAlign(md, ft)) },
+            md, _, DirectType(TyComplex(ft), _, _) => { return(fAlign(md, ft)) },
+            md, _, DirectType(TyEnum(_), _, _) => { return(iAlign(md, TyInt)) },
+            md, _, DirectType(TyBuiltin(b), _, _) => { return(builtinAlign(md, b)) },
+            md, _, PtrType(_, _, _) => { return(ptrAlign(md)) },
+            md, n, ArrayType(bt, UnknownArraySize(_), _, _) => { return(ptrAlign(md)) },
+            md, n, ArrayType(bt, ArraySize(_, sz), _, _) => { alignofType(md, n, bt) },
+            md, n, TypeDefType(TypeDefRef(_, Just(t), _), _, _) => { alignofType(md, n, t) },
+            _, n, t => { astError((nodeInfo(n)))(__op_concat("can\'t find alignment of type: ".to_string(), ((render . pretty))(t))) },
         }
     }
 
     fn boolValue(__0: Maybe) -> Maybe {
         match (__0) {
-            <todo> => { Just(/=(getCInteger(i), 0)) },
-            <todo> => { Just(/=(getCCharAsInt(c), 0)) },
-            <todo> => { Just(True) },
-            <todo> => { Nothing },
+            CConst(CIntConst(i, _)) => { Just(/=(getCInteger(i), 0)) },
+            CConst(CCharConst(c, _)) => { Just(/=(getCCharAsInt(c), 0)) },
+            CConst(CStrConst(_, _)) => { Just(True) },
+            _ => { Nothing },
         }
     }
 
     fn compSize(md: MonadTrav) -> MonadTrav {
-        {
+        /* do */ {
 
-                let dt = getDefTable;
-                match lookupTag((sueRef(ctr)), dt) {
+            let dt = getDefTable;
+            match lookupTag((sueRef(ctr)), dt) {
         Just, Left(_) => { astError((nodeInfo(ctr)), "composite declared but not defined".to_string()) },
-        Just, Right(CompDef(CompType(_, tag, ms, _, ni))) => { {
+        Just, Right(CompDef(CompType(_, tag, ms, _, ni))) => { /* do */ {
 
-                {
+            {
 
             let ts = || {
             map(declType, ms)
         };
 
 };
-                let sizes = mapM((sizeofType(md, ni)), ts);
-                match tag {
+            let sizes = mapM((sizeofType(md, ni)), ts);
+            match tag {
         StructTag => { return(sum(sizes)) },
         UnionTag => { return(maximum(sizes)) },
-    }
-        } },
+    }} },
         Just, Right(EnumDef(_)) => { return(iSize(md, TyInt)) },
         Nothing => { astError((nodeInfo(ctr)), "unknown composite".to_string()) },
-    }
-        }
+    }}
     }
 
     fn constEval(__0: Map.Map) -> Map.Map {
         match (__0, __1, __2) {
-            <todo> => { {
+            md, env, CCond(e1, me2, e3, ni) => { /* do */ {
 
-                    let e1_q = constEval(md, env, e1);
-                    let me2_q = maybe((return(Nothing)), (liftM(Lambda, constEval(md, env, e))), me2);
-                    let e3_q = constEval(md, env, e3);
-                    match boolValue(e1_q) {
+                let e1_q = constEval(md, env, e1);
+                let me2_q = maybe((return(Nothing)), (liftM(Lambda, constEval(md, env, e))), me2);
+                let e3_q = constEval(md, env, e3);
+                match boolValue(e1_q) {
         Just, True => { return(fromMaybe(e1_q, me2_q)) },
         Just, False => { return(e3_q) },
         Nothing => { return(CCond(e1_q, me2_q, e3_q, ni)) },
-    }
-            } },
-            <todo> => { {
+    }} },
+            md, env, e, <todo>, CBinary(op, e1, e2, ni) => { /* do */ {
 
-                    let e1_q = constEval(md, env, e1);
-                    let e2_q = constEval(md, env, e2);
-                    let t = tExpr(vec![], RValue, e);
-                    let bytes = liftM(fromIntegral, sizeofType(md, e, t));
-                    match (intValue(e1_q), intValue(e2_q)) {
+                let e1_q = constEval(md, env, e1);
+                let e2_q = constEval(md, env, e2);
+                let t = tExpr(vec![], RValue, e);
+                let bytes = liftM(fromIntegral, sizeofType(md, e, t));
+                match (intValue(e1_q), intValue(e2_q)) {
         (Just(i1), Just(i2)) => { intExpr(ni, (withWordBytes(bytes, (intOp(op, i1, i2))))) },
         (_, _) => { return(CBinary(op, e1_q, e2_q, ni)) },
-    }
-            } },
-            <todo> => { {
+    }} },
+            md, env, CUnary(op, e, ni) => { /* do */ {
 
-                    let e_q = constEval(md, env, e);
-                    let t = tExpr(vec![], RValue, e);
-                    let bytes = liftM(fromIntegral, sizeofType(md, e, t));
-                    match intValue(e_q) {
+                let e_q = constEval(md, env, e);
+                let t = tExpr(vec![], RValue, e);
+                let bytes = liftM(fromIntegral, sizeofType(md, e, t));
+                match intValue(e_q) {
         Just, i => { match intUnOp(op, i) {
                 Just, i_q => { intExpr(ni, (withWordBytes(bytes, i_q))) },
                 Nothing => { astError(ni, "invalid unary operator applied to constant".to_string()) },
             } },
         Nothing => { return(CUnary(op, e_q, ni)) },
-    }
-            } },
-            <todo> => { {
+    }} },
+            md, env, CCast(d, e, ni) => { /* do */ {
 
-                    let e_q = constEval(md, env, e);
-                    let t = analyseTypeDecl(d);
-                    let bytes = liftM(fromIntegral, sizeofType(md, d, t));
-                    match intValue(e_q) {
+                let e_q = constEval(md, env, e);
+                let t = analyseTypeDecl(d);
+                let bytes = liftM(fromIntegral, sizeofType(md, d, t));
+                match intValue(e_q) {
         Just, i => { intExpr(ni, (withWordBytes(bytes, i))) },
         Nothing => { return(CCast(d, e_q, ni)) },
-    }
-            } },
-            <todo> => { {
+    }} },
+            md, _, CSizeofExpr(e, ni) => { /* do */ {
 
-                    let t = tExpr(vec![], RValue, e);
-                    let sz = sizeofType(md, e, t);
-                    intExpr(ni, sz)
-            } },
-            <todo> => { {
+                let t = tExpr(vec![], RValue, e);
+                let sz = sizeofType(md, e, t);
+                intExpr(ni, sz)} },
+            md, _, CSizeofType(d, ni) => { /* do */ {
 
-                    let t = analyseTypeDecl(d);
-                    let sz = sizeofType(md, d, t);
-                    intExpr(ni, sz)
-            } },
-            <todo> => { {
+                let t = analyseTypeDecl(d);
+                let sz = sizeofType(md, d, t);
+                intExpr(ni, sz)} },
+            md, _, CAlignofExpr(e, ni) => { /* do */ {
 
-                    let t = tExpr(vec![], RValue, e);
-                    let sz = alignofType(md, e, t);
-                    intExpr(ni, sz)
-            } },
-            <todo> => { {
+                let t = tExpr(vec![], RValue, e);
+                let sz = alignofType(md, e, t);
+                intExpr(ni, sz)} },
+            md, _, CAlignofType(d, ni) => { /* do */ {
 
-                    let t = analyseTypeDecl(d);
-                    let sz = alignofType(md, d, t);
-                    intExpr(ni, sz)
-            } },
-            <todo> => { {
+                let t = analyseTypeDecl(d);
+                let sz = alignofType(md, d, t);
+                intExpr(ni, sz)} },
+            md, env, e, <todo>, CVar(i, _) => { /* do */ {
 
-                    let t = tExpr(vec![], RValue, e);
-                    match derefTypeDef(t) {
-        DirectType, TyEnum(etr), _, _ => { {
+                let t = tExpr(vec![], RValue, e);
+                match derefTypeDef(t) {
+        DirectType, TyEnum(etr), _, _ => { /* do */ {
 
-                let dt = getDefTable;
-                match lookupTag((sueRef(etr)), dt) {
-        Just, Right(EnumDef(EnumType(_, es, _, _))) => { {
+            let dt = getDefTable;
+            match lookupTag((sueRef(etr)), dt) {
+        Just, Right(EnumDef(EnumType(_, es, _, _))) => { /* do */ {
 
-                let env_q = foldM(enumConst, env, es);
-                return(fromMaybe(e)(Map_lookup(i, env_q)))
-        } },
+            let env_q = foldM(enumConst, env, es);
+            return(fromMaybe(e)(Map_lookup(i, env_q)))} },
         _ => { return(e) },
-    }
-        } },
+    }} },
         _ => { return(e) },
-    }
-            } },
-            <todo> => { return(e) },
+    }} },
+            _, _, e => { return(e) },
         }
     }
 
@@ -787,71 +727,69 @@ mod Language_C_Analysis_ConstEval {
 
     fn intOp(__0: Integer) -> Integer {
         match (__0, __1, __2) {
-            <todo> => { +(i1, i2) },
-            <todo> => { -(i1, i2) },
-            <todo> => { *(i1, i2) },
-            <todo> => { div(i1, i2) },
-            <todo> => { mod(i1, i2) },
-            <todo> => { shiftL(i1, fromInteger(i2)) },
-            <todo> => { shiftR(i1, fromInteger(i2)) },
-            <todo> => { toInteger(fromEnum(<(i1, i2))) },
-            <todo> => { toInteger(fromEnum(>(i1, i2))) },
-            <todo> => { toInteger(fromEnum(<=(i1, i2))) },
-            <todo> => { toInteger(fromEnum(>=(i1, i2))) },
-            <todo> => { toInteger(fromEnum((i1 == i2))) },
-            <todo> => { toInteger(fromEnum(/=(i1, i2))) },
-            <todo> => { .&.(i1, i2) },
-            <todo> => { xor(i1, i2) },
-            <todo> => { .|.(i1, i2) },
-            <todo> => { toInteger(fromEnum(((/=(i1, 0)) && (/=(i2, 0))))) },
-            <todo> => { toInteger(fromEnum(||((/=(i1, 0)), (/=(i2, 0))))) },
+            CAddOp, i1, i2 => { +(i1, i2) },
+            CSubOp, i1, i2 => { -(i1, i2) },
+            CMulOp, i1, i2 => { *(i1, i2) },
+            CDivOp, i1, i2 => { div(i1, i2) },
+            CRmdOp, i1, i2 => { mod(i1, i2) },
+            CShlOp, i1, i2 => { shiftL(i1, fromInteger(i2)) },
+            CShrOp, i1, i2 => { shiftR(i1, fromInteger(i2)) },
+            CLeOp, i1, i2 => { toInteger(fromEnum(<(i1, i2))) },
+            CGrOp, i1, i2 => { toInteger(fromEnum(>(i1, i2))) },
+            CLeqOp, i1, i2 => { toInteger(fromEnum(<=(i1, i2))) },
+            CGeqOp, i1, i2 => { toInteger(fromEnum(>=(i1, i2))) },
+            CEqOp, i1, i2 => { toInteger(fromEnum((i1 == i2))) },
+            CNeqOp, i1, i2 => { toInteger(fromEnum(/=(i1, i2))) },
+            CAndOp, i1, i2 => { .&.(i1, i2) },
+            CXorOp, i1, i2 => { xor(i1, i2) },
+            COrOp, i1, i2 => { .|.(i1, i2) },
+            CLndOp, i1, i2 => { toInteger(fromEnum(((/=(i1, 0)) && (/=(i2, 0))))) },
+            CLorOp, i1, i2 => { toInteger(fromEnum(||((/=(i1, 0)), (/=(i2, 0))))) },
         }
     }
 
     fn intUnOp(__0: Maybe) -> Maybe {
         match (__0, __1) {
-            <todo> => { Just(i) },
-            <todo> => { Just(Operator("-")(i)) },
-            <todo> => { Just(complement(i)) },
-            <todo> => { Just(toInteger(fromEnum((i == 0)))) },
-            <todo> => { Nothing },
+            CPlusOp, i => { Just(i) },
+            CMinOp, i => { Just(Operator("-")(i)) },
+            CCompOp, i => { Just(complement(i)) },
+            CNegOp, i => { Just(toInteger(fromEnum((i == 0)))) },
+            _, _ => { Nothing },
         }
     }
 
     fn intValue(__0: Maybe) -> Maybe {
         match (__0) {
-            <todo> => { Just(getCInteger(i)) },
-            <todo> => { Just(getCCharAsInt(c)) },
-            <todo> => { Nothing },
+            CConst(CIntConst(i, _)) => { Just(getCInteger(i)) },
+            CConst(CCharConst(c, _)) => { Just(getCCharAsInt(c)) },
+            _ => { Nothing },
         }
     }
 
     fn sizeofType(__0: m) -> m {
         match (__0, __1, __2) {
-            <todo> => { return(voidSize(md)) },
-            <todo> => { return(iSize(md, it)) },
-            <todo> => { return(fSize(md, ft)) },
-            <todo> => { return(*(2, fSize(md, ft))) },
-            <todo> => { compSize(md, ctr) },
-            <todo> => { return(iSize(md, TyInt)) },
-            <todo> => { return(builtinSize(md, b)) },
-            <todo> => { return(ptrSize(md)) },
-            <todo> => { return(ptrSize(md)) },
-            <todo> => { {
+            md, _, DirectType(TyVoid, _, _) => { return(voidSize(md)) },
+            md, _, DirectType(TyIntegral(it), _, _) => { return(iSize(md, it)) },
+            md, _, DirectType(TyFloating(ft), _, _) => { return(fSize(md, ft)) },
+            md, _, DirectType(TyComplex(ft), _, _) => { return(*(2, fSize(md, ft))) },
+            md, _, DirectType(TyComp(ctr), _, _) => { compSize(md, ctr) },
+            md, _, DirectType(TyEnum(_), _, _) => { return(iSize(md, TyInt)) },
+            md, _, DirectType(TyBuiltin(b), _, _) => { return(builtinSize(md, b)) },
+            md, _, PtrType(_, _, _) => { return(ptrSize(md)) },
+            md, n, ArrayType(bt, UnknownArraySize(_), _, _) => { return(ptrSize(md)) },
+            md, n, ArrayType(bt, ArraySize(_, sz), _, _) => { /* do */ {
 
-                    let sz_q = constEval(md, Map_empty, sz);
-                    match sz_q {
-        CConst, CIntConst(i, _) => { {
+                let sz_q = constEval(md, Map_empty, sz);
+                match sz_q {
+        CConst, CIntConst(i, _) => { /* do */ {
 
-                let s = sizeofType(md, n, bt);
-                return(*(getCInteger(i), s))
-        } },
+            let s = sizeofType(md, n, bt);
+            return(*(getCInteger(i), s))} },
         _ => { return(ptrSize(md)) },
-    }
-            } },
-            <todo> => { sizeofType(md, n, t) },
-            <todo> => { return(ptrSize(md)) },
-            <todo> => { astError((nodeInfo(n)))(__op_concat("can\'t find size of type: ".to_string(), ((render . pretty))(t))) },
+    }} },
+            md, n, TypeDefType(TypeDefRef(_, Just(t), _), _, _) => { sizeofType(md, n, t) },
+            md, _, FunctionType(_, _) => { return(ptrSize(md)) },
+            _, n, t => { astError((nodeInfo(n)))(__op_concat("can\'t find size of type: ".to_string(), ((render . pretty))(t))) },
         }
     }
 
@@ -862,7 +800,7 @@ mod Language_C_Analysis_ConstEval {
 }
 
 mod Language_C_Analysis_Debug {
-        fn globalDeclStats(file_filter: Vec<(String, isize)>) -> Vec<(String, isize)> {
+    fn globalDeclStats(file_filter: Vec<(String, isize)>) -> Vec<(String, isize)> {
         vec![("Enumeration Constants".to_string(), Map_size(enumerators)), ("Total Object/Function Declarations".to_string(), Map_size(all_decls)), ("Object definitions".to_string(), Map_size(objDefs)), ("Function Definitions".to_string(), Map_size(funDefs)), ("Tag definitions".to_string(), Map_size(tagDefs)), ("TypeDefs".to_string(), Map_size(typeDefs))]
     }
 
@@ -897,7 +835,7 @@ mod Language_C_Analysis_DeclAnalysis {
         ThreadSpec,
         StaticSpec(Bool),
         ExternSpec(Bool)
-    };
+    }
 
     struct VarDeclInfo(VarDeclInfo, VarName, Bool, StorageSpec, Attributes, Type, NodeInfo);
 
@@ -908,14 +846,14 @@ mod Language_C_Analysis_DeclAnalysis {
         BaseInt,
         BaseFloat,
         BaseDouble
-    };
+    }
 
     #[derive(Eq, Ord)]
     enum SignSpec {
         NoSignSpec,
         Signed,
         Unsigned
-    };
+    }
 
     #[derive(Eq, Ord)]
     enum SizeMod {
@@ -923,7 +861,7 @@ mod Language_C_Analysis_DeclAnalysis {
         ShortMod,
         LongMod,
         LongLongMod
-    };
+    }
 
     struct NumTypeSpec(NumTypeSpec, { /* struct def */ });
 
@@ -935,32 +873,30 @@ mod Language_C_Analysis_DeclAnalysis {
         TSTypeDef(TypeDefRef),
         TSType(Type),
         TSNonBasic(CTypeSpec)
-    };
+    }
 
-        fn analyseVarDecl(handle_sue_def: m) -> m {
-        {
+    fn analyseVarDecl(handle_sue_def: m) -> m {
+        /* do */ {
 
-                let storage_spec = canonicalStorageSpec(storage_specs);
-                let typ = tType(handle_sue_def, node, typequals, canonTySpecs, derived_declrs, oldstyle_params);
-                let attrs_q = mapM(tAttr, (__op_concat(decl_attrs, declr_attrs)));
-                let name = mkVarName(node, name_opt, asmname_opt);
-                return(VarDeclInfo(name, inline, storage_spec, attrs_q, typ, node))
-        }
+            let storage_spec = canonicalStorageSpec(storage_specs);
+            let typ = tType(handle_sue_def, node, typequals, canonTySpecs, derived_declrs, oldstyle_params);
+            let attrs_q = mapM(tAttr, (__op_concat(decl_attrs, declr_attrs)));
+            let name = mkVarName(node, name_opt, asmname_opt);
+            return(VarDeclInfo(name, inline, storage_spec, attrs_q, typ, node))}
     }
 
     fn analyseVarDecl_q(handle_sue_def: m) -> m {
-        {
+        /* do */ {
 
-                {
+            {
 
             let (storage_specs, attrs, type_quals, type_specs, inline) = || {
             partitionDeclSpecs(declspecs)
         };
 
 };
-                let canonTySpecs = canonicalTypeSpec(type_specs);
-                analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, inline, declr, oldstyle, init_opt)
-        }
+            let canonTySpecs = canonicalTypeSpec(type_specs);
+            analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, inline, declr, oldstyle, init_opt)}
     }
 
     fn canonicalStorageSpec(storagespecs: m) -> m {
@@ -973,9 +909,9 @@ mod Language_C_Analysis_DeclAnalysis {
 
     fn computeParamStorage(__0: Either) -> Either {
         match (__0, __1) {
-            <todo> => { Right((Auto(False))) },
-            <todo> => { Right((Auto(True))) },
-            <todo> => { (Left . badSpecifierError(node)(__op_concat("Bad storage specified for parameter: ".to_string(), show(spec)))) },
+            _, NoStorageSpec => { Right((Auto(False))) },
+            _, RegSpec => { Right((Auto(True))) },
+            node, spec => { (Left . badSpecifierError(node)(__op_concat("Bad storage specified for parameter: ".to_string(), show(spec)))) },
         }
     }
 
@@ -994,17 +930,17 @@ mod Language_C_Analysis_DeclAnalysis {
 
     fn getOnlyDeclr(__0: m) -> m {
         match (__0) {
-            <todo> => { return(declr) },
-            <todo> => { internalErr("getOnlyDeclr: declaration doesn\'t have a unique declarator".to_string()) },
+            CDecl(_, [Just(declr)(_, _)], _) => { return(declr) },
+            CDecl(_, _, node) => { internalErr("getOnlyDeclr: declaration doesn\'t have a unique declarator".to_string()) },
         }
     }
 
     fn hasThreadLocalSpec(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { b },
-            <todo> => { b },
-            <todo> => { False },
+            ThreadSpec => { True },
+            StaticSpec(b) => { b },
+            ExternSpec(b) => { b },
+            _ => { False },
         }
     }
 
@@ -1014,19 +950,18 @@ mod Language_C_Analysis_DeclAnalysis {
 
     fn mergeOldStyle(__0: m) -> m {
         match (__0, __1, __2) {
-            <todo> => { return(declrs) },
-            <todo> => { match params {
-                    Left, list => { {
+            _node, [], declrs => { return(declrs) },
+            node, oldstyle_params, CFunDeclr(params, attrs, fdnode, <todo>, dds) => { match params {
+                    Left, list => { /* do */ {
 
-                            let oldstyle_params_q = liftM(concat)(mapM(splitCDecl, oldstyle_params));
-                            let param_map = liftM(Map_fromList)(mapM(attachNameOfDecl, oldstyle_params_q));
-                            let (newstyle_params, param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
-                            when((not(Map_null(param_map_q))))(astError(node)(__op_concat("declarations for parameter(s) ".to_string(), __op_concat(showParamMap(param_map_q), " but no such parameter".to_string()))));
-                            return((:(CFunDeclr((Right((newstyle_params, False))), attrs, fdnode), dds)))
-                    } },
+                        let oldstyle_params_q = liftM(concat)(mapM(splitCDecl, oldstyle_params));
+                        let param_map = liftM(Map_fromList)(mapM(attachNameOfDecl, oldstyle_params_q));
+                        let (newstyle_params, param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
+                        when((not(Map_null(param_map_q))))(astError(node)(__op_concat("declarations for parameter(s) ".to_string(), __op_concat(showParamMap(param_map_q), " but no such parameter".to_string()))));
+                        return((:(CFunDeclr((Right((newstyle_params, False))), attrs, fdnode), dds)))} },
                     Right, _newstyle => { astError(node, "oldstyle parameter list, but newstyle function declaration".to_string()) },
                 } },
-            <todo> => { astError(node, "oldstyle parameter list, but not function type".to_string()) },
+            node, _, _ => { astError(node, "oldstyle parameter list, but not function type".to_string()) },
         }
     }
 
@@ -1042,8 +977,8 @@ mod Language_C_Analysis_DeclAnalysis {
 
     fn mkVarName(__0: Maybe) -> Maybe {
         match (__0, __1, __2) {
-            <todo> => { return(NoName) },
-            <todo> => { return(VarName(n, asm)) },
+            node, Nothing, _ => { return(NoName) },
+            node, Just(n), asm => { return(VarName(n, asm)) },
         }
     }
 
@@ -1067,9 +1002,9 @@ mod Language_C_Analysis_DeclAnalysis {
 
     fn tArraySize(__0: m) -> m {
         match (__0) {
-            <todo> => { return((UnknownArraySize(False))) },
-            <todo> => { return((UnknownArraySize(True))) },
-            <todo> => { liftM((ArraySize(static)), (return(szexpr))) },
+            CNoArrSize(False) => { return((UnknownArraySize(False))) },
+            CNoArrSize(True) => { return((UnknownArraySize(True))) },
+            CArrSize(static, szexpr) => { liftM((ArraySize(static)), (return(szexpr))) },
         }
     }
 
@@ -1082,95 +1017,89 @@ mod Language_C_Analysis_DeclAnalysis {
     }
 
     fn tCompTypeDecl(handle_def: m) -> m {
-        {
+        /* do */ {
 
-                let sue_ref = createSUERef(node_info, ident_opt);
-                {
+            let sue_ref = createSUERef(node_info, ident_opt);
+            {
 
             let tag_q = || {
             tTag(tag)
         };
 
 };
-                let attrs_q = mapM(tAttr, attrs);
-                {
+            let attrs_q = mapM(tAttr, attrs);
+            {
 
             let decl = || {
             CompTypeRef(sue_ref, tag_q, node_info)
         };
 
 };
-                handleTagDecl((CompDecl(decl)));
-                when((handle_def))({
+            handleTagDecl((CompDecl(decl)));
+            when((handle_def))(/* do */ {
 
-            maybeM(member_decls_opt)(__op_bind(Lambda(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef_CompDef)))
-    });
-                return(decl)
-        }
+        maybeM(member_decls_opt)(__op_bind(Lambda(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef_CompDef)))});
+            return(decl)}
     }
 
     fn tDirectType(handle_sue_def: m) -> m {
-        {
+        /* do */ {
 
-                let (quals, attrs) = tTypeQuals(ty_quals);
-                {
+            let (quals, attrs) = tTypeQuals(ty_quals);
+            {
 
             let baseType = |ty_name| {
             DirectType(ty_name, quals, attrs)
         };
 
 };
-                match canonTySpec {
+            match canonTySpec {
         TSNone => { return(baseType((TyIntegral(TyInt)))) },
         TSVoid => { return(baseType(TyVoid)) },
         TSBool => { return(baseType((TyIntegral(TyBool)))) },
-        TSNum, tsnum => { {
+        TSNum, tsnum => { /* do */ {
 
-                let numType = tNumType(tsnum);
-                (return . baseType(match numType {
+            let numType = tNumType(tsnum);
+            (return . baseType(match numType {
             Left, (floatType, iscomplex) => if iscomplex { TyComplex(floatType) }
 otherwise { TyFloating(floatType) },
                 Right, intType => { TyIntegral(intType) },
-            }))
-        } },
+            }))} },
         TSTypeDef, tdr => { return(TypeDefType(tdr, quals, attrs)) },
         TSNonBasic, CSUType(su, _tnode) => { liftM(((baseType . TyComp)))(tCompTypeDecl(handle_sue_def, su)) },
         TSNonBasic, CEnumType(enum, _tnode) => { liftM(((baseType . TyEnum)))(tEnumTypeDecl(handle_sue_def, enum)) },
         TSType, t => { mergeTypeAttributes(node, quals, attrs, t) },
         TSNonBasic, _ => { astError(node, "Unexpected typespec".to_string()) },
-    }
-        }
+    }}
     }
 
     fn tEnumType(sue_ref: m) -> m {
-        {
+        /* do */ {
 
-                mapM_(handleEnumeratorDef, enumerators_q);
-                return(ty);
-            
+            mapM_(handleEnumeratorDef, enumerators_q);
+            return(ty);
         }
     }
 
     fn tMemberDecls(__0: m) -> m {
         match (__0) {
-            <todo> => { {
+            CDecl(declspecs, [], node) => { /* do */ {
 
-                    {
+                {
 
             let (storage_specs, _attrs, typequals, typespecs, is_inline) = || {
             partitionDeclSpecs(declspecs)
         };
 
 };
-                    when(is_inline)(astError(node, "member declaration with inline specifier".to_string()));
-                    let canonTySpecs = canonicalTypeSpec(typespecs);
-                    let ty = tType(True, node, typequals, canonTySpecs, vec![], vec![]);
-                    match ty {
+                when(is_inline)(astError(node, "member declaration with inline specifier".to_string()));
+                let canonTySpecs = canonicalTypeSpec(typespecs);
+                let ty = tType(True, node, typequals, canonTySpecs, vec![], vec![]);
+                match ty {
         DirectType, TyComp(_), _, _ => { return(vec![MemberDecl((VarDecl(NoName, (DeclAttrs(False, NoStorage, vec![])), ty)), Nothing, node)]) },
         _ => { astError(node, "anonymous member has a non-composite type".to_string()) },
-    }
-            } },
-            <todo> => { mapM((uncurry(tMemberDecl)), (zip((True:repeat(False)), declrs))) },
+    }} },
+            CDecl(declspecs, declrs, node) => { mapM((uncurry(tMemberDecl)), (zip((True:repeat(False)), declrs))) },
         }
     }
 
@@ -1203,27 +1132,26 @@ otherwise { intType(TyChar) },
     }
 
     fn tParamDecl((CDecl(declspecs, declrs, node)): m) -> m {
-        {
+        /* do */ {
 
-                let declr = getParamDeclr;
-                let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(True, declspecs, declr, vec![], Nothing);
-                when((is_inline))(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
-                let storage = throwOnLeft(computeParamStorage(node, storage_spec));
-                {
+            let declr = getParamDeclr;
+            let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(True, declspecs, declr, vec![], Nothing);
+            when((is_inline))(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
+            let storage = throwOnLeft(computeParamStorage(node, storage_spec));
+            {
 
             let paramDecl = || {
             mkParamDecl(name, storage, attrs, ty, declr_node)
         };
 
 };
-                return(paramDecl)
-        }
+            return(paramDecl)}
     }
 
     fn tTag(__0: CompTyKind) -> CompTyKind {
         match (__0) {
-            <todo> => { StructTag },
-            <todo> => { UnionTag },
+            CStructTag => { StructTag },
+            CUnionTag => { UnionTag },
         }
     }
 
@@ -1245,7 +1173,7 @@ mod Language_C_Analysis_DefTable {
     enum TagFwdDecl {
         CompDecl(CompTypeRef),
         EnumDecl(EnumTypeRef)
-    };
+    }
 
     struct DefTable(DefTable, { /* struct def */ });
 
@@ -1256,18 +1184,18 @@ mod Language_C_Analysis_DefTable {
         KeepDef(t),
         Shadowed(t),
         KindMismatch(t)
-    };
+    }
 
     #[derive(Eq, Ord)]
     enum TagEntryKind {
         CompKind(CompTyKind),
         EnumKind
-    };
+    }
 
-        fn compatIdentEntry(__0: Bool) -> Bool {
+    fn compatIdentEntry(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { either((const(True)), (const(False))) },
-            <todo> => { either((const(False)))(Lambda) },
+            Left(_tydef) => { either((const(True)), (const(False))) },
+            Right(def) => { either((const(False)))(Lambda) },
         }
     }
 
@@ -1277,11 +1205,11 @@ mod Language_C_Analysis_DefTable {
 
     fn declStatusDescr(__0: DeclarationStatus) -> DeclarationStatus {
         match (__0) {
-            <todo> => { "new".to_string() },
-            <todo> => { "redeclared".to_string() },
-            <todo> => { "keep old".to_string() },
-            <todo> => { "shadowed".to_string() },
-            <todo> => { "kind mismatch".to_string() },
+            NewDecl => { "new".to_string() },
+            Redeclared(_) => { "redeclared".to_string() },
+            KeepDef(_) => { "keep old".to_string() },
+            Shadowed(_) => { "shadowed".to_string() },
+            KindMismatch(_) => { "kind mismatch".to_string() },
         }
     }
 
@@ -1465,20 +1393,20 @@ otherwise { KindMismatch(def_q) },
 
     fn tagKind(__0: TagEntryKind) -> TagEntryKind {
         match (__0) {
-            <todo> => { CompKind((compTag(cd))) },
-            <todo> => { EnumKind },
-            <todo> => { CompKind((compTag(cd))) },
-            <todo> => { EnumKind },
+            Left(CompDecl(cd)) => { CompKind((compTag(cd))) },
+            Left(EnumDecl(_)) => { EnumKind },
+            Right(CompDef(cd)) => { CompKind((compTag(cd))) },
+            Right(EnumDef(_)) => { EnumKind },
         }
     }
 
 }
 
 mod Language_C_Analysis_Export {
-        fn exportArraySize(__0: CArrSize) -> CArrSize {
+    fn exportArraySize(__0: CArrSize) -> CArrSize {
         match (__0) {
-            <todo> => { CArrSize(static, e) },
-            <todo> => { CNoArrSize(complete) },
+            ArraySize(static, e) => { CArrSize(static, e) },
+            UnknownArraySize(complete) => { CNoArrSize(complete) },
         }
     }
 
@@ -1549,8 +1477,8 @@ mod Language_C_Analysis_Export {
 
     fn exportMemberDecl(__0: CDecl) -> CDecl {
         match (__0) {
-            <todo> => { CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(Nothing, Nothing, Just(expr))], node_info) },
-            <todo> => { {
+            AnonBitField(ty, expr, node_info) => { CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(Nothing, Nothing, Just(expr))], node_info) },
+            MemberDecl(vardecl, bitfieldsz, node_info) => { {
 
                             let (specs, declarator) = || {
                     exportVarDecl(vardecl)
@@ -1576,14 +1504,14 @@ mod Language_C_Analysis_Export {
 
     fn exportStorage(__0: Vec<CStorageSpec>) -> Vec<CStorageSpec> {
         match (__0) {
-            <todo> => { vec![] },
-            <todo> => { if(reg, then, vec![CRegister(ni)], else, vec![]) },
-            <todo> => { threadLocal(thread_local, vec![CStatic(ni)]) },
-            <todo> => { threadLocal(thread_local, vec![CExtern(ni)]) },
-            <todo> => { error("impossible storage: static without linkage".to_string()) },
-            <todo> => { vec![CStatic(ni)] },
-            <todo> => { vec![] },
-            <todo> => { error("impossible storage: function without linkage".to_string()) },
+            NoStorage => { vec![] },
+            Auto(reg) => { if(reg, then, vec![CRegister(ni)], else, vec![]) },
+            Static(InternalLinkage, thread_local) => { threadLocal(thread_local, vec![CStatic(ni)]) },
+            Static(ExternalLinkage, thread_local) => { threadLocal(thread_local, vec![CExtern(ni)]) },
+            Static(NoLinkage, _) => { error("impossible storage: static without linkage".to_string()) },
+            FunLinkage(InternalLinkage) => { vec![CStatic(ni)] },
+            FunLinkage(ExternalLinkage) => { vec![] },
+            FunLinkage(NoLinkage) => { error("impossible storage: function without linkage".to_string()) },
         }
     }
 
@@ -1626,9 +1554,9 @@ mod Language_C_Analysis_Export {
 
     fn fromDirectType(__0: TypeName) -> TypeName {
         match (__0) {
-            <todo> => { ty },
-            <todo> => { maybe((error("undefined typeDef".to_string())), fromDirectType, ref) },
-            <todo> => { error("fromDirectType".to_string()) },
+            DirectType(ty, _, _) => { ty },
+            TypeDefType(TypeDefRef(_, ref, _), _, _) => { maybe((error("undefined typeDef".to_string())), fromDirectType, ref) },
+            _ => { error("fromDirectType".to_string()) },
         }
     }
 
@@ -1638,8 +1566,8 @@ mod Language_C_Analysis_Export {
 
     fn threadLocal(__0: Vec<CStorageSpec>) -> Vec<CStorageSpec> {
         match (__0) {
-            <todo> => { id },
-            <todo> => { ((CThread(ni))(Operator(":"))) },
+            False => { id },
+            True => { ((CThread(ni))(Operator(":"))) },
         }
     }
 
@@ -1648,14 +1576,14 @@ mod Language_C_Analysis_Export {
 mod Language_C_Analysis_NameSpaceMap {
     struct NameSpaceMap(NsMap, Map(k, v), Vec<Vec<(k, v)>>);
 
-        fn defGlobal((NsMap(gs, lss)): NameSpaceMap) -> NameSpaceMap {
+    fn defGlobal((NsMap(gs, lss)): NameSpaceMap) -> NameSpaceMap {
         (NsMap((Map_insert(ident, def, gs)), lss), Map_lookup(ident, gs))
     }
 
     fn defLocal(__0: NameSpaceMap) -> NameSpaceMap {
         match (__0, __1, __2, __3, __4) {
-            <todo> => { defGlobal(ns, ident, def) },
-            <todo> => { (NsMap(gs, (:((:((ident, def), ls)), lss))), Prelude_lookup(ident, ls)) },
+            ns, <todo>, NsMap(_, []), ident, def => { defGlobal(ns, ident, def) },
+            NsMap(gs, ls:lss), ident, def => { (NsMap(gs, (:((:((ident, def), ls)), lss))), Prelude_lookup(ident, ls)) },
         }
     }
 
@@ -1673,8 +1601,8 @@ mod Language_C_Analysis_NameSpaceMap {
 
     fn leaveScope(__0: NameSpaceMap) -> NameSpaceMap {
         match (__0) {
-            <todo> => { error("NsMaps.leaveScope: No local scope!".to_string()) },
-            <todo> => { (NsMap(gs, lss), ls) },
+            NsMap(_, []) => { error("NsMaps.leaveScope: No local scope!".to_string()) },
+            NsMap(gs, ls:lss) => { (NsMap(gs, lss), ls) },
         }
     }
 
@@ -1726,12 +1654,12 @@ mod Language_C_Analysis_SemError {
         ShadowedDef,
         DisagreeLinkage,
         NoLinkageOld
-    };
+    }
 
     #[derive(Debug)]
     struct TypeMismatch(TypeMismatch, String, (NodeInfo, Type), (NodeInfo, Type));
 
-        fn badSpecifierError(node_info: BadSpecifierError) -> BadSpecifierError {
+    fn badSpecifierError(node_info: BadSpecifierError) -> BadSpecifierError {
         BadSpecifierError((mkErrorInfo(LevelError, msg, node_info)))
     }
 
@@ -1749,11 +1677,11 @@ mod Language_C_Analysis_SemError {
 
     fn redefErrReason(__0: String) -> String {
         match (__0) {
-            <todo> => { __op_concat("duplicate definition of ".to_string(), ident) },
-            <todo> => { __op_concat("this declaration of ".to_string(), __op_concat(ident, " shadows a previous one".to_string())) },
-            <todo> => { __op_concat(ident, " previously declared as a different kind of symbol".to_string()) },
-            <todo> => { __op_concat(ident, " previously declared with different linkage".to_string()) },
-            <todo> => { __op_concat(ident, " previously declared without linkage".to_string()) },
+            RedefInfo(ident, DuplicateDef, _, _) => { __op_concat("duplicate definition of ".to_string(), ident) },
+            RedefInfo(ident, ShadowedDef, _, _) => { __op_concat("this declaration of ".to_string(), __op_concat(ident, " shadows a previous one".to_string())) },
+            RedefInfo(ident, DiffKindRedecl, _, _) => { __op_concat(ident, " previously declared as a different kind of symbol".to_string()) },
+            RedefInfo(ident, DisagreeLinkage, _, _) => { __op_concat(ident, " previously declared with different linkage".to_string()) },
+            RedefInfo(ident, NoLinkageOld, _, _) => { __op_concat(ident, " previously declared without linkage".to_string()) },
         }
     }
 
@@ -1780,7 +1708,7 @@ mod Language_C_Analysis_SemRep {
     enum TagDef {
         CompDef(CompType),
         EnumDef(EnumType)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum IdentDecl {
@@ -1788,7 +1716,7 @@ mod Language_C_Analysis_SemRep {
         ObjectDef(ObjDef),
         FunctionDef(FunDef),
         EnumeratorDef(Enumerator)
-    };
+    }
 
     struct GlobalDecls(GlobalDecls, { /* struct def */ });
 
@@ -1799,7 +1727,7 @@ mod Language_C_Analysis_SemRep {
         LocalEvent(IdentDecl),
         TypeDefEvent(TypeDef),
         AsmEvent(AsmBlock)
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct Decl(Decl, VarDecl, NodeInfo);
@@ -1814,13 +1742,13 @@ mod Language_C_Analysis_SemRep {
     enum ParamDecl {
         ParamDecl(VarDecl, NodeInfo),
         AbstractParamDecl(VarDecl, NodeInfo)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum MemberDecl {
         MemberDecl(VarDecl, Maybe(Expr), NodeInfo),
         AnonBitField(Type, Expr, NodeInfo)
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct TypeDef(TypeDef, Ident, Type, Attributes, NodeInfo);
@@ -1837,14 +1765,14 @@ mod Language_C_Analysis_SemRep {
         Auto(Register),
         Static(Linkage, ThreadLocal),
         FunLinkage(Linkage)
-    };
+    }
 
     #[derive(Clone, Debug, Eq, Ord)]
     enum Linkage {
         NoLinkage,
         InternalLinkage,
         ExternalLinkage
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum Type {
@@ -1853,19 +1781,19 @@ mod Language_C_Analysis_SemRep {
         ArrayType(Type, ArraySize, TypeQuals, Attributes),
         FunctionType(FunType, Attributes),
         TypeDefType(TypeDefRef, TypeQuals, Attributes)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum FunType {
         FunType(Type, Vec<ParamDecl>, Bool),
         FunTypeIncomplete(Type)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum ArraySize {
         UnknownArraySize(Bool),
         ArraySize(Bool, Expr)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum TypeName {
@@ -1876,13 +1804,13 @@ mod Language_C_Analysis_SemRep {
         TyComp(CompTypeRef),
         TyEnum(EnumTypeRef),
         TyBuiltin(BuiltinType)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum BuiltinType {
         TyVaList,
         TyAny
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct TypeDefRef(TypeDefRef, Ident, Maybe(Type), NodeInfo);
@@ -1901,14 +1829,14 @@ mod Language_C_Analysis_SemRep {
         TyULong,
         TyLLong,
         TyULLong
-    };
+    }
 
     #[derive(Clone, Debug, Eq, Ord)]
     enum FloatType {
         TyFloat,
         TyDouble,
         TyLDouble
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct CompTypeRef(CompTypeRef, SUERef, CompTyKind, NodeInfo);
@@ -1923,7 +1851,7 @@ mod Language_C_Analysis_SemRep {
     enum CompTyKind {
         StructTag,
         UnionTag
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct EnumType(EnumType, SUERef, Vec<Enumerator>, Attributes, NodeInfo);
@@ -1938,12 +1866,12 @@ mod Language_C_Analysis_SemRep {
     enum VarName {
         VarName(Ident, Maybe(AsmName)),
         NoName
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct Attr(Attr, Ident, Vec<Expr>, NodeInfo);
 
-        fn declAttrs() -> DeclAttrs {
+    fn declAttrs() -> DeclAttrs {
         ((Lambda) . getVarDecl)
     }
 
@@ -1998,9 +1926,9 @@ mod Language_C_Analysis_SemRep {
 
     fn hasLinkage(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { False },
-            <todo> => { False },
-            <todo> => { True },
+            Auto(_) => { False },
+            Static(NoLinkage, _) => { False },
+            _ => { True },
         }
     }
 
@@ -2010,8 +1938,8 @@ mod Language_C_Analysis_SemRep {
 
     fn identOfVarName(__0: Ident) -> Ident {
         match (__0) {
-            <todo> => { error("identOfVarName: NoName".to_string()) },
-            <todo> => { ident },
+            NoName => { error("identOfVarName: NoName".to_string()) },
+            VarName(ident, _) => { ident },
         }
     }
 
@@ -2021,8 +1949,8 @@ mod Language_C_Analysis_SemRep {
 
     fn isNoName(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { False },
+            NoName => { True },
+            _ => { False },
         }
     }
 
@@ -2052,10 +1980,10 @@ mod Language_C_Analysis_SemRep {
 
     fn objKindDescr(__0: String) -> String {
         match (__0) {
-            <todo> => { "declaration".to_string() },
-            <todo> => { "object definition".to_string() },
-            <todo> => { "function definition".to_string() },
-            <todo> => { "enumerator definition".to_string() },
+            Declaration(_) => { "declaration".to_string() },
+            ObjectDef(_) => { "object definition".to_string() },
+            FunctionDef(_) => { "function definition".to_string() },
+            EnumeratorDef(_) => { "enumerator definition".to_string() },
         }
     }
 
@@ -2073,8 +2001,8 @@ mod Language_C_Analysis_SemRep {
 
     fn typeOfTagDef(__0: TypeName) -> TypeName {
         match (__0) {
-            <todo> => { typeOfCompDef(comptype) },
-            <todo> => { typeOfEnumDef(enumtype) },
+            CompDef(comptype) => { typeOfCompDef(comptype) },
+            EnumDef(enumtype) => { typeOfEnumDef(enumtype) },
         }
     }
 
@@ -2086,13 +2014,13 @@ mod Language_C_Analysis_TravMonad {
         C99,
         GNU89,
         GNU99
-    };
+    }
 
     struct TravOptions(TravOptions, { /* struct def */ });
 
     struct TravState(TravState, { /* struct def */ });
 
-        fn addRef(use: m) -> m {
+    fn addRef(use: m) -> m {
         match (nodeInfo(use), nodeInfo(def)) {
                 (NodeInfo(_, _, useName), NodeInfo(_, _, defName)) => { withDefTable((Lambda)) },
                 (_, _) => { return(()) },
@@ -2109,10 +2037,10 @@ mod Language_C_Analysis_TravMonad {
 
     fn checkIdentTyRedef(__0: m) -> m {
         match (__0, __1) {
-            <todo> => { checkVarRedef(decl, status) },
-            <todo> => { redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DiffKindRedecl) },
-            <todo> => { redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DuplicateDef) },
-            <todo> => { return(()) },
+            Right(decl), status => { checkVarRedef(decl, status) },
+            Left(tydef), KindMismatch(old_def) => { redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DiffKindRedecl) },
+            Left(tydef), Redeclared(old_def) => { redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DuplicateDef) },
+            Left(_tydef), _ => { return(()) },
         }
     }
 
@@ -2151,19 +2079,18 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn enterDecl(decl: m) -> m {
-        {
+        /* do */ {
 
-                {
+            {
 
             let def = || {
             Declaration(decl)
         };
 
 };
-                let redecl = withDefTable(defineScopedIdentWhen(cond, (declIdent(def)), def));
-                checkVarRedef(def, redecl);
-                return(def)
-        }
+            let redecl = withDefTable(defineScopedIdentWhen(cond, (declIdent(def)), def));
+            checkVarRedef(def, redecl);
+            return(def)}
     }
 
     fn enterFunctionScope() -> m {
@@ -2199,88 +2126,82 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn handleEnumeratorDef(enumerator: m) -> m {
-        {
+        /* do */ {
 
-                {
+            {
 
             let ident = || {
             declIdent(enumerator)
         };
 
 };
-                let redecl = withDefTable(defineScopedIdent(ident, (EnumeratorDef(enumerator))));
-                checkRedef((show(ident)), ident, redecl);
-                return(())
-        }
+            let redecl = withDefTable(defineScopedIdent(ident, (EnumeratorDef(enumerator))));
+            checkRedef((show(ident)), ident, redecl);
+            return(())}
     }
 
     fn handleFunDef(ident: m) -> m {
-        {
+        /* do */ {
 
-                {
+            {
 
             let def = || {
             FunctionDef(fun_def)
         };
 
 };
-                let redecl = withDefTable(defineScopedIdentWhen(isDeclaration, ident, def));
-                checkVarRedef(def, redecl);
-                handleDecl((DeclEvent(def)))
-        }
+            let redecl = withDefTable(defineScopedIdentWhen(isDeclaration, ident, def));
+            checkVarRedef(def, redecl);
+            handleDecl((DeclEvent(def)))}
     }
 
     fn handleObjectDef(local: m) -> m {
-        {
+        /* do */ {
 
-                {
+            {
 
             let def = || {
             ObjectDef(obj_def)
         };
 
 };
-                let redecl = withDefTable(defineScopedIdentWhen((Lambda(def, old)), ident, def));
-                checkVarRedef(def, redecl);
-                handleDecl(((if(local, then, LocalEvent, else, DeclEvent))(def)));
-            
+            let redecl = withDefTable(defineScopedIdentWhen((Lambda(def, old)), ident, def));
+            checkVarRedef(def, redecl);
+            handleDecl(((if(local, then, LocalEvent, else, DeclEvent))(def)));
         }
     }
 
     fn handleParamDecl(__0: m) -> m {
         match (__0, __1, __2) {
-            <todo> => { handleDecl((ParamEvent(pd))) },
-            <todo> => { {
+            pd, <todo>, AbstractParamDecl(_, _) => { handleDecl((ParamEvent(pd))) },
+            pd, <todo>, ParamDecl(vardecl, node) => { /* do */ {
 
-                    {
+                {
 
             let def = || {
             ObjectDef((ObjDef(vardecl, Nothing, node)))
         };
 
 };
-                    let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
-                    checkVarRedef(def, redecl);
-                    handleDecl((ParamEvent(pd)))
-            } },
+                let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
+                checkVarRedef(def, redecl);
+                handleDecl((ParamEvent(pd)))} },
         }
     }
 
     fn handleTagDecl(decl: m) -> m {
-        {
+        /* do */ {
 
-                let redecl = withDefTable(declareTag((sueRef(decl)), decl));
-                checkRedef((show(sueRef(decl))), decl, redecl)
-        }
+            let redecl = withDefTable(declareTag((sueRef(decl)), decl));
+            checkRedef((show(sueRef(decl))), decl, redecl)}
     }
 
     fn handleTagDef(def: m) -> m {
-        {
+        /* do */ {
 
-                let redecl = withDefTable(defineTag((sueRef(def)), def));
-                checkRedef((show(sueRef(def))), def, redecl);
-                handleDecl((TagEvent(def)))
-        }
+            let redecl = withDefTable(defineTag((sueRef(def)), def));
+            checkRedef((show(sueRef(def))), def, redecl);
+            handleDecl((TagEvent(def)))}
     }
 
     fn handleTravError(a: m) -> m {
@@ -2288,21 +2209,19 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn handleTypeDef(typeDef: m) -> m {
-        {
+        /* do */ {
 
-                let redecl = withDefTable(defineTypeDef(ident, typeDef));
-                checkRedef((show(ident)), typeDef, redecl);
-                handleDecl((TypeDefEvent(typeDef)));
-                return(())
-        }
+            let redecl = withDefTable(defineTypeDef(ident, typeDef));
+            checkRedef((show(ident)), typeDef, redecl);
+            handleDecl((TypeDefEvent(typeDef)));
+            return(())}
     }
 
     fn handleVarDecl(is_local: m) -> m {
-        {
+        /* do */ {
 
-                let def = enterDecl(decl, (const(False)));
-                handleDecl(((if(is_local, then, LocalEvent, else, DeclEvent))(def)))
-        }
+            let def = enterDecl(decl, (const(False)));
+            handleDecl(((if(is_local, then, LocalEvent, else, DeclEvent))(def)))}
     }
 
     fn initTravState(userst: TravState) -> TravState {
@@ -2320,8 +2239,8 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
 
     fn isDeclaration(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { False },
+            Declaration(_) => { True },
+            _ => { False },
         }
     }
 
@@ -2338,11 +2257,10 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn lookupObject(ident: m) -> m {
-        {
+        /* do */ {
 
-                let old_decl = liftM((lookupIdent(ident)), getDefTable);
-                mapMaybeM(old_decl)(Lambda)
-        }
+            let old_decl = liftM((lookupIdent(ident)), getDefTable);
+            mapMaybeM(old_decl)(Lambda)}
     }
 
     fn lookupTypeDef(ident: m) -> m {
@@ -2398,18 +2316,17 @@ otherwise { Right((v, ts)) },
     }
 
     fn runTrav_(t: Trav) -> Trav {
-        (fmap(fst) . runTrav(())({
+        (fmap(fst) . runTrav(())(/* do */ {
 
-                        let r = t;
-                        let es = getErrors;
-                        return((r, es))
-                }))
+                    let r = t;
+                    let es = getErrors;
+                    return((r, es))}))
     }
 
     fn throwOnLeft(__0: Either) -> Either {
         match (__0) {
-            <todo> => { throwTravError(err) },
-            <todo> => { return(v) },
+            Left(err) => { throwTravError(err) },
+            Right(v) => { return(v) },
         }
     }
 
@@ -2426,30 +2343,28 @@ otherwise { Right((v, ts)) },
     }
 
     fn withExtDeclHandler(action: Trav) -> Trav {
-        {
+        /* do */ {
 
-                modify(Lambda({
+            modify(Lambda({
         doHandleExtDecl: handler
         }));
-                action
-        }
+            action}
     }
 
 }
 
 mod Language_C_Analysis_TypeCheck {
-        fn assignCompatible(__0: Either) -> Either {
+    fn assignCompatible(__0: Either) -> Either {
         match (__0, __1, __2) {
-            <todo> => { match (canonicalType(t1), canonicalType(t2)) {
+            CAssignOp, t1, t2 => { match (canonicalType(t1), canonicalType(t2)) {
                     (DirectType(TyBuiltin(TyAny), _, _), _) => { return(()) },
                     (_, DirectType(TyBuiltin(TyAny), _, _)) => { return(()) },
                 (PtrType(DirectType(TyVoid, _, _), _, _), t2_q) => if isPointerType(t2_q) { return(()) },
                 (t1_q, PtrType(DirectType(TyVoid, _, _), _, _)) => if isPointerType(t1_q) { return(()) },
                 (PtrType(_, _, _), t2_q) => if isIntegralType(t2_q) { return(()) },
-                (t1_q, t2_q) => if (isPointerType(t1_q) && isPointerType(t2_q)) { {
+                (t1_q, t2_q) => if (isPointerType(t1_q) && isPointerType(t2_q)) { /* do */ {
 
-                        compatible((baseType(t1_q)), (baseType(t2_q)))
-                } },
+                    compatible((baseType(t1_q)), (baseType(t2_q)))} },
                 (DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) => if (sueRef(c1) == sueRef(c2)) { return(()) }
 otherwise { fail(__op_concat("incompatible compound types in assignment: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
                     (DirectType(TyBuiltin(TyVaList), _, _), DirectType(TyBuiltin(TyVaList), _, _)) => { return(()) },
@@ -2457,7 +2372,7 @@ otherwise { fail(__op_concat("incompatible compound types in assignment: ".to_st
 otherwise { fail(__op_concat("incompatible direct types in assignment: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
                     (t1_q, t2_q) => { compatible(t1_q, t2_q) },
                 } },
-            <todo> => { >>(binopType((assignBinop(op)), t1, t2), return(())) },
+            op, t1, t2 => { >>(binopType((assignBinop(op)), t1, t2), return(())) },
         }
     }
 
@@ -2490,14 +2405,13 @@ otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((
             (_, ArrayType(_, _, _, _), t2_q) => if (isPtrOp(op) && isIntegralType(t2_q)) { return(t1) }
 otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((pretty(op))))) },
             (CAddOp, t1_q, ArrayType(_, _, _, _)) => if isIntegralType(t1_q) { return(t2) },
-                (_, DirectType(tn1, q1, a1), DirectType(tn2, q2, a2)) => { {
+                (_, DirectType(tn1, q1, a1), DirectType(tn2, q2, a2)) => { /* do */ {
 
-                        when((isBitOp(op)), (>>(checkIntegral(t1), checkIntegral(t2))));
-                        match arithmeticConversion(tn1, tn2) {
+                    when((isBitOp(op)), (>>(checkIntegral(t1), checkIntegral(t2))));
+                    match arithmeticConversion(tn1, tn2) {
         Just, tn => { return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2)))) },
         Nothing => { fail(render(<+>(text("invalid binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2)))))) },
-    }
-                } },
+    }} },
                 (_, _, _) => { fail(render(<+>(text("unhandled binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2)))))) },
             }
     }
@@ -2540,64 +2454,60 @@ otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((
 
     fn compositeParamDecl(__0: Either) -> Either {
         match (__0, __1) {
-            <todo> => { compositeParamDecl_q(ParamDecl, vd1, vd2, ni1) },
-            <todo> => { compositeParamDecl_q(ParamDecl, vd1, vd2, ni2) },
-            <todo> => { compositeParamDecl_q(ParamDecl, vd1, vd2, ni1) },
-            <todo> => { compositeParamDecl_q(AbstractParamDecl, vd1, vd2, ni1) },
+            ParamDecl(vd1, ni1), ParamDecl(vd2, _) => { compositeParamDecl_q(ParamDecl, vd1, vd2, ni1) },
+            AbstractParamDecl(vd1, _), ParamDecl(vd2, ni2) => { compositeParamDecl_q(ParamDecl, vd1, vd2, ni2) },
+            ParamDecl(vd1, ni1), AbstractParamDecl(vd2, _) => { compositeParamDecl_q(ParamDecl, vd1, vd2, ni1) },
+            AbstractParamDecl(vd1, ni1), AbstractParamDecl(vd2, _) => { compositeParamDecl_q(AbstractParamDecl, vd1, vd2, ni1) },
         }
     }
 
     fn compositeParamDecl_q(f: Either) -> Either {
-        {
+        /* do */ {
 
-                let vd = compositeVarDecl((VarDecl(n1, attrs1, t1_q)), (VarDecl(n2, attrs2, t2_q)));
-                return(f(vd, dni))
-        }
+            let vd = compositeVarDecl((VarDecl(n1, attrs1, t1_q)), (VarDecl(n2, attrs2, t2_q)));
+            return(f(vd, dni))}
     }
 
     fn compositeSize(__0: Either) -> Either {
         match (__0, __1) {
-            <todo> => { return(s2) },
-            <todo> => { return(s1) },
+            UnknownArraySize(_), s2 => { return(s2) },
+            s1, UnknownArraySize(_) => { return(s1) },
         }
     }
 
     fn compositeType(__0: Either) -> Either {
         match (__0, __1) {
-            <todo> => { return(t1) },
-            <todo> => { return(t2) },
-            <todo> => { {
+            t1, DirectType(TyBuiltin(TyAny), _, _) => { return(t1) },
+            DirectType(TyBuiltin(TyAny), _, _), t2 => { return(t2) },
+            t1, <todo>, DirectType(tn1, q1, a1), t2, <todo>, DirectType(tn2, q2, a2) => { /* do */ {
 
-                    let tn = match (tn1, tn2) {
+                let tn = match (tn1, tn2) {
             (TyVoid, TyVoid) => { return(TyVoid) },
             (TyIntegral(_), TyEnum(_)) => { return(tn1) },
             (TyEnum(_), TyIntegral(_)) => { return(tn2) },
             (TyIntegral(i1), TyIntegral(i2)) => { return(TyIntegral((intConversion(i1, i2)))) },
             (TyFloating(f1), TyFloating(f2)) => { return(TyFloating((floatConversion(f1, f2)))) },
             (TyComplex(f1), TyComplex(f2)) => { return(TyComplex((floatConversion(f1, f2)))) },
-            (TyComp(c1), TyComp(c2)) => { {
+            (TyComp(c1), TyComp(c2)) => { /* do */ {
 
-                    when((/=(sueRef(c1), sueRef(c2))))(fail(__op_concat("incompatible composite types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))));
-                    return(tn1)
-            } },
-            (TyEnum(e1), TyEnum(e2)) => { {
+                when((/=(sueRef(c1), sueRef(c2))))(fail(__op_concat("incompatible composite types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))));
+                return(tn1)} },
+            (TyEnum(e1), TyEnum(e2)) => { /* do */ {
 
-                    when((/=(sueRef(e1), sueRef(e2))))(fail(__op_concat("incompatible enumeration types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))));
-                    return(TyEnum(e1))
-            } },
+                when((/=(sueRef(e1), sueRef(e2))))(fail(__op_concat("incompatible enumeration types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))));
+                return(TyEnum(e1))} },
             (TyBuiltin(TyVaList), TyBuiltin(TyVaList)) => { return(TyBuiltin(TyVaList)) },
             (TyBuiltin(_), TyBuiltin(_)) => { fail(__op_concat("incompatible builtin types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
             (_, _) => { fail(__op_concat("incompatible direct types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
         };
-                    return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
-            } },
-            <todo> => { return(PtrType(t1, (mergeTypeQuals(q1, q2)), a1)) },
-            <todo> => { return(PtrType(t2, (mergeTypeQuals(q1, q2)), a2)) },
-            <todo> => { {
+                return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))} },
+            PtrType(t1, q1, a1), PtrType(DirectType(TyVoid, _, _), q2, _) => { return(PtrType(t1, (mergeTypeQuals(q1, q2)), a1)) },
+            PtrType(DirectType(TyVoid, _, _), q1, _), PtrType(t2, q2, a2) => { return(PtrType(t2, (mergeTypeQuals(q1, q2)), a2)) },
+            ArrayType(t1, s1, q1, a1), ArrayType(t2, s2, q2, a2) => { /* do */ {
 
-                    let t = compositeType(t1, t2);
-                    let s = compositeSize(s1, s2);
-                    {
+                let t = compositeType(t1, t2);
+                let s = compositeSize(s1, s2);
+                {
 
             let quals = || {
             mergeTypeQuals(q1, q2)
@@ -2608,49 +2518,44 @@ otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((
         };
 
 };
-                    return((ArrayType(t, s, quals, attrs)))
-            } },
-            <todo> => { match (tdr1, tdr2) {
+                return((ArrayType(t, s, quals, attrs)))} },
+            TypeDefType(tdr1, q1, a1), TypeDefType(tdr2, q2, a2) => { match (tdr1, tdr2) {
                     (TypeDefRef(i1, Nothing, _), TypeDefRef(i2, _, _)) => { doTypeDef(i1, i2, tdr1) },
                     (TypeDefRef(i1, _, _), TypeDefRef(i2, Nothing, _)) => { doTypeDef(i1, i2, tdr2) },
                     (TypeDefRef(_, Just(t1), _), TypeDefRef(_, Just(t2), _)) => { compositeType(t1, t2) },
                 } },
-            <todo> => { match (ft1, ft2) {
-                    (FunType(rt1, args1, varargs1), FunType(rt2, args2, varargs2)) => { {
+            FunctionType(ft1, attrs1), FunctionType(ft2, attrs2) => { match (ft1, ft2) {
+                    (FunType(rt1, args1, varargs1), FunType(rt2, args2, varargs2)) => { /* do */ {
 
-                            let args = mapM((uncurry(compositeParamDecl)), (zip(args1, args2)));
-                            when((/=(varargs1, varargs2)))(fail("incompatible varargs declarations".to_string()));
-                            doFunType(rt1, rt2, args, varargs1)
-                    } },
+                        let args = mapM((uncurry(compositeParamDecl)), (zip(args1, args2)));
+                        when((/=(varargs1, varargs2)))(fail("incompatible varargs declarations".to_string()));
+                        doFunType(rt1, rt2, args, varargs1)} },
                     (FunType(rt1, args1, varargs1), FunTypeIncomplete(rt2)) => { doFunType(rt1, rt2, args1, varargs1) },
                     (FunTypeIncomplete(rt1), FunType(rt2, args2, varargs2)) => { doFunType(rt1, rt2, args2, varargs2) },
-                    (FunTypeIncomplete(rt1), FunTypeIncomplete(rt2)) => { {
+                    (FunTypeIncomplete(rt1), FunTypeIncomplete(rt2)) => { /* do */ {
 
-                            let rt = compositeType(rt1, rt2);
-                            return((FunctionType((FunTypeIncomplete(rt)), (mergeAttrs(attrs1, attrs2)))))
-                    } },
+                        let rt = compositeType(rt1, rt2);
+                        return((FunctionType((FunTypeIncomplete(rt)), (mergeAttrs(attrs1, attrs2)))))} },
                 } },
-            <todo> => { fail(__op_concat("incompatible types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
+            t1, t2 => { fail(__op_concat("incompatible types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
         }
     }
 
     fn compositeVarDecl((VarDecl(n1, attrs1, t1)): Either) -> Either {
-        {
+        /* do */ {
 
-                let t = compositeType(t1, t2);
-                return((VarDecl(n1, (compositeDeclAttrs(attrs1, attrs2)), t)))
-        }
+            let t = compositeType(t1, t2);
+            return((VarDecl(n1, (compositeDeclAttrs(attrs1, attrs2)), t)))}
     }
 
     fn conditionalType(t1: Either) -> Either {
         match (canonicalType(t1), canonicalType(t2)) {
             (PtrType(DirectType(TyVoid, _, _), _, _), t2_q) => if isPointerType(t2_q) { return(t2) },
             (t1_q, PtrType(DirectType(TyVoid, _, _), _, _)) => if isPointerType(t1_q) { return(t1) },
-                (ArrayType(t1_q, _, q1, a1), ArrayType(t2_q, _, q2, a2)) => { {
+                (ArrayType(t1_q, _, q1, a1), ArrayType(t2_q, _, q2, a2)) => { /* do */ {
 
-                        let t = compositeType(t1_q, t2_q);
-                        return(ArrayType(t, (UnknownArraySize(False)), (mergeTypeQuals(q1, q2)), (mergeAttrs(a1, a2))))
-                } },
+                    let t = compositeType(t1_q, t2_q);
+                    return(ArrayType(t, (UnknownArraySize(False)), (mergeTypeQuals(q1, q2)), (mergeAttrs(a1, a2))))} },
                 (t1_q(@, DirectType(tn1, q1, a1)), t2_q(@, DirectType(tn2, q2, a2))) => { match arithmeticConversion(tn1, tn2) {
                         Just, tn => { return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2)))) },
                         Nothing => { compositeType(t1_q, t2_q) },
@@ -2665,15 +2570,15 @@ otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((
 
     fn constType(__0: m) -> m {
         match (__0) {
-            <todo> => { return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)) },
-            <todo> => { return(DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)) },
-            <todo> => { return(DirectType((TyIntegral(TyChar)), noTypeQuals, noAttributes)) },
-            <todo> => { return(DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)) },
-            <todo> => { return(DirectType((TyFloating((getFloatType(fs)))), noTypeQuals, noAttributes)) },
-            <todo> => { {
+            CIntConst(CInteger(_, _, flags), _) => { return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)) },
+            CCharConst(CChar(_, True), _) => { return(DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)) },
+            CCharConst(CChar(_, False), _) => { return(DirectType((TyIntegral(TyChar)), noTypeQuals, noAttributes)) },
+            CCharConst(CChars(_, _), _) => { return(DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)) },
+            CFloatConst(CFloat(fs), _) => { return(DirectType((TyFloating((getFloatType(fs)))), noTypeQuals, noAttributes)) },
+            CStrConst(CString(chars, wide), ni) => { /* do */ {
 
-                    let n = genName;
-                    {
+                let n = genName;
+                {
 
     ;
             let ni_q = || {
@@ -2685,29 +2590,28 @@ otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((
         };
 
 };
-                    return(ArrayType((DirectType((TyIntegral(charType)), noTypeQuals, noAttributes)), arraySize, noTypeQuals, vec![]))
-            } },
+                return(ArrayType((DirectType((TyIntegral(charType)), noTypeQuals, noAttributes)), arraySize, noTypeQuals, vec![]))} },
         }
     }
 
     fn deepTypeAttrs(__0: m) -> m {
         match (__0) {
-            <todo> => { liftM((attrs(Operator("++"))), sueAttrs(ni, sue)) },
-            <todo> => { liftM((attrs(Operator("++"))), sueAttrs(ni, sue)) },
-            <todo> => { return(attrs) },
-            <todo> => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
-            <todo> => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
-            <todo> => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
-            <todo> => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
-            <todo> => { liftM((attrs(Operator("++"))), typeDefAttrs(ni, i)) },
+            DirectType(TyComp(CompTypeRef(sue, _, ni)), _, attrs) => { liftM((attrs(Operator("++"))), sueAttrs(ni, sue)) },
+            DirectType(TyEnum(EnumTypeRef(sue, ni)), _, attrs) => { liftM((attrs(Operator("++"))), sueAttrs(ni, sue)) },
+            DirectType(_, _, attrs) => { return(attrs) },
+            PtrType(t, _, attrs) => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
+            ArrayType(t, _, _, attrs) => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
+            FunctionType(FunType(t, _, _), attrs) => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
+            FunctionType(FunTypeIncomplete(t), attrs) => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
+            TypeDefType(TypeDefRef(i, _, ni), _, attrs) => { liftM((attrs(Operator("++"))), typeDefAttrs(ni, i)) },
         }
     }
 
     fn derefType(__0: Either) -> Either {
         match (__0) {
-            <todo> => { return(t) },
-            <todo> => { return(t) },
-            <todo> => { match canonicalType(t) {
+            PtrType(t, _, _) => { return(t) },
+            ArrayType(t, _, _, _) => { return(t) },
+            t => { match canonicalType(t) {
                     PtrType, t_q, _, _ => { return(t_q) },
                     ArrayType, t_q, _, _, _ => { return(t_q) },
                     _ => { fail(__op_concat("dereferencing non-pointer: ".to_string(), pType(t))) },
@@ -2717,36 +2621,34 @@ otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((
 
     fn expandAnonymous(__0: m) -> m {
         match (__0, __1) {
-            <todo> => { __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni)) },
-            <todo> => { return(vec![]) },
-            <todo> => { return(vec![(n, t)]) },
+            ni, NoName(DirectType(TyComp(ctr), _, _)) => { __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni)) },
+            _, NoName(_) => { return(vec![]) },
+            _, VarName(n, _)(t) => { return(vec![(n, t)]) },
         }
     }
 
     fn fieldType(ni: m) -> m {
         match canonicalType(t) {
-                DirectType, TyComp(ctr), _, _ => { {
+                DirectType, TyComp(ctr), _, _ => { /* do */ {
 
-                        let td = lookupSUE(ni, (sueRef(ctr)));
-                        let ms = tagMembers(ni, td);
-                        match lookup(m, ms) {
+                    let td = lookupSUE(ni, (sueRef(ctr)));
+                    let ms = tagMembers(ni, td);
+                    match lookup(m, ms) {
         Just, ft => { return(ft) },
         Nothing => { typeError(ni)(__op_concat("field not found: ".to_string(), identToString(m))) },
-    }
-                } },
+    }} },
                 _t_q => { astError(ni)(__op_concat("field of non-composite type: ".to_string(), __op_concat(identToString(m), __op_concat(", ".to_string(), pType(t))))) },
             }
     }
 
     fn lookupSUE(ni: m) -> m {
-        {
+        /* do */ {
 
-                let dt = getDefTable;
-                match lookupTag(sue, dt) {
+            let dt = getDefTable;
+            match lookupTag(sue, dt) {
         Just, Right(td) => { return(td) },
         _ => { typeError(ni)(__op_concat("unknown composite type: ".to_string(), ((render . pretty))(sue))) },
-    }
-        }
+    }}
     }
 
     fn mergeAttrs() -> Attributes {
@@ -2763,22 +2665,21 @@ otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((
 
     fn sizeEqual(__0: Bool) -> Bool {
         match (__0, __1) {
-            <todo> => { (i1 == i2) },
-            <todo> => { (nodeInfo(e1) == nodeInfo(e2)) },
+            CConst(CIntConst(i1, _)), CConst(CIntConst(i2, _)) => { (i1 == i2) },
+            e1, e2 => { (nodeInfo(e1) == nodeInfo(e2)) },
         }
     }
 
     fn sueAttrs(ni: m) -> m {
-        {
+        /* do */ {
 
-                let dt = getDefTable;
-                match lookupTag(sue, dt) {
+            let dt = getDefTable;
+            match lookupTag(sue, dt) {
         Nothing => { astError(ni)(__op_concat("SUE not found: ".to_string(), render((pretty(sue))))) },
         Just, Left(_) => { return(vec![]) },
         Just, Right(CompDef(CompType(_, _, _, attrs, _))) => { return(attrs) },
         Just, Right(EnumDef(EnumType(_, _, attrs, _))) => { return(attrs) },
-    }
-        }
+    }}
     }
 
     fn tagMembers(ni: m) -> m {
@@ -2789,15 +2690,14 @@ otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((
     }
 
     fn typeDefAttrs(ni: m) -> m {
-        {
+        /* do */ {
 
-                let dt = getDefTable;
-                match lookupIdent(i, dt) {
+            let dt = getDefTable;
+            match lookupIdent(i, dt) {
         Nothing => { astError(ni)(__op_concat("can\'t find typedef name: ".to_string(), identToString(i))) },
         Just, Left(TypeDef(_, t, attrs, _)) => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
         Just, Right(_) => { astError(ni)(__op_concat("not a typedef name: ".to_string(), identToString(i))) },
-    }
-        }
+    }}
     }
 
     fn typeError() -> MonadCError {
@@ -2806,43 +2706,42 @@ otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((
 
     fn typeErrorOnLeft(__0: Either) -> Either {
         match (__0, __1) {
-            <todo> => { typeError(ni, err) },
-            <todo> => { return(v) },
+            ni, Left(err) => { typeError(ni, err) },
+            _, Right(v) => { return(v) },
         }
     }
 
     fn varAddrType(d: Either) -> Either {
-        {
+        /* do */ {
 
-                match declStorage(d) {
+            match declStorage(d) {
         Auto, True => { fail("address of register variable".to_string()) },
         _ => { return(()) },
     };
-                match t {
+            match t {
         ArrayType, _, _, q, a => { return(PtrType(t, q, a)) },
         _ => { return(simplePtr(t)) },
-    }
-        }
+    }}
     }
 
 }
 
 mod Language_C_Analysis_TypeConversions {
-        fn arithmeticConversion(__0: Maybe) -> Maybe {
+    fn arithmeticConversion(__0: Maybe) -> Maybe {
         match (__0, __1) {
-            <todo> => { Just(TyComplex(floatConversion(t1, t2))) },
-            <todo> => { Just(TyComplex(floatConversion(t1, t2))) },
-            <todo> => { Just(TyComplex(floatConversion(t1, t2))) },
-            <todo> => { Just(t1) },
-            <todo> => { Just(t2) },
-            <todo> => { Just(TyFloating(floatConversion(t1, t2))) },
-            <todo> => { Just(t1) },
-            <todo> => { Just(t2) },
-            <todo> => { Just(TyIntegral(intConversion(t1, t2))) },
-            <todo> => { Just(TyIntegral(TyInt)) },
-            <todo> => { Just(t2) },
-            <todo> => { Just(t1) },
-            <todo> => { Nothing },
+            TyComplex(t1), TyComplex(t2) => { Just(TyComplex(floatConversion(t1, t2))) },
+            TyComplex(t1), TyFloating(t2) => { Just(TyComplex(floatConversion(t1, t2))) },
+            TyFloating(t1), TyComplex(t2) => { Just(TyComplex(floatConversion(t1, t2))) },
+            t1, <todo>, TyComplex(_), TyIntegral(_) => { Just(t1) },
+            TyIntegral(_), t2, <todo>, TyComplex(_) => { Just(t2) },
+            TyFloating(t1), TyFloating(t2) => { Just(TyFloating(floatConversion(t1, t2))) },
+            t1, <todo>, TyFloating(_), TyIntegral(_) => { Just(t1) },
+            TyIntegral(_), t2, <todo>, TyFloating(_) => { Just(t2) },
+            TyIntegral(t1), TyIntegral(t2) => { Just(TyIntegral(intConversion(t1, t2))) },
+            TyEnum(_), TyEnum(_) => { Just(TyIntegral(TyInt)) },
+            TyEnum(_), t2 => { Just(t2) },
+            t1, TyEnum(_) => { Just(t1) },
+            _, _ => { Nothing },
         }
     }
 
@@ -2857,11 +2756,11 @@ mod Language_C_Analysis_TypeConversions {
 }
 
 mod Language_C_Analysis_TypeUtils {
-        fn baseType(__0: Type) -> Type {
+    fn baseType(__0: Type) -> Type {
         match (__0) {
-            <todo> => { t },
-            <todo> => { t },
-            <todo> => { error("base of non-pointer type".to_string()) },
+            PtrType(t, _, _) => { t },
+            ArrayType(t, _, _, _) => { t },
+            _ => { error("base of non-pointer type".to_string()) },
         }
     }
 
@@ -2894,19 +2793,19 @@ mod Language_C_Analysis_TypeUtils {
 
     fn deepDerefTypeDef(__0: Type) -> Type {
         match (__0) {
-            <todo> => { PtrType((deepDerefTypeDef(t)), quals, attrs) },
-            <todo> => { ArrayType((deepDerefTypeDef(t)), size, quals, attrs) },
-            <todo> => { FunctionType((FunType((deepDerefTypeDef(rt)), params, varargs)), attrs) },
-            <todo> => { FunctionType((FunTypeIncomplete((deepDerefTypeDef(rt)))), attrs) },
-            <todo> => { ((typeAttrsUpd((mergeAttributes(a))) . typeQualsUpd((mergeTypeQuals(q)))))((deepDerefTypeDef(t))) },
-            <todo> => { t },
+            PtrType(t, quals, attrs) => { PtrType((deepDerefTypeDef(t)), quals, attrs) },
+            ArrayType(t, size, quals, attrs) => { ArrayType((deepDerefTypeDef(t)), size, quals, attrs) },
+            FunctionType(FunType(rt, params, varargs), attrs) => { FunctionType((FunType((deepDerefTypeDef(rt)), params, varargs)), attrs) },
+            FunctionType(FunTypeIncomplete(rt), attrs) => { FunctionType((FunTypeIncomplete((deepDerefTypeDef(rt)))), attrs) },
+            TypeDefType(TypeDefRef(_, Just(t), _), q, a) => { ((typeAttrsUpd((mergeAttributes(a))) . typeQualsUpd((mergeTypeQuals(q)))))((deepDerefTypeDef(t))) },
+            t => { t },
         }
     }
 
     fn derefTypeDef(__0: Type) -> Type {
         match (__0) {
-            <todo> => { ((typeAttrsUpd((mergeAttributes(a))) . typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t))) },
-            <todo> => { ty },
+            TypeDefType(TypeDefRef(_, Just(t), _), q, a) => { ((typeAttrsUpd((mergeAttributes(a))) . typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t))) },
+            ty => { ty },
         }
     }
 
@@ -2920,8 +2819,8 @@ mod Language_C_Analysis_TypeUtils {
 
     fn isFloatingType(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { False },
+            DirectType(TyFloating(_), _, _) => { True },
+            _ => { False },
         }
     }
 
@@ -2936,17 +2835,17 @@ mod Language_C_Analysis_TypeUtils {
 
     fn isIntegralType(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { True },
-            <todo> => { False },
+            DirectType(TyIntegral(_), _, _) => { True },
+            DirectType(TyEnum(_), _, _) => { True },
+            _ => { False },
         }
     }
 
     fn isPointerType(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { True },
-            <todo> => { False },
+            PtrType(_, _, _) => { True },
+            ArrayType(_, _, _, _) => { True },
+            _ => { False },
         }
     }
 
@@ -2976,12 +2875,12 @@ mod Language_C_Analysis_TypeUtils {
 
     fn typeAttrs(__0: Attributes) -> Attributes {
         match (__0) {
-            <todo> => { a },
-            <todo> => { a },
-            <todo> => { a },
-            <todo> => { a },
-            <todo> => { a },
-            <todo> => { mergeAttributes(a, (typeAttrs(t))) },
+            DirectType(_, _, a) => { a },
+            PtrType(_, _, a) => { a },
+            ArrayType(_, _, _, a) => { a },
+            FunctionType(_, a) => { a },
+            TypeDefType(TypeDefRef(_, Nothing, _), _, a) => { a },
+            TypeDefType(TypeDefRef(_, Just(t), _), _, a) => { mergeAttributes(a, (typeAttrs(t))) },
         }
     }
 
@@ -2997,12 +2896,12 @@ mod Language_C_Analysis_TypeUtils {
 
     fn typeQuals(__0: TypeQuals) -> TypeQuals {
         match (__0) {
-            <todo> => { q },
-            <todo> => { q },
-            <todo> => { q },
-            <todo> => { noTypeQuals },
-            <todo> => { q },
-            <todo> => { mergeTypeQuals(q, (typeQuals(t))) },
+            DirectType(_, q, _) => { q },
+            PtrType(_, q, _) => { q },
+            ArrayType(_, _, q, _) => { q },
+            FunctionType(_, _) => { noTypeQuals },
+            TypeDefType(TypeDefRef(_, Nothing, _), q, _) => { q },
+            TypeDefType(TypeDefRef(_, Just(t), _), q, _) => { mergeTypeQuals(q, (typeQuals(t))) },
         }
     }
 
@@ -3031,7 +2930,7 @@ mod Language_C_Analysis_TypeUtils {
 }
 
 mod Language_C_Analysis {
-    
+
 }
 
 mod Language_C_Data_Error {
@@ -3040,7 +2939,7 @@ mod Language_C_Data_Error {
         LevelWarn,
         LevelError,
         LevelFatal
-    };
+    }
 
     #[derive(Debug)]
     struct ErrorInfo(ErrorInfo, ErrorLevel, Position, Vec<String>);
@@ -3051,7 +2950,7 @@ mod Language_C_Data_Error {
     #[derive(Debug)]
     struct UnsupportedFeature(UnsupportedFeature, String, Position);
 
-        fn errorLevel() -> ErrorLevel {
+    fn errorLevel() -> ErrorLevel {
         ((Lambda) . errorInfo)
     }
 
@@ -3114,12 +3013,12 @@ mod Language_C_Data_Ident {
     enum SUERef {
         AnonymousRef(Name),
         NamedRef(Ident)
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct Ident(Ident, String, isize, NodeInfo);
 
-        fn bits14() -> isize {
+    fn bits14() -> isize {
         ^(2, (14))
     }
 
@@ -3157,8 +3056,8 @@ mod Language_C_Data_Ident {
 
     fn isAnonymousRef(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { False },
+            AnonymousRef(_) => { True },
+            _ => { False },
         }
     }
 
@@ -3172,49 +3071,49 @@ mod Language_C_Data_Ident {
 
     fn quad(__0: isize) -> isize {
         match (__0) {
-            <todo> => { +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28))) },
-            <todo> => { *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1))))) },
-            <todo> => { *(ord(c2), +(bits7, ord(c1))) },
-            <todo> => { ord(c1) },
-            <todo> => { 0 },
+            c1:c2:c3:c4:s => { +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28))) },
+            c1:c2:c3:([]) => { *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1))))) },
+            c1:c2:([]) => { *(ord(c2), +(bits7, ord(c1))) },
+            c1:([]) => { ord(c1) },
+            [] => { 0 },
         }
     }
 
 }
 
 mod Language_C_Data_InputStream {
-        fn countLines() -> isize {
+    fn countLines() -> isize {
         match () {
-            <todo> => { (length . BSC_lines) },
-            <todo> => { (length . lines) },
+             => { (length . BSC_lines) },
+             => { (length . lines) },
         }
     }
 
     fn inputStreamEmpty() -> Bool {
         match () {
-            <todo> => { BSW_null },
-            <todo> => { null },
+             => { BSW_null },
+             => { null },
         }
     }
 
     fn inputStreamFromString() -> InputStream {
         match () {
-            <todo> => { BSC_pack },
-            <todo> => { id },
+             => { BSC_pack },
+             => { id },
         }
     }
 
     fn inputStreamToString() -> String {
         match () {
-            <todo> => { BSC_unpack },
-            <todo> => { id },
+             => { BSC_unpack },
+             => { id },
         }
     }
 
     fn readInputStream() -> IO {
         match () {
-            <todo> => { BSW_readFile },
-            <todo> => { readFile },
+             => { BSW_readFile },
+             => { readFile },
         }
     }
 
@@ -3224,22 +3123,22 @@ mod Language_C_Data_InputStream {
 
     fn takeChar(__0: (Char, InputStream)) -> (Char, InputStream) {
         match (__0) {
-            <todo> => { seq(BSC_head(bs), (BSC_head(bs), BSC_tail(bs))) },
-            <todo> => { (head(bs), tail(bs)) },
+            bs => { seq(BSC_head(bs), (BSC_head(bs), BSC_tail(bs))) },
+            bs => { (head(bs), tail(bs)) },
         }
     }
 
     fn takeChars(__0: Vec<Char>) -> Vec<Char> {
         match (__0, __1, __2) {
-            <todo> => { BSC_unpack(BSC_take(n, bstr)) },
-            <todo> => { take(n, str) },
+            <todo>, n, bstr => { BSC_unpack(BSC_take(n, bstr)) },
+            n, str => { take(n, str) },
         }
     }
 
 }
 
 mod Language_C_Data_Name {
-        fn namesStartingFrom(k: Vec<Name>) -> Vec<Name> {
+    fn namesStartingFrom(k: Vec<Name>) -> Vec<Name> {
         vec![Name(k__)]
     }
 
@@ -3254,9 +3153,9 @@ mod Language_C_Data_Node {
     enum NodeInfo {
         OnlyPos(Position, PosLength),
         NodeInfo(Position, PosLength, Name)
-    };
+    }
 
-        fn eqByName(obj1: CNode) -> CNode {
+    fn eqByName(obj1: CNode) -> CNode {
         ((nodeInfo(obj1)) == (nodeInfo(obj2)))
     }
 
@@ -3266,8 +3165,8 @@ mod Language_C_Data_Node {
 
     fn getLastTokenPos(__0: PosLength) -> PosLength {
         match (__0) {
-            <todo> => { lastTok },
-            <todo> => { lastTok },
+            NodeInfo(_, lastTok, _) => { lastTok },
+            OnlyPos(_, lastTok) => { lastTok },
         }
     }
 
@@ -3301,8 +3200,8 @@ mod Language_C_Data_Node {
 
     fn nameOfNode(__0: Maybe) -> Maybe {
         match (__0) {
-            <todo> => { Nothing },
-            <todo> => { Just(name) },
+            OnlyPos(_, _) => { Nothing },
+            NodeInfo(_, _, name) => { Just(name) },
         }
     }
 
@@ -3326,12 +3225,12 @@ mod Language_C_Data_Position {
         NoPosition,
         BuiltinPosition,
         InternalPosition
-    };
+    }
 
-        fn adjustPos(__0: Position) -> Position {
+    fn adjustPos(__0: Position) -> Position {
         match (__0, __1, __2) {
-            <todo> => { Position(offs, fname, row, 1) },
-            <todo> => { p },
+            fname, row, Position(offs, _, _, _) => { Position(offs, fname, row, 1) },
+            _, _, p => { p },
         }
     }
 
@@ -3341,15 +3240,15 @@ mod Language_C_Data_Position {
 
     fn incOffset(__0: Position) -> Position {
         match (__0, __1) {
-            <todo> => { Position((+(o, n)), f, r, c) },
-            <todo> => { p },
+            Position(o, f, r, c), n => { Position((+(o, n)), f, r, c) },
+            p, n => { p },
         }
     }
 
     fn incPos(__0: Position) -> Position {
         match (__0, __1) {
-            <todo> => { Position((+(offs, n)), fname, row, (+(col, n))) },
-            <todo> => { p },
+            Position(offs, fname, row, col), n => { Position((+(offs, n)), fname, row, (+(col, n))) },
+            p, _ => { p },
         }
     }
 
@@ -3363,29 +3262,29 @@ mod Language_C_Data_Position {
 
     fn isBuiltinPos(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { False },
+            BuiltinPosition => { True },
+            _ => { False },
         }
     }
 
     fn isInternalPos(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { False },
+            InternalPosition => { True },
+            _ => { False },
         }
     }
 
     fn isNoPos(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { False },
+            NoPosition => { True },
+            _ => { False },
         }
     }
 
     fn isSourcePos(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { True },
-            <todo> => { False },
+            Position(_, _, _, _) => { True },
+            _ => { False },
         }
     }
 
@@ -3399,15 +3298,15 @@ mod Language_C_Data_Position {
 
     fn retPos(__0: Position) -> Position {
         match (__0) {
-            <todo> => { Position((+(offs, 1)), fname, (+(row, 1)), 1) },
-            <todo> => { p },
+            Position(offs, fname, row, _) => { Position((+(offs, 1)), fname, (+(row, 1)), 1) },
+            p => { p },
         }
     }
 
 }
 
 mod Language_C_Data_RList {
-        fn appendr(xs: Reversed) -> Reversed {
+    fn appendr(xs: Reversed) -> Reversed {
         Reversed((__op_concat(ys, List_reverse(xs))))
     }
 
@@ -3441,8 +3340,8 @@ mod Language_C_Data_RList {
 
     fn viewr(__0: Reversed) -> Reversed {
         match (__0) {
-            <todo> => { error("viewr: empty RList".to_string()) },
-            <todo> => { (Reversed(xs), x) },
+            Reversed([]) => { error("viewr: empty RList".to_string()) },
+            Reversed(x:xs) => { (Reversed(xs), x) },
         }
     }
 
@@ -3450,11 +3349,11 @@ mod Language_C_Data_RList {
 }
 
 mod Language_C_Data {
-    
+
 }
 
 mod Language_C_Parser_Builtin {
-        fn builtinTypeNames() -> Vec<Ident> {
+    fn builtinTypeNames() -> Vec<Ident> {
         vec![builtinIdent("__builtin_va_list".to_string())]
     }
 
@@ -3464,11 +3363,11 @@ mod Language_C_Parser_ParserMonad {
     enum ParseResult {
         POk(PState, a),
         PFailed(Vec<String>, Position)
-    };
+    }
 
     struct PState(PState, { /* struct def */ });
 
-        let (P(m)) = |Operator("thenP"), k| {
+    let (P(m)) = |Operator("thenP"), k| {
         P(Lambda)
     };
 
@@ -3547,10 +3446,10 @@ mod Language_C_Parser_ParserMonad {
 
     fn setLastToken(__0: P) -> P {
         match (__0) {
-            <todo> => { P(Lambda(s, {
+            CTokEof => { P(Lambda(s, {
                     savedToken: (prevToken(s))
                     }, ())) },
-            <todo> => { P(Lambda(s, {
+            tok => { P(Lambda(s, {
                     prevToken: tok,
                     savedToken: (prevToken(s))
                     }, ())) },
@@ -3668,7 +3567,7 @@ mod Language_C_Parser_Tokens {
         CTokTyIdent(PosLength, Ident),
         CTokGnuC(GnuCTok, PosLength),
         CTokEof
-    };
+    }
 
     enum GnuCTok {
         GnuCAttrTok,
@@ -3678,145 +3577,145 @@ mod Language_C_Parser_Tokens {
         GnuCTyCompat,
         GnuCComplexReal,
         GnuCComplexImag
-    };
+    }
 
-        fn posLenOfTok(__0: (Position, isize)) -> (Position, isize) {
+    fn posLenOfTok(__0: (Position, isize)) -> (Position, isize) {
         match (__0) {
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { pos },
-            <todo> => { error("tokenPos: Eof".to_string()) },
+            CTokLParen(pos) => { pos },
+            CTokRParen(pos) => { pos },
+            CTokLBracket(pos) => { pos },
+            CTokRBracket(pos) => { pos },
+            CTokArrow(pos) => { pos },
+            CTokDot(pos) => { pos },
+            CTokExclam(pos) => { pos },
+            CTokTilde(pos) => { pos },
+            CTokInc(pos) => { pos },
+            CTokDec(pos) => { pos },
+            CTokPlus(pos) => { pos },
+            CTokMinus(pos) => { pos },
+            CTokStar(pos) => { pos },
+            CTokSlash(pos) => { pos },
+            CTokPercent(pos) => { pos },
+            CTokAmper(pos) => { pos },
+            CTokShiftL(pos) => { pos },
+            CTokShiftR(pos) => { pos },
+            CTokLess(pos) => { pos },
+            CTokLessEq(pos) => { pos },
+            CTokHigh(pos) => { pos },
+            CTokHighEq(pos) => { pos },
+            CTokEqual(pos) => { pos },
+            CTokUnequal(pos) => { pos },
+            CTokHat(pos) => { pos },
+            CTokBar(pos) => { pos },
+            CTokAnd(pos) => { pos },
+            CTokOr(pos) => { pos },
+            CTokQuest(pos) => { pos },
+            CTokColon(pos) => { pos },
+            CTokAssign(pos) => { pos },
+            CTokPlusAss(pos) => { pos },
+            CTokMinusAss(pos) => { pos },
+            CTokStarAss(pos) => { pos },
+            CTokSlashAss(pos) => { pos },
+            CTokPercAss(pos) => { pos },
+            CTokAmpAss(pos) => { pos },
+            CTokHatAss(pos) => { pos },
+            CTokBarAss(pos) => { pos },
+            CTokSLAss(pos) => { pos },
+            CTokSRAss(pos) => { pos },
+            CTokComma(pos) => { pos },
+            CTokSemic(pos) => { pos },
+            CTokLBrace(pos) => { pos },
+            CTokRBrace(pos) => { pos },
+            CTokEllipsis(pos) => { pos },
+            CTokAlignof(pos) => { pos },
+            CTokAsm(pos) => { pos },
+            CTokAuto(pos) => { pos },
+            CTokBreak(pos) => { pos },
+            CTokBool(pos) => { pos },
+            CTokCase(pos) => { pos },
+            CTokChar(pos) => { pos },
+            CTokConst(pos) => { pos },
+            CTokContinue(pos) => { pos },
+            CTokComplex(pos) => { pos },
+            CTokDefault(pos) => { pos },
+            CTokDo(pos) => { pos },
+            CTokDouble(pos) => { pos },
+            CTokElse(pos) => { pos },
+            CTokEnum(pos) => { pos },
+            CTokExtern(pos) => { pos },
+            CTokFloat(pos) => { pos },
+            CTokFor(pos) => { pos },
+            CTokGoto(pos) => { pos },
+            CTokInt(pos) => { pos },
+            CTokInline(pos) => { pos },
+            CTokIf(pos) => { pos },
+            CTokLong(pos) => { pos },
+            CTokLabel(pos) => { pos },
+            CTokRegister(pos) => { pos },
+            CTokRestrict(pos) => { pos },
+            CTokReturn(pos) => { pos },
+            CTokShort(pos) => { pos },
+            CTokSigned(pos) => { pos },
+            CTokSizeof(pos) => { pos },
+            CTokStatic(pos) => { pos },
+            CTokStruct(pos) => { pos },
+            CTokSwitch(pos) => { pos },
+            CTokTypedef(pos) => { pos },
+            CTokTypeof(pos) => { pos },
+            CTokThread(pos) => { pos },
+            CTokUnion(pos) => { pos },
+            CTokUnsigned(pos) => { pos },
+            CTokVoid(pos) => { pos },
+            CTokVolatile(pos) => { pos },
+            CTokWhile(pos) => { pos },
+            CTokCLit(pos, _) => { pos },
+            CTokILit(pos, _) => { pos },
+            CTokFLit(pos, _) => { pos },
+            CTokSLit(pos, _) => { pos },
+            CTokIdent(pos, _) => { pos },
+            CTokTyIdent(pos, _) => { pos },
+            CTokGnuC(_, pos) => { pos },
+            CTokEof => { error("tokenPos: Eof".to_string()) },
         }
     }
 
 }
 
 mod Language_C_Parser {
-        fn execParser_(parser: P) -> P {
+    fn execParser_(parser: P) -> P {
         fmap(fst)(execParser(parser, input, pos, builtinTypeNames, newNameSupply))
     }
 
 }
 
 mod Language_C_Pretty {
-        fn attrlistP(__0: Doc) -> Doc {
+    fn attrlistP(__0: Doc) -> Doc {
         match (__0) {
-            <todo> => { empty },
-            <todo> => { <>(text("__attribute__".to_string()), parens((parens(((hcat . (punctuate(comma) . map(pretty)(attrs)))))))) },
+            [] => { empty },
+            attrs => { <>(text("__attribute__".to_string()), parens((parens(((hcat . (punctuate(comma) . map(pretty)(attrs)))))))) },
         }
     }
 
     fn binPrec(__0: isize) -> isize {
         match (__0) {
-            <todo> => { 20 },
-            <todo> => { 20 },
-            <todo> => { 20 },
-            <todo> => { 19 },
-            <todo> => { 19 },
-            <todo> => { 18 },
-            <todo> => { 18 },
-            <todo> => { 17 },
-            <todo> => { 17 },
-            <todo> => { 17 },
-            <todo> => { 17 },
-            <todo> => { 16 },
-            <todo> => { 16 },
-            <todo> => { 15 },
-            <todo> => { 14 },
-            <todo> => { 13 },
-            <todo> => { 12 },
-            <todo> => { 11 },
+            CMulOp => { 20 },
+            CDivOp => { 20 },
+            CRmdOp => { 20 },
+            CAddOp => { 19 },
+            CSubOp => { 19 },
+            CShlOp => { 18 },
+            CShrOp => { 18 },
+            CLeOp => { 17 },
+            CGrOp => { 17 },
+            CLeqOp => { 17 },
+            CGeqOp => { 17 },
+            CEqOp => { 16 },
+            CNeqOp => { 16 },
+            CAndOp => { 15 },
+            CXorOp => { 14 },
+            COrOp => { 13 },
+            CLndOp => { 12 },
+            CLorOp => { 11 },
         }
     }
 
@@ -3863,7 +3762,7 @@ mod Language_C_Syntax_AST {
         CDeclExt(CDeclaration(a)),
         CFDefExt(CFunctionDef(a)),
         CAsmExt(CStringLiteral(a), a)
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct CFunctionDef(CFunDef, Vec<CDeclarationSpecifier(a)>, CDeclarator(a), Vec<CDeclaration(a)>, CStatement(a), a);
@@ -3879,13 +3778,13 @@ mod Language_C_Syntax_AST {
         CPtrDeclr(Vec<CTypeQualifier(a)>, a),
         CArrDeclr(Vec<CTypeQualifier(a)>, CArraySize(a), a),
         CFunDeclr(Either(Vec<Ident>, (Vec<CDeclaration(a)>, Bool)), Vec<CAttribute(a)>, a)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum CArraySize {
         CNoArrSize(Bool),
         CArrSize(Bool, CExpression(a))
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum CStatement {
@@ -3905,7 +3804,7 @@ mod Language_C_Syntax_AST {
         CBreak(a),
         CReturn(Maybe(CExpression(a)), a),
         CAsm(CAssemblyStatement(a), a)
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct CAssemblyStatement(CAsmStmt, Maybe(CTypeQualifier(a)), CStringLiteral(a), Vec<CAssemblyOperand(a)>, Vec<CAssemblyOperand(a)>, Vec<CStringLiteral(a)>, a);
@@ -3918,14 +3817,14 @@ mod Language_C_Syntax_AST {
         CBlockStmt(CStatement(a)),
         CBlockDecl(CDeclaration(a)),
         CNestedFunDef(CFunctionDef(a))
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum CDeclarationSpecifier {
         CStorageSpec(CStorageSpecifier(a)),
         CTypeSpec(CTypeSpecifier(a)),
         CTypeQual(CTypeQualifier(a))
-    };
+    }
 
     #[derive(Clone, Debug, Eq, Ord)]
     enum CStorageSpecifier {
@@ -3935,7 +3834,7 @@ mod Language_C_Syntax_AST {
         CExtern(a),
         CTypedef(a),
         CThread(a)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum CTypeSpecifier {
@@ -3955,7 +3854,7 @@ mod Language_C_Syntax_AST {
         CTypeDef(Ident, a),
         CTypeOfExpr(CExpression(a), a),
         CTypeOfType(CDeclaration(a), a)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum CTypeQualifier {
@@ -3964,7 +3863,7 @@ mod Language_C_Syntax_AST {
         CRestrQual(a),
         CInlineQual(a),
         CAttrQual(CAttribute(a))
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct CStructureUnion(CStruct, CStructTag, Maybe(Ident), Maybe(Vec<CDeclaration(a)>), Vec<CAttribute(a)>, a);
@@ -3973,7 +3872,7 @@ mod Language_C_Syntax_AST {
     enum CStructTag {
         CStructTag,
         CUnionTag
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct CEnumeration(CEnum, Maybe(Ident), Maybe(Vec<(Ident, Maybe(CExpression(a)))>), Vec<CAttribute(a)>, a);
@@ -3982,14 +3881,14 @@ mod Language_C_Syntax_AST {
     enum CInitializer {
         CInitExpr(CExpression(a), a),
         CInitList(CInitializerList(a), a)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum CPartDesignator {
         CArrDesig(CExpression(a), a),
         CMemberDesig(Ident, a),
         CRangeDesig(CExpression(a), CExpression(a), a)
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct CAttribute(CAttr, Ident, Vec<CExpression(a)>, a);
@@ -4017,14 +3916,14 @@ mod Language_C_Syntax_AST {
         CStatExpr(CStatement(a), a),
         CLabAddrExpr(Ident, a),
         CBuiltinExpr(CBuiltinThing(a))
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum CBuiltinThing {
         CBuiltinVaArg(CExpression(a), CDeclaration(a), a),
         CBuiltinOffsetOf(CDeclaration(a), Vec<CPartDesignator(a)>, a),
         CBuiltinTypesCompatible(CDeclaration(a), CDeclaration(a), a)
-    };
+    }
 
     #[derive(Clone, Debug)]
     enum CConstant {
@@ -4032,12 +3931,12 @@ mod Language_C_Syntax_AST {
         CCharConst(CChar, a),
         CFloatConst(CFloat, a),
         CStrConst(CString, a)
-    };
+    }
 
     #[derive(Clone, Debug)]
     struct CStringLiteral(CStrLit, CString, a);
 
-        fn cstringOfLit((CStrLit(cstr, _)): CStringLiteral) -> CStringLiteral {
+    fn cstringOfLit((CStrLit(cstr, _)): CStringLiteral) -> CStringLiteral {
         cstr
     }
 
@@ -4047,9 +3946,9 @@ mod Language_C_Syntax_AST {
 
     fn isSUEDef(__0: CTypeSpecifier) -> CTypeSpecifier {
         match (__0) {
-            <todo> => { True },
-            <todo> => { True },
-            <todo> => { False },
+            CSUType(CStruct(_, _, Just(_), _, _), _) => { True },
+            CEnumType(CEnum(_, Just(_), _, _), _) => { True },
+            _ => { False },
         }
     }
 
@@ -4068,14 +3967,14 @@ mod Language_C_Syntax_Constants {
     enum CChar {
         CChar(Char, Bool),
         CChars(Vec<Char>, Bool)
-    };
+    }
 
     #[derive(Bounded, Clone, Debug, Enum, Eq, Ord)]
     enum CIntRepr {
         DecRepr,
         HexRepr,
         OctalRepr
-    };
+    }
 
     #[derive(Bounded, Clone, Debug, Enum, Eq, Ord)]
     enum CIntFlag {
@@ -4083,7 +3982,7 @@ mod Language_C_Syntax_Constants {
         FlagLong,
         FlagLongLong,
         FlagImag
-    };
+    }
 
     #[derive(Clone, Debug, Eq, Ord)]
     struct CInteger(CInteger, Integer, CIntRepr, Flags(CIntFlag));
@@ -4094,7 +3993,7 @@ mod Language_C_Syntax_Constants {
     #[derive(Clone, Debug, Eq, Ord)]
     struct CString(CString, Vec<Char>, Bool);
 
-        fn _showWideFlag(flag: ShowS) -> ShowS {
+    fn _showWideFlag(flag: ShowS) -> ShowS {
         if(flag, then, showString, "L".to_string(), else, id)
     }
 
@@ -4144,29 +4043,29 @@ mod Language_C_Syntax_Constants {
 
     fn escapeChar(__0: String) -> String {
         match (__0) {
-            <todo> => { "\\\\".to_string() },
-            <todo> => { "\\a".to_string() },
-            <todo> => { "\\b".to_string() },
-            <todo> => { "\\e".to_string() },
-            <todo> => { "\\f".to_string() },
-            <todo> => { "\\n".to_string() },
-            <todo> => { "\\r".to_string() },
-            <todo> => { "\\t".to_string() },
-            <todo> => { "\\v".to_string() },
+            '\\' => { "\\\\".to_string() },
+            '\u{7}' => { "\\a".to_string() },
+            '\u{8}' => { "\\b".to_string() },
+            '\u{1b}' => { "\\e".to_string() },
+            '\u{c}' => { "\\f".to_string() },
+            '\n' => { "\\n".to_string() },
+            '\r' => { "\\r".to_string() },
+            '\t' => { "\\t".to_string() },
+            '\u{b}' => { "\\v".to_string() },
         }
     }
 
     fn getCChar(__0: Vec<Char>) -> Vec<Char> {
         match (__0) {
-            <todo> => { vec![c] },
-            <todo> => { cs },
+            CChar(c, _) => { vec![c] },
+            CChars(cs, _) => { cs },
         }
     }
 
     fn getCCharAsInt(__0: Integer) -> Integer {
         match (__0) {
-            <todo> => { fromIntegral((fromEnum(c))) },
-            <todo> => { error("integer value of multi-character character constants is implementation defined".to_string()) },
+            CChar(c, _) => { fromIntegral((fromEnum(c))) },
+            CChars(_cs, _) => { error("integer value of multi-character character constants is implementation defined".to_string()) },
         }
     }
 
@@ -4180,8 +4079,8 @@ mod Language_C_Syntax_Constants {
 
     fn head_q(__0: a) -> a {
         match (__0, __1) {
-            <todo> => { error(err) },
-            <todo> => { x },
+            err, [] => { error(err) },
+            _, x:_ => { x },
         }
     }
 
@@ -4191,26 +4090,26 @@ mod Language_C_Syntax_Constants {
 
     fn isCChar(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { False },
-            <todo> => { False },
-            <todo> => { False },
-            <todo> => { isAsciiSourceChar(c) },
+            '\\' => { False },
+            '\'' => { False },
+            '\n' => { False },
+            c => { isAsciiSourceChar(c) },
         }
     }
 
     fn isSChar(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { False },
-            <todo> => { False },
-            <todo> => { False },
-            <todo> => { isAsciiSourceChar(c) },
+            '\\' => { False },
+            '\"' => { False },
+            '\n' => { False },
+            c => { isAsciiSourceChar(c) },
         }
     }
 
     fn isWideChar(__0: Bool) -> Bool {
         match (__0) {
-            <todo> => { wideFlag },
-            <todo> => { wideFlag },
+            CChar(_, wideFlag) => { wideFlag },
+            CChars(_, wideFlag) => { wideFlag },
         }
     }
 
@@ -4255,7 +4154,7 @@ mod Language_C_Syntax_Constants {
 
     fn unescapeChar(__0: (Char, String)) -> (Char, String) {
         match (__0) {
-            <todo> => { match c {
+            '\\'(<todo>, c:cs) => { match c {
                     'n' => { ('\n', cs) },
                     't' => { ('\t', cs) },
                     'v' => { ('\u{b}', cs) },
@@ -4276,15 +4175,15 @@ mod Language_C_Syntax_Constants {
                             (i, cs_q) => { (toEnum(i), cs_q) },
                         } },
                 } },
-            <todo> => { (c, cs) },
-            <todo> => { error("unescape char: empty string".to_string()) },
+            c(<todo>, cs) => { (c, cs) },
+            [] => { error("unescape char: empty string".to_string()) },
         }
     }
 
     fn unescapeString(__0: String) -> String {
         match (__0) {
-            <todo> => { vec![] },
-            <todo> => { match unescapeChar(cs) {
+            [] => { vec![] },
+            cs => { match unescapeChar(cs) {
                     (c, cs_q) => { :(c, unescapeString(cs_q)) },
                 } },
         }
@@ -4306,7 +4205,7 @@ mod Language_C_Syntax_Ops {
         CAndAssOp,
         CXorAssOp,
         COrAssOp
-    };
+    }
 
     #[derive(Clone, Debug, Eq, Ord)]
     enum CBinaryOp {
@@ -4328,7 +4227,7 @@ mod Language_C_Syntax_Ops {
         COrOp,
         CLndOp,
         CLorOp
-    };
+    }
 
     #[derive(Clone, Debug, Eq, Ord)]
     enum CUnaryOp {
@@ -4342,21 +4241,21 @@ mod Language_C_Syntax_Ops {
         CMinOp,
         CCompOp,
         CNegOp
-    };
+    }
 
-        fn assignBinop(__0: CBinaryOp) -> CBinaryOp {
+    fn assignBinop(__0: CBinaryOp) -> CBinaryOp {
         match (__0) {
-            <todo> => { error("direct assignment has no binary operator".to_string()) },
-            <todo> => { CMulOp },
-            <todo> => { CDivOp },
-            <todo> => { CRmdOp },
-            <todo> => { CAddOp },
-            <todo> => { CSubOp },
-            <todo> => { CShlOp },
-            <todo> => { CShrOp },
-            <todo> => { CAndOp },
-            <todo> => { CXorOp },
-            <todo> => { COrOp },
+            CAssignOp => { error("direct assignment has no binary operator".to_string()) },
+            CMulAssOp => { CMulOp },
+            CDivAssOp => { CDivOp },
+            CRmdAssOp => { CRmdOp },
+            CAddAssOp => { CAddOp },
+            CSubAssOp => { CSubOp },
+            CShlAssOp => { CShlOp },
+            CShrAssOp => { CShrOp },
+            CAndAssOp => { CAndOp },
+            CXorAssOp => { CXorOp },
+            COrAssOp => { COrOp },
         }
     }
 
@@ -4383,77 +4282,76 @@ mod Language_C_Syntax_Ops {
 }
 
 mod Language_C_Syntax_Utils {
-        fn compoundSubStmts(__0: Vec<CStat>) -> Vec<CStat> {
+    fn compoundSubStmts(__0: Vec<CStat>) -> Vec<CStat> {
         match (__0) {
-            <todo> => { vec![s] },
-            <todo> => { vec![] },
-            <todo> => { vec![] },
+            CBlockStmt(s) => { vec![s] },
+            CBlockDecl(_) => { vec![] },
+            CNestedFunDef(_) => { vec![] },
         }
     }
 
     fn getLabels(__0: Vec<Ident>) -> Vec<Ident> {
         match (__0) {
-            <todo> => { :(l, getLabels(s)) },
-            <todo> => { \\(concatMap(((concatMap(getLabels) . compoundSubStmts)), body), ls) },
-            <todo> => { concatMap(getLabels, (getSubStmts(stmt))) },
+            CLabel(l, s, _, _) => { :(l, getLabels(s)) },
+            CCompound(ls, body, _) => { \\(concatMap(((concatMap(getLabels) . compoundSubStmts)), body), ls) },
+            stmt => { concatMap(getLabels, (getSubStmts(stmt))) },
         }
     }
 
     fn getSubStmts(__0: Vec<CStat>) -> Vec<CStat> {
         match (__0) {
-            <todo> => { vec![s] },
-            <todo> => { vec![s] },
-            <todo> => { vec![s] },
-            <todo> => { vec![s] },
-            <todo> => { vec![] },
-            <todo> => { concatMap(compoundSubStmts, body) },
-            <todo> => { maybe(vec![sthen], (Lambda), selse) },
-            <todo> => { vec![s] },
-            <todo> => { vec![s] },
-            <todo> => { vec![s] },
-            <todo> => { vec![] },
-            <todo> => { vec![] },
-            <todo> => { vec![] },
-            <todo> => { vec![] },
-            <todo> => { vec![] },
-            <todo> => { vec![] },
+            CLabel(_, s, _, _) => { vec![s] },
+            CCase(_, s, _) => { vec![s] },
+            CCases(_, _, s, _) => { vec![s] },
+            CDefault(s, _) => { vec![s] },
+            CExpr(_, _) => { vec![] },
+            CCompound(_, body, _) => { concatMap(compoundSubStmts, body) },
+            CIf(_, sthen, selse, _) => { maybe(vec![sthen], (Lambda), selse) },
+            CSwitch(_, s, _) => { vec![s] },
+            CWhile(_, s, _, _) => { vec![s] },
+            CFor(_, _, _, s, _) => { vec![s] },
+            CGoto(_, _) => { vec![] },
+            CGotoPtr(_, _) => { vec![] },
+            CCont(_) => { vec![] },
+            CBreak(_) => { vec![] },
+            CReturn(_, _) => { vec![] },
+            CAsm(_, _) => { vec![] },
         }
     }
 
     fn mapBlockItemStmts(__0: CBlockItem) -> CBlockItem {
         match (__0, __1, __2) {
-            <todo> => { CBlockStmt((mapSubStmts(stop, f, s))) },
-            <todo> => { bi },
+            stop, f, CBlockStmt(s) => { CBlockStmt((mapSubStmts(stop, f, s))) },
+            _, _, bi => { bi },
         }
     }
 
     fn mapSubStmts(__0: CStat) -> CStat {
         match (__0, __1, __2) {
-            <todo> => { f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni))) },
-            <todo> => { f((CCase(e, (mapSubStmts(stop, f, s)), ni))) },
-            <todo> => { f((CCases(e1, e2, (mapSubStmts(stop, f, s)), ni))) },
-            <todo> => { f((CDefault((mapSubStmts(stop, f, s)), ni))) },
-            <todo> => { f((CCompound(ls, (map((mapBlockItemStmts(stop, f)), body)), ni))) },
-            <todo> => { f((CIf(e, (mapSubStmts(stop, f, sthen)), (maybe(Nothing, ((Just . mapSubStmts(stop, f))), selse)), ni))) },
-            <todo> => { f((CSwitch(e, (mapSubStmts(stop, f, s)), ni))) },
-            <todo> => { f((CWhile(e, (mapSubStmts(stop, f, s)), isdo, ni))) },
-            <todo> => { f((CFor(i, t, a, (mapSubStmts(stop, f, s)), ni))) },
-            <todo> => { f(s) },
+            stop, f, CLabel(i, s, attrs, ni) => { f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni))) },
+            stop, f, CCase(e, s, ni) => { f((CCase(e, (mapSubStmts(stop, f, s)), ni))) },
+            stop, f, CCases(e1, e2, s, ni) => { f((CCases(e1, e2, (mapSubStmts(stop, f, s)), ni))) },
+            stop, f, CDefault(s, ni) => { f((CDefault((mapSubStmts(stop, f, s)), ni))) },
+            stop, f, CCompound(ls, body, ni) => { f((CCompound(ls, (map((mapBlockItemStmts(stop, f)), body)), ni))) },
+            stop, f, CIf(e, sthen, selse, ni) => { f((CIf(e, (mapSubStmts(stop, f, sthen)), (maybe(Nothing, ((Just . mapSubStmts(stop, f))), selse)), ni))) },
+            stop, f, CSwitch(e, s, ni) => { f((CSwitch(e, (mapSubStmts(stop, f, s)), ni))) },
+            stop, f, CWhile(e, s, isdo, ni) => { f((CWhile(e, (mapSubStmts(stop, f, s)), isdo, ni))) },
+            stop, f, CFor(i, t, a, s, ni) => { f((CFor(i, t, a, (mapSubStmts(stop, f, s)), ni))) },
+            _, f, s => { f(s) },
         }
     }
 
 }
 
 mod Language_C_Syntax {
-    
+
 }
 
 mod Language_C_System_GCC {
-        fn buildCppArgs((CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt)): Vec<String>) -> Vec<String> {
-        __op_concat({
+    fn buildCppArgs((CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt)): Vec<String>) -> Vec<String> {
+        __op_concat(/* do */ {
 
-                    (concatMap(tOption, options))
-            }, __op_concat(outputFileOpt, __op_concat(vec!["-E".to_string(), input_file], extra_args)))
+                (concatMap(tOption, options))}, __op_concat(outputFileOpt, __op_concat(vec!["-E".to_string(), input_file], extra_args)))
     }
 
     fn gccParseCPPArgs(args: Either) -> Either {
@@ -4479,11 +4377,11 @@ mod Language_C_System_Preprocess {
         Define(String, String),
         Undefine(String),
         IncludeFile(FilePath)
-    };
+    }
 
     struct CppArgs(CppArgs, { /* struct def */ });
 
-        fn addCppOption(cpp_args: CppArgs) -> CppArgs {
+    fn addCppOption(cpp_args: CppArgs) -> CppArgs {
         cpp_args({
             cppOptions: :(opt, (cppOptions(cpp_args)))
             })
@@ -4510,20 +4408,18 @@ mod Language_C_System_Preprocess {
     }
 
     fn mkOutputFile(tmp_dir_opt: Maybe) -> Maybe {
-        {
+        /* do */ {
 
-                let tmpDir = getTempDir(tmp_dir_opt);
-                mkTmpFile(tmpDir, (getOutputFileName(input_file)))
-        }
+            let tmpDir = getTempDir(tmp_dir_opt);
+            mkTmpFile(tmpDir, (getOutputFileName(input_file)))}
     }
 
     fn mkTmpFile(tmp_dir: IO) -> IO {
-        {
+        /* do */ {
 
-                let (path, file_handle) = openTempFile(tmp_dir, file_templ);
-                hClose(file_handle);
-                return(path)
-        }
+            let (path, file_handle) = openTempFile(tmp_dir, file_templ);
+            hClose(file_handle);
+            return(path)}
     }
 
     fn preprocessedExt() -> String {
@@ -4541,10 +4437,9 @@ mod Language_C_System_Preprocess {
     }
 
     fn runPreprocessor(cpp: IO) -> IO {
-        {
+        /* do */ {
 
-                bracket(getActualOutFile, removeTmpOutFile, invokeCpp);
-            
+            bracket(getActualOutFile, removeTmpOutFile, invokeCpp);
         }
     }
 

@@ -324,7 +324,7 @@ where
 fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     let mut types = btreemap![];
     for item in stats {
-        errln!("{:?}", item);
+        //errln!("{:?}", item);
 
         // println!("well {:?}", item);
         if let ast::Statement::Prototype(exprs, d) = item.clone() {
