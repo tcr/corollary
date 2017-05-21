@@ -66,6 +66,10 @@ fn expr_explode(span: Vec<Expr>) -> Vec<Expr> {
     span
 }
 
+fn print_ident(state: PrintState, expr: String) -> String {
+    expr.replace("'", "_q").replace(".", "_")
+}
+
 
 fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
     use ast::Expr::*;
@@ -96,13 +100,16 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             format!("{{\n{}\n{}}}", out.join("\n"), state.untab().indent())
         }
         Ref(ast::Ident(ref i)) => {
-            format!("{}", i)
+            print_ident(state, i.clone())
         }
         Number(n) => {
             format!("{}", n)
         }
         Op(ref l, ref op, ref r) => {
-            if op == "$" {
+            if op == "&&"
+                || op == "==" {
+                format!("({} {} {})", print_expr(state, l), op, print_expr(state, r))
+            } else if op == "$" {
                 format!("{}({})", print_expr(state, l), print_expr(state, r))
             } else if op == "." {
                 format!("({} . {})", print_expr(state, l), print_expr(state, r))
@@ -203,7 +210,7 @@ fn unpack_fndef(t: Ty) -> Vec<Ty> {
 
 fn print_pattern(state: PrintState, pat: &Pat) -> String {
     match *pat {
-        Pat::Ref(ast::Ident(ref s)) => s.to_string(),
+        Pat::Ref(ast::Ident(ref s)) => print_ident(state, s.to_string()),
         Pat::Span(ref span) => {
             let mut out_span = print_pattern(state.tab(), &span[0]);
             if span.len() > 1 {

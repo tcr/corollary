@@ -21,11 +21,11 @@ mod Language_C_Parser_Lexer {
     };
 
         fn adjustLineDirective(pragmaLen: Position) -> Position {
-        seq(offs', seq(fname', seq(row', (position(offs', fname', row', 1)))))
+        seq(offs_q, seq(fname_q, seq(row_q, (position(offs_q, fname_q, row_q, 1)))))
     }
 
     let alexAndPred = |p1, p2, user, in1, len, in2| {
-        &&(p1(user, in1, len, in2), p2(user, in1, len, in2))
+        (p1(user, in1, len, in2) && p2(user, in1, len, in2))
     };
 
     let alexIndexInt16OffAddr = |arr, off| {
@@ -50,7 +50,7 @@ mod Language_C_Parser_Lexer {
     }
 
     let alexPrevCharIs = |c, _, input, _, _| {
-        ==(c, alexInputPrevChar(input))
+        (c == alexInputPrevChar(input))
     };
 
     let alexPrevCharIsOneOf = |arr, _, input, _, _| {
@@ -74,12 +74,12 @@ mod Language_C_Parser_Lexer {
 
     let alexScanUser = |user, input, (sc)| {
         match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
-                (AlexNone, input') => { match alexGetByte(input) {
+                (AlexNone, input_q) => { match alexGetByte(input) {
                         Nothing => { AlexEOF },
-                        Just, _ => { AlexError(input') },
+                        Just, _ => { AlexError(input_q) },
                     } },
-                (AlexLastSkip(input'', len), _) => { AlexSkip(input'', len) },
-                (AlexLastAcc(k, input''', len), _) => { AlexToken(input''', len, (!(alex_actions, k))) },
+                (AlexLastSkip(input_q_q, len), _) => { AlexSkip(input_q_q, len) },
+                (AlexLastAcc(k, input_q_q_q, len), _) => { AlexToken(input_q_q_q, len, (!(alex_actions, k))) },
             }
     };
 
@@ -88,7 +88,7 @@ mod Language_C_Parser_Lexer {
     };
 
     let alex_action_1 = || {
-        >>(Lambda((adjustLineDirective(len, (takeChars(len, str)), pos))), lexToken'(False))
+        >>(Lambda((adjustLineDirective(len, (takeChars(len, str)), pos))), lexToken_q(False))
     };
 
     let alex_action_10 = || {
@@ -466,10 +466,10 @@ mod Language_C_Parser_Lexer {
     }
 
     fn lexToken() -> P {
-        lexToken'(True)
+        lexToken_q(True)
     }
 
-    fn lexToken'(modifyCache: P) -> P {
+    fn lexToken_q(modifyCache: P) -> P {
         {
 
                 let pos = getPos;
@@ -480,17 +480,17 @@ mod Language_C_Parser_Lexer {
                 handleEofToken;
                 return(CTokEof)
         } },
-        AlexError, inp' => { lexicalError },
-        AlexSkip, (pos', inp'), len => { {
+        AlexError, inp_q => { lexicalError },
+        AlexSkip, (pos_q, inp_q), len => { {
 
-                setPos(pos');
-                setInput(inp');
-                lexToken'(modifyCache)
+                setPos(pos_q);
+                setInput(inp_q);
+                lexToken_q(modifyCache)
         } },
-        AlexToken, (pos', inp'), len, action => { {
+        AlexToken, (pos_q, inp_q), len, action => { {
 
-                setPos(pos');
-                setInput(inp');
+                setPos(pos_q);
+                setInput(inp_q);
                 let tok = action(pos, len, inp);
                 when(modifyCache)(setLastToken(tok));
                 return(tok)
@@ -553,7 +553,7 @@ mod Language_C_Parser_Lexer {
     fn unescapeMultiChars(__0: Vec<Char>) -> Vec<Char> {
         match (__0, __1, __2) {
             <todo> => { match unescapeChar(cs) {
-                    (c, cs') => { :(c, unescapeMultiChars(cs')) },
+                    (c, cs_q) => { :(c, unescapeMultiChars(cs_q)) },
                 } },
             <todo> => { vec![] },
             <todo> => { error("Unexpected end of multi-char constant".to_string()) },
@@ -14342,16 +14342,16 @@ otherwise { shadowTypedef(ident) },
         parseError
     }
 
-    fn happyError'(tk: P) -> P {
-        (Lambda)(tk)
-    }
-
     let happyError_ = |__0, __1| {
         match (__0, __1) {
-            <todo> => { happyError'(tk) },
-            <todo> => { happyError'(tk) },
+            <todo> => { happyError_q(tk) },
+            <todo> => { happyError_q(tk) },
         }
     };
+
+    fn happyError_q(tk: P) -> P {
+        (Lambda)(tk)
+    }
 
     let happyFail = |__0, __1, __2, __3, __4, __5, __6| {
         match (__0, __1, __2, __3, __4, __5, __6) {
@@ -14485,7 +14485,7 @@ otherwise { shadowTypedef(ident) },
                     CTokGnuC, GnuCVaArg, _ => { cont(229) },
                     CTokGnuC, GnuCOffsetof, _ => { cont(230) },
                     CTokGnuC, GnuCTyCompat, _ => { cont(231) },
-                    _ => { happyError'(tk) },
+                    _ => { happyError_q(tk) },
                 })))
     };
 
@@ -16867,7 +16867,7 @@ otherwise { shadowTypedef(ident) },
     let happyReduction_183 = |__0, __1| {
         match (__0, __1) {
             <todo> => { HappyAbsSyn32((match happy_var_1 {
-                        CDecl, declspecs, dies, at => { CDecl(declspecs, (List.reverse(dies)), at) },
+                        CDecl, declspecs, dies, at => { CDecl(declspecs, (List_reverse(dies)), at) },
                     })) },
             <todo> => { notHappyAtAll },
         }
@@ -16876,7 +16876,7 @@ otherwise { shadowTypedef(ident) },
     let happyReduction_184 = |__0, __1| {
         match (__0, __1) {
             <todo> => { HappyAbsSyn32((match happy_var_1 {
-                        CDecl, declspecs, dies, at => { CDecl(declspecs, (List.reverse(dies)), at) },
+                        CDecl, declspecs, dies, at => { CDecl(declspecs, (List_reverse(dies)), at) },
                     })) },
             <todo> => { notHappyAtAll },
         }
@@ -18104,7 +18104,7 @@ otherwise { shadowTypedef(ident) },
 
                                 let n = getNewName;
                                 let p = getCurrentPosition;
-                                return(CTranslUnit(decls, (mkNodeInfo'(p, (p, 0), n))))
+                                return(CTranslUnit(decls, (mkNodeInfo_q(p, (p, 0), n))))
                         } },
                         d:ds => { withNodeInfo(d)(CTranslUnit(decls)) },
                     }))), (Lambda((HappyAbsSyn7(r)))))
@@ -18764,13 +18764,13 @@ otherwise { shadowTypedef(ident) },
 
     let happyReduction_87 = |(HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_1)), happyRest))), tk| {
         happyThen(((match happy_var_1 {
-                        CDecl, declspecs, dies, at => { withLength(at, (CDecl(declspecs, (List.reverse(dies))))) },
+                        CDecl, declspecs, dies, at => { withLength(at, (CDecl(declspecs, (List_reverse(dies))))) },
                     })), (Lambda((HappyAbsSyn32(r)))))
     };
 
     let happyReduction_88 = |(HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_1)), happyRest))), tk| {
         happyThen(((match happy_var_1 {
-                        CDecl, declspecs, dies, at => { withLength(at, (CDecl(declspecs, (List.reverse(dies))))) },
+                        CDecl, declspecs, dies, at => { withLength(at, (CDecl(declspecs, (List_reverse(dies))))) },
                     })), (Lambda((HappyAbsSyn32(r)))))
     };
 
@@ -18904,21 +18904,21 @@ otherwise { shadowTypedef(ident) },
     let happySpecReduce_1 = |__0, __1, __2, __3, __4, __5, __6| {
         match (__0, __1, __2, __3, __4, __5, __6) {
             <todo> => { happyFail((1), tk, st, sts, stk) },
-            <todo> => { Let([Assign([Span([Ref(Ident("r"))])], Span([Ref(Ident("fn")), Ref(Ident("v1"))]))], [])(in, happySeq, r, (action(nt, j, tk, st, sts, (HappyStk(r, stk'))))) },
+            <todo> => { Let([Assign([Span([Ref(Ident("r"))])], Span([Ref(Ident("fn")), Ref(Ident("v1"))]))], [])(in, happySeq, r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q))))) },
         }
     };
 
     let happySpecReduce_2 = |__0, __1, __2, __3, __4, __5, __6| {
         match (__0, __1, __2, __3, __4, __5, __6) {
             <todo> => { happyFail((1), tk, st, sts, stk) },
-            <todo> => { Let([Assign([Span([Ref(Ident("r"))])], Span([Ref(Ident("fn")), Ref(Ident("v1")), Ref(Ident("v2"))]))], [])(in, happySeq, r, (action(nt, j, tk, st, sts, (HappyStk(r, stk'))))) },
+            <todo> => { Let([Assign([Span([Ref(Ident("r"))])], Span([Ref(Ident("fn")), Ref(Ident("v1")), Ref(Ident("v2"))]))], [])(in, happySeq, r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q))))) },
         }
     };
 
     let happySpecReduce_3 = |__0, __1, __2, __3, __4, __5, __6| {
         match (__0, __1, __2, __3, __4, __5, __6) {
             <todo> => { happyFail((1), tk, st, sts, stk) },
-            <todo> => { Let([Assign([Span([Ref(Ident("r"))])], Span([Ref(Ident("fn")), Ref(Ident("v1")), Ref(Ident("v2")), Ref(Ident("v3"))]))], [])(in, happySeq, r, (action(nt, j, tk, st, sts, (HappyStk(r, stk'))))) },
+            <todo> => { Let([Assign([Span([Ref(Ident("r"))])], Span([Ref(Ident("fn")), Ref(Ident("v1")), Ref(Ident("v2")), Ref(Ident("v3"))]))], [])(in, happySeq, r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q))))) },
         }
     };
 
@@ -18959,7 +18959,7 @@ otherwise { shadowTypedef(ident) },
     }
 
     fn reverseList() -> Reversed {
-        (Reversed . List.reverse)
+        (Reversed . List_reverse)
     }
 
     fn setAsmName(mAsmName: Maybe) -> Maybe {
