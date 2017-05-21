@@ -345,15 +345,24 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     // Print out assignments as fns
     let mut cache = btreemap![];
     for item in stats {
-        if let ast::Statement::Assign(s, expr) = item.clone() {
+        if let ast::Statement::Assign(mut s, expr) = item.clone() {
             //if !types.contains_key(&s) {
             //    println!("this shouldn't happen {:?}", s);
             //}
             //if cache.contains_key(&s) {
             //    panic!("this shouldn't happen {:?}", s);
             //}
-            let ident = s[0].clone();
-            cache.entry(print_expr(PrintState::new(), &ident)).or_insert(vec![]).push((s[1..].to_vec(), expr));
+
+            // If hte AST is refactored to break out the first Ident
+            // for the issigned, this whole check should be deleted
+            let span = if let ast::Expr::Span(s) = s.remove(0) {
+                s
+            } else {
+                panic!("Expected Span.")
+            };
+
+            let ident = span[0].clone();
+            cache.entry(print_expr(PrintState::new(), &ident)).or_insert(vec![]).push((span[1..].to_vec(), expr));
         }
     }
 
@@ -392,7 +401,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
                         state.indent(),
                         key,
-                        print_expr(state, &ast::Expr::Span(args)),
+                        args.iter().map(|x| print_expr(state, x)).collect::<Vec<_>>().join(", "),
                         state.tab().indent(),
                         print_expr(state.tab(), &expr),
                         state.indent()));
@@ -600,7 +609,8 @@ fn main() {
                 // continue;
                 println!("mod {} {{", v.name.0.replace(".", "_"));
                 let state = PrintState::new();
-                println!("{}", print_statement_list(state.tab(), &v.statements));
+                println!("    {}", print_statement_list(state.tab(), &v.statements));
+                //print_statement_list(state.tab(), &v.statements);
                 println!("}}\n");
             }
             Err(e) => {

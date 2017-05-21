@@ -5,7 +5,7 @@ mod test_module {
     #[derive(Clone, Debug)]
     struct Ident(String, isize, NodeInfo);
 
-    let applyRenames(ident) = |()| {
+        fn applyRenames(ident: String) -> String {
         match identToString(ident) {
                 "final" => { "final_".to_string() },
                 "fn" => { "fn_".to_string() },
@@ -19,11 +19,11 @@ mod test_module {
                 "where" => { "where_".to_string() },
                 name => { name },
             }
-    };
+    }
 
-    let identToString((Ident(s, _, _))) = |()| {
+    fn identToString((Ident(s, _, _)): String) -> String {
         s
-    };
+    }
 
 }
 
