@@ -125,9 +125,9 @@ Expr: Expr = {
     r"\\" "(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
 
     "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
-    "[" <CommaDef<ExprSpan>> ("::" PatSpan)? "]" => Expr::Vector(<>),
+    "[" <CommaDef<ExprSpan>> ("::" TypeGroup)? "]" => Expr::Vector(<>),
     "[" "]" => Expr::Vector(vec![]),
-    "(" <CommaDef<(<ExprSpan> ("::" PatSpan)?)>>  ")" => Expr::Parens(<>),
+    "(" <CommaDef<(<ExprSpan> ("::" TypeGroup)?)>>  ")" => Expr::Parens(<>),
     "(" ")" => Expr::Parens(vec![]),
     "(" "," ")" => Expr::Dummy,
     "(" Ident "->" PatList ")" => Expr::Dummy,
@@ -193,6 +193,7 @@ TypeSub: Ty = {
     "{" <CommaDef<TypeRecord>> "}" => Ty::RecordTODO,
     <Ident> => Ty::Ref(<>),
     <Ctor> => Ty::Ref(<>),
+    ".." => Ty::Dummy,
 };
 
 TypeSpan: Ty = {
