@@ -71,6 +71,7 @@ pub enum Ty {
     Brackets(Box<Ty>),
     RecordTODO,
     EmptyParen,
+    Dummy,
 }
 
 #[derive(Clone, Debug)]

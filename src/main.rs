@@ -275,6 +275,7 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         }
         Ty::RecordTODO => "{ /* struct def */ }".to_string(),
         Ty::EmptyParen => "()".to_string(),
+        Ty::Dummy => "()".to_string(),
     }
 }
 
