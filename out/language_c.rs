@@ -1,12 +1,12 @@
 mod Language_C_Analysis_AstAnalysis {
-    enum StmtCtx{
+    enum StmtCtx {
         FunCtx(VarDecl),
         LoopCtx,
         SwitchCtx
     };
 
     #[derive(Debug, Eq)]
-    enum ExprSide{
+    enum ExprSide {
         LValue,
         RValue
     };
@@ -19,7 +19,7 @@ mod Language_C_Analysis_AstAnalysis {
         {
 
                 mapRecoverM_(analyseExt, decls);
-                >>=(getDefTable, Lambda((not((inFileScope(dt)))))(error("Internal Error: Not in filescope after analysis".to_string())));
+                __op_bind(getDefTable, Lambda((not((inFileScope(dt)))))(error("Internal Error: Not in filescope after analysis".to_string())));
                 liftM(globalDefs, getDefTable);
             
         }
@@ -37,12 +37,30 @@ mod Language_C_Analysis_AstAnalysis {
         {
 
                 let var_decl_info = analyseVarDecl_q(True, declspecs, declr, oldstyle_decls, Nothing);
-                Let([Assign([Span([Parens([Span([Ref(Ident("VarDeclInfo")), Ref(Ident("name")), Ref(Ident("is_inline")), Ref(Ident("storage_spec")), Ref(Ident("attrs")), Ref(Ident("ty")), Ref(Ident("declr_node"))])])])], Span([Ref(Ident("var_decl_info"))]))], []);
+                {
+
+            let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = || {
+            var_decl_info
+        };
+
+};
                 when((isNoName(name)))(astError(node_info, "NoName in analyseFunDef".to_string()));
-                Let([Assign([Span([Ref(Ident("ident"))])], Span([Ref(Ident("identOfVarName")), Ref(Ident("name"))]))], []);
+                {
+
+            let ident = || {
+            identOfVarName(name)
+        };
+
+};
                 let ty_q = improveFunDefType(ty);
                 let fun_storage = computeFunDefStorage(ident, storage_spec);
-                Let([Assign([Span([Ref(Ident("var_decl"))])], Span([Ref(Ident("VarDecl")), Ref(Ident("name")), Parens([Span([Ref(Ident("DeclAttrs")), Ref(Ident("is_inline")), Ref(Ident("fun_storage")), Ref(Ident("attrs"))])]), Ref(Ident("ty\'"))]))], []);
+                {
+
+            let var_decl = || {
+            VarDecl(name, (DeclAttrs(is_inline, fun_storage, attrs)), ty_q)
+        };
+
+};
                 handleVarDecl(False, (Decl(var_decl, node_info)));
                 let stmt_q = analyseFunctionBody(node_info, var_decl, stmt);
                 handleFunDef(ident, (FunDef(var_decl, stmt_q, node_info)));
@@ -55,7 +73,7 @@ mod Language_C_Analysis_AstAnalysis {
             <todo> => { {
 
                     enterFunctionScope;
-                    mapM_(((withDefTable . defineLabel)), (++(localLabels, getLabels(s))));
+                    mapM_(((withDefTable . defineLabel)), (__op_concat(localLabels, getLabels(s))));
                     defineParams(node_info, decl);
                     mapM_((tBlockItem(vec![FunCtx(decl)])), items);
                     leaveFunctionScope;
@@ -71,7 +89,13 @@ mod Language_C_Analysis_AstAnalysis {
                 let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], Nothing);
                 checkValidTypeDef(is_inline, storage_spec, attrs);
                 when((isNoName(name)))(astError(node_info, "NoName in analyseTypeDef".to_string()));
-                Let([Assign([Span([Ref(Ident("ident"))])], Span([Ref(Ident("identOfVarName")), Ref(Ident("name"))]))], []);
+                {
+
+            let ident = || {
+            identOfVarName(name)
+        };
+
+};
                 handleTypeDef((TypeDef(ident, ty, attrs, node_info)));
             
         }
@@ -86,7 +110,7 @@ mod Language_C_Analysis_AstAnalysis {
     }
 
     fn checkGuard(c: MonadTrav) -> MonadTrav {
-        >>=(tExpr(c, RValue, e), checkScalar_q((nodeInfo(e))))
+        __op_bind(tExpr(c, RValue, e), checkScalar_q((nodeInfo(e))))
     }
 
     fn checkInits(__0: MonadTrav) -> MonadTrav {
@@ -112,7 +136,7 @@ mod Language_C_Analysis_AstAnalysis {
                 let t = tExpr(c, side, e);
                 match canonicalType(t) {
         DirectType, TyComplex(ft), quals, attrs => { return(DirectType((TyFloating(ft)), quals, attrs)) },
-        _ => { typeError(ni)(++("expected complex type, got: ".to_string(), pType(t))) },
+        _ => { typeError(ni)(__op_concat("expected complex type, got: ".to_string(), pType(t))) },
     }
         }
     }
@@ -123,11 +147,17 @@ mod Language_C_Analysis_AstAnalysis {
             <todo> => { {
 
                     let obj_opt = lookupObject(ident);
-                    Let([Assign([Span([Ref(Ident("defaultSpec"))])], Span([Ref(Ident("FunLinkage")), Ref(Ident("ExternalLinkage"))]))], []);
+                    {
+
+            let defaultSpec = || {
+            FunLinkage(ExternalLinkage)
+        };
+
+};
                     match other_spec {
         NoStorageSpec => { return(maybe(defaultSpec, declStorage, obj_opt)) },
         ExternSpec(False) => { return(maybe(defaultSpec, declStorage, obj_opt)) },
-        bad_spec => { throwTravError(badSpecifierError((nodeInfo(ident)))(++("unexpected function storage specifier (only static or extern is allowed)".to_string(), show(bad_spec)))) },
+        bad_spec => { throwTravError(badSpecifierError((nodeInfo(ident)))(__op_concat("unexpected function storage specifier (only static or extern is allowed)".to_string(), show(bad_spec)))) },
     }
             } },
         }
@@ -169,7 +199,13 @@ mod Language_C_Analysis_AstAnalysis {
                 when((isNoName(var_name)))(astError(node_info, "NoName in extFunProto".to_string()));
                 let old_fun = lookupObject((identOfVarName(var_name)));
                 checkValidSpecs;
-                Let([Assign([Span([Ref(Ident("decl"))])], Span([Ref(Ident("VarDecl")), Ref(Ident("var_name")), Parens([Span([Ref(Ident("DeclAttrs")), Ref(Ident("is_inline")), Parens([Span([Ref(Ident("funDeclLinkage")), Ref(Ident("old_fun"))])]), Ref(Ident("attrs"))])]), Ref(Ident("ty"))]))], []);
+                {
+
+            let decl = || {
+            VarDecl(var_name, (DeclAttrs(is_inline, (funDeclLinkage(old_fun)), attrs)), ty)
+        };
+
+};
                 handleVarDecl(False, (Decl(decl, node_info)));
                 enterPrototypeScope;
                 maybe((return(())), (mapM_(handleParamDecl)), (getParams(ty)));
@@ -182,7 +218,13 @@ mod Language_C_Analysis_AstAnalysis {
 
                 when((isNoName(var_name)))(astError(node_info, "NoName in extVarDecl".to_string()));
                 let (storage, is_def) = globalStorage(storage_spec);
-                Let([Assign([Span([Ref(Ident("vardecl"))])], Span([Ref(Ident("VarDecl")), Ref(Ident("var_name")), Parens([Span([Ref(Ident("DeclAttrs")), Ref(Ident("is_inline")), Ref(Ident("storage")), Ref(Ident("attrs"))])]), Ref(Ident("typ"))]))], []);
+                {
+
+            let vardecl = || {
+            VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ)
+        };
+
+};
                 if(is_def, then, handleObjectDef, False, ident)(ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, False)(Decl(vardecl, node_info)))
         }
     }
@@ -214,7 +256,13 @@ mod Language_C_Analysis_AstAnalysis {
 
                 when((isNoName(var_name)))(astError(node_info, "NoName in localVarDecl".to_string()));
                 let (storage, is_def) = localStorage(storage_spec);
-                Let([Assign([Span([Ref(Ident("vardecl"))])], Span([Ref(Ident("VarDecl")), Ref(Ident("var_name")), Parens([Span([Ref(Ident("DeclAttrs")), Ref(Ident("is_inline")), Ref(Ident("storage")), Ref(Ident("attrs"))])]), Ref(Ident("typ"))]))], []);
+                {
+
+            let vardecl = || {
+            VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ)
+        };
+
+};
                 if(is_def, then, handleObjectDef, True, ident, (ObjDef(vardecl, init_opt, node_info)), else, handleVarDecl, True, (Decl(vardecl, node_info)))
         }
     }
@@ -238,13 +286,13 @@ mod Language_C_Analysis_AstAnalysis {
         match (__0, __1) {
             <todo> => { {
 
-                    >>=(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                    __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                     tDesignator(bt, ds)
             } },
             <todo> => { {
 
-                    >>=(tExpr(vec![], RValue, e1), checkIntegral_q(ni));
-                    >>=(tExpr(vec![], RValue, e2), checkIntegral_q(ni));
+                    __op_bind(tExpr(vec![], RValue, e1), checkIntegral_q(ni));
+                    __op_bind(tExpr(vec![], RValue, e2), checkIntegral_q(ni));
                     tDesignator(bt, ds)
             } },
             <todo> => { typeError((nodeInfo(d)), "member designator in array initializer".to_string()) },
@@ -290,11 +338,11 @@ mod Language_C_Analysis_AstAnalysis {
                     when(((side == LValue)))(typeError(ni, "address-of operator as lvalue".to_string()));
                     match e {
         CCompoundLit, _, _, _ => { liftM(simplePtr, tExpr(c, RValue, e)) },
-        CVar, i, _ => { >>=(lookupObject(i), (typeErrorOnLeft(ni) . maybe((notFound(i)), varAddrType))) },
+        CVar, i, _ => { __op_bind(lookupObject(i), (typeErrorOnLeft(ni) . maybe((notFound(i)), varAddrType))) },
         _ => { liftM(simplePtr, tExpr(c, LValue, e)) },
     }
             } },
-            <todo> => { >>=(tExpr(c, RValue, e), ((typeErrorOnLeft(ni) . derefType))) },
+            <todo> => { __op_bind(tExpr(c, RValue, e), ((typeErrorOnLeft(ni) . derefType))) },
             <todo> => { {
 
                     let t = tExpr(c, RValue, e);
@@ -304,7 +352,7 @@ mod Language_C_Analysis_AstAnalysis {
             <todo> => { {
 
                     when(((side == LValue)))(typeError(ni, "logical negation used as lvalue".to_string()));
-                    >>=(tExpr(c, RValue, e), checkScalar_q(ni));
+                    __op_bind(tExpr(c, RValue, e), checkScalar_q(ni));
                     return(boolType)
             } },
             <todo> => { tExpr(c, (if(isEffectfulOp, op, then, LValue, else, side)), e) },
@@ -335,7 +383,7 @@ mod Language_C_Analysis_AstAnalysis {
                     let bt = if(deref, then, typeErrorOnLeft, ni, (derefType(t)), else, return, t);
                     fieldType(ni, m, bt)
             } },
-            <todo> => { >>=(mapM((tExpr(c, side)), es), (return . last)) },
+            <todo> => { __op_bind(mapM((tExpr(c, side)), es), (return . last)) },
             <todo> => { {
 
                     let dt = analyseTypeDecl(d);
@@ -373,21 +421,41 @@ mod Language_C_Analysis_AstAnalysis {
             <todo> => { return(size_tType) },
             <todo> => { typeError(ni, "alignoftype as lvalue".to_string()) },
             <todo> => { typeError(ni, "sizeoftype as lvalue".to_string()) },
-            <todo> => { >>=(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), ((return . declType)))) },
+            <todo> => { __op_bind(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), ((return . declType)))) },
             <todo> => { constType(c) },
             <todo> => { builtinType(b) },
             <todo> => { {
 
-                    Let([Assign([Span([Ref(Ident("defType"))])], Span([Ref(Ident("FunctionType")), Parens([Span([Ref(Ident("FunTypeIncomplete")), Parens([Span([Ref(Ident("DirectType")), Parens([Span([Ref(Ident("TyIntegral")), Ref(Ident("TyInt"))])]), Ref(Ident("noTypeQuals")), Ref(Ident("noAttributes"))])])])]), Ref(Ident("noAttributes"))])), Assign([Span([Ref(Ident("fallback")), Ref(Ident("i"))])], Span([Do([Expression(Span([Ref(Ident("warn")), Operator("$"), Ref(Ident("invalidAST")), Ref(Ident("ni")), Operator("$"), Str("unknown function: "), Operator("++"), Ref(Ident("identToString")), Ref(Ident("i"))]), []), Expression(Span([Ref(Ident("return")), Ref(Ident("defType"))]), [])], [])]))], []);
+                    {
+
+            let defType = || {
+            FunctionType((FunTypeIncomplete((DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)))), noAttributes)
+        };
+;
+            let fallback = |i| {
+            {
+
+                    warn(invalidAST(ni)(__op_concat("unknown function: ".to_string(), identToString(i))));
+                    return(defType)
+            }
+        };
+
+};
                     let t = match fe {
-            CVar, i, _ => { >>=(lookupObject(i), maybe((fallback(i)), (const(tExpr(c, RValue, fe))))) },
+            CVar, i, _ => { __op_bind(lookupObject(i), maybe((fallback(i)), (const(tExpr(c, RValue, fe))))) },
             _ => { tExpr(c, RValue, fe) },
         };
                     let atys = mapM((tExpr(c, RValue)), args);
                     match canonicalType(t) {
         PtrType, FunctionType(FunType(rt, pdecls, varargs), _), _, _ => { {
 
-                Let([Assign([Span([Ref(Ident("ptys"))])], Span([Ref(Ident("map")), Ref(Ident("declType")), Ref(Ident("pdecls"))]))], []);
+                {
+
+            let ptys = || {
+            map(declType, pdecls)
+        };
+
+};
                 mapM_(checkArg)(zip3(ptys, atys, args));
                 unless(varargs)(when((/=(length(atys), length(ptys))))(typeError(ni, "incorrect number of arguments".to_string())));
                 return(canonicalType(rt))
@@ -396,14 +464,14 @@ mod Language_C_Analysis_AstAnalysis {
 
                 return(canonicalType(rt))
         } },
-        _ => { typeError(ni)(++("attempt to call non-function of type ".to_string(), pType(t))) },
+        _ => { typeError(ni)(__op_concat("attempt to call non-function of type ".to_string(), pType(t))) },
     }
             } },
             <todo> => { {
 
                     let lt = tExpr(c, LValue, le);
                     let rt = tExpr(c, RValue, re);
-                    when((constant(typeQuals(lt))))(typeError(ni)(++("assignment to lvalue with `constant\' qualifier: ".to_string(), ((render . pretty))(le))));
+                    when((constant(typeQuals(lt))))(typeError(ni)(__op_concat("assignment to lvalue with `constant\' qualifier: ".to_string(), ((render . pretty))(le))));
                     match (canonicalType(lt), re) {
     (lt_q, CConst(CIntConst(i, _))) => if (isPointerType(lt_q) && (getCInteger(i) == 0)) { return(()) },
         (_, _) => { assignCompatible_q(ni, op, lt, rt) },
@@ -438,19 +506,31 @@ mod Language_C_Analysis_AstAnalysis {
             <todo> => { >>(tExpr(vec![], RValue, e), return(())) },
             <todo> => { {
 
-                    Let([Assign([Span([Ref(Ident("default_ds"))])], Span([Ref(Ident("repeat")), Parens([Span([Ref(Ident("CArrDesig")), Parens([Span([Ref(Ident("CConst")), Parens([Span([Ref(Ident("CIntConst")), Parens([Span([Ref(Ident("cInteger")), Number(0)])]), Ref(Ident("ni"))])])])]), Ref(Ident("ni"))])])]))], []);
+                    {
+
+            let default_ds = || {
+            repeat((CArrDesig((CConst((CIntConst((cInteger(0)), ni)))), ni)))
+        };
+
+};
                     checkInits(t, default_ds, initList)
             } },
             <todo> => { {
 
                     let td = lookupSUE(ni, (sueRef(ctr)));
                     let ms = tagMembers(ni, td);
-                    Let([Assign([Span([Ref(Ident("default_ds"))])], Span([Ref(Ident("map")), Parens([Span([Lambda, Parens([Span([Ref(Ident("fst")), Ref(Ident("m"))])]), Ref(Ident("ni"))])]), Ref(Ident("ms"))]))], []);
+                    {
+
+            let default_ds = || {
+            map((Lambda((fst(m)), ni)), ms)
+        };
+
+};
                     checkInits(t, default_ds, initList)
             } },
             <todo> => { return(()) },
             <todo> => { >>(tInit(t, i), return(())) },
-            <todo> => { typeError(ni)(++("initializer list for type: ".to_string(), pType(t))) },
+            <todo> => { typeError(ni)(__op_concat("initializer list for type: ".to_string(), pType(t))) },
         }
     }
 
@@ -467,14 +547,14 @@ mod Language_C_Analysis_AstAnalysis {
                     return(t)
             } },
             <todo> => { >>(checkGuard(c, e), >>(tStmt(c, sthen), >>(maybe((return(())), (>>(Lambda(c, s), return(()))), selse), return(voidType)))) },
-            <todo> => { >>=(tExpr(c, RValue, e), >>(checkIntegral_q(ni), tStmt((:(SwitchCtx, c)), s))) },
+            <todo> => { __op_bind(tExpr(c, RValue, e), >>(checkIntegral_q(ni), tStmt((:(SwitchCtx, c)), s))) },
             <todo> => { >>(checkGuard(c, e), tStmt((:(LoopCtx, c)), s)) },
             <todo> => { {
 
                     let dt = getDefTable;
                     match lookupLabel(l, dt) {
         Just, _ => { return(voidType) },
-        Nothing => { typeError(ni)(++("undefined label in goto: ".to_string(), identToString(l))) },
+        Nothing => { typeError(ni)(__op_concat("undefined label in goto: ".to_string(), identToString(l))) },
     }
             } },
             <todo> => { {
@@ -493,7 +573,7 @@ mod Language_C_Analysis_AstAnalysis {
                     let rt = match enclosingFunctionType(c) {
             Just, FunctionType(FunType(rt, _, _), _) => { return(rt) },
             Just, FunctionType(FunTypeIncomplete(rt), _) => { return(rt) },
-            Just, ft => { astError(ni)(++("bad function type: ".to_string(), pType(ft))) },
+            Just, ft => { astError(ni)(__op_concat("bad function type: ".to_string(), pType(ft))) },
             Nothing => { astError(ni, "return statement outside function".to_string()) },
         };
                     match (rt, t) {
@@ -507,14 +587,14 @@ mod Language_C_Analysis_AstAnalysis {
             <todo> => { {
 
                     unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
-                    >>=(tExpr(c, RValue, e), checkIntegral_q(ni));
+                    __op_bind(tExpr(c, RValue, e), checkIntegral_q(ni));
                     tStmt(c, s)
             } },
             <todo> => { {
 
                     unless((inSwitch(c)))(astError(ni, "case statement outside of switch statement".to_string()));
-                    >>=(tExpr(c, RValue, e1), checkIntegral_q(ni));
-                    >>=(tExpr(c, RValue, e2), checkIntegral_q(ni));
+                    __op_bind(tExpr(c, RValue, e1), checkIntegral_q(ni));
+                    __op_bind(tExpr(c, RValue, e2), checkIntegral_q(ni));
                     tStmt(c, s)
             } },
             <todo> => { {
@@ -567,7 +647,7 @@ mod Language_C_Analysis_ConstEval {
             <todo> => { return(ptrAlign(md)) },
             <todo> => { alignofType(md, n, bt) },
             <todo> => { alignofType(md, n, t) },
-            <todo> => { astError((nodeInfo(n)))(++("can\'t find alignment of type: ".to_string(), ((render . pretty))(t))) },
+            <todo> => { astError((nodeInfo(n)))(__op_concat("can\'t find alignment of type: ".to_string(), ((render . pretty))(t))) },
         }
     }
 
@@ -588,7 +668,13 @@ mod Language_C_Analysis_ConstEval {
         Just, Left(_) => { astError((nodeInfo(ctr)), "composite declared but not defined".to_string()) },
         Just, Right(CompDef(CompType(_, tag, ms, _, ni))) => { {
 
-                Let([Assign([Span([Ref(Ident("ts"))])], Span([Ref(Ident("map")), Ref(Ident("declType")), Ref(Ident("ms"))]))], []);
+                {
+
+            let ts = || {
+            map(declType, ms)
+        };
+
+};
                 let sizes = mapM((sizeofType(md, ni)), ts);
                 match tag {
         StructTag => { return(sum(sizes)) },
@@ -696,7 +782,7 @@ mod Language_C_Analysis_ConstEval {
     }
 
     fn intExpr(n: m) -> m {
-        >>=(genName, Lambda(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
+        __op_bind(genName, Lambda(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
     }
 
     fn intOp(__0: Integer) -> Integer {
@@ -765,7 +851,7 @@ mod Language_C_Analysis_ConstEval {
             } },
             <todo> => { sizeofType(md, n, t) },
             <todo> => { return(ptrSize(md)) },
-            <todo> => { astError((nodeInfo(n)))(++("can\'t find size of type: ".to_string(), ((render . pretty))(t))) },
+            <todo> => { astError((nodeInfo(n)))(__op_concat("can\'t find size of type: ".to_string(), ((render . pretty))(t))) },
         }
     }
 
@@ -804,7 +890,7 @@ mod Language_C_Analysis_Debug {
 
 mod Language_C_Analysis_DeclAnalysis {
     #[derive(Debug, Eq, Ord, Read)]
-    enum StorageSpec{
+    enum StorageSpec {
         NoStorageSpec,
         AutoSpec,
         RegSpec,
@@ -816,7 +902,7 @@ mod Language_C_Analysis_DeclAnalysis {
     struct VarDeclInfo(VarDeclInfo, VarName, Bool, StorageSpec, Attributes, Type, NodeInfo);
 
     #[derive(Eq, Ord)]
-    enum NumBaseType{
+    enum NumBaseType {
         NoBaseType,
         BaseChar,
         BaseInt,
@@ -825,14 +911,14 @@ mod Language_C_Analysis_DeclAnalysis {
     };
 
     #[derive(Eq, Ord)]
-    enum SignSpec{
+    enum SignSpec {
         NoSignSpec,
         Signed,
         Unsigned
     };
 
     #[derive(Eq, Ord)]
-    enum SizeMod{
+    enum SizeMod {
         NoSizeMod,
         ShortMod,
         LongMod,
@@ -841,7 +927,7 @@ mod Language_C_Analysis_DeclAnalysis {
 
     struct NumTypeSpec(NumTypeSpec, { /* struct def */ });
 
-    enum TypeSpecAnalysis{
+    enum TypeSpecAnalysis {
         TSNone,
         TSVoid,
         TSBool,
@@ -856,7 +942,7 @@ mod Language_C_Analysis_DeclAnalysis {
 
                 let storage_spec = canonicalStorageSpec(storage_specs);
                 let typ = tType(handle_sue_def, node, typequals, canonTySpecs, derived_declrs, oldstyle_params);
-                let attrs_q = mapM(tAttr, (++(decl_attrs, declr_attrs)));
+                let attrs_q = mapM(tAttr, (__op_concat(decl_attrs, declr_attrs)));
                 let name = mkVarName(node, name_opt, asmname_opt);
                 return(VarDeclInfo(name, inline, storage_spec, attrs_q, typ, node))
         }
@@ -865,7 +951,13 @@ mod Language_C_Analysis_DeclAnalysis {
     fn analyseVarDecl_q(handle_sue_def: m) -> m {
         {
 
-                Let([Assign([Span([Parens([Span([Ref(Ident("storage_specs"))]), Span([Ref(Ident("attrs"))]), Span([Ref(Ident("type_quals"))]), Span([Ref(Ident("type_specs"))]), Span([Ref(Ident("inline"))])])])], Span([Ref(Ident("partitionDeclSpecs")), Ref(Ident("declspecs"))]))], []);
+                {
+
+            let (storage_specs, attrs, type_quals, type_specs, inline) = || {
+            partitionDeclSpecs(declspecs)
+        };
+
+};
                 let canonTySpecs = canonicalTypeSpec(type_specs);
                 analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, inline, declr, oldstyle, init_opt)
         }
@@ -883,7 +975,7 @@ mod Language_C_Analysis_DeclAnalysis {
         match (__0, __1) {
             <todo> => { Right((Auto(False))) },
             <todo> => { Right((Auto(True))) },
-            <todo> => { (Left . badSpecifierError(node)(++("Bad storage specified for parameter: ".to_string(), show(spec)))) },
+            <todo> => { (Left . badSpecifierError(node)(__op_concat("Bad storage specified for parameter: ".to_string(), show(spec)))) },
         }
     }
 
@@ -929,7 +1021,7 @@ mod Language_C_Analysis_DeclAnalysis {
                             let oldstyle_params_q = liftM(concat)(mapM(splitCDecl, oldstyle_params));
                             let param_map = liftM(Map_fromList)(mapM(attachNameOfDecl, oldstyle_params_q));
                             let (newstyle_params, param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
-                            when((not(Map_null(param_map_q))))(astError(node)(++("declarations for parameter(s) ".to_string(), ++(showParamMap(param_map_q), " but no such parameter".to_string()))));
+                            when((not(Map_null(param_map_q))))(astError(node)(__op_concat("declarations for parameter(s) ".to_string(), __op_concat(showParamMap(param_map_q), " but no such parameter".to_string()))));
                             return((:(CFunDeclr((Right((newstyle_params, False))), attrs, fdnode), dds)))
                     } },
                     Right, _newstyle => { astError(node, "oldstyle parameter list, but newstyle function declaration".to_string()) },
@@ -943,7 +1035,7 @@ mod Language_C_Analysis_DeclAnalysis {
                 DirectType, ty_name, quals_q, attrs_q => { merge(quals_q, attrs_q)(mkDirect(ty_name)) },
                 PtrType, ty, quals_q, attrs_q => { merge(quals_q, attrs_q)(PtrType(ty)) },
                 ArrayType, ty, array_sz, quals_q, attrs_q => { merge(quals_q, attrs_q)(ArrayType(ty, array_sz)) },
-                FunctionType, FunType(return_ty, params, inline), attrs_q => { return(FunctionType((FunType(return_ty, params, inline)), (++(attrs_q, attrs)))) },
+                FunctionType, FunType(return_ty, params, inline), attrs_q => { return(FunctionType((FunType(return_ty, params, inline)), (__op_concat(attrs_q, attrs)))) },
                 TypeDefType, tdr, quals_q, attrs_q => { merge(quals_q, attrs_q)(TypeDefType(tdr)) },
             }
     }
@@ -956,14 +1048,20 @@ mod Language_C_Analysis_DeclAnalysis {
     }
 
     fn nameOfDecl(d: m) -> m {
-        >>=(getOnlyDeclr(d), Lambda)
+        __op_bind(getOnlyDeclr(d), Lambda)
     }
 
     fn splitCDecl(decl: m) -> m {
         match declrs {
                 [] => { internalErr("splitCDecl applied to empty declaration".to_string()) },
                 [declr] => { return(vec![decl]) },
-                d1:ds => { Let([Assign([Span([Ref(Ident("declspecs\'"))])], Span([Ref(Ident("map")), Ref(Ident("elideSUEDef")), Ref(Ident("declspecs")), Ref(Ident("in"))]))], [])(return)(:((CDecl(declspecs, vec![d1], node)), Dummy)) },
+                d1:ds => { {
+
+                                            let declspecs_q = || {
+                            map(elideSUEDef, declspecs, in)
+                        };
+
+                }(return)(:((CDecl(declspecs, vec![d1], node)), Dummy)) },
             }
     }
 
@@ -987,13 +1085,25 @@ mod Language_C_Analysis_DeclAnalysis {
         {
 
                 let sue_ref = createSUERef(node_info, ident_opt);
-                Let([Assign([Span([Ref(Ident("tag\'"))])], Span([Ref(Ident("tTag")), Ref(Ident("tag"))]))], []);
+                {
+
+            let tag_q = || {
+            tTag(tag)
+        };
+
+};
                 let attrs_q = mapM(tAttr, attrs);
-                Let([Assign([Span([Ref(Ident("decl"))])], Span([Ref(Ident("CompTypeRef")), Ref(Ident("sue_ref")), Ref(Ident("tag\'")), Ref(Ident("node_info"))]))], []);
+                {
+
+            let decl = || {
+            CompTypeRef(sue_ref, tag_q, node_info)
+        };
+
+};
                 handleTagDecl((CompDecl(decl)));
                 when((handle_def))({
 
-            maybeM(member_decls_opt)(>>=(Lambda(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef_CompDef)))
+            maybeM(member_decls_opt)(__op_bind(Lambda(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef_CompDef)))
     });
                 return(decl)
         }
@@ -1003,7 +1113,13 @@ mod Language_C_Analysis_DeclAnalysis {
         {
 
                 let (quals, attrs) = tTypeQuals(ty_quals);
-                Let([Assign([Span([Ref(Ident("baseType")), Ref(Ident("ty_name"))])], Span([Ref(Ident("DirectType")), Ref(Ident("ty_name")), Ref(Ident("quals")), Ref(Ident("attrs"))]))], []);
+                {
+
+            let baseType = |ty_name| {
+            DirectType(ty_name, quals, attrs)
+        };
+
+};
                 match canonTySpec {
         TSNone => { return(baseType((TyIntegral(TyInt)))) },
         TSVoid => { return(baseType(TyVoid)) },
@@ -1039,7 +1155,13 @@ otherwise { TyFloating(floatType) },
         match (__0) {
             <todo> => { {
 
-                    Let([Assign([Span([Parens([Span([Ref(Ident("storage_specs"))]), Span([Ref(Ident("_attrs"))]), Span([Ref(Ident("typequals"))]), Span([Ref(Ident("typespecs"))]), Span([Ref(Ident("is_inline"))])])])], Span([Ref(Ident("partitionDeclSpecs")), Ref(Ident("declspecs"))]))], []);
+                    {
+
+            let (storage_specs, _attrs, typequals, typespecs, is_inline) = || {
+            partitionDeclSpecs(declspecs)
+        };
+
+};
                     when(is_inline)(astError(node, "member declaration with inline specifier".to_string()));
                     let canonTySpecs = canonicalTypeSpec(typespecs);
                     let ty = tType(True, node, typequals, canonTySpecs, vec![], vec![]);
@@ -1087,7 +1209,13 @@ otherwise { intType(TyChar) },
                 let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(True, declspecs, declr, vec![], Nothing);
                 when((is_inline))(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
                 let storage = throwOnLeft(computeParamStorage(node, storage_spec));
-                Let([Assign([Span([Ref(Ident("paramDecl"))])], Span([Ref(Ident("mkParamDecl")), Ref(Ident("name")), Ref(Ident("storage")), Ref(Ident("attrs")), Ref(Ident("ty")), Ref(Ident("declr_node"))]))], []);
+                {
+
+            let paramDecl = || {
+            mkParamDecl(name, storage, attrs, ty, declr_node)
+        };
+
+};
                 return(paramDecl)
         }
     }
@@ -1100,7 +1228,7 @@ otherwise { intType(TyChar) },
     }
 
     fn tType(handle_sue_def: m) -> m {
-        >>=(mergeOldStyle(top_node, oldstyle_params, derived_declrs), buildType)
+        __op_bind(mergeOldStyle(top_node, oldstyle_params, derived_declrs), buildType)
     }
 
     fn tTypeQuals() -> m {
@@ -1108,13 +1236,13 @@ otherwise { intType(TyChar) },
     }
 
     fn typeDefRef(t_node: m) -> m {
-        >>=(lookupTypeDef(name), Lambda((TypeDefRef(name, (Just(ty)), t_node))))
+        __op_bind(lookupTypeDef(name), Lambda((TypeDefRef(name, (Just(ty)), t_node))))
     }
 
 }
 
 mod Language_C_Analysis_DefTable {
-    enum TagFwdDecl{
+    enum TagFwdDecl {
         CompDecl(CompTypeRef),
         EnumDecl(EnumTypeRef)
     };
@@ -1122,7 +1250,7 @@ mod Language_C_Analysis_DefTable {
     struct DefTable(DefTable, { /* struct def */ });
 
     #[derive(Clone, Debug)]
-    enum DeclarationStatus{
+    enum DeclarationStatus {
         NewDecl,
         Redeclared(t),
         KeepDef(t),
@@ -1131,7 +1259,7 @@ mod Language_C_Analysis_DefTable {
     };
 
     #[derive(Eq, Ord)]
-    enum TagEntryKind{
+    enum TagEntryKind {
         CompKind(CompTyKind),
         EnumKind
     };
@@ -1192,7 +1320,13 @@ otherwise { KindMismatch(def_q) },
     }
 
     fn defineLabel(ident: (DeclarationStatus(Ident), DefTable)) -> (DeclarationStatus(Ident), DefTable) {
-        Let([Assign([Span([Parens([Span([Ref(Ident("labels\'"))]), Span([Ref(Ident("old_label"))])])])], Span([Ref(Ident("defLocal")), Parens([Span([Ref(Ident("labelDefs")), Ref(Ident("deftbl"))])]), Ref(Ident("ident")), Ref(Ident("ident"))]))], [])(in, (maybe(NewDecl, Redeclared, old_label), deftbl({
+        {
+
+                    let (labels_q, old_label) = || {
+                defLocal((labelDefs(deftbl)), ident, ident)
+            };
+
+    }(in, (maybe(NewDecl, Redeclared, old_label), deftbl({
                 labelDefs: labels_q
                 })))
     }
@@ -1286,7 +1420,13 @@ otherwise { KindMismatch(def_q) },
     }
 
     fn leaveMemberDecl(deftbl: (Vec<MemberDecl>, DefTable)) -> (Vec<MemberDecl>, DefTable) {
-        Let([Assign([Span([Parens([Span([Ref(Ident("decls\'"))]), Span([Ref(Ident("members"))])])])], Span([Ref(Ident("leaveScope")), Parens([Span([Ref(Ident("memberDecls")), Ref(Ident("deftbl"))])])]))], [])(in, Dummy, (map(snd, members)), (deftbl({
+        {
+
+                    let (decls_q, members) = || {
+                leaveScope((memberDecls(deftbl)))
+            };
+
+    }(in, Dummy, (map(snd, members)), (deftbl({
                 memberDecls: decls_q
                 })))
     }
@@ -1363,11 +1503,11 @@ mod Language_C_Analysis_Export {
     }
 
     fn exportDeclAttrs((DeclAttrs(inline, storage, attrs)): Vec<CDeclSpec>) -> Vec<CDeclSpec> {
-        ++((if(inline, then, vec![CTypeQual((CInlineQual(ni)))], else, vec![])), ++(map((CStorageSpec), (exportStorage(storage))), map(((CTypeQual . CAttrQual)), (exportAttrs(attrs)))))
+        __op_concat((if(inline, then, vec![CTypeQual((CInlineQual(ni)))], else, vec![])), __op_concat(map((CStorageSpec), (exportStorage(storage))), map(((CTypeQual . CAttrQual)), (exportAttrs(attrs)))))
     }
 
     fn exportDeclr(other_specs: (Vec<CDeclSpec>, CDeclr)) -> (Vec<CDeclSpec>, CDeclr) {
-        (++(other_specs, specs), CDeclr(ident, derived, asmname, (exportAttrs(attrs)), ni))
+        (__op_concat(other_specs, specs), CDeclr(ident, derived, asmname, (exportAttrs(attrs)), ni))
     }
 
     fn exportEnumType((EnumType(sue_ref, enumerators, attrs, node_info)): Vec<CTypeSpec>) -> Vec<CTypeSpec> {
@@ -1410,12 +1550,24 @@ mod Language_C_Analysis_Export {
     fn exportMemberDecl(__0: CDecl) -> CDecl {
         match (__0) {
             <todo> => { CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(Nothing, Nothing, Just(expr))], node_info) },
-            <todo> => { Let([Assign([Span([Parens([Span([Ref(Ident("specs"))]), Span([Ref(Ident("declarator"))])])])], Span([Ref(Ident("exportVarDecl")), Ref(Ident("vardecl"))]))], [])(in, CDecl, specs, vec![(Just(declarator), Nothing, bitfieldsz)], node_info) },
+            <todo> => { {
+
+                            let (specs, declarator) = || {
+                    exportVarDecl(vardecl)
+                };
+
+        }(in, CDecl, specs, vec![(Just(declarator), Nothing, bitfieldsz)], node_info) },
         }
     }
 
     fn exportParamDecl(paramdecl: CDecl) -> CDecl {
-        Let([Assign([Span([Parens([Span([Ref(Ident("specs"))]), Span([Ref(Ident("declr"))])])])], Span([Ref(Ident("exportVarDecl")), Parens([Span([Ref(Ident("getVarDecl")), Ref(Ident("paramdecl"))])])]))], [])(in, CDecl, specs, vec![(Just(declr), Nothing, Nothing)], (nodeInfo(paramdecl)))
+        {
+
+                    let (specs, declr) = || {
+                exportVarDecl((getVarDecl(paramdecl)))
+            };
+
+    }(in, CDecl, specs, vec![(Just(declr), Nothing, Nothing)], (nodeInfo(paramdecl)))
     }
 
     fn exportSUERef() -> Maybe {
@@ -1452,7 +1604,7 @@ mod Language_C_Analysis_Export {
     }
 
     fn exportTypeQualsAttrs(tyqs: Vec<CTypeQual>) -> Vec<CTypeQual> {
-        (++(exportTypeQuals(tyqs), map(CAttrQual, (exportAttrs(attrs)))))
+        (__op_concat(exportTypeQuals(tyqs), map(CAttrQual, (exportAttrs(attrs)))))
     }
 
     fn exportTypeSpec(tyname: Vec<CTypeSpec>) -> Vec<CTypeSpec> {
@@ -1557,7 +1709,7 @@ mod Language_C_Analysis_NameSpaceMap {
     }
 
     fn nsMapToList((NsMap(gs, lss)): NameSpaceMap) -> NameSpaceMap {
-        ++(concat(lss), Map_toList(gs))
+        __op_concat(concat(lss), Map_toList(gs))
     }
 
 }
@@ -1568,7 +1720,7 @@ mod Language_C_Analysis_SemError {
 
     struct RedefInfo(RedefInfo, String, RedefKind, NodeInfo, NodeInfo);
 
-    enum RedefKind{
+    enum RedefKind {
         DuplicateDef,
         DiffKindRedecl,
         ShadowedDef,
@@ -1592,21 +1744,21 @@ mod Language_C_Analysis_SemError {
     }
 
     fn redefErrLabel((RedefInfo(ident, _, _, _)): String) -> String {
-        ++(ident, " redefined".to_string())
+        __op_concat(ident, " redefined".to_string())
     }
 
     fn redefErrReason(__0: String) -> String {
         match (__0) {
-            <todo> => { ++("duplicate definition of ".to_string(), ident) },
-            <todo> => { ++("this declaration of ".to_string(), ++(ident, " shadows a previous one".to_string())) },
-            <todo> => { ++(ident, " previously declared as a different kind of symbol".to_string()) },
-            <todo> => { ++(ident, " previously declared with different linkage".to_string()) },
-            <todo> => { ++(ident, " previously declared without linkage".to_string()) },
+            <todo> => { __op_concat("duplicate definition of ".to_string(), ident) },
+            <todo> => { __op_concat("this declaration of ".to_string(), __op_concat(ident, " shadows a previous one".to_string())) },
+            <todo> => { __op_concat(ident, " previously declared as a different kind of symbol".to_string()) },
+            <todo> => { __op_concat(ident, " previously declared with different linkage".to_string()) },
+            <todo> => { __op_concat(ident, " previously declared without linkage".to_string()) },
         }
     }
 
     fn redefErrorInfo(lvl: ErrorInfo) -> ErrorInfo {
-        ErrorInfo(lvl, (posOfNode(node)), (++(vec![redefErrReason(info)], prevDeclMsg(old_node))))
+        ErrorInfo(lvl, (posOfNode(node)), (__op_concat(vec![redefErrReason(info)], prevDeclMsg(old_node))))
     }
 
     fn redefinition(lvl: RedefError) -> RedefError {
@@ -1625,13 +1777,13 @@ mod Language_C_Analysis_SemError {
 
 mod Language_C_Analysis_SemRep {
     #[derive(Clone, Debug)]
-    enum TagDef{
+    enum TagDef {
         CompDef(CompType),
         EnumDef(EnumType)
     };
 
     #[derive(Clone, Debug)]
-    enum IdentDecl{
+    enum IdentDecl {
         Declaration(Decl),
         ObjectDef(ObjDef),
         FunctionDef(FunDef),
@@ -1640,7 +1792,7 @@ mod Language_C_Analysis_SemRep {
 
     struct GlobalDecls(GlobalDecls, { /* struct def */ });
 
-    enum DeclEvent{
+    enum DeclEvent {
         TagEvent(TagDef),
         DeclEvent(IdentDecl),
         ParamEvent(ParamDecl),
@@ -1659,13 +1811,13 @@ mod Language_C_Analysis_SemRep {
     struct FunDef(FunDef, VarDecl, Stmt, NodeInfo);
 
     #[derive(Clone, Debug)]
-    enum ParamDecl{
+    enum ParamDecl {
         ParamDecl(VarDecl, NodeInfo),
         AbstractParamDecl(VarDecl, NodeInfo)
     };
 
     #[derive(Clone, Debug)]
-    enum MemberDecl{
+    enum MemberDecl {
         MemberDecl(VarDecl, Maybe(Expr), NodeInfo),
         AnonBitField(Type, Expr, NodeInfo)
     };
@@ -1680,7 +1832,7 @@ mod Language_C_Analysis_SemRep {
     struct DeclAttrs(DeclAttrs, Bool, Storage, Attributes);
 
     #[derive(Clone, Debug, Eq, Ord)]
-    enum Storage{
+    enum Storage {
         NoStorage,
         Auto(Register),
         Static(Linkage, ThreadLocal),
@@ -1688,14 +1840,14 @@ mod Language_C_Analysis_SemRep {
     };
 
     #[derive(Clone, Debug, Eq, Ord)]
-    enum Linkage{
+    enum Linkage {
         NoLinkage,
         InternalLinkage,
         ExternalLinkage
     };
 
     #[derive(Clone, Debug)]
-    enum Type{
+    enum Type {
         DirectType(TypeName, TypeQuals, Attributes),
         PtrType(Type, TypeQuals, Attributes),
         ArrayType(Type, ArraySize, TypeQuals, Attributes),
@@ -1704,19 +1856,19 @@ mod Language_C_Analysis_SemRep {
     };
 
     #[derive(Clone, Debug)]
-    enum FunType{
+    enum FunType {
         FunType(Type, Vec<ParamDecl>, Bool),
         FunTypeIncomplete(Type)
     };
 
     #[derive(Clone, Debug)]
-    enum ArraySize{
+    enum ArraySize {
         UnknownArraySize(Bool),
         ArraySize(Bool, Expr)
     };
 
     #[derive(Clone, Debug)]
-    enum TypeName{
+    enum TypeName {
         TyVoid,
         TyIntegral(IntType),
         TyFloating(FloatType),
@@ -1727,7 +1879,7 @@ mod Language_C_Analysis_SemRep {
     };
 
     #[derive(Clone, Debug)]
-    enum BuiltinType{
+    enum BuiltinType {
         TyVaList,
         TyAny
     };
@@ -1736,7 +1888,7 @@ mod Language_C_Analysis_SemRep {
     struct TypeDefRef(TypeDefRef, Ident, Maybe(Type), NodeInfo);
 
     #[derive(Clone, Debug, Eq, Ord)]
-    enum IntType{
+    enum IntType {
         TyBool,
         TyChar,
         TySChar,
@@ -1752,7 +1904,7 @@ mod Language_C_Analysis_SemRep {
     };
 
     #[derive(Clone, Debug, Eq, Ord)]
-    enum FloatType{
+    enum FloatType {
         TyFloat,
         TyDouble,
         TyLDouble
@@ -1768,7 +1920,7 @@ mod Language_C_Analysis_SemRep {
     struct CompType(CompType, SUERef, CompTyKind, Vec<MemberDecl>, Attributes, NodeInfo);
 
     #[derive(Clone, Debug, Eq, Ord)]
-    enum CompTyKind{
+    enum CompTyKind {
         StructTag,
         UnionTag
     };
@@ -1783,7 +1935,7 @@ mod Language_C_Analysis_SemRep {
     struct TypeQuals(TypeQuals, { /* struct def */ });
 
     #[derive(Clone, Debug)]
-    enum VarName{
+    enum VarName {
         VarName(Ident, Maybe(AsmName)),
         NoName
     };
@@ -1813,7 +1965,13 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn declOfDef(def: Decl) -> Decl {
-        Let([Assign([Span([Ref(Ident("vd"))])], Span([Ref(Ident("getVarDecl")), Ref(Ident("def")), Ref(Ident("in")), Ref(Ident("Decl")), Ref(Ident("vd")), Parens([Span([Ref(Ident("nodeInfo")), Ref(Ident("def"))])])]))], [])
+        {
+
+                            let vd = || {
+                    getVarDecl(def, in, Decl, vd, (nodeInfo(def)))
+                };
+
+        }
     }
 
     fn declStorage(d: Storage) -> Storage {
@@ -1923,7 +2081,7 @@ mod Language_C_Analysis_SemRep {
 }
 
 mod Language_C_Analysis_TravMonad {
-    enum CLanguage{
+    enum CLanguage {
         C89,
         C99,
         GNU89,
@@ -1995,7 +2153,13 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     fn enterDecl(decl: m) -> m {
         {
 
-                Let([Assign([Span([Ref(Ident("def"))])], Span([Ref(Ident("Declaration")), Ref(Ident("decl"))]))], []);
+                {
+
+            let def = || {
+            Declaration(decl)
+        };
+
+};
                 let redecl = withDefTable(defineScopedIdentWhen(cond, (declIdent(def)), def));
                 checkVarRedef(def, redecl);
                 return(def)
@@ -2011,7 +2175,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn generateName() -> Trav {
-        >>=(get, Lambda)
+        __op_bind(get, Lambda)
     }
 
     fn get() -> Trav {
@@ -2037,7 +2201,13 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     fn handleEnumeratorDef(enumerator: m) -> m {
         {
 
-                Let([Assign([Span([Ref(Ident("ident"))])], Span([Ref(Ident("declIdent")), Ref(Ident("enumerator"))]))], []);
+                {
+
+            let ident = || {
+            declIdent(enumerator)
+        };
+
+};
                 let redecl = withDefTable(defineScopedIdent(ident, (EnumeratorDef(enumerator))));
                 checkRedef((show(ident)), ident, redecl);
                 return(())
@@ -2047,7 +2217,13 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     fn handleFunDef(ident: m) -> m {
         {
 
-                Let([Assign([Span([Ref(Ident("def"))])], Span([Ref(Ident("FunctionDef")), Ref(Ident("fun_def"))]))], []);
+                {
+
+            let def = || {
+            FunctionDef(fun_def)
+        };
+
+};
                 let redecl = withDefTable(defineScopedIdentWhen(isDeclaration, ident, def));
                 checkVarRedef(def, redecl);
                 handleDecl((DeclEvent(def)))
@@ -2057,7 +2233,13 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     fn handleObjectDef(local: m) -> m {
         {
 
-                Let([Assign([Span([Ref(Ident("def"))])], Span([Ref(Ident("ObjectDef")), Ref(Ident("obj_def"))]))], []);
+                {
+
+            let def = || {
+            ObjectDef(obj_def)
+        };
+
+};
                 let redecl = withDefTable(defineScopedIdentWhen((Lambda(def, old)), ident, def));
                 checkVarRedef(def, redecl);
                 handleDecl(((if(local, then, LocalEvent, else, DeclEvent))(def)));
@@ -2070,7 +2252,13 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
             <todo> => { handleDecl((ParamEvent(pd))) },
             <todo> => { {
 
-                    Let([Assign([Span([Ref(Ident("def"))])], Span([Ref(Ident("ObjectDef")), Parens([Span([Ref(Ident("ObjDef")), Ref(Ident("vardecl")), Ref(Ident("Nothing")), Ref(Ident("node"))])])]))], []);
+                    {
+
+            let def = || {
+            ObjectDef((ObjDef(vardecl, Nothing, node)))
+        };
+
+};
                     let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
                     checkVarRedef(def, redecl);
                     handleDecl((ParamEvent(pd)))
@@ -2158,7 +2346,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn lookupTypeDef(ident: m) -> m {
-        >>=(getDefTable, Lambda)
+        __op_bind(getDefTable, Lambda)
     }
 
     fn mapMaybeM(m: m) -> m {
@@ -2174,7 +2362,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn mismatchErr(ctx: String) -> String {
-        ++(ctx, ++(": Expected ".to_string(), ++(expect, ++(", but found: ".to_string(), found))))
+        __op_concat(ctx, __op_concat(": Expected ".to_string(), __op_concat(expect, __op_concat(", but found: ".to_string(), found))))
     }
 
     fn modify(f: Trav) -> Trav {
@@ -2263,10 +2451,10 @@ mod Language_C_Analysis_TypeCheck {
                         compatible((baseType(t1_q)), (baseType(t2_q)))
                 } },
                 (DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) => if (sueRef(c1) == sueRef(c2)) { return(()) }
-otherwise { fail(++("incompatible compound types in assignment: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))) },
+otherwise { fail(__op_concat("incompatible compound types in assignment: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
                     (DirectType(TyBuiltin(TyVaList), _, _), DirectType(TyBuiltin(TyVaList), _, _)) => { return(()) },
                 (DirectType(tn1, _, _), DirectType(tn2, _, _)) => if isJust((arithmeticConversion(tn1, tn2))) { return(()) }
-otherwise { fail(++("incompatible direct types in assignment: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))) },
+otherwise { fail(__op_concat("incompatible direct types in assignment: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
                     (t1_q, t2_q) => { compatible(t1_q, t2_q) },
                 } },
             <todo> => { >>(binopType((assignBinop(op)), t1, t2), return(())) },
@@ -2297,10 +2485,10 @@ isCmpOp(op) { match (t1_q, t2_q) {
                 (CSubOp, PtrType(t1_q, _, _), ArrayType(t2_q, _, _, _)) => { >>(compatible(t1_q, t2_q), return(ptrDiffType)) },
                 (CSubOp, PtrType(t1_q, _, _), PtrType(t2_q, _, _)) => { >>(compatible(t1_q, t2_q), return(ptrDiffType)) },
             (_, PtrType(_, _, _), t2_q) => if (isPtrOp(op) && isIntegralType(t2_q)) { return(t1) }
-otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op))))) },
+otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((pretty(op))))) },
             (CAddOp, t1_q, PtrType(_, _, _)) => if isIntegralType(t1_q) { return(t2) },
             (_, ArrayType(_, _, _, _), t2_q) => if (isPtrOp(op) && isIntegralType(t2_q)) { return(t1) }
-otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op))))) },
+otherwise { fail(__op_concat("invalid pointer operation: ".to_string(), render((pretty(op))))) },
             (CAddOp, t1_q, ArrayType(_, _, _, _)) => if isIntegralType(t1_q) { return(t2) },
                 (_, DirectType(tn1, q1, a1), DirectType(tn2, q2, a2)) => { {
 
@@ -2334,7 +2522,7 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
                 DirectType, _, _, _ => { return(()) },
                 PtrType, _, _, _ => { return(()) },
                 ArrayType, _, _, _, _ => { return(()) },
-                t_q => { fail(++("expected scalar type, got: ".to_string(), ++(pType(t), ++(" (".to_string(), ++(pType(t_q), ")".to_string()))))) },
+                t_q => { fail(__op_concat("expected scalar type, got: ".to_string(), __op_concat(pType(t), __op_concat(" (".to_string(), __op_concat(pType(t_q), ")".to_string()))))) },
             }
     }
 
@@ -2389,17 +2577,17 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
             (TyComplex(f1), TyComplex(f2)) => { return(TyComplex((floatConversion(f1, f2)))) },
             (TyComp(c1), TyComp(c2)) => { {
 
-                    when((/=(sueRef(c1), sueRef(c2))))(fail(++("incompatible composite types: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))));
+                    when((/=(sueRef(c1), sueRef(c2))))(fail(__op_concat("incompatible composite types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))));
                     return(tn1)
             } },
             (TyEnum(e1), TyEnum(e2)) => { {
 
-                    when((/=(sueRef(e1), sueRef(e2))))(fail(++("incompatible enumeration types: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))));
+                    when((/=(sueRef(e1), sueRef(e2))))(fail(__op_concat("incompatible enumeration types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))));
                     return(TyEnum(e1))
             } },
             (TyBuiltin(TyVaList), TyBuiltin(TyVaList)) => { return(TyBuiltin(TyVaList)) },
-            (TyBuiltin(_), TyBuiltin(_)) => { fail(++("incompatible builtin types: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))) },
-            (_, _) => { fail(++("incompatible direct types: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))) },
+            (TyBuiltin(_), TyBuiltin(_)) => { fail(__op_concat("incompatible builtin types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
+            (_, _) => { fail(__op_concat("incompatible direct types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
         };
                     return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
             } },
@@ -2409,7 +2597,17 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
 
                     let t = compositeType(t1, t2);
                     let s = compositeSize(s1, s2);
-                    Let([Assign([Span([Ref(Ident("quals"))])], Span([Ref(Ident("mergeTypeQuals")), Ref(Ident("q1")), Ref(Ident("q2"))])), Assign([Span([Ref(Ident("attrs"))])], Span([Ref(Ident("mergeAttrs")), Ref(Ident("a1")), Ref(Ident("a2"))]))], []);
+                    {
+
+            let quals = || {
+            mergeTypeQuals(q1, q2)
+        };
+;
+            let attrs = || {
+            mergeAttrs(a1, a2)
+        };
+
+};
                     return((ArrayType(t, s, quals, attrs)))
             } },
             <todo> => { match (tdr1, tdr2) {
@@ -2432,7 +2630,7 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
                             return((FunctionType((FunTypeIncomplete(rt)), (mergeAttrs(attrs1, attrs2)))))
                     } },
                 } },
-            <todo> => { fail(++("incompatible types: ".to_string(), ++(pType(t1), ++(", ".to_string(), pType(t2))))) },
+            <todo> => { fail(__op_concat("incompatible types: ".to_string(), __op_concat(pType(t1), __op_concat(", ".to_string(), pType(t2))))) },
         }
     }
 
@@ -2475,7 +2673,18 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
             <todo> => { {
 
                     let n = genName;
-                    Let([GuardAssign, Assign([Span([Ref(Ident("ni\'"))])], Span([Ref(Ident("mkNodeInfo")), Parens([Span([Ref(Ident("posOf")), Ref(Ident("ni"))])]), Ref(Ident("n"))])), Assign([Span([Ref(Ident("arraySize"))])], Span([Ref(Ident("ArraySize")), Ref(Ident("True")), Parens([Span([Ref(Ident("CConst")), Parens([Span([Ref(Ident("CIntConst")), Parens([Span([Ref(Ident("cInteger")), Parens([Span([Ref(Ident("toInteger")), Parens([Span([Ref(Ident("length")), Ref(Ident("chars"))])])])])])]), Ref(Ident("ni\'"))])])])])]))], []);
+                    {
+
+    ;
+            let ni_q = || {
+            mkNodeInfo((posOf(ni)), n)
+        };
+;
+            let arraySize = || {
+            ArraySize(True, (CConst((CIntConst((cInteger((toInteger((length(chars)))))), ni_q)))))
+        };
+
+};
                     return(ArrayType((DirectType((TyIntegral(charType)), noTypeQuals, noAttributes)), arraySize, noTypeQuals, vec![]))
             } },
         }
@@ -2501,14 +2710,14 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
             <todo> => { match canonicalType(t) {
                     PtrType, t_q, _, _ => { return(t_q) },
                     ArrayType, t_q, _, _, _ => { return(t_q) },
-                    _ => { fail(++("dereferencing non-pointer: ".to_string(), pType(t))) },
+                    _ => { fail(__op_concat("dereferencing non-pointer: ".to_string(), pType(t))) },
                 } },
         }
     }
 
     fn expandAnonymous(__0: m) -> m {
         match (__0, __1) {
-            <todo> => { >>=(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni)) },
+            <todo> => { __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni)) },
             <todo> => { return(vec![]) },
             <todo> => { return(vec![(n, t)]) },
         }
@@ -2522,10 +2731,10 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
                         let ms = tagMembers(ni, td);
                         match lookup(m, ms) {
         Just, ft => { return(ft) },
-        Nothing => { typeError(ni)(++("field not found: ".to_string(), identToString(m))) },
+        Nothing => { typeError(ni)(__op_concat("field not found: ".to_string(), identToString(m))) },
     }
                 } },
-                _t_q => { astError(ni)(++("field of non-composite type: ".to_string(), ++(identToString(m), ++(", ".to_string(), pType(t))))) },
+                _t_q => { astError(ni)(__op_concat("field of non-composite type: ".to_string(), __op_concat(identToString(m), __op_concat(", ".to_string(), pType(t))))) },
             }
     }
 
@@ -2535,7 +2744,7 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
                 let dt = getDefTable;
                 match lookupTag(sue, dt) {
         Just, Right(td) => { return(td) },
-        _ => { typeError(ni)(++("unknown composite type: ".to_string(), ((render . pretty))(sue))) },
+        _ => { typeError(ni)(__op_concat("unknown composite type: ".to_string(), ((render . pretty))(sue))) },
     }
         }
     }
@@ -2545,7 +2754,7 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
     }
 
     fn notFound(i: Either) -> Either {
-        fail(++("not found: ".to_string(), identToString(i)))
+        fail(__op_concat("not found: ".to_string(), identToString(i)))
     }
 
     fn pType() -> String {
@@ -2564,7 +2773,7 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
 
                 let dt = getDefTable;
                 match lookupTag(sue, dt) {
-        Nothing => { astError(ni)(++("SUE not found: ".to_string(), render((pretty(sue))))) },
+        Nothing => { astError(ni)(__op_concat("SUE not found: ".to_string(), render((pretty(sue))))) },
         Just, Left(_) => { return(vec![]) },
         Just, Right(CompDef(CompType(_, _, _, attrs, _))) => { return(attrs) },
         Just, Right(EnumDef(EnumType(_, _, attrs, _))) => { return(attrs) },
@@ -2584,9 +2793,9 @@ otherwise { fail(++("invalid pointer operation: ".to_string(), render((pretty(op
 
                 let dt = getDefTable;
                 match lookupIdent(i, dt) {
-        Nothing => { astError(ni)(++("can\'t find typedef name: ".to_string(), identToString(i))) },
+        Nothing => { astError(ni)(__op_concat("can\'t find typedef name: ".to_string(), identToString(i))) },
         Just, Left(TypeDef(_, t, attrs, _)) => { liftM((attrs(Operator("++"))), deepTypeAttrs(t)) },
-        Just, Right(_) => { astError(ni)(++("not a typedef name: ".to_string(), identToString(i))) },
+        Just, Right(_) => { astError(ni)(__op_concat("not a typedef name: ".to_string(), identToString(i))) },
     }
         }
     }
@@ -2827,7 +3036,7 @@ mod Language_C_Analysis {
 
 mod Language_C_Data_Error {
     #[derive(Eq, Ord)]
-    enum ErrorLevel{
+    enum ErrorLevel {
         LevelWarn,
         LevelError,
         LevelFatal
@@ -2863,11 +3072,11 @@ mod Language_C_Data_Error {
     }
 
     fn internalErr(msg: a) -> a {
-        error((++(internalErrPrefix, ++("\n".to_string(), ++(indentLines(msg), "\n".to_string())))))
+        error((__op_concat(internalErrPrefix, __op_concat("\n".to_string(), __op_concat(indentLines(msg), "\n".to_string())))))
     }
 
     fn internalErrPrefix() -> String {
-        unlines(vec!["Language.C : Internal Error".to_string(), ++("This is propably a bug, and should be reported at ".to_string(), "http://www.sivity.net/projects/language.c/newticket".to_string())])
+        unlines(vec!["Language.C : Internal Error".to_string(), __op_concat("This is propably a bug, and should be reported at ".to_string(), "http://www.sivity.net/projects/language.c/newticket".to_string())])
     }
 
     fn isHardError() -> Bool {
@@ -2883,7 +3092,7 @@ mod Language_C_Data_Error {
     }
 
     fn showErrorInfo(short_msg: String) -> String {
-        ++(header, showMsgLines((if(null, short_msg, then, msgs, else, short_msg:msgs))))
+        __op_concat(header, showMsgLines((if(null, short_msg, then, msgs, else, short_msg:msgs))))
     }
 
     fn unsupportedFeature(msg: UnsupportedFeature) -> UnsupportedFeature {
@@ -2902,7 +3111,7 @@ mod Language_C_Data_Error {
 
 mod Language_C_Data_Ident {
     #[derive(Clone, Debug, Eq, Ord)]
-    enum SUERef{
+    enum SUERef {
         AnonymousRef(Name),
         NamedRef(Ident)
     };
@@ -2931,7 +3140,7 @@ mod Language_C_Data_Ident {
     }
 
     fn dumpIdent(ide: String) -> String {
-        ++(identToString(ide), ++(" at ".to_string(), show((nodeInfo(ide)))))
+        __op_concat(identToString(ide), __op_concat(" at ".to_string(), show((nodeInfo(ide)))))
     }
 
     fn identToString((Ident(s, _, _)): String) -> String {
@@ -3042,7 +3251,7 @@ mod Language_C_Data_Name {
 
 mod Language_C_Data_Node {
     #[derive(Clone, Debug)]
-    enum NodeInfo{
+    enum NodeInfo {
         OnlyPos(Position, PosLength),
         NodeInfo(Position, PosLength, Name)
     };
@@ -3112,7 +3321,7 @@ mod Language_C_Data_Node {
 
 mod Language_C_Data_Position {
     #[derive(Clone, Debug, Eq, Ord)]
-    enum Position{
+    enum Position {
         Position({ /* struct def */ }),
         NoPosition,
         BuiltinPosition,
@@ -3199,7 +3408,7 @@ mod Language_C_Data_Position {
 
 mod Language_C_Data_RList {
         fn appendr(xs: Reversed) -> Reversed {
-        Reversed((++(ys, List_reverse(xs))))
+        Reversed((__op_concat(ys, List_reverse(xs))))
     }
 
     fn empty() -> Reversed {
@@ -3207,11 +3416,11 @@ mod Language_C_Data_RList {
     }
 
     fn rappend((Reversed(xs)): Reversed) -> Reversed {
-        Reversed((++(List_reverse(ys), xs)))
+        Reversed((__op_concat(List_reverse(ys), xs)))
     }
 
     fn rappendr((Reversed(xs)): Reversed) -> Reversed {
-        Reversed((++(ys, xs)))
+        Reversed((__op_concat(ys, xs)))
     }
 
     fn reverse((Reversed(xs)): Reversed) -> Reversed {
@@ -3252,7 +3461,7 @@ mod Language_C_Parser_Builtin {
 }
 
 mod Language_C_Parser_ParserMonad {
-    enum ParseResult{
+    enum ParseResult {
         POk(PState, a),
         PFailed(Vec<String>, Position)
     };
@@ -3363,7 +3572,7 @@ mod Language_C_Parser_ParserMonad {
 }
 
 mod Language_C_Parser_Tokens {
-    enum CToken{
+    enum CToken {
         CTokLParen(PosLength),
         CTokRParen(PosLength),
         CTokLBracket(PosLength),
@@ -3461,7 +3670,7 @@ mod Language_C_Parser_Tokens {
         CTokEof
     };
 
-    enum GnuCTok{
+    enum GnuCTok {
         GnuCAttrTok,
         GnuCExtTok,
         GnuCVaArg,
@@ -3650,7 +3859,7 @@ mod Language_C_Syntax_AST {
     struct CTranslationUnit(CTranslUnit, Vec<CExternalDeclaration(a)>, a);
 
     #[derive(Clone, Debug)]
-    enum CExternalDeclaration{
+    enum CExternalDeclaration {
         CDeclExt(CDeclaration(a)),
         CFDefExt(CFunctionDef(a)),
         CAsmExt(CStringLiteral(a), a)
@@ -3666,20 +3875,20 @@ mod Language_C_Syntax_AST {
     struct CDeclarator(CDeclr, Maybe(Ident), Vec<CDerivedDeclarator(a)>, Maybe(CStringLiteral(a)), Vec<CAttribute(a)>, a);
 
     #[derive(Clone, Debug)]
-    enum CDerivedDeclarator{
+    enum CDerivedDeclarator {
         CPtrDeclr(Vec<CTypeQualifier(a)>, a),
         CArrDeclr(Vec<CTypeQualifier(a)>, CArraySize(a), a),
         CFunDeclr(Either(Vec<Ident>, (Vec<CDeclaration(a)>, Bool)), Vec<CAttribute(a)>, a)
     };
 
     #[derive(Clone, Debug)]
-    enum CArraySize{
+    enum CArraySize {
         CNoArrSize(Bool),
         CArrSize(Bool, CExpression(a))
     };
 
     #[derive(Clone, Debug)]
-    enum CStatement{
+    enum CStatement {
         CLabel(Ident, CStatement(a), Vec<CAttribute(a)>, a),
         CCase(CExpression(a), CStatement(a), a),
         CCases(CExpression(a), CExpression(a), CStatement(a), a),
@@ -3705,21 +3914,21 @@ mod Language_C_Syntax_AST {
     struct CAssemblyOperand(CAsmOperand, Maybe(Ident), CStringLiteral(a), CExpression(a), a);
 
     #[derive(Clone, Debug)]
-    enum CCompoundBlockItem{
+    enum CCompoundBlockItem {
         CBlockStmt(CStatement(a)),
         CBlockDecl(CDeclaration(a)),
         CNestedFunDef(CFunctionDef(a))
     };
 
     #[derive(Clone, Debug)]
-    enum CDeclarationSpecifier{
+    enum CDeclarationSpecifier {
         CStorageSpec(CStorageSpecifier(a)),
         CTypeSpec(CTypeSpecifier(a)),
         CTypeQual(CTypeQualifier(a))
     };
 
     #[derive(Clone, Debug, Eq, Ord)]
-    enum CStorageSpecifier{
+    enum CStorageSpecifier {
         CAuto(a),
         CRegister(a),
         CStatic(a),
@@ -3729,7 +3938,7 @@ mod Language_C_Syntax_AST {
     };
 
     #[derive(Clone, Debug)]
-    enum CTypeSpecifier{
+    enum CTypeSpecifier {
         CVoidType(a),
         CCharType(a),
         CShortType(a),
@@ -3749,7 +3958,7 @@ mod Language_C_Syntax_AST {
     };
 
     #[derive(Clone, Debug)]
-    enum CTypeQualifier{
+    enum CTypeQualifier {
         CConstQual(a),
         CVolatQual(a),
         CRestrQual(a),
@@ -3761,7 +3970,7 @@ mod Language_C_Syntax_AST {
     struct CStructureUnion(CStruct, CStructTag, Maybe(Ident), Maybe(Vec<CDeclaration(a)>), Vec<CAttribute(a)>, a);
 
     #[derive(Clone, Debug, Eq)]
-    enum CStructTag{
+    enum CStructTag {
         CStructTag,
         CUnionTag
     };
@@ -3770,13 +3979,13 @@ mod Language_C_Syntax_AST {
     struct CEnumeration(CEnum, Maybe(Ident), Maybe(Vec<(Ident, Maybe(CExpression(a)))>), Vec<CAttribute(a)>, a);
 
     #[derive(Clone, Debug)]
-    enum CInitializer{
+    enum CInitializer {
         CInitExpr(CExpression(a), a),
         CInitList(CInitializerList(a), a)
     };
 
     #[derive(Clone, Debug)]
-    enum CPartDesignator{
+    enum CPartDesignator {
         CArrDesig(CExpression(a), a),
         CMemberDesig(Ident, a),
         CRangeDesig(CExpression(a), CExpression(a), a)
@@ -3786,7 +3995,7 @@ mod Language_C_Syntax_AST {
     struct CAttribute(CAttr, Ident, Vec<CExpression(a)>, a);
 
     #[derive(Clone, Debug)]
-    enum CExpression{
+    enum CExpression {
         CComma(Vec<CExpression(a)>, a),
         CAssign(CAssignOp, CExpression(a), CExpression(a), a),
         CCond(CExpression(a), Maybe(CExpression(a)), CExpression(a), a),
@@ -3811,14 +4020,14 @@ mod Language_C_Syntax_AST {
     };
 
     #[derive(Clone, Debug)]
-    enum CBuiltinThing{
+    enum CBuiltinThing {
         CBuiltinVaArg(CExpression(a), CDeclaration(a), a),
         CBuiltinOffsetOf(CDeclaration(a), Vec<CPartDesignator(a)>, a),
         CBuiltinTypesCompatible(CDeclaration(a), CDeclaration(a), a)
     };
 
     #[derive(Clone, Debug)]
-    enum CConstant{
+    enum CConstant {
         CIntConst(CInteger, a),
         CCharConst(CChar, a),
         CFloatConst(CFloat, a),
@@ -3856,20 +4065,20 @@ mod Language_C_Syntax_AST {
 
 mod Language_C_Syntax_Constants {
     #[derive(Clone, Debug, Eq, Ord)]
-    enum CChar{
+    enum CChar {
         CChar(Char, Bool),
         CChars(Vec<Char>, Bool)
     };
 
     #[derive(Bounded, Clone, Debug, Enum, Eq, Ord)]
-    enum CIntRepr{
+    enum CIntRepr {
         DecRepr,
         HexRepr,
         OctalRepr
     };
 
     #[derive(Bounded, Clone, Debug, Enum, Eq, Ord)]
-    enum CIntFlag{
+    enum CIntFlag {
         FlagUnsigned,
         FlagLong,
         FlagLongLong,
@@ -3926,7 +4135,7 @@ mod Language_C_Syntax_Constants {
     }
 
     fn dQuote(s: ShowS) -> ShowS {
-        ++((:('\"', s)), ++("\"".to_string(), t))
+        __op_concat((:('\"', s)), __op_concat("\"".to_string(), t))
     }
 
     fn escapeCChar('\'': String) -> String {
@@ -4020,12 +4229,12 @@ mod Language_C_Syntax_Constants {
     fn readCInteger(repr: Either) -> Either {
         match readNum(str) {
                 [(n, suffix)] => { mkCInt(n, suffix) },
-                parseFailed => { Left(++("Bad Integer literal: ".to_string(), show(parseFailed))) },
+                parseFailed => { Left(__op_concat("Bad Integer literal: ".to_string(), show(parseFailed))) },
             }
     }
 
     fn sQuote(s: ShowS) -> ShowS {
-        ++("\'".to_string(), ++(s, ++("\'".to_string(), t)))
+        __op_concat("\'".to_string(), __op_concat(s, __op_concat("\'".to_string(), t)))
     }
 
     fn setFlag(flag: Flags) -> Flags {
@@ -4085,7 +4294,7 @@ mod Language_C_Syntax_Constants {
 
 mod Language_C_Syntax_Ops {
     #[derive(Clone, Debug, Eq, Ord)]
-    enum CAssignOp{
+    enum CAssignOp {
         CAssignOp,
         CMulAssOp,
         CDivAssOp,
@@ -4100,7 +4309,7 @@ mod Language_C_Syntax_Ops {
     };
 
     #[derive(Clone, Debug, Eq, Ord)]
-    enum CBinaryOp{
+    enum CBinaryOp {
         CMulOp,
         CDivOp,
         CRmdOp,
@@ -4122,7 +4331,7 @@ mod Language_C_Syntax_Ops {
     };
 
     #[derive(Clone, Debug, Eq, Ord)]
-    enum CUnaryOp{
+    enum CUnaryOp {
         CPreIncOp,
         CPreDecOp,
         CPostIncOp,
@@ -4241,10 +4450,10 @@ mod Language_C_Syntax {
 
 mod Language_C_System_GCC {
         fn buildCppArgs((CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt)): Vec<String>) -> Vec<String> {
-        ++({
+        __op_concat({
 
                     (concatMap(tOption, options))
-            }, ++(outputFileOpt, ++(vec!["-E".to_string(), input_file], extra_args)))
+            }, __op_concat(outputFileOpt, __op_concat(vec!["-E".to_string(), input_file], extra_args)))
     }
 
     fn gccParseCPPArgs(args: Either) -> Either {
@@ -4265,7 +4474,7 @@ mod Language_C_System_GCC {
 }
 
 mod Language_C_System_Preprocess {
-    enum CppOption{
+    enum CppOption {
         IncludeDir(FilePath),
         Define(String, String),
         Undefine(String),
