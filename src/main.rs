@@ -328,16 +328,30 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 .into_iter()
                 .collect::<Vec<_>>();
 
-            println!("    {}struct {}({});",
-                if derive_rust.len() > 0 {
-                    format!("#[derive({})]\n    ", derive_rust.join(", "))
-                } else {
-                    format!("")
-                },
-                name.0,
-                data.iter().map(|tyset| {
-                    print_types(state, tyset)
-                }).collect::<Vec<_>>().join(", "));
+            if data.len() > 1 {
+                println!("    {}enum {}{{\n        {}\n    }};",
+                    if derive_rust.len() > 0 {
+                        format!("#[derive({})]\n    ", derive_rust.join(", "))
+                    } else {
+                        format!("")
+                    },
+                    name.0,
+                    data.iter().map(|tyset| {
+                        print_type(state.tab(), Ty::Span(tyset.clone()))
+                    }).collect::<Vec<_>>().join(&format!(",\n        "))
+                    );
+            } else {
+                println!("    {}struct {}({});",
+                    if derive_rust.len() > 0 {
+                        format!("#[derive({})]\n    ", derive_rust.join(", "))
+                    } else {
+                        format!("")
+                    },
+                    name.0,
+                    data.iter().map(|tyset| {
+                        print_types(state, tyset)
+                    }).collect::<Vec<_>>().join(", "));
+            }
             println!("");
         }
     }
@@ -441,7 +455,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             //if cache.contains_key(&s) {
             //    panic!("this shouldn't happen {:?}", s);
             //}
-            out.push(print_expr(PrintState::new(), &expr));
+            out.push(format!("    {}", print_expr(PrintState::new(), &expr)));
         }
     }
 
