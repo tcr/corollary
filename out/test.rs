@@ -11,6 +11,14 @@ mod Language_C_Analysis_AstAnalysis {
         RValue
     }
 
+    #[derive(Debug)]
+    enum FunctionAttribute {
+        UnsafeFn,
+        ExternABI(Maybe<String>),
+        ArrayExpr(Vec<Expr>),
+        ShiftL(Expr, Expr)
+    }
+
     fn analyseAST((CTranslUnit(decls, _file_node)): m) -> m {
         /* do */ {
 

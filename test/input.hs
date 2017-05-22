@@ -95,3 +95,11 @@ analyseExt (CFDefExt fundef)
     = analyseFunDef fundef
 analyseExt (CDeclExt decl)
     = analyseDecl False decl
+
+
+data FunctionAttribute
+    = UnsafeFn
+    | ExternABI (Maybe String)
+    | ArrayExpr [Expr]
+    | ShiftL Expr Expr
+    deriving Show

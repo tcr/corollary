@@ -30,12 +30,12 @@ mod Language_Rust_AST {
     #[derive(Debug)]
     enum Stmt {
         Stmt(Expr),
-        Let(Mutable, Var, Maybe(Type), Maybe(Expr)),
+        Let(Mutable, Var, Maybe<Type>, Maybe<Expr>),
         StmtItem(Vec<Attribute>, ItemKind)
     }
 
     #[derive(Debug)]
-    struct Block(Block, Vec<Stmt>, Maybe(Expr));
+    struct Block(Block, Vec<Stmt>, Maybe<Expr>);
 
     #[derive(Debug)]
     struct Attribute(Attribute, String);
@@ -46,7 +46,7 @@ mod Language_Rust_AST {
     #[derive(Debug)]
     enum FunctionAttribute {
         UnsafeFn,
-        ExternABI(Maybe(String))
+        ExternABI(Maybe<String>)
     }
 
     #[derive(Debug)]
@@ -80,7 +80,7 @@ mod Language_Rust_AST {
         Index(Expr, Expr),
         ArrayExpr(Vec<Expr>),
         RepeatArray(Expr, Expr),
-        StructExpr(String, Vec<(String, Expr)>, Maybe(Expr)),
+        StructExpr(String, Vec<(String, Expr)>, Maybe<Expr>),
         Call(Expr, Vec<Expr>),
         MethodCall(Expr, Var, Vec<Expr>),
         Lambda(Vec<Var>, Expr),
@@ -88,12 +88,12 @@ mod Language_Rust_AST {
         BlockExpr(Block),
         UnsafeExpr(Block),
         IfThenElse(Expr, Block, Block),
-        Loop(Maybe(Lifetime), Block),
-        While(Maybe(Lifetime), Expr, Block),
-        For(Maybe(Lifetime), Var, Expr, Block),
-        Break(Maybe(Lifetime)),
-        Continue(Maybe(Lifetime)),
-        Return(Maybe(Expr)),
+        Loop(Maybe<Lifetime>, Block),
+        While(Maybe<Lifetime>, Expr, Block),
+        For(Maybe<Lifetime>, Var, Expr, Block),
+        Break(Maybe<Lifetime>),
+        Continue(Maybe<Lifetime>),
+        Return(Maybe<Expr>),
         Neg(Expr),
         Deref(Expr),
         Not(Expr),
@@ -161,7 +161,7 @@ mod Language_Rust_Corrode_C {
 
     struct EnvState(EnvState, { /* struct def */ });
 
-    struct Initializer(Initializer, Maybe(Rust.Expr), IntMap.IntMap(Initializer));
+    struct Initializer(Initializer, Maybe<Rust.Expr>, IntMap.IntMap<Initializer>);
 
     #[derive(Debug)]
     enum Designator {
@@ -191,7 +191,7 @@ mod Language_Rust_Corrode_C {
         IsInt(Signed, IntWidth),
         IsFloat(isize),
         IsVoid,
-        IsFunc(CType, Vec<(Maybe((Rust.Mutable, Ident)), CType)>, Bool),
+        IsFunc(CType, Vec<(Maybe<(Rust.Mutable, Ident)>, CType)>, Bool),
         IsPtr(Rust.Mutable, CType),
         IsArray(Rust.Mutable, isize, CType),
         IsStruct(String, Vec<(String, CType)>),
@@ -1708,7 +1708,7 @@ mod Language_Rust_Corrode_C {
 }
 
 mod Language_Rust_Corrode_CFG {
-    struct BasicBlock(BasicBlock, s, Terminator(c));
+    struct BasicBlock(BasicBlock, s, Terminator<c>);
 
     #[derive(Debug)]
     enum Terminator' {
@@ -1717,11 +1717,11 @@ mod Language_Rust_Corrode_CFG {
         CondBranch(c, l, l)
     }
 
-    struct Unordered();
+    struct Unordered;
 
-    struct DepthFirst();
+    struct DepthFirst;
 
-    struct CFG(CFG, Label, IntMap.IntMap(BasicBlock(s, c)));
+    struct CFG(CFG, Label, IntMap.IntMap<BasicBlock<s, c>>);
 
     struct BuildState(BuildState, { /* struct def */ });
 
@@ -1729,14 +1729,14 @@ mod Language_Rust_Corrode_CFG {
     enum StructureLabel {
         GoTo({ /* struct def */ }),
         ExitTo({ /* struct def */ }),
-        Nested(Vec<Structure(s, c)>)
+        Nested(Vec<Structure<s, c>>)
     }
 
     #[derive(Debug)]
     enum Structure' {
-        Simple(s, StructureTerminator(s, c)),
+        Simple(s, StructureTerminator<s, c>),
         Loop(a),
-        Multiple(IntMap.IntMap(a), a)
+        Multiple(IntMap.IntMap<a>, a)
     }
 
     #[derive(Debug)]

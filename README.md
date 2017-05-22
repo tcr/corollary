@@ -18,7 +18,6 @@ See the current status by looking at the cross-compiled files in the out/ direct
 cargo run "./corrode/src/Language" > out/corrode.rs
 cargo run "./language-c/src/Language/C" > out/language_c.rs
 cargo run "./gen" > out/gen.rs
-cargo run "./test" > out/test.rs
 ```
 
 Look at the `test/input.hs` file and `out/test.rs` for an example of compilation you can (almost!) execute.

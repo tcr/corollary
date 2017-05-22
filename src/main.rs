@@ -281,7 +281,7 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Span(ref span) => {
             let mut out_span = print_type(state.tab(), &span[0]);
             if span.len() > 1 {
-                out_span.push_str(&format!("({})", print_types(state.tab(), &span[1..])));
+                out_span.push_str(&format!("<{}>", print_types(state.tab(), &span[1..])));
             }
             out_span
         }
@@ -324,7 +324,7 @@ where
 fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     let mut types = btreemap![];
     for item in stats {
-        //errln!("{:?}", item);
+        errln!("{:?}", item);
 
         // println!("well {:?}", item);
         if let ast::Statement::Prototype(exprs, d) = item.clone() {
@@ -365,7 +365,16 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     },
                     name.0,
                     data.iter().map(|tyset| {
-                        print_type(state.tab(), Ty::Span(tyset.clone()))
+                        format!("{}{}",
+                            print_type(state.tab(), tyset[0].clone()),
+                            if tyset.len() > 2 {
+                                format!("{}", print_type(state.tab(), Ty::Tuple(tyset.clone()[1..].to_vec())))
+                            } else if tyset.len() > 1 {
+                                format!("({})", print_type(state.tab(), Ty::Tuple(tyset.clone()[1..].to_vec())))
+                            } else {
+                                "".to_string()
+                            }
+                        )
                     }).collect::<Vec<_>>().join(&format!(",\n        "))
                     );
             } else {
