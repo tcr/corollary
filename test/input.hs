@@ -47,59 +47,21 @@ import Language.C.Syntax.Ops
 import Language.C.Syntax.Utils
 import Text.PrettyPrint.HughesPJ
 
-
-import Control.Monad
-import Prelude hiding (reverse)
-import Data.Either (rights)
-import Data.Foldable (foldrM)
-import Data.List hiding (reverse)
-import qualified Data.Map as Map
-import Data.Maybe
-
-
-data StmtCtx = FunCtx VarDecl
-             | LoopCtx
-             | SwitchCtx
-
-
-data ExprSide = LValue | RValue
-                deriving (Eq, Show)
-
--- * analysis
-
--- | Analyse the given AST
---
--- @analyseAST ast@ results in global declaration dictionaries.
--- If you want to perform specific actions on declarations or definitions, you may provide
--- callbacks in the @MonadTrav@ @m@.
---
--- Returns the set of global declarations and definitions which where successfully translated.
--- It is the users responsibility to check whether any hard errors occurred (@runTrav@ does this for you).
-analyseAST :: (MonadTrav m) => CTranslUnit -> m GlobalDecls
-analyseAST (CTranslUnit decls _file_node) = do
-    -- analyse all declarations, but recover from errors
-    mapRecoverM_ analyseExt decls
-    -- check we are in global scope afterwards
-    getDefTable >>= \dt -> when (not (inFileScope dt)) $
-        error "Internal Error: Not in filescope after analysis"
-    -- get the global definition table (XXX: remove ?)
-    liftM globalDefs getDefTable
-    where
-    mapRecoverM_ f = mapM_ (handleTravError . f)
-
--- | Analyse an top-level declaration
-analyseExt :: (MonadTrav m) => CExtDecl -> m ()
-analyseExt (CAsmExt asm _)
-    = handleAsmBlock asm
-analyseExt (CFDefExt fundef)
-    = analyseFunDef fundef
-analyseExt (CDeclExt decl)
-    = analyseDecl False decl
-
-
-data FunctionAttribute
-    = UnsafeFn
-    | ExternABI (Maybe String)
-    | ArrayExpr [Expr]
-    | ShiftL Expr Expr
-    deriving Show
+addExternIdent
+    :: Ident
+    -> EnvMonad s IntermediateType
+    -> (String -> (Rust.Mutable, CType) -> Rust.ExternItem)
+    -> EnvMonad s ()
+addExternIdent ident deferred mkItem = do
+    action <- runOnce $ do
+        itype <- deferred
+        rewrites <- lift $ asks itemRewrites
+        path <- case Map.lookup (Symbol, identToString ident) rewrites of
+            Just renamed -> return ("" : renamed)
+            Nothing -> do
+                let name = applyRenames ident
+                let ty = (typeMutable itype, typeRep itype)
+                lift $ tell mempty { outputExterns = Map.singleton name (mkItem name ty) }
+                return [name]
+        return (typeToResult itype (Rust.Path (Rust.PathSegments path)))
+    addSymbolIdentAction ident action
