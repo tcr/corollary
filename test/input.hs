@@ -33,3 +33,13 @@ addSymbolIdent ident (mut, ty) = do
         , result = Rust.Path (Rust.PathSegments [name])
         }
     return name
+
+-- Main lexing routines
+data AlexReturn a
+  = AlexEOF
+  | AlexError !AlexInput
+  | AlexSkip !AlexInput
+             !Int
+  | AlexToken !AlexInput
+              !Int
+              a

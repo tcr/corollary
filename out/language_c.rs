@@ -1660,7 +1660,7 @@ mod Language_C_Analysis_DefTable {
     struct DefTable(DefTable, { /* struct def */ });
 
     #[derive(Clone, Debug)]
-    enum DeclarationStatus {
+    enum DeclarationStatus<t> {
         NewDecl,
         Redeclared(t),
         KeepDef(t),
@@ -2162,7 +2162,7 @@ mod Language_C_Analysis_Export {
 }
 
 mod Language_C_Analysis_NameSpaceMap {
-    struct NameSpaceMap(NsMap, Map<k, v>, Vec<Vec<(k, v)>>);
+    struct NameSpaceMap<k, v>(NsMap, Map<k, v>, Vec<Vec<(k, v)>>);
 
     fn defGlobal((NsMap(gs, lss)): NameSpaceMap) -> NameSpaceMap {
         (NsMap((Map_insert(ident, def, gs)), lss), Map_lookup(ident, gs))
@@ -2666,7 +2666,7 @@ mod Language_C_Analysis_TravMonad {
 
     struct TravOptions(TravOptions, { /* struct def */ });
 
-    struct TravState(TravState, { /* struct def */ });
+    struct TravState<s>(TravState, { /* struct def */ });
 
     fn addRef(use: u, def: d) -> m {
         match (nodeInfo(use), nodeInfo(def)) {
@@ -4460,7 +4460,7 @@ mod Language_C_Parser_Builtin {
 }
 
 mod Language_C_Parser_ParserMonad {
-    enum ParseResult {
+    enum ParseResult<a> {
         POk(PState, a),
         PFailed(Vec<String>, Position)
     }
@@ -5093,39 +5093,39 @@ mod Language_C_Pretty {
 
 mod Language_C_Syntax_AST {
     #[derive(Clone, Debug)]
-    struct CTranslationUnit(CTranslUnit, Vec<CExternalDeclaration<a>>, a);
+    struct CTranslationUnit<a>(CTranslUnit, Vec<CExternalDeclaration<a>>, a);
 
     #[derive(Clone, Debug)]
-    enum CExternalDeclaration {
+    enum CExternalDeclaration<a> {
         CDeclExt(CDeclaration<a>),
         CFDefExt(CFunctionDef<a>),
         CAsmExt(CStringLiteral<a>, a)
     }
 
     #[derive(Clone, Debug)]
-    struct CFunctionDef(CFunDef, Vec<CDeclarationSpecifier<a>>, CDeclarator<a>, Vec<CDeclaration<a>>, CStatement<a>, a);
+    struct CFunctionDef<a>(CFunDef, Vec<CDeclarationSpecifier<a>>, CDeclarator<a>, Vec<CDeclaration<a>>, CStatement<a>, a);
 
     #[derive(Clone, Debug)]
-    struct CDeclaration(CDecl, Vec<CDeclarationSpecifier<a>>, Vec<(Option<CDeclarator<a>>, Option<CInitializer<a>>, Option<CExpression<a>>)>, a);
+    struct CDeclaration<a>(CDecl, Vec<CDeclarationSpecifier<a>>, Vec<(Option<CDeclarator<a>>, Option<CInitializer<a>>, Option<CExpression<a>>)>, a);
 
     #[derive(Clone, Debug)]
-    struct CDeclarator(CDeclr, Option<Ident>, Vec<CDerivedDeclarator<a>>, Option<CStringLiteral<a>>, Vec<CAttribute<a>>, a);
+    struct CDeclarator<a>(CDeclr, Option<Ident>, Vec<CDerivedDeclarator<a>>, Option<CStringLiteral<a>>, Vec<CAttribute<a>>, a);
 
     #[derive(Clone, Debug)]
-    enum CDerivedDeclarator {
+    enum CDerivedDeclarator<a> {
         CPtrDeclr(Vec<CTypeQualifier<a>>, a),
         CArrDeclr(Vec<CTypeQualifier<a>>, CArraySize<a>, a),
         CFunDeclr(Either<Vec<Ident>, (Vec<CDeclaration<a>>, Bool)>, Vec<CAttribute<a>>, a)
     }
 
     #[derive(Clone, Debug)]
-    enum CArraySize {
+    enum CArraySize<a> {
         CNoArrSize(Bool),
         CArrSize(Bool, CExpression<a>)
     }
 
     #[derive(Clone, Debug)]
-    enum CStatement {
+    enum CStatement<a> {
         CLabel(Ident, CStatement<a>, Vec<CAttribute<a>>, a),
         CCase(CExpression<a>, CStatement<a>, a),
         CCases(CExpression<a>, CExpression<a>, CStatement<a>, a),
@@ -5145,27 +5145,27 @@ mod Language_C_Syntax_AST {
     }
 
     #[derive(Clone, Debug)]
-    struct CAssemblyStatement(CAsmStmt, Option<CTypeQualifier<a>>, CStringLiteral<a>, Vec<CAssemblyOperand<a>>, Vec<CAssemblyOperand<a>>, Vec<CStringLiteral<a>>, a);
+    struct CAssemblyStatement<a>(CAsmStmt, Option<CTypeQualifier<a>>, CStringLiteral<a>, Vec<CAssemblyOperand<a>>, Vec<CAssemblyOperand<a>>, Vec<CStringLiteral<a>>, a);
 
     #[derive(Clone, Debug)]
-    struct CAssemblyOperand(CAsmOperand, Option<Ident>, CStringLiteral<a>, CExpression<a>, a);
+    struct CAssemblyOperand<a>(CAsmOperand, Option<Ident>, CStringLiteral<a>, CExpression<a>, a);
 
     #[derive(Clone, Debug)]
-    enum CCompoundBlockItem {
+    enum CCompoundBlockItem<a> {
         CBlockStmt(CStatement<a>),
         CBlockDecl(CDeclaration<a>),
         CNestedFunDef(CFunctionDef<a>)
     }
 
     #[derive(Clone, Debug)]
-    enum CDeclarationSpecifier {
+    enum CDeclarationSpecifier<a> {
         CStorageSpec(CStorageSpecifier<a>),
         CTypeSpec(CTypeSpecifier<a>),
         CTypeQual(CTypeQualifier<a>)
     }
 
     #[derive(Clone, Debug, Eq, Ord)]
-    enum CStorageSpecifier {
+    enum CStorageSpecifier<a> {
         CAuto(a),
         CRegister(a),
         CStatic(a),
@@ -5175,7 +5175,7 @@ mod Language_C_Syntax_AST {
     }
 
     #[derive(Clone, Debug)]
-    enum CTypeSpecifier {
+    enum CTypeSpecifier<a> {
         CVoidType(a),
         CCharType(a),
         CShortType(a),
@@ -5195,7 +5195,7 @@ mod Language_C_Syntax_AST {
     }
 
     #[derive(Clone, Debug)]
-    enum CTypeQualifier {
+    enum CTypeQualifier<a> {
         CConstQual(a),
         CVolatQual(a),
         CRestrQual(a),
@@ -5204,7 +5204,7 @@ mod Language_C_Syntax_AST {
     }
 
     #[derive(Clone, Debug)]
-    struct CStructureUnion(CStruct, CStructTag, Option<Ident>, Option<Vec<CDeclaration<a>>>, Vec<CAttribute<a>>, a);
+    struct CStructureUnion<a>(CStruct, CStructTag, Option<Ident>, Option<Vec<CDeclaration<a>>>, Vec<CAttribute<a>>, a);
 
     #[derive(Clone, Debug, Eq)]
     enum CStructTag {
@@ -5213,26 +5213,26 @@ mod Language_C_Syntax_AST {
     }
 
     #[derive(Clone, Debug)]
-    struct CEnumeration(CEnum, Option<Ident>, Option<Vec<(Ident, Option<CExpression<a>>)>>, Vec<CAttribute<a>>, a);
+    struct CEnumeration<a>(CEnum, Option<Ident>, Option<Vec<(Ident, Option<CExpression<a>>)>>, Vec<CAttribute<a>>, a);
 
     #[derive(Clone, Debug)]
-    enum CInitializer {
+    enum CInitializer<a> {
         CInitExpr(CExpression<a>, a),
         CInitList(CInitializerList<a>, a)
     }
 
     #[derive(Clone, Debug)]
-    enum CPartDesignator {
+    enum CPartDesignator<a> {
         CArrDesig(CExpression<a>, a),
         CMemberDesig(Ident, a),
         CRangeDesig(CExpression<a>, CExpression<a>, a)
     }
 
     #[derive(Clone, Debug)]
-    struct CAttribute(CAttr, Ident, Vec<CExpression<a>>, a);
+    struct CAttribute<a>(CAttr, Ident, Vec<CExpression<a>>, a);
 
     #[derive(Clone, Debug)]
-    enum CExpression {
+    enum CExpression<a> {
         CComma(Vec<CExpression<a>>, a),
         CAssign(CAssignOp, CExpression<a>, CExpression<a>, a),
         CCond(CExpression<a>, Option<CExpression<a>>, CExpression<a>, a),
@@ -5257,14 +5257,14 @@ mod Language_C_Syntax_AST {
     }
 
     #[derive(Clone, Debug)]
-    enum CBuiltinThing {
+    enum CBuiltinThing<a> {
         CBuiltinVaArg(CExpression<a>, CDeclaration<a>, a),
         CBuiltinOffsetOf(CDeclaration<a>, Vec<CPartDesignator<a>>, a),
         CBuiltinTypesCompatible(CDeclaration<a>, CDeclaration<a>, a)
     }
 
     #[derive(Clone, Debug)]
-    enum CConstant {
+    enum CConstant<a> {
         CIntConst(CInteger, a),
         CCharConst(CChar, a),
         CFloatConst(CFloat, a),
@@ -5272,7 +5272,7 @@ mod Language_C_Syntax_AST {
     }
 
     #[derive(Clone, Debug)]
-    struct CStringLiteral(CStrLit, CString, a);
+    struct CStringLiteral<a>(CStrLit, CString, a);
 
     fn cstringOfLit((CStrLit(cstr, _)): CStringLiteral) -> CStringLiteral {
         cstr

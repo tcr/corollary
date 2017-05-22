@@ -1,4 +1,11 @@
 mod Test_Code {
+    enum AlexReturn<a> {
+        AlexEOF,
+        AlexError(AlexInput),
+        AlexSkip(AlexInput, isize),
+        AlexToken(AlexInput, isize, a)
+    }
+
     fn addExternIdent(ident: Ident, deferred: EnvMonad) -> EnvMonad {
         /* do */ {
             let action = runOnce(/* do */ {

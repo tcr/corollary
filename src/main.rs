@@ -381,7 +381,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
     // Print out data structures.
     for item in stats {
-        if let ast::Statement::Data(name, data, derives) = item.clone() {
+        if let ast::Statement::Data(name, data, derives, args) = item.clone() {
             let derive_rust = derives.iter()
                 .map(|x| {
                     // Convert common Haskell "derive" terms into Rust's
@@ -405,7 +405,11 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     } else {
                         format!("")
                     },
-                    name.0,
+                    print_type(state, Ty::Span({
+                        let mut v = vec![Ty::Ref(name)];
+                        v.extend(args.unwrap_or(vec![]));
+                        v
+                    })),
                     data.iter().map(|tyset| {
                         format!("{}{}",
                             print_type(state.tab(), tyset[0].clone()),
@@ -430,7 +434,11 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     } else {
                         format!("")
                     },
-                    name.0,
+                    print_type(state, Ty::Span({
+                        let mut v = vec![Ty::Ref(name)];
+                        v.extend(args.unwrap_or(vec![]));
+                        v
+                    })),
                     if data.len() > 0 { format!("({})", props) } else { "".to_string() }
                 );
             }

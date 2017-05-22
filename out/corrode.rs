@@ -163,7 +163,7 @@ mod Language_Rust_Corrode_C {
 
     struct GlobalState(GlobalState, { /* struct def */ });
 
-    struct EnvState(EnvState, { /* struct def */ });
+    struct EnvState<s>(EnvState, { /* struct def */ });
 
     struct Initializer(Initializer, Option<Rust_Expr>, IntMap_IntMap<Initializer>);
 
@@ -2160,10 +2160,10 @@ mod Language_Rust_Corrode_C {
 }
 
 mod Language_Rust_Corrode_CFG {
-    struct BasicBlock(BasicBlock, s, Terminator<c>);
+    struct BasicBlock<s, c>(BasicBlock, s, Terminator<c>);
 
     #[derive(Debug)]
-    enum Terminator' {
+    enum Terminator_q<c, l> {
         Unreachable,
         Branch(l),
         CondBranch(c, l, l)
@@ -2173,26 +2173,26 @@ mod Language_Rust_Corrode_CFG {
 
     struct DepthFirst;
 
-    struct CFG(CFG, Label, IntMap_IntMap<BasicBlock<s, c>>);
+    struct CFG<k, s, c>(CFG, Label, IntMap_IntMap<BasicBlock<s, c>>);
 
-    struct BuildState(BuildState, { /* struct def */ });
+    struct BuildState<s, c>(BuildState, { /* struct def */ });
 
     #[derive(Debug)]
-    enum StructureLabel {
+    enum StructureLabel<s, c> {
         GoTo({ /* struct def */ }),
         ExitTo({ /* struct def */ }),
         Nested(Vec<Structure<s, c>>)
     }
 
     #[derive(Debug)]
-    enum Structure' {
+    enum Structure_q<s, c, a> {
         Simple(s, StructureTerminator<s, c>),
         Loop(a),
         Multiple(IntMap_IntMap<a>, a)
     }
 
     #[derive(Debug)]
-    struct Structure(Structure, { /* struct def */ });
+    struct Structure<s, c>(Structure, { /* struct def */ });
 
     fn addBlock(label: Monad) -> Monad {
         /* do */ {

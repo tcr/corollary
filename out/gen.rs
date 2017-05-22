@@ -1,5 +1,5 @@
 mod Language_C_Parser_Lexer {
-    enum AlexReturn {
+    enum AlexReturn<a> {
         AlexEOF,
         AlexError(AlexInput),
         AlexSkip(AlexInput, isize),
@@ -12,7 +12,7 @@ mod Language_C_Parser_Lexer {
         AlexLastSkip(AlexInput, isize)
     }
 
-    enum AlexAcc {
+    enum AlexAcc<user> {
         AlexAccNone,
         AlexAcc(isize),
         AlexAccSkip,
@@ -830,11 +830,11 @@ mod Language_C_Parser_Parser {
         HappyAbsSyn130(Option<CAttr>)
     }
 
-    struct Located(L, a, Position);
+    struct Located<a>(L, a, Position);
 
     struct CDeclrR(CDeclrR, Option<Ident>, Reversed<Vec<CDerivedDeclr>>, Option<CStrLit>, Vec<CAttr>, NodeInfo);
 
-    struct HappyStk(HappyStk, a, HappyStk<a>);
+    struct HappyStk<a>(HappyStk, a, HappyStk<a>);
 
     fn action_0(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
         match (__0) {

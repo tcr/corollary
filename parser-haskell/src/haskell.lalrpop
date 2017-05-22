@@ -162,10 +162,10 @@ Statement: Statement = {
   "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
     ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
   "data" <id:Ident> =>
-    Statement::Data(id, vec![], vec![]),
+    Statement::Data(id, vec![], vec![], None),
   "data" <id:Ident> <args:TypeGroup?> "=" <p:Pipe<TypeGroup>>
     <derives:("deriving" <ImportList>)?> =>
-      Statement::Data(id, p, derives.unwrap_or(vec![])),
+      Statement::Data(id, p, derives.unwrap_or(vec![]), args),
   "newtype" SContext? <id:Ident+> "=" <p:Type>
     <derives:("deriving" <ImportList>)?> =>
       Statement::Newtype(id[0].clone(), p, derives.unwrap_or(vec![])),
