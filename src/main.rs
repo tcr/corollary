@@ -102,9 +102,9 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
 
             for (i, expr) in exprset.iter().enumerate() {
                 let comm = if i == exprset.len() - 1 { "" } else { ";" };
-                out.push(format!("{}{}", print_statement_list(state, &[expr.clone()]), comm));
+                out.push(format!("{}{}", print_statement_list(state.tab(), &[expr.clone()]), comm));
             }
-            format!("/* do */ {{\n{}\n{}}}", out.join("\n"), state.untab().indent())
+            format!("/* do */ {{\n{}\n{}}}", out.join("\n"), state.indent())
         }
         Let(ref exprset, ref w) => {
             let mut out = vec![];
@@ -168,7 +168,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
         Span(ref span) => {
             let span = expr_explode(span.clone());
             if span.len() == 1 {
-                print_expr(state.tab(), &span[0])
+                print_expr(state, &span[0])
             } else {
                 if span.len() == 0 {
                     format!("()") //TODO WHAT
@@ -201,17 +201,17 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                             ));
                         }
                         out.push(format!("{}{} => if {},",
-                            state.indent(),
+                            state.tab().indent(),
                             print_patterns(state, label),
                             inner.join("\n")));
                     }
                     ast::CaseCond::Direct(label, arms) => {
                         out.push(format!("{}{} => {{\n{}{}\n{}}},",
-                            state.indent(),
-                            print_patterns(state, vec![Pat::Span(label)]),
                             state.tab().indent(),
-                            arms.iter().map(|x| print_expr(state.tab(), x)).collect::<Vec<_>>().join("; "),
-                            state.indent(),
+                            print_patterns(state, vec![Pat::Span(label)]),
+                            state.tab().tab().indent(),
+                            arms.iter().map(|x| print_expr(state.tab().tab(), x)).collect::<Vec<_>>().join("; "),
+                            state.tab().indent(),
                         ));
                     }
                     ast::CaseCond::Where => {
@@ -219,7 +219,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                     }
                 }
             }
-            format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.untab().indent())
+            format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.indent())
         }
         ref expr => {
             format!("{:?}", expr)
@@ -430,7 +430,9 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             };
 
             let ident = span[0].clone();
-            cache.entry(print_expr(PrintState::new(), &ident)).or_insert(vec![]).push((span[1..].to_vec(), expr));
+            cache.entry(print_expr(PrintState::new(), &ident))
+                .or_insert(vec![])
+                .push((span[1..].to_vec(), expr));
         }
     }
 
@@ -438,11 +440,17 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     let mut new_cache = btreemap![];
     for (key, fnset) in cache {
         if fnset.len() > 1 {
-            let args = (0..fnset[0].0.len()).map(|x| format!("__{}", x)).collect::<Vec<_>>();
-            new_cache.insert(key, vec![(
+            // There are multiple impls of this function, so expand this into a
+            // case statement.
+            let args = (0..fnset[0].0.len())
+                .map(|x| format!("__{}", x))
+                .collect::<Vec<_>>();
+            let res = vec![(
+                // Convert args into case options.
                 args.iter()
                     .map(|x| Expr::Ref(ast::Ident(x.to_string())))
                     .collect::<Vec<_>>(),
+                // Generate case statements.
                 ast::Expr::Case(
                     Box::new(ast::Expr::Parens(args.iter()
                         .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
@@ -454,7 +462,10 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                             vec![x.1.clone()])
                     }).collect::<Vec<_>>(),
                 ),
-            )]);
+            )];
+
+            println!("new_Csh {:?}", res);
+            new_cache.insert(key, res);
         } else {
             //TODO waitaminute
             new_cache.insert(key, fnset);
