@@ -369,16 +369,18 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     }).collect::<Vec<_>>().join(&format!(",\n        "))
                     );
             } else {
-                println!("    {}struct {}({});",
+                let props = data.iter().map(|tyset| {
+                    print_types(state, tyset)
+                }).collect::<Vec<_>>().join(", ");
+                println!("    {}struct {}{};",
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n    ", derive_rust.join(", "))
                     } else {
                         format!("")
                     },
                     name.0,
-                    data.iter().map(|tyset| {
-                        print_types(state, tyset)
-                    }).collect::<Vec<_>>().join(", "));
+                    if data.len() > 0 { format!("({})", props) } else { "".to_string() }
+                );
             }
             println!("");
         }
