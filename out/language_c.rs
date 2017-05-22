@@ -4181,8 +4181,8 @@ mod Language_C_Data_InputStream {
             (<todo>, n, bstr) => {
                 BSC_unpack(BSC_take(n, bstr))
             },
-            (n, str) => {
-                take(n, str)
+            (n, __str) => {
+                take(n, __str)
             },
         }
     }
@@ -5296,8 +5296,8 @@ mod Language_C_Syntax_AST {
         }
     }
 
-    fn liftStrLit((CStrLit(str, at)): CStringLiteral) -> CStringLiteral {
-        CStrConst(str, at)
+    fn liftStrLit((CStrLit(__str, at)): CStringLiteral) -> CStringLiteral {
+        CStrConst(__str, at)
     }
 
     fn partitionDeclSpecs() -> (Vec<CStorageSpecifier<a>>, Vec<CAttribute<a>>, Vec<CTypeQualifier<a>>, Vec<CTypeSpecifier<a>>, Bool) {
@@ -5361,12 +5361,12 @@ mod Language_C_Syntax_Constants {
         CInteger(i, DecRepr, noFlags)
     }
 
-    fn cString(str: String) -> CString {
-        CString(str, False)
+    fn cString(__str: String) -> CString {
+        CString(__str, False)
     }
 
-    fn cString_w(str: String) -> CString {
-        CString(str, True)
+    fn cString_w(__str: String) -> CString {
+        CString(__str, True)
     }
 
     fn clearFlag(flag: f, (Flags(k)): Flags) -> Flags {
@@ -5443,8 +5443,8 @@ mod Language_C_Syntax_Constants {
         i
     }
 
-    fn getCString((CString(str, _)): CString) -> String {
-        str
+    fn getCString((CString(__str, _)): CString) -> String {
+        __str
     }
 
     fn head_q(__0: String, __1: Vec<a>) -> a {
@@ -5519,8 +5519,8 @@ mod Language_C_Syntax_Constants {
         CFloat
     }
 
-    fn readCInteger(repr: CIntRepr, str: String) -> Either {
-        match readNum(str) {
+    fn readCInteger(repr: CIntRepr, __str: String) -> Either {
+        match readNum(__str) {
             [(n, suffix)] => {
                 mkCInt(n, suffix)
             },

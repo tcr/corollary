@@ -1172,8 +1172,8 @@ mod Language_Rust_Corrode_C {
                                 },
                             })
                     },
-                    CFloatConst(CFloat(str), _) => {
-                        match span((Operator("notElem")("fF".to_string())), str) {
+                    CFloatConst(CFloat(__str), _) => {
+                        match span((Operator("notElem")("fF".to_string())), __str) {
                             (v, "") => {
                                 (literalNumber((IsFloat(64)), (Rust_LitFloat(v))))
                             },
@@ -1188,7 +1188,7 @@ mod Language_Rust_Corrode_C {
                     CCharConst(CChar(ch, False), _) => {
                         Result
                     },
-                    CStrConst(CString(str, False), _) => {
+                    CStrConst(CString(__str, False), _) => {
                         Result
                     },
                     _ => {

@@ -20,7 +20,7 @@ mod Language_C_Parser_Lexer {
         AlexAccSkipPred(AlexAccPred<user>, AlexAcc<user>)
     }
 
-    fn adjustLineDirective(pragmaLen: isize, str: String, pos: Position) -> Position {
+    fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Position {
         seq(offs_q, seq(fname_q, seq(row_q, (position(offs_q, fname_q, row_q, 1)))))
     }
 
@@ -110,7 +110,7 @@ mod Language_C_Parser_Lexer {
     };
 
     let alex_action_1 = || {
-        >>(Lambda((adjustLineDirective(len, (takeChars(len, str)), pos))), lexToken_q(False))
+        >>(Lambda((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(False))
     };
 
     let alex_action_10 = || {
@@ -234,7 +234,7 @@ mod Language_C_Parser_Lexer {
     };
 
     let alex_action_4 = || {
-        Lambda((takeChars(len, str)), pos)
+        Lambda((takeChars(len, __str)), pos)
     };
 
     let alex_action_40 = || {
@@ -724,8 +724,8 @@ mod Language_C_Parser_Lexer {
         (tc((pos, len)))
     }
 
-    fn token(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> a, pos: Position, len: isize, str: InputStream) -> P {
-        (tok((pos, len), (read(takeChars(len, str)))))
+    fn token(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> a, pos: Position, len: isize, __str: InputStream) -> P {
+        (tok((pos, len), (read(takeChars(len, __str)))))
     }
 
     fn token_(len: isize, tok: fn(PosLength) -> CToken, pos: Position, _: isize, _: InputStream) -> P {
@@ -736,8 +736,8 @@ mod Language_C_Parser_Lexer {
         failP(pos, vec!["Lexical Error !".to_string(), errmsg])
     }
 
-    fn token_plus(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> Either<String, a>, pos: Position, len: isize, str: InputStream) -> P {
-        match read((takeChars(len, str))) {
+    fn token_plus(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> Either<String, a>, pos: Position, len: isize, __str: InputStream) -> P {
+        match read((takeChars(len, __str))) {
             Left(err) => {
                 failP(pos, vec!["Lexical error ! ".to_string(), err])
             },
