@@ -1,3 +1,5 @@
+#![allow(unused_imports)]
+
 #[macro_use] extern crate maplit;
 extern crate parser_haskell;
 extern crate lalrpop_util;
@@ -70,9 +72,29 @@ fn expr_explode(span: Vec<Expr>) -> Vec<Expr> {
 }
 
 fn print_ident(_: PrintState, expr: String) -> String {
-    expr.replace("'", "_q").replace(".", "_")
+    // Handle keywords here
+    if expr == "mut" {
+        return "__mut".to_string()
+    } else {
+        expr.replace("'", "_q").replace(".", "_")
+    }
 }
 
+
+fn print_type_ident(state: PrintState, s: &str) -> String {
+    // Handle common translations for types here
+    if s == "Int" {
+        format!("isize")
+    } else if s == "Nothing" {
+        format!("None")
+    } else if s == "Just" {
+        format!("Some")
+    } else if s == "Maybe" {
+        format!("Option")
+    } else {
+        print_ident(state, s.to_string())
+    }
+}
 
 fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
     use ast::Expr::*;
@@ -118,7 +140,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                 let comm = if i == exprset.len() - 1 { "" } else { ";" };
                 out.push(format!("{}{}", print_statement_list(state.tab(), &[expr.clone()]), comm));
             }
-            format!("{{\n{}{}}}", out.join("\n"), state.untab().indent())
+            format!("{{\n{}{}}}", out.join("\n"), state.indent())
         }
         Ref(ast::Ident(ref i)) => {
             print_ident(state, i.clone())
@@ -156,7 +178,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                     i,
                     print_expr(state.tab().tab(), v)));
             }
-            format!("{{\n{}\n{}}}", out.join(",\n"), state.indent())
+            format!("{{\n{}\n{}}}", out.join(",\n"), state.untab().indent())
         }
         Str(ref s) => {
             format!("{:?}.to_string()", s)
@@ -171,20 +193,25 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                 print_expr(state, &span[0])
             } else {
                 if span.len() == 0 {
-                    format!("()") //TODO WHAT
+                    format!("()") //TODO not sure what this would be?
                 } else {
-                    // TODO
-                    let mut span = span.clone();
-                    let start = print_expr(state, &span.remove(0));
-                    let mut end = "".to_string();
-                    if span.len() > 0 {
-                        let mut out = vec![];
-                        for item in &span {
-                            out.push(print_expr(state, item));
+                    // Check for return() here, for now
+                    if print_expr(state, &span[0]) == "return" {
+                        //TODO handle return more intelligently
+                        print_expr(state, &span[1])
+                    } else {
+                        let mut span = span.clone();
+                        let start = print_expr(state, &span.remove(0));
+                        let mut end = "".to_string();
+                        if span.len() > 0 {
+                            let mut out = vec![];
+                            for item in &span {
+                                out.push(print_expr(state.tab(), item));
+                            }
+                            end = format!("({})", out.join(", "));
                         }
-                        end = format!("({})", out.join(", "));
+                        format!("{}{}", start, end)
                     }
-                    format!("{}{}", start, end)
                 }
             }
         }
@@ -205,10 +232,13 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                             print_patterns(state, label),
                             inner.join("\n")));
                     }
-                    ast::CaseCond::Direct(label, arms) => {
+                    ast::CaseCond::Direct(labels, arms) => {
                         out.push(format!("{}{} => {{\n{}{}\n{}}},",
                             state.tab().indent(),
-                            print_patterns(state, vec![Pat::Span(label)]),
+                            labels.into_iter()
+                                .map(|x| print_pattern(state, &x))
+                                .collect::<Vec<_>>()
+                                .join(" | "),
                             state.tab().tab().indent(),
                             arms.iter().map(|x| print_expr(state.tab().tab(), x)).collect::<Vec<_>>().join("; "),
                             state.tab().indent(),
@@ -242,7 +272,9 @@ fn unpack_fndef(t: Ty) -> Vec<Ty> {
 
 fn print_pattern(state: PrintState, pat: &Pat) -> String {
     match *pat {
-        Pat::Ref(ast::Ident(ref s)) => print_ident(state, s.to_string()),
+        Pat::Ref(ast::Ident(ref s)) =>{
+            print_type_ident(state, s)
+        }
         Pat::Span(ref span) => {
             let mut out_span = print_pattern(state.tab(), &span[0]);
             if span.len() > 1 {
@@ -282,11 +314,7 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
 fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
     match *t.borrow() {
         Ty::Ref(ast::Ident(ref s)) => {
-            if s == "Int" {
-                format!("isize")
-            } else {
-                s.to_string()
-            }
+            print_type_ident(state, s)
         }
         Ty::Not(ref s) => {
             print_type(state, &**s)
@@ -337,7 +365,7 @@ where
 fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     let mut types = btreemap![];
     for item in stats {
-        errln!("{:?}", item);
+        //errln!("{:?}", item);
 
         // println!("well {:?}", item);
         if let ast::Statement::Prototype(exprs, d) = item.clone() {
@@ -458,13 +486,12 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     fnset.iter().map(|x| {
                         // TODO expr_to_pat should happen in AST generation
                         ast::CaseCond::Direct(
-                            x.0.iter().map(|x| parser_haskell::conv::expr_to_pat(x)).collect::<Vec<_>>(),
+                            vec![Pat::Tuple(x.0.iter().map(|x| parser_haskell::conv::expr_to_pat(x)).collect::<Vec<_>>())],
                             vec![x.1.clone()])
                     }).collect::<Vec<_>>(),
                 ),
             )];
 
-            println!("new_Csh {:?}", res);
             new_cache.insert(key, res);
         } else {
             //TODO waitaminute

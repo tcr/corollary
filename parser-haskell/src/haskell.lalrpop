@@ -105,7 +105,8 @@ Operator: String = {
 Case: CaseCond = {
     // TODO commas can be used in expr spans, see AST.hs
     <d:PatList> <v:("|" <CommaDef<ExprSpan>> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
-    <d:PatList> "->" <v:CommaDef<ExprSpan>> ("where" "{" Semi<Statement> "}")? => CaseCond::Direct(d, v),
+    // TODO use pipe groups here:
+    <d:PatSpan> "->" <v:CommaDef<ExprSpan>> ("where" "{" Semi<Statement> "}")? => CaseCond::Direct(vec![d], v),
     "where" "{" <Semi<Statement>> "}" => CaseCond::Where,
 };
 
@@ -208,7 +209,7 @@ Type: Ty = {
 
 TypeGroupInner: Ty = {
   <a:TypeSub> "=>" <b:TypeGroupInner> => b,
-  <a:TypeSub> "->" <b:TypeGroupInner> => b,
+  <a:TypeSub> "->" <b:TypeGroupInner> => Ty::Pair(Box::new(a), Box::new(b)),
   <TypeSub> => <>,
 };
 

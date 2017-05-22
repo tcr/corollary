@@ -23,3 +23,13 @@ addExternIdent ident deferred mkItem = do
             Just renamed -> return ("" : renamed)
             Nothing -> return [name]
     addSymbolIdentAction ident action
+
+addSymbolIdent :: Ident -> (Rust.Mutable, CType) -> EnvMonad s String
+addSymbolIdent ident (mut, ty) = do
+    let name = applyRenames ident
+    addSymbolIdentAction ident $ return Result
+        { resultType = ty
+        , resultMutable = mut
+        , result = Rust.Path (Rust.PathSegments [name])
+        }
+    return name
