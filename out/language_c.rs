@@ -18,7 +18,7 @@ mod Language_C_Analysis_AstAnalysis {
     fn analyseAST((CTranslUnit(decls, _file_node)): CTranslUnit) -> m {
         /* do */ {
             mapRecoverM_(analyseExt, decls);
-            __op_bind(getDefTable, Lambda((not((inFileScope(dt)))))(error("Internal Error: Not in filescope after analysis".to_string())));
+            __op_bind(getDefTable, Lambda((not((inFileScope(dt)))))(__error!("Internal Error: Not in filescope after analysis".to_string())));
             liftM(globalDefs, getDefTable);
 
         }
@@ -1606,7 +1606,7 @@ otherwise { intType(TyChar) },
                 floatType(TyLDouble)
             },
             (_, _, _) => {
-                error("Bad AST analysis".to_string())
+                __error!("Bad AST analysis".to_string())
             },
         }
     }
@@ -2063,7 +2063,7 @@ mod Language_C_Analysis_Export {
                 threadLocal(thread_local, vec![CExtern(ni)])
             },
             Static(NoLinkage, _) => {
-                error("impossible storage: static without linkage".to_string())
+                __error!("impossible storage: static without linkage".to_string())
             },
             FunLinkage(InternalLinkage) => {
                 vec![CStatic(ni)]
@@ -2072,7 +2072,7 @@ mod Language_C_Analysis_Export {
                 vec![]
             },
             FunLinkage(NoLinkage) => {
-                error("impossible storage: function without linkage".to_string())
+                __error!("impossible storage: function without linkage".to_string())
             },
         }
     }
@@ -2136,10 +2136,10 @@ mod Language_C_Analysis_Export {
                 ty
             },
             TypeDefType(TypeDefRef(_, ref, _), _, _) => {
-                maybe((error("undefined typeDef".to_string())), fromDirectType, ref)
+                maybe((__error!("undefined typeDef".to_string())), fromDirectType, ref)
             },
             _ => {
-                error("fromDirectType".to_string())
+                __error!("fromDirectType".to_string())
             },
         }
     }
@@ -2194,7 +2194,7 @@ mod Language_C_Analysis_NameSpaceMap {
     fn leaveScope(__0: NameSpaceMap) -> NameSpaceMap {
         match (__0) {
             NsMap(_, []) => {
-                error("NsMaps.leaveScope: No local scope!".to_string())
+                __error!("NsMaps.leaveScope: No local scope!".to_string())
             },
             NsMap(gs, ls:lss) => {
                 (NsMap(gs, lss), ls)
@@ -2567,7 +2567,7 @@ mod Language_C_Analysis_SemRep {
     fn identOfVarName(__0: VarName) -> Ident {
         match (__0) {
             NoName => {
-                error("identOfVarName: NoName".to_string())
+                __error!("identOfVarName: NoName".to_string())
             },
             VarName(ident, _) => {
                 ident
@@ -3681,7 +3681,7 @@ mod Language_C_Analysis_TypeUtils {
                 t
             },
             _ => {
-                error("base of non-pointer type".to_string())
+                __error!("base of non-pointer type".to_string())
             },
         }
     }
@@ -3776,7 +3776,7 @@ mod Language_C_Analysis_TypeUtils {
                 isFunctionType(actual_ty)
             },
             TypeDefType(_, _, _) => {
-                error("isFunctionType: unresolved typeDef".to_string())
+                __error!("isFunctionType: unresolved typeDef".to_string())
             },
             FunctionType(_, _) => {
                 True
@@ -3981,7 +3981,7 @@ mod Language_C_Data_Error {
     }
 
     fn internalErr(msg: String) -> a {
-        error((__op_addadd(internalErrPrefix, __op_addadd("\n".to_string(), __op_addadd(indentLines(msg), "\n".to_string())))))
+        __error!((__op_addadd(internalErrPrefix, __op_addadd("\n".to_string(), __op_addadd(indentLines(msg), "\n".to_string())))))
     }
 
     fn internalErrPrefix() -> String {
@@ -4437,7 +4437,7 @@ mod Language_C_Data_RList {
     fn viewr(__0: Reversed) -> Reversed {
         match (__0) {
             Reversed([]) => {
-                error("viewr: empty RList".to_string())
+                __error!("viewr: empty RList".to_string())
             },
             Reversed(x:xs) => {
                 (Reversed(xs), x)
@@ -4972,7 +4972,7 @@ mod Language_C_Parser_Tokens {
                 pos
             },
             CTokEof => {
-                error("tokenPos: Eof".to_string())
+                __error!("tokenPos: Eof".to_string())
             },
         }
     }
@@ -5434,7 +5434,7 @@ mod Language_C_Syntax_Constants {
                 fromIntegral((fromEnum(c)))
             },
             CChars(_cs, _) => {
-                error("integer value of multi-character character constants is implementation defined".to_string())
+                __error!("integer value of multi-character character constants is implementation defined".to_string())
             },
         }
     }
@@ -5450,7 +5450,7 @@ mod Language_C_Syntax_Constants {
     fn head_q(__0: String, __1: Vec<a>) -> a {
         match (__0, __1) {
             (err, []) => {
-                error(err)
+                __error!(err)
             },
             (_, x:_) => {
                 x
@@ -5613,7 +5613,7 @@ mod Language_C_Syntax_Constants {
                 (c, cs)
             },
             [] => {
-                error("unescape char: empty string".to_string())
+                __error!("unescape char: empty string".to_string())
             },
         }
     }
@@ -5690,7 +5690,7 @@ mod Language_C_Syntax_Ops {
     fn assignBinop(__0: CAssignOp) -> CBinaryOp {
         match (__0) {
             CAssignOp => {
-                error("direct assignment has no binary operator".to_string())
+                __error!("direct assignment has no binary operator".to_string())
             },
             CMulAssOp => {
                 CMulOp

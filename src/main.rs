@@ -75,6 +75,10 @@ fn print_ident(_: PrintState, expr: String) -> String {
     // Handle keywords here
     if expr == "mut" {
         return "__mut".to_string()
+    } else if expr == "error" {
+        return "__error!".to_string()
+    } else if expr == "str" {
+        return "__str".to_string()
     } else {
         expr.replace("'", "_q").replace(".", "_")
     }

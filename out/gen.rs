@@ -37,7 +37,7 @@ mod Language_C_Parser_Lexer {
     };
 
     fn alexInputPrevChar(_: AlexInput) -> Char {
-        error("alexInputPrevChar not used".to_string())
+        __error!("alexInputPrevChar not used".to_string())
     }
 
     fn alexMove(__0: Position, __1: Char) -> Position {
@@ -760,7 +760,7 @@ mod Language_C_Parser_Lexer {
                 vec![]
             },
             _ => {
-                error("Unexpected end of multi-char constant".to_string())
+                __error!("Unexpected end of multi-char constant".to_string())
             },
         }
     }
@@ -39219,7 +39219,7 @@ otherwise { shadowTypedef(ident) },
     }
 
     fn notHappyAtAll() -> a {
-        error("Internal Happy error\n".to_string())
+        __error!("Internal Happy error\n".to_string())
     }
 
     fn parseC(input: InputStream, initialPosition: Position) -> Either {
@@ -39317,7 +39317,7 @@ otherwise { shadowTypedef(ident) },
             };
             {
                 let attrs = || {
-                    mkNodeInfo_q(firstPos, ($!(posLenOfTok, lastTok)), (maybe((error("nameOfNode".to_string())), id, (nameOfNode(nodeinfo)))))
+                    mkNodeInfo_q(firstPos, ($!(posLenOfTok, lastTok)), (maybe((__error!("nameOfNode".to_string())), id, (nameOfNode(nodeinfo)))))
                 };
             };
             seq(attrs, (mkAttrNode(attrs)))
