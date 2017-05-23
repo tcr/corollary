@@ -2,6 +2,7 @@
 
 #[macro_use] extern crate errln;
 #[macro_use] extern crate maplit;
+extern crate clap;
 extern crate hex;
 extern crate lalrpop_util;
 extern crate parser_haskell;
@@ -12,13 +13,14 @@ use parser_haskell::ast;
 use parser_haskell::ast::{Expr, Pat, Ty};
 use parser_haskell::util::{print_parse_error, simplify_parse_error};
 
+use clap::{Arg, App, SubCommand};
+use hex::*;
 use regex::Regex;
 use std::borrow::Borrow;
-use std::io::prelude::*;
-use std::fs::{File};
-use std::env;
 use std::collections::BTreeSet;
-use hex::*;
+use std::env;
+use std::fs::{File};
+use std::io::prelude::*;
 use walkdir::WalkDir;
 
 #[derive(Clone, Copy)]
