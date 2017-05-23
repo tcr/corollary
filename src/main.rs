@@ -440,7 +440,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 .collect::<Vec<_>>();
 
             if data.len() > 1 {
-                println!("{}{}enum {} {{\n        {}\n{}}}",
+                println!("{}{}pub enum {} {{\n        {}\n{}}}\n{}{}",
                     state.indent(),
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n    ", derive_rust.join(", "))
@@ -448,7 +448,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                         format!("")
                     },
                     print_type(state, Ty::Span({
-                        let mut v = vec![Ty::Ref(name)];
+                        let mut v = vec![Ty::Ref(name.clone())];
                         v.extend(args.unwrap_or(vec![]));
                         v
                     })),
@@ -465,6 +465,8 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                         )
                     }).collect::<Vec<_>>().join(&format!(",\n        ")),
                     state.indent(),
+                    state.indent(),
+                    format!("pub use {}::*;", print_ident(state, name.0)),
                     );
             } else {
                 let props = data.iter().map(|tyset| {
@@ -588,7 +590,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 args_span.push(format!("{}: {}", print_expr(state, arg), print_type(state.tab(), ty)));
             }
             out.push(
-                format!("{}fn {}({}) -> {} {{\n{}{}\n{}}}\n",
+                format!("{}pub fn {}({}) -> {} {{\n{}{}\n{}}}\n",
                     state.indent(),
                     key,
                     args_span.join(", "),
@@ -769,7 +771,7 @@ fn main() {
             Ok(v) => {
                 // println!("{:?}", p);
                 // continue;
-                println!("mod {} {{", v.name.0.replace(".", "_"));
+                println!("pub mod {} {{", v.name.0.replace(".", "_"));
                 let state = PrintState::new();
                 println!("{}", print_statement_list(state.tab(), &v.statements));
                 //print_statement_list(state.tab(), &v.statements);
