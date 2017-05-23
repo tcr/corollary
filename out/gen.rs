@@ -33540,7 +33540,7 @@ otherwise { shadowTypedef(ident) },
             },
             (k, nt, fn, j, tk, st, sts, stk) => {
                 match happyDrop(k, (__op_concat((st), (sts)))) {
-                    sts1(@, st1(@, HappyState(action))(:, _)) => {
+                    sts1(@, st1(@, HappyState(action))(__id_3a, _)) => {
                         {
                             let drop_stk = || {
                                 happyDropStk(k, stk)
@@ -33563,7 +33563,7 @@ otherwise { shadowTypedef(ident) },
             },
             (k, nt, fn, j, tk, st, sts, stk) => {
                 match happyDrop(k, (__op_concat((st), (sts)))) {
-                    sts1(@, st1(@, HappyState(action))(:, _)) => {
+                    sts1(@, st1(@, HappyState(action))(__id_3a, _)) => {
                         {
                             let drop_stk = || {
                                 happyDropStk(k, stk)
@@ -33897,7 +33897,7 @@ otherwise { shadowTypedef(ident) },
             },
             (k, nt, fn, j, tk, st, sts, stk) => {
                 match happyDrop((-(k, ((1)))), sts) {
-                    sts1(@, st1(@, HappyState(action))(:, _)) => {
+                    sts1(@, st1(@, HappyState(action))(__id_3a, _)) => {
                         {
                             let r = || {
                                 fn(stk)

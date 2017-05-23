@@ -128,10 +128,10 @@ mod Language_C_Analysis_AstAnalysis {
                         ([], []) => {
                             typeError((nodeInfo(i)), "excess elements in initializer".to_string())
                         },
-                        (dd_q(:, rest), []) => {
+                        (dd_q(__id_3a, rest), []) => {
                             (rest, vec![dd_q])
                         },
-                        (_, d(:, _)) => {
+                        (_, d(__id_3a, _)) => {
                             (advanceDesigList(dds, d), ds)
                         },
                     };
@@ -2212,7 +2212,7 @@ mod Language_C_Analysis_NameSpaceMap {
 
     fn lookupInnermostScope(nsm: NameSpaceMap) -> NameSpaceMap {
         match localDefs {
-            ls(:, _lss) => {
+            ls(__id_3a, _lss) => {
                 Prelude_lookup(ident, ls)
             },
             [] => {

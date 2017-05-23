@@ -1,11 +1,12 @@
 #![allow(unused_imports)]
 
+#[macro_use] extern crate errln;
 #[macro_use] extern crate maplit;
-extern crate parser_haskell;
+extern crate hex;
 extern crate lalrpop_util;
+extern crate parser_haskell;
 extern crate regex;
 extern crate walkdir;
-#[macro_use] extern crate errln;
 
 use parser_haskell::ast;
 use parser_haskell::ast::{Expr, Pat, Ty};
@@ -17,7 +18,7 @@ use std::io::prelude::*;
 use std::fs::{File};
 use std::env;
 use std::collections::BTreeSet;
-
+use hex::*;
 use walkdir::WalkDir;
 
 #[derive(Clone, Copy)]
@@ -79,6 +80,8 @@ fn print_ident(_: PrintState, expr: String) -> String {
         return "__error!".to_string()
     } else if expr == "str" {
         return "__str".to_string()
+    } else if expr.starts_with(":") {
+        format!("__id_{}", expr.to_hex())
     } else {
         expr.replace("'", "_q").replace(".", "_")
     }

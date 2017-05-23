@@ -123,17 +123,17 @@ mod Language_Rust_AST {
 
     #[derive(Debug)]
     enum AssignOp {
-        :=,
-        :+=,
-        :-=,
-        :*=,
-        :/=,
-        :%=,
-        :&=,
-        :|=,
-        :^=,
-        :<<=,
-        :>>=
+        __id_3a3d,
+        __id_3a2b3d,
+        __id_3a2d3d,
+        __id_3a2a3d,
+        __id_3a2f3d,
+        __id_3a253d,
+        __id_3a263d,
+        __id_3a7c3d,
+        __id_3a5e3d,
+        __id_3a3c3c3d,
+        __id_3a3e3e3d
     }
 
     #[derive(Debug)]
@@ -352,7 +352,7 @@ mod Language_Rust_Corrode_C {
                 [spec] => {
                     (Just(spec))
                 },
-                _(:, excess, :, _) => {
+                _(__id_3a, excess, __id_3a, _) => {
                     badSource(excess, "extra storage class specifier".to_string())
                 },
             };
@@ -1167,7 +1167,7 @@ mod Language_Rust_Corrode_C {
                                 [] => {
                                     badSource(expr, "integer (too big)".to_string())
                                 },
-                                ty(:, _) => {
+                                ty(__id_3a, _) => {
                                     (literalNumber(ty, (Rust_LitInt(v, repr_q))))
                                 },
                             })
@@ -1641,7 +1641,7 @@ mod Language_Rust_Corrode_C {
                 Just((From(el, 0, (replicate((-(size, 1)), el)), desig)))
             },
             ty_q => if compatibleInitializer(ty, ty_q) { Just(desig) },
-            IsStruct(_, (_, ty_q)(:, fields)) => {
+            IsStruct(_, (_, ty_q)(__id_3a, fields)) => {
                 nestedObject(ty, (From(ty_q, 0, (map(snd, fields)), desig)))
             },
             _ => {
@@ -1979,7 +1979,7 @@ mod Language_Rust_Corrode_C {
                         IsArray(_, size, el) => {
                             From(el, 0, (replicate((-(size, 1)), el)), (Base(ty)))
                         },
-                        IsStruct(_, (_, ty_q)(:, fields)) => {
+                        IsStruct(_, (_, ty_q)(__id_3a, fields)) => {
                             From(ty_q, 0, (map(snd, fields)), (Base(ty)))
                         },
                         _ => {
