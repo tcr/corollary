@@ -92,13 +92,14 @@ Ctor: Ident = {
 };
 
 Operator: String = {
-    r"[!#$%&*+/<=>?@^|~][!#$%&*+./<=>?@^|~\\-]*" => <>.to_string(),
+    r"[!#$%&*+/<=>?@^~][!#$%&*+./<=>?@^|~\\-]*" => <>.to_string(),
     ":" => <>.to_string(),
     "." => <>.to_string(),
     ".." => <>.to_string(),
     ".|." => <>.to_string(),
     ".&." => <>.to_string(),
     "-" => <>.to_string(),
+    "||" => <>.to_string(),
 };
 
 // Code structures
@@ -107,7 +108,7 @@ Case: CaseCond = {
     // TODO commas can be used in expr spans, see AST.hs
     <d:PatList> <v:("|" <CommaDef<ExprSpan>> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
     // TODO use pipe groups here:
-    <d:PatSpan> "->" <v:CommaDef<ExprSpan>> ("where" "{" Semi<Statement> "}")? => CaseCond::Direct(vec![d], v),
+    <d:PatList> "->" <v:CommaDef<ExprSpan>> ("where" "{" Semi<Statement> "}")? => CaseCond::Direct(d, v),
     "where" "{" <Semi<Statement>> "}" => CaseCond::Where,
 };
 
@@ -180,12 +181,10 @@ Statement: Statement = {
   "instance" TypeGroup
     "where" "{" Semi<Statement> "}" => Statement::Instance,
 
-  // TODO left expr should be PatSpans
-  <ids:CommaDef<ExprSpan>> <t:("::" <TypeGroup>)> => Statement::Prototype(ids, t),
-  <ids:CommaDef<ExprSpan>> "=" <value:ExprSpan>
-    ("where" "{" Semi<Statement> "}")? => Statement::Assign(ids, value),
-  <ExprSpan> ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
-  <e:ExprSpan> <w:("where" "{" <Semi<Statement>> "}")?> => Statement::Expression(e, w.unwrap_or(vec![])),
+  <id:Ident> <t:("::" <TypeGroup>)> => Statement::Prototype(id, t),
+  <pats:PatList> "=" <value:ExprSpan>
+    ("where" "{" Semi<Statement> "}")? => Statement::Assign(pats, value),
+  <pats:PatList> ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
 };
 
 TypeRecord: (Ident, Ty) = {
