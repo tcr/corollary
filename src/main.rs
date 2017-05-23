@@ -1,6 +1,10 @@
+#![allow(unused_imports)]
+
+#[macro_use] extern crate errln;
 #[macro_use] extern crate maplit;
-extern crate parser_haskell;
+extern crate hex;
 extern crate lalrpop_util;
+extern crate parser_haskell;
 extern crate regex;
 extern crate walkdir;
 
@@ -14,7 +18,7 @@ use std::io::prelude::*;
 use std::fs::{File};
 use std::env;
 use std::collections::BTreeSet;
-
+use hex::*;
 use walkdir::WalkDir;
 
 #[derive(Clone, Copy)]
@@ -50,6 +54,8 @@ impl PrintState {
     }
 }
 
+// Expand a sequence of expression terms into a nested tree of operators
+// TODO Operator precedence rules should be applied here
 fn expr_explode(span: Vec<Expr>) -> Vec<Expr> {
     if span.len() < 3 {
         return span;
@@ -66,10 +72,39 @@ fn expr_explode(span: Vec<Expr>) -> Vec<Expr> {
     span
 }
 
-fn print_ident(state: PrintState, expr: String) -> String {
-    expr.replace("'", "_q").replace(".", "_")
+fn print_ident(_: PrintState, expr: String) -> String {
+    let expr = expr.replace("'", "_q").replace(".", "::");
+    // Handle keywords here
+    if expr == "mut" {
+        return "__mut".to_string()
+    } else if expr == "error" {
+        return "__error!".to_string()
+    } else if expr == "str" {
+        return "__str".to_string()
+    } else if expr.find(":").is_some() {
+        // Print ..:XXX sequences as hex
+        let pos = expr.find(":").unwrap();
+        format!("{}__id_{}", &expr[0..pos], (&expr[pos..]).to_hex())
+    } else {
+        expr
+    }
 }
 
+
+fn print_type_ident(state: PrintState, s: &str) -> String {
+    // Handle common translations for types here
+    if s == "Int" {
+        format!("isize")
+    } else if s == "Nothing" {
+        format!("None")
+    } else if s == "Just" {
+        format!("Some")
+    } else if s == "Maybe" {
+        format!("Option")
+    } else {
+        print_ident(state, s.to_string())
+    }
+}
 
 fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
     use ast::Expr::*;
@@ -90,14 +125,32 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             format!("vec![{}]", out.join(", "))
         }
         Do(ref exprset, ref w) => {
-            // where clause
             let mut out = vec![];
-            out.push(print_statement_list(state, w));
+
+            // where clause
+            if w.len() > 0 {
+                out.push(print_statement_list(state, w));
+            }
+
             for (i, expr) in exprset.iter().enumerate() {
                 let comm = if i == exprset.len() - 1 { "" } else { ";" };
-                out.push(format!("{}{}{}", state.indent(), print_statement_list(state.tab(), &[expr.clone()]), comm));
+                out.push(format!("{}{}", print_statement_list(state.tab(), &[expr.clone()]), comm));
             }
-            format!("{{\n{}\n{}}}", out.join("\n"), state.untab().indent())
+            format!("/* do */ {{\n{}\n{}}}", out.join("\n"), state.indent())
+        }
+        Let(ref exprset, ref w) => {
+            let mut out = vec![];
+
+            // where clause
+            if w.len() > 0 {
+                out.push(print_statement_list(state.tab(), w));
+            }
+
+            for (i, expr) in exprset.iter().enumerate() {
+                let comm = if i == exprset.len() - 1 { "" } else { ";" };
+                out.push(format!("{}{}", print_statement_list(state.tab(), &[expr.clone()]), comm));
+            }
+            format!("{{\n{}{}}}", out.join("\n"), state.indent())
         }
         Ref(ast::Ident(ref i)) => {
             print_ident(state, i.clone())
@@ -112,11 +165,51 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             } else if op == "$" {
                 format!("{}({})", print_expr(state, l), print_expr(state, r))
             } else if op == "." {
-                format!("({} . {})", print_expr(state, l), print_expr(state, r))
+                let l: Expr = (**l).clone();
+                let r: Expr = (**r).clone();
+
+                // Dot operator. (f . g) x = f(g(x)
+                //TODO this is conditional on overcomplicated AST of spans and parens but easily
+                // might change in the future
+                if let &Expr::Span(ref left) = &l {
+                    if let &Expr::Parens(ref span) = &left[0] {
+                        if let &Expr::Span(ref innerspan) = &span[0] {
+                            let mut innerspan = innerspan.clone();
+                            innerspan.push(r);
+                            format!("{}", print_expr(state, &Expr::Span(vec![Expr::Parens(vec![Expr::Span(innerspan)])])))
+                        } else {
+                            panic!("WHAT {:?}", l);
+                            //format!("({} . {})", print_expr(state, &l), print_expr(state, &r))
+                        }
+                    } else if let &Expr::Ref(..) = &left[0] {
+                        // todo
+                        format!("{}{}", print_expr(state, &l), print_expr(state, &r))
+                    } else {
+                        panic!("WHAT {:?}", l);
+                    }
+                } else {
+                    panic!("WHAT {:?}", l);
+                }
+
             } else if op == "<-" {
                 format!("let {} = {}", print_expr(state, l), print_expr(state, r))
             } else {
-                format!("{}({}, {})", op, print_expr(state, l), print_expr(state, r))
+                // Here you add new infix operators.
+                let mut new_op = op.to_string();
+                if new_op == "++" {
+                    new_op = "__op_addadd".to_string();
+                } else if new_op == ":" {
+                    new_op = "__op_concat".to_string();
+                } else if new_op == ">>=" {
+                    new_op = "__op_bind".to_string();
+                } else if new_op == ">>" {
+                    new_op = "__op_rshift".to_string();
+                } else if new_op == "<<" {
+                    new_op = "__op_lshift".to_string();
+                } else if new_op == "<+>" {
+                    new_op = "__op_arrow_concat".to_string();
+                }
+                format!("{}({}, {})", new_op, print_expr(state, l), print_expr(state, r))
             }
         }
         Record(ref items) => {
@@ -127,7 +220,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                     i,
                     print_expr(state.tab().tab(), v)));
             }
-            format!("{{\n{}\n{}}}", out.join(",\n"), state.indent())
+            format!("{{\n{}\n{}}}", out.join(",\n"), state.untab().indent())
         }
         Str(ref s) => {
             format!("{:?}.to_string()", s)
@@ -139,23 +232,28 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
         Span(ref span) => {
             let span = expr_explode(span.clone());
             if span.len() == 1 {
-                print_expr(state.tab(), &span[0])
+                print_expr(state, &span[0])
             } else {
                 if span.len() == 0 {
-                    format!("()") //TODO WHAT
+                    format!("()") //TODO not sure what this would be?
                 } else {
-                    // TODO
-                    let mut span = span.clone();
-                    let start = print_expr(state, &span.remove(0));
-                    let mut end = "".to_string();
-                    if span.len() > 0 {
-                        let mut out = vec![];
-                        for item in &span {
-                            out.push(print_expr(state.tab(), item));
+                    // Check for return() here, for now
+                    if print_expr(state, &span[0]) == "return" {
+                        //TODO handle return more intelligently
+                        print_expr(state, &span[1])
+                    } else {
+                        let mut span = span.clone();
+                        let start = print_expr(state, &span.remove(0));
+                        let mut end = "".to_string();
+                        if span.len() > 0 {
+                            let mut out = vec![];
+                            for item in &span {
+                                out.push(print_expr(state.tab(), item));
+                            }
+                            end = format!("({})", out.join(", "));
                         }
-                        end = format!("({})", out.join(", "));
+                        format!("{}{}", start, end)
                     }
-                    format!("{}{}", start, end)
                 }
             }
         }
@@ -172,15 +270,21 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                             ));
                         }
                         out.push(format!("{}{} => if {},",
-                            state.indent(),
+                            state.tab().indent(),
                             print_patterns(state, label),
                             inner.join("\n")));
                     }
-                    ast::CaseCond::Direct(label, arms) => {
-                        out.push(format!("{}{} => {{ {} }},",
+                    ast::CaseCond::Direct(labels, arms) => {
+                        out.push(format!("{}{} => {{\n{}{}\n{}}},",
                             state.tab().indent(),
-                            print_patterns(state, label),
-                            arms.iter().map(|x| print_expr(state.tab(), x)).collect::<Vec<_>>().join("; ")));
+                            labels.into_iter()
+                                .map(|x| print_pattern(state, &x))
+                                .collect::<Vec<_>>()
+                                .join(" | "),
+                            state.tab().tab().indent(),
+                            arms.iter().map(|x| print_expr(state.tab().tab(), x)).collect::<Vec<_>>().join("; "),
+                            state.tab().indent(),
+                        ));
                     }
                     ast::CaseCond::Where => {
                         // TODO
@@ -210,7 +314,9 @@ fn unpack_fndef(t: Ty) -> Vec<Ty> {
 
 fn print_pattern(state: PrintState, pat: &Pat) -> String {
     match *pat {
-        Pat::Ref(ast::Ident(ref s)) => print_ident(state, s.to_string()),
+        Pat::Ref(ast::Ident(ref s)) =>{
+            print_type_ident(state, s)
+        }
         Pat::Span(ref span) => {
             let mut out_span = print_pattern(state.tab(), &span[0]);
             if span.len() > 1 {
@@ -250,11 +356,7 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
 fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
     match *t.borrow() {
         Ty::Ref(ast::Ident(ref s)) => {
-            if s == "Int" {
-                format!("isize")
-            } else {
-                s.to_string()
-            }
+            print_type_ident(state, s)
         }
         Ty::Not(ref s) => {
             print_type(state, &**s)
@@ -262,7 +364,7 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Span(ref span) => {
             let mut out_span = print_type(state.tab(), &span[0]);
             if span.len() > 1 {
-                out_span.push_str(&format!("({})", print_types(state.tab(), &span[1..])));
+                out_span.push_str(&format!("<{}>", print_types(state.tab(), &span[1..])));
             }
             out_span
         }
@@ -305,6 +407,8 @@ where
 fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     let mut types = btreemap![];
     for item in stats {
+        //errln!("{:?}", item);
+
         // println!("well {:?}", item);
         if let ast::Statement::Prototype(exprs, d) = item.clone() {
             for expr in exprs {
@@ -319,7 +423,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
     // Print out data structures.
     for item in stats {
-        if let ast::Statement::Data(name, data, derives) = item.clone() {
+        if let ast::Statement::Data(name, data, derives, args) = item.clone() {
             let derive_rust = derives.iter()
                 .map(|x| {
                     // Convert common Haskell "derive" terms into Rust's
@@ -336,28 +440,49 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 .collect::<Vec<_>>();
 
             if data.len() > 1 {
-                println!("    {}enum {}{{\n        {}\n    }};",
+                println!("{}{}enum {} {{\n        {}\n{}}}",
+                    state.indent(),
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n    ", derive_rust.join(", "))
                     } else {
                         format!("")
                     },
-                    name.0,
+                    print_type(state, Ty::Span({
+                        let mut v = vec![Ty::Ref(name)];
+                        v.extend(args.unwrap_or(vec![]));
+                        v
+                    })),
                     data.iter().map(|tyset| {
-                        print_type(state.tab(), Ty::Span(tyset.clone()))
-                    }).collect::<Vec<_>>().join(&format!(",\n        "))
+                        format!("{}{}",
+                            print_type(state.tab(), tyset[0].clone()),
+                            if tyset.len() > 2 {
+                                format!("{}", print_type(state.tab(), Ty::Tuple(tyset.clone()[1..].to_vec())))
+                            } else if tyset.len() > 1 {
+                                format!("({})", print_type(state.tab(), Ty::Tuple(tyset.clone()[1..].to_vec())))
+                            } else {
+                                "".to_string()
+                            }
+                        )
+                    }).collect::<Vec<_>>().join(&format!(",\n        ")),
+                    state.indent(),
                     );
             } else {
-                println!("    {}struct {}({});",
+                let props = data.iter().map(|tyset| {
+                    print_types(state, tyset)
+                }).collect::<Vec<_>>().join(", ");
+                println!("    {}struct {}{};",
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n    ", derive_rust.join(", "))
                     } else {
                         format!("")
                     },
-                    name.0,
-                    data.iter().map(|tyset| {
-                        print_types(state, tyset)
-                    }).collect::<Vec<_>>().join(", "));
+                    print_type(state, Ty::Span({
+                        let mut v = vec![Ty::Ref(name)];
+                        v.extend(args.unwrap_or(vec![]));
+                        v
+                    })),
+                    if data.len() > 0 { format!("({})", props) } else { "".to_string() }
+                );
             }
             println!("");
         }
@@ -383,7 +508,9 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
             };
 
             let ident = span[0].clone();
-            cache.entry(print_expr(PrintState::new(), &ident)).or_insert(vec![]).push((span[1..].to_vec(), expr));
+            cache.entry(print_expr(PrintState::new(), &ident))
+                .or_insert(vec![])
+                .push((span[1..].to_vec(), expr));
         }
     }
 
@@ -391,21 +518,31 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     let mut new_cache = btreemap![];
     for (key, fnset) in cache {
         if fnset.len() > 1 {
-            let args = (0..fnset[0].0.len()).map(|x| format!("__{}", x)).collect::<Vec<_>>();
-            new_cache.insert(key, vec![(
+            // There are multiple impls of this function, so expand this into a
+            // case statement.
+            let args = (0..fnset[0].0.len())
+                .map(|x| format!("__{}", x))
+                .collect::<Vec<_>>();
+            let res = vec![(
+                // Convert args into case options.
                 args.iter()
                     .map(|x| Expr::Ref(ast::Ident(x.to_string())))
                     .collect::<Vec<_>>(),
+                // Generate case statements.
                 ast::Expr::Case(
                     Box::new(ast::Expr::Parens(args.iter()
                         .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
                         .collect::<Vec<_>>())),
                     fnset.iter().map(|x| {
-                        // TODO first arg should be x.0.clone()
-                        ast::CaseCond::Direct(vec![ast::Pat::Dummy], vec![x.1.clone()])
+                        // TODO expr_to_pat should happen in AST generation
+                        ast::CaseCond::Direct(
+                            vec![Pat::Tuple(x.0.iter().map(|x| parser_haskell::conv::expr_to_pat(x)).collect::<Vec<_>>())],
+                            vec![x.1.clone()])
                     }).collect::<Vec<_>>(),
                 ),
-            )]);
+            )];
+
+            new_cache.insert(key, res);
         } else {
             //TODO waitaminute
             new_cache.insert(key, fnset);
@@ -417,15 +554,24 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         for (args, expr) in fnset {
             // For type-less functions,
             if !types.contains_key(&key) {
-                // fallback to printing a lambda
-                out.push(
-                    format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
-                        state.indent(),
-                        key,
-                        args.iter().map(|x| print_expr(state, x)).collect::<Vec<_>>().join(", "),
-                        state.tab().indent(),
-                        print_expr(state.tab(), &expr),
-                        state.indent()));
+                // With no type signature, we print a lambda.
+                // If there are no arguments, we compute it now (non-lazily).
+                if args.len() == 0 {
+                    out.push(
+                        format!("{}let {} = {};\n",
+                            state.indent(),
+                            key,
+                            print_expr(state.tab(), &expr)));
+                } else {
+                    out.push(
+                        format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
+                            state.indent(),
+                            key,
+                            args.iter().map(|x| print_expr(state, x)).collect::<Vec<_>>().join(", "),
+                            state.tab().indent(),
+                            print_expr(state.tab(), &expr),
+                            state.indent()));
+                }
                 continue;
             }
 
@@ -455,14 +601,9 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
     //Expressions
     for item in stats {
-        if let ast::Statement::Expression(expr, wh) = item.clone() {
-            //if !types.contains_key(&s) {
-            //    println!("this shouldn't happen {:?}", s);
-            //}
-            //if cache.contains_key(&s) {
-            //    panic!("this shouldn't happen {:?}", s);
-            //}
-            out.push(format!("    {}", print_expr(PrintState::new(), &expr)));
+        if let ast::Statement::Expression(expr, _) = item.clone() {
+            //TODO where clause as second argument
+            out.push(format!("{}{}", state.indent(), print_expr(state, &expr)));
         }
     }
 
@@ -630,7 +771,7 @@ fn main() {
                 // continue;
                 println!("mod {} {{", v.name.0.replace(".", "_"));
                 let state = PrintState::new();
-                println!("    {}", print_statement_list(state.tab(), &v.statements));
+                println!("{}", print_statement_list(state.tab(), &v.statements));
                 //print_statement_list(state.tab(), &v.statements);
                 println!("}}\n");
             }

@@ -1,34 +1,48 @@
-module test_module (
+module Test.Code ()
+where
 
-) where
+bitWidth :: Int -> IntWidth -> Int
+bitWidth wordWidth WordWidth = wordWidth
+bitWidth _ (BitWidth w) = w
 
--- | silly one
-data NodeInfo = Int  -- pos, last token and unique name
-           deriving (Data,Typeable)
+blockToStatements :: Rust.Block -> [Rust.Stmt]
+blockToStatements (Rust.Block stmts mexpr) = case mexpr of
+    Just expr -> stmts ++ exprToStatements expr
+    Nothing -> stmts
 
+addExternIdent
+    :: Ident
+    -> EnvMonad s IntermediateType
+    -> (String -> (Rust.Mutable, CType) -> Rust.ExternItem)
+    -> EnvMonad s ()
+addExternIdent ident deferred mkItem = do
+    action <- runOnce $ do
+        itype <- deferred
+        rewrites <- lift $ asks itemRewrites
+        path <- case Map.lookup (Symbol, identToString ident) rewrites of
+            Just renamed -> return ("" : renamed)
+            Nothing -> return [name]
+    addSymbolIdentAction ident action
 
--- | C identifiers
-data Ident = String       -- lexeme
-                   {-# UNPACK #-}   !Int     -- hash to speed up equality check
-                   NodeInfo                   -- attributes of this ident. incl. position
-             deriving (Data,Typeable)
+addSymbolIdent :: Ident -> (Rust.Mutable, CType) -> EnvMonad s String
+addSymbolIdent ident (mut, ty) = do
+    let name = applyRenames ident
+    addSymbolIdentAction ident $ return Result
+        { resultType = ty
+        , resultMutable = mut
+        , result = Rust.Path (Rust.PathSegments [name])
+        }
+    return name
 
+-- Main lexing routines
+data AlexReturn a
+  = AlexEOF
+  | AlexError !AlexInput
+  | AlexSkip !AlexInput
+             !Int
+  | AlexToken !AlexInput
+              !Int
+              a
 
--- | string of an identifier
-identToString               :: Ident -> String
-identToString (Ident s _ _)  = s
-
-
-applyRenames :: Ident -> String
-applyRenames ident = case identToString ident of
-    "final" -> "final_"
-    "fn" -> "fn_"
-    "in" -> "in_"
-    "let" -> "let_"
-    "main" -> "_c_main"
-    "match" -> "match_"
-    "mod" -> "mod_"
-    "proc" -> "proc_"
-    "type" -> "type_"
-    "where" -> "where_"
-    name -> name
+sumEuler :: Int -> Int
+sumEuler = sum . (map euler) . mkList

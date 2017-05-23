@@ -5,6 +5,7 @@ extern crate base64;
 pub mod ast;
 pub mod haskell;
 pub mod util;
+pub mod conv;
 
 use regex::{Captures, Regex};
 

@@ -39,7 +39,7 @@ pub enum Statement {
 
     // Name, Inner Types, Deriving IDs
     Type,
-    Data(Ident, Vec<Vec<Ty>>, Vec<Ident>),
+    Data(Ident, Vec<Vec<Ty>>, Vec<Ident>, Option<Vec<Ty>>),
     Newtype(Ident, Ty, Vec<Ident>),
     Class,
     Instance,
