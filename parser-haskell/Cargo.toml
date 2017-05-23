@@ -5,6 +5,10 @@ authors = [
   "Tim Ryan <tim@timryan.org>",
   "Paul Collier <paul@paulcollier.ca>"
 ]
+description = "Parses Haskell into an AST."
+repository = "http://github.com/tcr/corrode-but-in-rust"
+homepage = "http://github.com/tcr/corrode-but-in-rust"
+license = "MIT/Apache-2.0"
 
 [build-dependencies.lalrpop]
 version = "0.12.5"

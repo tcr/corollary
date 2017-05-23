@@ -5,6 +5,10 @@ authors = [
   "Tim Ryan <tim@timryan.org>",
   "Paul Collier <paul@paulcollier.ca>"
 ]
+description = "Cross-compiles Haskell into Rust for Corrode."
+repository = "http://github.com/tcr/corrode-but-in-rust"
+homepage = "http://github.com/tcr/corrode-but-in-rust"
+license = "MIT/Apache-2.0"
 
 [dependencies]
 regex = "0.2.1"
