@@ -19,8 +19,10 @@ use regex::Regex;
 use std::borrow::Borrow;
 use std::collections::BTreeSet;
 use std::env;
+use std::fmt::Write;
 use std::fs::{File};
 use std::io::prelude::*;
+use std::path::Path;
 use walkdir::WalkDir;
 
 #[derive(Clone, Copy)]
@@ -734,21 +736,75 @@ fn fix_lhs(s: &str) -> String {
     out.join("\n\n")
 }
 
+fn convert_file(input: &str) -> (String, String) {
+    let mut contents = input.to_string();
+    let mut file_out = String::new();
+    let mut rust_out = String::new();
+
+    // Parse out HASKELL /HASKELL RUST /RUST sections.
+    let re = Regex::new(r#"HASKELL[\s\S]*?/HASKELL"#).unwrap();
+    contents = re.replace(&contents, "").to_string();
+    let re = Regex::new(r#"RUST([\s\S]*?)/RUST"#).unwrap();
+    if let Some(cap) = re.captures(&contents) {
+        rust_out.push_str(&cap.get(1).unwrap().as_str().to_string());
+    }
+    contents = re.replace(&contents, "").to_string();
+
+    // Preprocess the file.
+    let contents = parser_haskell::preprocess(&contents);
+
+    // Parse the file.
+    let mut errors = Vec::new();
+    match parser_haskell::parse(&mut errors, &contents) {
+        Ok(v) => {
+            // println!("{:?}", p);
+            // continue;
+            let _ = writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"));
+            let _ = writeln!(file_out, "    use haskell_support::*;");
+            let state = PrintState::new();
+            let _ = writeln!(file_out, "{}", print_statement_list(state.tab(), &v.statements));
+            //print_statement_list(state.tab(), &v.statements);
+            let _ = writeln!(file_out, "}}\n");
+        }
+        Err(e) => {
+            let _ = writeln!(file_out, "/* ERROR: cannot convert file...");
+            // TODO have this write to Format
+            print_parse_error(&contents, &simplify_parse_error(e));
+            let _ = writeln!(file_out, "*/");
+        }
+    }
+
+    (file_out, rust_out)
+}
+
 
 #[cfg(not(test))]
 fn main() {
-    let dir = match env::args().nth(1) {
-        Some(s) => s,
-        _ => {
-            panic!("Usage: cargo run <dir>");
-        }
-    };
+    let matches = App::new("corollary")
+        .version("0.1")
+        .about("Converts Haskell to Rust")
+        .arg(Arg::with_name("run")
+            .short("r")
+            .long("run")
+            .help("Runs the file"))
+        .arg(Arg::with_name("INPUT")
+            .help("Sets the input file to use")
+            .required(true)
+            .index(1))
+        .get_matches();
+
+    let file = matches.value_of("INPUT").unwrap();
+    let do_run = matches.is_present("run");
+    if do_run {
+        errln!("do_run {:?}", do_run);
+    }
+    errln!("reading {:?}...", file);
 
     let mut rust_section = "".to_string();
-
-    println!("{}", include_str!("haskell_support.txt"));
-    println!("");
-    for entry in WalkDir::new(dir) {
+    let mut file_section = "".to_string();
+    let _ = writeln!(file_section, "{}", include_str!("haskell_support.txt"));
+    let _ = writeln!(file_section, "");
+    for entry in WalkDir::new(file) {
         let e = entry.unwrap();
         let p = e.path();
 
@@ -768,45 +824,21 @@ fn main() {
             _ => continue,
         };
 
-        // Parse out HASKELL /HASKELL RUST /RUST sections.
-        let re = Regex::new(r#"HASKELL[\s\S]*?/HASKELL"#).unwrap();
-        contents = re.replace(&contents, "").to_string();
-        let re = Regex::new(r#"RUST([\s\S]*?)/RUST"#).unwrap();
-        if let Some(cap) = re.captures(&contents) {
-            rust_section.push_str(&cap.get(1).unwrap().as_str().to_string());
-        }
-        contents = re.replace(&contents, "").to_string();
-
         // Preprocess the file.
         if do_fix_lhs {
             contents = fix_lhs(&contents);
         }
-        let contents = parser_haskell::preprocess(&contents);
 
-        // Parse the file.
-        let mut errors = Vec::new();
-        match parser_haskell::parse(&mut errors, &contents) {
-            Ok(v) => {
-                // println!("{:?}", p);
-                // continue;
-                println!("pub mod {} {{", v.name.0.replace(".", "_"));
-                println!("    use haskell_support::*;");
-                let state = PrintState::new();
-                println!("{}", print_statement_list(state.tab(), &v.statements));
-                //print_statement_list(state.tab(), &v.statements);
-                println!("}}\n");
-            }
-            Err(e) => {
-                println!("/* ERROR: cannot yet convert file {:?}", p);
-                print_parse_error(&contents, &simplify_parse_error(e));
-                println!("*/");
-            }
-        }
+        let (file_out, rust_out) = convert_file(&contents);
+        let _ = writeln!(file_section, "{}", file_out);
+        rust_section.push_str(&rust_out);
     }
-    println!("");
-    println!("");
+    let _ = writeln!(file_section, "");
+    let _ = writeln!(file_section, "");
     if rust_section.len() > 0 {
-        println!("/* RUST ... /RUST */");
-        println!("{}", rust_section);
+        let _ = writeln!(file_section, "/* RUST ... /RUST */");
+        let _ = writeln!(file_section, "{}", rust_section);
     }
+
+    print!("{}", file_section);
 }
