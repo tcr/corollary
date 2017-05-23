@@ -191,6 +191,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             } else if op == "<-" {
                 format!("let {} = {}", print_expr(state, l), print_expr(state, r))
             } else {
+                // Here you add new infix operators.
                 let mut new_op = op.to_string();
                 if new_op == "++" {
                     new_op = "__op_addadd".to_string();
@@ -202,6 +203,8 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                     new_op = "__op_rshift".to_string();
                 } else if new_op == "<<" {
                     new_op = "__op_lshift".to_string();
+                } else if new_op == "<+>" {
+                    new_op = "__op_arrow_concat".to_string();
                 }
                 format!("{}({}, {})", new_op, print_expr(state, l), print_expr(state, r))
             }

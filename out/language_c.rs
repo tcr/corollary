@@ -3119,13 +3119,13 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
                             return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
                         },
                         None => {
-                            fail(render(<+>(text("invalid binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2))))))
+                            fail(render(__op_arrow_concat(text("invalid binary operation:".to_string()), __op_arrow_concat(pretty(t1), __op_arrow_concat(pretty(op), pretty(t2))))))
                         },
                     }
                 }
             },
             (_, _, _) => {
-                fail(render(<+>(text("unhandled binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2))))))
+                fail(render(__op_arrow_concat(text("unhandled binary operation:".to_string()), __op_arrow_concat(pretty(t1), __op_arrow_concat(pretty(op), pretty(t2))))))
             },
         }
     }
@@ -5082,7 +5082,7 @@ mod Language_C_Pretty {
     }
 
     fn prettyDeclr(show_attrs: Bool, prec: isize, (CDeclr(name, derived_declrs, asmname, cattrs, _)): CDeclr) -> Doc {
-        <+>(ppDeclr(prec, (reverse(derived_declrs))), <+>(prettyAsmName(asmname), ifP(show_attrs, (attrlistP(cattrs)))))
+        __op_arrow_concat(ppDeclr(prec, (reverse(derived_declrs))), __op_arrow_concat(prettyAsmName(asmname), ifP(show_attrs, (attrlistP(cattrs)))))
     }
 
     fn prettyUsingInclude((CTranslUnit(edecls, _)): CTranslUnit) -> Doc {
