@@ -42,22 +42,16 @@ mod Language_C_Analysis_AstAnalysis {
         /* do */ {
             let var_decl_info = analyseVarDecl_q(True, declspecs, declr, oldstyle_decls, Nothing);
             {
-                let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = || {
-                    var_decl_info
-                };
+                let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = var_decl_info;
             };
             when((isNoName(name)))(astError(node_info, "NoName in analyseFunDef".to_string()));
             {
-                let ident = || {
-                    identOfVarName(name)
-                };
+                let ident = identOfVarName(name);
             };
             let ty_q = improveFunDefType(ty);
             let fun_storage = computeFunDefStorage(ident, storage_spec);
             {
-                let var_decl = || {
-                    VarDecl(name, (DeclAttrs(is_inline, fun_storage, attrs)), ty_q)
-                };
+                let var_decl = VarDecl(name, (DeclAttrs(is_inline, fun_storage, attrs)), ty_q);
             };
             handleVarDecl(False, (Decl(var_decl, node_info)));
             let stmt_q = analyseFunctionBody(node_info, var_decl, stmt);
@@ -90,9 +84,7 @@ mod Language_C_Analysis_AstAnalysis {
             checkValidTypeDef(is_inline, storage_spec, attrs);
             when((isNoName(name)))(astError(node_info, "NoName in analyseTypeDef".to_string()));
             {
-                let ident = || {
-                    identOfVarName(name)
-                };
+                let ident = identOfVarName(name);
             };
             handleTypeDef((TypeDef(ident, ty, attrs, node_info)));
 
@@ -166,9 +158,7 @@ mod Language_C_Analysis_AstAnalysis {
                 /* do */ {
                     let obj_opt = lookupObject(ident);
                     {
-                        let defaultSpec = || {
-                            FunLinkage(ExternalLinkage)
-                        };
+                        let defaultSpec = FunLinkage(ExternalLinkage);
                     };
                     match other_spec {
                         NoStorageSpec => {
@@ -232,9 +222,7 @@ mod Language_C_Analysis_AstAnalysis {
             let old_fun = lookupObject((identOfVarName(var_name)));
             checkValidSpecs;
             {
-                let decl = || {
-                    VarDecl(var_name, (DeclAttrs(is_inline, (funDeclLinkage(old_fun)), attrs)), ty)
-                };
+                let decl = VarDecl(var_name, (DeclAttrs(is_inline, (funDeclLinkage(old_fun)), attrs)), ty);
             };
             handleVarDecl(False, (Decl(decl, node_info)));
             enterPrototypeScope;
@@ -248,9 +236,7 @@ mod Language_C_Analysis_AstAnalysis {
             when((isNoName(var_name)))(astError(node_info, "NoName in extVarDecl".to_string()));
             let (storage, is_def) = globalStorage(storage_spec);
             {
-                let vardecl = || {
-                    VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ)
-                };
+                let vardecl = VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ);
             };
             if(is_def, then, handleObjectDef, False, ident)(ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, False)(Decl(vardecl, node_info)))
         }
@@ -291,9 +277,7 @@ mod Language_C_Analysis_AstAnalysis {
             when((isNoName(var_name)))(astError(node_info, "NoName in localVarDecl".to_string()));
             let (storage, is_def) = localStorage(storage_spec);
             {
-                let vardecl = || {
-                    VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ)
-                };
+                let vardecl = VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ);
             };
             if(is_def, then, handleObjectDef, True, ident, (ObjDef(vardecl, init_opt, node_info)), else, handleVarDecl, True, (Decl(vardecl, node_info)))
         }
@@ -529,9 +513,7 @@ mod Language_C_Analysis_AstAnalysis {
             (c, _, CCall(fe, args, ni)) => {
                 /* do */ {
                     {
-                        let defType = || {
-                            FunctionType((FunTypeIncomplete((DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)))), noAttributes)
-                        };
+                        let defType = FunctionType((FunTypeIncomplete((DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)))), noAttributes);
 ;
                         let fallback = |i| {
                             /* do */ {
@@ -553,9 +535,7 @@ mod Language_C_Analysis_AstAnalysis {
                         PtrType(FunctionType(FunType(rt, pdecls, varargs), _), _, _) => {
                             /* do */ {
                                 {
-                                    let ptys = || {
-                                        map(declType, pdecls)
-                                    };
+                                    let ptys = map(declType, pdecls);
                                 };
                                 mapM_(checkArg)(zip3(ptys, atys, args));
                                 unless(varargs)(when((/=(length(atys), length(ptys))))(typeError(ni, "incorrect number of arguments".to_string())));
@@ -622,9 +602,7 @@ mod Language_C_Analysis_AstAnalysis {
             (ni, t, <todo>, ArrayType(_, _, _, _), initList) => {
                 /* do */ {
                     {
-                        let default_ds = || {
-                            repeat((CArrDesig((CConst((CIntConst((cInteger(0)), ni)))), ni)))
-                        };
+                        let default_ds = repeat((CArrDesig((CConst((CIntConst((cInteger(0)), ni)))), ni)));
                     };
                     checkInits(t, default_ds, initList)
                 }
@@ -634,9 +612,7 @@ mod Language_C_Analysis_AstAnalysis {
                     let td = lookupSUE(ni, (sueRef(ctr)));
                     let ms = tagMembers(ni, td);
                     {
-                        let default_ds = || {
-                            map((Lambda((fst(m)), ni)), ms)
-                        };
+                        let default_ds = map((Lambda((fst(m)), ni)), ms);
                     };
                     checkInits(t, default_ds, initList)
                 }
@@ -863,9 +839,7 @@ mod Language_C_Analysis_ConstEval {
                 Some(Right(CompDef(CompType(_, tag, ms, _, ni)))) => {
                     /* do */ {
                         {
-                            let ts = || {
-                                map(declType, ms)
-                            };
+                            let ts = map(declType, ms);
                         };
                         let sizes = mapM((sizeofType(md, ni)), ts);
                         match tag {
@@ -1270,9 +1244,7 @@ mod Language_C_Analysis_DeclAnalysis {
     fn analyseVarDecl_q(handle_sue_def: Bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Option<CInit>) -> m {
         /* do */ {
             {
-                let (storage_specs, attrs, type_quals, type_specs, inline) = || {
-                    partitionDeclSpecs(declspecs)
-                };
+                let (storage_specs, attrs, type_quals, type_specs, inline) = partitionDeclSpecs(declspecs);
             };
             let canonTySpecs = canonicalTypeSpec(type_specs);
             analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, inline, declr, oldstyle, init_opt)
@@ -1418,9 +1390,7 @@ mod Language_C_Analysis_DeclAnalysis {
             },
             d1:ds => {
                 {
-                    let declspecs_q = || {
-                        map(elideSUEDef, declspecs, in)
-                    };
+                    let declspecs_q = map(elideSUEDef, declspecs, in);
                 }(return)(__op_concat((CDecl(declspecs, vec![d1], node)), Dummy))
             },
         }
@@ -1452,15 +1422,11 @@ mod Language_C_Analysis_DeclAnalysis {
         /* do */ {
             let sue_ref = createSUERef(node_info, ident_opt);
             {
-                let tag_q = || {
-                    tTag(tag)
-                };
+                let tag_q = tTag(tag);
             };
             let attrs_q = mapM(tAttr, attrs);
             {
-                let decl = || {
-                    CompTypeRef(sue_ref, tag_q, node_info)
-                };
+                let decl = CompTypeRef(sue_ref, tag_q, node_info);
             };
             handleTagDecl((CompDecl(decl)));
             when((handle_def))(/* do */ {
@@ -1532,9 +1498,7 @@ otherwise { TyFloating(floatType) },
             CDecl(declspecs, [], node) => {
                 /* do */ {
                     {
-                        let (storage_specs, _attrs, typequals, typespecs, is_inline) = || {
-                            partitionDeclSpecs(declspecs)
-                        };
+                        let (storage_specs, _attrs, typequals, typespecs, is_inline) = partitionDeclSpecs(declspecs);
                     };
                     when(is_inline)(astError(node, "member declaration with inline specifier".to_string()));
                     let canonTySpecs = canonicalTypeSpec(typespecs);
@@ -1618,9 +1582,7 @@ otherwise { intType(TyChar) },
             when((is_inline))(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
             let storage = throwOnLeft(computeParamStorage(node, storage_spec));
             {
-                let paramDecl = || {
-                    mkParamDecl(name, storage, attrs, ty, declr_node)
-                };
+                let paramDecl = mkParamDecl(name, storage, attrs, ty, declr_node);
             };
             return(paramDecl)
         }
@@ -1757,9 +1719,7 @@ otherwise { KindMismatch(def_q) },
 
     fn defineLabel(ident: Ident, deftbl: DefTable) -> (DeclarationStatus<Ident>, DefTable) {
         {
-            let (labels_q, old_label) = || {
-                defLocal((labelDefs(deftbl)), ident, ident)
-            };
+            let (labels_q, old_label) = defLocal((labelDefs(deftbl)), ident, ident);
         }(in, (maybe(NewDecl, Redeclared, old_label), deftbl({
                 labelDefs: labels_q
             })))
@@ -1855,9 +1815,7 @@ otherwise { KindMismatch(def_q) },
 
     fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
         {
-            let (decls_q, members) = || {
-                leaveScope((memberDecls(deftbl)))
-            };
+            let (decls_q, members) = leaveScope((memberDecls(deftbl)));
         }(in, Dummy, (map(snd, members)), (deftbl({
                 memberDecls: decls_q
             })))
@@ -2028,9 +1986,7 @@ mod Language_C_Analysis_Export {
             },
             MemberDecl(vardecl, bitfieldsz, node_info) => {
                 {
-                    let (specs, declarator) = || {
-                        exportVarDecl(vardecl)
-                    };
+                    let (specs, declarator) = exportVarDecl(vardecl);
                 }(in, CDecl, specs, vec![(Just(declarator), Nothing, bitfieldsz)], node_info)
             },
         }
@@ -2038,9 +1994,7 @@ mod Language_C_Analysis_Export {
 
     fn exportParamDecl(paramdecl: ParamDecl) -> CDecl {
         {
-            let (specs, declr) = || {
-                exportVarDecl((getVarDecl(paramdecl)))
-            };
+            let (specs, declr) = exportVarDecl((getVarDecl(paramdecl)));
         }(in, CDecl, specs, vec![(Just(declr), Nothing, Nothing)], (nodeInfo(paramdecl)))
     }
 
@@ -2516,9 +2470,7 @@ mod Language_C_Analysis_SemRep {
 
     fn declOfDef(def: n) -> Decl {
         {
-            let vd = || {
-                getVarDecl(def, in, Decl, vd, (nodeInfo(def)))
-            };
+            let vd = getVarDecl(def, in, Decl, vd, (nodeInfo(def)));
         }
     }
 
@@ -2755,9 +2707,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> Bool) -> m {
         /* do */ {
             {
-                let def = || {
-                    Declaration(decl)
-                };
+                let def = Declaration(decl);
             };
             let redecl = withDefTable(defineScopedIdentWhen(cond, (declIdent(def)), def));
             checkVarRedef(def, redecl);
@@ -2800,9 +2750,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     fn handleEnumeratorDef(enumerator: Enumerator) -> m {
         /* do */ {
             {
-                let ident = || {
-                    declIdent(enumerator)
-                };
+                let ident = declIdent(enumerator);
             };
             let redecl = withDefTable(defineScopedIdent(ident, (EnumeratorDef(enumerator))));
             checkRedef((show(ident)), ident, redecl);
@@ -2813,9 +2761,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     fn handleFunDef(ident: Ident, fun_def: FunDef) -> m {
         /* do */ {
             {
-                let def = || {
-                    FunctionDef(fun_def)
-                };
+                let def = FunctionDef(fun_def);
             };
             let redecl = withDefTable(defineScopedIdentWhen(isDeclaration, ident, def));
             checkVarRedef(def, redecl);
@@ -2826,9 +2772,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     fn handleObjectDef(local: Bool, ident: Ident, obj_def: ObjDef) -> m {
         /* do */ {
             {
-                let def = || {
-                    ObjectDef(obj_def)
-                };
+                let def = ObjectDef(obj_def);
             };
             let redecl = withDefTable(defineScopedIdentWhen((Lambda(def, old)), ident, def));
             checkVarRedef(def, redecl);
@@ -2845,9 +2789,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
             (pd, <todo>, ParamDecl(vardecl, node)) => {
                 /* do */ {
                     {
-                        let def = || {
-                            ObjectDef((ObjDef(vardecl, Nothing, node)))
-                        };
+                        let def = ObjectDef((ObjDef(vardecl, Nothing, node)));
                     };
                     let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
                     checkVarRedef(def, redecl);
@@ -3278,13 +3220,9 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
                     let t = compositeType(t1, t2);
                     let s = compositeSize(s1, s2);
                     {
-                        let quals = || {
-                            mergeTypeQuals(q1, q2)
-                        };
+                        let quals = mergeTypeQuals(q1, q2);
 ;
-                        let attrs = || {
-                            mergeAttrs(a1, a2)
-                        };
+                        let attrs = mergeAttrs(a1, a2);
                     };
                     (ArrayType(t, s, quals, attrs))
                 }
@@ -3390,13 +3328,9 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
                     let n = genName;
                     {
 ;
-                        let ni_q = || {
-                            mkNodeInfo((posOf(ni)), n)
-                        };
+                        let ni_q = mkNodeInfo((posOf(ni)), n);
 ;
-                        let arraySize = || {
-                            ArraySize(True, (CConst((CIntConst((cInteger((toInteger((length(chars)))))), ni_q)))))
-                        };
+                        let arraySize = ArraySize(True, (CConst((CIntConst((cInteger((toInteger((length(chars)))))), ni_q)))));
                     };
                     return(ArrayType((DirectType((TyIntegral(charType)), noTypeQuals, noAttributes)), arraySize, noTypeQuals, vec![]))
                 }

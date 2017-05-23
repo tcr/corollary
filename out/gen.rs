@@ -105,269 +105,137 @@ mod Language_C_Parser_Lexer {
         }
     };
 
-    let alex_accept = || {
-        listArray((0, 241), vec![AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccSkip, AlexAcc(120), AlexAccSkip, AlexAccSkip, AlexAcc(119), AlexAcc(118), AlexAcc(117), AlexAcc(116), AlexAcc(115), AlexAcc(114), AlexAcc(113), AlexAcc(112), AlexAcc(111), AlexAcc(110), AlexAcc(109), AlexAcc(108), AlexAcc(107), AlexAcc(106), AlexAcc(105), AlexAcc(104), AlexAcc(103), AlexAcc(102), AlexAcc(101), AlexAcc(100), AlexAcc(99), AlexAcc(98), AlexAcc(97), AlexAcc(96), AlexAcc(95), AlexAcc(94), AlexAcc(93), AlexAcc(92), AlexAcc(91), AlexAcc(90), AlexAcc(89), AlexAcc(88), AlexAcc(87), AlexAcc(86), AlexAcc(85), AlexAcc(84), AlexAcc(83), AlexAcc(82), AlexAcc(81), AlexAcc(80), AlexAcc(79), AlexAcc(78), AlexAcc(77), AlexAcc(76), AlexAcc(75), AlexAcc(74), AlexAcc(73), AlexAcc(72), AlexAcc(71), AlexAcc(70), AlexAcc(69), AlexAcc(68), AlexAcc(67), AlexAcc(66), AlexAcc(65), AlexAcc(64), AlexAcc(63), AlexAcc(62), AlexAcc(61), AlexAcc(60), AlexAcc(59), AlexAcc(58), AlexAcc(57), AlexAcc(56), AlexAcc(55), AlexAcc(54), AlexAcc(53), AlexAcc(52), AlexAcc(51), AlexAcc(50), AlexAcc(49), AlexAcc(48), AlexAcc(47), AlexAcc(46), AlexAcc(45), AlexAcc(44), AlexAcc(43), AlexAcc(42), AlexAcc(41), AlexAcc(40), AlexAcc(39), AlexAcc(38), AlexAcc(37), AlexAcc(36), AlexAcc(35), AlexAcc(34), AlexAcc(33), AlexAcc(32), AlexAcc(31), AlexAcc(30), AlexAcc(29), AlexAcc(28), AlexAcc(27), AlexAcc(26), AlexAcc(25), AlexAcc(24), AlexAcc(23), AlexAcc(22), AlexAcc(21), AlexAcc(20), AlexAcc(19), AlexAcc(18), AlexAcc(17), AlexAcc(16), AlexAcc(15), AlexAcc(14), AlexAcc(13), AlexAcc(12), AlexAcc(11), AlexAcc(10), AlexAcc(9), AlexAcc(8), AlexAcc(7), AlexAcc(6), AlexAcc(5), AlexAcc(4), AlexAcc(3), AlexAcc(2), AlexAcc(1), AlexAcc(0)])
-    };
-
-    let alex_action_1 = || {
-        __op_rshift(Lambda((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(False))
-    };
-
-    let alex_action_10 = || {
-        token(CTokCLit, (cChar_wfstunescapeChartailtail))
-    };
-
-    let alex_action_11 = || {
-        token(CTokCLit, (flip(cChars, False)unescapeMultiCharstail))
-    };
-
-    let alex_action_12 = || {
-        token(CTokCLit, (flip(cChars, True)unescapeMultiCharstailtail))
-    };
-
-    let alex_action_13 = || {
-        token(CTokFLit, readCFloat)
-    };
-
-    let alex_action_14 = || {
-        token(CTokFLit, readCFloat)
-    };
-
-    let alex_action_15 = || {
-        token_fail("Hexadecimal floating constant requires an exponent".to_string())
-    };
-
-    let alex_action_16 = || {
-        token(CTokSLit, (cStringunescapeStringinittail))
-    };
-
-    let alex_action_17 = || {
-        token(CTokSLit, (cString_wunescapeStringinittailtail))
-    };
-
-    let alex_action_18 = || {
-        token_fail("Universal character names are unsupported".to_string())
-    };
-
-    let alex_action_19 = || {
-        token_fail("Invalid escape sequence".to_string())
-    };
-
-    let alex_action_20 = || {
-        token_fail("Universal character names in string literals are unsupported".to_string())
-    };
-
-    let alex_action_21 = || {
-        token_(1, CTokLParen)
-    };
-
-    let alex_action_22 = || {
-        token_(1, CTokRParen)
-    };
-
-    let alex_action_23 = || {
-        token_(1, CTokLBracket)
-    };
-
-    let alex_action_24 = || {
-        token_(1, CTokRBracket)
-    };
-
-    let alex_action_25 = || {
-        token_(2, CTokArrow)
-    };
-
-    let alex_action_26 = || {
-        token_(1, CTokDot)
-    };
-
-    let alex_action_27 = || {
-        token_(1, CTokExclam)
-    };
-
-    let alex_action_28 = || {
-        token_(1, CTokTilde)
-    };
-
-    let alex_action_29 = || {
-        token_(2, CTokInc)
-    };
-
-    let alex_action_30 = || {
-        token_(2, CTokDec)
-    };
-
-    let alex_action_31 = || {
-        token_(1, CTokPlus)
-    };
-
-    let alex_action_32 = || {
-        token_(1, CTokMinus)
-    };
-
-    let alex_action_33 = || {
-        token_(1, CTokStar)
-    };
-
-    let alex_action_34 = || {
-        token_(1, CTokSlash)
-    };
-
-    let alex_action_35 = || {
-        token_(1, CTokPercent)
-    };
-
-    let alex_action_36 = || {
-        token_(1, CTokAmper)
-    };
-
-    let alex_action_37 = || {
-        token_(2, CTokShiftL)
-    };
-
-    let alex_action_38 = || {
-        token_(2, CTokShiftR)
-    };
-
-    let alex_action_39 = || {
-        token_(1, CTokLess)
-    };
-
-    let alex_action_4 = || {
-        Lambda((takeChars(len, __str)), pos)
-    };
-
-    let alex_action_40 = || {
-        token_(2, CTokLessEq)
-    };
-
-    let alex_action_41 = || {
-        token_(1, CTokHigh)
-    };
-
-    let alex_action_42 = || {
-        token_(2, CTokHighEq)
-    };
-
-    let alex_action_43 = || {
-        token_(2, CTokEqual)
-    };
-
-    let alex_action_44 = || {
-        token_(2, CTokUnequal)
-    };
-
-    let alex_action_45 = || {
-        token_(1, CTokHat)
-    };
-
-    let alex_action_46 = || {
-        token_(1, CTokBar)
-    };
-
-    let alex_action_47 = || {
-        token_(2, CTokAnd)
-    };
-
-    let alex_action_48 = || {
-        token_(2, CTokOr)
-    };
-
-    let alex_action_49 = || {
-        token_(1, CTokQuest)
-    };
-
-    let alex_action_5 = || {
-        token_plus(CTokILit, readCOctal)
-    };
-
-    let alex_action_50 = || {
-        token_(1, CTokColon)
-    };
-
-    let alex_action_51 = || {
-        token_(1, CTokAssign)
-    };
-
-    let alex_action_52 = || {
-        token_(2, CTokPlusAss)
-    };
-
-    let alex_action_53 = || {
-        token_(2, CTokMinusAss)
-    };
-
-    let alex_action_54 = || {
-        token_(2, CTokStarAss)
-    };
-
-    let alex_action_55 = || {
-        token_(2, CTokSlashAss)
-    };
-
-    let alex_action_56 = || {
-        token_(2, CTokPercAss)
-    };
-
-    let alex_action_57 = || {
-        token_(2, CTokAmpAss)
-    };
-
-    let alex_action_58 = || {
-        token_(2, CTokHatAss)
-    };
-
-    let alex_action_59 = || {
-        token_(2, CTokBarAss)
-    };
-
-    let alex_action_6 = || {
-        token_plus(CTokILit, (readCInteger(DecRepr)))
-    };
-
-    let alex_action_60 = || {
-        token_(3, CTokSLAss)
-    };
-
-    let alex_action_61 = || {
-        token_(3, CTokSRAss)
-    };
-
-    let alex_action_62 = || {
-        token_(1, CTokComma)
-    };
-
-    let alex_action_63 = || {
-        token_(1, CTokSemic)
-    };
-
-    let alex_action_64 = || {
-        token_(1, CTokLBrace)
-    };
-
-    let alex_action_65 = || {
-        token_(1, CTokRBrace)
-    };
-
-    let alex_action_66 = || {
-        token_(3, CTokEllipsis)
-    };
-
-    let alex_action_7 = || {
-        token_plus(CTokILit, (readCInteger(HexRepr)drop(2)))
-    };
-
-    let alex_action_8 = || {
-        token_fail("Invalid integer constant suffix".to_string())
-    };
-
-    let alex_action_9 = || {
-        token(CTokCLit, (cCharfstunescapeChartail))
-    };
-
-    let alex_actions = || {
-        array((0, 121), vec![(120, alex_action_1), (119, alex_action_4), (118, alex_action_4), (117, alex_action_5), (116, alex_action_5), (115, alex_action_5), (114, alex_action_5), (113, alex_action_5), (112, alex_action_5), (111, alex_action_5), (110, alex_action_5), (109, alex_action_5), (108, alex_action_5), (107, alex_action_5), (106, alex_action_5), (105, alex_action_5), (104, alex_action_5), (103, alex_action_5), (102, alex_action_5), (101, alex_action_5), (100, alex_action_6), (99, alex_action_6), (98, alex_action_6), (97, alex_action_6), (96, alex_action_6), (95, alex_action_6), (94, alex_action_6), (93, alex_action_6), (92, alex_action_6), (91, alex_action_6), (90, alex_action_6), (89, alex_action_6), (88, alex_action_6), (87, alex_action_6), (86, alex_action_6), (85, alex_action_6), (84, alex_action_7), (83, alex_action_7), (82, alex_action_7), (81, alex_action_7), (80, alex_action_7), (79, alex_action_7), (78, alex_action_7), (77, alex_action_7), (76, alex_action_7), (75, alex_action_7), (74, alex_action_7), (73, alex_action_7), (72, alex_action_7), (71, alex_action_7), (70, alex_action_7), (69, alex_action_7), (68, alex_action_7), (67, alex_action_8), (66, alex_action_9), (65, alex_action_10), (64, alex_action_11), (63, alex_action_12), (62, alex_action_13), (61, alex_action_13), (60, alex_action_13), (59, alex_action_13), (58, alex_action_13), (57, alex_action_14), (56, alex_action_14), (55, alex_action_14), (54, alex_action_14), (53, alex_action_15), (52, alex_action_16), (51, alex_action_16), (50, alex_action_17), (49, alex_action_17), (48, alex_action_18), (47, alex_action_19), (46, alex_action_20), (45, alex_action_21), (44, alex_action_22), (43, alex_action_23), (42, alex_action_24), (41, alex_action_25), (40, alex_action_26), (39, alex_action_27), (38, alex_action_28), (37, alex_action_29), (36, alex_action_30), (35, alex_action_31), (34, alex_action_32), (33, alex_action_33), (32, alex_action_34), (31, alex_action_35), (30, alex_action_36), (29, alex_action_37), (28, alex_action_38), (27, alex_action_39), (26, alex_action_40), (25, alex_action_41), (24, alex_action_42), (23, alex_action_43), (22, alex_action_44), (21, alex_action_45), (20, alex_action_46), (19, alex_action_47), (18, alex_action_48), (17, alex_action_49), (16, alex_action_50), (15, alex_action_51), (14, alex_action_52), (13, alex_action_53), (12, alex_action_54), (11, alex_action_55), (10, alex_action_56), (9, alex_action_57), (8, alex_action_58), (7, alex_action_59), (6, alex_action_60), (5, alex_action_61), (4, alex_action_62), (3, alex_action_63), (2, alex_action_64), (1, alex_action_65), (0, alex_action_66)])
-    };
+    let alex_accept = listArray((0, 241), vec![AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccNone, AlexAccSkip, AlexAcc(120), AlexAccSkip, AlexAccSkip, AlexAcc(119), AlexAcc(118), AlexAcc(117), AlexAcc(116), AlexAcc(115), AlexAcc(114), AlexAcc(113), AlexAcc(112), AlexAcc(111), AlexAcc(110), AlexAcc(109), AlexAcc(108), AlexAcc(107), AlexAcc(106), AlexAcc(105), AlexAcc(104), AlexAcc(103), AlexAcc(102), AlexAcc(101), AlexAcc(100), AlexAcc(99), AlexAcc(98), AlexAcc(97), AlexAcc(96), AlexAcc(95), AlexAcc(94), AlexAcc(93), AlexAcc(92), AlexAcc(91), AlexAcc(90), AlexAcc(89), AlexAcc(88), AlexAcc(87), AlexAcc(86), AlexAcc(85), AlexAcc(84), AlexAcc(83), AlexAcc(82), AlexAcc(81), AlexAcc(80), AlexAcc(79), AlexAcc(78), AlexAcc(77), AlexAcc(76), AlexAcc(75), AlexAcc(74), AlexAcc(73), AlexAcc(72), AlexAcc(71), AlexAcc(70), AlexAcc(69), AlexAcc(68), AlexAcc(67), AlexAcc(66), AlexAcc(65), AlexAcc(64), AlexAcc(63), AlexAcc(62), AlexAcc(61), AlexAcc(60), AlexAcc(59), AlexAcc(58), AlexAcc(57), AlexAcc(56), AlexAcc(55), AlexAcc(54), AlexAcc(53), AlexAcc(52), AlexAcc(51), AlexAcc(50), AlexAcc(49), AlexAcc(48), AlexAcc(47), AlexAcc(46), AlexAcc(45), AlexAcc(44), AlexAcc(43), AlexAcc(42), AlexAcc(41), AlexAcc(40), AlexAcc(39), AlexAcc(38), AlexAcc(37), AlexAcc(36), AlexAcc(35), AlexAcc(34), AlexAcc(33), AlexAcc(32), AlexAcc(31), AlexAcc(30), AlexAcc(29), AlexAcc(28), AlexAcc(27), AlexAcc(26), AlexAcc(25), AlexAcc(24), AlexAcc(23), AlexAcc(22), AlexAcc(21), AlexAcc(20), AlexAcc(19), AlexAcc(18), AlexAcc(17), AlexAcc(16), AlexAcc(15), AlexAcc(14), AlexAcc(13), AlexAcc(12), AlexAcc(11), AlexAcc(10), AlexAcc(9), AlexAcc(8), AlexAcc(7), AlexAcc(6), AlexAcc(5), AlexAcc(4), AlexAcc(3), AlexAcc(2), AlexAcc(1), AlexAcc(0)]);
+
+    let alex_action_1 = __op_rshift(Lambda((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(False));
+
+    let alex_action_10 = token(CTokCLit, (cChar_wfstunescapeChartailtail));
+
+    let alex_action_11 = token(CTokCLit, (flip(cChars, False)unescapeMultiCharstail));
+
+    let alex_action_12 = token(CTokCLit, (flip(cChars, True)unescapeMultiCharstailtail));
+
+    let alex_action_13 = token(CTokFLit, readCFloat);
+
+    let alex_action_14 = token(CTokFLit, readCFloat);
+
+    let alex_action_15 = token_fail("Hexadecimal floating constant requires an exponent".to_string());
+
+    let alex_action_16 = token(CTokSLit, (cStringunescapeStringinittail));
+
+    let alex_action_17 = token(CTokSLit, (cString_wunescapeStringinittailtail));
+
+    let alex_action_18 = token_fail("Universal character names are unsupported".to_string());
+
+    let alex_action_19 = token_fail("Invalid escape sequence".to_string());
+
+    let alex_action_20 = token_fail("Universal character names in string literals are unsupported".to_string());
+
+    let alex_action_21 = token_(1, CTokLParen);
+
+    let alex_action_22 = token_(1, CTokRParen);
+
+    let alex_action_23 = token_(1, CTokLBracket);
+
+    let alex_action_24 = token_(1, CTokRBracket);
+
+    let alex_action_25 = token_(2, CTokArrow);
+
+    let alex_action_26 = token_(1, CTokDot);
+
+    let alex_action_27 = token_(1, CTokExclam);
+
+    let alex_action_28 = token_(1, CTokTilde);
+
+    let alex_action_29 = token_(2, CTokInc);
+
+    let alex_action_30 = token_(2, CTokDec);
+
+    let alex_action_31 = token_(1, CTokPlus);
+
+    let alex_action_32 = token_(1, CTokMinus);
+
+    let alex_action_33 = token_(1, CTokStar);
+
+    let alex_action_34 = token_(1, CTokSlash);
+
+    let alex_action_35 = token_(1, CTokPercent);
+
+    let alex_action_36 = token_(1, CTokAmper);
+
+    let alex_action_37 = token_(2, CTokShiftL);
+
+    let alex_action_38 = token_(2, CTokShiftR);
+
+    let alex_action_39 = token_(1, CTokLess);
+
+    let alex_action_4 = Lambda((takeChars(len, __str)), pos);
+
+    let alex_action_40 = token_(2, CTokLessEq);
+
+    let alex_action_41 = token_(1, CTokHigh);
+
+    let alex_action_42 = token_(2, CTokHighEq);
+
+    let alex_action_43 = token_(2, CTokEqual);
+
+    let alex_action_44 = token_(2, CTokUnequal);
+
+    let alex_action_45 = token_(1, CTokHat);
+
+    let alex_action_46 = token_(1, CTokBar);
+
+    let alex_action_47 = token_(2, CTokAnd);
+
+    let alex_action_48 = token_(2, CTokOr);
+
+    let alex_action_49 = token_(1, CTokQuest);
+
+    let alex_action_5 = token_plus(CTokILit, readCOctal);
+
+    let alex_action_50 = token_(1, CTokColon);
+
+    let alex_action_51 = token_(1, CTokAssign);
+
+    let alex_action_52 = token_(2, CTokPlusAss);
+
+    let alex_action_53 = token_(2, CTokMinusAss);
+
+    let alex_action_54 = token_(2, CTokStarAss);
+
+    let alex_action_55 = token_(2, CTokSlashAss);
+
+    let alex_action_56 = token_(2, CTokPercAss);
+
+    let alex_action_57 = token_(2, CTokAmpAss);
+
+    let alex_action_58 = token_(2, CTokHatAss);
+
+    let alex_action_59 = token_(2, CTokBarAss);
+
+    let alex_action_6 = token_plus(CTokILit, (readCInteger(DecRepr)));
+
+    let alex_action_60 = token_(3, CTokSLAss);
+
+    let alex_action_61 = token_(3, CTokSRAss);
+
+    let alex_action_62 = token_(1, CTokComma);
+
+    let alex_action_63 = token_(1, CTokSemic);
+
+    let alex_action_64 = token_(1, CTokLBrace);
+
+    let alex_action_65 = token_(1, CTokRBrace);
+
+    let alex_action_66 = token_(3, CTokEllipsis);
+
+    let alex_action_7 = token_plus(CTokILit, (readCInteger(HexRepr)drop(2)));
+
+    let alex_action_8 = token_fail("Invalid integer constant suffix".to_string());
+
+    let alex_action_9 = token(CTokCLit, (cCharfstunescapeChartail));
+
+    let alex_actions = array((0, 121), vec![(120, alex_action_1), (119, alex_action_4), (118, alex_action_4), (117, alex_action_5), (116, alex_action_5), (115, alex_action_5), (114, alex_action_5), (113, alex_action_5), (112, alex_action_5), (111, alex_action_5), (110, alex_action_5), (109, alex_action_5), (108, alex_action_5), (107, alex_action_5), (106, alex_action_5), (105, alex_action_5), (104, alex_action_5), (103, alex_action_5), (102, alex_action_5), (101, alex_action_5), (100, alex_action_6), (99, alex_action_6), (98, alex_action_6), (97, alex_action_6), (96, alex_action_6), (95, alex_action_6), (94, alex_action_6), (93, alex_action_6), (92, alex_action_6), (91, alex_action_6), (90, alex_action_6), (89, alex_action_6), (88, alex_action_6), (87, alex_action_6), (86, alex_action_6), (85, alex_action_6), (84, alex_action_7), (83, alex_action_7), (82, alex_action_7), (81, alex_action_7), (80, alex_action_7), (79, alex_action_7), (78, alex_action_7), (77, alex_action_7), (76, alex_action_7), (75, alex_action_7), (74, alex_action_7), (73, alex_action_7), (72, alex_action_7), (71, alex_action_7), (70, alex_action_7), (69, alex_action_7), (68, alex_action_7), (67, alex_action_8), (66, alex_action_9), (65, alex_action_10), (64, alex_action_11), (63, alex_action_12), (62, alex_action_13), (61, alex_action_13), (60, alex_action_13), (59, alex_action_13), (58, alex_action_13), (57, alex_action_14), (56, alex_action_14), (55, alex_action_14), (54, alex_action_14), (53, alex_action_15), (52, alex_action_16), (51, alex_action_16), (50, alex_action_17), (49, alex_action_17), (48, alex_action_18), (47, alex_action_19), (46, alex_action_20), (45, alex_action_21), (44, alex_action_22), (43, alex_action_23), (42, alex_action_24), (41, alex_action_25), (40, alex_action_26), (39, alex_action_27), (38, alex_action_28), (37, alex_action_29), (36, alex_action_30), (35, alex_action_31), (34, alex_action_32), (33, alex_action_33), (32, alex_action_34), (31, alex_action_35), (30, alex_action_36), (29, alex_action_37), (28, alex_action_38), (27, alex_action_39), (26, alex_action_40), (25, alex_action_41), (24, alex_action_42), (23, alex_action_43), (22, alex_action_44), (21, alex_action_45), (20, alex_action_46), (19, alex_action_47), (18, alex_action_48), (17, alex_action_49), (16, alex_action_50), (15, alex_action_51), (14, alex_action_52), (13, alex_action_53), (12, alex_action_54), (11, alex_action_55), (10, alex_action_56), (9, alex_action_57), (8, alex_action_58), (7, alex_action_59), (6, alex_action_60), (5, alex_action_61), (4, alex_action_62), (3, alex_action_63), (2, alex_action_64), (1, alex_action_65), (0, alex_action_66)]);
 
     fn alex_base() -> Array {
         listArray((0, 241), vec![Operator("-")(8), 119, 315, 511, 707, 903, 1099, 1295, 1491, 1687, 1883, Operator("-")(33), Operator("-")(32), 2002, Operator("-")(89), Operator("-")(100), 1987, Operator("-")(93), Operator("-")(90), 2115, Operator("-")(85), 1978, 199, 395, 2371, 591, 643, 983, 1179, 2499, 1375, 1571, 1767, 2579, Operator("-")(101), 2602, 2657, Operator("-")(86), 2680, 0, 2640, 2848, 2871, 0, 2783, 2991, Operator("-")(95), 3014, 3069, 3190, 3270, 3294, 3223, 3479, 3415, 0, 3623, 3726, 3854, 3934, 3957, 4012, 4039, 3968, 4032, 4288, 4416, 4496, 4519, 4574, 4601, 4530, 4594, 4850, 4930, 4954, 4883, 5139, 5219, 5243, 5172, 5428, 5508, 5577, 5833, 5769, 6029, 6109, 6178, 6434, 6370, 6630, Operator("-")(99), 6566, 6822, 6758, 6982, Operator("-")(30), 7110, 7306, 7502, 7698, 7894, 7190, 227, 237, 423, 254, 616, 7386, 7584, 8012, 8258, 3096, 5604, 6205, 7817, 8, 472, 0, 0, 0, 7995, 8235, 382, 578, Operator("-")(29), 570, 969, 1165, 0, Operator("-")(88), 1361, 970, 971, 1557, 1753, Operator("-")(57), 187, 8468, 8506, 1996, 3025, 369, 956, 3051, 3256, 0, Operator("-")(87), 3963, 1166, 1167, 4010, 4525, Operator("-")(54), 381, 8549, 4572, 4916, 374, 959, 5205, 5495, 0, Operator("-")(24), 5559, 1362, 1363, 5565, 6096, Operator("-")(53), 393, 8619, 8689, 1558, 0, 0, 0, 0, 152, 0, 987, 7783, 8588, 154, 0, 1183, 8658, 8759, 0, 8872, 0, 9068, 0, 0, 9264, 0, 0, 0, 0, 0, 1212, 68, 0, 0, 0, 460, 635, 71, 200, 201, 613, 210, 212, 445, 0, 394, 0, 0, 0, 213, 1769, 0, 0, 0, 0, 251, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -383,9 +251,7 @@ mod Language_C_Parser_Lexer {
 
     let alex_scan_tkn = |user, orig_input, len, input, s, last_acc| {
         seq(input, seq({
-            let new_acc = || {
-                (check_accs((quickIndex(alex_accept, (s)))))
-            };
+            let new_acc = (check_accs((quickIndex(alex_accept, (s)))));
         }(in, new_acc), match alexGetByte(input) {
             None => {
                 (new_acc, input)
@@ -394,21 +260,13 @@ mod Language_C_Parser_Lexer {
                 match fromIntegral(c) {
                     ord_c => {
                         {
-                            let base = || {
-                                alexIndexInt32OffAddr(alex_base, s)
-                            };
+                            let base = alexIndexInt32OffAddr(alex_base, s);
 ;
-                            let offset = || {
-                                (+(base, ord_c))
-                            };
+                            let offset = (+(base, ord_c));
 ;
-                            let check = || {
-                                alexIndexInt16OffAddr(alex_check, offset)
-                            };
+                            let check = alexIndexInt16OffAddr(alex_check, offset);
 ;
-                            let new_s = || {
-                                (if((>=(offset, (0)))) && ((check == ord_c))(then, alexIndexInt16OffAddr, alex_table, offset, else, alexIndexInt16OffAddr, alex_deflt, s))
-                            };
+                            let new_s = (if((>=(offset, (0)))) && ((check == ord_c))(then, alexIndexInt16OffAddr, alex_table, offset, else, alexIndexInt16OffAddr, alex_deflt, s));
                         }(in, match new_s {
                                 -(1) => {
                                     (new_acc, input)
@@ -33426,9 +33284,7 @@ otherwise { shadowTypedef(ident) },
         CDeclrR(Nothing, empty, Nothing, vec![], undefNode)
     }
 
-    let expression = || {
-        happySomeParser
-    };
+    let expression = happySomeParser;
 
     fn expressionP() -> P {
         expression
@@ -33438,9 +33294,7 @@ otherwise { shadowTypedef(ident) },
         external_declaration
     }
 
-    let external_declaration = || {
-        happySomeParser
-    };
+    let external_declaration = happySomeParser;
 
     fn funDeclr((CDeclrR(ident, derivedDeclrs, asmname, dcattrs, dat)): CDeclrR, params: Either<Vec<Ident>, (Vec<CDecl>, Bool)>, cattrs: Vec<CAttr>, at: NodeInfo) -> CDeclrR {
         CDeclrR(ident, (snoc(derivedDeclrs, CFunDeclr(params, cattrs, at))), asmname, dcattrs, dat)
@@ -33514,13 +33368,11 @@ otherwise { shadowTypedef(ident) },
         match (__0, __1, __2, __3, __4, __5, __6) {
             (1, tk, old_st, _, stk, <todo>, x(<todo>, _)) => {
                 {
-                    let i = || {
-                        (match x {
+                    let i = (match x {
                             HappyErrorToken(i) => {
                                 i
                             },
-                        })
-                    };
+                        });
                 }(in, happyError_, i, tk)
             },
             (i, tk, HappyState(action), sts, stk) => {
@@ -33542,13 +33394,9 @@ otherwise { shadowTypedef(ident) },
                 match happyDrop(k, (__op_concat((st), (sts)))) {
                     sts1(@, st1(@, HappyState(action))(__id_3a, _)) => {
                         {
-                            let drop_stk = || {
-                                happyDropStk(k, stk)
-                            };
+                            let drop_stk = happyDropStk(k, stk);
 ;
-                            let new_state = || {
-                                action
-                            };
+                            let new_state = action;
                         }(in, happyThen1, (fn(stk, tk)), (Lambda(new_state, sts1, (HappyStk(r, drop_stk)))))
                     },
                 }
@@ -33565,9 +33413,7 @@ otherwise { shadowTypedef(ident) },
                 match happyDrop(k, (__op_concat((st), (sts)))) {
                     sts1(@, st1(@, HappyState(action))(__id_3a, _)) => {
                         {
-                            let drop_stk = || {
-                                happyDropStk(k, stk)
-                            };
+                            let drop_stk = happyDropStk(k, stk);
                         }(in, happyThen1, (fn(stk, tk)), (Lambda(nt, j, tk, st1, sts1, (HappyStk(r, drop_stk)))))
                     },
                 }
@@ -33899,9 +33745,7 @@ otherwise { shadowTypedef(ident) },
                 match happyDrop((-(k, ((1)))), sts) {
                     sts1(@, st1(@, HappyState(action))(__id_3a, _)) => {
                         {
-                            let r = || {
-                                fn(stk)
-                            };
+                            let r = fn(stk);
                         }(in, happyDoSeq, r, (action(nt, j, tk, st1, sts1, r)))
                     },
                 }
@@ -36429,9 +36273,7 @@ otherwise { shadowTypedef(ident) },
         happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
-    let happyReduction_180 = || {
-        HappyAbsSyn33((empty))
-    };
+    let happyReduction_180 = HappyAbsSyn33((empty));
 
     let happyReduction_181 = |__0, __1| {
         match (__0, __1) {
@@ -36803,9 +36645,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    let happyReduction_219 = || {
-        HappyAbsSyn64((Nothing))
-    };
+    let happyReduction_219 = HappyAbsSyn64((Nothing));
 
     let happyReduction_22 = |(HappyStk((HappyAbsSyn12(happy_var_4)), HappyStk((HappyAbsSyn33(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn37(happy_var_1)), happyRest))))), tk| {
         happyThen(((withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (Lambda((HappyAbsSyn10(r)))))
@@ -37076,9 +36916,7 @@ otherwise { shadowTypedef(ident) },
 
     let happyReduction_26 = |(HappyStk((HappyAbsSyn63(happy_var_1)), happyRest)), tk| {
         happyThen(((__op_rshift({
-                let declr = || {
-                    reverseDeclr(happy_var_1)
-                };
+                let declr = reverseDeclr(happy_var_1);
             }(in, enterScope), __op_rshift(doFuncParamDeclIdent(declr), declr)))), (Lambda((HappyAbsSyn11(r)))))
     };
 
@@ -37146,9 +36984,7 @@ otherwise { shadowTypedef(ident) },
         HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
     };
 
-    let happyReduction_269 = || {
-        HappyAbsSyn79(((vec![], False)))
-    };
+    let happyReduction_269 = HappyAbsSyn79(((vec![], False)));
 
     let happyReduction_27 = |__0| {
         match (__0) {
@@ -37576,9 +37412,7 @@ otherwise { shadowTypedef(ident) },
         happyThen(((withNodeInfo(happy_var_1)(CInitList((reverse(happy_var_2)))))), (Lambda((HappyAbsSyn90(r)))))
     };
 
-    let happyReduction_331 = || {
-        HappyAbsSyn91((Nothing))
-    };
+    let happyReduction_331 = HappyAbsSyn91((Nothing));
 
     let happyReduction_332 = |__0, __1| {
         match (__0, __1) {
@@ -37591,9 +37425,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    let happyReduction_333 = || {
-        HappyAbsSyn92((empty))
-    };
+    let happyReduction_333 = HappyAbsSyn92((empty));
 
     let happyReduction_334 = |__0| {
         match (__0) {
@@ -38067,9 +37899,7 @@ otherwise { shadowTypedef(ident) },
 
     let happyReduction_4 = |(HappyStk((HappyAbsSyn8(happy_var_1)), happyRest)), tk| {
         happyThen((({
-                let decls = || {
-                    reverse(happy_var_1)
-                };
+                let decls = reverse(happy_var_1);
             }(in, match decls {
                     [] => {
                         /* do */ {
@@ -38228,9 +38058,7 @@ otherwise { shadowTypedef(ident) },
         happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, (Just(happy_var_3)), happy_var_5)))), (Lambda((HappyAbsSyn97(r)))))
     };
 
-    let happyReduction_42 = || {
-        HappyAbsSyn17((empty))
-    };
+    let happyReduction_42 = HappyAbsSyn17((empty));
 
     let happyReduction_420 = |(HappyStk((HappyAbsSyn97(happy_var_4)), HappyStk(_, HappyStk(_, HappyStk((HappyAbsSyn97(happy_var_1)), happyRest))))), tk| {
         happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, Nothing, happy_var_4)))), (Lambda((HappyAbsSyn97(r)))))
@@ -38396,9 +38224,7 @@ otherwise { shadowTypedef(ident) },
 
     let happyReduction_435 = |(HappyStk((HappyAbsSyn100(happy_var_3)), HappyStk(_, HappyStk((HappyAbsSyn97(happy_var_1)), happyRest)))), tk| {
         happyThen((({
-                let es = || {
-                    reverse(happy_var_3)
-                };
+                let es = reverse(happy_var_3);
             }(in, withNodeInfo, es)(CComma((__op_concat(happy_var_1, es)))))), (Lambda((HappyAbsSyn97(r)))))
     };
 
@@ -38424,9 +38250,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    let happyReduction_438 = || {
-        HappyAbsSyn119((Nothing))
-    };
+    let happyReduction_438 = HappyAbsSyn119((Nothing));
 
     let happyReduction_439 = |__0| {
         match (__0) {
@@ -38450,9 +38274,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    let happyReduction_440 = || {
-        HappyAbsSyn119((Nothing))
-    };
+    let happyReduction_440 = HappyAbsSyn119((Nothing));
 
     let happyReduction_441 = |__0| {
         match (__0) {
@@ -38579,9 +38401,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    let happyReduction_452 = || {
-        HappyAbsSyn126((vec![]))
-    };
+    let happyReduction_452 = HappyAbsSyn126((vec![]));
 
     let happyReduction_453 = |__0| {
         match (__0) {
@@ -38649,9 +38469,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    let happyReduction_459 = || {
-        HappyAbsSyn130((Nothing))
-    };
+    let happyReduction_459 = HappyAbsSyn130((Nothing));
 
     let happyReduction_46 = |__0| {
         match (__0) {
@@ -38736,9 +38554,7 @@ otherwise { shadowTypedef(ident) },
         happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
-    let happyReduction_5 = || {
-        HappyAbsSyn8((empty))
-    };
+    let happyReduction_5 = HappyAbsSyn8((empty));
 
     let happyReduction_50 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn37(happy_var_1)), happyRest)))), tk| {
         happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
@@ -38865,9 +38681,7 @@ otherwise { shadowTypedef(ident) },
         happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, happy_var_8, (reverse(happy_var_10)))))), (Lambda((HappyAbsSyn26(r)))))
     };
 
-    let happyReduction_74 = || {
-        HappyAbsSyn27((Nothing))
-    };
+    let happyReduction_74 = HappyAbsSyn27((Nothing));
 
     let happyReduction_75 = |__0| {
         match (__0) {
@@ -38880,9 +38694,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    let happyReduction_76 = || {
-        HappyAbsSyn28((vec![]))
-    };
+    let happyReduction_76 = HappyAbsSyn28((vec![]));
 
     let happyReduction_77 = |__0| {
         match (__0) {
@@ -38986,9 +38798,7 @@ otherwise { shadowTypedef(ident) },
             })), (Lambda((HappyAbsSyn32(r)))))
     };
 
-    let happyReduction_89 = || {
-        HappyAbsSyn33((empty))
-    };
+    let happyReduction_89 = HappyAbsSyn33((empty));
 
     let happyReduction_9 = |__0| {
         match (__0) {
@@ -39014,9 +38824,7 @@ otherwise { shadowTypedef(ident) },
 
     let happyReduction_91 = |(HappyStk((HappyAbsSyn91(happy_var_4)), HappyStk((HappyAbsSyn35(happy_var_3)), HappyStk((HappyAbsSyn63(happy_var_2)), HappyStk((HappyAbsSyn38(happy_var_1)), happyRest))))), tk| {
         happyThen((({
-                let declspecs = || {
-                    reverse(happy_var_1)
-                };
+                let declspecs = reverse(happy_var_1);
             }(in, /* do */ {
                     let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
                     doDeclIdent(declspecs, declr);
@@ -39026,9 +38834,7 @@ otherwise { shadowTypedef(ident) },
 
     let happyReduction_92 = |(HappyStk((HappyAbsSyn91(happy_var_4)), HappyStk((HappyAbsSyn35(happy_var_3)), HappyStk((HappyAbsSyn63(happy_var_2)), HappyStk((HappyAbsSyn62(happy_var_1)), happyRest))))), tk| {
         happyThen((({
-                let declspecs = || {
-                    liftTypeQuals(happy_var_1)
-                };
+                let declspecs = liftTypeQuals(happy_var_1);
             }(in, /* do */ {
                     let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
                     doDeclIdent(declspecs, declr);
@@ -39038,9 +38844,7 @@ otherwise { shadowTypedef(ident) },
 
     let happyReduction_93 = |(HappyStk((HappyAbsSyn91(happy_var_5)), HappyStk((HappyAbsSyn35(happy_var_4)), HappyStk((HappyAbsSyn63(happy_var_3)), HappyStk((HappyAbsSyn126(happy_var_2)), HappyStk((HappyAbsSyn62(happy_var_1)), happyRest)))))), tk| {
         happyThen((({
-                let declspecs = || {
-                    liftTypeQuals(happy_var_1)
-                };
+                let declspecs = liftTypeQuals(happy_var_1);
             }(in, /* do */ {
                     let declr = withAsmNameAttrs(happy_var_4, happy_var_3);
                     doDeclIdent(declspecs, declr);
@@ -39050,9 +38854,7 @@ otherwise { shadowTypedef(ident) },
 
     let happyReduction_94 = |(HappyStk((HappyAbsSyn91(happy_var_4)), HappyStk((HappyAbsSyn35(happy_var_3)), HappyStk((HappyAbsSyn63(happy_var_2)), HappyStk((HappyAbsSyn126(happy_var_1)), happyRest))))), tk| {
         happyThen((({
-                let declspecs = || {
-                    liftCAttrs(happy_var_1)
-                };
+                let declspecs = liftCAttrs(happy_var_1);
             }(in, /* do */ {
                     let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
                     doDeclIdent(declspecs, declr);
@@ -39119,21 +38921,17 @@ otherwise { shadowTypedef(ident) },
         happyReturn
     }
 
-    let happySeq = || {
-        happyDontSeq
-    };
+    let happySeq = happyDontSeq;
 
     let happyShift = |__0, __1, __2, __3, __4, __5, __6, __7| {
         match (__0, __1, __2, __3, __4, __5, __6, __7) {
             (new_state, 1, tk, st, sts, stk, <todo>, x(<todo>, _)) => {
                 {
-                    let i = || {
-                        (match x {
+                    let i = (match x {
                             HappyErrorToken(i) => {
                                 i
                             },
-                        })
-                    };
+                        });
                 }(in, new_state, i, i, tk, (HappyState((new_state))), (__op_concat((st), (sts))), (stk))
             },
             (new_state, i, tk, st, sts, stk) => {
@@ -39160,9 +38958,7 @@ otherwise { shadowTypedef(ident) },
             },
             (nt, fn, j, tk, _, sts, <todo>, st(<todo>, HappyState(action))(<todo>, _), v1(<todo>, stk_q)) => {
                 {
-                    let r = || {
-                        fn(v1)
-                    };
+                    let r = fn(v1);
                 }(in, happySeq, r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))
             },
         }
@@ -39175,9 +38971,7 @@ otherwise { shadowTypedef(ident) },
             },
             (nt, fn, j, tk, _, _(<todo>, sts(<todo>, st(<todo>, HappyState(action))(<todo>, _))), v1(<todo>, v2, <todo>, stk_q)) => {
                 {
-                    let r = || {
-                        fn(v1, v2)
-                    };
+                    let r = fn(v1, v2);
                 }(in, happySeq, r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))
             },
         }
@@ -39190,9 +38984,7 @@ otherwise { shadowTypedef(ident) },
             },
             (nt, fn, j, tk, _, _(<todo>, _(<todo>, sts(<todo>, st(<todo>, HappyState(action))(<todo>, _)))), v1(<todo>, v2, <todo>, v3, <todo>, stk_q)) => {
                 {
-                    let r = || {
-                        fn(v1, v2, v3)
-                    };
+                    let r = fn(v1, v2, v3);
                 }(in, happySeq, r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))
             },
         }
@@ -39202,9 +38994,7 @@ otherwise { shadowTypedef(ident) },
         (Operator(">>="))
     }
 
-    let happyThen1 = || {
-        happyThen
-    };
+    let happyThen1 = happyThen;
 
     fn liftCAttrs() -> Vec<CDeclSpec> {
         map((CTypeQualCAttrQual))
@@ -39249,9 +39039,7 @@ otherwise { shadowTypedef(ident) },
         }
     }
 
-    let statement = || {
-        happySomeParser
-    };
+    let statement = happySomeParser;
 
     fn statementP() -> P {
         statement
@@ -39261,9 +39049,7 @@ otherwise { shadowTypedef(ident) },
         translation_unit
     }
 
-    let translation_unit = || {
-        happySomeParser
-    };
+    let translation_unit = happySomeParser;
 
     fn unL((L(a, pos)): Located) -> Located {
         a
@@ -39277,14 +39063,10 @@ otherwise { shadowTypedef(ident) },
         /* do */ {
             let name = getNewName;
             {
-                let attrs = || {
-                    mkNodeInfo((posOf(node)), name)
-                };
+                let attrs = mkNodeInfo((posOf(node)), name);
             };
             {
-                let newDeclr = || {
-                    appendDeclrAttrs(cattrs)(mkDeclrNode(attrs))
-                };
+                let newDeclr = appendDeclrAttrs(cattrs)(mkDeclrNode(attrs));
             };
             seq(attrs, seq(newDeclr, newDeclr))
         }
@@ -39294,14 +39076,10 @@ otherwise { shadowTypedef(ident) },
         /* do */ {
             let name = getNewName;
             {
-                let attrs = || {
-                    mkNodeInfo((posOf(node)), name)
-                };
+                let attrs = mkNodeInfo((posOf(node)), name);
             };
             {
-                let newDeclr = || {
-                    appendDeclrAttrs(cattrs)mkDeclrCtor(attrs)
-                };
+                let newDeclr = appendDeclrAttrs(cattrs)mkDeclrCtor(attrs);
             };
             seq(attrs, seq(newDeclr, newDeclr))
         }
@@ -39311,14 +39089,10 @@ otherwise { shadowTypedef(ident) },
         /* do */ {
             let lastTok = getSavedToken;
             {
-                let firstPos = || {
-                    posOfNode(nodeinfo)
-                };
+                let firstPos = posOfNode(nodeinfo);
             };
             {
-                let attrs = || {
-                    mkNodeInfo_q(firstPos, ($!(posLenOfTok, lastTok)), (maybe((__error!("nameOfNode".to_string())), id, (nameOfNode(nodeinfo)))))
-                };
+                let attrs = mkNodeInfo_q(firstPos, ($!(posLenOfTok, lastTok)), (maybe((__error!("nameOfNode".to_string())), id, (nameOfNode(nodeinfo)))));
             };
             seq(attrs, (mkAttrNode(attrs)))
         }
@@ -39329,14 +39103,10 @@ otherwise { shadowTypedef(ident) },
             let name = getNewName;
             let lastTok = getSavedToken;
             {
-                let firstPos = || {
-                    posOf(node)
-                };
+                let firstPos = posOf(node);
             };
             {
-                let attrs = || {
-                    mkNodeInfo_q(firstPos, ($!(posLenOfTok, lastTok)), name)
-                };
+                let attrs = mkNodeInfo_q(firstPos, ($!(posLenOfTok, lastTok)), name);
             };
             seq(attrs, (mkAttrNode(attrs)))
         }

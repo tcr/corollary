@@ -551,15 +551,24 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         for (args, expr) in fnset {
             // For type-less functions,
             if !types.contains_key(&key) {
-                // fallback to printing a lambda
-                out.push(
-                    format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
-                        state.indent(),
-                        key,
-                        args.iter().map(|x| print_expr(state, x)).collect::<Vec<_>>().join(", "),
-                        state.tab().indent(),
-                        print_expr(state.tab(), &expr),
-                        state.indent()));
+                // With no type signature, we print a lambda.
+                // If there are no arguments, we compute it now (non-lazily).
+                if args.len() == 0 {
+                    out.push(
+                        format!("{}let {} = {};\n",
+                            state.indent(),
+                            key,
+                            print_expr(state.tab(), &expr)));
+                } else {
+                    out.push(
+                        format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
+                            state.indent(),
+                            key,
+                            args.iter().map(|x| print_expr(state, x)).collect::<Vec<_>>().join(", "),
+                            state.tab().indent(),
+                            print_expr(state.tab(), &expr),
+                            state.indent()));
+                }
                 continue;
             }
 

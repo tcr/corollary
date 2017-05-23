@@ -217,14 +217,10 @@ mod Language_Rust_Corrode_C {
                     None => {
                         /* do */ {
                             {
-                                let name = || {
-                                    applyRenames(ident)
-                                };
+                                let name = applyRenames(ident);
                             };
                             {
-                                let ty = || {
-                                    (typeMutable(itype), typeRep(itype))
-                                };
+                                let ty = (typeMutable(itype), typeRep(itype));
                             };
                             lift(tell(mempty, {
                                 outputExterns: Map_singleton(name, (mkItem(name, ty)))
@@ -263,9 +259,7 @@ mod Language_Rust_Corrode_C {
     fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust_Mutable, CType)) -> EnvMonad {
         /* do */ {
             {
-                let name = || {
-                    applyRenames(ident)
-                };
+                let name = applyRenames(ident);
             };
             addSymbolIdentAction(ident)(Result);
             name
@@ -341,9 +335,7 @@ mod Language_Rust_Corrode_C {
     fn baseTypeOf(specs: Vec<CDeclSpec>) -> EnvMonad {
         /* do */ {
             {
-                let (storage, _attributes, basequals, basespecs, _inlineNoReturn, _align) = || {
-                    partitionDeclSpecs(specs)
-                };
+                let (storage, _attributes, basequals, basespecs, _inlineNoReturn, _align) = partitionDeclSpecs(specs);
             };
             let mstorage = match storage {
                 [] => {
@@ -399,14 +391,10 @@ mod Language_Rust_Corrode_C {
                                 },
                             };
                             {
-                                let ty = || {
-                                    IsInt(Signed, WordWidth)
-                                };
+                                let ty = IsInt(Signed, WordWidth);
                             };
                             {
-                                let size = || {
-                                    rustSizeOfType((toRustType(ptrTo)))
-                                };
+                                let size = rustSizeOfType((toRustType(ptrTo)));
                             };
                             Result
                         }
@@ -510,25 +498,19 @@ mod Language_Rust_Corrode_C {
     fn cfgToRust(_node: node, build: CSourceBuildCFGT) -> CSourceBuildCFGT {
         /* do */ {
             {
-                let builder = || {
-                    buildCFG(/* do */ {
+                let builder = buildCFG(/* do */ {
                         let (early, term) = build;
                         let entry = newLabel;
                         addBlock(entry, early, term);
                         entry
-                    })
-                };
+                    });
             };
             let (rawCFG, _) = evalRWST(builder, (OuterLabels(Nothing, Nothing, Nothing)), Map_empty);
             {
-                let cfg = || {
-                    depthFirstOrder((removeEmptyBlocks(rawCFG)))
-                };
+                let cfg = depthFirstOrder((removeEmptyBlocks(rawCFG)));
             };
             {
-                let (hasGoto, structured) = || {
-                    structureCFG(mkBreak, mkContinue, mkLoop, mkIf, mkGoto, mkMatch, cfg)
-                };
+                let (hasGoto, structured) = structureCFG(mkBreak, mkContinue, mkLoop, mkIf, mkGoto, mkMatch, cfg);
             };
             return(__op_concat(if(hasGoto, then, declCurrent), structured(else, structured)));
 
@@ -596,8 +578,7 @@ mod Language_Rust_Corrode_C {
     fn compound(expr: CExpr, returnOld: Bool, demand: Bool, op: CAssignOp, lhs: Result, rhs: Result) -> EnvMonad {
         /* do */ {
             {
-                let op_q = || {
-                    match op {
+                let op_q = match op {
                         CAssignOp => {
                             Nothing
                         },
@@ -631,30 +612,21 @@ mod Language_Rust_Corrode_C {
                         COrAssOp => {
                             Just(COrOp)
                         },
-                    }
-                };
+                    };
             };
             {
-                let duplicateLHS = || {
-                    ||(isJust(op_q), demand)
-                };
+                let duplicateLHS = ||(isJust(op_q), demand);
             };
             {
-                let (bindings1, dereflhs, boundrhs) = || {
-                    ||(if(not, duplicateLHS), hasNoSideEffects((result(lhs)), then, (vec![], lhs, rhs), else, {
-                            let lhsvar = || {
-                                Rust_VarName("_lhs".to_string())
-                            };
+                let (bindings1, dereflhs, boundrhs) = ||(if(not, duplicateLHS), hasNoSideEffects((result(lhs)), then, (vec![], lhs, rhs), else, {
+                            let lhsvar = Rust_VarName("_lhs".to_string());
 ;
-                            let rhsvar = || {
-                                Rust_VarName("_rhs".to_string())
-                            };
+                            let rhsvar = Rust_VarName("_rhs".to_string());
                         }, in, (vec![Rust_Let(Rust_Immutable, rhsvar, Nothing, (Just((result(rhs))))), Rust_Let(Rust_Immutable, lhsvar, Nothing, (Just((Rust_Borrow(Rust_Mutable, (result(lhs)))))))], lhs({
                             result: Rust_Deref((Rust_Var(lhsvar)))
                         }), rhs({
                             result: Rust_Var(rhsvar)
-                        }))))
-                };
+                        }))));
             };
             let rhs_q = match op_q {
                 Some(o) => {
@@ -665,18 +637,12 @@ mod Language_Rust_Corrode_C {
                 },
             };
             {
-                let assignment = || {
-                    Rust_Assign((result(dereflhs)), (Rust_:=), (castTo((resultType(lhs)), rhs_q)))
-                };
+                let assignment = Rust_Assign((result(dereflhs)), (Rust_:=), (castTo((resultType(lhs)), rhs_q)));
             };
             {
-                let (bindings2, ret) = || {
-                    if(not, demand, then, (vec![], Nothing), else, if, not, returnOld, then, (vec![], Just((result(dereflhs)))), else, {
-                            let oldvar = || {
-                                Rust_VarName("_old".to_string())
-                            };
-                        }, in, (vec![Rust_Let(Rust_Immutable, oldvar, Nothing, (Just((result(dereflhs)))))], Just((Rust_Var(oldvar)))))
-                };
+                let (bindings2, ret) = if(not, demand, then, (vec![], Nothing), else, if, not, returnOld, then, (vec![], Just((result(dereflhs)))), else, {
+                            let oldvar = Rust_VarName("_old".to_string());
+                        }, in, (vec![Rust_Let(Rust_Immutable, oldvar, Nothing, (Just((result(dereflhs)))))], Just((Rust_Var(oldvar)))));
             };
             return(match Rust_Block((__op_addadd(bindings1, __op_addadd(bindings2, exprToStatements(assignment)))), ret) {
                 b(@, Rust_Block(body, None)) => {
@@ -918,9 +884,7 @@ mod Language_Rust_Corrode_C {
             (demand, CComma(exprs, _)) => {
                 /* do */ {
                     {
-                        let (effects, mfinal) = || {
-                            if(demand, then, (init(exprs), Just((last(exprs)))), else, (exprs, Nothing))
-                        };
+                        let (effects, mfinal) = if(demand, then, (init(exprs), Just((last(exprs)))), else, (exprs, Nothing));
                     };
                     let effects_q = mapM((fmap(resultToStatements)interpretExpr(False)), effects);
                     let mfinal_q = mapM((interpretExpr(True)), mfinal);
@@ -979,9 +943,7 @@ mod Language_Rust_Corrode_C {
                         /* do */ {
                             let expr_q = interpretExpr(True, expr);
                             {
-                                let ty_q = || {
-                                    IsPtr((resultMutable(expr_q)), (resultType(expr_q)))
-                                };
+                                let ty_q = IsPtr((resultMutable(expr_q)), (resultType(expr_q)));
                             };
                             Result
                         }
@@ -1006,9 +968,7 @@ mod Language_Rust_Corrode_C {
                         /* do */ {
                             let expr_q = interpretExpr(demand, expr);
                             {
-                                let ty_q = || {
-                                    intPromote((resultType(expr_q)))
-                                };
+                                let ty_q = intPromote((resultType(expr_q)));
                             };
                             Result
                         }
@@ -1109,9 +1069,7 @@ mod Language_Rust_Corrode_C {
                         },
                     };
                     {
-                        let field = || {
-                            applyRenames(ident)
-                        };
+                        let field = applyRenames(ident);
                     };
                     let ty = match lookup(field, fields) {
                         Some(ty) => {
@@ -1134,24 +1092,15 @@ mod Language_Rust_Corrode_C {
                 match c {
                     CIntConst(CInteger(v, repr, flags), _) => {
                         {
-                            let allow_signed = || {
-                                not((testFlag(FlagUnsigned, flags)))
-                            };
+                            let allow_signed = not((testFlag(FlagUnsigned, flags)));
 ;
-                            let allow_unsigned = || {
-                                ||(not(allow_signed), /=(repr, DecRepr))
-                            };
+                            let allow_unsigned = ||(not(allow_signed), /=(repr, DecRepr));
 ;
-                            let widths = || {
-                                vec![(32, if(any, (Operator("testFlag")(flags)), vec![FlagLongLong, FlagLong], then, WordWidth, else, BitWidth, 32)), (64, BitWidth(64))]
-                            };
+                            let widths = vec![(32, if(any, (Operator("testFlag")(flags)), vec![FlagLongLong, FlagLong], then, WordWidth, else, BitWidth, 32)), (64, BitWidth(64))];
 ;
-                            let allowed_types = || {
-                                Dummy
-                            };
+                            let allowed_types = Dummy;
 ;
-                            let repr_q = || {
-                                match repr {
+                            let repr_q = match repr {
                                     DecRepr => {
                                         Rust_DecRepr
                                     },
@@ -1161,8 +1110,7 @@ mod Language_Rust_Corrode_C {
                                     HexRepr => {
                                         Rust_HexRepr
                                     },
-                                }
-                            };
+                                };
                         }(in, match allowed_types {
                                 [] => {
                                     badSource(expr, "integer (too big)".to_string())
@@ -1206,14 +1154,12 @@ mod Language_Rust_Corrode_C {
             (demand, stat, <todo>, CStatExpr(CCompound([], stmts, _), _)) => {
                 scope(/* do */ {
                     {
-                        let (effects, final) = || {
-                            match last(stmts) {
+                        let (effects, final) = match last(stmts) {
                                 CBlockStmt, CExpr(expr, _) => if demand { (init(stmts), expr) },
                                 _ => {
                                     (stmts, Nothing)
                                 },
-                            }
-                        };
+                            };
                     };
                     let effects_q = cfgToRust(stat, (foldr(interpretBlockItem, ((vec![], Unreachable)), effects)));
                     let final_q = mapM((interpretExpr(True)), final);
@@ -1266,13 +1212,9 @@ mod Language_Rust_Corrode_C {
                         let f_q = mapExceptT((local(setRetTy)))(scope(/* do */ {
                             let formals = sequence(Dummy);
                             {
-                                let returnValue = || {
-                                    (if(name) == "_c_main".to_string()(then, Just, 0, else, Nothing))
-                                };
+                                let returnValue = (if(name) == "_c_main".to_string()(then, Just, 0, else, Nothing));
 ;
-                                let returnStatement = || {
-                                    Rust_Stmt((Rust_Return(returnValue)))
-                                };
+                                let returnStatement = Rust_Stmt((Rust_Return(returnValue)));
                             };
                             let body_q = cfgToRust(declr, (interpretStatement(body, ((vec![returnStatement], Unreachable)))));
                             (Rust_Item(attrs, vis, (Rust_Function(vec![Rust_UnsafeFn, Rust_ExternABI(Nothing)], name, formals, (toRustRetType(retTy)), (statementsToBlock(body_q))))))
@@ -1290,9 +1232,7 @@ mod Language_Rust_Corrode_C {
                 },
             };
             {
-                let name = || {
-                    applyRenames(ident)
-                };
+                let name = applyRenames(ident);
             };
             {
                 let funTy = |itype| {
@@ -1354,9 +1294,7 @@ mod Language_Rust_Corrode_C {
                 /* do */ {
                     let selector = getSwitchExpression(stmt);
                     {
-                        let condition = || {
-                            CBinary(CEqOp, selector, expr, node)
-                        };
+                        let condition = CBinary(CEqOp, selector, expr, node);
                     };
                     addSwitchCase((Just(condition)), body, next)
                 }
@@ -1365,9 +1303,7 @@ mod Language_Rust_Corrode_C {
                 /* do */ {
                     let selector = getSwitchExpression(stmt);
                     {
-                        let condition = || {
-                            CBinary(CLndOp, (CBinary(CGeqOp, selector, lower, node)), (CBinary(CLeqOp, selector, upper, node)), node)
-                        };
+                        let condition = CBinary(CLndOp, (CBinary(CGeqOp, selector, lower, node)), (CBinary(CLeqOp, selector, upper, node)), node);
                     };
                     addSwitchCase((Just(condition)), body, next)
                 }
@@ -1442,9 +1378,7 @@ mod Language_Rust_Corrode_C {
                         };
                     };
                     {
-                        let (conditions, defaults) = || {
-                            IntMap_mapEither(isDefault, cases)
-                        };
+                        let (conditions, defaults) = IntMap_mapEither(isDefault, cases);
                     };
                     let defaultCase = match IntMap_keys(defaults) {
                         [] => {
@@ -1620,9 +1554,7 @@ mod Language_Rust_Corrode_C {
         lift(/* do */ {
             let st = get;
             {
-                let (global_q, a) = || {
-                    f((globalState(st)))
-                };
+                let (global_q, a) = f((globalState(st)));
             };
             put(st, {
                 globalState: global_q
@@ -1734,9 +1666,7 @@ mod Language_Rust_Corrode_C {
                                     Some(obj_q) => {
                                         /* do */ {
                                             {
-                                                let s = || {
-                                                    castTo((designatorType(obj_q)), expr_q)
-                                                };
+                                                let s = castTo((designatorType(obj_q)), expr_q);
                                             };
                                             (obj_q, scalar(s))
                                         }
@@ -1746,14 +1676,10 @@ mod Language_Rust_Corrode_C {
                         },
                     };
                     {
-                        let indices = || {
-                            unfoldr((Lambda), obj_q)
-                        };
+                        let indices = unfoldr((Lambda), obj_q);
                     };
                     {
-                        let initializer = || {
-                            foldl((Lambda(Nothing, (IntMap_singleton(j, a)))), initial, indices)
-                        };
+                        let initializer = foldl((Lambda(Nothing, (IntMap_singleton(j, a)))), initial, indices);
                     };
                     (nextObject(obj_q), mappend(prior, initializer))
                 }
@@ -1974,8 +1900,7 @@ mod Language_Rust_Corrode_C {
         /* do */ {
             let objectsAndInitializers = forM(list)(Lambda);
             {
-                let base = || {
-                    match ty {
+                let base = match ty {
                         IsArray(_, size, el) => {
                             From(el, 0, (replicate((-(size, 1)), el)), (Base(ty)))
                         },
@@ -1985,8 +1910,7 @@ mod Language_Rust_Corrode_C {
                         _ => {
                             Base(ty)
                         },
-                    }
-                };
+                    };
             };
             let (_, initializer) = foldM(resolveCurrentObject, (Just(base), mempty), objectsAndInitializers);
             initializer
@@ -2085,9 +2009,7 @@ mod Language_Rust_Corrode_C {
         /* do */ {
             let (setup, args) = wrapArgv(argTypes);
             {
-                let ret = || {
-                    Rust_VarName("ret".to_string())
-                };
+                let ret = Rust_VarName("ret".to_string());
             };
             emitItems(vec![Rust_Item(vec![], Rust_Private, (Rust_Function(vec![], "main".to_string(), vec![], (Rust_TypeName("()".to_string())), (statementsToBlock((__op_addadd(setup, __op_addadd(vec![bind(Rust_Immutable, ret)(Rust_UnsafeExpr(Rust_Block(vec![])(Just(call(realName, args)))))], exprToStatements((call("::std::process::exit".to_string(), vec![Rust_Var(ret)])))))))))))]);
 ;
@@ -2253,13 +2175,9 @@ mod Language_Rust_Corrode_CFG {
 
     fn relooper(entries: Monoid) -> Monoid {
         {
-            let (returns, noreturns) = || {
-                partitionMembers(entries)(IntSet_unions(map(successors)(IntMap_elems(blocks))))
-            };
+            let (returns, noreturns) = partitionMembers(entries)(IntSet_unions(map(successors)(IntMap_elems(blocks))));
 ;
-            let (present, absent) = || {
-                partitionMembers(entries, (IntMap_keysSet(blocks)))
-            };
+            let (present, absent) = partitionMembers(entries, (IntMap_keysSet(blocks)));
         }(in, match (IntSet_toList(noreturns), IntSet_toList(returns)) {
                 ([], []) => {
                     vec![]
@@ -2352,14 +2270,10 @@ mod Language_Rust_Corrode_CrateMap {
             let thisCrate = Map_lookup("".to_string(), crates);
             let thisModule = Map_lookup(modName, thisCrate);
             {
-                let thisCrate_q = || {
-                    Map_delete(modName, thisCrate)
-                };
+                let thisCrate_q = Map_delete(modName, thisCrate);
             };
             {
-                let crates_q = || {
-                    Map_insert("".to_string(), thisCrate_q, crates)
-                };
+                let crates_q = Map_insert("".to_string(), thisCrate_q, crates);
             };
             (thisModule, crates_q)
         })

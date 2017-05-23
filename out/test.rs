@@ -27,9 +27,7 @@ mod Test_Code {
     fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust_Mutable, CType)) -> EnvMonad {
         /* do */ {
             {
-                let name = || {
-                    applyRenames(ident)
-                };
+                let name = applyRenames(ident);
             };
             addSymbolIdentAction(ident)(Result);
             name
