@@ -72,8 +72,7 @@ fn expr_explode(span: Vec<Expr>) -> Vec<Expr> {
     span
 }
 
-fn print_ident(_: PrintState, expr: String) -> String {
-    let expr = expr.replace("'", "_q").replace(".", "::");
+fn print_ident(_: PrintState, mut expr: String) -> String {
     // Handle keywords here
     if expr == "mut" {
         return "__mut".to_string()
@@ -81,13 +80,14 @@ fn print_ident(_: PrintState, expr: String) -> String {
         return "__error!".to_string()
     } else if expr == "str" {
         return "__str".to_string()
-    } else if expr.find(":").is_some() {
+    }
+
+    if expr.find(":").is_some() {
         // Print ..:XXX sequences as hex
         let pos = expr.find(":").unwrap();
-        format!("{}__id_{}", &expr[0..pos], (&expr[pos..]).to_hex())
-    } else {
-        expr
+        expr = format!("{}__id_{}", &expr[0..pos], (&expr[pos..]).to_hex())
     }
+    expr.replace("'", "_q").replace(".", "::")
 }
 
 
