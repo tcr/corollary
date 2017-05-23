@@ -637,7 +637,7 @@ mod Language_Rust_Corrode_C {
                 },
             };
             {
-                let assignment = Rust_Assign((result(dereflhs)), (Rust_:=), (castTo((resultType(lhs)), rhs_q)));
+                let assignment = Rust_Assign((result(dereflhs)), (Rust___id_3a3d), (castTo((resultType(lhs)), rhs_q)));
             };
             {
                 let (bindings2, ret) = if(not, demand, then, (vec![], Nothing), else, if, not, returnOld, then, (vec![], Just((result(dereflhs)))), else, {
@@ -2329,10 +2329,10 @@ mod Language_Rust_Idiomatic {
             [] => {
                 Nothing
             },
-            x:xs => {
+            x__id_3a7873 => {
                 match unsnoc(xs) {
                     Some((a, b)) => {
-                        Just((x:a, b))
+                        Just((x__id_3a61, b))
                     },
                     None => {
                         Just((vec![], x))

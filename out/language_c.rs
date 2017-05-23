@@ -1388,7 +1388,7 @@ mod Language_C_Analysis_DeclAnalysis {
             [declr] => {
                 vec![decl]
             },
-            d1:ds => {
+            d1__id_3a6473 => {
                 {
                     let declspecs_q = map(elideSUEDef, declspecs, in);
                 }(return)(__op_concat((CDecl(declspecs, vec![d1], node)), Dummy))
@@ -1514,7 +1514,7 @@ otherwise { TyFloating(floatType) },
                 }
             },
             CDecl(declspecs, declrs, node) => {
-                mapM((uncurry(tMemberDecl)), (zip((True:repeat(False)), declrs)))
+                mapM((uncurry(tMemberDecl)), (zip((True__id_3a726570656174(False)), declrs)))
             },
         }
     }
@@ -2127,7 +2127,7 @@ mod Language_C_Analysis_NameSpaceMap {
             (ns, <todo>, NsMap(_, []), ident, def) => {
                 defGlobal(ns, ident, def)
             },
-            (NsMap(gs, ls:lss), ident, def) => {
+            (NsMap(gs, ls__id_3a6c7373), ident, def) => {
                 (NsMap(gs, (__op_concat((__op_concat((ident, def), ls)), lss))), Prelude_lookup(ident, ls))
             },
         }
@@ -2150,7 +2150,7 @@ mod Language_C_Analysis_NameSpaceMap {
             NsMap(_, []) => {
                 __error!("NsMaps.leaveScope: No local scope!".to_string())
             },
-            NsMap(gs, ls:lss) => {
+            NsMap(gs, ls__id_3a6c7373) => {
                 (NsMap(gs, lss), ls)
             },
         }
@@ -3935,7 +3935,7 @@ mod Language_C_Data_Error {
     }
 
     fn showErrorInfo(short_msg: String, (ErrorInfo(level, pos, msgs)): ErrorInfo) -> String {
-        __op_addadd(header, showMsgLines((if(null, short_msg, then, msgs, else, short_msg:msgs))))
+        __op_addadd(header, showMsgLines((if(null, short_msg, then, msgs, else, short_msg__id_3a6d736773))))
     }
 
     fn unsupportedFeature(msg: String, a: a) -> UnsupportedFeature {
@@ -4019,16 +4019,16 @@ mod Language_C_Data_Ident {
 
     fn quad(__0: String) -> isize {
         match (__0) {
-            c1:c2:c3:c4:s => {
+            c1__id_3a63323a63333a63343a73 => {
                 +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28)))
             },
-            c1:c2:c3:([]) => {
+            c1__id_3a63323a63333a([]) => {
                 *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))
             },
-            c1:c2:([]) => {
+            c1__id_3a63323a([]) => {
                 *(ord(c2), +(bits7, ord(c1)))
             },
-            c1:([]) => {
+            c1__id_3a([]) => {
                 ord(c1)
             },
             [] => {
@@ -4373,7 +4373,7 @@ mod Language_C_Data_RList {
             Reversed([]) => {
                 __error!("viewr: empty RList".to_string())
             },
-            Reversed(x:xs) => {
+            Reversed(x__id_3a7873) => {
                 (Reversed(xs), x)
             },
         }
@@ -4413,7 +4413,7 @@ mod Language_C_Parser_ParserMonad {
 
     fn enterScope() -> P {
         P(Lambda(s, {
-            scopes: tyids:ss
+            scopes: tyids__id_3a7373
         }, ()))
     }
 
@@ -5386,7 +5386,7 @@ mod Language_C_Syntax_Constants {
             (err, []) => {
                 __error!(err)
             },
-            (_, x:_) => {
+            (_, x__id_3a5f) => {
                 x
             },
         }
@@ -5486,7 +5486,7 @@ mod Language_C_Syntax_Constants {
 
     fn unescapeChar(__0: String) -> (Char, String) {
         match (__0) {
-            '\\'(<todo>, c:cs) => {
+            '\\'(<todo>, c__id_3a6373) => {
                 match c {
                     'n' => {
                         ('\n', cs)
@@ -5535,7 +5535,7 @@ mod Language_C_Syntax_Constants {
                         }
                     },
                     _ => {
-                        match head_q("bad escape sequence".to_string(), (readOct((c:cs)))) {
+                        match head_q("bad escape sequence".to_string(), (readOct((c__id_3a6373)))) {
                             (i, cs_q) => {
                                 (toEnum(i), cs_q)
                             },

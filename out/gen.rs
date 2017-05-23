@@ -571,7 +571,7 @@ mod Language_C_Parser_Lexer {
 
     fn readCOctal(s: String, Operator("@"): Either) -> Either {
         match r {
-            c:_ => if isDigit(c) { readCInteger(OctalRepr, r) },
+            c__id_3a5f => if isDigit(c) { readCInteger(OctalRepr, r) },
             _ => {
                 readCInteger(DecRepr, s)
             },
@@ -607,7 +607,7 @@ mod Language_C_Parser_Lexer {
 
     fn unescapeMultiChars(__0: String, __1: Vec<Char>) -> Vec<Char> {
         match (__0, __1, __2) {
-            (cs, <todo>, _:_:_) => {
+            (cs, <todo>, ___id_3a5f3a5f) => {
                 match unescapeChar(cs) {
                     (c, cs_q) => {
                         __op_concat(c, unescapeMultiChars(cs_q))
@@ -33241,7 +33241,7 @@ mod Language_C_Parser_Parser {
             (newAttrs, CDeclrR(ident, Reversed([]), asmname, cattrs, at)) => {
                 CDeclrR(ident, empty, asmname, (__op_addadd(cattrs, newAttrs)), at)
             },
-            (newAttrs, CDeclrR(ident, Reversed(x:xs), asmname, cattrs, at)) => {
+            (newAttrs, CDeclrR(ident, Reversed(x__id_3a7873), asmname, cattrs, at)) => {
                 CDeclrR(ident, (Reversed((__op_concat(appendAttrs(x), xs)))), asmname, cattrs, at)
             },
         }
@@ -33271,7 +33271,7 @@ otherwise { shadowTypedef(ident) },
 
     fn doFuncParamDeclIdent(__0: CDeclr) -> P {
         match (__0) {
-            CDeclr(_, CFunDeclr(params, _, _:_), _, _, _) => {
+            CDeclr(_, CFunDeclr(params, _, ___id_3a5f), _, _, _) => {
                 sequence_(Dummy)
             },
             _ => {
@@ -37908,7 +37908,7 @@ otherwise { shadowTypedef(ident) },
                             return(CTranslUnit(decls, (mkNodeInfo_q(p, (p, 0), n))))
                         }
                     },
-                    d:ds => {
+                    d__id_3a6473 => {
                         withNodeInfo(d)(CTranslUnit(decls))
                     },
                 }))), (Lambda((HappyAbsSyn7(r)))))
