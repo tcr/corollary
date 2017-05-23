@@ -13,7 +13,7 @@ helloworld :: String
 helloworld = ((printer Hello) ++ " " ++ (printer World))
 
 {-HASKELL-}
-main = putStrLn helloworld
+-- main = putStrLn helloworld
 
 {-RUST
 

@@ -466,7 +466,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     }).collect::<Vec<_>>().join(&format!(",\n        ")),
                     state.indent(),
                     state.indent(),
-                    format!("pub use {}::*;", print_ident(state, name.0)),
+                    format!("pub use self::{}::*;", print_ident(state, name.0)),
                     );
             } else {
                 let props = data.iter().map(|tyset| {
@@ -742,6 +742,8 @@ fn main() {
         }
     };
 
+    println!("{}", include_str!("haskell_support.txt"));
+    println!("");
     for entry in WalkDir::new(dir) {
         let e = entry.unwrap();
         let p = e.path();
@@ -772,6 +774,7 @@ fn main() {
                 // println!("{:?}", p);
                 // continue;
                 println!("pub mod {} {{", v.name.0.replace(".", "_"));
+                println!("    use haskell_support::*;");
                 let state = PrintState::new();
                 println!("{}", print_statement_list(state.tab(), &v.statements));
                 //print_statement_list(state.tab(), &v.statements);
@@ -786,5 +789,6 @@ fn main() {
     }
     println!("");
     println!("");
-    println!("fn main() {{ /* demo */ }}")
+    println!("/* demo */");
+    println!("{}", r#"fn main() {{ println!("{}", Test_Hello::helloworld()); }}"#)
 }
