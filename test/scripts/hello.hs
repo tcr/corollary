@@ -13,12 +13,12 @@ helloworld :: String
 helloworld = ((printer Hello) ++ " " ++ (printer World))
 
 {-HASKELL-}
--- main = putStrLn helloworld
+main = putStrLn helloworld
+{-/HASKELL-}
 
 {-RUST
-
 fn main() {
     assert_eq!("Hello World", Test_Hello::helloworld());
+    println!("success.");
 }
-
--}
+/RUST-}

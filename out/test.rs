@@ -42,5 +42,10 @@ pub mod Test_Hello {
 
 
 
-/* demo */
-fn main() {{ println!("{}", Test_Hello::helloworld()); }}
+/* RUST ... /RUST */
+
+fn main() {
+    assert_eq!("Hello World", Test_Hello::helloworld());
+    println!("success.");
+}
+

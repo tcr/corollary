@@ -742,12 +742,15 @@ fn main() {
         }
     };
 
+    let mut rust_section = "".to_string();
+
     println!("{}", include_str!("haskell_support.txt"));
     println!("");
     for entry in WalkDir::new(dir) {
         let e = entry.unwrap();
         let p = e.path();
 
+        // Check filetype. Allow .lhs and .hs, ignore all else.
         let mut do_fix_lhs = false;
         if p.display().to_string().ends_with(".lhs") {
             do_fix_lhs = true;
@@ -755,7 +758,7 @@ fn main() {
             continue;
         }
 
-
+        // Read file contents.
         let mut file = File::open(p).unwrap();
         let mut contents = String::new();
         match file.read_to_string(&mut contents) {
@@ -763,11 +766,22 @@ fn main() {
             _ => continue,
         };
 
+        // Parse out HASKELL /HASKELL RUST /RUST sections.
+        let re = Regex::new(r#"HASKELL[\s\S]*?/HASKELL"#).unwrap();
+        contents = re.replace(&contents, "").to_string();
+        let re = Regex::new(r#"RUST([\s\S]*?)/RUST"#).unwrap();
+        if let Some(cap) = re.captures(&contents) {
+            rust_section.push_str(&cap.get(1).unwrap().as_str().to_string());
+        }
+        contents = re.replace(&contents, "").to_string();
+
+        // Preprocess the file.
         if do_fix_lhs {
             contents = fix_lhs(&contents);
         }
         let contents = parser_haskell::preprocess(&contents);
 
+        // Parse the file.
         let mut errors = Vec::new();
         match parser_haskell::parse(&mut errors, &contents) {
             Ok(v) => {
@@ -789,6 +803,8 @@ fn main() {
     }
     println!("");
     println!("");
-    println!("/* demo */");
-    println!("{}", r#"fn main() {{ println!("{}", Test_Hello::helloworld()); }}"#)
+    if rust_section.len() > 0 {
+        println!("/* RUST ... /RUST */");
+        println!("{}", rust_section);
+    }
 }
