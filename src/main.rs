@@ -18,8 +18,11 @@ use clap::{Arg, App, SubCommand};
 use hex::*;
 use regex::Regex;
 use std::borrow::Borrow;
-use std::collections::BTreeSet;
+use std::cmp;
+use std::io::prelude::*;
+use std::fs::{File};
 use std::env;
+use std::collections::BTreeSet;
 use std::fmt::Write;
 use std::fs::{File};
 use std::io::prelude::*;
@@ -29,7 +32,7 @@ use tempdir::TempDir;
 use walkdir::WalkDir;
 
 #[derive(Clone, Copy)]
-struct PrintState {
+pub struct PrintState {
     pub level: i32,
 }
 
@@ -58,6 +61,127 @@ impl PrintState {
             out.push_str("    ");
         }
         out
+    }
+
+    pub fn fits_on_line(&self, len: LineLength) -> bool {
+        len.map(|n| {
+            let indent = self.level * 4;
+            let limit = 100 - cmp::min(indent, 80);
+            n <= limit as usize
+        }).unwrap_or(false)
+    }
+}
+
+/// Output length in `Char`s.
+/// If output uses multiple lines, use `None`.
+pub type LineLength = Option<usize>;
+
+mod ir {
+    //! Output structures.
+
+    use std::fmt::{self, Display, Formatter};
+    use std::io::prelude::*;
+    use super::{LineLength, PrintState};
+
+    pub enum Expr {
+        Free(String),
+        Number(isize),
+        StrLiteral(String),
+        VecLiteral { exprs: Vec<Expr>, line_length: LineLength },
+    }
+
+    impl Out for Expr {
+        fn fmt(&self, f: &mut Formatter, state: PrintState) -> fmt::Result {
+            use self::Expr::*;
+
+            match *self {
+                Free(ref s) => f.write_str(s),
+                Number(n) => write!(f, "{}", n),
+                StrLiteral(ref s) => write!(f, "{:?}.to_string()", s),
+                VecLiteral { ref exprs, line_length } => {
+                    if state.fits_on_line(line_length) {
+                        write!(f, "vec![")?;
+                        commas(f, state, exprs)?;
+                        write!(f, "]")
+                    } else {
+                        writeln!(f, "vec![")?;
+                        comma_lines(f, state.tab(), exprs)?;
+                        write!(f, "{}]", state.indent())
+                    }
+                }
+            }
+        }
+    }
+
+    impl Expr {
+        /// Approximates this expr's length on one line.
+        /// Returns None if the expr is multiline.
+        pub fn line_length(&self) -> LineLength {
+            use self::Expr::*;
+            match *self {
+                Free(ref s) => if s.contains("\n") { None } else { Some(s.len()) },
+                Number(_) => Some(2),
+                StrLiteral(ref s) => Some(s.len() + 3),
+                VecLiteral { line_length, .. } => line_length,
+            }
+        }
+    }
+
+    // HELPERS
+
+    /// Output-able as a Rust expression.
+    pub trait Out {
+        fn fmt(&self, f: &mut Formatter, state: PrintState) -> fmt::Result;
+    }
+
+    impl<'a, O: Out> Out for &'a O {
+        fn fmt(&self, f: &mut Formatter, state: PrintState) -> fmt::Result {
+            (*self).fmt(f, state)
+        }
+    }
+
+    /// Use this to display `Out` types.
+    pub struct Printer<O> {
+        pub out: O,
+        pub state: PrintState,
+    }
+
+    impl<O: Out> Display for Printer<O> {
+        fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+            self.out.fmt(f, self.state)
+        }
+    }
+
+    /// Output items joined by commas.
+    fn commas<I, O>(f: &mut Formatter, state: PrintState, iter: I) -> fmt::Result
+    where
+        I: IntoIterator<Item=O>,
+        O: Out,
+    {
+        let mut first = true;
+        for o in iter {
+            if first {
+                first = false;
+            } else {
+                write!(f, ", ")?;
+            }
+            o.fmt(f, state)?;
+        }
+        Ok(())
+    }
+
+    /// Output one line per item, indented and followed by a comma.
+    fn comma_lines<I, O>(f: &mut Formatter, state: PrintState, iter: I) -> fmt::Result
+    where
+        I: IntoIterator<Item=O>,
+        O: Out,
+    {
+        for o in iter {
+            write!(f, "{}", state.indent())?;
+            o.fmt(f, state)?;
+            writeln!(f, ",")?;
+        }
+        Ok(())
     }
 }
 
@@ -113,10 +237,25 @@ fn print_type_ident(state: PrintState, s: &str) -> String {
     }
 }
 
+/// Backwards compatibility.
 fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
+    let expr = convert_expr(state, expr);
+    format!("{}", ir::Printer { state: state, out: expr })
+}
+
+/// Converts several Haskell expresions to a vector of Rust expressions.
+fn convert_exprs<'a, I>(state: PrintState, exprs: I) -> Vec<ir::Expr>
+where
+    I: IntoIterator<Item = &'a ast::Expr>
+{
+    exprs.into_iter().map(|e| convert_expr(state, e)).collect()
+}
+
+/// Converts a Haskell expression to Rust.
+fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
     use ast::Expr::*;
 
-    match *expr {
+    let freeform = match *expr {
         Parens(ref r) => {
             let mut out = vec![];
             for item in r {
@@ -125,11 +264,12 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             format!("({})", out.join(", "))
         }
         Vector(ref r) => {
-            let mut out = vec![];
-            for item in r {
-                out.push(print_expr(state, item));
-            }
-            format!("vec![{}]", out.join(", "))
+            let exprs = convert_exprs(state, r);
+            // memoize line length
+            let line_length = exprs.iter().fold(Some(2), |sum, e| {
+                sum.and_then(|n| e.line_length().map(|len| n + len + 2))
+            });
+            return ir::Expr::VecLiteral { exprs, line_length };
         }
         Do(ref exprset, ref w) => {
             let mut out = vec![];
@@ -162,9 +302,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
         Ref(ast::Ident(ref i)) => {
             print_ident(state, i.clone())
         }
-        Number(n) => {
-            format!("{}", n)
-        }
+        Number(n) => return ir::Expr::Number(n),
         Op(ref l, ref op, ref r) => {
             if op == "&&"
                 || op == "==" {
@@ -229,9 +367,7 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             }
             format!("{{\n{}\n{}}}", out.join(",\n"), state.untab().indent())
         }
-        Str(ref s) => {
-            format!("{:?}.to_string()", s)
-        }
+        Str(ref s) => return ir::Expr::StrLiteral(s.clone()),
         Char(ref s) => {
             assert!(s.len() == 1, "char lit {:?}", s);
             format!("{:?}", s.chars().next().unwrap())
@@ -303,7 +439,8 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
         ref expr => {
             format!("{:?}", expr)
         }
-    }
+    };
+    ir::Expr::Free(freeform)
 }
 
 fn unpack_fndef(t: Ty) -> Vec<Ty> {
