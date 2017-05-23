@@ -43,3 +43,6 @@ data AlexReturn a
   | AlexToken !AlexInput
               !Int
               a
+
+sumEuler :: Int -> Int
+sumEuler = sum . (map euler) . mkList

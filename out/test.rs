@@ -58,6 +58,10 @@ mod Test_Code {
         }
     }
 
+    fn sumEuler() -> isize {
+        sum(map(euler, mkList))
+    }
+
 }
 
 

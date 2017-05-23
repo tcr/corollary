@@ -159,7 +159,32 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
             } else if op == "$" {
                 format!("{}({})", print_expr(state, l), print_expr(state, r))
             } else if op == "." {
-                format!("({} . {})", print_expr(state, l), print_expr(state, r))
+                let l: Expr = (**l).clone();
+                let r: Expr = (**r).clone();
+
+                // Dot operator. (f . g) x = f(g(x)
+                //TODO this is conditional on overcomplicated AST of spans and parens but easily
+                // might change in the future
+                if let &Expr::Span(ref left) = &l {
+                    if let &Expr::Parens(ref span) = &left[0] {
+                        if let &Expr::Span(ref innerspan) = &span[0] {
+                            let mut innerspan = innerspan.clone();
+                            innerspan.push(r);
+                            format!("{}", print_expr(state, &Expr::Span(vec![Expr::Parens(vec![Expr::Span(innerspan)])])))
+                        } else {
+                            panic!("WHAT {:?}", l);
+                            //format!("({} . {})", print_expr(state, &l), print_expr(state, &r))
+                        }
+                    } else if let &Expr::Ref(..) = &left[0] {
+                        // todo
+                        format!("{}{}", print_expr(state, &l), print_expr(state, &r))
+                    } else {
+                        panic!("WHAT {:?}", l);
+                    }
+                } else {
+                    panic!("WHAT {:?}", l);
+                }
+
             } else if op == "<-" {
                 format!("let {} = {}", print_expr(state, l), print_expr(state, r))
             } else {
@@ -170,6 +195,10 @@ fn print_expr(state: PrintState, expr: &ast::Expr) -> String {
                     new_op = "__op_concat".to_string();
                 } else if new_op == ">>=" {
                     new_op = "__op_bind".to_string();
+                } else if new_op == ">>" {
+                    new_op = "__op_rshift".to_string();
+                } else if new_op == "<<" {
+                    new_op = "__op_lshift".to_string();
                 }
                 format!("{}({}, {})", new_op, print_expr(state, l), print_expr(state, r))
             }

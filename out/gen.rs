@@ -110,19 +110,19 @@ mod Language_C_Parser_Lexer {
     };
 
     let alex_action_1 = || {
-        >>(Lambda((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(False))
+        __op_rshift(Lambda((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(False))
     };
 
     let alex_action_10 = || {
-        token(CTokCLit, ((cChar_w . (fst . (unescapeChar . (tail . tail))))))
+        token(CTokCLit, (cChar_wfstunescapeChartailtail))
     };
 
     let alex_action_11 = || {
-        token(CTokCLit, ((flip(cChars, False) . (unescapeMultiChars . tail))))
+        token(CTokCLit, (flip(cChars, False)unescapeMultiCharstail))
     };
 
     let alex_action_12 = || {
-        token(CTokCLit, ((flip(cChars, True) . (unescapeMultiChars . (tail . tail)))))
+        token(CTokCLit, (flip(cChars, True)unescapeMultiCharstailtail))
     };
 
     let alex_action_13 = || {
@@ -138,11 +138,11 @@ mod Language_C_Parser_Lexer {
     };
 
     let alex_action_16 = || {
-        token(CTokSLit, ((cString . (unescapeString . (init . tail)))))
+        token(CTokSLit, (cStringunescapeStringinittail))
     };
 
     let alex_action_17 = || {
-        token(CTokSLit, ((cString_w . (unescapeString . (init . (tail . tail))))))
+        token(CTokSLit, (cString_wunescapeStringinittailtail))
     };
 
     let alex_action_18 = || {
@@ -354,7 +354,7 @@ mod Language_C_Parser_Lexer {
     };
 
     let alex_action_7 = || {
-        token_plus(CTokILit, ((readCInteger(HexRepr) . drop(2))))
+        token_plus(CTokILit, (readCInteger(HexRepr)drop(2)))
     };
 
     let alex_action_8 = || {
@@ -362,7 +362,7 @@ mod Language_C_Parser_Lexer {
     };
 
     let alex_action_9 = || {
-        token(CTokCLit, ((cChar . (fst . (unescapeChar . tail)))))
+        token(CTokCLit, (cCharfstunescapeChartail))
     };
 
     let alex_actions = || {
@@ -35959,7 +35959,7 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_12 = |(HappyStk((HappyAbsSyn12(happy_var_2)), HappyStk((HappyAbsSyn11(happy_var_1)), happyRest))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, vec![], happy_var_2)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, vec![], happy_var_2)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_120 = |(HappyStk((HappyTerminal(happy_var_1)), happyRest)), tk| {
@@ -36003,7 +36003,7 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_13 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn126(happy_var_1)), happyRest)))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_130 = |(HappyStk((HappyTerminal(happy_var_1)), happyRest)), tk| {
@@ -36110,7 +36110,7 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_14 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn37(happy_var_1)), happyRest)))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_140 = |__0, __1| {
@@ -36224,7 +36224,7 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_15 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn37(happy_var_1)), happyRest)))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_150 = |__0, __1, __2| {
@@ -36310,7 +36310,7 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_16 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn38(happy_var_1)), happyRest)))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_160 = |(HappyStk(_, HappyStk((HappyAbsSyn97(happy_var_3)), HappyStk(_, HappyStk((HappyTerminal(happy_var_1)), happyRest))))), tk| {
@@ -36354,7 +36354,7 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_17 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn62(happy_var_1)), happyRest)))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_170 = |(HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_5)), HappyStk(_, HappyStk((HappyTerminal(happy_var_3)), HappyStk((HappyAbsSyn126(happy_var_2)), HappyStk((HappyAbsSyn62(happy_var_1)), happyRest))))))), tk| {
@@ -36426,7 +36426,7 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_18 = |(HappyStk((HappyAbsSyn12(happy_var_4)), HappyStk((HappyAbsSyn11(happy_var_3)), HappyStk((HappyAbsSyn126(happy_var_2)), HappyStk((HappyAbsSyn62(happy_var_1)), happyRest))))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_180 = || {
@@ -37075,11 +37075,11 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_26 = |(HappyStk((HappyAbsSyn63(happy_var_1)), happyRest)), tk| {
-        happyThen(((>>({
+        happyThen(((__op_rshift({
                 let declr = || {
                     reverseDeclr(happy_var_1)
                 };
-            }(in, enterScope), >>(doFuncParamDeclIdent(declr), declr)))), (Lambda((HappyAbsSyn11(r)))))
+            }(in, enterScope), __op_rshift(doFuncParamDeclIdent(declr), declr)))), (Lambda((HappyAbsSyn11(r)))))
     };
 
     let happyReduction_260 = |__0, __1, __2| {
@@ -37753,27 +37753,27 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_352 = |(HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_5)), HappyStk(_, HappyStk((HappyAbsSyn97(happy_var_3)), HappyStk(_, HappyStk((HappyTerminal(happy_var_1)), happyRest))))))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)((CBuiltinExpr . CBuiltinVaArg(happy_var_3, happy_var_5))))), (Lambda((HappyAbsSyn97(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(CBuiltinExprCBuiltinVaArg(happy_var_3, happy_var_5)))), (Lambda((HappyAbsSyn97(r)))))
     };
 
     let happyReduction_353 = |(HappyStk(_, HappyStk((HappyAbsSyn94(happy_var_5)), HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_3)), HappyStk(_, HappyStk((HappyTerminal(happy_var_1)), happyRest))))))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)((CBuiltinExpr . CBuiltinOffsetOf(happy_var_3, (reverse(happy_var_5))))))), (Lambda((HappyAbsSyn97(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(CBuiltinExprCBuiltinOffsetOf(happy_var_3, (reverse(happy_var_5)))))), (Lambda((HappyAbsSyn97(r)))))
     };
 
     let happyReduction_354 = |(HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_5)), HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_3)), HappyStk(_, HappyStk((HappyTerminal(happy_var_1)), happyRest))))))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)((CBuiltinExpr . CBuiltinTypesCompatible(happy_var_3, happy_var_5))))), (Lambda((HappyAbsSyn97(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(CBuiltinExprCBuiltinTypesCompatible(happy_var_3, happy_var_5)))), (Lambda((HappyAbsSyn97(r)))))
     };
 
     let happyReduction_355 = |(HappyStk((HappyAbsSyn125(happy_var_1)), happyRest)), tk| {
-        happyThen(((withNodeInfo(happy_var_1)((singleton . CMemberDesig(happy_var_1))))), (Lambda((HappyAbsSyn94(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(singletonCMemberDesig(happy_var_1)))), (Lambda((HappyAbsSyn94(r)))))
     };
 
     let happyReduction_356 = |(HappyStk((HappyAbsSyn125(happy_var_3)), HappyStk(_, HappyStk((HappyAbsSyn94(happy_var_1)), happyRest)))), tk| {
-        happyThen(((withNodeInfo(happy_var_3)(((happy_var_1(Operator("snoc"))) . CMemberDesig(happy_var_3))))), (Lambda((HappyAbsSyn94(r)))))
+        happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CMemberDesig(happy_var_3)))))), (Lambda((HappyAbsSyn94(r)))))
     };
 
     let happyReduction_357 = |(HappyStk(_, HappyStk((HappyAbsSyn97(happy_var_3)), HappyStk(_, HappyStk((HappyAbsSyn94(happy_var_1)), happyRest))))), tk| {
-        happyThen(((withNodeInfo(happy_var_3)(((happy_var_1(Operator("snoc"))) . CArrDesig(happy_var_3))))), (Lambda((HappyAbsSyn94(r)))))
+        happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CArrDesig(happy_var_3)))))), (Lambda((HappyAbsSyn94(r)))))
     };
 
     let happyReduction_358 = |__0| {
@@ -38665,19 +38665,19 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_460 = |(HappyStk((HappyTerminal((CTokIdent(_, happy_var_1)))), happyRest)), tk| {
-        happyThen(((withNodeInfo(happy_var_1)((Just . CAttr(happy_var_1, vec![]))))), (Lambda((HappyAbsSyn130(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(JustCAttr(happy_var_1, vec![])))), (Lambda((HappyAbsSyn130(r)))))
     };
 
     let happyReduction_461 = |(HappyStk((HappyTerminal(happy_var_1)), happyRest)), tk| {
-        happyThen(((withNodeInfo(happy_var_1)((Just . CAttr((internalIdent("const".to_string())), vec![]))))), (Lambda((HappyAbsSyn130(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(JustCAttr((internalIdent("const".to_string())), vec![])))), (Lambda((HappyAbsSyn130(r)))))
     };
 
     let happyReduction_462 = |(HappyStk(_, HappyStk((HappyAbsSyn100(happy_var_3)), HappyStk(_, HappyStk((HappyTerminal((CTokIdent(_, happy_var_1)))), happyRest))))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)((Just . CAttr(happy_var_1, (reverse(happy_var_3))))))), (Lambda((HappyAbsSyn130(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(JustCAttr(happy_var_1, (reverse(happy_var_3)))))), (Lambda((HappyAbsSyn130(r)))))
     };
 
     let happyReduction_463 = |(HappyStk(_, HappyStk(_, HappyStk((HappyTerminal((CTokIdent(_, happy_var_1)))), happyRest)))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)((Just . CAttr(happy_var_1, vec![]))))), (Lambda((HappyAbsSyn130(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(JustCAttr(happy_var_1, vec![])))), (Lambda((HappyAbsSyn130(r)))))
     };
 
     let happyReduction_464 = |__0| {
@@ -38733,7 +38733,7 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_49 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn37(happy_var_1)), happyRest)))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_5 = || {
@@ -38741,19 +38741,19 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_50 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn37(happy_var_1)), happyRest)))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_51 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn38(happy_var_1)), happyRest)))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_52 = |(HappyStk((HappyAbsSyn12(happy_var_3)), HappyStk((HappyAbsSyn11(happy_var_2)), HappyStk((HappyAbsSyn62(happy_var_1)), happyRest)))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_53 = |(HappyStk((HappyAbsSyn12(happy_var_4)), HappyStk((HappyAbsSyn11(happy_var_3)), HappyStk((HappyAbsSyn126(happy_var_2)), HappyStk((HappyAbsSyn62(happy_var_1)), happyRest))))), tk| {
-        happyThen(((>>(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (Lambda((HappyAbsSyn10(r)))))
+        happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (Lambda((HappyAbsSyn10(r)))))
     };
 
     let happyReduction_54 = |__0, __1, __2| {
@@ -39207,11 +39207,11 @@ otherwise { shadowTypedef(ident) },
     };
 
     fn liftCAttrs() -> Vec<CDeclSpec> {
-        map(((CTypeQual . CAttrQual)))
+        map((CTypeQualCAttrQual))
     }
 
     fn liftTypeQuals() -> Reversed {
-        (map(CTypeQual) . reverse)
+        map(CTypeQual)reverse
     }
 
     fn mkVarDeclr(ident: Ident) -> CDeclrR {
@@ -39235,7 +39235,7 @@ otherwise { shadowTypedef(ident) },
     }
 
     fn reverseList() -> Reversed {
-        (Reversed . List_reverse)
+        ReversedList_reverse
     }
 
     fn setAsmName(mAsmName: Option) -> Option {
@@ -39300,7 +39300,7 @@ otherwise { shadowTypedef(ident) },
             };
             {
                 let newDeclr = || {
-                    (appendDeclrAttrs(cattrs) . mkDeclrCtor(attrs))
+                    appendDeclrAttrs(cattrs)mkDeclrCtor(attrs)
                 };
             };
             seq(attrs, seq(newDeclr, newDeclr))

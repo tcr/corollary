@@ -922,7 +922,7 @@ mod Language_Rust_Corrode_C {
                             if(demand, then, (init(exprs), Just((last(exprs)))), else, (exprs, Nothing))
                         };
                     };
-                    let effects_q = mapM(((fmap(resultToStatements) . interpretExpr(False))), effects);
+                    let effects_q = mapM((fmap(resultToStatements)interpretExpr(False)), effects);
                     let mfinal_q = mapM((interpretExpr(True)), mfinal);
                     Result
                 }
@@ -1300,7 +1300,7 @@ mod Language_Rust_Corrode_C {
                 };
             };
             let deferred = fmap((fmap(funTy)), (derivedDeferredTypeOf(baseTy, declr, argtypes)));
-            let alreadyUsed = lift(gets(((usedForwardRefs . globalState))));
+            let alreadyUsed = lift(gets((usedForwardRefsglobalState)));
             match vis {
                 Rust_Private => if Set.notMember(ident, alreadyUsed) { /* do */ {
                 let action = runOnce(/* do */ {
@@ -1583,7 +1583,7 @@ mod Language_Rust_Corrode_C {
                             },
                             Some(retTy) => {
                                 /* do */ {
-                                    let expr_q = mapM(((fmap((castTo(retTy))) . interpretExpr(True))), expr);
+                                    let expr_q = mapM((fmap((castTo(retTy)))interpretExpr(True)), expr);
                                     (exprToStatements((Rust_Return(expr_q))), Unreachable)
                                 }
                             },
@@ -1762,7 +1762,7 @@ mod Language_Rust_Corrode_C {
     }
 
     fn resultToStatements() -> Vec<Rust_Stmt> {
-        (exprToStatements . result)
+        exprToStatementsresult
     }
 
     fn runOnce(action: EnvMonad) -> EnvMonad {
@@ -2218,7 +2218,7 @@ mod Language_Rust_Corrode_CFG {
     }
 
     fn hasMultiple() -> Bool {
-        any(((go . structureBody)))
+        any((gostructureBody))
     }
 
     fn mapBuildCFGT() -> BuildCFGT {
@@ -2248,7 +2248,7 @@ mod Language_Rust_Corrode_CFG {
     }
 
     fn prettyStructure() -> Doc {
-        (vcat . map(go))
+        vcatmap(go)
     }
 
     fn relooper(entries: Monoid) -> Monoid {
@@ -2312,7 +2312,7 @@ mod Language_Rust_Corrode_CFG {
     }
 
     fn simplifyStructure() -> Monoid {
-        (foldr(go, vec![]) . map(descend))
+        foldr(go, vec![])map(descend)
     }
 
     fn structureCFG(mkBreak: Monoid) -> Monoid {
@@ -2340,7 +2340,7 @@ mod Language_Rust_Corrode_CrateMap {
     }
 
     fn parseCrateMap() -> Either {
-        (fmap(root) . (foldrM(parseLine, (Map_empty, vec![])) . (filter(((not . null))) . (map(cleanLine) . lines))))
+        fmap(root)foldrM(parseLine, (Map_empty, vec![]))filter((notnull))map(cleanLine)lines
     }
 
     fn rewritesFromCratesMap(crates: CratesMap) -> ItemRewrites {
