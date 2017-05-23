@@ -73,7 +73,7 @@ fn expr_explode(span: Vec<Expr>) -> Vec<Expr> {
 }
 
 fn print_ident(_: PrintState, expr: String) -> String {
-    let expr = expr.replace("'", "_q").replace(".", "_");
+    let expr = expr.replace("'", "_q").replace(".", "::");
     // Handle keywords here
     if expr == "mut" {
         return "__mut".to_string()

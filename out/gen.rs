@@ -36302,7 +36302,7 @@ otherwise { shadowTypedef(ident) },
             (_, HappyAbsSyn32(happy_var_1)) => {
                 HappyAbsSyn32((match happy_var_1 {
                         CDecl(declspecs, dies, at) => {
-                            CDecl(declspecs, (List_reverse(dies)), at)
+                            CDecl(declspecs, (List__id_3a3a72657665727365(dies)), at)
                         },
                     }))
             },
@@ -36317,7 +36317,7 @@ otherwise { shadowTypedef(ident) },
             (_, HappyAbsSyn32(happy_var_1)) => {
                 HappyAbsSyn32((match happy_var_1 {
                         CDecl(declspecs, dies, at) => {
-                            CDecl(declspecs, (List_reverse(dies)), at)
+                            CDecl(declspecs, (List__id_3a3a72657665727365(dies)), at)
                         },
                     }))
             },
@@ -38785,7 +38785,7 @@ otherwise { shadowTypedef(ident) },
     let happyReduction_87 = |(HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_1)), happyRest))), tk| {
         happyThen(((match happy_var_1 {
                 CDecl(declspecs, dies, at) => {
-                    withLength(at, (CDecl(declspecs, (List_reverse(dies)))))
+                    withLength(at, (CDecl(declspecs, (List__id_3a3a72657665727365(dies)))))
                 },
             })), (Lambda((HappyAbsSyn32(r)))))
     };
@@ -38793,7 +38793,7 @@ otherwise { shadowTypedef(ident) },
     let happyReduction_88 = |(HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_1)), happyRest))), tk| {
         happyThen(((match happy_var_1 {
                 CDecl(declspecs, dies, at) => {
-                    withLength(at, (CDecl(declspecs, (List_reverse(dies)))))
+                    withLength(at, (CDecl(declspecs, (List__id_3a3a72657665727365(dies)))))
                 },
             })), (Lambda((HappyAbsSyn32(r)))))
     };
@@ -39025,7 +39025,7 @@ otherwise { shadowTypedef(ident) },
     }
 
     fn reverseList() -> Reversed {
-        ReversedList_reverse
+        ReversedList__id_3a3a72657665727365
     }
 
     fn setAsmName(mAsmName: Option) -> Option {

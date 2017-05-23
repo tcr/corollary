@@ -862,7 +862,7 @@ mod Language_C_Analysis_ConstEval {
         }
     }
 
-    fn constEval(__0: MachineDesc, __1: Map_Map) -> Map_Map {
+    fn constEval(__0: MachineDesc, __1: Map__id_3a3a4d6170) -> Map__id_3a3a4d6170 {
         match (__0, __1, __2) {
             (md, env, CCond(e1, me2, e3, ni)) => {
                 /* do */ {
@@ -974,7 +974,7 @@ mod Language_C_Analysis_ConstEval {
                                     Some(Right(EnumDef(EnumType(_, es, _, _)))) => {
                                         /* do */ {
                                             let env_q = foldM(enumConst, env, es);
-                                            return(fromMaybe(e)(Map_lookup(i, env_q)))
+                                            return(fromMaybe(e)(Map__id_3a3a6c6f6f6b7570(i, env_q)))
                                         }
                                     },
                                     _ => {
@@ -1123,7 +1123,7 @@ mod Language_C_Analysis_ConstEval {
             },
             (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
                 /* do */ {
-                    let sz_q = constEval(md, Map_empty, sz);
+                    let sz_q = constEval(md, Map__id_3a3a656d707479, sz);
                     match sz_q {
                         CConst(CIntConst(i, _)) => {
                             /* do */ {
@@ -1157,7 +1157,7 @@ mod Language_C_Analysis_ConstEval {
 
 mod Language_C_Analysis_Debug {
     fn globalDeclStats(file_filter: fn(FilePath) -> Bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
-        vec![("Enumeration Constants".to_string(), Map_size(enumerators)), ("Total Object/Function Declarations".to_string(), Map_size(all_decls)), ("Object definitions".to_string(), Map_size(objDefs)), ("Function Definitions".to_string(), Map_size(funDefs)), ("Tag definitions".to_string(), Map_size(tagDefs)), ("TypeDefs".to_string(), Map_size(typeDefs))]
+        vec![("Enumeration Constants".to_string(), Map__id_3a3a73697a65(enumerators)), ("Total Object/Function Declarations".to_string(), Map__id_3a3a73697a65(all_decls)), ("Object definitions".to_string(), Map__id_3a3a73697a65(objDefs)), ("Function Definitions".to_string(), Map__id_3a3a73697a65(funDefs)), ("Tag definitions".to_string(), Map__id_3a3a73697a65(tagDefs)), ("TypeDefs".to_string(), Map__id_3a3a73697a65(typeDefs))]
     }
 
     fn joinComma() -> Doc {
@@ -1328,9 +1328,9 @@ mod Language_C_Analysis_DeclAnalysis {
                     Left(list) => {
                         /* do */ {
                             let oldstyle_params_q = liftM(concat)(mapM(splitCDecl, oldstyle_params));
-                            let param_map = liftM(Map_fromList)(mapM(attachNameOfDecl, oldstyle_params_q));
+                            let param_map = liftM(Map__id_3a3a66726f6d4c697374)(mapM(attachNameOfDecl, oldstyle_params_q));
                             let (newstyle_params, param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
-                            when((not(Map_null(param_map_q))))(astError(node)(__op_addadd("declarations for parameter(s) ".to_string(), __op_addadd(showParamMap(param_map_q), " but no such parameter".to_string()))));
+                            when((not(Map__id_3a3a6e756c6c(param_map_q))))(astError(node)(__op_addadd("declarations for parameter(s) ".to_string(), __op_addadd(showParamMap(param_map_q), " but no such parameter".to_string()))));
                             return((__op_concat(CFunDeclr((Right((newstyle_params, False))), attrs, fdnode), dds)))
                         }
                     },
@@ -1430,7 +1430,7 @@ mod Language_C_Analysis_DeclAnalysis {
             };
             handleTagDecl((CompDecl(decl)));
             when((handle_def))(/* do */ {
-                maybeM(member_decls_opt)(__op_bind(Lambda(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef_CompDef)))
+                maybeM(member_decls_opt)(__op_bind(Lambda(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef__id_3a3a436f6d70446566)))
             });
             decl
         }
@@ -1748,7 +1748,7 @@ otherwise { KindMismatch(def_q) },
     }
 
     fn emptyDefTable() -> DefTable {
-        DefTable(nameSpaceMap, nameSpaceMap, nameSpaceMap, nameSpaceMap, IntMap_empty, IntMap_empty)
+        DefTable(nameSpaceMap, nameSpaceMap, nameSpaceMap, nameSpaceMap, IntMap__id_3a3a656d707479, IntMap__id_3a3a656d707479)
     }
 
     fn enterBlockScope(deftbl: DefTable) -> DefTable {
@@ -1777,7 +1777,7 @@ otherwise { KindMismatch(def_q) },
     }
 
     fn globalDefs(deftbl: DefTable) -> GlobalDecls {
-        Map_foldWithKey(insertDecl, (GlobalDecls(e, gtags, e)), (globalNames(identDecls(deftbl))))
+        Map__id_3a3a666f6c64576974684b6579(insertDecl, (GlobalDecls(e, gtags, e)), (globalNames(identDecls(deftbl))))
     }
 
     fn identOfTyDecl() -> Ident {
@@ -1790,7 +1790,7 @@ otherwise { KindMismatch(def_q) },
 
     fn insertType(dt: DefTable, n: Name, t: Type) -> DefTable {
         dt({
-            typeTable: IntMap_insert((nameId(n)), t, (typeTable(dt)))
+            typeTable: IntMap__id_3a3a696e73657274((nameId(n)), t, (typeTable(dt)))
         })
     }
 
@@ -1846,7 +1846,7 @@ otherwise { KindMismatch(def_q) },
     }
 
     fn lookupType(dt: DefTable, n: Name) -> Option {
-        IntMap_lookup((nameId(n)), (typeTable(dt)))
+        IntMap__id_3a3a6c6f6f6b7570((nameId(n)), (typeTable(dt)))
     }
 
     fn mergeDefTable((DefTable(i1, t1, l1, m1, r1, tt1)): DefTable, (DefTable(i2, t2, l2, m2, r2, tt2)): DefTable) -> DefTable {
@@ -2119,7 +2119,7 @@ mod Language_C_Analysis_NameSpaceMap {
     struct NameSpaceMap<k, v>(NsMap, Map<k, v>, Vec<Vec<(k, v)>>);
 
     fn defGlobal((NsMap(gs, lss)): NameSpaceMap) -> NameSpaceMap {
-        (NsMap((Map_insert(ident, def, gs)), lss), Map_lookup(ident, gs))
+        (NsMap((Map__id_3a3a696e73657274(ident, def, gs)), lss), Map__id_3a3a6c6f6f6b7570(ident, gs))
     }
 
     fn defLocal(__0: NameSpaceMap) -> NameSpaceMap {
@@ -2128,7 +2128,7 @@ mod Language_C_Analysis_NameSpaceMap {
                 defGlobal(ns, ident, def)
             },
             (NsMap(gs, ls__id_3a6c7373), ident, def) => {
-                (NsMap(gs, (__op_concat((__op_concat((ident, def), ls)), lss))), Prelude_lookup(ident, ls))
+                (NsMap(gs, (__op_concat((__op_concat((ident, def), ls)), lss))), Prelude__id_3a3a6c6f6f6b7570(ident, ls))
             },
         }
     }
@@ -2161,13 +2161,13 @@ mod Language_C_Analysis_NameSpaceMap {
     }
 
     fn lookupGlobal((NsMap(gs, _)): NameSpaceMap) -> NameSpaceMap {
-        Map_lookup(ident, gs)
+        Map__id_3a3a6c6f6f6b7570(ident, gs)
     }
 
     fn lookupInnermostScope(nsm: NameSpaceMap) -> NameSpaceMap {
         match localDefs {
             ls(__id_3a, _lss) => {
-                Prelude_lookup(ident, ls)
+                Prelude__id_3a3a6c6f6f6b7570(ident, ls)
             },
             [] => {
                 lookupGlobal(nsm, ident)
@@ -2187,15 +2187,15 @@ mod Language_C_Analysis_NameSpaceMap {
     }
 
     fn mergeNameSpace((NsMap(global1, local1)): NameSpaceMap) -> NameSpaceMap {
-        NsMap((Map_union(global1, global2)), (localUnion(local1, local2)))
+        NsMap((Map__id_3a3a756e696f6e(global1, global2)), (localUnion(local1, local2)))
     }
 
     fn nameSpaceMap() -> NameSpaceMap {
-        NsMap(Map_empty, vec![])
+        NsMap(Map__id_3a3a656d707479, vec![])
     }
 
     fn nsMapToList((NsMap(gs, lss)): NameSpaceMap) -> NameSpaceMap {
-        __op_addadd(concat(lss), Map_toList(gs))
+        __op_addadd(concat(lss), Map__id_3a3a746f4c697374(gs))
     }
 
 }
@@ -2487,14 +2487,14 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn emptyGlobalDecls() -> GlobalDecls {
-        GlobalDecls(Map_empty, Map_empty, Map_empty)
+        GlobalDecls(Map__id_3a3a656d707479, Map__id_3a3a656d707479, Map__id_3a3a656d707479)
     }
 
     fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> Bool, gmap: GlobalDecls) -> GlobalDecls {
         GlobalDecls({
-            gObjs: Map_filter((decl_filterDeclEvent), (gObjs(gmap))),
-            gTags: Map_filter((decl_filterTagEvent), (gTags(gmap))),
-            gTypeDefs: Map_filter((decl_filterTypeDefEvent), (gTypeDefs(gmap)))
+            gObjs: Map__id_3a3a66696c746572((decl_filterDeclEvent), (gObjs(gmap))),
+            gTags: Map__id_3a3a66696c746572((decl_filterTagEvent), (gTags(gmap))),
+            gTypeDefs: Map__id_3a3a66696c746572((decl_filterTypeDefEvent), (gTypeDefs(gmap)))
         })
     }
 
@@ -2548,9 +2548,9 @@ mod Language_C_Analysis_SemRep {
 
     fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
         GlobalDecls({
-            gObjs: Map_union((gObjs(gmap1)), (gObjs(gmap2))),
-            gTags: Map_union((gTags(gmap1)), (gTags(gmap2))),
-            gTypeDefs: Map_union((gTypeDefs(gmap1)), (gTypeDefs(gmap2)))
+            gObjs: Map__id_3a3a756e696f6e((gObjs(gmap1)), (gObjs(gmap2))),
+            gTags: Map__id_3a3a756e696f6e((gTags(gmap1)), (gTags(gmap2))),
+            gTypeDefs: Map__id_3a3a756e696f6e((gTypeDefs(gmap1)), (gTypeDefs(gmap2)))
         })
     }
 
@@ -2584,7 +2584,7 @@ mod Language_C_Analysis_SemRep {
     }
 
     fn splitIdentDecls(include_all: Bool) -> Map {
-        Map_foldWithKey((if(include_all, then, deal, else, deal_q)), (Map_empty, (Map_empty, Map_empty, Map_empty)))
+        Map__id_3a3a666f6c64576974684b6579((if(include_all, then, deal, else, deal_q)), (Map__id_3a3a656d707479, (Map__id_3a3a656d707479, Map__id_3a3a656d707479, Map__id_3a3a656d707479)))
     }
 
     fn typeOfCompDef((CompType(ref, tag, _, _, _)): CompType) -> TypeName {
@@ -2701,7 +2701,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn enterBlockScope() -> m {
-        updDefTable((ST_enterBlockScope))
+        updDefTable((ST__id_3a3a656e746572426c6f636b53636f7065))
     }
 
     fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> Bool) -> m {
@@ -2716,11 +2716,11 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn enterFunctionScope() -> m {
-        updDefTable((ST_enterFunctionScope))
+        updDefTable((ST__id_3a3a656e74657246756e6374696f6e53636f7065))
     }
 
     fn enterPrototypeScope() -> m {
-        updDefTable((ST_enterBlockScope))
+        updDefTable((ST__id_3a3a656e746572426c6f636b53636f7065))
     }
 
     fn generateName() -> Trav {
@@ -2837,7 +2837,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     fn initTravState(userst: s) -> TravState {
         TravState({
             symbolTable: emptyDefTable,
-            rerrors: RList_empty,
+            rerrors: RList__id_3a3a656d707479,
             nameGenerator: newNameSupply,
             doHandleExtDecl: const((())),
             userState: userst,
@@ -2859,15 +2859,15 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     fn leaveBlockScope() -> m {
-        updDefTable((ST_leaveBlockScope))
+        updDefTable((ST__id_3a3a6c65617665426c6f636b53636f7065))
     }
 
     fn leaveFunctionScope() -> m {
-        updDefTable((ST_leaveFunctionScope))
+        updDefTable((ST__id_3a3a6c6561766546756e6374696f6e53636f7065))
     }
 
     fn leavePrototypeScope() -> m {
-        updDefTable((ST_leaveBlockScope))
+        updDefTable((ST__id_3a3a6c65617665426c6f636b53636f7065))
     }
 
     fn lookupObject(ident: Ident) -> m {
@@ -2951,7 +2951,7 @@ otherwise { Right((v, ts)) },
     }
 
     fn travErrors() -> TravState {
-        RList_reversererrors
+        RList__id_3a3a72657665727365rerrors
     }
 
     fn updDefTable(f: fn(DefTable) -> DefTable) -> m {
@@ -3889,7 +3889,7 @@ mod Language_C_Data_Error {
     struct ErrorInfo(ErrorInfo, ErrorLevel, Position, Vec<String>);
 
     #[derive(Debug)]
-    struct CError(forall, err_, CError, err);
+    struct CError(forall, err__id_3a3a, CError, err);
 
     #[derive(Debug)]
     struct UnsupportedFeature(UnsupportedFeature, String, Position);
@@ -4043,7 +4043,7 @@ mod Language_C_Data_InputStream {
     fn countLines() -> isize {
         match () {
             () => {
-                lengthBSC_lines
+                lengthBSC__id_3a3a6c696e6573
             },
             () => {
                 lengthlines
@@ -4054,7 +4054,7 @@ mod Language_C_Data_InputStream {
     fn inputStreamEmpty() -> Bool {
         match () {
             () => {
-                BSW_null
+                BSW__id_3a3a6e756c6c
             },
             () => {
                 null
@@ -4065,7 +4065,7 @@ mod Language_C_Data_InputStream {
     fn inputStreamFromString() -> InputStream {
         match () {
             () => {
-                BSC_pack
+                BSC__id_3a3a7061636b
             },
             () => {
                 id
@@ -4076,7 +4076,7 @@ mod Language_C_Data_InputStream {
     fn inputStreamToString() -> String {
         match () {
             () => {
-                BSC_unpack
+                BSC__id_3a3a756e7061636b
             },
             () => {
                 id
@@ -4087,7 +4087,7 @@ mod Language_C_Data_InputStream {
     fn readInputStream() -> IO {
         match () {
             () => {
-                BSW_readFile
+                BSW__id_3a3a7265616446696c65
             },
             () => {
                 readFile
@@ -4096,13 +4096,13 @@ mod Language_C_Data_InputStream {
     }
 
     fn takeByte(bs: InputStream) -> (Word8, InputStream) {
-        seq(BSW_head(bs), (BSW_head(bs), BSW_tail(bs)))
+        seq(BSW__id_3a3a68656164(bs), (BSW__id_3a3a68656164(bs), BSW__id_3a3a7461696c(bs)))
     }
 
     fn takeChar(__0: InputStream) -> (Char, InputStream) {
         match (__0) {
             bs => {
-                seq(BSC_head(bs), (BSC_head(bs), BSC_tail(bs)))
+                seq(BSC__id_3a3a68656164(bs), (BSC__id_3a3a68656164(bs), BSC__id_3a3a7461696c(bs)))
             },
             bs => {
                 (head(bs), tail(bs))
@@ -4113,7 +4113,7 @@ mod Language_C_Data_InputStream {
     fn takeChars(__0: isize, __1: InputStream, __2: Vec<Char>) -> Vec<Char> {
         match (__0, __1, __2) {
             (<todo>, n, bstr) => {
-                BSC_unpack(BSC_take(n, bstr))
+                BSC__id_3a3a756e7061636b(BSC__id_3a3a74616b65(n, bstr))
             },
             (n, __str) => {
                 take(n, __str)
@@ -4125,7 +4125,7 @@ mod Language_C_Data_InputStream {
 
 mod Language_C_Data_Name {
     fn namesStartingFrom(k: isize) -> Vec<Name> {
-        vec![Name(k__)]
+        vec![Name(k__id_3a3a3a3a)]
     }
 
     fn newNameSupply() -> Vec<Name> {
@@ -4337,7 +4337,7 @@ mod Language_C_Data_Position {
 
 mod Language_C_Data_RList {
     fn appendr(xs: Vec<a>, (Reversed(ys)): Reversed) -> Reversed {
-        Reversed((__op_addadd(ys, List_reverse(xs))))
+        Reversed((__op_addadd(ys, List__id_3a3a72657665727365(xs))))
     }
 
     fn empty() -> Reversed {
@@ -4345,7 +4345,7 @@ mod Language_C_Data_RList {
     }
 
     fn rappend((Reversed(xs)): Reversed) -> Reversed {
-        Reversed((__op_addadd(List_reverse(ys), xs)))
+        Reversed((__op_addadd(List__id_3a3a72657665727365(ys), xs)))
     }
 
     fn rappendr((Reversed(xs)): Reversed) -> Reversed {
@@ -4353,7 +4353,7 @@ mod Language_C_Data_RList {
     }
 
     fn reverse((Reversed(xs)): Reversed) -> Reversed {
-        List_reverse(xs)
+        List__id_3a3a72657665727365(xs)
     }
 
     fn rmap(f: fn(a) -> b, (Reversed(xs)): Reversed) -> Reversed {
@@ -4465,7 +4465,7 @@ mod Language_C_Parser_ParserMonad {
     }
 
     fn isTypeIdent(ident: Ident) -> P {
-        P($!(Lambda(s), Set_member(ident, tyids)))
+        P($!(Lambda(s), Set__id_3a3a6d656d626572(ident, tyids)))
     }
 
     fn leaveScope() -> P {
@@ -5823,7 +5823,7 @@ mod Language_C_System_GCC {
     }
 
     fn gccParseCPPArgs(args: Vec<String>) -> Either {
-        match mungeArgs(((Nothing, Nothing, RList_empty), (RList_empty, RList_empty)), args) {
+        match mungeArgs(((Nothing, Nothing, RList__id_3a3a656d707479), (RList__id_3a3a656d707479, RList__id_3a3a656d707479)), args) {
             Left(err) => {
                 Left(err)
             },
@@ -5831,10 +5831,10 @@ mod Language_C_System_GCC {
                 Left("No .c / .hc / .h source file given".to_string())
             },
             Right(((Some(input_file), output_file_opt, cpp_opts), (extra_args, other_args))) => {
-                Right(((rawCppArgs((RList_reverse(extra_args)), input_file))({
+                Right(((rawCppArgs((RList__id_3a3a72657665727365(extra_args)), input_file))({
                         outputFile: output_file_opt,
-                        cppOptions: RList_reverse(cpp_opts)
-                    }), RList_reverse(other_args)))
+                        cppOptions: RList__id_3a3a72657665727365(cpp_opts)
+                    }), RList__id_3a3a72657665727365(other_args)))
             },
         }
     }
