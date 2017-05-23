@@ -1,11 +1,11 @@
 [package]
-name = "corrode-but-in-rust"
+name = "corollary"
 version = "0.1.0"
 authors = [
   "Tim Ryan <tim@timryan.org>",
   "Paul Collier <paul@paulcollier.ca>"
 ]
-description = "Cross-compiles Haskell into Rust for Corrode."
+description = "Cross-compiles Haskell into Rust."
 repository = "http://github.com/tcr/corrode-but-in-rust"
 homepage = "http://github.com/tcr/corrode-but-in-rust"
 license = "MIT/Apache-2.0"
