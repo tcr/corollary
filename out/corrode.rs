@@ -176,7 +176,11 @@ pub mod Language_Rust_AST {
     pub fn pPrintBlock(__0: Doc, __1: Block) -> Doc {
         match (__0, __1) {
             (pre, Block([], e)) => {
-                sep(vec![__op_arrow_concat(pre, text("{".to_string())), nest(4, (maybe(empty, pPrint, e))), text("}".to_string())])
+                sep(vec![
+                        __op_arrow_concat(pre, text("{".to_string())),
+                        nest(4, (maybe(empty, pPrint, e))),
+                        text("}".to_string()),
+                    ])
             },
             (pre, Block(ss, e)) => {
                 __op_arrow_concat(pre, $+$(text("{".to_string()), $+$(nest(4, (vcat((__op_addadd(map(pPrint, ss), vec![maybe(empty, pPrint, e)]))))), text("}".to_string()))))
@@ -658,7 +662,10 @@ pub mod Language_Rust_Corrode_C {
                             let lhsvar = Rust::VarName("_lhs".to_string());
 ;
                             let rhsvar = Rust::VarName("_rhs".to_string());
-                        }, in, (vec![Rust::Let(Rust::Immutable, rhsvar, Nothing, (Just((result(rhs))))), Rust::Let(Rust::Immutable, lhsvar, Nothing, (Just((Rust::Borrow(Rust::Mutable, (result(lhs)))))))], lhs({
+                        }, in, (vec![
+                            Rust::Let(Rust::Immutable, rhsvar, Nothing, (Just((result(rhs))))),
+                            Rust::Let(Rust::Immutable, lhsvar, Nothing, (Just((Rust::Borrow(Rust::Mutable, (result(lhs))))))),
+                        ], lhs({
                             result: Rust::Deref((Rust::Var(lhsvar)))
                         }), rhs({
                             result: Rust::Var(rhsvar)
@@ -1132,7 +1139,10 @@ pub mod Language_Rust_Corrode_C {
 ;
                             let allow_unsigned = ||(not(allow_signed), /=(repr, DecRepr));
 ;
-                            let widths = vec![(32, if(any, (Operator("testFlag")(flags)), vec![FlagLongLong, FlagLong], then, WordWidth, else, BitWidth, 32)), (64, BitWidth(64))];
+                            let widths = vec![
+                                    (32, if(any, (Operator("testFlag")(flags)), vec![FlagLongLong, FlagLong], then, WordWidth, else, BitWidth, 32)),
+                                    (64, BitWidth(64)),
+                                ];
 ;
                             let allowed_types = Dummy;
 ;
@@ -1398,7 +1408,9 @@ pub mod Language_Rust_Corrode_C {
                                 let ident = fmap(internalIdent, (uniqueName("switch".to_string())));
                                 let rhs = interpretExpr(True, expr);
                                 let var = addSymbolIdent(ident, (Rust::Immutable, resultType(rhs)));
-                                (vec![Rust::Let(Rust::Immutable, (Rust::VarName(var)), Nothing, (Just((result(rhs)))))], CVar(ident, node))
+                                (vec![
+                                    Rust::Let(Rust::Immutable, (Rust::VarName(var)), Nothing, (Just((result(rhs))))),
+                                ], CVar(ident, node))
                             }))
                         },
                     };
@@ -1633,7 +1645,13 @@ pub mod Language_Rust_Corrode_C {
     }
 
     pub fn noTranslation(node: node, msg: String) -> EnvMonad {
-        throwE(concat(vec![show((posOf(node))), ": ".to_string(), msg, ":\n".to_string(), render((nest(4, (pretty(node)))))]))
+        throwE(concat(vec![
+                show((posOf(node))),
+                ": ".to_string(),
+                msg,
+                ":\n".to_string(),
+                render((nest(4, (pretty(node))))),
+            ]))
     }
 
     pub fn objectFromDesignators(__0: CType, __1: Vec<CDesignator>) -> EnvMonad {
@@ -1653,7 +1671,12 @@ pub mod Language_Rust_Corrode_C {
                 Result
             },
             None => {
-                badSource(node)(concat(vec!["arithmetic combination for ".to_string(), show((resultType(a))), " and ".to_string(), show((resultType(b)))]))
+                badSource(node)(concat(vec![
+                        "arithmetic combination for ".to_string(),
+                        show((resultType(a))),
+                        " and ".to_string(),
+                        show((resultType(b))),
+                    ]))
             },
         }
     }
@@ -1908,7 +1931,12 @@ pub mod Language_Rust_Corrode_C {
                 Rust::TypeName("::std::os::raw::c_void".to_string())
             },
             IsFunc(retTy, args, variadic) => {
-                Rust::TypeName(concat(vec!["unsafe extern fn(".to_string(), args_q, ")".to_string(), /=(if(retTy), __op_addadd(IsVoid(then, " -> ".to_string()), typename(retTy, else, "".to_string())))]))
+                Rust::TypeName(concat(vec![
+                        "unsafe extern fn(".to_string(),
+                        args_q,
+                        ")".to_string(),
+                        /=(if(retTy), __op_addadd(IsVoid(then, " -> ".to_string()), typename(retTy, else, "".to_string()))),
+                    ]))
             },
             IsPtr(__mut, to) => {
                 {
@@ -2047,7 +2075,11 @@ pub mod Language_Rust_Corrode_C {
             {
                 let ret = Rust::VarName("ret".to_string());
             };
-            emitItems(vec![Rust::Item(vec![], Rust::Private, (Rust::Function(vec![], "main".to_string(), vec![], (Rust::TypeName("()".to_string())), (statementsToBlock((__op_addadd(setup, __op_addadd(vec![bind(Rust::Immutable, ret)(Rust::UnsafeExpr(Rust::Block(vec![])(Just(call(realName, args)))))], exprToStatements((call("::std::process::exit".to_string(), vec![Rust::Var(ret)])))))))))))]);
+            emitItems(vec![
+                    Rust::Item(vec![], Rust::Private, (Rust::Function(vec![], "main".to_string(), vec![], (Rust::TypeName("()".to_string())), (statementsToBlock((__op_addadd(setup, __op_addadd(vec![
+                                bind(Rust::Immutable, ret)(Rust::UnsafeExpr(Rust::Block(vec![])(Just(call(realName, args))))),
+                            ], exprToStatements((call("::std::process::exit".to_string(), vec![Rust::Var(ret)]))))))))))),
+                ]);
 ;
             let wrapArgv = |vec![]| {
                 (vec![], vec![])
