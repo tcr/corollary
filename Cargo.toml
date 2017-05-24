@@ -11,12 +11,14 @@ homepage = "http://github.com/tcr/corrode-but-in-rust"
 license = "MIT/Apache-2.0"
 
 [dependencies]
-regex = "0.2.1"
-maplit = "*"
-walkdir = "1"
-lalrpop-util = "0.12.5"
+clap = "2.24"
 errln = "0.1.0"
 hex = "0.2.0"
+lalrpop-util = "0.12.5"
+maplit = "*"
+regex = "0.2.1"
+tempdir = "0.3"
+walkdir = "1"
 
 [dependencies.parser-haskell]
 path = "./parser-haskell"

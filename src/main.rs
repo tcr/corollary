@@ -2,23 +2,30 @@
 
 #[macro_use] extern crate errln;
 #[macro_use] extern crate maplit;
+extern crate clap;
 extern crate hex;
 extern crate lalrpop_util;
 extern crate parser_haskell;
 extern crate regex;
+extern crate tempdir;
 extern crate walkdir;
 
 use parser_haskell::ast;
 use parser_haskell::ast::{Expr, Pat, Ty};
 use parser_haskell::util::{print_parse_error, simplify_parse_error};
 
+use clap::{Arg, App, SubCommand};
+use hex::*;
 use regex::Regex;
 use std::borrow::Borrow;
-use std::io::prelude::*;
-use std::fs::{File};
-use std::env;
 use std::collections::BTreeSet;
-use hex::*;
+use std::env;
+use std::fmt::Write;
+use std::fs::{File};
+use std::io::prelude::*;
+use std::path::Path;
+use std::process::Command;
+use tempdir::TempDir;
 use walkdir::WalkDir;
 
 #[derive(Clone, Copy)]
@@ -421,6 +428,9 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         }
     }
 
+    // Output
+    let mut out = vec![];
+
     // Print out data structures.
     for item in stats {
         if let ast::Statement::Data(name, data, derives, args) = item.clone() {
@@ -440,7 +450,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 .collect::<Vec<_>>();
 
             if data.len() > 1 {
-                println!("{}{}enum {} {{\n        {}\n{}}}",
+                out.push(format!("{}{}pub enum {} {{\n        {}\n{}}}\n{}{}",
                     state.indent(),
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n    ", derive_rust.join(", "))
@@ -448,7 +458,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                         format!("")
                     },
                     print_type(state, Ty::Span({
-                        let mut v = vec![Ty::Ref(name)];
+                        let mut v = vec![Ty::Ref(name.clone())];
                         v.extend(args.unwrap_or(vec![]));
                         v
                     })),
@@ -465,12 +475,14 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                         )
                     }).collect::<Vec<_>>().join(&format!(",\n        ")),
                     state.indent(),
-                    );
+                    state.indent(),
+                    format!("pub use self::{}::*;", print_ident(state, name.0)),
+                    ));
             } else {
                 let props = data.iter().map(|tyset| {
                     print_types(state, tyset)
                 }).collect::<Vec<_>>().join(", ");
-                println!("    {}struct {}{};",
+                out.push(format!("    {}struct {}{};",
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n    ", derive_rust.join(", "))
                     } else {
@@ -482,9 +494,9 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                         v
                     })),
                     if data.len() > 0 { format!("({})", props) } else { "".to_string() }
-                );
+                ));
             }
-            println!("");
+            out.push("".to_string())
         }
     }
 
@@ -549,7 +561,6 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         }
     }
 
-    let mut out = vec![];
     for (key, fnset) in new_cache {
         for (args, expr) in fnset {
             // For type-less functions,
@@ -588,7 +599,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 args_span.push(format!("{}: {}", print_expr(state, arg), print_type(state.tab(), ty)));
             }
             out.push(
-                format!("{}fn {}({}) -> {} {{\n{}{}\n{}}}\n",
+                format!("{}pub fn {}({}) -> {} {{\n{}{}\n{}}}\n",
                     state.indent(),
                     key,
                     args_span.join(", "),
@@ -613,6 +624,8 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
 #[test] #[ignore]
 fn test_single_file() {
+    use std::io::Write;
+
     let a = "./corrode/src/Language/Rust/Corrode/C.lhs";
     // let a = "./corrode/src/Language/Rust/Corrode/C.hs";
     // let a = "./test/input.hs";
@@ -730,20 +743,83 @@ fn fix_lhs(s: &str) -> String {
     out.join("\n\n")
 }
 
+fn convert_file(input: &str) -> (String, String) {
+    let mut contents = input.to_string();
+    let mut file_out = String::new();
+    let mut rust_out = String::new();
+
+    // Parse out HASKELL /HASKELL RUST /RUST sections.
+    let re = Regex::new(r#"HASKELL[\s\S]*?/HASKELL"#).unwrap();
+    contents = re.replace(&contents, "").to_string();
+    let re = Regex::new(r#"RUST([\s\S]*?)/RUST"#).unwrap();
+    if let Some(cap) = re.captures(&contents) {
+        rust_out.push_str(&cap.get(1).unwrap().as_str().to_string());
+    }
+    contents = re.replace(&contents, "").to_string();
+
+    // Preprocess the file.
+    let contents = parser_haskell::preprocess(&contents);
+
+    // Parse the file.
+    let mut errors = Vec::new();
+    match parser_haskell::parse(&mut errors, &contents) {
+        Ok(v) => {
+            // println!("{:?}", p);
+            // continue;
+            let _ = writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"));
+            let _ = writeln!(file_out, "    use haskell_support::*;");
+            let state = PrintState::new();
+            let _ = writeln!(file_out, "{}", print_statement_list(state.tab(), &v.statements));
+            //print_statement_list(state.tab(), &v.statements);
+            let _ = writeln!(file_out, "}}\n");
+        }
+        Err(e) => {
+            let _ = writeln!(file_out, "/* ERROR: cannot convert file...");
+            // TODO have this write to Format
+            print_parse_error(&contents, &simplify_parse_error(e));
+            let _ = writeln!(file_out, "*/");
+        }
+    }
+
+    (file_out, rust_out)
+}
+
 
 #[cfg(not(test))]
 fn main() {
-    let dir = match env::args().nth(1) {
-        Some(s) => s,
-        _ => {
-            panic!("Usage: cargo run <dir>");
-        }
-    };
+    use std::io::Write;
 
-    for entry in WalkDir::new(dir) {
+    let matches = App::new("corollary")
+        .version("0.1")
+        .about("Converts Haskell to Rust")
+        .arg(Arg::with_name("run")
+            .short("r")
+            .long("run")
+            .help("Runs the file"))
+        .arg(Arg::with_name("INPUT")
+            .help("Sets the input file to use")
+            .required(true)
+            .index(1))
+        .get_matches();
+
+    let file = matches.value_of("INPUT").unwrap();
+    let do_run = matches.is_present("run");
+    if do_run {
+        errln!("running {:?}...", file);
+    } else {
+        errln!("cross-compiling {:?}...", file);
+    }
+
+    let mut rust_section = "".to_string();
+    let mut file_section = "".to_string();
+
+    let _ = writeln!(file_section, "{}", include_str!("haskell_support.txt"));
+    let _ = writeln!(file_section, "");
+    for entry in WalkDir::new(file) {
         let e = entry.unwrap();
         let p = e.path();
 
+        // Check filetype. Allow .lhs and .hs, ignore all else.
         let mut do_fix_lhs = false;
         if p.display().to_string().ends_with(".lhs") {
             do_fix_lhs = true;
@@ -751,7 +827,7 @@ fn main() {
             continue;
         }
 
-
+        // Read file contents.
         let mut file = File::open(p).unwrap();
         let mut contents = String::new();
         match file.read_to_string(&mut contents) {
@@ -759,30 +835,42 @@ fn main() {
             _ => continue,
         };
 
+        // Preprocess the file.
         if do_fix_lhs {
             contents = fix_lhs(&contents);
         }
-        let contents = parser_haskell::preprocess(&contents);
 
-        let mut errors = Vec::new();
-        match parser_haskell::parse(&mut errors, &contents) {
-            Ok(v) => {
-                // println!("{:?}", p);
-                // continue;
-                println!("mod {} {{", v.name.0.replace(".", "_"));
-                let state = PrintState::new();
-                println!("{}", print_statement_list(state.tab(), &v.statements));
-                //print_statement_list(state.tab(), &v.statements);
-                println!("}}\n");
-            }
-            Err(e) => {
-                println!("/* ERROR: cannot yet convert file {:?}", p);
-                print_parse_error(&contents, &simplify_parse_error(e));
-                println!("*/");
-            }
-        }
+        let (file_out, rust_out) = convert_file(&contents);
+        let _ = writeln!(file_section, "{}", file_out);
+        rust_section.push_str(&rust_out);
     }
-    println!("");
-    println!("");
-    println!("fn main() {{ /* demo */ }}")
+    let _ = writeln!(file_section, "");
+    let _ = writeln!(file_section, "");
+    if rust_section.len() > 0 {
+        let _ = writeln!(file_section, "/* RUST ... /RUST */");
+        let _ = writeln!(file_section, "{}", rust_section);
+    }
+
+    // Evaluate --run
+    if !do_run {
+        print!("{}", file_section);
+    } else {
+        let dir = TempDir::new("corollary").unwrap();
+        let file_path = dir.path().join("script.rs");
+
+        let mut f = File::create(&file_path).unwrap();
+        let _ = f.write_all(file_section.as_bytes());
+        drop(f);
+
+        let output = Command::new("cargo")
+                    .args(&["script", &file_path.display().to_string()])
+                    .output()
+                    .expect("failed to execute process");
+
+        if !output.status.success() {
+            err!("{}", String::from_utf8_lossy(&output.stderr));
+        }
+        err!("{}", String::from_utf8_lossy(&output.stdout));
+        ::std::process::exit(output.status.code().unwrap());
+    }
 }

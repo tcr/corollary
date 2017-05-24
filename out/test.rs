@@ -1,67 +1,51 @@
-mod Test_Code {
-    enum AlexReturn<a> {
-        AlexEOF,
-        AlexError(AlexInput),
-        AlexSkip(AlexInput, isize),
-        AlexToken(AlexInput, isize, a)
+mod haskell_support {
+    pub trait Addable {
+        fn add(self, right: Self) -> Self;
     }
 
-    fn addExternIdent(ident: Ident, deferred: EnvMonad) -> EnvMonad {
-        /* do */ {
-            let action = runOnce(/* do */ {
-                let itype = deferred;
-                let rewrites = lift(asks(itemRewrites));
-                let path = match Map_lookup((Symbol, identToString(ident)), rewrites) {
-                    Some(renamed) => {
-                        (__op_concat("".to_string(), renamed))
-                    },
-                    None => {
-                        vec![name]
-                    },
-                }
-            });
-            addSymbolIdentAction(ident, action)
+    impl Addable for String {
+        fn add(self, right: Self) -> Self {
+            format!("{}{}", self, right)
         }
     }
 
-    fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust_Mutable, CType)) -> EnvMonad {
-        /* do */ {
-            {
-                let name = applyRenames(ident);
-            };
-            addSymbolIdentAction(ident)(Result);
-            name
-        }
+    pub fn __op_addadd<A: Addable>(left: A, right: A) -> A {
+        Addable::add(left, right)
+    }
+}
+
+
+pub mod Test_Hello {
+    use haskell_support::*;
+    pub enum Term {
+        Hello,
+        World
+    }
+    pub use self::Term::*;
+
+    pub fn helloworld() -> String {
+        (__op_addadd((printer(Hello)), __op_addadd(" ".to_string(), (printer(World)))))
     }
 
-    fn bitWidth(__0: isize, __1: IntWidth) -> isize {
-        match (__0, __1) {
-            (wordWidth, WordWidth) => {
-                wordWidth
+    pub fn printer(__0: Term) -> String {
+        match (__0) {
+            Hello => {
+                "Hello".to_string()
             },
-            (_, BitWidth(w)) => {
-                w
-            },
-        }
-    }
-
-    fn blockToStatements((Rust_Block(stmts, mexpr)): Rust_Block) -> Vec<Rust_Stmt> {
-        match mexpr {
-            Some(expr) => {
-                __op_addadd(stmts, exprToStatements(expr))
-            },
-            None => {
-                stmts
+            World => {
+                "World".to_string()
             },
         }
-    }
-
-    fn sumEuler() -> isize {
-        sum(map(euler, mkList))
     }
 
 }
 
 
 
-fn main() { /* demo */ }
+/* RUST ... /RUST */
+
+fn main() {
+    assert_eq!("Hello World", Test_Hello::helloworld());
+    println!("success.");
+}
+
