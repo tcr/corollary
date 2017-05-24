@@ -123,8 +123,13 @@ Expr: Expr = {
     <Ctor> => Expr::Operator(<>.0),
     <Operator> => Expr::Operator(<>),
 
-    r"\\" Ident Expr* "->" Expr => Expr::Lambda,
-    r"\\" "(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
+    r"\\" <i:Ident> <e:PatList?> "->" <body:Expr> => Expr::Lambda({
+      let mut a = vec![Pat::Ref(i)];
+      a.extend(e.unwrap_or(vec![]));
+      a
+    }, Box::new(body)),
+    r"\\" "(" <e:CommaDef<PatSpan>> ")" "->" <body:Expr>
+      => Expr::Lambda(vec![Pat::Tuple(e)], Box::new(body)),
 
     "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
     "[" <CommaDef<ExprSpan>> ("::" TypeGroup)? "]" => Expr::Vector(<>),

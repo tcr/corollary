@@ -46,3 +46,9 @@ data AlexReturn a
 
 sumEuler :: Int -> Int
 sumEuler = sum . (map euler) . mkList
+
+{-RUST
+fn main() {
+    println!("success.");
+}
+/RUST-}

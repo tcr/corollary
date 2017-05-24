@@ -151,7 +151,8 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         Number(n) => return ir::Expr::Number(n),
         Op(ref l, ref op, ref r) => {
             if op == "&&"
-                || op == "==" {
+                || op == "=="
+                || op == "*" {
                 format!("({} {} {})", print_expr(state, l), op, print_expr(state, r))
             } else if op == "$" {
                 format!("{}({})", print_expr(state, l), print_expr(state, r))
@@ -281,6 +282,11 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 }
             }
             format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.indent())
+        }
+        Lambda(ref pats, ref body) => {
+            format!("|{}| {{ {} }}",
+                print_patterns(state.tab(), pats),
+                print_expr(state.tab(), body))
         }
         ref expr => {
             format!("{:?}", expr)

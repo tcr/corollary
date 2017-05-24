@@ -11,7 +11,7 @@ pub enum Expr {
     Vector(Vec<Expr>),
     Operator(String),
     Record(Vec<(Ident, Expr)>),
-    Lambda,
+    Lambda(Vec<Pat>, Box<Expr>),
     Str(String),
     Char(String),
     Error,

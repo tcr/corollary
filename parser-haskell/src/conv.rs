@@ -21,7 +21,7 @@ pub fn expr_to_pat(expr: &Expr) -> Pat {
         //Expr::Case(Box<Expr>, Vec<CaseCond>),
         //Expr::Let(Vec<Statement>, Vec<Statement>),
         //Expr::Do(Vec<Statement>, Vec<Statement>),
-        Expr::Lambda |
+        Expr::Lambda(..) |
         Expr::Error |
         _ => {
             panic!("Invalid expr to pat conversion: {:?}", expr);
