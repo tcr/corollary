@@ -152,7 +152,8 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         Op(ref l, ref op, ref r) => {
             if op == "&&"
                 || op == "=="
-                || op == "*" {
+                || op == "*"
+                || op == "||" {
                 format!("({} {} {})", print_expr(state, l), op, print_expr(state, r))
             } else if op == "$" {
                 format!("{}({})", print_expr(state, l), print_expr(state, r))

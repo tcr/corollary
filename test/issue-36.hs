@@ -1,7 +1,7 @@
 module Test.Hello ()
 where
 
-run :: Int
+run :: Int -> Int
 run y = do
   truthy <- \x -> (x * x)
   truthy(y)
