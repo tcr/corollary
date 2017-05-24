@@ -105,6 +105,8 @@ fn commify(val: &str) -> String {
 
     // Previous indentation levels
     let mut stash: Vec<(usize, BlockWord)> = vec![];
+    // Previously popped from `stash`.
+    let mut popped: Option<(usize, BlockWord)> = None;
     // Previous brace nesting levels.
     let mut braces: Vec<isize> = vec![];
     // Previous word was a block starting word.
@@ -140,7 +142,7 @@ fn commify(val: &str) -> String {
 
             macro_rules! pop_brace {
                 () => ({
-                    stash.pop();
+                    popped = stash.pop();
                     braces.pop();
                     out.push_str("}");
                 });
@@ -189,6 +191,19 @@ fn commify(val: &str) -> String {
                 pop_brace!();
                 if braces.len() > 0 {
                     *braces.last_mut().unwrap() -= 1;
+                }
+            }
+
+            // make sure `let { ... } in` is closed
+            if word == "in" {
+                // are we still in the `let`?
+                if let Some(&(_, BlockWord::Let)) = stash.last() {
+                    pop_brace!();
+                } else if let Some((_, BlockWord::Let)) = popped {
+                    // a `let { ... }` just closed so we don't have to do anything
+                } else {
+                    let bw = stash.last().expect("`in` at top level").1;
+                    out.push_str(&format!(" /* ERR: `in` while in `{:?}` block */ ", bw));
                 }
             }
 
