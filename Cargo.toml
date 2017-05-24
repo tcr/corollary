@@ -22,3 +22,5 @@ walkdir = "1"
 
 [dependencies.parser-haskell]
 path = "./parser-haskell"
+
+[workspace]
