@@ -141,7 +141,7 @@ Expr: Expr = {
     r"\\" "(" <e:CommaDef<PatSpan>> ")" "->" <body:Expr>
       => Expr::Lambda(vec![Pat::Tuple(e)], Box::new(body)),
 
-    "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
+    "[" <CommaDef<ExprSpan>> "|" CommaDef<ListGenerator> "]" => Expr::Dummy,
     "[" <CommaDef<ExprSpan>> ("::" TypeGroup)? "]" => Expr::Vector(<>),
     "[" "]" => Expr::Vector(vec![]),
     "(" <CommaDef<(<ExprSpan> ("::" TypeGroup)?)>>  ")" => Expr::Parens(<>),
@@ -157,6 +157,11 @@ Expr: Expr = {
     "do" "{" <Semi<DoStatement>> "}" => Expr::Do(<>),
     "{" "}" => Expr::Record(vec![]),
     "{" <r:CommaDef<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
+};
+
+ListGenerator: () = {
+    <PatSpan> "<-" <ExprSpan> => (),
+    "let" "{" <Assignment> "}" => (),
 };
 
 SContext: () = {
