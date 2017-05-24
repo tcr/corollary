@@ -71,16 +71,15 @@ fn print_ident(_: PrintState, mut expr: String) -> String {
 
 fn print_type_ident(state: PrintState, s: &str) -> String {
     // Handle common translations for types here
-    if s == "Int" {
-        format!("isize")
-    } else if s == "Nothing" {
-        format!("None")
-    } else if s == "Just" {
-        format!("Some")
-    } else if s == "Maybe" {
-        format!("Option")
-    } else {
-        print_ident(state, s.to_string())
+    match s {
+        "Int" => format!("isize"),
+        "Nothing" => format!("None"),
+        "Just" => format!("Some"),
+        "Maybe" => format!("Option"),
+        "True" => format!("true"),
+        "False" => format!("false"),
+        "Bool" => format!("bool"),
+        _ => print_ident(state, s.to_string()),
     }
 }
 
