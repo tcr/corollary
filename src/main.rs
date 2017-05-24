@@ -841,6 +841,11 @@ fn main() {
             .short("r")
             .long("run")
             .help("Runs the file"))
+        .arg(Arg::with_name("out")
+            .short("o")
+            .long("out")
+            .help("Output path")
+            .takes_value(true))
         .arg(Arg::with_name("INPUT")
             .help("Sets the input file to use")
             .required(true)
@@ -853,6 +858,12 @@ fn main() {
         errln!("running {:?}...", file);
     } else {
         errln!("cross-compiling {:?}...", file);
+    }
+
+    // Create target directory.
+    let target_dir = matches.value_of("out");
+    if let Some(target) = target_dir {
+        let _ = ::std::fs::create_dir_all(target);
     }
 
     let mut rust_section = "".to_string();
@@ -886,12 +897,34 @@ fn main() {
         }
 
         let (file_out, rust_out) = convert_file(&contents, p);
-        let _ = writeln!(file_section, "{}", file_out);
-        rust_section.push_str(&rust_out);
+
+        if let Some(target) = target_dir {
+            //let _ = ::std::fs::create_dir_all(target);
+            let mut a = p.components();
+            a.next();
+            let t = format!("{}/{}", target, a.as_path().display());
+            let _ = ::std::fs::create_dir_all(&Path::new(&t).parent().unwrap());
+
+            let t = t.replace(".lhs", ".rs");
+            let t = t.replace(".hs", ".rs");
+
+            let mut f = File::create(&t).unwrap();
+            let _ = f.write_all(file_out.as_bytes());
+            let _ = f.write_all(rust_out.as_bytes());
+            drop(f);
+        } else {
+            let _ = writeln!(file_section, "{}", file_out);
+            rust_section.push_str(&rust_out);
+        }
+    }
+
+    if let Some(_) = target_dir {
+        return;
     }
     let _ = writeln!(file_section, "");
     let _ = writeln!(file_section, "");
     if rust_section.len() > 0 {
+        let _ = writeln!(file_section, "{}", include_str!("haskell_support.txt"));
         let _ = writeln!(file_section, "/* RUST ... /RUST */");
         let _ = writeln!(file_section, "{}", rust_section);
     }
