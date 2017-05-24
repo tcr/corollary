@@ -104,7 +104,7 @@ fn commify(val: &str) -> String {
     let commentless = strip_comments(val);
 
     // Previous indentation levels
-    let mut stash: Vec<usize> = vec![];
+    let mut stash: Vec<(usize, BlockWord)> = vec![];
     // Previous brace nesting levels.
     let mut braces: Vec<isize> = vec![];
     // Previous word was a block starting word.
@@ -138,9 +138,17 @@ fn commify(val: &str) -> String {
         } else if let Some(cap) = re_word.captures(v) {
             let word = &cap[0];
 
+            macro_rules! pop_brace {
+                () => ({
+                    stash.pop();
+                    braces.pop();
+                    out.push_str("}");
+                });
+            }
+
             if first {
                 while {
-                    if let Some(last_level) = stash.last().map(|x| *x) {
+                    if let Some(last_level) = stash.last().map(|&(n, _)| n) {
                         // Check if we decreased our indent level
                         last_level > indent
                             || (last_level == indent && word == "where")
@@ -149,13 +157,11 @@ fn commify(val: &str) -> String {
                     }
                 } {
                     // out.push_str(&format!("[{:?}{:?}]", last_level, stash.last()));
-                    stash.pop();
-                    braces.pop();
-                    out.push_str("}");
+                    pop_brace!();
                 }
 
-                if let Some(i) = stash.last() {
-                    if *i == indent && trigger.is_none() {
+                if let Some(&(i, _)) = stash.last() {
+                    if i == indent && trigger.is_none() {
                         out.push_str(";");
                     }
                 }
@@ -180,9 +186,7 @@ fn commify(val: &str) -> String {
                     false
                 }
             } {
-                stash.pop();
-                braces.pop();
-                out.push_str("}");
+                pop_brace!();
                 if braces.len() > 0 {
                     *braces.last_mut().unwrap() -= 1;
                 }
@@ -191,9 +195,9 @@ fn commify(val: &str) -> String {
             out.push_str(word);
             v = &v[word.len()..];
 
-            if trigger.is_some() {
+            if let Some(block_word) = trigger {
                 // The next word after a block word is where the whitespace column begins.
-                stash.push(indent);
+                stash.push((indent, block_word));
             }
             first = false;
 
