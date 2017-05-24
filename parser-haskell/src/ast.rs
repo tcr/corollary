@@ -91,6 +91,7 @@ pub enum Pat {
     Arrow(Ident, Box<Pat>),
     Not(Box<Pat>),
     Ref(Ident),
+    Infix(Ident),
     Tuple(Vec<Pat>),
     Brackets(Vec<Pat>),
     Record(Vec<(Ident, Pat)>),
@@ -105,3 +106,25 @@ pub enum Pat {
 
 #[derive(Clone, Debug)]
 pub struct Ident(pub String);
+
+// maybe move this to a new mod
+/// De-infixes a `Pat::Infix`.
+pub fn rearrange_infix_pat(mut pats: Vec<Pat>) -> Vec<Pat> {
+    let mut index = None;
+    for (i, pat) in pats.iter().enumerate() {
+        if match pat { &Pat::Infix(_) => true, _ => false } {
+            assert!(index.is_none(), "Multiple infix patterns: {:?}", pats);
+            index = Some(i);
+        }
+    }
+
+    if let Some(i) = index {
+        let ident = match pats.remove(i) {
+            Pat::Infix(ident) => ident,
+            _ => panic!(),
+        };
+        pats.insert(0, Pat::Ref(ident));
+    }
+
+    pats
+}

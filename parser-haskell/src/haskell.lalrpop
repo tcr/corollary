@@ -253,12 +253,11 @@ PatSub: Pat = {
     <Ident> => Pat::Ref(<>),
     <Ctor> => Pat::Ref(<>),
     <Operator> => Pat::Operator(<>),
+    "`" <Ident> "`" => Pat::Infix(<>),
+
     <Quote> => Pat::Str(decode_literal(&<>)),
     <SingleQuote> => Pat::Char(decode_literal(&<>)),
     <Num> => Pat::Num(<>),
-
-    // HACK
-    "`" Ident "`" => Pat::Dummy,
 };
 
 PatRecord: () = {
@@ -273,7 +272,7 @@ PatSpan: Pat = {
 
 // for matching e.g. multiple function args
 PatList: Vec<Pat> = {
-    <PatSub+> => <>,
+    <PatSub+> => rearrange_infix_pat(<>),
 };
 
 ImportName: () = {

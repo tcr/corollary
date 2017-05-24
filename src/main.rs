@@ -366,6 +366,9 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
             // Should only be @
             format!("{}", op)
         }
+        Pat::Infix(ref ident) => {
+            panic!("Infix pattern `{}` was not rearranged", ident.0)
+        }
         Pat::Dummy => format!("<todo>"),
     }
 }
