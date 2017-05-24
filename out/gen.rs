@@ -373,11 +373,11 @@ pub mod Language_C_Parser_Lexer {
 
     let alex_action_1 = __op_rshift(|pos, len, __str| { setPos }((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false));
 
-    let alex_action_10 = token(CTokCLit, (cChar_wfstunescapeChartailtail));
+    let alex_action_10 = token(CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))));
 
-    let alex_action_11 = token(CTokCLit, (flip(cChars, false)unescapeMultiCharstail));
+    let alex_action_11 = token(CTokCLit, (flip(cChars, false, unescapeMultiChars(tail))));
 
-    let alex_action_12 = token(CTokCLit, (flip(cChars, true)unescapeMultiCharstailtail));
+    let alex_action_12 = token(CTokCLit, (flip(cChars, true, unescapeMultiChars(tail(tail)))));
 
     let alex_action_13 = token(CTokFLit, readCFloat);
 
@@ -385,9 +385,9 @@ pub mod Language_C_Parser_Lexer {
 
     let alex_action_15 = token_fail("Hexadecimal floating constant requires an exponent".to_string());
 
-    let alex_action_16 = token(CTokSLit, (cStringunescapeStringinittail));
+    let alex_action_16 = token(CTokSLit, (cString(unescapeString(init(tail)))));
 
-    let alex_action_17 = token(CTokSLit, (cString_wunescapeStringinittailtail));
+    let alex_action_17 = token(CTokSLit, (cString_w(unescapeString(init(tail(tail))))));
 
     let alex_action_18 = token_fail("Universal character names are unsupported".to_string());
 
@@ -493,11 +493,11 @@ pub mod Language_C_Parser_Lexer {
 
     let alex_action_66 = token_(3, CTokEllipsis);
 
-    let alex_action_7 = token_plus(CTokILit, (readCInteger(HexRepr)drop(2)));
+    let alex_action_7 = token_plus(CTokILit, (readCInteger(HexRepr, drop(2))));
 
     let alex_action_8 = token_fail("Invalid integer constant suffix".to_string());
 
-    let alex_action_9 = token(CTokCLit, (cCharfstunescapeChartail));
+    let alex_action_9 = token(CTokCLit, (cChar(fst(unescapeChar(tail)))));
 
     let alex_actions = array((0, 121), vec![
                 (120, alex_action_1),
@@ -57540,19 +57540,19 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_352 = |(HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_5)), HappyStk(_, HappyStk((HappyAbsSyn97(happy_var_3)), HappyStk(_, HappyStk((HappyTerminal(happy_var_1)), happyRest))))))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)(CBuiltinExprCBuiltinVaArg(happy_var_3, happy_var_5)))), (|r| { happyReturn }((HappyAbsSyn97(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinVaArg(happy_var_3, happy_var_5))))), (|r| { happyReturn }((HappyAbsSyn97(r)))))
     };
 
     let happyReduction_353 = |(HappyStk(_, HappyStk((HappyAbsSyn94(happy_var_5)), HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_3)), HappyStk(_, HappyStk((HappyTerminal(happy_var_1)), happyRest))))))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)(CBuiltinExprCBuiltinOffsetOf(happy_var_3, (reverse(happy_var_5)))))), (|r| { happyReturn }((HappyAbsSyn97(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinOffsetOf(happy_var_3, (reverse(happy_var_5))))))), (|r| { happyReturn }((HappyAbsSyn97(r)))))
     };
 
     let happyReduction_354 = |(HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_5)), HappyStk(_, HappyStk((HappyAbsSyn32(happy_var_3)), HappyStk(_, HappyStk((HappyTerminal(happy_var_1)), happyRest))))))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)(CBuiltinExprCBuiltinTypesCompatible(happy_var_3, happy_var_5)))), (|r| { happyReturn }((HappyAbsSyn97(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinTypesCompatible(happy_var_3, happy_var_5))))), (|r| { happyReturn }((HappyAbsSyn97(r)))))
     };
 
     let happyReduction_355 = |(HappyStk((HappyAbsSyn125(happy_var_1)), happyRest)), tk| {
-        happyThen(((withNodeInfo(happy_var_1)(singletonCMemberDesig(happy_var_1)))), (|r| { happyReturn }((HappyAbsSyn94(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(singleton(CMemberDesig(happy_var_1))))), (|r| { happyReturn }((HappyAbsSyn94(r)))))
     };
 
     let happyReduction_356 = |(HappyStk((HappyAbsSyn125(happy_var_3)), HappyStk(_, HappyStk((HappyAbsSyn94(happy_var_1)), happyRest)))), tk| {
@@ -58438,19 +58438,19 @@ otherwise { shadowTypedef(ident) },
     };
 
     let happyReduction_460 = |(HappyStk((HappyTerminal((CTokIdent(_, happy_var_1)))), happyRest)), tk| {
-        happyThen(((withNodeInfo(happy_var_1)(SomeCAttr(happy_var_1, vec![])))), (|r| { happyReturn }((HappyAbsSyn130(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { happyReturn }((HappyAbsSyn130(r)))))
     };
 
     let happyReduction_461 = |(HappyStk((HappyTerminal(happy_var_1)), happyRest)), tk| {
-        happyThen(((withNodeInfo(happy_var_1)(SomeCAttr((internalIdent("const".to_string())), vec![])))), (|r| { happyReturn }((HappyAbsSyn130(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(Some(CAttr((internalIdent("const".to_string())), vec![]))))), (|r| { happyReturn }((HappyAbsSyn130(r)))))
     };
 
     let happyReduction_462 = |(HappyStk(_, HappyStk((HappyAbsSyn100(happy_var_3)), HappyStk(_, HappyStk((HappyTerminal((CTokIdent(_, happy_var_1)))), happyRest))))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)(SomeCAttr(happy_var_1, (reverse(happy_var_3)))))), (|r| { happyReturn }((HappyAbsSyn130(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, (reverse(happy_var_3))))))), (|r| { happyReturn }((HappyAbsSyn130(r)))))
     };
 
     let happyReduction_463 = |(HappyStk(_, HappyStk(_, HappyStk((HappyTerminal((CTokIdent(_, happy_var_1)))), happyRest)))), tk| {
-        happyThen(((withNodeInfo(happy_var_1)(SomeCAttr(happy_var_1, vec![])))), (|r| { happyReturn }((HappyAbsSyn130(r)))))
+        happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { happyReturn }((HappyAbsSyn130(r)))))
     };
 
     let happyReduction_464 = |__0| {
@@ -58952,11 +58952,11 @@ otherwise { shadowTypedef(ident) },
     let happyThen1 = happyThen;
 
     pub fn liftCAttrs() -> Vec<CDeclSpec> {
-        map((CTypeQualCAttrQual))
+        map((CTypeQual(CAttrQual)))
     }
 
     pub fn liftTypeQuals() -> Vec<CDeclSpec> {
-        map(CTypeQual)reverse
+        map(CTypeQual, reverse)
     }
 
     pub fn mkVarDeclr(ident: Ident) -> CDeclrR {
@@ -58980,7 +58980,7 @@ otherwise { shadowTypedef(ident) },
     }
 
     pub fn reverseList() -> Reversed<Vec<a>> {
-        ReversedList::reverse
+        Reversed(List::reverse)
     }
 
     pub fn setAsmName(mAsmName: Option<CStrLit>, (CDeclrR(ident, indirections, oldName, cattrs, at)): CDeclrR) -> P<CDeclrR> {
@@ -59034,7 +59034,7 @@ otherwise { shadowTypedef(ident) },
                 let attrs = mkNodeInfo((posOf(node)), name);
             };
             {
-                let newDeclr = appendDeclrAttrs(cattrs)mkDeclrCtor(attrs);
+                let newDeclr = appendDeclrAttrs(cattrs, mkDeclrCtor(attrs));
             };
             seq(attrs, seq(newDeclr, newDeclr))
         }

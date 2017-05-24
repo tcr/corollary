@@ -1030,7 +1030,7 @@ pub mod Language_Rust_Corrode_C {
                     {
                         let (effects, mfinal) = if(demand, then, (init(exprs), Some((last(exprs)))), else, (exprs, None));
                     };
-                    let effects_q = mapM((fmap(resultToStatements)interpretExpr(false)), effects);
+                    let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
                     let mfinal_q = mapM((interpretExpr(true)), mfinal);
                     Result({
                         resultType: maybe(IsVoid, resultType, mfinal_q),
@@ -1439,7 +1439,7 @@ pub mod Language_Rust_Corrode_C {
                 };
             };
             let deferred = fmap((fmap(funTy)), (derivedDeferredTypeOf(baseTy, declr, argtypes)));
-            let alreadyUsed = lift(gets((usedForwardRefsglobalState)));
+            let alreadyUsed = lift(gets((usedForwardRefs(globalState))));
             match vis {
                 Rust::Private => if Set.notMember(ident, alreadyUsed) { /* do */ {
                 let action = runOnce(/* do */ {
@@ -1718,7 +1718,7 @@ pub mod Language_Rust_Corrode_C {
                             },
                             Some(retTy) => {
                                 /* do */ {
-                                    let expr_q = mapM((fmap((castTo(retTy)))interpretExpr(true)), expr);
+                                    let expr_q = mapM((fmap((castTo(retTy)), interpretExpr(true))), expr);
                                     (exprToStatements((Rust::Return(expr_q))), Unreachable)
                                 }
                             },
@@ -1918,7 +1918,7 @@ pub mod Language_Rust_Corrode_C {
     }
 
     pub fn resultToStatements() -> Vec<Rust::Stmt> {
-        exprToStatementsresult
+        exprToStatements(result)
     }
 
     pub fn runOnce(action: EnvMonad<s, a>) -> EnvMonad<s, EnvMonad<s, a>> {
@@ -2391,7 +2391,7 @@ pub mod Language_Rust_Corrode_CFG {
     }
 
     pub fn hasMultiple() -> bool {
-        any((gostructureBody))
+        any((go(structureBody)))
     }
 
     pub fn mapBuildCFGT() -> BuildCFGT<n, s, c, b> {
@@ -2421,7 +2421,7 @@ pub mod Language_Rust_Corrode_CFG {
     }
 
     pub fn prettyStructure() -> Doc {
-        vcatmap(go)
+        vcat(map(go))
     }
 
     pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s, c>>) -> Vec<Structure<s, c>> {
@@ -2481,7 +2481,7 @@ pub mod Language_Rust_Corrode_CFG {
     }
 
     pub fn simplifyStructure() -> Vec<Structure<s, c>> {
-        foldr(go, vec![])map(descend)
+        foldr(go, vec![], map(descend))
     }
 
     pub fn structureCFG(mkBreak: fn(Option<Label>) -> s, mkContinue: fn(Option<Label>) -> s, mkLoop: fn(Label) -> fn(s) -> s, mkIf: fn(c) -> fn(s) -> fn(s) -> s, mkGoto: fn(Label) -> s, mkMatch: fn(Vec<(Label, s)>) -> fn(s) -> s, cfg: CFG<DepthFirst, s, c>) -> (bool, s) {
@@ -2512,7 +2512,7 @@ pub mod Language_Rust_Corrode_CrateMap {
     }
 
     pub fn parseCrateMap() -> Either<String, CrateMap> {
-        fmap(root)foldrM(parseLine, (Map::empty, vec![]))filter((notnull))map(cleanLine)lines
+        fmap(root, foldrM(parseLine, (Map::empty, vec![]), filter((not(null)), map(cleanLine, lines))))
     }
 
     pub fn rewritesFromCratesMap(crates: CratesMap) -> ItemRewrites {

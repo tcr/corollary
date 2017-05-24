@@ -6,20 +6,8 @@ module Language.Rust.Idiomatic (
 
 import qualified Language.Rust.AST as Rust
 
-promote
-    :: (Pretty node, Pos node)
-    => node
-    -> (Rust.Expr -> Rust.Expr -> Rust.Expr)
-    -> Result -> Result -> EnvMonad s Result
-promote node op a b = case usual (resultType a) (resultType b) of
-    Just rt -> return Result
-        { resultType = rt
-        , resultMutable = Rust.Immutable
-        , result = op (castTo rt a) (castTo rt b)
-        }
-    Nothing -> badSource node $ concat
-        [ "arithmetic combination for "
-        , show (resultType a)
-        , " and "
-        , show (resultType b)
-        ]
+parseCrateMap :: String -> Either String CrateMap
+parseCrateMap = fmap root . foldrM parseLine (Map.empty, []) . filter (not . null) . map cleanLine . lines
+
+sumEuler :: Int -> Int
+sumEuler = sum . (map euler) . mkList

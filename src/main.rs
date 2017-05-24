@@ -180,7 +180,9 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 if let &Expr::Span(ref left) = &l {
                     if let &Expr::Parens(ref span) = &left[0] {
                         if let &Expr::Span(ref innerspan) = &span[0] {
+                            // --> (a b c) ...
                             let mut innerspan = innerspan.clone();
+                            //TODO what about span[1..]
                             innerspan.push(r);
                             format!("{}", print_expr(state, &Expr::Span(vec![Expr::Parens(vec![Expr::Span(innerspan)])])))
                         } else {
@@ -188,8 +190,10 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                             //format!("({} . {})", print_expr(state, &l), print_expr(state, &r))
                         }
                     } else if let &Expr::Ref(..) = &left[0] {
-                        // todo
-                        format!("{}{}", print_expr(state, &l), print_expr(state, &r))
+                        // --> a ...
+                        let mut outer = left.clone();
+                        outer.push(r);
+                        format!("{}", print_expr(state, &Expr::Span(outer)))
                     } else {
                         panic!("WHAT {:?}", l);
                     }

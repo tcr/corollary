@@ -32,7 +32,7 @@ pub mod Language_C_Analysis_AstAnalysis {
     pub use self::ExprSide::*;
 
     pub fn advanceDesigList(ds: Vec<CDesignator>, d: CDesignator) -> Vec<CDesignator> {
-        drop(1)(dropWhile((notmatchDesignator(d)), ds))
+        drop(1)(dropWhile((not(matchDesignator(d))), ds))
     }
 
     pub fn analyseAST((CTranslUnit(decls, _file_node)): CTranslUnit) -> m<GlobalDecls> {
@@ -85,7 +85,7 @@ pub mod Language_C_Analysis_AstAnalysis {
             (node_info, decl, s, @, CCompound(localLabels, items, _)) => {
                 /* do */ {
                     enterFunctionScope;
-                    mapM_((withDefTabledefineLabel), (__op_addadd(localLabels, getLabels(s))));
+                    mapM_((withDefTable(defineLabel)), (__op_addadd(localLabels, getLabels(s))));
                     defineParams(node_info, decl);
                     mapM_((tBlockItem(vec![FunCtx(decl)])), items);
                     leaveFunctionScope;
@@ -511,7 +511,7 @@ pub mod Language_C_Analysis_AstAnalysis {
                             liftM(simplePtr, tExpr(c, RValue, e))
                         },
                         CVar(i, _) => {
-                            __op_bind(lookupObject(i), typeErrorOnLeft(ni)maybe((notFound(i)), varAddrType))
+                            __op_bind(lookupObject(i), typeErrorOnLeft(ni, maybe((notFound(i)), varAddrType)))
                         },
                         _ => {
                             liftM(simplePtr, tExpr(c, LValue, e))
@@ -520,7 +520,7 @@ pub mod Language_C_Analysis_AstAnalysis {
                 }
             },
             (c, _, CUnary(CIndOp, e, ni)) => {
-                __op_bind(tExpr(c, RValue, e), (typeErrorOnLeft(ni)derefType))
+                __op_bind(tExpr(c, RValue, e), (typeErrorOnLeft(ni, derefType)))
             },
             (c, _, CUnary(CCompOp, e, ni)) => {
                 /* do */ {
@@ -573,7 +573,7 @@ pub mod Language_C_Analysis_AstAnalysis {
                 }
             },
             (c, side, CComma(es, _)) => {
-                __op_bind(mapM((tExpr(c, side)), es), returnlast)
+                __op_bind(mapM((tExpr(c, side)), es), last)
             },
             (c, side, CCast(d, e, ni)) => {
                 /* do */ {
@@ -630,7 +630,7 @@ pub mod Language_C_Analysis_AstAnalysis {
                 typeError(ni, "sizeoftype as lvalue".to_string())
             },
             (_, side, CVar(i, ni)) => {
-                __op_bind(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), (returndeclType)))
+                __op_bind(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), (declType)))
             },
             (_, _, CConst(c)) => {
                 constType(c)
@@ -685,7 +685,7 @@ pub mod Language_C_Analysis_AstAnalysis {
                 /* do */ {
                     let lt = tExpr(c, LValue, le);
                     let rt = tExpr(c, RValue, re);
-                    when((constant(typeQuals(lt))))(typeError(ni)(__op_addadd("assignment to lvalue with `constant\' qualifier: ".to_string(), (renderpretty)(le))));
+                    when((constant(typeQuals(lt))))(typeError(ni)(__op_addadd("assignment to lvalue with `constant\' qualifier: ".to_string(), (render(pretty))(le))));
                     match (canonicalType(lt), re) {
                         (lt_q, CConst(CIntConst(i, _))) => if (isPointerType(lt_q) && (getCInteger(i) == 0)) { () },
                         (_, _) => {
@@ -698,7 +698,7 @@ pub mod Language_C_Analysis_AstAnalysis {
             (c, _, CStatExpr(s, _)) => {
                 /* do */ {
                     enterBlockScope;
-                    mapM_((withDefTabledefineLabel), (getLabels(s)));
+                    mapM_((withDefTable(defineLabel)), (getLabels(s)));
                     let t = tStmt(c, s);
                     leaveBlockScope;
                     t
@@ -768,7 +768,7 @@ pub mod Language_C_Analysis_AstAnalysis {
             (c, CCompound(ls, body, _)) => {
                 /* do */ {
                     enterBlockScope;
-                    mapM_((withDefTabledefineLabel), ls);
+                    mapM_((withDefTable(defineLabel)), ls);
                     let t = foldM((const(tBlockItem(c))), voidType, body);
                     leaveBlockScope;
                     t
@@ -939,7 +939,7 @@ pub mod Language_C_Analysis_ConstEval {
                 alignofType(md, n, t)
             },
             (_, n, t) => {
-                astError((nodeInfo(n)))(__op_addadd("can\'t find alignment of type: ".to_string(), (renderpretty)(t)))
+                astError((nodeInfo(n)))(__op_addadd("can\'t find alignment of type: ".to_string(), (render(pretty))(t)))
             },
         }
     }
@@ -1276,7 +1276,7 @@ pub mod Language_C_Analysis_ConstEval {
                 return(ptrSize(md))
             },
             (_, n, t) => {
-                astError((nodeInfo(n)))(__op_addadd("can\'t find size of type: ".to_string(), (renderpretty)(t)))
+                astError((nodeInfo(n)))(__op_addadd("can\'t find size of type: ".to_string(), (render(pretty))(t)))
             },
         }
     }
@@ -1302,7 +1302,7 @@ pub mod Language_C_Analysis_Debug {
     }
 
     pub fn joinComma() -> Doc {
-        hseppunctuate(comma)map(pretty)
+        hsep(punctuate(comma, map(pretty)))
     }
 
     pub fn prettyAssocs(label: String) -> Doc {
@@ -1314,11 +1314,11 @@ pub mod Language_C_Analysis_Debug {
     }
 
     pub fn terminateSemi() -> Doc {
-        terminateSemi_map(pretty)
+        terminateSemi_(map(pretty))
     }
 
     pub fn terminateSemi_() -> Doc {
-        hsepmap((<>(semi)))
+        hsep(map((<>(semi))))
     }
 
 }
@@ -1416,7 +1416,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
                 Right((Auto(true)))
             },
             (node, spec) => {
-                LeftbadSpecifierError(node)(__op_addadd("Bad storage specified for parameter: ".to_string(), show(spec)))
+                Left(badSpecifierError(node)(__op_addadd("Bad storage specified for parameter: ".to_string(), show(spec))))
             },
         }
     }
@@ -1612,7 +1612,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
                 TSNum(tsnum) => {
                     /* do */ {
                         let numType = tNumType(tsnum);
-                        returnbaseType(match numType {
+                        baseType(match numType {
                             Left, (floatType, iscomplex) => if iscomplex { TyComplex(floatType) }
 otherwise { TyFloating(floatType) },
                             Right(intType) => {
@@ -1625,10 +1625,10 @@ otherwise { TyFloating(floatType) },
                     return(TypeDefType(tdr, quals, attrs))
                 },
                 TSNonBasic(CSUType(su, _tnode)) => {
-                    liftM((baseTypeTyComp))(tCompTypeDecl(handle_sue_def, su))
+                    liftM((baseType(TyComp)))(tCompTypeDecl(handle_sue_def, su))
                 },
                 TSNonBasic(CEnumType(enum, _tnode)) => {
-                    liftM((baseTypeTyEnum))(tEnumTypeDecl(handle_sue_def, enum))
+                    liftM((baseType(TyEnum)))(tEnumTypeDecl(handle_sue_def, enum))
                 },
                 TSType(t) => {
                     mergeTypeAttributes(node, quals, attrs, t)
@@ -1997,7 +1997,7 @@ otherwise { KindMismatch(def_q) },
     }
 
     pub fn leaveScope_() -> NameSpaceMap<k, a> {
-        fstleaveScope
+        fst(leaveScope)
     }
 
     pub fn lookupIdent(ident: Ident, deftbl: DefTable) -> Option<IdentEntry> {
@@ -2082,7 +2082,7 @@ pub mod Language_C_Analysis_Export {
     }
 
     pub fn exportDeclAttrs((DeclAttrs(inline, storage, attrs)): DeclAttrs) -> Vec<CDeclSpec> {
-        __op_addadd((if(inline, then, vec![CTypeQual((CInlineQual(ni)))], else, vec![])), __op_addadd(map((CStorageSpec), (exportStorage(storage))), map((CTypeQualCAttrQual), (exportAttrs(attrs)))))
+        __op_addadd((if(inline, then, vec![CTypeQual((CInlineQual(ni)))], else, vec![])), __op_addadd(map((CStorageSpec), (exportStorage(storage))), map((CTypeQual(CAttrQual)), (exportAttrs(attrs)))))
     }
 
     pub fn exportDeclr(other_specs: Vec<CDeclSpec>, ty: Type, attrs: Attributes, name: VarName) -> (Vec<CDeclSpec>, CDeclr) {
@@ -2176,7 +2176,7 @@ pub mod Language_C_Analysis_Export {
     }
 
     pub fn exportSUERef() -> Option<Ident> {
-        SomeinternalIdentshow
+        Some(internalIdent(show))
     }
 
     pub fn exportStorage(__0: Storage) -> Vec<CStorageSpec> {
@@ -2644,7 +2644,7 @@ pub mod Language_C_Analysis_SemRep {
     }
 
     pub fn declIdent() -> Ident {
-        identOfVarNamedeclName
+        identOfVarName(declName)
     }
 
     pub fn declLinkage(decl: d) -> Linkage {
@@ -2692,9 +2692,9 @@ pub mod Language_C_Analysis_SemRep {
 
     pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) -> GlobalDecls {
         GlobalDecls({
-            gObjs: Map::filter((decl_filterDeclEvent), (gObjs(gmap))),
-            gTags: Map::filter((decl_filterTagEvent), (gTags(gmap))),
-            gTypeDefs: Map::filter((decl_filterTypeDefEvent), (gTypeDefs(gmap)))
+            gObjs: Map::filter((decl_filter(DeclEvent)), (gObjs(gmap))),
+            gTags: Map::filter((decl_filter(TagEvent)), (gTags(gmap))),
+            gTypeDefs: Map::filter((decl_filter(TypeDefEvent)), (gTypeDefs(gmap)))
         })
     }
 
@@ -2728,7 +2728,7 @@ pub mod Language_C_Analysis_SemRep {
     }
 
     pub fn isExtDecl() -> bool {
-        hasLinkagedeclStorage
+        hasLinkage(declStorage)
     }
 
     pub fn isNoName(__0: VarName) -> bool {
@@ -2898,7 +2898,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     pub fn concatMapM(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
-        liftM(concat)mapM(f)
+        liftM(concat, mapM(f))
     }
 
     pub fn createSUERef(_node_info: NodeInfo, (Some(ident)): Option<Ident>) -> m<SUERef> {
@@ -2953,7 +2953,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     pub fn hadHardErrors() -> bool {
-        (notnullfilter(isHardError))
+        (not(null(filter(isHardError))))
     }
 
     pub fn handleAsmBlock(asm: AsmBlock) -> m<()> {
@@ -3112,7 +3112,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     pub fn mapMaybeM(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
-        maybe((None), (liftM(Some)f), m)
+        maybe((None), (liftM(Some, f)), m)
     }
 
     pub fn mapSndM(f: fn(b) -> m<c>, (a, b): (a, b)) -> m<(a, c)> {
@@ -3162,11 +3162,11 @@ otherwise { Right((v, ts)) },
     }
 
     pub fn runTrav_(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
-        fmap(fst)runTrav(())(/* do */ {
-            let r = t;
-            let es = getErrors;
-            (r, es)
-        })
+        fmap(fst, runTrav(())(/* do */ {
+                let r = t;
+                let es = getErrors;
+                (r, es)
+            }))
     }
 
     pub fn throwOnLeft(__0: Either<e, a>) -> m<a> {
@@ -3181,7 +3181,7 @@ otherwise { Right((v, ts)) },
     }
 
     pub fn travErrors() -> Vec<CError> {
-        RList::reversererrors
+        RList::reverse(rerrors)
     }
 
     pub fn updDefTable(f: fn(DefTable) -> DefTable) -> m<()> {
@@ -3320,7 +3320,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
     }
 
     pub fn checkIntegral_q(ni: NodeInfo) -> m<()> {
-        typeErrorOnLeft(ni)checkIntegral
+        typeErrorOnLeft(ni, checkIntegral)
     }
 
     pub fn checkScalar(t: Type) -> Either<String, ()> {
@@ -3341,7 +3341,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
     }
 
     pub fn checkScalar_q(ni: NodeInfo) -> m<()> {
-        typeErrorOnLeft(ni)checkScalar
+        typeErrorOnLeft(ni, checkScalar)
     }
 
     pub fn compatible(t1: Type, t2: Type) -> Either<String, ()> {
@@ -3667,7 +3667,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
                     td
                 },
                 _ => {
-                    typeError(ni)(__op_addadd("unknown composite type: ".to_string(), (renderpretty)(sue)))
+                    typeError(ni)(__op_addadd("unknown composite type: ".to_string(), (render(pretty))(sue)))
                 },
             }
         }
@@ -3682,7 +3682,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
     }
 
     pub fn pType() -> String {
-        renderpretty
+        render(pretty)
     }
 
     pub fn sizeEqual(__0: CExpr, __1: CExpr) -> bool {
@@ -3902,7 +3902,7 @@ pub mod Language_C_Analysis_TypeUtils {
                 FunctionType((FunTypeIncomplete((deepDerefTypeDef(rt)))), attrs)
             },
             TypeDefType(TypeDefRef(_, Some(t), _), q, a) => {
-                (typeAttrsUpd((mergeAttributes(a)))typeQualsUpd((mergeTypeQuals(q))))((deepDerefTypeDef(t)))
+                (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((deepDerefTypeDef(t)))
             },
             t => {
                 t
@@ -3913,7 +3913,7 @@ pub mod Language_C_Analysis_TypeUtils {
     pub fn derefTypeDef(__0: Type) -> Type {
         match (__0) {
             TypeDefType(TypeDefRef(_, Some(t), _), q, a) => {
-                (typeAttrsUpd((mergeAttributes(a)))typeQualsUpd((mergeTypeQuals(q))))((derefTypeDef(t)))
+                (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
             },
             ty => {
                 ty
@@ -4152,7 +4152,7 @@ pub mod Language_C_Data_Error {
     }
 
     pub fn indentLines() -> String {
-        unlinesmap((indent(__op_addadd)))lines
+        unlines(map((indent(__op_addadd)), lines))
     }
 
     pub fn internalErr(msg: String) -> a {
@@ -4175,7 +4175,7 @@ pub mod Language_C_Data_Error {
     }
 
     pub fn showError(short_msg: String) -> String {
-        showErrorInfo(short_msg)errorInfo
+        showErrorInfo(short_msg, errorInfo)
     }
 
     pub fn showErrorInfo(short_msg: String, (ErrorInfo(level, pos, msgs)): ErrorInfo) -> String {
@@ -4292,10 +4292,10 @@ pub mod Language_C_Data_InputStream {
     pub fn countLines() -> isize {
         match () {
             () => {
-                lengthBSC::lines
+                length(BSC::lines)
             },
             () => {
-                lengthlines
+                length(lines)
             },
         }
     }
@@ -4400,7 +4400,7 @@ pub mod Language_C_Data_Node {
     }
 
     pub fn fileOfNode() -> Option<FilePath> {
-        fmap(posFile)justIf(isSourcePos)posOfNodenodeInfo
+        fmap(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
     }
 
     pub fn getLastTokenPos(__0: NodeInfo) -> PosLength {
@@ -5218,7 +5218,7 @@ pub mod Language_C_Pretty {
                 empty
             },
             attrs => {
-                <>(text("__attribute__".to_string()), parens((parens((hcatpunctuate(comma)map(pretty)(attrs))))))
+                <>(text("__attribute__".to_string()), parens((parens((hcat(punctuate(comma, map(pretty)(attrs))))))))
             },
         }
     }
@@ -5283,7 +5283,7 @@ pub mod Language_C_Pretty {
     }
 
     pub fn identP() -> Doc {
-        textidentToString
+        text(identToString)
     }
 
     pub fn ifP(flag: bool, doc: Doc) -> Doc {
@@ -5601,7 +5601,7 @@ pub mod Language_C_Syntax_Constants {
     }
 
     pub fn cFloat() -> CFloat {
-        CFloatshow
+        CFloat(show)
     }
 
     pub fn cInteger(i: Integer) -> CInteger {
@@ -5790,7 +5790,7 @@ pub mod Language_C_Syntax_Constants {
     }
 
     pub fn showStringLit() -> ShowS {
-        dQuoteconcatMap(showStringChar)
+        dQuote(concatMap(showStringChar))
     }
 
     pub fn testFlag(flag: f, (Flags(k)): Flags<f>) -> bool {
@@ -6022,7 +6022,7 @@ pub mod Language_C_Syntax_Utils {
                 __op_concat(l, getLabels(s))
             },
             CCompound(ls, body, _) => {
-                \\(concatMap((concatMap(getLabels)compoundSubStmts), body), ls)
+                \\(concatMap((concatMap(getLabels, compoundSubStmts)), body), ls)
             },
             stmt => {
                 concatMap(getLabels, (getSubStmts(stmt)))
@@ -6112,7 +6112,7 @@ pub mod Language_C_Syntax_Utils {
                 f((CCompound(ls, (map((mapBlockItemStmts(stop, f)), body)), ni)))
             },
             (stop, f, CIf(e, sthen, selse, ni)) => {
-                f((CIf(e, (mapSubStmts(stop, f, sthen)), (maybe(None, (SomemapSubStmts(stop, f)), selse)), ni)))
+                f((CIf(e, (mapSubStmts(stop, f, sthen)), (maybe(None, (Some(mapSubStmts(stop, f))), selse)), ni)))
             },
             (stop, f, CSwitch(e, s, ni)) => {
                 f((CSwitch(e, (mapSubStmts(stop, f, s)), ni)))
