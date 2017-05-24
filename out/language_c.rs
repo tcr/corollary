@@ -140,10 +140,10 @@ pub mod Language_C_Analysis_AstAnalysis {
                         ([], []) => {
                             typeError((nodeInfo(i)), "excess elements in initializer".to_string())
                         },
-                        (dd_q(__id_3a, rest), []) => {
+                        ([dd_q, ...rest], []) => {
                             (rest, vec![dd_q])
                         },
-                        (_, d(__id_3a, _)) => {
+                        (_, [d, ..._]) => {
                             (advanceDesigList(dds, d), ds)
                         },
                     };
@@ -904,7 +904,7 @@ pub mod Language_C_Analysis_Builtins {
 
 pub mod Language_C_Analysis_ConstEval {
     use haskell_support::*;
-    struct MachineDesc(MachineDesc<{ /* struct def */ }>);
+    struct MachineDesc(MachineDesc<{ /* type record */ }>);
 
     pub fn alignofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
         match (__0, __1, __2) {
@@ -1366,7 +1366,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
     }
     pub use self::SizeMod::*;
 
-    struct NumTypeSpec(NumTypeSpec<{ /* struct def */ }>);
+    struct NumTypeSpec(NumTypeSpec<{ /* type record */ }>);
 
     pub enum TypeSpecAnalysis {
         TSNone,
@@ -1543,7 +1543,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
             [declr] => {
                 vec![decl]
             },
-            d1(__id_3a, ds) => {
+            [d1, ...ds] => {
                 {
                     let declspecs_q = map(elideSUEDef, declspecs, in);
                 }(return)(__op_concat((CDecl(declspecs, vec![d1], node)), <Expr::Dummy>))
@@ -1779,7 +1779,7 @@ pub mod Language_C_Analysis_DefTable {
     }
     pub use self::TagFwdDecl::*;
 
-    struct DefTable(DefTable<{ /* struct def */ }>);
+    struct DefTable(DefTable<{ /* type record */ }>);
 
     #[derive(Clone, Debug)]
     pub enum DeclarationStatus<t> {
@@ -2345,7 +2345,7 @@ pub mod Language_C_Analysis_NameSpaceMap {
 
     pub fn lookupInnermostScope(nsm: NameSpaceMap<k, a>, @: k, (NsMap(_gs, localDefs)): Option<a>) -> Option<a> {
         match localDefs {
-            ls(__id_3a, _lss) => {
+            [ls, ..._lss] => {
                 Prelude::lookup(ident, ls)
             },
             [] => {
@@ -2472,7 +2472,7 @@ pub mod Language_C_Analysis_SemRep {
     }
     pub use self::IdentDecl::*;
 
-    struct GlobalDecls(GlobalDecls<{ /* struct def */ }>);
+    struct GlobalDecls(GlobalDecls<{ /* type record */ }>);
 
     pub enum DeclEvent {
         TagEvent<TagDef>,
@@ -2627,7 +2627,7 @@ pub mod Language_C_Analysis_SemRep {
     struct Enumerator(Enumerator<Ident, Expr, EnumType, NodeInfo>);
 
     #[derive(Clone, Debug)]
-    struct TypeQuals(TypeQuals<{ /* struct def */ }>);
+    struct TypeQuals(TypeQuals<{ /* type record */ }>);
 
     #[derive(Clone, Debug)]
     pub enum VarName {
@@ -2819,9 +2819,9 @@ pub mod Language_C_Analysis_TravMonad {
     }
     pub use self::CLanguage::*;
 
-    struct TravOptions(TravOptions<{ /* struct def */ }>);
+    struct TravOptions(TravOptions<{ /* type record */ }>);
 
-    struct TravState<s>(TravState<{ /* struct def */ }>);
+    struct TravState<s>(TravState<{ /* type record */ }>);
 
     pub fn addRef(use: u, def: d) -> m<()> {
         match (nodeInfo(use), nodeInfo(def)) {
@@ -4475,7 +4475,7 @@ pub mod Language_C_Data_Position {
     use haskell_support::*;
     #[derive(Clone, Debug, Eq, Ord)]
     pub enum Position {
-        Position<{ /* struct def */ }>,
+        Position<{ /* type record */ }>,
         NoPosition,
         BuiltinPosition,
         InternalPosition
@@ -4665,7 +4665,7 @@ pub mod Language_C_Parser_ParserMonad {
     }
     pub use self::ParseResult::*;
 
-    struct PState(PState<{ /* struct def */ }>);
+    struct PState(PState<{ /* type record */ }>);
 
     let (P(m)) = |thenP, k| {
         P(|s| { match m(s) {
@@ -4679,13 +4679,13 @@ pub mod Language_C_Parser_ParserMonad {
     };
 
     pub fn addTypedef(ident: Ident) -> P<()> {
-        (P(|s, @, PState, { .. }| { POk }(s, {
+        (P(|s, @, PState, { /* pat record */ }| { POk }(s, {
             tyidents: Set.insert(ident, tyids)
         }, ())))
     }
 
     pub fn enterScope() -> P<()> {
-        P(|s, @, PState, { .. }| { POk }(s, {
+        P(|s, @, PState, { /* pat record */ }| { POk }(s, {
             scopes: __op_concat(tyids, ss)
         }, ()))
     }
@@ -4706,29 +4706,29 @@ pub mod Language_C_Parser_ParserMonad {
     }
 
     pub fn getCurrentPosition() -> P<Position> {
-        P(|s, @, PState, { .. }| { POk }(s, pos))
+        P(|s, @, PState, { /* pat record */ }| { POk }(s, pos))
     }
 
     pub fn getInput() -> P<InputStream> {
-        P(|s, @, PState, { .. }| { POk }(s, i))
+        P(|s, @, PState, { /* pat record */ }| { POk }(s, i))
     }
 
     pub fn getLastToken() -> P<CToken> {
-        P(|s, @, PState, { .. }| { POk }(s, tok))
+        P(|s, @, PState, { /* pat record */ }| { POk }(s, tok))
     }
 
     pub fn getNewName() -> P<Name> {
-        P(seq(|s, @, PState, { .. }| { n }, POk(s, {
+        P(seq(|s, @, PState, { /* pat record */ }| { n }, POk(s, {
             namesupply: ns
         }, n)))
     }
 
     pub fn getPos() -> P<Position> {
-        P(|s, @, PState, { .. }| { POk }(s, pos))
+        P(|s, @, PState, { /* pat record */ }| { POk }(s, pos))
     }
 
     pub fn getSavedToken() -> P<CToken> {
-        P(|s, @, PState, { .. }| { POk }(s, tok))
+        P(|s, @, PState, { /* pat record */ }| { POk }(s, tok))
     }
 
     pub fn handleEofToken() -> P<()> {
@@ -4738,15 +4738,15 @@ pub mod Language_C_Parser_ParserMonad {
     }
 
     pub fn isTypeIdent(ident: Ident) -> P<bool> {
-        P($!(|s, @, PState, { .. }| { POk }(s), Set::member(ident, tyids)))
+        P($!(|s, @, PState, { /* pat record */ }| { POk }(s), Set::member(ident, tyids)))
     }
 
     pub fn leaveScope() -> P<()> {
-        P(|s, @, PState, { .. }| { match ss {
+        P(|s, @, PState, { /* pat record */ }| { match ss {
                 [] => {
                     __error!("leaveScope: already in global scope".to_string())
                 },
-                tyids(__id_3a, ss_q) => {
+                [tyids, ...ss_q] => {
                     POk(s, {
                         tyidents: tyids,
                         scopes: ss_q
@@ -4788,7 +4788,7 @@ pub mod Language_C_Parser_ParserMonad {
     }
 
     pub fn shadowTypedef(ident: Ident) -> P<()> {
-        (P(|s, @, PState, { .. }| { POk }(s, {
+        (P(|s, @, PState, { /* pat record */ }| { POk }(s, {
             tyidents: Set.member(if(ident), Set.delete(tyids(then, ident), tyids(else, tyids)))
         }, ())))
     }
@@ -6180,7 +6180,7 @@ pub mod Language_C_System_Preprocess {
     }
     pub use self::CppOption::*;
 
-    struct CppArgs(CppArgs<{ /* struct def */ }>);
+    struct CppArgs(CppArgs<{ /* type record */ }>);
 
     pub fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
         cpp_args({

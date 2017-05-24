@@ -20505,7 +20505,7 @@ pub mod Language_C_Parser_Lexer {
 
     pub fn readCOctal(s: String, @: Either<String, CInteger>) -> Either<String, CInteger> {
         match r {
-            c(__id_3a, _) => if isDigit(c) { readCInteger(OctalRepr, r) },
+            [c, ..._] => if isDigit(c) { readCInteger(OctalRepr, r) },
             _ => {
                 readCInteger(DecRepr, s)
             },
@@ -53329,7 +53329,7 @@ otherwise { shadowTypedef(ident) },
             },
             (k, nt, fn, j, tk, st, sts, stk) => {
                 match happyDrop(k, (__op_concat((st), (sts)))) {
-                    sts1(@, st1(@, HappyState(action))(__id_3a, _)) => {
+                    sts1(@, [st1(@, HappyState(action)), ..._]) => {
                         {
                             let drop_stk = happyDropStk(k, stk);
 ;
@@ -53348,7 +53348,7 @@ otherwise { shadowTypedef(ident) },
             },
             (k, nt, fn, j, tk, st, sts, stk) => {
                 match happyDrop(k, (__op_concat((st), (sts)))) {
-                    sts1(@, st1(@, HappyState(action))(__id_3a, _)) => {
+                    sts1(@, [st1(@, HappyState(action)), ..._]) => {
                         {
                             let drop_stk = happyDropStk(k, stk);
                         }(in, happyThen1, (fn(stk, tk)), (|r| { action }(nt, j, tk, st1, sts1, (HappyStk(r, drop_stk)))))
@@ -53684,7 +53684,7 @@ otherwise { shadowTypedef(ident) },
             },
             (k, nt, fn, j, tk, st, sts, stk) => {
                 match happyDrop((-(k, ((1)))), sts) {
-                    sts1(@, st1(@, HappyState(action))(__id_3a, _)) => {
+                    sts1(@, [st1(@, HappyState(action)), ..._]) => {
                         {
                             let r = fn(stk);
                         }(in, happyDoSeq, r, (action(nt, j, tk, st1, sts1, r)))
@@ -57863,7 +57863,7 @@ otherwise { shadowTypedef(ident) },
                             return(CTranslUnit(decls, (mkNodeInfo_q(p, (p, 0), n))))
                         }
                     },
-                    d(__id_3a, ds) => {
+                    [d, ...ds] => {
                         withNodeInfo(d)(CTranslUnit(decls))
                     },
                 }))), (|r| { happyReturn }((HappyAbsSyn7(r)))))

@@ -84,15 +84,16 @@ Num: isize = {
 };
 
 Ident: Ident = {
-  r"[a-zA-Z_.][.a-zA-Z_0-9']*(.:[.+/*=-]+)?" => Ident((<>).to_string()),
+  r"[a-zA-Z_.][.a-zA-Z_0-9']*(\.:[.+/*=-]+)?" => Ident((<>).to_string()),
 };
 
 Ctor: Ident = {
-    r":[!#$%&*+./<=>?@^|~:\\-]*" => Ident(<>.to_string()),
+    r":[!#$%&*+./<=>?@^|~:\\-]+" => Ident(<>.to_string()),
 };
 
 Operator: String = {
     r"[!#$%&*+/<=>?@^|~][!#$%&*+./<=>?@^|~\\-]*" => <>.to_string(),
+    ":" => <>.to_string(),
     "." => <>.to_string(),
     ".." => <>.to_string(),
     ".|." => <>.to_string(),
@@ -238,7 +239,7 @@ PatSub: Pat = {
 
     <Ident> => Pat::Ref(<>),
     <Ctor> => Pat::Ref(<>),
-    <Operator> => Pat::Ref(Ident(<>)),
+    <Operator> => Pat::Operator(<>),
     <Quote> => Pat::Str(decode_literal(&<>)),
     <SingleQuote> => Pat::Char(decode_literal(&<>)),
     <Num> => Pat::Num(<>),

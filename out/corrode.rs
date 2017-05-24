@@ -193,13 +193,13 @@ pub mod Language_Rust_AST {
 
 pub mod Language_Rust_Corrode_C {
     use haskell_support::*;
-    struct FunctionContext(FunctionContext<{ /* struct def */ }>);
+    struct FunctionContext(FunctionContext<{ /* type record */ }>);
 
-    struct Output(Output<{ /* struct def */ }>);
+    struct Output(Output<{ /* type record */ }>);
 
-    struct GlobalState(GlobalState<{ /* struct def */ }>);
+    struct GlobalState(GlobalState<{ /* type record */ }>);
 
-    struct EnvState<s>(EnvState<{ /* struct def */ }>);
+    struct EnvState<s>(EnvState<{ /* type record */ }>);
 
     struct Initializer(Initializer<Option<Rust::Expr>, IntMap::IntMap<Initializer>>);
 
@@ -210,9 +210,9 @@ pub mod Language_Rust_Corrode_C {
     }
     pub use self::Designator::*;
 
-    struct OuterLabels(OuterLabels<{ /* struct def */ }>);
+    struct OuterLabels(OuterLabels<{ /* type record */ }>);
 
-    struct Result(Result<{ /* struct def */ }>);
+    struct Result(Result<{ /* type record */ }>);
 
     #[derive(Debug, Eq)]
     pub enum Signed {
@@ -243,7 +243,7 @@ pub mod Language_Rust_Corrode_C {
     }
     pub use self::CType::*;
 
-    struct IntermediateType(IntermediateType<{ /* struct def */ }>);
+    struct IntermediateType(IntermediateType<{ /* type record */ }>);
 
     pub fn addExternIdent(ident: Ident, deferred: EnvMonad<s, IntermediateType>, mkItem: fn(String) -> fn((Rust::Mutable, CType)) -> Rust::ExternItem) -> EnvMonad<s, ()> {
         /* do */ {
@@ -388,7 +388,7 @@ pub mod Language_Rust_Corrode_C {
                 [spec] => {
                     (Some(spec))
                 },
-                _(__id_3a, excess, __id_3a, _) => {
+                [_, ...[excess, ..._]] => {
                     badSource(excess, "extra storage class specifier".to_string())
                 },
             };
@@ -531,7 +531,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn castTo(__0: CType, __1: Result) -> Rust::Expr {
         match (__0, __1) {
-            (target, Result(<todo>)) => {
+            (target, Result({ /* pat record */ })) => {
                 castTo(target, Result, {
                     resultType: IsPtr(__mut, el),
                     resultMutable: Rust::Immutable,
@@ -541,10 +541,10 @@ pub mod Language_Rust_Corrode_C {
             (IsBool, source) => {
                 toBool(source)
             },
-            (target, @, IsInt(<todo>), Result(<todo>)) => {
+            (target, @, IsInt({ /* pat record */ }), Result({ /* pat record */ })) => {
                 Rust::Lit((Rust::LitInt(n, repr, (toRustType(target)))))
             },
-            (IsInt(Signed, w), Result(<todo>)) => {
+            (IsInt(Signed, w), Result({ /* pat record */ })) => {
                 Rust::Neg((Rust::Lit((Rust::LitInt(n, repr, (toRustType((IsInt(Signed, w)))))))))
             },
             (target, source) => {
@@ -584,10 +584,10 @@ pub mod Language_Rust_Corrode_C {
             (IsStruct(name1, _), IsStruct(name2, _)) => {
                 (name1 == name2)
             },
-            (IsStruct, <todo>, _) => {
+            (IsStruct, { /* pat record */ }, _) => {
                 false
             },
-            (_, IsStruct, <todo>) => {
+            (_, IsStruct, { /* pat record */ }) => {
                 false
             },
             (_, _) => {
@@ -959,7 +959,7 @@ pub mod Language_Rust_Corrode_C {
                                         None
                                     }
                                 },
-                                (Some(CStatic(_)), CFunDeclr({ .. }, __id_3a, _)) => {
+                                (Some(CStatic(_)), [CFunDeclr({ /* pat record */ }), ..._]) => {
                                     /* do */ {
                                         addSymbolIdentAction(ident)(/* do */ {
                                             let itype = deferred;
@@ -969,7 +969,7 @@ pub mod Language_Rust_Corrode_C {
                                         None
                                     }
                                 },
-                                (_, CFunDeclr({ .. }, __id_3a, _)) => {
+                                (_, [CFunDeclr({ /* pat record */ }), ..._]) => {
                                     /* do */ {
                                         addExternIdent(ident, deferred)(|name, (_mut, ty)| { match ty {
                                                 IsFunc(retTy, args, variadic) => {
@@ -1017,7 +1017,7 @@ pub mod Language_Rust_Corrode_C {
                     (catMaybes(mbinds))
                 }
             },
-            (_, node, @, CStaticAssert(<todo>)) => {
+            (_, node, @, CStaticAssert({ /* pat record */ })) => {
                 unimplemented(node)
             },
         }
@@ -1115,7 +1115,7 @@ pub mod Language_Rust_Corrode_C {
                                         result: Rust::Deref((result(expr_q)))
                                     })
                                 },
-                                IsFunc({ .. }) => {
+                                IsFunc({ /* pat record */ }) => {
                                     expr_q
                                 },
                                 _ => {
@@ -1298,7 +1298,7 @@ pub mod Language_Rust_Corrode_C {
                                 [] => {
                                     badSource(expr, "integer (too big)".to_string())
                                 },
-                                ty(__id_3a, _) => {
+                                [ty, ..._] => {
                                     (literalNumber(ty, (Rust::LitInt(v, repr_q))))
                                 },
                             })
@@ -1553,7 +1553,7 @@ pub mod Language_Rust_Corrode_C {
             (stmt, @, CSwitch(expr, body, node), next) => {
                 /* do */ {
                     let (bindings, expr_q) = match expr {
-                        CVar({ .. }) => {
+                        CVar({ /* pat record */ }) => {
                             (vec![], expr)
                         },
                         _ => {
@@ -1781,7 +1781,7 @@ pub mod Language_Rust_Corrode_C {
                 Some((From(el, 0, (replicate((-(size, 1)), el)), desig)))
             },
             ty_q => if compatibleInitializer(ty, ty_q) { Some(desig) },
-            IsStruct(_, (_, ty_q)(__id_3a, fields)) => {
+            IsStruct(_, [(_, ty_q), ...fields]) => {
                 nestedObject(ty, (From(ty_q, 0, (map(snd, fields)), desig)))
             },
             _ => {
@@ -1792,7 +1792,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn nextObject(__0: Designator, __1: CurrentObject) -> CurrentObject {
         match (__0, __1) {
-            (Base, <todo>) => {
+            (Base, { /* pat record */ }) => {
                 None
             },
             From(_, i, [ty, ...remaining], base) => {
@@ -1900,7 +1900,7 @@ pub mod Language_Rust_Corrode_C {
                     };
                     {
                         let indices = unfoldr((|o| { match o {
-                                        Base({ .. }) => {
+                                        Base({ /* pat record */ }) => {
                                             None
                                         },
                                         From(_, j, _, p) => {
@@ -1999,13 +1999,13 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn toBool(__0: Result) -> Rust::Expr {
         match (__0) {
-            Result(<todo>) => {
+            Result({ /* pat record */ }) => {
                 Rust::Lit((Rust::LitBool(false)))
             },
-            Result(<todo>) => {
+            Result({ /* pat record */ }) => {
                 Rust::Lit((Rust::LitBool(true)))
             },
-            Result(<todo>) => {
+            Result({ /* pat record */ }) => {
                 match t {
                     IsBool => {
                         v
@@ -2023,13 +2023,13 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn toNotBool(__0: Result) -> Rust::Expr {
         match (__0) {
-            Result(<todo>) => {
+            Result({ /* pat record */ }) => {
                 Rust::Lit((Rust::LitBool(true)))
             },
-            Result(<todo>) => {
+            Result({ /* pat record */ }) => {
                 Rust::Lit((Rust::LitBool(false)))
             },
-            Result(<todo>) => {
+            Result({ /* pat record */ }) => {
                 match t {
                     IsBool => {
                         Rust::Not(v)
@@ -2047,13 +2047,13 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn toPtr(__0: Result, __1: Option<Result>) -> Option<Result> {
         match (__0, __1, __2) {
-            (ptr, @, Result(<todo>)) => {
+            (ptr, @, Result({ /* pat record */ })) => {
                 Some(ptr, {
                     resultType: IsPtr(__mut, el),
                     result: castTo((IsPtr(__mut, el)), ptr)
                 })
             },
-            (ptr, @, Result(<todo>)) => {
+            (ptr, @, Result({ /* pat record */ })) => {
                 Some(ptr)
             },
             _ => {
@@ -2142,7 +2142,7 @@ pub mod Language_Rust_Corrode_C {
                         IsArray(_, size, el) => {
                             From(el, 0, (replicate((-(size, 1)), el)), (Base(ty)))
                         },
-                        IsStruct(_, (_, ty_q)(__id_3a, fields)) => {
+                        IsStruct(_, [(_, ty_q), ...fields]) => {
                             From(ty_q, 0, (map(snd, fields)), (Base(ty)))
                         },
                         _ => {
@@ -2157,7 +2157,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn typeName(__0: CDecl, __1: EnvMonad<s, (Rust::Mutable, CType)>) -> EnvMonad<s, (Rust::Mutable, CType)> {
         match (__0, __1, __2) {
-            (decl, @, CStaticAssert(<todo>)) => {
+            (decl, @, CStaticAssert({ /* pat record */ })) => {
                 badSource(decl, "static assert in type name ".to_string())
             },
             (decl, @, CDecl(spec, declarators, _)) => {
@@ -2282,7 +2282,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn wrapping(__0: Result, __1: Result) -> Result {
         match (__0, __1, __2) {
-            (r, @, Result(<todo>)) => {
+            (r, @, Result({ /* pat record */ })) => {
                 match result(r) {
                     Rust::Add(lhs, rhs) => {
                         r({
@@ -2346,12 +2346,12 @@ pub mod Language_Rust_Corrode_CFG {
 
     struct CFG<k<s, c>>(CFG<Label, IntMap::IntMap<BasicBlock<s, c>>>);
 
-    struct BuildState<s<c>>(BuildState<{ /* struct def */ }>);
+    struct BuildState<s<c>>(BuildState<{ /* type record */ }>);
 
     #[derive(Debug)]
     pub enum StructureLabel<s<c>> {
-        GoTo<{ /* struct def */ }>,
-        ExitTo<{ /* struct def */ }>,
+        GoTo<{ /* type record */ }>,
+        ExitTo<{ /* type record */ }>,
         Nested<Vec<Structure<s, c>>>
     }
     pub use self::StructureLabel::*;
@@ -2365,7 +2365,7 @@ pub mod Language_Rust_Corrode_CFG {
     pub use self::Structure_q::*;
 
     #[derive(Debug)]
-    struct Structure<s<c>>(Structure<{ /* struct def */ }>);
+    struct Structure<s<c>>(Structure<{ /* type record */ }>);
 
     pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
         /* do */ {
