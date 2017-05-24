@@ -1,3 +1,9 @@
+    pub enum Term {
+        Hello,
+        World
+    }
+    pub use self::Term::*;
+
 mod haskell_support {
     pub trait Addable {
         fn add(self, right: Self) -> Self;
@@ -14,23 +20,15 @@ mod haskell_support {
     }
 }
 
-mod Test_Hello {
+
+pub mod Test_Hello {
     use haskell_support::*;
-
-    enum Term {
-        Hello,
-        World
-    }
-    use self::Term::*;
-
     pub fn helloworld() -> String {
         (__op_addadd((printer(Hello)), __op_addadd(" ".to_string(), (printer(World)))))
     }
 
-    //let main = putStrLn(helloworld);
-
-    fn printer(__0: Term) -> String {
-        match __0 {
+    pub fn printer(__0: Term) -> String {
+        match (__0) {
             Hello => {
                 "Hello".to_string()
             },
@@ -42,6 +40,13 @@ mod Test_Hello {
 
 }
 
+
+
+
+/* RUST ... /RUST */
+
 fn main() {
-    println!("{}", Test_Hello::helloworld());
+    assert_eq!("Hello World", Test_Hello::helloworld());
+    println!("success.");
 }
+

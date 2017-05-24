@@ -7,6 +7,7 @@ extern crate hex;
 extern crate lalrpop_util;
 extern crate parser_haskell;
 extern crate regex;
+extern crate tempdir;
 extern crate walkdir;
 
 use parser_haskell::ast;
@@ -23,6 +24,8 @@ use std::fmt::Write;
 use std::fs::{File};
 use std::io::prelude::*;
 use std::path::Path;
+use std::process::Command;
+use tempdir::TempDir;
 use walkdir::WalkDir;
 
 #[derive(Clone, Copy)]
@@ -780,6 +783,8 @@ fn convert_file(input: &str) -> (String, String) {
 
 #[cfg(not(test))]
 fn main() {
+    use std::io::Write;
+
     let matches = App::new("corollary")
         .version("0.1")
         .about("Converts Haskell to Rust")
@@ -802,6 +807,7 @@ fn main() {
 
     let mut rust_section = "".to_string();
     let mut file_section = "".to_string();
+
     let _ = writeln!(file_section, "{}", include_str!("haskell_support.txt"));
     let _ = writeln!(file_section, "");
     for entry in WalkDir::new(file) {
@@ -840,5 +846,25 @@ fn main() {
         let _ = writeln!(file_section, "{}", rust_section);
     }
 
-    print!("{}", file_section);
+    // Evaluate --run
+    if do_run {
+        let dir = TempDir::new("corollary").unwrap();
+        let file_path = dir.path().join("script.rs");
+
+        let mut f = File::create(&file_path).unwrap();
+        let _ = f.write_all(file_section.as_bytes());
+        drop(f);
+
+        println!("{:?}", file_path);
+
+        let output = Command::new("cargo")
+                    .args(&["script", &file_path.display().to_string()])
+                    .output()
+                    .expect("failed to execute process");
+        err!("{}", String::from_utf8_lossy(&output.stdout));
+        err!("{}", String::from_utf8_lossy(&output.stderr));
+        //err!("{}", output.errorCode);
+    } else {
+        print!("{}", file_section);
+    }
 }

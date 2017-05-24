@@ -17,6 +17,7 @@ hex = "0.2.0"
 lalrpop-util = "0.12.5"
 maplit = "*"
 regex = "0.2.1"
+tempdir = "0.3"
 walkdir = "1"
 
 [dependencies.parser-haskell]
