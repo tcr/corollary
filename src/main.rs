@@ -130,32 +130,11 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             });
             return ir::Expr::VecLiteral { exprs, line_length };
         }
-        Do(ref exprset, ref w) => {
-            let mut out = vec![];
-
-            // where clause
-            if w.len() > 0 {
-                out.push(print_statement_list(state, w));
-            }
-
-            for (i, expr) in exprset.iter().enumerate() {
-                let comm = if i == exprset.len() - 1 { "" } else { ";" };
-                out.push(format!("{}{}", print_statement_list(state.tab(), &[expr.clone()]), comm));
-            }
-            format!("/* do */ {{\n{}\n{}}}", out.join("\n"), state.indent())
-        }
-        Let(ref exprset, ref w) => {
-            let mut out = vec![];
-
-            // where clause
-            if w.len() > 0 {
-                out.push(print_statement_list(state.tab(), w));
-            }
-
-            for (i, expr) in exprset.iter().enumerate() {
-                let comm = if i == exprset.len() - 1 { "" } else { ";" };
-                out.push(format!("{}{}", print_statement_list(state.tab(), &[expr.clone()]), comm));
-            }
+        Do(ref stmts) => print_do(state.tab(), stmts),
+        Let(ref assigns, ref expr) => {
+            let mut out = assigns.iter().map(|a| print_let(state.tab(), a)).collect::<Vec<_>>();
+            out.push(format!("{}{}", state.indent(), print_expr(state.tab(), expr)));
+            // todo: should be possible to inline this extra {} in most scenarios
             format!("{{\n{}{}}}", out.join("\n"), state.indent())
         }
         Ref(ast::Ident(ref i)) => {
@@ -279,9 +258,6 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                 .join("; "),
                             state.tab().indent(),
                         ));
-                    }
-                    ast::CaseCond::Where => {
-                        // TODO
                     }
                 }
             }
@@ -420,7 +396,6 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Brackets(ref t) => {
             format!("Vec<{}>", print_type(state.tab(), &**t))
         }
-        Ty::Where(_, ref t) => print_type(state, &**t), // temp
         Ty::Pair(ref a, ref b) => {
             format!("fn({}) -> {}", print_type(state, &**a), print_type(state, &**b))
         }
@@ -533,56 +508,58 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     }
 
     // Print out assignments as fns
-    let mut cache: BTreeMap<String, Vec<(Vec<Pat>, Expr)>> = btreemap![];
+    let mut cache: BTreeMap<String, Vec<ast::Assignment>> = btreemap![];
     for item in stats {
-        if let ast::Statement::Assign(mut s, expr) = item.clone() {
-            //if !types.contains_key(&s) {
-            //    println!("this shouldn't happen {:?}", s);
-            //}
-            //if cache.contains_key(&s) {
-            //    panic!("this shouldn't happen {:?}", s);
-            //}
+        if let ast::Statement::Assign(assign, where_) = item.clone() {
+            if !where_.is_empty() {
+                // TODO
+                //println!("// push {:?} into fn", where_)
+                //out.push(print_statement_list(state.tab(), w));
+            }
+
+            let mut assign = *assign;
 
             // If hte AST is refactored to break out the first Ident
             // for the issigned, this whole check should be deleted
-            let ident = match s.remove(0) {
+            let ident = match assign.pats.remove(0) {
                 Pat::Ref(ast::Ident(s)) => s,
-                span => panic!("Expected ident, got {:?}", span),
+                span => panic!("Expected ident, got {:?}\n\nin: {:?}\n", span, item),
             };
 
             cache.entry(ident)
                 .or_insert(vec![])
-                .push((s, expr));
+                .push(assign);
         }
     }
 
     // Convert guards into basically case statements
-    let mut new_cache = btreemap![];
+    let mut new_cache: BTreeMap<String, Vec<ast::Assignment>> = btreemap![];
     for (key, fnset) in cache {
         if fnset.len() > 1 {
             // There are multiple impls of this function, so expand this into a
             // case statement.
-            let args = (0..fnset[0].0.len())
+            let args = (0..fnset[0].pats.len())
                 .map(|x| format!("__{}", x))
                 .collect::<Vec<_>>();
-            let res = vec![(
-                // Convert args into case options.
-                args.iter()
-                    .map(|x| Pat::Ref(ast::Ident(x.to_string())))
-                    .collect::<Vec<_>>(),
-                // Generate case statements.
-                ast::Expr::Case(
-                    Box::new(ast::Expr::Parens(args.iter()
-                        .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
-                        .collect::<Vec<_>>())),
-                    fnset.iter().map(|x| {
-                        ast::CaseCond::Direct(
-                            vec![Pat::Tuple(x.0.clone())],
-                            vec![x.1.clone()])
-                    }).collect::<Vec<_>>(),
-                ),
-            )];
 
+            // Convert args into case options.
+            let pats = args
+                .iter()
+                .map(|x| Pat::Ref(ast::Ident(x.to_string())))
+                .collect::<Vec<_>>();
+
+            // Generate case statements.
+            let expr = ast::Expr::Case(
+                Box::new(ast::Expr::Parens(args.iter()
+                    .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
+                    .collect::<Vec<_>>())),
+                fnset.iter().map(|x| {
+                    ast::CaseCond::Direct(
+                        vec![Pat::Tuple(x.pats.clone())],
+                        vec![x.expr.clone()])
+                }).collect::<Vec<_>>(),
+            );
+            let res = vec![ast::Assignment { pats, expr }];
             new_cache.insert(key, res);
         } else {
             //TODO waitaminute
@@ -591,7 +568,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     }
 
     for (key, fnset) in new_cache {
-        for (args, expr) in fnset {
+        for ast::Assignment { pats: args, expr } in fnset {
             // For type-less functions,
             if !types.contains_key(&key) {
                 // With no type signature, we print a lambda.
@@ -639,17 +616,38 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         }
     }
 
-    //Expressions
-    for item in stats {
-        if let ast::Statement::Expression(expr, _) = item.clone() {
-            //TODO where clause as second argument
-            out.push(format!("{}{}", state.indent(), print_expr(state, &expr)));
-        }
-    }
-
     out.join("\n")
 }
 
+fn print_let(state: PrintState, assign: &ast::Assignment) -> String {
+    format!(
+        "{}let {} = {};",
+        state.indent(),
+        print_patterns(state, &assign.pats),
+        print_expr(state, &assign.expr),
+    )
+}
+
+fn print_do(state: PrintState, stmts: &[ast::DoStatement]) -> String {
+    let mut out = vec![];
+    for (i, stmt) in stmts.iter().enumerate() {
+        match *stmt {
+            ast::DoStatement::Let(ref assigns) => {
+                for assign in assigns {
+                    out.push(print_let(state, assign));
+                }
+            }
+            ast::DoStatement::Expression(ref e) => {
+                let mut expr = print_expr(state, &*e);
+                if i + 1 < stmts.len() {
+                    expr.push(';');
+                }
+                out.push(format!("{}{}", state.indent(), expr));
+            }
+        }
+    }
+    format!("/* do */ {{\n{}\n{}}}", out.join("\n"), state.untab().indent())
+}
 
 #[test] #[ignore]
 fn test_single_file() {
