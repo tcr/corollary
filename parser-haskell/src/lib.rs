@@ -131,6 +131,7 @@ fn commify(val: &str) -> String {
                     if let Some(last_level) = stash.last().map(|x| *x) {
                         // Check if we decreased our indent level
                         last_level > indent
+                            || (last_level == indent && word == "where")
                     } else {
                         false
                     }
