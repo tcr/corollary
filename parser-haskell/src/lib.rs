@@ -78,8 +78,20 @@ fn decode_literal(s: &str) -> String {
     String::from_utf8(vec).expect("invalid UTF-8")
 }
 
-fn word_is_block_word(word: &str) -> bool {
-    word == "do" || word == "where" || word == "of" || word == "let"
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+enum BlockWord { Do, Where, Of, Let }
+
+impl BlockWord {
+    fn from_str(word: &str) -> Option<Self> {
+        use BlockWord::*;
+        Some(match word {
+            "do" => Do,
+            "where" => Where,
+            "of" => Of,
+            "let" => Let,
+            _ => return None,
+        })
+    }
 }
 
 /// Convert indentation to semicolon-delimited brackets, so it can be parsed more easily.
@@ -95,8 +107,8 @@ fn commify(val: &str) -> String {
     let mut stash: Vec<usize> = vec![];
     // Previous brace nesting levels.
     let mut braces: Vec<isize> = vec![];
-    // Previous word was a block starting word, option containing its indent level.
-    let mut trigger = None;
+    // Previous word was a block starting word.
+    let mut trigger: Option<BlockWord> = None;
     // How many spaces to indent.
     let mut indent = 0;
     // Check if this is the first word in the line.
@@ -185,7 +197,7 @@ fn commify(val: &str) -> String {
             }
             first = false;
 
-            trigger = if word_is_block_word(word) { Some(indent) } else { None };
+            trigger = BlockWord::from_str(word);
             if trigger.is_some() {
                 out.push_str("{");
 
