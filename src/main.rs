@@ -428,6 +428,9 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         }
     }
 
+    // Output
+    let mut out = vec![];
+
     // Print out data structures.
     for item in stats {
         if let ast::Statement::Data(name, data, derives, args) = item.clone() {
@@ -447,7 +450,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                 .collect::<Vec<_>>();
 
             if data.len() > 1 {
-                println!("{}{}pub enum {} {{\n        {}\n{}}}\n{}{}",
+                out.push(format!("{}{}pub enum {} {{\n        {}\n{}}}\n{}{}",
                     state.indent(),
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n    ", derive_rust.join(", "))
@@ -474,12 +477,12 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                     state.indent(),
                     state.indent(),
                     format!("pub use self::{}::*;", print_ident(state, name.0)),
-                    );
+                    ));
             } else {
                 let props = data.iter().map(|tyset| {
                     print_types(state, tyset)
                 }).collect::<Vec<_>>().join(", ");
-                println!("    {}struct {}{};",
+                out.push(format!("    {}struct {}{};",
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n    ", derive_rust.join(", "))
                     } else {
@@ -491,9 +494,9 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
                         v
                     })),
                     if data.len() > 0 { format!("({})", props) } else { "".to_string() }
-                );
+                ));
             }
-            println!("");
+            out.push("".to_string())
         }
     }
 
@@ -558,7 +561,6 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
         }
     }
 
-    let mut out = vec![];
     for (key, fnset) in new_cache {
         for (args, expr) in fnset {
             // For type-less functions,
@@ -801,9 +803,10 @@ fn main() {
     let file = matches.value_of("INPUT").unwrap();
     let do_run = matches.is_present("run");
     if do_run {
-        errln!("do_run {:?}", do_run);
+        errln!("running {:?}...", file);
+    } else {
+        errln!("cross-compiling {:?}...", file);
     }
-    errln!("reading {:?}...", file);
 
     let mut rust_section = "".to_string();
     let mut file_section = "".to_string();
@@ -847,7 +850,9 @@ fn main() {
     }
 
     // Evaluate --run
-    if do_run {
+    if !do_run {
+        print!("{}", file_section);
+    } else {
         let dir = TempDir::new("corollary").unwrap();
         let file_path = dir.path().join("script.rs");
 
@@ -855,16 +860,15 @@ fn main() {
         let _ = f.write_all(file_section.as_bytes());
         drop(f);
 
-        println!("{:?}", file_path);
-
         let output = Command::new("cargo")
                     .args(&["script", &file_path.display().to_string()])
                     .output()
                     .expect("failed to execute process");
+
+        if !output.status.success() {
+            err!("{}", String::from_utf8_lossy(&output.stderr));
+        }
         err!("{}", String::from_utf8_lossy(&output.stdout));
-        err!("{}", String::from_utf8_lossy(&output.stderr));
-        //err!("{}", output.errorCode);
-    } else {
-        print!("{}", file_section);
+        ::std::process::exit(output.status.code().unwrap());
     }
 }
