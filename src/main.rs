@@ -624,6 +624,8 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
 #[test] #[ignore]
 fn test_single_file() {
+    use std::io::Write;
+
     let a = "./corrode/src/Language/Rust/Corrode/C.lhs";
     // let a = "./corrode/src/Language/Rust/Corrode/C.hs";
     // let a = "./test/input.hs";
