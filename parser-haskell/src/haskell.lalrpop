@@ -92,7 +92,7 @@ Ctor: Ident = {
 };
 
 Operator: String = {
-    r"[!#$%&*+/<=>?@^~][!#$%&*+./<=>?@^|~\\-]*" => <>.to_string(),
+    r"[!#$%&*+/=>?@^~][!#$%&*+./<=>?@^|~\\-]*" => <>.to_string(),
     ":" => <>.to_string(),
     "." => <>.to_string(),
     ".." => <>.to_string(),
@@ -100,6 +100,11 @@ Operator: String = {
     ".&." => <>.to_string(),
     "-" => <>.to_string(),
     "||" => <>.to_string(),
+    "<" => <>.to_string(),
+    "<=" => <>.to_string(),
+    "<>" => <>.to_string(),
+    "<+>" => <>.to_string(),
+    "<*>" => <>.to_string(),
 };
 
 // Code structures
@@ -160,8 +165,9 @@ Expr: Expr = {
 };
 
 ListGenerator: () = {
-    <PatSpan> "<-" <ExprSpan> => (),
     "let" "{" <Assignment> "}" => (),
+    <pat:Expr+> "<-" <expr:ExprSpan> => (), // expr_to_pat
+    <Expr+> => (),
 };
 
 SContext: () = {
@@ -198,6 +204,10 @@ Statement: Statement = {
 
 DoStatement: DoStatement = {
     "let" "{" <Semi<Assignment>> "}" => DoStatement::Let(<>),
+    <expats:Expr+> "<-" <expr:ExprSpan> => {
+        let pats = expats.iter().map(expr_to_pat).collect();
+        DoStatement::Bind(pats, Box::new(expr))
+    },
     <Expr+> => DoStatement::Expression(Box::new(Expr::Span(<>))),
 };
 

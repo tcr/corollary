@@ -640,6 +640,11 @@ fn print_do(state: PrintState, stmts: &[ast::DoStatement]) -> String {
                     out.push(print_let(state, assign));
                 }
             }
+            ast::DoStatement::Bind(ref pats, ref expr) => {
+                // good enough for now
+                let assign = ast::Assignment { pats: pats.clone(), expr: *expr.clone() };
+                out.push(print_let(state, &assign));
+            }
             ast::DoStatement::Expression(ref e) => {
                 let mut expr = print_expr(state, &*e);
                 if i + 1 < stmts.len() {

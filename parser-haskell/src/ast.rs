@@ -63,6 +63,7 @@ pub type Where = Vec<Statement>;
 #[derive(Clone, Debug)]
 pub enum DoStatement {
     Let(Vec<Assignment>),
+    Bind(Vec<Pat>, Box<Expr>),
     Expression(Box<Expr>),
 }
 
