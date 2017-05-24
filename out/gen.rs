@@ -19,25 +19,25 @@ pub mod Language_C_Parser_Lexer {
     use haskell_support::*;
     pub enum AlexReturn<a> {
         AlexEOF,
-        AlexError(AlexInput),
-        AlexSkip(AlexInput, isize),
-        AlexToken(AlexInput, isize, a)
+        AlexError<AlexInput>,
+        AlexSkip<AlexInput, isize>,
+        AlexToken<AlexInput, isize, a>
     }
     pub use self::AlexReturn::*;
 
     pub enum AlexLastAcc {
         AlexNone,
-        AlexLastAcc(isize, AlexInput, isize),
-        AlexLastSkip(AlexInput, isize)
+        AlexLastAcc<isize, AlexInput, isize>,
+        AlexLastSkip<AlexInput, isize>
     }
     pub use self::AlexLastAcc::*;
 
     pub enum AlexAcc<user> {
         AlexAccNone,
-        AlexAcc(isize),
+        AlexAcc<isize>,
         AlexAccSkip,
-        AlexAccPred(isize, AlexAccPred<user>, AlexAcc<user>),
-        AlexAccSkipPred(AlexAccPred<user>, AlexAcc<user>)
+        AlexAccPred<isize, AlexAccPred<user>, AlexAcc<user>>,
+        AlexAccSkipPred<AlexAccPred<user>, AlexAcc<user>>
     }
     pub use self::AlexAcc::*;
 
@@ -623,7 +623,7 @@ pub mod Language_C_Parser_Lexer {
                 (0, alex_action_66),
             ]);
 
-    pub fn alex_base() -> Array {
+    pub fn alex_base() -> Array<isize, isize> {
         listArray((0, 241), vec![
                 -(8),
                 119,
@@ -870,7 +870,7 @@ pub mod Language_C_Parser_Lexer {
             ])
     }
 
-    pub fn alex_check() -> Array {
+    pub fn alex_check() -> Array<isize, isize> {
         listArray((0, 9519), vec![
                 -(1),
                 9,
@@ -10395,7 +10395,7 @@ pub mod Language_C_Parser_Lexer {
             ])
     }
 
-    pub fn alex_deflt() -> Array {
+    pub fn alex_deflt() -> Array<isize, isize> {
         listArray((0, 241), vec![
                 -(1),
                 -(1),
@@ -10678,7 +10678,7 @@ pub mod Language_C_Parser_Lexer {
         8
     }
 
-    pub fn alex_table() -> Array {
+    pub fn alex_table() -> Array<isize, isize> {
         listArray((0, 9519), vec![
                 0,
                 118,
@@ -20429,22 +20429,22 @@ pub mod Language_C_Parser_Lexer {
         }
     };
 
-    pub fn ignoreAttribute() -> P {
+    pub fn ignoreAttribute() -> P<()> {
         skipTokens((0))
     }
 
-    pub fn lexC(cont: fn(CToken) -> P<a>) -> P {
+    pub fn lexC(cont: fn(CToken) -> P<a>) -> P<a> {
         /* do */ {
             let tok = lexToken;
             cont(tok)
         }
     }
 
-    pub fn lexToken() -> P {
+    pub fn lexToken() -> P<CToken> {
         lexToken_q(true)
     }
 
-    pub fn lexToken_q(modifyCache: bool) -> P {
+    pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
         /* do */ {
             let pos = getPos;
             let inp = getInput;
@@ -20478,7 +20478,7 @@ pub mod Language_C_Parser_Lexer {
         }
     }
 
-    pub fn lexicalError() -> P {
+    pub fn lexicalError() -> P<a> {
         /* do */ {
             let pos = getPos;
             let (c, cs) = liftM(takeChar, getInput);
@@ -20489,7 +20489,7 @@ pub mod Language_C_Parser_Lexer {
         }
     }
 
-    pub fn parseError() -> P {
+    pub fn parseError() -> P<a> {
         /* do */ {
             let tok = getLastToken;
             failP((posOf(tok)), vec![
@@ -20503,7 +20503,7 @@ pub mod Language_C_Parser_Lexer {
         !(arr, i)
     };
 
-    pub fn readCOctal(s: String, @: Either) -> Either {
+    pub fn readCOctal(s: String, @: Either<String, CInteger>) -> Either<String, CInteger> {
         match r {
             c(__id_3a, _) => if isDigit(c) { readCInteger(OctalRepr, r) },
             _ => {
@@ -20512,23 +20512,23 @@ pub mod Language_C_Parser_Lexer {
         }
     }
 
-    pub fn tok(len: isize, tc: fn(PosLength) -> CToken, pos: Position) -> P {
+    pub fn tok(len: isize, tc: fn(PosLength) -> CToken, pos: Position) -> P<CToken> {
         (tc((pos, len)))
     }
 
-    pub fn token(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> a, pos: Position, len: isize, __str: InputStream) -> P {
+    pub fn token(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> a, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
         (tok((pos, len), (read(takeChars(len, __str)))))
     }
 
-    pub fn token_(len: isize, tok: fn(PosLength) -> CToken, pos: Position, _: isize, _: InputStream) -> P {
+    pub fn token_(len: isize, tok: fn(PosLength) -> CToken, pos: Position, _: isize, _: InputStream) -> P<CToken> {
         (tok((pos, len)))
     }
 
-    pub fn token_fail(errmsg: String, pos: Position, _: isize, _: InputStream) -> P {
+    pub fn token_fail(errmsg: String, pos: Position, _: isize, _: InputStream) -> P<CToken> {
         failP(pos, vec!["Lexical Error !".to_string(), errmsg])
     }
 
-    pub fn token_plus(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> Either<String, a>, pos: Position, len: isize, __str: InputStream) -> P {
+    pub fn token_plus(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> Either<String, a>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
         match read((takeChars(len, __str))) {
             Left(err) => {
                 failP(pos, vec!["Lexical error ! ".to_string(), err])
@@ -20566,70 +20566,70 @@ pub mod Language_C_Parser_Lexer {
 pub mod Language_C_Parser_Parser {
     use haskell_support::*;
     pub enum HappyAbsSyn {
-        HappyTerminal(CToken),
-        HappyErrorToken(isize),
-        HappyAbsSyn7(CTranslUnit),
-        HappyAbsSyn8(Reversed<Vec<CExtDecl>>),
-        HappyAbsSyn9(CExtDecl),
-        HappyAbsSyn10(CFunDef),
-        HappyAbsSyn11(CDeclr),
-        HappyAbsSyn12(CStat),
-        HappyAbsSyn15(()),
-        HappyAbsSyn17(Reversed<Vec<CBlockItem>>),
-        HappyAbsSyn18(CBlockItem),
-        HappyAbsSyn21(Reversed<Vec<Ident>>),
-        HappyAbsSyn26(CAsmStmt),
-        HappyAbsSyn27(Option<CTypeQual>),
-        HappyAbsSyn28(Vec<CAsmOperand>),
-        HappyAbsSyn29(Reversed<Vec<CAsmOperand>>),
-        HappyAbsSyn30(CAsmOperand),
-        HappyAbsSyn31(Reversed<Vec<CStrLit>>),
-        HappyAbsSyn32(CDecl),
-        HappyAbsSyn33(Reversed<Vec<CDecl>>),
-        HappyAbsSyn35((Option<CStrLit>, Vec<CAttr>)),
-        HappyAbsSyn37(Vec<CDeclSpec>),
-        HappyAbsSyn38(Reversed<Vec<CDeclSpec>>),
-        HappyAbsSyn39(CDeclSpec),
-        HappyAbsSyn40(CStorageSpec),
-        HappyAbsSyn42(CTypeSpec),
-        HappyAbsSyn50(CStructUnion),
-        HappyAbsSyn51(Located<CStructTag>),
-        HappyAbsSyn56((Option<CDeclr>, Option<CExpr>)),
-        HappyAbsSyn58(CEnum),
-        HappyAbsSyn59(Reversed<Vec<(Ident, Option<CExpr>)>>),
-        HappyAbsSyn60((Ident, Option<CExpr>)),
-        HappyAbsSyn61(CTypeQual),
-        HappyAbsSyn62(Reversed<Vec<CTypeQual>>),
-        HappyAbsSyn63(CDeclrR),
-        HappyAbsSyn64(Option<CStrLit>),
-        HappyAbsSyn79((Vec<CDecl>, bool)),
-        HappyAbsSyn85(fn(CDeclrR) -> CDeclrR),
-        HappyAbsSyn90(CInit),
-        HappyAbsSyn91(Option<CInit>),
-        HappyAbsSyn92(Reversed<CInitList>),
-        HappyAbsSyn93(Vec<CDesignator>),
-        HappyAbsSyn94(Reversed<Vec<CDesignator>>),
-        HappyAbsSyn95(CDesignator),
-        HappyAbsSyn97(CExpr),
-        HappyAbsSyn100(Reversed<Vec<CExpr>>),
-        HappyAbsSyn102(Located<CUnaryOp>),
-        HappyAbsSyn116(Located<CAssignOp>),
-        HappyAbsSyn119(Option<CExpr>),
-        HappyAbsSyn122(CConst),
-        HappyAbsSyn123(CStrLit),
-        HappyAbsSyn124(Reversed<Vec<CString>>),
-        HappyAbsSyn125(Ident),
-        HappyAbsSyn126(Vec<CAttr>),
-        HappyAbsSyn129(Reversed<Vec<CAttr>>),
-        HappyAbsSyn130(Option<CAttr>)
+        HappyTerminal<CToken>,
+        HappyErrorToken<isize>,
+        HappyAbsSyn7<CTranslUnit>,
+        HappyAbsSyn8<Reversed<Vec<CExtDecl>>>,
+        HappyAbsSyn9<CExtDecl>,
+        HappyAbsSyn10<CFunDef>,
+        HappyAbsSyn11<CDeclr>,
+        HappyAbsSyn12<CStat>,
+        HappyAbsSyn15<()>,
+        HappyAbsSyn17<Reversed<Vec<CBlockItem>>>,
+        HappyAbsSyn18<CBlockItem>,
+        HappyAbsSyn21<Reversed<Vec<Ident>>>,
+        HappyAbsSyn26<CAsmStmt>,
+        HappyAbsSyn27<Option<CTypeQual>>,
+        HappyAbsSyn28<Vec<CAsmOperand>>,
+        HappyAbsSyn29<Reversed<Vec<CAsmOperand>>>,
+        HappyAbsSyn30<CAsmOperand>,
+        HappyAbsSyn31<Reversed<Vec<CStrLit>>>,
+        HappyAbsSyn32<CDecl>,
+        HappyAbsSyn33<Reversed<Vec<CDecl>>>,
+        HappyAbsSyn35<(Option<CStrLit>, Vec<CAttr>)>,
+        HappyAbsSyn37<Vec<CDeclSpec>>,
+        HappyAbsSyn38<Reversed<Vec<CDeclSpec>>>,
+        HappyAbsSyn39<CDeclSpec>,
+        HappyAbsSyn40<CStorageSpec>,
+        HappyAbsSyn42<CTypeSpec>,
+        HappyAbsSyn50<CStructUnion>,
+        HappyAbsSyn51<Located<CStructTag>>,
+        HappyAbsSyn56<(Option<CDeclr>, Option<CExpr>)>,
+        HappyAbsSyn58<CEnum>,
+        HappyAbsSyn59<Reversed<Vec<(Ident, Option<CExpr>)>>>,
+        HappyAbsSyn60<(Ident, Option<CExpr>)>,
+        HappyAbsSyn61<CTypeQual>,
+        HappyAbsSyn62<Reversed<Vec<CTypeQual>>>,
+        HappyAbsSyn63<CDeclrR>,
+        HappyAbsSyn64<Option<CStrLit>>,
+        HappyAbsSyn79<(Vec<CDecl>, bool)>,
+        HappyAbsSyn85<fn(CDeclrR) -> CDeclrR>,
+        HappyAbsSyn90<CInit>,
+        HappyAbsSyn91<Option<CInit>>,
+        HappyAbsSyn92<Reversed<CInitList>>,
+        HappyAbsSyn93<Vec<CDesignator>>,
+        HappyAbsSyn94<Reversed<Vec<CDesignator>>>,
+        HappyAbsSyn95<CDesignator>,
+        HappyAbsSyn97<CExpr>,
+        HappyAbsSyn100<Reversed<Vec<CExpr>>>,
+        HappyAbsSyn102<Located<CUnaryOp>>,
+        HappyAbsSyn116<Located<CAssignOp>>,
+        HappyAbsSyn119<Option<CExpr>>,
+        HappyAbsSyn122<CConst>,
+        HappyAbsSyn123<CStrLit>,
+        HappyAbsSyn124<Reversed<Vec<CString>>>,
+        HappyAbsSyn125<Ident>,
+        HappyAbsSyn126<Vec<CAttr>>,
+        HappyAbsSyn129<Reversed<Vec<CAttr>>>,
+        HappyAbsSyn130<Option<CAttr>>
     }
     pub use self::HappyAbsSyn::*;
 
-    struct Located<a>(L, a, Position);
+    struct Located<a>(L<a, Position>);
 
-    struct CDeclrR(CDeclrR, Option<Ident>, Reversed<Vec<CDerivedDeclr>>, Option<CStrLit>, Vec<CAttr>, NodeInfo);
+    struct CDeclrR(CDeclrR<Option<Ident>, Reversed<Vec<CDerivedDeclr>>, Option<CStrLit>, Vec<CAttr>, NodeInfo>);
 
-    struct HappyStk<a>(HappyStk, a, HappyStk<a>);
+    struct HappyStk<a>(HappyStk<a, HappyStk<a>>);
 
     pub fn action_0(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
         match (__0) {
@@ -53159,7 +53159,7 @@ pub mod Language_C_Parser_Parser {
         happyReduce_249
     }
 
-    pub fn addTrailingAttrs(declspecs: Reversed) -> Reversed {
+    pub fn addTrailingAttrs(declspecs: Reversed<Vec<CDeclSpec>>, new_attrs: Vec<CAttr>) -> Reversed<Vec<CDeclSpec>> {
         match viewr(declspecs) {
             (specs_init, CTypeSpec(CSUType(CStruct(tag, name, Some(def), def_attrs, su_node), node))) => {
                 (snoc(specs_init, CTypeSpec((CSUType((CStruct(tag, name, (Some(def)), (__op_addadd(def_attrs, new_attrs)), su_node)), node)))))
@@ -53192,11 +53192,11 @@ pub mod Language_C_Parser_Parser {
         CDeclrR(ident, indirections, asmname, (__op_addadd(cAttrs, newAttrs)), at)
     }
 
-    pub fn arrDeclr((CDeclrR(ident, derivedDeclrs, asmname, cattrs, dat)): CDeclrR, tyquals: Vec<CTypeQual>, var_sized: bool, static_size: bool, size_expr_opt: Option) -> Option {
+    pub fn arrDeclr((CDeclrR(ident, derivedDeclrs, asmname, cattrs, dat)): CDeclrR, tyquals: Vec<CTypeQual>, var_sized: bool, static_size: bool, size_expr_opt: Option<CExpr>, at: NodeInfo) -> CDeclrR {
         seq(arr_sz, (CDeclrR(ident, (snoc(derivedDeclrs, CArrDeclr(tyquals, arr_sz, at))), asmname, cattrs, dat)))
     }
 
-    pub fn doDeclIdent(declspecs: Vec<CDeclSpec>, (CDeclrR(mIdent, _, _, _, _)): CDeclrR) -> P {
+    pub fn doDeclIdent(declspecs: Vec<CDeclSpec>, (CDeclrR(mIdent, _, _, _, _)): CDeclrR) -> P<()> {
         match mIdent {
             None => {
                 ()
@@ -53206,7 +53206,7 @@ otherwise { shadowTypedef(ident) },
         }
     }
 
-    pub fn doFuncParamDeclIdent(__0: CDeclr) -> P {
+    pub fn doFuncParamDeclIdent(__0: CDeclr) -> P<()> {
         match (__0) {
             CDeclr(_, [CFunDeclr(params, _, _), ..._], _, _, _) => {
                 sequence_(<Expr::Dummy>)
@@ -53223,11 +53223,11 @@ otherwise { shadowTypedef(ident) },
 
     let expression = happySomeParser;
 
-    pub fn expressionP() -> P {
+    pub fn expressionP() -> P<CExpr> {
         expression
     }
 
-    pub fn extDeclP() -> P {
+    pub fn extDeclP() -> P<CExtDecl> {
         external_declaration
     }
 
@@ -53237,7 +53237,7 @@ otherwise { shadowTypedef(ident) },
         CDeclrR(ident, (snoc(derivedDeclrs, CFunDeclr(params, cattrs, at))), asmname, dcattrs, dat)
     }
 
-    pub fn getCDeclrIdent((CDeclr(mIdent, _, _, _, _)): CDeclr) -> Option {
+    pub fn getCDeclrIdent((CDeclr(mIdent, _, _, _, _)): CDeclr) -> Option<Ident> {
         mIdent
     }
 
@@ -53282,7 +53282,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    pub fn happyError() -> P {
+    pub fn happyError() -> P<a> {
         parseError
     }
 
@@ -53297,7 +53297,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    pub fn happyError_q(tk: CToken) -> P {
+    pub fn happyError_q(tk: CToken) -> P<a> {
         (|token| { happyError })(tk)
     }
 
@@ -58868,11 +58868,11 @@ otherwise { shadowTypedef(ident) },
             })), (|r| { happyReturn }((HappyAbsSyn32(r)))))
     };
 
-    pub fn happyReturn() -> P {
+    pub fn happyReturn() -> P<a> {
         (return)
     }
 
-    pub fn happyReturn1() -> P {
+    pub fn happyReturn1() -> P<a> {
         happyReturn
     }
 
@@ -58945,7 +58945,7 @@ otherwise { shadowTypedef(ident) },
         }
     };
 
-    pub fn happyThen() -> P {
+    pub fn happyThen() -> P<b> {
         (__op_bind)
     }
 
@@ -58955,7 +58955,7 @@ otherwise { shadowTypedef(ident) },
         map((CTypeQualCAttrQual))
     }
 
-    pub fn liftTypeQuals() -> Reversed {
+    pub fn liftTypeQuals() -> Vec<CDeclSpec> {
         map(CTypeQual)reverse
     }
 
@@ -58967,7 +58967,7 @@ otherwise { shadowTypedef(ident) },
         __error!("Internal Happy error\n".to_string())
     }
 
-    pub fn parseC(input: InputStream, initialPosition: Position) -> Either {
+    pub fn parseC(input: InputStream, initialPosition: Position) -> Either<ParseError, CTranslUnit> {
         fmap(fst)(execParser(translUnitP, input, initialPosition, builtinTypeNames, (namesStartingFrom(0))))
     }
 
@@ -58979,11 +58979,11 @@ otherwise { shadowTypedef(ident) },
         CDeclr(ide, (reverse(reversedDDs)), asmname, cattrs, at)
     }
 
-    pub fn reverseList() -> Reversed {
+    pub fn reverseList() -> Reversed<Vec<a>> {
         ReversedList::reverse
     }
 
-    pub fn setAsmName(mAsmName: Option) -> Option {
+    pub fn setAsmName(mAsmName: Option<CStrLit>, (CDeclrR(ident, indirections, oldName, cattrs, at)): CDeclrR) -> P<CDeclrR> {
         match combineName(mAsmName, oldName) {
             Left((n1, n2)) => {
                 failP((posOf(n2)), vec!["Duplicate assembler name: ".to_string(), showName(n1), showName(n2)])
@@ -58996,25 +58996,25 @@ otherwise { shadowTypedef(ident) },
 
     let statement = happySomeParser;
 
-    pub fn statementP() -> P {
+    pub fn statementP() -> P<CStat> {
         statement
     }
 
-    pub fn translUnitP() -> P {
+    pub fn translUnitP() -> P<CTranslUnit> {
         translation_unit
     }
 
     let translation_unit = happySomeParser;
 
-    pub fn unL((L(a, pos)): Located) -> Located {
+    pub fn unL((L(a, pos)): Located<a>) -> a {
         a
     }
 
-    pub fn withAsmNameAttrs((mAsmName, newAttrs): (Option<CStrLit>, Vec<CAttr>), declr: CDeclrR) -> P {
+    pub fn withAsmNameAttrs((mAsmName, newAttrs): (Option<CStrLit>, Vec<CAttr>), declr: CDeclrR) -> P<CDeclrR> {
         setAsmName(mAsmName, (appendObjAttrsR(newAttrs, declr)))
     }
 
-    pub fn withAttribute(node: Pos) -> Pos {
+    pub fn withAttribute(node: node, cattrs: Vec<CAttr>, mkDeclrNode: fn(NodeInfo) -> CDeclrR) -> P<CDeclrR> {
         /* do */ {
             let name = getNewName;
             {
@@ -59027,7 +59027,7 @@ otherwise { shadowTypedef(ident) },
         }
     }
 
-    pub fn withAttributePF(node: Pos) -> Pos {
+    pub fn withAttributePF(node: node, cattrs: Vec<CAttr>, mkDeclrCtor: fn(NodeInfo) -> fn(CDeclrR) -> CDeclrR) -> P<fn(CDeclrR) -> CDeclrR> {
         /* do */ {
             let name = getNewName;
             {
@@ -59040,7 +59040,7 @@ otherwise { shadowTypedef(ident) },
         }
     }
 
-    pub fn withLength(nodeinfo: NodeInfo, mkAttrNode: fn(NodeInfo) -> a) -> P {
+    pub fn withLength(nodeinfo: NodeInfo, mkAttrNode: fn(NodeInfo) -> a) -> P<a> {
         /* do */ {
             let lastTok = getSavedToken;
             {
@@ -59053,7 +59053,7 @@ otherwise { shadowTypedef(ident) },
         }
     }
 
-    pub fn withNodeInfo(node: Pos) -> Pos {
+    pub fn withNodeInfo(node: node, mkAttrNode: fn(NodeInfo) -> a) -> P<a> {
         /* do */ {
             let name = getNewName;
             let lastTok = getSavedToken;

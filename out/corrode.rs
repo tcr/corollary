@@ -27,11 +27,11 @@ pub mod Language_Rust_AST {
 
     #[derive(Debug, Eq)]
     pub enum Lit {
-        LitByteStr(String),
-        LitByteChar(Char),
-        LitBool(bool),
-        LitInt(Integer, LitIntRepr, Type),
-        LitFloat(String, Type)
+        LitByteStr<String>,
+        LitByteChar<Char>,
+        LitBool<bool>,
+        LitInt<Integer, LitIntRepr, Type>,
+        LitFloat<String, Type>
     }
     pub use self::Lit::*;
 
@@ -51,101 +51,101 @@ pub mod Language_Rust_AST {
 
     #[derive(Debug)]
     pub enum Stmt {
-        Stmt(Expr),
-        Let(Mutable, Var, Option<Type>, Option<Expr>),
-        StmtItem(Vec<Attribute>, ItemKind)
+        Stmt<Expr>,
+        Let<Mutable, Var, Option<Type>, Option<Expr>>,
+        StmtItem<Vec<Attribute>, ItemKind>
     }
     pub use self::Stmt::*;
 
     #[derive(Debug)]
-    struct Block(Block, Vec<Stmt>, Option<Expr>);
+    struct Block(Block<Vec<Stmt>, Option<Expr>>);
 
     #[derive(Debug)]
-    struct Attribute(Attribute, String);
+    struct Attribute(Attribute<String>);
 
     #[derive(Debug)]
-    struct Item(Item, Vec<Attribute>, Visibility, ItemKind);
+    struct Item(Item<Vec<Attribute>, Visibility, ItemKind>);
 
     #[derive(Debug)]
     pub enum FunctionAttribute {
         UnsafeFn,
-        ExternABI(Option<String>)
+        ExternABI<Option<String>>
     }
     pub use self::FunctionAttribute::*;
 
     #[derive(Debug)]
     pub enum ItemKind {
-        Function(Vec<FunctionAttribute>, String, Vec<(Mutable, Var, Type)>, Type, Block),
-        Static(Mutable, Var, Type, Expr),
-        Struct(String, Vec<(String, Type)>),
-        Extern(Vec<ExternItem>),
-        Use(String),
-        Enum(String, Vec<Enumerator>),
-        CloneImpl(Type)
+        Function<Vec<FunctionAttribute>, String, Vec<(Mutable, Var, Type)>, Type, Block>,
+        Static<Mutable, Var, Type, Expr>,
+        Struct<String, Vec<(String, Type)>>,
+        Extern<Vec<ExternItem>>,
+        Use<String>,
+        Enum<String, Vec<Enumerator>>,
+        CloneImpl<Type>
     }
     pub use self::ItemKind::*;
 
     #[derive(Debug)]
     pub enum ExternItem {
-        ExternFn(String, Vec<(Var, Type)>, bool, Type),
-        ExternStatic(Mutable, Var, Type)
+        ExternFn<String, Vec<(Var, Type)>, bool, Type>,
+        ExternStatic<Mutable, Var, Type>
     }
     pub use self::ExternItem::*;
 
     #[derive(Debug)]
     pub enum Enumerator {
-        EnumeratorAuto(String),
-        EnumeratorExpr(String, Expr)
+        EnumeratorAuto<String>,
+        EnumeratorExpr<String, Expr>
     }
     pub use self::Enumerator::*;
 
     #[derive(Debug)]
     pub enum Expr {
-        Lit(Lit),
-        Var(Var),
-        Path(Path),
-        Index(Expr, Expr),
-        ArrayExpr(Vec<Expr>),
-        RepeatArray(Expr, Expr),
-        StructExpr(String, Vec<(String, Expr)>, Option<Expr>),
-        Call(Expr, Vec<Expr>),
-        MethodCall(Expr, Var, Vec<Expr>),
-        Lambda(Vec<Var>, Expr),
-        Member(Expr, Var),
-        BlockExpr(Block),
-        UnsafeExpr(Block),
-        IfThenElse(Expr, Block, Block),
-        Loop(Option<Lifetime>, Block),
-        While(Option<Lifetime>, Expr, Block),
-        For(Option<Lifetime>, Var, Expr, Block),
-        Break(Option<Lifetime>),
-        Continue(Option<Lifetime>),
-        Return(Option<Expr>),
-        Neg(Expr),
-        Deref(Expr),
-        Not(Expr),
-        Borrow(Mutable, Expr),
-        Cast(Expr, Type),
-        Mul(Expr, Expr),
-        Div(Expr, Expr),
-        Mod(Expr, Expr),
-        Add(Expr, Expr),
-        Sub(Expr, Expr),
-        ShiftL(Expr, Expr),
-        ShiftR(Expr, Expr),
-        And(Expr, Expr),
-        Xor(Expr, Expr),
-        Or(Expr, Expr),
-        CmpLT(Expr, Expr),
-        CmpGT(Expr, Expr),
-        CmpLE(Expr, Expr),
-        CmpGE(Expr, Expr),
-        CmpEQ(Expr, Expr),
-        CmpNE(Expr, Expr),
-        LAnd(Expr, Expr),
-        LOr(Expr, Expr),
-        Range(Expr, Expr),
-        Assign(Expr, AssignOp, Expr)
+        Lit<Lit>,
+        Var<Var>,
+        Path<Path>,
+        Index<Expr, Expr>,
+        ArrayExpr<Vec<Expr>>,
+        RepeatArray<Expr, Expr>,
+        StructExpr<String, Vec<(String, Expr)>, Option<Expr>>,
+        Call<Expr, Vec<Expr>>,
+        MethodCall<Expr, Var, Vec<Expr>>,
+        Lambda<Vec<Var>, Expr>,
+        Member<Expr, Var>,
+        BlockExpr<Block>,
+        UnsafeExpr<Block>,
+        IfThenElse<Expr, Block, Block>,
+        Loop<Option<Lifetime>, Block>,
+        While<Option<Lifetime>, Expr, Block>,
+        For<Option<Lifetime>, Var, Expr, Block>,
+        Break<Option<Lifetime>>,
+        Continue<Option<Lifetime>>,
+        Return<Option<Expr>>,
+        Neg<Expr>,
+        Deref<Expr>,
+        Not<Expr>,
+        Borrow<Mutable, Expr>,
+        Cast<Expr, Type>,
+        Mul<Expr, Expr>,
+        Div<Expr, Expr>,
+        Mod<Expr, Expr>,
+        Add<Expr, Expr>,
+        Sub<Expr, Expr>,
+        ShiftL<Expr, Expr>,
+        ShiftR<Expr, Expr>,
+        And<Expr, Expr>,
+        Xor<Expr, Expr>,
+        Or<Expr, Expr>,
+        CmpLT<Expr, Expr>,
+        CmpGT<Expr, Expr>,
+        CmpLE<Expr, Expr>,
+        CmpGE<Expr, Expr>,
+        CmpEQ<Expr, Expr>,
+        CmpNE<Expr, Expr>,
+        LAnd<Expr, Expr>,
+        LOr<Expr, Expr>,
+        Range<Expr, Expr>,
+        Assign<Expr, AssignOp, Expr>
     }
     pub use self::Expr::*;
 
@@ -193,26 +193,26 @@ pub mod Language_Rust_AST {
 
 pub mod Language_Rust_Corrode_C {
     use haskell_support::*;
-    struct FunctionContext(FunctionContext, { /* struct def */ });
+    struct FunctionContext(FunctionContext<{ /* struct def */ }>);
 
-    struct Output(Output, { /* struct def */ });
+    struct Output(Output<{ /* struct def */ }>);
 
-    struct GlobalState(GlobalState, { /* struct def */ });
+    struct GlobalState(GlobalState<{ /* struct def */ }>);
 
-    struct EnvState<s>(EnvState, { /* struct def */ });
+    struct EnvState<s>(EnvState<{ /* struct def */ }>);
 
-    struct Initializer(Initializer, Option<Rust::Expr>, IntMap::IntMap<Initializer>);
+    struct Initializer(Initializer<Option<Rust::Expr>, IntMap::IntMap<Initializer>>);
 
     #[derive(Debug)]
     pub enum Designator {
-        Base(CType),
-        From(CType, isize, Vec<CType>, Designator)
+        Base<CType>,
+        From<CType, isize, Vec<CType>, Designator>
     }
     pub use self::Designator::*;
 
-    struct OuterLabels(OuterLabels, { /* struct def */ });
+    struct OuterLabels(OuterLabels<{ /* struct def */ }>);
 
-    struct Result(Result, { /* struct def */ });
+    struct Result(Result<{ /* struct def */ }>);
 
     #[derive(Debug, Eq)]
     pub enum Signed {
@@ -223,7 +223,7 @@ pub mod Language_Rust_Corrode_C {
 
     #[derive(Debug, Eq)]
     pub enum IntWidth {
-        BitWidth(isize),
+        BitWidth<isize>,
         WordWidth
     }
     pub use self::IntWidth::*;
@@ -231,21 +231,21 @@ pub mod Language_Rust_Corrode_C {
     #[derive(Debug)]
     pub enum CType {
         IsBool,
-        IsInt(Signed, IntWidth),
-        IsFloat(isize),
+        IsInt<Signed, IntWidth>,
+        IsFloat<isize>,
         IsVoid,
-        IsFunc(CType, Vec<(Option<(Rust::Mutable, Ident)>, CType)>, bool),
-        IsPtr(Rust::Mutable, CType),
-        IsArray(Rust::Mutable, isize, CType),
-        IsStruct(String, Vec<(String, CType)>),
-        IsEnum(String),
-        IsIncomplete(Ident)
+        IsFunc<CType, Vec<(Option<(Rust::Mutable, Ident)>, CType)>, bool>,
+        IsPtr<Rust::Mutable, CType>,
+        IsArray<Rust::Mutable, isize, CType>,
+        IsStruct<String, Vec<(String, CType)>>,
+        IsEnum<String>,
+        IsIncomplete<Ident>
     }
     pub use self::CType::*;
 
-    struct IntermediateType(IntermediateType, { /* struct def */ });
+    struct IntermediateType(IntermediateType<{ /* struct def */ }>);
 
-    pub fn addExternIdent(ident: Ident, deferred: EnvMonad) -> EnvMonad {
+    pub fn addExternIdent(ident: Ident, deferred: EnvMonad<s, IntermediateType>, mkItem: fn(String) -> fn((Rust::Mutable, CType)) -> Rust::ExternItem) -> EnvMonad<s, ()> {
         /* do */ {
             let action = runOnce(/* do */ {
                 let itype = deferred;
@@ -275,7 +275,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn addSwitchCase(condition: Option) -> Option {
+    pub fn addSwitchCase(condition: Option<CExpr>, body: CStat, next: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
         /* do */ {
             let condition_q = lift(lift(mapM((interpretExpr(true)), condition)));
             let next_q = interpretStatement(body, next);
@@ -296,17 +296,21 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust::Mutable, CType)) -> EnvMonad {
+    pub fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust::Mutable, CType)) -> EnvMonad<s, String> {
         /* do */ {
             {
                 let name = applyRenames(ident);
             };
-            addSymbolIdentAction(ident)(Result);
+            addSymbolIdentAction(ident)(Result({
+                resultType: ty,
+                resultMutable: __mut,
+                result: Rust::Path((Rust::PathSegments(vec![name])))
+            }));
             name
         }
     }
 
-    pub fn addSymbolIdentAction(ident: Ident, action: EnvMonad) -> EnvMonad {
+    pub fn addSymbolIdentAction(ident: Ident, action: EnvMonad<s, Result>) -> EnvMonad<s, ()> {
         lift(/* do */ {
             modify(|st| { st }({
                 symbolEnvironment: __op_concat((ident, action), symbolEnvironment(st))
@@ -314,7 +318,7 @@ pub mod Language_Rust_Corrode_C {
         })
     }
 
-    pub fn addTagIdent(ident: Ident, ty: EnvMonad) -> EnvMonad {
+    pub fn addTagIdent(ident: Ident, ty: EnvMonad<s, CType>) -> EnvMonad<s, ()> {
         lift(/* do */ {
             modify(|st| { st }({
                 tagEnvironment: __op_concat((ident, ty), tagEnvironment(st))
@@ -322,7 +326,7 @@ pub mod Language_Rust_Corrode_C {
         })
     }
 
-    pub fn addTypedefIdent(ident: Ident, ty: EnvMonad) -> EnvMonad {
+    pub fn addTypedefIdent(ident: Ident, ty: EnvMonad<s, IntermediateType>) -> EnvMonad<s, ()> {
         lift(/* do */ {
             modify(|st| { st }({
                 typedefEnvironment: __op_concat((ident, ty), typedefEnvironment(st))
@@ -368,11 +372,11 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn badSource(node: node, msg: String) -> EnvMonad {
+    pub fn badSource(node: node, msg: String) -> EnvMonad<s, a> {
         noTranslation(node, (__op_addadd("illegal ".to_string(), __op_addadd(msg, "; check whether a real C compiler accepts this".to_string()))))
     }
 
-    pub fn baseTypeOf(specs: Vec<CDeclSpec>) -> EnvMonad {
+    pub fn baseTypeOf(specs: Vec<CDeclSpec>) -> EnvMonad<s, (Option<CStorageSpec>, EnvMonad<s, IntermediateType>)> {
         /* do */ {
             {
                 let (storage, _attributes, basequals, basespecs, _inlineNoReturn, _align) = partitionDeclSpecs(specs);
@@ -394,7 +398,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn binop(expr: CExpr, op: CBinaryOp, lhs: Result, rhs: Result) -> EnvMonad {
+    pub fn binop(expr: CExpr, op: CBinaryOp, lhs: Result, rhs: Result) -> EnvMonad<s, Result> {
         fmap(wrapping)(match op {
             CMulOp => {
                 promote(expr, Rust::Mul, lhs, rhs)
@@ -436,11 +440,17 @@ pub mod Language_Rust_Corrode_C {
                             {
                                 let size = rustSizeOfType((toRustType(ptrTo)));
                             };
-                            Result
+                            Result({
+                                resultType: ty,
+                                resultMutable: Rust::Immutable,
+                                result: /((Rust::MethodCall((castTo(ty, lhs_q)), (Rust::VarName("wrapping_sub".to_string())), vec![castTo(ty, rhs_q)])), castTo(ty, size))
+                            })
                         }
                     },
                     (Some(ptr), _) => {
-                        ptr
+                        ptr({
+                            result: Rust::MethodCall((result(ptr)), (Rust::VarName("offset".to_string())), vec![Rust::Neg((castTo((IsInt(Signed, WordWidth)), rhs)))])
+                        })
                     },
                     _ => {
                         promote(expr, Rust::Sub, lhs, rhs)
@@ -481,10 +491,18 @@ pub mod Language_Rust_Corrode_C {
                 promote(expr, Rust::Or, lhs, rhs)
             },
             CLndOp => {
-                Result
+                Result({
+                    resultType: IsBool,
+                    resultMutable: Rust::Immutable,
+                    result: Rust::LAnd((toBool(lhs)), (toBool(rhs)))
+                })
             },
             CLorOp => {
-                Result
+                Result({
+                    resultType: IsBool,
+                    resultMutable: Rust::Immutable,
+                    result: Rust::LOr((toBool(lhs)), (toBool(rhs)))
+                })
             },
         })
     }
@@ -535,7 +553,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn cfgToRust(_node: node, build: CSourceBuildCFGT) -> CSourceBuildCFGT {
+    pub fn cfgToRust(_node: node, build: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> EnvMonad<s, Vec<Rust::Stmt>> {
         /* do */ {
             {
                 let builder = buildCFG(/* do */ {
@@ -601,7 +619,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn completeType(__0: CType, __1: EnvMonad) -> EnvMonad {
+    pub fn completeType(__0: CType, __1: EnvMonad<s, CType>) -> EnvMonad<s, CType> {
         match (__0, __1, __2) {
             (orig, @, IsIncomplete(ident)) => {
                 /* do */ {
@@ -615,7 +633,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn compound(expr: CExpr, returnOld: bool, demand: bool, op: CAssignOp, lhs: Result, rhs: Result) -> EnvMonad {
+    pub fn compound(expr: CExpr, returnOld: bool, demand: bool, op: CAssignOp, lhs: Result, rhs: Result) -> EnvMonad<s, Result> {
         /* do */ {
             {
                 let op_q = match op {
@@ -712,7 +730,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn derivedDeferredTypeOf(deferred: EnvMonad) -> EnvMonad {
+    pub fn derivedDeferredTypeOf(deferred: EnvMonad<s, IntermediateType>, declr: CDeclr, @: Vec<CDecl>, (CDeclr(_, derived, _, _, _)): EnvMonad<s, EnvMonad<s, IntermediateType>>) -> EnvMonad<s, EnvMonad<s, IntermediateType>> {
         /* do */ {
             let derived_q = mapM(derive, derived);
             return(/* do */ {
@@ -723,7 +741,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn derivedTypeOf(deferred: EnvMonad) -> EnvMonad {
+    pub fn derivedTypeOf(deferred: EnvMonad<s, IntermediateType>, declr: CDeclr) -> EnvMonad<s, IntermediateType> {
         join((derivedDeferredTypeOf(deferred, declr, vec![])))
     }
 
@@ -738,7 +756,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn emitIncomplete(kind: ItemKind, ident: Ident) -> EnvMonad {
+    pub fn emitIncomplete(kind: ItemKind, ident: Ident) -> EnvMonad<s, CType> {
         /* do */ {
             let rewrites = lift((asks(itemRewrites)));
             unless((Map::member((kind, identToString(ident)), rewrites)))(lift(tell(mempty, {
@@ -748,7 +766,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn emitItems(items: Vec<Rust::Item>) -> EnvMonad {
+    pub fn emitItems(items: Vec<Rust::Item>) -> EnvMonad<s, ()> {
         lift(tell(mempty, {
             outputItems: items
         }))
@@ -772,11 +790,11 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn getSwitchCases(expr: CExpr) -> CSourceBuildCFGT {
+    pub fn getSwitchCases(expr: CExpr) -> CSourceBuildCFGT<s, (a, SwitchCases)> {
         mapBuildCFGT(wrap)
     }
 
-    pub fn getSwitchExpression(stmt: CStat) -> CSourceBuildCFGT {
+    pub fn getSwitchExpression(stmt: CStat) -> CSourceBuildCFGT<s, CExpr> {
         /* do */ {
             let mexpr = lift(asks(switchExpression));
             match mexpr {
@@ -790,7 +808,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn getSymbolIdent(ident: Ident) -> EnvMonad {
+    pub fn getSymbolIdent(ident: Ident) -> EnvMonad<s, Option<Result>> {
         /* do */ {
             let env = lift(get);
             match lookup(ident, (symbolEnvironment(env))) {
@@ -818,21 +836,21 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn getTagIdent(ident: Ident) -> EnvMonad {
+    pub fn getTagIdent(ident: Ident) -> EnvMonad<s, Option<EnvMonad<s, CType>>> {
         lift(/* do */ {
             let env = gets(tagEnvironment);
             return(lookup(ident, env))
         })
     }
 
-    pub fn getTypedefIdent(ident: Ident) -> EnvMonad {
+    pub fn getTypedefIdent(ident: Ident) -> EnvMonad<s, (String, Option<EnvMonad<s, IntermediateType>>)> {
         lift(/* do */ {
             let env = gets(typedefEnvironment);
             (identToString(ident), lookup(ident, env))
         })
     }
 
-    pub fn gotoLabel(ident: Ident) -> CSourceBuildCFGT {
+    pub fn gotoLabel(ident: Ident) -> CSourceBuildCFGT<s, Label> {
         /* do */ {
             let labels = lift(get);
             match Map::lookup(ident, labels) {
@@ -864,7 +882,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn integerConversionRank(__0: IntWidth, __1: IntWidth) -> Option {
+    pub fn integerConversionRank(__0: IntWidth, __1: IntWidth) -> Option<Ordering> {
         match (__0, __1) {
             (BitWidth(a), BitWidth(b)) => {
                 Some((compare(a, b)))
@@ -878,7 +896,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn interpretBlockItem(__0: CBlockItem, __1: CSourceBuildCFGT) -> CSourceBuildCFGT {
+    pub fn interpretBlockItem(__0: CBlockItem, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
         match (__0, __1) {
             (CBlockStmt(stmt), next) => {
                 interpretStatement(stmt, next)
@@ -896,7 +914,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn interpretConstExpr(__0: CExpr) -> EnvMonad {
+    pub fn interpretConstExpr(__0: CExpr) -> EnvMonad<s, Integer> {
         match (__0) {
             CConst(CIntConst(CInteger(v, _, _), _)) => {
                 v
@@ -907,7 +925,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn interpretDeclarations(__0: MakeBinding) -> MakeBinding {
+    pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s, Vec<b>>) -> EnvMonad<s, Vec<b>> {
         match (__0, __1, __2, __3) {
             (fromItem(makeBinding), declaration, @, CDecl(specs, decls, _)) => {
                 /* do */ {
@@ -1005,7 +1023,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad {
+    pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         match (__0, __1) {
             (demand, CComma(exprs, _)) => {
                 /* do */ {
@@ -1014,7 +1032,11 @@ pub mod Language_Rust_Corrode_C {
                     };
                     let effects_q = mapM((fmap(resultToStatements)interpretExpr(false)), effects);
                     let mfinal_q = mapM((interpretExpr(true)), mfinal);
-                    Result
+                    Result({
+                        resultType: maybe(IsVoid, resultType, mfinal_q),
+                        resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                        result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                    })
                 }
             },
             (demand, expr, @, CAssign(op, lhs, rhs, _)) => {
@@ -1048,7 +1070,11 @@ pub mod Language_Rust_Corrode_C {
                 /* do */ {
                     let (_mut, ty) = typeName(decl);
                     let expr_q = interpretExpr((/=(ty, IsVoid)), expr);
-                    Result
+                    Result({
+                        resultType: ty,
+                        resultMutable: Rust::Immutable,
+                        result: ((if(ty) == IsVoid(then, result, else, castTo, ty)))(expr_q)
+                    })
                 }
             },
             (demand, node, @, CUnary(op, expr, _)) => {
@@ -1071,7 +1097,11 @@ pub mod Language_Rust_Corrode_C {
                             {
                                 let ty_q = IsPtr((resultMutable(expr_q)), (resultType(expr_q)));
                             };
-                            Result
+                            Result({
+                                resultType: ty_q,
+                                resultMutable: Rust::Immutable,
+                                result: Rust::Cast((Rust::Borrow((resultMutable(expr_q)), (result(expr_q)))), (toRustType(ty_q)))
+                            })
                         }
                     },
                     CIndOp => {
@@ -1079,7 +1109,11 @@ pub mod Language_Rust_Corrode_C {
                             let expr_q = interpretExpr(true, expr);
                             match resultType(expr_q) {
                                 IsPtr(mut_q, ty_q) => {
-                                    Result
+                                    Result({
+                                        resultType: ty_q,
+                                        resultMutable: mut_q,
+                                        result: Rust::Deref((result(expr_q)))
+                                    })
                                 },
                                 IsFunc({ .. }) => {
                                     expr_q
@@ -1096,7 +1130,11 @@ pub mod Language_Rust_Corrode_C {
                             {
                                 let ty_q = intPromote((resultType(expr_q)));
                             };
-                            Result
+                            Result({
+                                resultType: ty_q,
+                                resultMutable: Rust::Immutable,
+                                result: castTo(ty_q, expr_q)
+                            })
                         }
                     },
                     CMinOp => {
@@ -1108,7 +1146,11 @@ pub mod Language_Rust_Corrode_C {
                     CNegOp => {
                         /* do */ {
                             let expr_q = interpretExpr(true, expr);
-                            Result
+                            Result({
+                                resultType: IsBool,
+                                resultMutable: Rust::Immutable,
+                                result: toNotBool(expr_q)
+                            })
                         }
                     },
                 }
@@ -1153,7 +1195,11 @@ pub mod Language_Rust_Corrode_C {
                                 let ptr = binop(expr, CAddOp, lhs_q, rhs_q);
                                 match resultType(ptr) {
                                     IsPtr(__mut, ty) => {
-                                        Result
+                                        Result({
+                                            resultType: ty,
+                                            resultMutable: __mut,
+                                            result: Rust::Deref((result(ptr)))
+                                        })
                                     },
                                     _ => {
                                         badSource(expr, "array subscript of non-pointer".to_string())
@@ -1172,7 +1218,11 @@ pub mod Language_Rust_Corrode_C {
                         IsFunc(retTy, argTys, variadic) => {
                             /* do */ {
                                 let args_q = castArgs(variadic, (map(snd, argTys)), args);
-                                Result
+                                Result({
+                                    resultType: retTy,
+                                    resultMutable: Rust::Immutable,
+                                    result: Rust::Call((result(func_q)), args_q)
+                                })
                             }
                         },
                         _ => {
@@ -1205,7 +1255,11 @@ pub mod Language_Rust_Corrode_C {
                             badSource(expr, "request for non-existent field".to_string())
                         },
                     };
-                    Result
+                    Result({
+                        resultType: ty,
+                        resultMutable: resultMutable(obj_q),
+                        result: Rust::Member((result(obj_q)), (Rust::VarName(field)))
+                    })
                 }
             },
             (_, expr, @, CVar(ident, _)) => {
@@ -1263,10 +1317,18 @@ pub mod Language_Rust_Corrode_C {
                         }
                     },
                     CCharConst(CChar(ch, false), _) => {
-                        Result
+                        Result({
+                            resultType: charType,
+                            resultMutable: Rust::Immutable,
+                            result: Rust::Lit((Rust::LitByteChar(ch)))
+                        })
                     },
                     CStrConst(CString(__str, false), _) => {
-                        Result
+                        Result({
+                            resultType: IsArray(Rust::Immutable, (+(length(__str), 1)), charType),
+                            resultMutable: Rust::Immutable,
+                            result: Rust::Deref((Rust::Lit((Rust::LitByteStr((__op_addadd(__str, "\u{0}".to_string())))))))
+                        })
                     },
                     _ => {
                         unimplemented(expr)
@@ -1277,7 +1339,11 @@ pub mod Language_Rust_Corrode_C {
                 /* do */ {
                     let (__mut, ty) = typeName(decl);
                     let final = interpretInitializer(ty, (CInitList(initials, info)));
-                    Result
+                    Result({
+                        resultType: ty,
+                        resultMutable: __mut,
+                        result: final
+                    })
                 }
             },
             (demand, stat, @, CStatExpr(CCompound([], stmts, _), _)) => {
@@ -1292,7 +1358,11 @@ pub mod Language_Rust_Corrode_C {
                     };
                     let effects_q = cfgToRust(stat, (foldr(interpretBlockItem, ((vec![], Unreachable)), effects)));
                     let final_q = mapM((interpretExpr(true)), final);
-                    Result
+                    Result({
+                        resultType: maybe(IsVoid, resultType, final_q),
+                        resultMutable: maybe(Rust::Immutable, resultMutable, final_q),
+                        result: Rust::BlockExpr((Rust::Block(effects_q, (fmap(result, final_q)))))
+                    })
                 })
             },
             (_, expr) => {
@@ -1301,7 +1371,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn interpretFunction((@(CFunDef(specs, declr), (CDeclr(mident, _, _, _, _))(argtypes, body, _))): CFunDef) -> EnvMonad {
+    pub fn interpretFunction((@(CFunDef(specs, declr), (CDeclr(mident, _, _, _, _))(argtypes, body, _))): CFunDef) -> EnvMonad<s, ()> {
         /* do */ {
             let (storage, baseTy) = baseTypeOf(specs);
             let (attrs, vis) = match storage {
@@ -1390,7 +1460,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn interpretInitializer(ty: CType, initial: CInit) -> EnvMonad {
+    pub fn interpretInitializer(ty: CType, initial: CInit) -> EnvMonad<s, Rust::Expr> {
         /* do */ {
             let initial_q = match initial {
                 CInitExpr(expr, _) => {
@@ -1409,7 +1479,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT) -> CSourceBuildCFGT {
+    pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
         match (__0, __1) {
             (CLabel(ident, body, _, _), next) => {
                 /* do */ {
@@ -1662,7 +1732,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn interpretTranslationUnit(_thisModule: ModuleMap, rewrites: ItemRewrites, (CTranslUnit(decls, _)): CTranslUnit) -> Either {
+    pub fn interpretTranslationUnit(_thisModule: ModuleMap, rewrites: ItemRewrites, (CTranslUnit(decls, _)): CTranslUnit) -> Either<String, Vec<Rust::Item>> {
         match err {
             Left(msg) => {
                 Left(msg)
@@ -1673,15 +1743,15 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn makeLetBinding() -> MakeBinding {
+    pub fn makeLetBinding() -> MakeBinding<s, Rust::Stmt> {
         (Rust::StmtItem(vec![]), makeBinding)
     }
 
-    pub fn makeStaticBinding() -> MakeBinding {
+    pub fn makeStaticBinding() -> MakeBinding<s, Rust::Item> {
         (Rust::Item(vec![], Rust::Private), makeBinding)
     }
 
-    pub fn modifyGlobal(f: fn(GlobalState) -> (GlobalState, a)) -> EnvMonad {
+    pub fn modifyGlobal(f: fn(GlobalState) -> (GlobalState, a)) -> EnvMonad<s, a> {
         lift(/* do */ {
             let st = get;
             {
@@ -1705,7 +1775,7 @@ pub mod Language_Rust_Corrode_C {
                 } }), quals, then, Rust::Immutable, else, Rust::Mutable)
     }
 
-    pub fn nestedObject(ty: CType, desig: Designator) -> Option {
+    pub fn nestedObject(ty: CType, desig: Designator) -> Option<Designator> {
         match designatorType(desig) {
             IsArray(_, size, el) => {
                 Some((From(el, 0, (replicate((-(size, 1)), el)), desig)))
@@ -1734,7 +1804,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn noTranslation(node: node, msg: String) -> EnvMonad {
+    pub fn noTranslation(node: node, msg: String) -> EnvMonad<s, a> {
         throwE(concat(vec![
                 show((posOf(node))),
                 ": ".to_string(),
@@ -1744,7 +1814,7 @@ pub mod Language_Rust_Corrode_C {
             ]))
     }
 
-    pub fn objectFromDesignators(__0: CType, __1: Vec<CDesignator>) -> EnvMonad {
+    pub fn objectFromDesignators(__0: CType, __1: Vec<CDesignator>) -> EnvMonad<s, CurrentObject> {
         match (__0, __1) {
             (_, []) => {
                 pure(None)
@@ -1755,10 +1825,14 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn promote(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad {
+    pub fn promote(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad<s, Result> {
         match usual((resultType(a)), (resultType(b))) {
             Some(rt) => {
-                Result
+                Result({
+                    resultType: rt,
+                    resultMutable: Rust::Immutable,
+                    result: op((castTo(rt, a)), (castTo(rt, b)))
+                })
             },
             None => {
                 badSource(node)(concat(vec![
@@ -1771,7 +1845,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn promotePtr(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad {
+    pub fn promotePtr(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad<s, Result> {
         match (resultType(a), resultType(b)) {
             (IsArray(_, _, _), _) => {
                 ptrs
@@ -1791,7 +1865,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, cinitial): (CurrentObject, CInit)) -> EnvMonad {
+    pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, cinitial): (CurrentObject, CInit)) -> EnvMonad<s, (CurrentObject, Initializer)> {
         match mplus(obj1, obj0) {
             None => {
                 (None, prior)
@@ -1847,7 +1921,7 @@ pub mod Language_Rust_Corrode_C {
         exprToStatementsresult
     }
 
-    pub fn runOnce(action: EnvMonad) -> EnvMonad {
+    pub fn runOnce(action: EnvMonad<s, a>) -> EnvMonad<s, EnvMonad<s, a>> {
         /* do */ {
             let cacheRef = lift(lift(newSTRef((Left(action)))));
             return(/* do */ {
@@ -1889,7 +1963,7 @@ pub mod Language_Rust_Corrode_C {
         Initializer((Some(expr)), IntMap::empty)
     }
 
-    pub fn scope(m: EnvMonad) -> EnvMonad {
+    pub fn scope(m: EnvMonad<s, a>) -> EnvMonad<s, a> {
         /* do */ {
             let old = lift(get);
             let a = m;
@@ -1900,13 +1974,13 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn setBreak(label: Label) -> CSourceBuildCFGT {
+    pub fn setBreak(label: Label) -> CSourceBuildCFGT<s, a> {
         mapBuildCFGT((local((|flow| { flow }({
                     onBreak: Some(label)
                 })))))
     }
 
-    pub fn setContinue(label: Label) -> CSourceBuildCFGT {
+    pub fn setContinue(label: Label) -> CSourceBuildCFGT<s, a> {
         mapBuildCFGT((local((|flow| { flow }({
                     onContinue: Some(label)
                 })))))
@@ -1971,7 +2045,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn toPtr(__0: Result, __1: Option) -> Option {
+    pub fn toPtr(__0: Result, __1: Option<Result>) -> Option<Result> {
         match (__0, __1, __2) {
             (ptr, @, Result(<todo>)) => {
                 Some(ptr, {
@@ -2057,7 +2131,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad {
+    pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad<s, Initializer> {
         /* do */ {
             let objectsAndInitializers = forM(list)(|(desigs, initial)| { /* do */ {
                     let currObj = objectFromDesignators(ty, desigs);
@@ -2081,7 +2155,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn typeName(__0: CDecl, __1: EnvMonad) -> EnvMonad {
+    pub fn typeName(__0: CDecl, __1: EnvMonad<s, (Rust::Mutable, CType)>) -> EnvMonad<s, (Rust::Mutable, CType)> {
         match (__0, __1, __2) {
             (decl, @, CStaticAssert(<todo>)) => {
                 badSource(decl, "static assert in type name ".to_string())
@@ -2123,23 +2197,23 @@ pub mod Language_Rust_Corrode_C {
         })
     }
 
-    pub fn unimplemented(node: node) -> EnvMonad {
+    pub fn unimplemented(node: node) -> EnvMonad<s, a> {
         noTranslation(node, "Corrode doesn\'t handle this yet".to_string())
     }
 
-    pub fn uniqueName(base: String) -> EnvMonad {
+    pub fn uniqueName(base: String) -> EnvMonad<s, String> {
         modifyGlobal(|st| { (st({
                 unique: +(unique(st), 1)
             }), __op_addadd(base, show((unique(st))))) })
     }
 
-    pub fn useForwardRef(ident: Ident) -> EnvMonad {
+    pub fn useForwardRef(ident: Ident) -> EnvMonad<s, ()> {
         modifyGlobal(|st| { (st({
                 usedForwardRefs: Set::insert(ident, (usedForwardRefs(st)))
             }), ()) })
     }
 
-    pub fn usual(__0: CType, __1: CType) -> Option {
+    pub fn usual(__0: CType, __1: CType) -> Option<CType> {
         match (__0, __1) {
             (IsFloat(aw), IsFloat(bw)) => {
                 Some((IsFloat((max(aw, bw)))))
@@ -2173,7 +2247,7 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn wrapMain(declr: CDeclr, realName: String, argTypes: Vec<CType>) -> EnvMonad {
+    pub fn wrapMain(declr: CDeclr, realName: String, argTypes: Vec<CType>) -> EnvMonad<s, ()> {
         /* do */ {
             let (setup, args) = wrapArgv(argTypes);
             {
@@ -2256,13 +2330,13 @@ pub mod Language_Rust_Corrode_C {
 
 pub mod Language_Rust_Corrode_CFG {
     use haskell_support::*;
-    struct BasicBlock<s, c>(BasicBlock, s, Terminator<c>);
+    struct BasicBlock<s<c>>(BasicBlock<s, Terminator<c>>);
 
     #[derive(Debug)]
-    pub enum Terminator_q<c, l> {
+    pub enum Terminator_q<c<l>> {
         Unreachable,
-        Branch(l),
-        CondBranch(c, l, l)
+        Branch<l>,
+        CondBranch<c, l, l>
     }
     pub use self::Terminator_q::*;
 
@@ -2270,30 +2344,30 @@ pub mod Language_Rust_Corrode_CFG {
 
     struct DepthFirst;
 
-    struct CFG<k, s, c>(CFG, Label, IntMap::IntMap<BasicBlock<s, c>>);
+    struct CFG<k<s, c>>(CFG<Label, IntMap::IntMap<BasicBlock<s, c>>>);
 
-    struct BuildState<s, c>(BuildState, { /* struct def */ });
+    struct BuildState<s<c>>(BuildState<{ /* struct def */ }>);
 
     #[derive(Debug)]
-    pub enum StructureLabel<s, c> {
-        GoTo({ /* struct def */ }),
-        ExitTo({ /* struct def */ }),
-        Nested(Vec<Structure<s, c>>)
+    pub enum StructureLabel<s<c>> {
+        GoTo<{ /* struct def */ }>,
+        ExitTo<{ /* struct def */ }>,
+        Nested<Vec<Structure<s, c>>>
     }
     pub use self::StructureLabel::*;
 
     #[derive(Debug)]
-    pub enum Structure_q<s, c, a> {
-        Simple(s, StructureTerminator<s, c>),
-        Loop(a),
-        Multiple(IntMap::IntMap<a>, a)
+    pub enum Structure_q<s<c, a>> {
+        Simple<s, StructureTerminator<s, c>>,
+        Loop<a>,
+        Multiple<IntMap::IntMap<a>, a>
     }
     pub use self::Structure_q::*;
 
     #[derive(Debug)]
-    struct Structure<s, c>(Structure, { /* struct def */ });
+    struct Structure<s<c>>(Structure<{ /* struct def */ }>);
 
-    pub fn addBlock(label: Monad) -> Monad {
+    pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
         /* do */ {
             modify(|st| { st }({
                 buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
@@ -2301,18 +2375,18 @@ pub mod Language_Rust_Corrode_CFG {
         }
     }
 
-    pub fn buildCFG(root: Monad) -> Monad {
+    pub fn buildCFG(root: BuildCFGT<m, s, c, Label>) -> m<CFG<Unordered, s, c>> {
         /* do */ {
             let (label, final) = runStateT(root, (BuildState(0, IntMap::empty)));
             (CFG(label, (buildBlocks(final))))
         }
     }
 
-    pub fn depthFirstOrder((CFG(start, blocks)): CFG) -> CFG {
+    pub fn depthFirstOrder((CFG(start, blocks)): CFG<k, s, c>) -> CFG<DepthFirst, s, c> {
         CFG(start_q, blocks_q)
     }
 
-    pub fn flipEdges(edges: IntMap::IntMap) -> IntMap::IntMap {
+    pub fn flipEdges(edges: IntMap::IntMap<IntSet::IntSet>) -> IntMap::IntMap<IntSet::IntSet> {
         IntMap::unionsWith(IntSet::union, <Expr::Dummy>)
     }
 
@@ -2320,11 +2394,11 @@ pub mod Language_Rust_Corrode_CFG {
         any((gostructureBody))
     }
 
-    pub fn mapBuildCFGT() -> BuildCFGT {
+    pub fn mapBuildCFGT() -> BuildCFGT<n, s, c, b> {
         mapStateT
     }
 
-    pub fn newLabel() -> Monad {
+    pub fn newLabel() -> BuildCFGT<m, s, c, Label> {
         /* do */ {
             let old = get;
             put(old, {
@@ -2334,7 +2408,7 @@ pub mod Language_Rust_Corrode_CFG {
         }
     }
 
-    pub fn outEdges(blocks: IntMap::IntMap) -> IntMap::IntMap {
+    pub fn outEdges(blocks: IntMap::IntMap<StructureBlock<s, c>>) -> IntSet::IntSet {
         IntSet.difference(IntSet::unions((map(successors)(IntMap::elems(blocks)))), IntMap::keysSet(blocks))
     }
 
@@ -2342,7 +2416,7 @@ pub mod Language_Rust_Corrode_CFG {
         (IntSet.intersection(a, b), IntSet.difference(a, b))
     }
 
-    pub fn prettyCFG(fmtS: fn(s) -> Doc, fmtC: fn(c) -> Doc, (CFG(entry, blocks)): CFG) -> CFG {
+    pub fn prettyCFG(fmtS: fn(s) -> Doc, fmtC: fn(c) -> Doc, (CFG(entry, blocks)): CFG<k, s, c>) -> Doc {
         vcat(__op_concat((<>(text("start @".to_string()), text((show(entry))))), blocks_q))
     }
 
@@ -2350,7 +2424,7 @@ pub mod Language_Rust_Corrode_CFG {
         vcatmap(go)
     }
 
-    pub fn relooper(entries: Monoid) -> Monoid {
+    pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s, c>>) -> Vec<Structure<s, c>> {
         {
             let (returns, noreturns) = partitionMembers(entries)(IntSet::unions(map(successors)(IntMap::elems(blocks))));
 ;
@@ -2394,27 +2468,27 @@ pub mod Language_Rust_Corrode_CFG {
             })
     }
 
-    pub fn relooperRoot((CFG(entry, blocks)): Monoid) -> Monoid {
+    pub fn relooperRoot((CFG(entry, blocks)): CFG<k, s, c>) -> Vec<Structure<s, c>> {
         relooper((IntSet::singleton(entry)))(IntMap::map((|BasicBlock(s, term)| { (s, fmap(GoTo, term)) }), blocks))
     }
 
-    pub fn removeEmptyBlocks((CFG(start, blocks)): Foldable) -> Foldable {
+    pub fn removeEmptyBlocks((CFG(start, blocks)): CFG<k, f<s>, c>) -> CFG<Unordered, f<s>, c> {
         CFG((rewrite(start)), blocks_q)
     }
 
-    pub fn restrictKeys(m: IntMap::IntMap) -> IntMap::IntMap {
+    pub fn restrictKeys(m: IntMap::IntMap<a>, s: IntSet::IntSet) -> IntMap::IntMap<a> {
         IntMap.intersection(m, IntMap::fromSet((const(())), s))
     }
 
-    pub fn simplifyStructure() -> Monoid {
+    pub fn simplifyStructure() -> Vec<Structure<s, c>> {
         foldr(go, vec![])map(descend)
     }
 
-    pub fn structureCFG(mkBreak: Monoid) -> Monoid {
+    pub fn structureCFG(mkBreak: fn(Option<Label>) -> s, mkContinue: fn(Option<Label>) -> s, mkLoop: fn(Label) -> fn(s) -> s, mkIf: fn(c) -> fn(s) -> fn(s) -> s, mkGoto: fn(Label) -> s, mkMatch: fn(Vec<(Label, s)>) -> fn(s) -> s, cfg: CFG<DepthFirst, s, c>) -> (bool, s) {
         (hasMultiple(root), foo(vec![], mempty, root))
     }
 
-    pub fn successors((_, term): StructureBlock) -> StructureBlock {
+    pub fn successors((_, term): StructureBlock<s, c>) -> IntSet::IntSet {
         IntSet::fromList(<Expr::Dummy>)
     }
 
@@ -2433,11 +2507,11 @@ pub mod Language_Rust_Corrode_CrateMap {
     }
     pub use self::ItemKind::*;
 
-    pub fn mergeCrateMaps() -> Map::Map {
+    pub fn mergeCrateMaps() -> Map::Map<String, CrateMap> {
         Map::fromListWith((Map::unionWith((__op_addadd))))
     }
 
-    pub fn parseCrateMap() -> Either {
+    pub fn parseCrateMap() -> Either<String, CrateMap> {
         fmap(root)foldrM(parseLine, (Map::empty, vec![]))filter((notnull))map(cleanLine)lines
     }
 
@@ -2489,7 +2563,7 @@ pub mod Language_Rust_Idiomatic {
         }
     }
 
-    pub fn tailExpr(__0: Rust::Expr) -> Option {
+    pub fn tailExpr(__0: Rust::Expr) -> Option<Option<Rust::Expr>> {
         match (__0) {
             Rust::Return(e) => {
                 Some(e)
@@ -2506,7 +2580,7 @@ pub mod Language_Rust_Idiomatic {
         }
     }
 
-    pub fn unsnoc(__0: Vec<a>) -> Option {
+    pub fn unsnoc(__0: Vec<a>) -> Option<(Vec<a>, a)> {
         match (__0) {
             [] => {
                 None

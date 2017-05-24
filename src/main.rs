@@ -230,7 +230,7 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                     // Check for return() here, for now
                     if print_expr(state, &span[0]) == "return" {
                         //TODO handle return more intelligently
-                        print_expr(state, &span[1])
+                        print_expr(state, &Expr::Span(span[1..].to_vec()))
                     } else {
                         let mut span = span.clone();
                         let start = print_expr(state, &span.remove(0));
@@ -272,7 +272,10 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                 .collect::<Vec<_>>()
                                 .join(" | "),
                             state.tab().tab().indent(),
-                            arms.iter().map(|x| print_expr(state.tab().tab(), x)).collect::<Vec<_>>().join("; "),
+                            arms.iter()
+                                .map(|x| print_expr(state.tab().tab(), x))
+                                .collect::<Vec<_>>()
+                                .join("; "),
                             state.tab().indent(),
                         ));
                     }
@@ -774,7 +777,7 @@ fn fix_lhs(s: &str) -> String {
     out.join("\n\n")
 }
 
-fn convert_file(input: &str) -> (String, String) {
+fn convert_file(input: &str, p: &Path) -> (String, String) {
     let mut contents = input.to_string();
     let mut file_out = String::new();
     let mut rust_out = String::new();
@@ -805,10 +808,11 @@ fn convert_file(input: &str) -> (String, String) {
             let _ = writeln!(file_out, "}}\n");
         }
         Err(e) => {
-            let _ = writeln!(file_out, "/* ERROR: cannot convert file...");
+            errln!("/* ERROR: cannot convert file {:?}" ,p);
             // TODO have this write to Format
             print_parse_error(&contents, &simplify_parse_error(e));
-            let _ = writeln!(file_out, "*/");
+            errln!("*/");
+            panic!("COULDN'T PARSE");
         }
     }
 
@@ -871,7 +875,7 @@ fn main() {
             contents = fix_lhs(&contents);
         }
 
-        let (file_out, rust_out) = convert_file(&contents);
+        let (file_out, rust_out) = convert_file(&contents, p);
         let _ = writeln!(file_section, "{}", file_out);
         rust_section.push_str(&rust_out);
     }

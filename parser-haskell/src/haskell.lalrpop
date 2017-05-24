@@ -213,13 +213,12 @@ Type: Ty = {
 };
 
 TypeGroupInner: Ty = {
-  <a:TypeSub> "=>" <b:TypeGroupInner> => b,
-  <a:TypeSub> "->" <b:TypeGroupInner> => Ty::Pair(Box::new(a), Box::new(b)),
-  <TypeSub> => <>,
+  <a:TypeSpan> "=>" <b:TypeGroupInner> => b,
+  <a:Type> => a,
 };
 
 TypeGroup: Vec<Ty> = {
-    <TypeGroupInner+> => <>,
+    <TypeGroupInner> => vec![<>],
 };
 
 PatSub: Pat = {
