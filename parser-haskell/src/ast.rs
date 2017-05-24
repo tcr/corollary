@@ -83,9 +83,11 @@ pub enum Pat {
     Tuple(Vec<Pat>),
     Brackets(Vec<Pat>),
     RecordTODO,
+    Operator(String),
     Str(String),
     Char(String),
     Num(isize),
+    Concat(Box<Pat>, Box<Pat>),
     EmptyParen,
     Dummy,
 }

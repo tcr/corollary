@@ -5,7 +5,7 @@ pub fn expr_to_pat(expr: &Expr) -> Pat {
         Expr::Dummy => Pat::Dummy,
 
         //Expr::Op(Box<Expr>, String, Box<Expr>),
-        Expr::Operator(ref s) => Pat::Dummy, //TODO
+        Expr::Operator(ref s) => Pat::Operator(s.to_string()), //TODO
         Expr::Ref(ref id) => Pat::Ref(id.clone()),
 
         //TODO Parens is wrong:

@@ -29,7 +29,7 @@ pub mod Language_Rust_AST {
     pub enum Lit {
         LitByteStr(String),
         LitByteChar(Char),
-        LitBool(Bool),
+        LitBool(bool),
         LitInt(Integer, LitIntRepr, Type),
         LitFloat(String, Type)
     }
@@ -87,7 +87,7 @@ pub mod Language_Rust_AST {
 
     #[derive(Debug)]
     pub enum ExternItem {
-        ExternFn(String, Vec<(Var, Type)>, Bool, Type),
+        ExternFn(String, Vec<(Var, Type)>, bool, Type),
         ExternStatic(Mutable, Var, Type)
     }
     pub use self::ExternItem::*;
@@ -177,13 +177,13 @@ pub mod Language_Rust_AST {
         match (__0, __1) {
             (pre, Block([], e)) => {
                 sep(vec![
-                        __op_arrow_concat(pre, text("{".to_string())),
+                        <+>(pre, text("{".to_string())),
                         nest(4, (maybe(empty, pPrint, e))),
                         text("}".to_string()),
                     ])
             },
             (pre, Block(ss, e)) => {
-                __op_arrow_concat(pre, $+$(text("{".to_string()), $+$(nest(4, (vcat((__op_addadd(map(pPrint, ss), vec![maybe(empty, pPrint, e)]))))), text("}".to_string()))))
+                <+>(pre, $+$(text("{".to_string()), $+$(nest(4, (vcat((__op_addadd(map(pPrint, ss), vec![maybe(empty, pPrint, e)]))))), text("}".to_string()))))
             },
         }
     }
@@ -234,7 +234,7 @@ pub mod Language_Rust_Corrode_C {
         IsInt(Signed, IntWidth),
         IsFloat(isize),
         IsVoid,
-        IsFunc(CType, Vec<(Option<(Rust::Mutable, Ident)>, CType)>, Bool),
+        IsFunc(CType, Vec<(Option<(Rust::Mutable, Ident)>, CType)>, bool),
         IsPtr(Rust::Mutable, CType),
         IsArray(Rust::Mutable, isize, CType),
         IsStruct(String, Vec<(String, CType)>),
@@ -277,7 +277,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn addSwitchCase(condition: Option) -> Option {
         /* do */ {
-            let condition_q = lift(lift(mapM((interpretExpr(True)), condition)));
+            let condition_q = lift(lift(mapM((interpretExpr(true)), condition)));
             let next_q = interpretStatement(body, next);
             let label = match next_q {
                 ([], Branch(to)) => {
@@ -308,7 +308,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn addSymbolIdentAction(ident: Ident, action: EnvMonad) -> EnvMonad {
         lift(/* do */ {
-            modify(Lambda({
+            modify(|st| { st }({
                 symbolEnvironment: __op_concat((ident, action), symbolEnvironment(st))
             }))
         })
@@ -316,7 +316,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn addTagIdent(ident: Ident, ty: EnvMonad) -> EnvMonad {
         lift(/* do */ {
-            modify(Lambda({
+            modify(|st| { st }({
                 tagEnvironment: __op_concat((ident, ty), tagEnvironment(st))
             }))
         })
@@ -324,7 +324,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn addTypedefIdent(ident: Ident, ty: EnvMonad) -> EnvMonad {
         lift(/* do */ {
-            modify(Lambda({
+            modify(|st| { st }({
                 typedefEnvironment: __op_concat((ident, ty), typedefEnvironment(st))
             }))
         })
@@ -379,10 +379,10 @@ pub mod Language_Rust_Corrode_C {
             };
             let mstorage = match storage {
                 [] => {
-                    Nothing
+                    None
                 },
                 [spec] => {
-                    (Just(spec))
+                    (Some(spec))
                 },
                 _(__id_3a, excess, __id_3a, _) => {
                     badSource(excess, "extra storage class specifier".to_string())
@@ -523,7 +523,7 @@ pub mod Language_Rust_Corrode_C {
             (IsBool, source) => {
                 toBool(source)
             },
-            (target, <todo>, IsInt(<todo>), Result(<todo>)) => {
+            (target, @, IsInt(<todo>), Result(<todo>)) => {
                 Rust::Lit((Rust::LitInt(n, repr, (toRustType(target)))))
             },
             (IsInt(Signed, w), Result(<todo>)) => {
@@ -545,7 +545,7 @@ pub mod Language_Rust_Corrode_C {
                         entry
                     });
             };
-            let (rawCFG, _) = evalRWST(builder, (OuterLabels(Nothing, Nothing, Nothing)), Map::empty);
+            let (rawCFG, _) = evalRWST(builder, (OuterLabels(None, None, None)), Map::empty);
             {
                 let cfg = depthFirstOrder((removeEmptyBlocks(rawCFG)));
             };
@@ -561,19 +561,19 @@ pub mod Language_Rust_Corrode_C {
         IsInt(Unsigned, (BitWidth(8)))
     }
 
-    pub fn compatibleInitializer(__0: CType, __1: CType) -> Bool {
+    pub fn compatibleInitializer(__0: CType, __1: CType) -> bool {
         match (__0, __1) {
             (IsStruct(name1, _), IsStruct(name2, _)) => {
                 (name1 == name2)
             },
             (IsStruct, <todo>, _) => {
-                False
+                false
             },
             (_, IsStruct, <todo>) => {
-                False
+                false
             },
             (_, _) => {
-                True
+                true
             },
         }
     }
@@ -603,7 +603,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn completeType(__0: CType, __1: EnvMonad) -> EnvMonad {
         match (__0, __1, __2) {
-            (orig, <todo>, IsIncomplete(ident)) => {
+            (orig, @, IsIncomplete(ident)) => {
                 /* do */ {
                     let mty = getTagIdent(ident);
                     fromMaybe((orig), mty)
@@ -615,56 +615,56 @@ pub mod Language_Rust_Corrode_C {
         }
     }
 
-    pub fn compound(expr: CExpr, returnOld: Bool, demand: Bool, op: CAssignOp, lhs: Result, rhs: Result) -> EnvMonad {
+    pub fn compound(expr: CExpr, returnOld: bool, demand: bool, op: CAssignOp, lhs: Result, rhs: Result) -> EnvMonad {
         /* do */ {
             {
                 let op_q = match op {
                         CAssignOp => {
-                            Nothing
+                            None
                         },
                         CMulAssOp => {
-                            Just(CMulOp)
+                            Some(CMulOp)
                         },
                         CDivAssOp => {
-                            Just(CDivOp)
+                            Some(CDivOp)
                         },
                         CRmdAssOp => {
-                            Just(CRmdOp)
+                            Some(CRmdOp)
                         },
                         CAddAssOp => {
-                            Just(CAddOp)
+                            Some(CAddOp)
                         },
                         CSubAssOp => {
-                            Just(CSubOp)
+                            Some(CSubOp)
                         },
                         CShlAssOp => {
-                            Just(CShlOp)
+                            Some(CShlOp)
                         },
                         CShrAssOp => {
-                            Just(CShrOp)
+                            Some(CShrOp)
                         },
                         CAndAssOp => {
-                            Just(CAndOp)
+                            Some(CAndOp)
                         },
                         CXorAssOp => {
-                            Just(CXorOp)
+                            Some(CXorOp)
                         },
                         COrAssOp => {
-                            Just(COrOp)
+                            Some(COrOp)
                         },
                     };
             };
             {
-                let duplicateLHS = ||(isJust(op_q), demand);
+                let duplicateLHS = (isJust(op_q) || demand);
             };
             {
-                let (bindings1, dereflhs, boundrhs) = ||(if(not, duplicateLHS), hasNoSideEffects((result(lhs)), then, (vec![], lhs, rhs), else, {
+                let (bindings1, dereflhs, boundrhs) = (if(not, duplicateLHS) || hasNoSideEffects((result(lhs)), then, (vec![], lhs, rhs), else, {
                             let lhsvar = Rust::VarName("_lhs".to_string());
 ;
                             let rhsvar = Rust::VarName("_rhs".to_string());
                         }, in, (vec![
-                            Rust::Let(Rust::Immutable, rhsvar, Nothing, (Just((result(rhs))))),
-                            Rust::Let(Rust::Immutable, lhsvar, Nothing, (Just((Rust::Borrow(Rust::Mutable, (result(lhs))))))),
+                            Rust::Let(Rust::Immutable, rhsvar, None, (Some((result(rhs))))),
+                            Rust::Let(Rust::Immutable, lhsvar, None, (Some((Rust::Borrow(Rust::Mutable, (result(lhs))))))),
                         ], lhs({
                             result: Rust::Deref((Rust::Var(lhsvar)))
                         }), rhs({
@@ -683,9 +683,9 @@ pub mod Language_Rust_Corrode_C {
                 let assignment = Rust::Assign((result(dereflhs)), (Rust::__id_3a3d), (castTo((resultType(lhs)), rhs_q)));
             };
             {
-                let (bindings2, ret) = if(not, demand, then, (vec![], Nothing), else, if, not, returnOld, then, (vec![], Just((result(dereflhs)))), else, {
+                let (bindings2, ret) = if(not, demand, then, (vec![], None), else, if, not, returnOld, then, (vec![], Some((result(dereflhs)))), else, {
                             let oldvar = Rust::VarName("_old".to_string());
-                        }, in, (vec![Rust::Let(Rust::Immutable, oldvar, Nothing, (Just((result(dereflhs)))))], Just((Rust::Var(oldvar)))));
+                        }, in, (vec![Rust::Let(Rust::Immutable, oldvar, None, (Some((result(dereflhs)))))], Some((Rust::Var(oldvar)))));
             };
             return(match Rust::Block((__op_addadd(bindings1, __op_addadd(bindings2, exprToStatements(assignment)))), ret) {
                 b(@, Rust::Block(body, None)) => {
@@ -717,7 +717,7 @@ pub mod Language_Rust_Corrode_C {
             let derived_q = mapM(derive, derived);
             return(/* do */ {
                 let basetype = deferred;
-                foldrM((Operator("$")), basetype, derived_q)
+                foldrM(($), basetype, derived_q)
             });
 
         }
@@ -795,7 +795,7 @@ pub mod Language_Rust_Corrode_C {
             let env = lift(get);
             match lookup(ident, (symbolEnvironment(env))) {
                 Some(symbol) => {
-                    fmap(Just, symbol)
+                    fmap(Some, symbol)
                 },
                 None => {
                     match identToString(ident) {
@@ -867,13 +867,13 @@ pub mod Language_Rust_Corrode_C {
     pub fn integerConversionRank(__0: IntWidth, __1: IntWidth) -> Option {
         match (__0, __1) {
             (BitWidth(a), BitWidth(b)) => {
-                Just((compare(a, b)))
+                Some((compare(a, b)))
             },
             (WordWidth, WordWidth) => {
-                Just(EQ)
+                Some(EQ)
             },
             (_, _) => {
-                Nothing
+                None
             },
         }
     }
@@ -909,41 +909,124 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn interpretDeclarations(__0: MakeBinding) -> MakeBinding {
         match (__0, __1, __2, __3) {
-            (fromItem(makeBinding), declaration, <todo>, CDecl(specs, decls, _)) => {
+            (fromItem(makeBinding), declaration, @, CDecl(specs, decls, _)) => {
                 /* do */ {
                     let (storagespecs, baseTy) = baseTypeOf(specs);
-                    let mbinds = forM(decls)(Lambda);
+                    let mbinds = forM(decls)(|declarator| { /* do */ {
+                            let (decl, minit) = match declarator {
+                                (Some(decl), minit, None) => {
+                                    (decl, minit)
+                                },
+                                (None, _, _) => {
+                                    badSource(declaration, "absent declarator".to_string())
+                                },
+                                (_, _, Some(_)) => {
+                                    badSource(declaration, "bitfield declarator".to_string())
+                                },
+                            };
+                            let (ident, derived) = match decl {
+                                CDeclr(Some(ident), derived, _, _, _) => {
+                                    (ident, derived)
+                                },
+                                _ => {
+                                    badSource(decl, "abstract declarator".to_string())
+                                },
+                            };
+                            let deferred = derivedDeferredTypeOf(baseTy, decl, vec![]);
+                            match (storagespecs, derived) {
+                                (Some(CTypedef(_)), _) => {
+                                    /* do */ {
+                                        when((isJust(minit)), (badSource(decl, "initializer on typedef".to_string())));
+                                        addTypedefIdent(ident, deferred);
+                                        None
+                                    }
+                                },
+                                (Some(CStatic(_)), CFunDeclr({ .. }, __id_3a, _)) => {
+                                    /* do */ {
+                                        addSymbolIdentAction(ident)(/* do */ {
+                                            let itype = deferred;
+                                            useForwardRef(ident);
+                                            (typeToResult(itype, (Rust::Path((Rust::PathSegments(vec![applyRenames(ident)]))))))
+                                        });
+                                        None
+                                    }
+                                },
+                                (_, CFunDeclr({ .. }, __id_3a, _)) => {
+                                    /* do */ {
+                                        addExternIdent(ident, deferred)(|name, (_mut, ty)| { match ty {
+                                                IsFunc(retTy, args, variadic) => {
+                                                    {
+                                                        let formals = <Expr::Dummy>;
+                                                    }(in, Rust::ExternFn, name, formals, variadic, (toRustRetType(retTy)))
+                                                },
+                                                _ => {
+                                                    __error!((__op_addadd(show(ident), " is both a function and not a function?".to_string())))
+                                                },
+                                            } });
+                                        None
+                                    }
+                                },
+                                (Some(CExtern(_)), _) => {
+                                    /* do */ {
+                                        addExternIdent(ident, deferred)(|name, (__mut, ty)| { Rust::ExternStatic }(__mut, (Rust::VarName(name)), (toRustType(ty))));
+                                        None
+                                    }
+                                },
+                                (Some(CStatic(_)), _) => {
+                                    /* do */ {
+                                        let IntermediateType({
+                                            typeMutable: __mut,
+                                            typeRep: ty
+                                        }) = deferred;
+                                        let name = addSymbolIdent(ident, (__mut, ty));
+                                        let expr = interpretInitializer(ty, (fromMaybe((CInitList(vec![], (nodeInfo(decl)))), minit)));
+                                        (Some((fromItem((Rust::Static(__mut, (Rust::VarName(name)), (toRustType(ty)), expr))))))
+                                    }
+                                },
+                                _ => {
+                                    /* do */ {
+                                        let IntermediateType({
+                                            typeMutable: __mut,
+                                            typeRep: ty
+                                        }) = deferred;
+                                        let name = addSymbolIdent(ident, (__mut, ty));
+                                        let binding = makeBinding(__mut, (Rust::VarName(name)), ty, (nodeInfo(decl)), minit);
+                                        (Some(binding))
+                                    }
+                                },
+                            }
+                        } });
                     (catMaybes(mbinds))
                 }
             },
-            (_, node, <todo>, CStaticAssert(<todo>)) => {
+            (_, node, @, CStaticAssert(<todo>)) => {
                 unimplemented(node)
             },
         }
     }
 
-    pub fn interpretExpr(__0: Bool, __1: CExpr) -> EnvMonad {
+    pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad {
         match (__0, __1) {
             (demand, CComma(exprs, _)) => {
                 /* do */ {
                     {
-                        let (effects, mfinal) = if(demand, then, (init(exprs), Just((last(exprs)))), else, (exprs, Nothing));
+                        let (effects, mfinal) = if(demand, then, (init(exprs), Some((last(exprs)))), else, (exprs, None));
                     };
-                    let effects_q = mapM((fmap(resultToStatements)interpretExpr(False)), effects);
-                    let mfinal_q = mapM((interpretExpr(True)), mfinal);
+                    let effects_q = mapM((fmap(resultToStatements)interpretExpr(false)), effects);
+                    let mfinal_q = mapM((interpretExpr(true)), mfinal);
                     Result
                 }
             },
-            (demand, expr, <todo>, CAssign(op, lhs, rhs, _)) => {
+            (demand, expr, @, CAssign(op, lhs, rhs, _)) => {
                 /* do */ {
-                    let lhs_q = interpretExpr(True, lhs);
-                    let rhs_q = interpretExpr(True, rhs);
-                    compound(expr, False, demand, op, lhs_q, rhs_q)
+                    let lhs_q = interpretExpr(true, lhs);
+                    let rhs_q = interpretExpr(true, rhs);
+                    compound(expr, false, demand, op, lhs_q, rhs_q)
                 }
             },
-            (demand, expr, <todo>, CCond(c, Some(t), f, _)) => {
+            (demand, expr, @, CCond(c, Some(t), f, _)) => {
                 /* do */ {
-                    let c_q = fmap(toBool, (interpretExpr(True, c)));
+                    let c_q = fmap(toBool, (interpretExpr(true, c)));
                     let t_q = interpretExpr(demand, t);
                     let f_q = interpretExpr(demand, f);
                     if(demand, then, promotePtr, expr, (mkIf(c_q)), t_q, f_q, else, return, Result, {
@@ -954,10 +1037,10 @@ pub mod Language_Rust_Corrode_C {
 
                 }
             },
-            (_, expr, <todo>, CBinary(op, lhs, rhs, _)) => {
+            (_, expr, @, CBinary(op, lhs, rhs, _)) => {
                 /* do */ {
-                    let lhs_q = interpretExpr(True, lhs);
-                    let rhs_q = interpretExpr(True, rhs);
+                    let lhs_q = interpretExpr(true, lhs);
+                    let rhs_q = interpretExpr(true, rhs);
                     binop(expr, op, lhs_q, rhs_q)
                 }
             },
@@ -968,23 +1051,23 @@ pub mod Language_Rust_Corrode_C {
                     Result
                 }
             },
-            (demand, node, <todo>, CUnary(op, expr, _)) => {
+            (demand, node, @, CUnary(op, expr, _)) => {
                 match op {
                     CPreIncOp => {
-                        incdec(False, CAddAssOp)
+                        incdec(false, CAddAssOp)
                     },
                     CPreDecOp => {
-                        incdec(False, CSubAssOp)
+                        incdec(false, CSubAssOp)
                     },
                     CPostIncOp => {
-                        incdec(True, CAddAssOp)
+                        incdec(true, CAddAssOp)
                     },
                     CPostDecOp => {
-                        incdec(True, CSubAssOp)
+                        incdec(true, CSubAssOp)
                     },
                     CAdrOp => {
                         /* do */ {
-                            let expr_q = interpretExpr(True, expr);
+                            let expr_q = interpretExpr(true, expr);
                             {
                                 let ty_q = IsPtr((resultMutable(expr_q)), (resultType(expr_q)));
                             };
@@ -993,7 +1076,7 @@ pub mod Language_Rust_Corrode_C {
                     },
                     CIndOp => {
                         /* do */ {
-                            let expr_q = interpretExpr(True, expr);
+                            let expr_q = interpretExpr(true, expr);
                             match resultType(expr_q) {
                                 IsPtr(mut_q, ty_q) => {
                                     Result
@@ -1024,7 +1107,7 @@ pub mod Language_Rust_Corrode_C {
                     },
                     CNegOp => {
                         /* do */ {
-                            let expr_q = interpretExpr(True, expr);
+                            let expr_q = interpretExpr(true, expr);
                             Result
                         }
                     },
@@ -1032,7 +1115,7 @@ pub mod Language_Rust_Corrode_C {
             },
             (_, CSizeofExpr(e, _)) => {
                 /* do */ {
-                    let e_q = interpretExpr(True, e);
+                    let e_q = interpretExpr(true, e);
                     (rustSizeOfType((toRustType((resultType(e_q))))))
                 }
             },
@@ -1044,7 +1127,7 @@ pub mod Language_Rust_Corrode_C {
             },
             (_, CAlignofExpr(e, _)) => {
                 /* do */ {
-                    let e_q = interpretExpr(True, e);
+                    let e_q = interpretExpr(true, e);
                     (rustAlignOfType((toRustType((resultType(e_q))))))
                 }
             },
@@ -1054,10 +1137,10 @@ pub mod Language_Rust_Corrode_C {
                     (rustAlignOfType((toRustType(ty))))
                 }
             },
-            (_, expr, <todo>, CIndex(lhs, rhs, _)) => {
+            (_, expr, @, CIndex(lhs, rhs, _)) => {
                 /* do */ {
-                    let lhs_q = interpretExpr(True, lhs);
-                    let rhs_q = interpretExpr(True, rhs);
+                    let lhs_q = interpretExpr(true, lhs);
+                    let rhs_q = interpretExpr(true, rhs);
                     match (resultType(lhs_q), resultType(rhs_q)) {
                         (IsArray(__mut, _, el), _) => {
                             (subscript(__mut, el, (result(lhs_q)), rhs_q))
@@ -1082,9 +1165,9 @@ pub mod Language_Rust_Corrode_C {
 
                 }
             },
-            (_, expr, <todo>, CCall(func, args, _)) => {
+            (_, expr, @, CCall(func, args, _)) => {
                 /* do */ {
-                    let func_q = interpretExpr(True, func);
+                    let func_q = interpretExpr(true, func);
                     match resultType(func_q) {
                         IsFunc(retTy, argTys, variadic) => {
                             /* do */ {
@@ -1099,9 +1182,9 @@ pub mod Language_Rust_Corrode_C {
 
                 }
             },
-            (_, expr, <todo>, CMember(obj, ident, deref, node)) => {
+            (_, expr, @, CMember(obj, ident, deref, node)) => {
                 /* do */ {
-                    let obj_q = interpretExpr(True)(if(deref, then, CUnary, CIndOp, obj, node, else, obj));
+                    let obj_q = interpretExpr(true)(if(deref, then, CUnary, CIndOp, obj, node, else, obj));
                     let objTy = completeType((resultType(obj_q)));
                     let fields = match objTy {
                         IsStruct(_, fields) => {
@@ -1125,26 +1208,26 @@ pub mod Language_Rust_Corrode_C {
                     Result
                 }
             },
-            (_, expr, <todo>, CVar(ident, _)) => {
+            (_, expr, @, CVar(ident, _)) => {
                 /* do */ {
                     let sym = getSymbolIdent(ident);
                     maybe((badSource(expr, "undefined variable".to_string())), return, sym)
                 }
             },
-            (_, expr, <todo>, CConst(c)) => {
+            (_, expr, @, CConst(c)) => {
                 match c {
                     CIntConst(CInteger(v, repr, flags), _) => {
                         {
                             let allow_signed = not((testFlag(FlagUnsigned, flags)));
 ;
-                            let allow_unsigned = ||(not(allow_signed), /=(repr, DecRepr));
+                            let allow_unsigned = (not(allow_signed) || /=(repr, DecRepr));
 ;
                             let widths = vec![
-                                    (32, if(any, (Operator("testFlag")(flags)), vec![FlagLongLong, FlagLong], then, WordWidth, else, BitWidth, 32)),
+                                    (32, if(any, (testFlag(flags)), vec![FlagLongLong, FlagLong], then, WordWidth, else, BitWidth, 32)),
                                     (64, BitWidth(64)),
                                 ];
 ;
-                            let allowed_types = Dummy;
+                            let allowed_types = <Expr::Dummy>;
 ;
                             let repr_q = match repr {
                                     DecRepr => {
@@ -1167,7 +1250,7 @@ pub mod Language_Rust_Corrode_C {
                             })
                     },
                     CFloatConst(CFloat(__str), _) => {
-                        match span((Operator("notElem")("fF".to_string())), __str) {
+                        match span((notElem("fF".to_string())), __str) {
                             (v, "") => {
                                 (literalNumber((IsFloat(64)), (Rust::LitFloat(v))))
                             },
@@ -1179,10 +1262,10 @@ pub mod Language_Rust_Corrode_C {
                             },
                         }
                     },
-                    CCharConst(CChar(ch, False), _) => {
+                    CCharConst(CChar(ch, false), _) => {
                         Result
                     },
-                    CStrConst(CString(__str, False), _) => {
+                    CStrConst(CString(__str, false), _) => {
                         Result
                     },
                     _ => {
@@ -1197,18 +1280,18 @@ pub mod Language_Rust_Corrode_C {
                     Result
                 }
             },
-            (demand, stat, <todo>, CStatExpr(CCompound([], stmts, _), _)) => {
+            (demand, stat, @, CStatExpr(CCompound([], stmts, _), _)) => {
                 scope(/* do */ {
                     {
                         let (effects, final) = match last(stmts) {
                                 CBlockStmt, CExpr(expr, _) => if demand { (init(stmts), expr) },
                                 _ => {
-                                    (stmts, Nothing)
+                                    (stmts, None)
                                 },
                             };
                     };
                     let effects_q = cfgToRust(stat, (foldr(interpretBlockItem, ((vec![], Unreachable)), effects)));
-                    let final_q = mapM((interpretExpr(True)), final);
+                    let final_q = mapM((interpretExpr(true)), final);
                     Result
                 })
             },
@@ -1236,10 +1319,10 @@ pub mod Language_Rust_Corrode_C {
                 let go = |name, funTy| {
                     /* do */ {
                         let (retTy, args) = match funTy {
-                            IsFunc(_, _, True) => {
+                            IsFunc(_, _, true) => {
                                 unimplemented(declr)
                             },
-                            IsFunc(retTy, args, False) => {
+                            IsFunc(retTy, args, false) => {
                                 (retTy, args)
                             },
                             _ => {
@@ -1250,20 +1333,20 @@ pub mod Language_Rust_Corrode_C {
                         {
                             let setRetTy = |flow| {
                                 flow({
-                                    functionReturnType: Just(retTy),
-                                    functionName: Just(name)
+                                    functionReturnType: Some(retTy),
+                                    functionName: Some(name)
                                 })
                             };
                         };
                         let f_q = mapExceptT((local(setRetTy)))(scope(/* do */ {
-                            let formals = sequence(Dummy);
+                            let formals = sequence(<Expr::Dummy>);
                             {
-                                let returnValue = (if(name) == "_c_main".to_string()(then, Just, 0, else, Nothing));
+                                let returnValue = (if(name) == "_c_main".to_string()(then, Some, 0, else, None));
 ;
                                 let returnStatement = Rust::Stmt((Rust::Return(returnValue)));
                             };
                             let body_q = cfgToRust(declr, (interpretStatement(body, ((vec![returnStatement], Unreachable)))));
-                            (Rust::Item(attrs, vis, (Rust::Function(vec![Rust::UnsafeFn, Rust::ExternABI(Nothing)], name, formals, (toRustRetType(retTy)), (statementsToBlock(body_q))))))
+                            (Rust::Item(attrs, vis, (Rust::Function(vec![Rust::UnsafeFn, Rust::ExternABI(None)], name, formals, (toRustRetType(retTy)), (statementsToBlock(body_q))))))
                         }));
                         emitItems(vec![f_q])
                     }
@@ -1312,7 +1395,7 @@ pub mod Language_Rust_Corrode_C {
             let initial_q = match initial {
                 CInitExpr(expr, _) => {
                     /* do */ {
-                        let expr_q = interpretExpr(True, expr);
+                        let expr_q = interpretExpr(true, expr);
                         compatibleInitializer(if(resultType, expr_q), ty(then, pure)(scalar((castTo(ty, expr_q)), else, badSource, initial, "initializer for incompatible type".to_string())))
                     }
                 },
@@ -1336,33 +1419,33 @@ pub mod Language_Rust_Corrode_C {
                     (vec![], Branch(label))
                 }
             },
-            (stmt, <todo>, CCase(expr, body, node), next) => {
+            (stmt, @, CCase(expr, body, node), next) => {
                 /* do */ {
                     let selector = getSwitchExpression(stmt);
                     {
                         let condition = CBinary(CEqOp, selector, expr, node);
                     };
-                    addSwitchCase((Just(condition)), body, next)
+                    addSwitchCase((Some(condition)), body, next)
                 }
             },
-            (stmt, <todo>, CCases(lower, upper, body, node), next) => {
+            (stmt, @, CCases(lower, upper, body, node), next) => {
                 /* do */ {
                     let selector = getSwitchExpression(stmt);
                     {
                         let condition = CBinary(CLndOp, (CBinary(CGeqOp, selector, lower, node)), (CBinary(CLeqOp, selector, upper, node)), node);
                     };
-                    addSwitchCase((Just(condition)), body, next)
+                    addSwitchCase((Some(condition)), body, next)
                 }
             },
             (CDefault(body, _), next) => {
-                addSwitchCase(Nothing, body, next)
+                addSwitchCase(None, body, next)
             },
             (CExpr(None, _), next) => {
                 next
             },
             (CExpr(Some(expr), _), next) => {
                 /* do */ {
-                    let expr_q = lift(lift(interpretExpr(False, expr)));
+                    let expr_q = lift(lift(interpretExpr(false, expr)));
                     let (rest, end) = next;
                     (__op_addadd(resultToStatements(expr_q), rest), end)
                 }
@@ -1374,7 +1457,7 @@ pub mod Language_Rust_Corrode_C {
             },
             (CIf(c, t, mf, _), next) => {
                 /* do */ {
-                    let c_q = lift(lift(interpretExpr(True, c)));
+                    let c_q = lift(lift(interpretExpr(true, c)));
                     let after = newLabel;
                     let falseLabel = match mf {
                         None => {
@@ -1397,7 +1480,7 @@ pub mod Language_Rust_Corrode_C {
                     (vec![], CondBranch(c_q, trueLabel, falseLabel))
                 }
             },
-            (stmt, <todo>, CSwitch(expr, body, node), next) => {
+            (stmt, @, CSwitch(expr, body, node), next) => {
                 /* do */ {
                     let (bindings, expr_q) = match expr {
                         CVar({ .. }) => {
@@ -1406,10 +1489,10 @@ pub mod Language_Rust_Corrode_C {
                         _ => {
                             lift(lift(/* do */ {
                                 let ident = fmap(internalIdent, (uniqueName("switch".to_string())));
-                                let rhs = interpretExpr(True, expr);
+                                let rhs = interpretExpr(true, expr);
                                 let var = addSymbolIdent(ident, (Rust::Immutable, resultType(rhs)));
                                 (vec![
-                                    Rust::Let(Rust::Immutable, (Rust::VarName(var)), Nothing, (Just((result(rhs))))),
+                                    Rust::Let(Rust::Immutable, (Rust::VarName(var)), None, (Some((result(rhs))))),
                                 ], CVar(ident, node))
                             }))
                         },
@@ -1417,11 +1500,11 @@ pub mod Language_Rust_Corrode_C {
                     let after = newLabel;
                     let (_, SwitchCases(cases)) = getSwitchCases(expr_q)(setBreak(after)(interpretStatement(body, ((vec![], Branch(after))))));
                     {
-                        let isDefault = |(Just(condition))| {
+                        let isDefault = |(Some(condition))| {
                             Left(condition)
                         };
 ;
-                        let isDefault = |Nothing| {
+                        let isDefault = |None| {
                             Right(())
                         };
                     };
@@ -1448,7 +1531,7 @@ pub mod Language_Rust_Corrode_C {
             },
             (CWhile(c, body, doWhile, _), next) => {
                 /* do */ {
-                    let c_q = lift(lift(interpretExpr(True, c)));
+                    let c_q = lift(lift(interpretExpr(true, c)));
                     let after = newLabel;
                     let headerLabel = newLabel;
                     let (bodyEntry, bodyTerm) = setBreak(after)(setContinue(headerLabel)(interpretStatement(body, ((vec![], Branch(headerLabel))))));
@@ -1475,7 +1558,7 @@ pub mod Language_Rust_Corrode_C {
                             },
                             Left(Some(expr)) => {
                                 /* do */ {
-                                    let expr_q = lift(lift(interpretExpr(False, expr)));
+                                    let expr_q = lift(lift(interpretExpr(false, expr)));
                                     (resultToStatements(expr_q))
                                 }
                             },
@@ -1490,7 +1573,7 @@ pub mod Language_Rust_Corrode_C {
                             },
                             Some(incr) => {
                                 /* do */ {
-                                    let incr_q = lift(lift(interpretExpr(False, incr)));
+                                    let incr_q = lift(lift(interpretExpr(false, incr)));
                                     let incrLabel = newLabel;
                                     addBlock(incrLabel, (resultToStatements(incr_q)), (Branch(headerLabel)));
                                     incrLabel
@@ -1503,7 +1586,7 @@ pub mod Language_Rust_Corrode_C {
                         let cond = match mcond {
                             Some(cond) => {
                                 /* do */ {
-                                    let cond_q = lift(lift(interpretExpr(True, cond)));
+                                    let cond_q = lift(lift(interpretExpr(true, cond)));
                                     (CondBranch(cond_q, bodyLabel, after))
                                 }
                             },
@@ -1526,7 +1609,7 @@ pub mod Language_Rust_Corrode_C {
                     (vec![], Branch(label))
                 }
             },
-            (stmt, <todo>, CCont(_), next) => {
+            (stmt, @, CCont(_), next) => {
                 /* do */ {
                     let _ = next;
                     let val = lift((asks(onContinue)));
@@ -1540,7 +1623,7 @@ pub mod Language_Rust_Corrode_C {
                     }
                 }
             },
-            (stmt, <todo>, CBreak(_), next) => {
+            (stmt, @, CBreak(_), next) => {
                 /* do */ {
                     let _ = next;
                     let val = lift((asks(onBreak)));
@@ -1554,7 +1637,7 @@ pub mod Language_Rust_Corrode_C {
                     }
                 }
             },
-            (stmt, <todo>, CReturn(expr, _), next) => {
+            (stmt, @, CReturn(expr, _), next) => {
                 /* do */ {
                     let _ = next;
                     lift(lift(/* do */ {
@@ -1565,7 +1648,7 @@ pub mod Language_Rust_Corrode_C {
                             },
                             Some(retTy) => {
                                 /* do */ {
-                                    let expr_q = mapM((fmap((castTo(retTy)))interpretExpr(True)), expr);
+                                    let expr_q = mapM((fmap((castTo(retTy)))interpretExpr(true)), expr);
                                     (exprToStatements((Rust::Return(expr_q))), Unreachable)
                                 }
                             },
@@ -1612,20 +1695,27 @@ pub mod Language_Rust_Corrode_C {
     }
 
     pub fn mutable(quals: Vec<CTypeQualifier<a>>) -> Rust::Mutable {
-        if(any, (Lambda), quals, then, Rust::Immutable, else, Rust::Mutable)
+        if(any, (|q| { match q {
+                    CConstQual(_) => {
+                        true
+                    },
+                    _ => {
+                        false
+                    },
+                } }), quals, then, Rust::Immutable, else, Rust::Mutable)
     }
 
     pub fn nestedObject(ty: CType, desig: Designator) -> Option {
         match designatorType(desig) {
             IsArray(_, size, el) => {
-                Just((From(el, 0, (replicate((-(size, 1)), el)), desig)))
+                Some((From(el, 0, (replicate((-(size, 1)), el)), desig)))
             },
-            ty_q => if compatibleInitializer(ty, ty_q) { Just(desig) },
+            ty_q => if compatibleInitializer(ty, ty_q) { Some(desig) },
             IsStruct(_, (_, ty_q)(__id_3a, fields)) => {
                 nestedObject(ty, (From(ty_q, 0, (map(snd, fields)), desig)))
             },
             _ => {
-                Nothing
+                None
             },
         }
     }
@@ -1633,10 +1723,10 @@ pub mod Language_Rust_Corrode_C {
     pub fn nextObject(__0: Designator, __1: CurrentObject) -> CurrentObject {
         match (__0, __1) {
             (Base, <todo>) => {
-                Nothing
+                None
             },
-            From(_, i, ty(<todo>, remaining), base) => {
-                Just((From(ty, (+(i, 1)), remaining, base)))
+            From(_, i, [ty, ...remaining], base) => {
+                Some((From(ty, (+(i, 1)), remaining, base)))
             },
             From(_, _, [], base) => {
                 nextObject(base)
@@ -1657,10 +1747,10 @@ pub mod Language_Rust_Corrode_C {
     pub fn objectFromDesignators(__0: CType, __1: Vec<CDesignator>) -> EnvMonad {
         match (__0, __1) {
             (_, []) => {
-                pure(Nothing)
+                pure(None)
             },
             (ty, desigs) => {
-                <$>(Just, go(ty, desigs, (Base(ty))))
+                <$>(Some, go(ty, desigs, (Base(ty))))
             },
         }
     }
@@ -1704,7 +1794,7 @@ pub mod Language_Rust_Corrode_C {
     pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, cinitial): (CurrentObject, CInit)) -> EnvMonad {
         match mplus(obj1, obj0) {
             None => {
-                (Nothing, prior)
+                (None, prior)
             },
             Some(obj) => {
                 /* do */ {
@@ -1717,7 +1807,7 @@ pub mod Language_Rust_Corrode_C {
                         },
                         CInitExpr(expr, _) => {
                             /* do */ {
-                                let expr_q = interpretExpr(True, expr);
+                                let expr_q = interpretExpr(true, expr);
                                 match nestedObject((resultType(expr_q)), obj) {
                                     None => {
                                         badSource(cinitial, "type in initializer".to_string())
@@ -1735,10 +1825,17 @@ pub mod Language_Rust_Corrode_C {
                         },
                     };
                     {
-                        let indices = unfoldr((Lambda), obj_q);
+                        let indices = unfoldr((|o| { match o {
+                                        Base({ .. }) => {
+                                            None
+                                        },
+                                        From(_, j, _, p) => {
+                                            Some((j, p))
+                                        },
+                                    } }), obj_q);
                     };
                     {
-                        let initializer = foldl((Lambda(Nothing, (IntMap::singleton(j, a)))), initial, indices);
+                        let initializer = foldl((|a, j| { Initializer }(None, (IntMap::singleton(j, a)))), initial, indices);
                     };
                     (nextObject(obj_q), mappend(prior, initializer))
                 }
@@ -1789,14 +1886,14 @@ pub mod Language_Rust_Corrode_C {
     }
 
     pub fn scalar(expr: Rust::Expr) -> Initializer {
-        Initializer((Just(expr)), IntMap::empty)
+        Initializer((Some(expr)), IntMap::empty)
     }
 
     pub fn scope(m: EnvMonad) -> EnvMonad {
         /* do */ {
             let old = lift(get);
             let a = m;
-            lift((modify((Lambda({
+            lift((modify((|st| { old }({
                         globalState: globalState(st)
                     })))));
             a
@@ -1804,14 +1901,14 @@ pub mod Language_Rust_Corrode_C {
     }
 
     pub fn setBreak(label: Label) -> CSourceBuildCFGT {
-        mapBuildCFGT((local((Lambda({
-                    onBreak: Just(label)
+        mapBuildCFGT((local((|flow| { flow }({
+                    onBreak: Some(label)
                 })))))
     }
 
     pub fn setContinue(label: Label) -> CSourceBuildCFGT {
-        mapBuildCFGT((local((Lambda({
-                    onContinue: Just(label)
+        mapBuildCFGT((local((|flow| { flow }({
+                    onContinue: Some(label)
                 })))))
     }
 
@@ -1821,7 +1918,7 @@ pub mod Language_Rust_Corrode_C {
                 stmts
             },
             stmts => {
-                Rust::Block(stmts, Nothing)
+                Rust::Block(stmts, None)
             },
         }
     }
@@ -1829,10 +1926,10 @@ pub mod Language_Rust_Corrode_C {
     pub fn toBool(__0: Result) -> Rust::Expr {
         match (__0) {
             Result(<todo>) => {
-                Rust::Lit((Rust::LitBool(False)))
+                Rust::Lit((Rust::LitBool(false)))
             },
             Result(<todo>) => {
-                Rust::Lit((Rust::LitBool(True)))
+                Rust::Lit((Rust::LitBool(true)))
             },
             Result(<todo>) => {
                 match t {
@@ -1853,10 +1950,10 @@ pub mod Language_Rust_Corrode_C {
     pub fn toNotBool(__0: Result) -> Rust::Expr {
         match (__0) {
             Result(<todo>) => {
-                Rust::Lit((Rust::LitBool(True)))
+                Rust::Lit((Rust::LitBool(true)))
             },
             Result(<todo>) => {
-                Rust::Lit((Rust::LitBool(False)))
+                Rust::Lit((Rust::LitBool(false)))
             },
             Result(<todo>) => {
                 match t {
@@ -1876,17 +1973,17 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn toPtr(__0: Result, __1: Option) -> Option {
         match (__0, __1, __2) {
-            (ptr, <todo>, Result(<todo>)) => {
-                Just(ptr, {
+            (ptr, @, Result(<todo>)) => {
+                Some(ptr, {
                     resultType: IsPtr(__mut, el),
                     result: castTo((IsPtr(__mut, el)), ptr)
                 })
             },
-            (ptr, <todo>, Result(<todo>)) => {
-                Just(ptr)
+            (ptr, @, Result(<todo>)) => {
+                Some(ptr)
             },
             _ => {
-                Nothing
+                None
             },
         }
     }
@@ -1962,7 +2059,10 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad {
         /* do */ {
-            let objectsAndInitializers = forM(list)(Lambda);
+            let objectsAndInitializers = forM(list)(|(desigs, initial)| { /* do */ {
+                    let currObj = objectFromDesignators(ty, desigs);
+                    pure((currObj, initial))
+                } });
             {
                 let base = match ty {
                         IsArray(_, size, el) => {
@@ -1976,17 +2076,17 @@ pub mod Language_Rust_Corrode_C {
                         },
                     };
             };
-            let (_, initializer) = foldM(resolveCurrentObject, (Just(base), mempty), objectsAndInitializers);
+            let (_, initializer) = foldM(resolveCurrentObject, (Some(base), mempty), objectsAndInitializers);
             initializer
         }
     }
 
     pub fn typeName(__0: CDecl, __1: EnvMonad) -> EnvMonad {
         match (__0, __1, __2) {
-            (decl, <todo>, CStaticAssert(<todo>)) => {
+            (decl, @, CStaticAssert(<todo>)) => {
                 badSource(decl, "static assert in type name ".to_string())
             },
-            (decl, <todo>, CDecl(spec, declarators, _)) => {
+            (decl, @, CDecl(spec, declarators, _)) => {
                 /* do */ {
                     let (storage, base) = baseTypeOf(spec);
                     match storage {
@@ -2028,27 +2128,31 @@ pub mod Language_Rust_Corrode_C {
     }
 
     pub fn uniqueName(base: String) -> EnvMonad {
-        modifyGlobal(Lambda)
+        modifyGlobal(|st| { (st({
+                unique: +(unique(st), 1)
+            }), __op_addadd(base, show((unique(st))))) })
     }
 
     pub fn useForwardRef(ident: Ident) -> EnvMonad {
-        modifyGlobal(Lambda)
+        modifyGlobal(|st| { (st({
+                usedForwardRefs: Set::insert(ident, (usedForwardRefs(st)))
+            }), ()) })
     }
 
     pub fn usual(__0: CType, __1: CType) -> Option {
         match (__0, __1) {
             (IsFloat(aw), IsFloat(bw)) => {
-                Just((IsFloat((max(aw, bw)))))
+                Some((IsFloat((max(aw, bw)))))
             },
-            (a, <todo>, IsFloat(_), _) => {
-                Just(a)
+            (a, @, IsFloat(_), _) => {
+                Some(a)
             },
-            (_, b, <todo>, IsFloat(_)) => {
-                Just(b)
+            (_, b, @, IsFloat(_)) => {
+                Some(b)
             },
             (origA, origB) => {
                 match (intPromote(origA), intPromote(origB)) {
-                    (a, b) => if (a == b) { Just(a) },
+                    (a, b) => if (a == b) { Some(a) },
                     (IsInt(Signed, sw), IsInt(Unsigned, uw)) => {
                         mixedSign(sw, uw)
                     },
@@ -2058,11 +2162,11 @@ pub mod Language_Rust_Corrode_C {
                     (IsInt(as, aw), IsInt(_bs, bw)) => {
                         /* do */ {
                             let rank = integerConversionRank(aw, bw);
-                            Just((IsInt(as, ((if(rank) == GT(then, aw, else, bw))))))
+                            Some((IsInt(as, ((if(rank) == GT(then, aw, else, bw))))))
                         }
                     },
                     _ => {
-                        Nothing
+                        None
                     },
                 }
             },
@@ -2077,7 +2181,7 @@ pub mod Language_Rust_Corrode_C {
             };
             emitItems(vec![
                     Rust::Item(vec![], Rust::Private, (Rust::Function(vec![], "main".to_string(), vec![], (Rust::TypeName("()".to_string())), (statementsToBlock((__op_addadd(setup, __op_addadd(vec![
-                                bind(Rust::Immutable, ret)(Rust::UnsafeExpr(Rust::Block(vec![])(Just(call(realName, args))))),
+                                bind(Rust::Immutable, ret)(Rust::UnsafeExpr(Rust::Block(vec![])(Some(call(realName, args))))),
                             ], exprToStatements((call("::std::process::exit".to_string(), vec![Rust::Var(ret)]))))))))))),
                 ]);
 ;
@@ -2104,7 +2208,7 @@ pub mod Language_Rust_Corrode_C {
 
     pub fn wrapping(__0: Result, __1: Result) -> Result {
         match (__0, __1, __2) {
-            (r, <todo>, Result(<todo>)) => {
+            (r, @, Result(<todo>)) => {
                 match result(r) {
                     Rust::Add(lhs, rhs) => {
                         r({
@@ -2191,7 +2295,7 @@ pub mod Language_Rust_Corrode_CFG {
 
     pub fn addBlock(label: Monad) -> Monad {
         /* do */ {
-            modify(Lambda({
+            modify(|st| { st }({
                 buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
             }))
         }
@@ -2209,10 +2313,10 @@ pub mod Language_Rust_Corrode_CFG {
     }
 
     pub fn flipEdges(edges: IntMap::IntMap) -> IntMap::IntMap {
-        IntMap::unionsWith(IntSet::union, Dummy)
+        IntMap::unionsWith(IntSet::union, <Expr::Dummy>)
     }
 
-    pub fn hasMultiple() -> Bool {
+    pub fn hasMultiple() -> bool {
         any((gostructureBody))
     }
 
@@ -2256,7 +2360,7 @@ pub mod Language_Rust_Corrode_CFG {
                     vec![]
                 },
                 ([entry], []) => {
-                    match IntMap::updateLookupWithKey((Lambda), entry, blocks) {
+                    match IntMap::updateLookupWithKey((|_, _| { None }), entry, blocks) {
                         (Some((s, term)), blocks_q) => {
                             __op_concat(Structure({
                                 structureEntries: entries,
@@ -2291,7 +2395,7 @@ pub mod Language_Rust_Corrode_CFG {
     }
 
     pub fn relooperRoot((CFG(entry, blocks)): Monoid) -> Monoid {
-        relooper((IntSet::singleton(entry)))(IntMap::map((Lambda), blocks))
+        relooper((IntSet::singleton(entry)))(IntMap::map((|BasicBlock(s, term)| { (s, fmap(GoTo, term)) }), blocks))
     }
 
     pub fn removeEmptyBlocks((CFG(start, blocks)): Foldable) -> Foldable {
@@ -2311,7 +2415,7 @@ pub mod Language_Rust_Corrode_CFG {
     }
 
     pub fn successors((_, term): StructureBlock) -> StructureBlock {
-        IntSet::fromList(Dummy)
+        IntSet::fromList(<Expr::Dummy>)
     }
 
 }
@@ -2330,7 +2434,7 @@ pub mod Language_Rust_Corrode_CrateMap {
     pub use self::ItemKind::*;
 
     pub fn mergeCrateMaps() -> Map::Map {
-        Map::fromListWith((Map::unionWith((Operator("++")))))
+        Map::fromListWith((Map::unionWith((__op_addadd))))
     }
 
     pub fn parseCrateMap() -> Either {
@@ -2338,7 +2442,7 @@ pub mod Language_Rust_Corrode_CrateMap {
     }
 
     pub fn rewritesFromCratesMap(crates: CratesMap) -> ItemRewrites {
-        Map::fromList(Dummy)
+        Map::fromList(<Expr::Dummy>)
     }
 
     pub fn splitModuleMap(modName: String, crates: CratesMap) -> (ModuleMap, CratesMap) {
@@ -2388,16 +2492,16 @@ pub mod Language_Rust_Idiomatic {
     pub fn tailExpr(__0: Rust::Expr) -> Option {
         match (__0) {
             Rust::Return(e) => {
-                Just(e)
+                Some(e)
             },
             Rust::BlockExpr(b) => {
-                Just((Just((Rust::BlockExpr((tailBlock(b)))))))
+                Some((Some((Rust::BlockExpr((tailBlock(b)))))))
             },
             Rust::IfThenElse(c, t, f) => {
-                Just((Just((Rust::IfThenElse(c, (tailBlock(t)), (tailBlock(f)))))))
+                Some((Some((Rust::IfThenElse(c, (tailBlock(t)), (tailBlock(f)))))))
             },
             _ => {
-                Nothing
+                None
             },
         }
     }
@@ -2405,15 +2509,15 @@ pub mod Language_Rust_Idiomatic {
     pub fn unsnoc(__0: Vec<a>) -> Option {
         match (__0) {
             [] => {
-                Nothing
+                None
             },
-            x__id_3a7873 => {
+            [x, ...xs] => {
                 match unsnoc(xs) {
                     Some((a, b)) => {
-                        Just((x__id_3a61, b))
+                        Some((__op_concat(x, a), b))
                     },
                     None => {
-                        Just((vec![], x))
+                        Some((vec![], x))
                     },
                 }
             },

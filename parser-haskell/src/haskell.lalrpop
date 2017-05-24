@@ -84,7 +84,7 @@ Num: isize = {
 };
 
 Ident: Ident = {
-  r"[a-zA-Z_.][.a-zA-Z_0-9':]*(:[.+/*=-]+)?" => Ident((<>).to_string()),
+  r"[a-zA-Z_.][.a-zA-Z_0-9']*(.:[.+/*=-]+)?" => Ident((<>).to_string()),
 };
 
 Ctor: Ident = {
@@ -92,7 +92,7 @@ Ctor: Ident = {
 };
 
 Operator: String = {
-    r"[!#$%&*+/<=>?@^|~][!#$%&*+./<=>?@^|~:\\-]*" => <>.to_string(),
+    r"[!#$%&*+/<=>?@^|~][!#$%&*+./<=>?@^|~\\-]*" => <>.to_string(),
     "." => <>.to_string(),
     ".." => <>.to_string(),
     ".|." => <>.to_string(),

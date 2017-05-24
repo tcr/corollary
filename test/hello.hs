@@ -1,24 +1,10 @@
-module Test.Hello ()
-where
+{-# LANGUAGE ViewPatterns #-}
 
-data Term
-  = Hello
-  | World
+module Language.Rust.Idiomatic (
+    itemIdioms
+) where
 
-printer :: Term -> String
-printer Hello = "Hello"
-printer World = "World"
+import qualified Language.Rust.AST as Rust
 
-helloworld :: String
-helloworld = ((printer Hello) ++ " " ++ (printer World))
-
-{-HASKELL-}
-main = putStrLn helloworld
-{-/HASKELL-}
-
-{-RUST
-fn main() {
-    assert_eq!("Hello World", Test_Hello::helloworld());
-    println!("success.");
-}
-/RUST-}
+mergeCrateMaps :: [(String, CrateMap)] -> Map.Map String CrateMap
+mergeCrateMaps = Map.fromListWith (Map.unionWith (++))

@@ -38,7 +38,7 @@ pub mod Language_C_Analysis_AstAnalysis {
     pub fn analyseAST((CTranslUnit(decls, _file_node)): CTranslUnit) -> m {
         /* do */ {
             mapRecoverM_(analyseExt, decls);
-            __op_bind(getDefTable, Lambda((not((inFileScope(dt)))))(__error!("Internal Error: Not in filescope after analysis".to_string())));
+            __op_bind(getDefTable, |dt| { when }((not((inFileScope(dt)))))(__error!("Internal Error: Not in filescope after analysis".to_string())));
             liftM(globalDefs, getDefTable);
 
         }
@@ -53,14 +53,14 @@ pub mod Language_C_Analysis_AstAnalysis {
                 analyseFunDef(fundef)
             },
             CDeclExt(decl) => {
-                analyseDecl(False, decl)
+                analyseDecl(false, decl)
             },
         }
     }
 
     pub fn analyseFunDef((CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info)): CFunDef) -> m {
         /* do */ {
-            let var_decl_info = analyseVarDecl_q(True, declspecs, declr, oldstyle_decls, Nothing);
+            let var_decl_info = analyseVarDecl_q(true, declspecs, declr, oldstyle_decls, None);
             {
                 let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = var_decl_info;
             };
@@ -73,7 +73,7 @@ pub mod Language_C_Analysis_AstAnalysis {
             {
                 let var_decl = VarDecl(name, (DeclAttrs(is_inline, fun_storage, attrs)), ty_q);
             };
-            handleVarDecl(False, (Decl(var_decl, node_info)));
+            handleVarDecl(false, (Decl(var_decl, node_info)));
             let stmt_q = analyseFunctionBody(node_info, var_decl, stmt);
             handleFunDef(ident, (FunDef(var_decl, stmt_q, node_info)));
 
@@ -82,7 +82,7 @@ pub mod Language_C_Analysis_AstAnalysis {
 
     pub fn analyseFunctionBody(__0: NodeInfo, __1: VarDecl, __2: CStat, __3: m) -> m {
         match (__0, __1, __2, __3, __4) {
-            (node_info, decl, s, <todo>, CCompound(localLabels, items, _)) => {
+            (node_info, decl, s, @, CCompound(localLabels, items, _)) => {
                 /* do */ {
                     enterFunctionScope;
                     mapM_((withDefTabledefineLabel), (__op_addadd(localLabels, getLabels(s))));
@@ -98,9 +98,9 @@ pub mod Language_C_Analysis_AstAnalysis {
         }
     }
 
-    pub fn analyseTypeDef(handle_sue_def: Bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, node_info: NodeInfo) -> m {
+    pub fn analyseTypeDef(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, node_info: NodeInfo) -> m {
         /* do */ {
-            let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], Nothing);
+            let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], None);
             checkValidTypeDef(is_inline, storage_spec, attrs);
             when((isNoName(name)))(astError(node_info, "NoName in analyseTypeDef".to_string()));
             {
@@ -134,7 +134,7 @@ pub mod Language_C_Analysis_AstAnalysis {
             (_, _, []) => {
                 ()
             },
-            (t, dds, ds(i)(<todo>, is)) => {
+            (t, dds, [ds(i), ...is]) => {
                 /* do */ {
                     let (dds_q, ds_q) = match (dds, ds) {
                         ([], []) => {
@@ -184,7 +184,7 @@ pub mod Language_C_Analysis_AstAnalysis {
                         NoStorageSpec => {
                             return(maybe(defaultSpec, declStorage, obj_opt))
                         },
-                        ExternSpec(False) => {
+                        ExternSpec(false) => {
                             return(maybe(defaultSpec, declStorage, obj_opt))
                         },
                         bad_spec => {
@@ -198,14 +198,122 @@ pub mod Language_C_Analysis_AstAnalysis {
 
     pub fn defaultMD() -> MachineDesc {
         MachineDesc({
-            iSize: Lambda,
-            fSize: Lambda,
-            builtinSize: Lambda,
+            iSize: |it| { match it {
+                            TyBool => {
+                                1
+                            },
+                            TyChar => {
+                                1
+                            },
+                            TySChar => {
+                                1
+                            },
+                            TyUChar => {
+                                1
+                            },
+                            TyShort => {
+                                2
+                            },
+                            TyUShort => {
+                                2
+                            },
+                            TyInt => {
+                                4
+                            },
+                            TyUInt => {
+                                4
+                            },
+                            TyLong => {
+                                4
+                            },
+                            TyULong => {
+                                4
+                            },
+                            TyLLong => {
+                                8
+                            },
+                            TyULLong => {
+                                8
+                            },
+                        } },
+            fSize: |ft| { match ft {
+                            TyFloat => {
+                                4
+                            },
+                            TyDouble => {
+                                8
+                            },
+                            TyLDouble => {
+                                16
+                            },
+                        } },
+            builtinSize: |bt| { match bt {
+                            TyVaList => {
+                                4
+                            },
+                            TyAny => {
+                                4
+                            },
+                        } },
             ptrSize: 4,
             voidSize: 1,
-            iAlign: Lambda,
-            fAlign: Lambda,
-            builtinAlign: Lambda,
+            iAlign: |it| { match it {
+                            TyBool => {
+                                1
+                            },
+                            TyChar => {
+                                1
+                            },
+                            TySChar => {
+                                1
+                            },
+                            TyUChar => {
+                                1
+                            },
+                            TyShort => {
+                                2
+                            },
+                            TyUShort => {
+                                2
+                            },
+                            TyInt => {
+                                4
+                            },
+                            TyUInt => {
+                                4
+                            },
+                            TyLong => {
+                                4
+                            },
+                            TyULong => {
+                                4
+                            },
+                            TyLLong => {
+                                8
+                            },
+                            TyULLong => {
+                                8
+                            },
+                        } },
+            fAlign: |ft| { match ft {
+                            TyFloat => {
+                                4
+                            },
+                            TyDouble => {
+                                8
+                            },
+                            TyLDouble => {
+                                16
+                            },
+                        } },
+            builtinAlign: |bt| { match bt {
+                            TyVaList => {
+                                4
+                            },
+                            TyAny => {
+                                4
+                            },
+                        } },
             ptrAlign: 4,
             voidAlign: 1
         })
@@ -225,12 +333,12 @@ pub mod Language_C_Analysis_AstAnalysis {
     pub fn enclosingFunctionType(__0: Vec<StmtCtx>) -> Option {
         match (__0) {
             [] => {
-                Nothing
+                None
             },
-            FunCtx(vd, <todo>, _) => {
-                Just(declType(vd))
+            [FunCtx(vd), ..._] => {
+                Some(declType(vd))
             },
-            _(<todo>, cs) => {
+            [_, ...cs] => {
                 enclosingFunctionType(cs)
             },
         }
@@ -244,7 +352,7 @@ pub mod Language_C_Analysis_AstAnalysis {
             {
                 let decl = VarDecl(var_name, (DeclAttrs(is_inline, (funDeclLinkage(old_fun)), attrs)), ty);
             };
-            handleVarDecl(False, (Decl(decl, node_info)));
+            handleVarDecl(false, (Decl(decl, node_info)));
             enterPrototypeScope;
             maybe((()), (mapM_(handleParamDecl)), (getParams(ty)));
             leavePrototypeScope
@@ -258,37 +366,37 @@ pub mod Language_C_Analysis_AstAnalysis {
             {
                 let vardecl = VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ);
             };
-            if(is_def, then, handleObjectDef, False, ident)(ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, False)(Decl(vardecl, node_info)))
+            if(is_def, then, handleObjectDef, false, ident)(ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, false)(Decl(vardecl, node_info)))
         }
     }
 
     pub fn getParams(__0: Type) -> Option {
         match (__0) {
             FunctionType(FunType(_, params, _), _) => {
-                Just(params)
+                Some(params)
             },
             _ => {
-                Nothing
+                None
             },
         }
     }
 
     pub fn hasTypeDef(declspecs: Vec<CDeclSpec>) -> Option {
-        match foldr(hasTypeDefSpec, (False, vec![]), declspecs) {
-            (True, specs_q) => {
-                Just(specs_q)
+        match foldr(hasTypeDefSpec, (false, vec![]), declspecs) {
+            (true, specs_q) => {
+                Some(specs_q)
             },
-            (False, _) => {
-                Nothing
+            (false, _) => {
+                None
             },
         }
     }
 
-    pub fn inLoop(c: Vec<StmtCtx>) -> Bool {
+    pub fn inLoop(c: Vec<StmtCtx>) -> bool {
         any(isLoop, c)
     }
 
-    pub fn inSwitch(c: Vec<StmtCtx>) -> Bool {
+    pub fn inSwitch(c: Vec<StmtCtx>) -> bool {
         any(isSwitch, c)
     }
 
@@ -299,17 +407,17 @@ pub mod Language_C_Analysis_AstAnalysis {
             {
                 let vardecl = VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ);
             };
-            if(is_def, then, handleObjectDef, True, ident, (ObjDef(vardecl, init_opt, node_info)), else, handleVarDecl, True, (Decl(vardecl, node_info)))
+            if(is_def, then, handleObjectDef, true, ident, (ObjDef(vardecl, init_opt, node_info)), else, handleVarDecl, true, (Decl(vardecl, node_info)))
         }
     }
 
-    pub fn matchDesignator(__0: CDesignator, __1: CDesignator) -> Bool {
+    pub fn matchDesignator(__0: CDesignator, __1: CDesignator) -> bool {
         match (__0, __1) {
             (CMemberDesig(m1, _), CMemberDesig(m2, _)) => {
                 (m1 == m2)
             },
             (_, _) => {
-                True
+                true
             },
         }
     }
@@ -320,7 +428,7 @@ pub mod Language_C_Analysis_AstAnalysis {
                 tStmt(c, s)
             },
             (_, CBlockDecl(d)) => {
-                __op_rshift(analyseDecl(True, d), voidType)
+                __op_rshift(analyseDecl(true, d), voidType)
             },
             (_, CNestedFunDef(fd)) => {
                 __op_rshift(analyseFunDef(fd), voidType)
@@ -330,29 +438,29 @@ pub mod Language_C_Analysis_AstAnalysis {
 
     pub fn tDesignator(__0: MonadTrav) -> MonadTrav {
         match (__0, __1) {
-            (ArrayType(bt, _, _, _), CArrDesig(e, ni, <todo>, ds)) => {
+            (ArrayType(bt, _, _, _), [CArrDesig(e, ni), ...ds]) => {
                 /* do */ {
                     __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                     tDesignator(bt, ds)
                 }
             },
-            (ArrayType(bt, _, _, _), CRangeDesig(e1, e2, ni, <todo>, ds)) => {
+            (ArrayType(bt, _, _, _), [CRangeDesig(e1, e2, ni), ...ds]) => {
                 /* do */ {
                     __op_bind(tExpr(vec![], RValue, e1), checkIntegral_q(ni));
                     __op_bind(tExpr(vec![], RValue, e2), checkIntegral_q(ni));
                     tDesignator(bt, ds)
                 }
             },
-            (ArrayType(_, _, _, _), d(<todo>, ds)) => {
+            (ArrayType(_, _, _, _), [d, ...ds]) => {
                 typeError((nodeInfo(d)), "member designator in array initializer".to_string())
             },
-            (t, <todo>, DirectType(TyComp(_), _, _), CMemberDesig(m, ni, <todo>, ds)) => {
+            (t, @, DirectType(TyComp(_), _, _), [CMemberDesig(m, ni), ...ds]) => {
                 /* do */ {
                     let mt = fieldType(ni, m, t);
                     tDesignator((canonicalType(mt)), ds)
                 }
             },
-            (t, <todo>, DirectType(TyComp(_), _, _), d(<todo>, _)) => {
+            (t, @, DirectType(TyComp(_), _, _), [d, ..._]) => {
                 typeError((nodeInfo(d)), "array designator in compound initializer".to_string())
             },
             (t, []) => {
@@ -373,7 +481,7 @@ pub mod Language_C_Analysis_AstAnalysis {
                         None => {
                             /* do */ {
                                 let t = tExpr_q(c, side, e);
-                                withDefTable((Lambda))
+                                withDefTable((|dt| { (t, insertType(dt, n, t)) }))
                             }
                         },
                     }
@@ -601,14 +709,14 @@ pub mod Language_C_Analysis_AstAnalysis {
 
     pub fn tInit(__0: MonadTrav) -> MonadTrav {
         match (__0, __1, __2, __3) {
-            (t, i, <todo>, CInitExpr(e, ni)) => {
+            (t, i, @, CInitExpr(e, ni)) => {
                 /* do */ {
                     let it = tExpr(vec![], RValue, e);
                     assignCompatible_q(ni, CAssignOp, t, it);
                     i
                 }
             },
-            (t, i, <todo>, CInitList(initList, ni)) => {
+            (t, i, @, CInitList(initList, ni)) => {
                 __op_rshift(tInitList(ni, (canonicalType(t)), initList), i)
             },
         }
@@ -616,10 +724,10 @@ pub mod Language_C_Analysis_AstAnalysis {
 
     pub fn tInitList(__0: MonadTrav) -> MonadTrav {
         match (__0, __1, __2, __3, __4) {
-            (ni, t, <todo>, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [[](CInitExpr(e, <todo>, CConst(CStrConst(_, _)), _))]) => {
+            (ni, t, @, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [[](CInitExpr(e, @, CConst(CStrConst(_, _)), _))]) => {
                 __op_rshift(tExpr(vec![], RValue, e), ())
             },
-            (ni, t, <todo>, ArrayType(_, _, _, _), initList) => {
+            (ni, t, @, ArrayType(_, _, _, _), initList) => {
                 /* do */ {
                     {
                         let default_ds = repeat((CArrDesig((CConst((CIntConst((cInteger(0)), ni)))), ni)));
@@ -627,12 +735,12 @@ pub mod Language_C_Analysis_AstAnalysis {
                     checkInits(t, default_ds, initList)
                 }
             },
-            (ni, t, <todo>, DirectType(TyComp(ctr), _, _), initList) => {
+            (ni, t, @, DirectType(TyComp(ctr), _, _), initList) => {
                 /* do */ {
                     let td = lookupSUE(ni, (sueRef(ctr)));
                     let ms = tagMembers(ni, td);
                     {
-                        let default_ds = map((Lambda((fst(m)), ni)), ms);
+                        let default_ds = map((|m| { CMemberDesig }((fst(m)), ni)), ms);
                     };
                     checkInits(t, default_ds, initList)
                 }
@@ -667,7 +775,7 @@ pub mod Language_C_Analysis_AstAnalysis {
                 }
             },
             (c, CIf(e, sthen, selse, _)) => {
-                __op_rshift(checkGuard(c, e), __op_rshift(tStmt(c, sthen), __op_rshift(maybe((()), (__op_rshift(Lambda(c, s), ())), selse), voidType)))
+                __op_rshift(checkGuard(c, e), __op_rshift(tStmt(c, sthen), __op_rshift(maybe((()), (__op_rshift(|s| { tStmt }(c, s), ())), selse), voidType)))
             },
             (c, CSwitch(e, s, ni)) => {
                 __op_bind(tExpr(c, RValue, e), __op_rshift(checkIntegral_q(ni), tStmt((__op_concat(SwitchCtx, c)), s)))
@@ -696,7 +804,7 @@ pub mod Language_C_Analysis_AstAnalysis {
             },
             (c, CBreak(ni)) => {
                 /* do */ {
-                    unless((||(inLoop(c), inSwitch(c))))(astError(ni, "break statement outside of loop or switch statement".to_string()));
+                    unless(((inLoop(c) || inSwitch(c))))(astError(ni, "break statement outside of loop or switch statement".to_string()));
                     voidType
                 }
             },
@@ -758,7 +866,7 @@ pub mod Language_C_Analysis_AstAnalysis {
             (c, CFor(i, g, inc, s, _)) => {
                 /* do */ {
                     enterBlockScope;
-                    either((maybe((()), checkExpr)), (analyseDecl(True)), i);
+                    either((maybe((()), checkExpr)), (analyseDecl(true)), i);
                     maybe((()), (checkGuard(c)), g);
                     maybe((()), checkExpr, inc);
                     tStmt((__op_concat(LoopCtx, c)), s);
@@ -839,16 +947,16 @@ pub mod Language_C_Analysis_ConstEval {
     pub fn boolValue(__0: CExpr) -> Option {
         match (__0) {
             CConst(CIntConst(i, _)) => {
-                Just(/=(getCInteger(i), 0))
+                Some(/=(getCInteger(i), 0))
             },
             CConst(CCharConst(c, _)) => {
-                Just(/=(getCCharAsInt(c), 0))
+                Some(/=(getCCharAsInt(c), 0))
             },
             CConst(CStrConst(_, _)) => {
-                Just(True)
+                Some(true)
             },
             _ => {
-                Nothing
+                None
             },
         }
     }
@@ -891,13 +999,13 @@ pub mod Language_C_Analysis_ConstEval {
             (md, env, CCond(e1, me2, e3, ni)) => {
                 /* do */ {
                     let e1_q = constEval(md, env, e1);
-                    let me2_q = maybe((Nothing), (liftM(Lambda, constEval(md, env, e))), me2);
+                    let me2_q = maybe((None), (liftM(|e| { Some }, constEval(md, env, e))), me2);
                     let e3_q = constEval(md, env, e3);
                     match boolValue(e1_q) {
-                        Some(True) => {
+                        Some(true) => {
                             return(fromMaybe(e1_q, me2_q))
                         },
-                        Some(False) => {
+                        Some(false) => {
                             e3_q
                         },
                         None => {
@@ -906,7 +1014,7 @@ pub mod Language_C_Analysis_ConstEval {
                     }
                 }
             },
-            (md, env, e, <todo>, CBinary(op, e1, e2, ni)) => {
+            (md, env, e, @, CBinary(op, e1, e2, ni)) => {
                 /* do */ {
                     let e1_q = constEval(md, env, e1);
                     let e2_q = constEval(md, env, e2);
@@ -987,7 +1095,7 @@ pub mod Language_C_Analysis_ConstEval {
                     intExpr(ni, sz)
                 }
             },
-            (md, env, e, <todo>, CVar(i, _)) => {
+            (md, env, e, @, CVar(i, _)) => {
                 /* do */ {
                     let t = tExpr(vec![], RValue, e);
                     match derefTypeDef(t) {
@@ -1020,7 +1128,7 @@ pub mod Language_C_Analysis_ConstEval {
     }
 
     pub fn intExpr(n: n, i: Integer) -> m {
-        __op_bind(genName, Lambda(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
+        __op_bind(genName, |name| { return }(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
     }
 
     pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
@@ -1032,7 +1140,7 @@ pub mod Language_C_Analysis_ConstEval {
                 -(i1, i2)
             },
             (CMulOp, i1, i2) => {
-                *(i1, i2)
+                (i1 * i2)
             },
             (CDivOp, i1, i2) => {
                 div(i1, i2)
@@ -1077,7 +1185,7 @@ pub mod Language_C_Analysis_ConstEval {
                 toInteger(fromEnum(((/=(i1, 0)) && (/=(i2, 0)))))
             },
             (CLorOp, i1, i2) => {
-                toInteger(fromEnum(||((/=(i1, 0)), (/=(i2, 0)))))
+                toInteger(fromEnum(((/=(i1, 0)) || (/=(i2, 0)))))
             },
         }
     }
@@ -1085,19 +1193,19 @@ pub mod Language_C_Analysis_ConstEval {
     pub fn intUnOp(__0: CUnaryOp, __1: Integer) -> Option {
         match (__0, __1) {
             (CPlusOp, i) => {
-                Just(i)
+                Some(i)
             },
             (CMinOp, i) => {
-                Just(Operator("-")(i))
+                Some(-(i))
             },
             (CCompOp, i) => {
-                Just(complement(i))
+                Some(complement(i))
             },
             (CNegOp, i) => {
-                Just(toInteger(fromEnum((i == 0))))
+                Some(toInteger(fromEnum((i == 0))))
             },
             (_, _) => {
-                Nothing
+                None
             },
         }
     }
@@ -1105,13 +1213,13 @@ pub mod Language_C_Analysis_ConstEval {
     pub fn intValue(__0: CExpr) -> Option {
         match (__0) {
             CConst(CIntConst(i, _)) => {
-                Just(getCInteger(i))
+                Some(getCInteger(i))
             },
             CConst(CCharConst(c, _)) => {
-                Just(getCCharAsInt(c))
+                Some(getCCharAsInt(c))
             },
             _ => {
-                Nothing
+                None
             },
         }
     }
@@ -1128,7 +1236,7 @@ pub mod Language_C_Analysis_ConstEval {
                 return(fSize(md, ft))
             },
             (md, _, DirectType(TyComplex(ft), _, _)) => {
-                return(*(2, fSize(md, ft)))
+                return((2 * fSize(md, ft)))
             },
             (md, _, DirectType(TyComp(ctr), _, _)) => {
                 compSize(md, ctr)
@@ -1152,7 +1260,7 @@ pub mod Language_C_Analysis_ConstEval {
                         CConst(CIntConst(i, _)) => {
                             /* do */ {
                                 let s = sizeofType(md, n, bt);
-                                return(*(getCInteger(i), s))
+                                return((getCInteger(i) * s))
                             }
                         },
                         _ => {
@@ -1182,7 +1290,7 @@ pub mod Language_C_Analysis_ConstEval {
 
 pub mod Language_C_Analysis_Debug {
     use haskell_support::*;
-    pub fn globalDeclStats(file_filter: fn(FilePath) -> Bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
+    pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
         vec![
             ("Enumeration Constants".to_string(), Map::size(enumerators)),
             ("Total Object/Function Declarations".to_string(), Map::size(all_decls)),
@@ -1210,7 +1318,7 @@ pub mod Language_C_Analysis_Debug {
     }
 
     pub fn terminateSemi_() -> Doc {
-        hsepmap((Operator("<>")(semi)))
+        hsepmap((<>(semi)))
     }
 
 }
@@ -1224,12 +1332,12 @@ pub mod Language_C_Analysis_DeclAnalysis {
         AutoSpec,
         RegSpec,
         ThreadSpec,
-        StaticSpec(Bool),
-        ExternSpec(Bool)
+        StaticSpec(bool),
+        ExternSpec(bool)
     }
     pub use self::StorageSpec::*;
 
-    struct VarDeclInfo(VarDeclInfo, VarName, Bool, StorageSpec, Attributes, Type, NodeInfo);
+    struct VarDeclInfo(VarDeclInfo, VarName, bool, StorageSpec, Attributes, Type, NodeInfo);
 
     #[derive(Eq, Ord)]
     pub enum NumBaseType {
@@ -1271,7 +1379,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
     }
     pub use self::TypeSpecAnalysis::*;
 
-    pub fn analyseVarDecl(handle_sue_def: Bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: Bool, (CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node)): CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Option<CInit>) -> m {
+    pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: bool, (CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node)): CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Option<CInit>) -> m {
         /* do */ {
             let storage_spec = canonicalStorageSpec(storage_specs);
             let typ = tType(handle_sue_def, node, typequals, canonTySpecs, derived_declrs, oldstyle_params);
@@ -1281,7 +1389,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
         }
     }
 
-    pub fn analyseVarDecl_q(handle_sue_def: Bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Option<CInit>) -> m {
+    pub fn analyseVarDecl_q(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Option<CInit>) -> m {
         /* do */ {
             {
                 let (storage_specs, attrs, type_quals, type_specs, inline) = partitionDeclSpecs(declspecs);
@@ -1302,10 +1410,10 @@ pub mod Language_C_Analysis_DeclAnalysis {
     pub fn computeParamStorage(__0: NodeInfo, __1: StorageSpec) -> Either {
         match (__0, __1) {
             (_, NoStorageSpec) => {
-                Right((Auto(False)))
+                Right((Auto(false)))
             },
             (_, RegSpec) => {
-                Right((Auto(True)))
+                Right((Auto(true)))
             },
             (node, spec) => {
                 LeftbadSpecifierError(node)(__op_addadd("Bad storage specified for parameter: ".to_string(), show(spec)))
@@ -1314,7 +1422,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
     }
 
     pub fn emptyDeclr(node: NodeInfo) -> CDeclr {
-        CDeclr(Nothing, vec![], Nothing, vec![], node)
+        CDeclr(None, vec![], None, vec![], node)
     }
 
     pub fn emptyNumTypeSpec() -> NumTypeSpec {
@@ -1322,7 +1430,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
             base: NoBaseType,
             signSpec: NoSignSpec,
             sizeMod: NoSizeMod,
-            isComplex: False
+            isComplex: false
         })
     }
 
@@ -1337,10 +1445,10 @@ pub mod Language_C_Analysis_DeclAnalysis {
         }
     }
 
-    pub fn hasThreadLocalSpec(__0: StorageSpec) -> Bool {
+    pub fn hasThreadLocalSpec(__0: StorageSpec) -> bool {
         match (__0) {
             ThreadSpec => {
-                True
+                true
             },
             StaticSpec(b) => {
                 b
@@ -1349,13 +1457,13 @@ pub mod Language_C_Analysis_DeclAnalysis {
                 b
             },
             _ => {
-                False
+                false
             },
         }
     }
 
-    pub fn isTypeDef(declspecs: Vec<CDeclSpec>) -> Bool {
-        not(null(Dummy))
+    pub fn isTypeDef(declspecs: Vec<CDeclSpec>) -> bool {
+        not(null(<Expr::Dummy>))
     }
 
     pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) -> m {
@@ -1363,7 +1471,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
             (_node, [], declrs) => {
                 declrs
             },
-            (node, oldstyle_params, CFunDeclr(params, attrs, fdnode, <todo>, dds)) => {
+            (node, oldstyle_params, [CFunDeclr(params, attrs, fdnode), ...dds]) => {
                 match params {
                     Left(list) => {
                         /* do */ {
@@ -1371,7 +1479,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
                             let param_map = liftM(Map::fromList)(mapM(attachNameOfDecl, oldstyle_params_q));
                             let (newstyle_params, param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
                             when((not(Map::null(param_map_q))))(astError(node)(__op_addadd("declarations for parameter(s) ".to_string(), __op_addadd(showParamMap(param_map_q), " but no such parameter".to_string()))));
-                            return((__op_concat(CFunDeclr((Right((newstyle_params, False))), attrs, fdnode), dds)))
+                            return((__op_concat(CFunDeclr((Right((newstyle_params, false))), attrs, fdnode), dds)))
                         }
                     },
                     Right(_newstyle) => {
@@ -1417,10 +1525,17 @@ pub mod Language_C_Analysis_DeclAnalysis {
     }
 
     pub fn nameOfDecl(d: CDecl) -> m {
-        __op_bind(getOnlyDeclr(d), Lambda)
+        __op_bind(getOnlyDeclr(d), |declr| { match declr {
+                CDeclr(Some(name), _, _, _, _) => {
+                    name
+                },
+                CDeclr(None, _, _, _, node) => {
+                    internalErr("nameOfDecl: abstract declarator".to_string())
+                },
+            } })
     }
 
-    pub fn splitCDecl(decl: CDecl, Operator("@"): m) -> m {
+    pub fn splitCDecl(decl: CDecl, @: m) -> m {
         match declrs {
             [] => {
                 internalErr("splitCDecl applied to empty declaration".to_string())
@@ -1428,21 +1543,21 @@ pub mod Language_C_Analysis_DeclAnalysis {
             [declr] => {
                 vec![decl]
             },
-            d1__id_3a6473 => {
+            d1(__id_3a, ds) => {
                 {
                     let declspecs_q = map(elideSUEDef, declspecs, in);
-                }(return)(__op_concat((CDecl(declspecs, vec![d1], node)), Dummy))
+                }(return)(__op_concat((CDecl(declspecs, vec![d1], node)), <Expr::Dummy>))
             },
         }
     }
 
     pub fn tArraySize(__0: CArrSize) -> m {
         match (__0) {
-            CNoArrSize(False) => {
-                (UnknownArraySize(False))
+            CNoArrSize(false) => {
+                (UnknownArraySize(false))
             },
-            CNoArrSize(True) => {
-                (UnknownArraySize(True))
+            CNoArrSize(true) => {
+                (UnknownArraySize(true))
             },
             CArrSize(static, szexpr) => {
                 liftM((ArraySize(static)), (szexpr))
@@ -1458,7 +1573,7 @@ pub mod Language_C_Analysis_DeclAnalysis {
         ap((CompType(tag, sue_ref)), ap((concatMapM(tMemberDecls, member_decls)), ap((attrs), (node))))
     }
 
-    pub fn tCompTypeDecl(handle_def: Bool, (CStruct(tag, ident_opt, member_decls_opt, attrs, node_info)): CStructUnion) -> m {
+    pub fn tCompTypeDecl(handle_def: bool, (CStruct(tag, ident_opt, member_decls_opt, attrs, node_info)): CStructUnion) -> m {
         /* do */ {
             let sue_ref = createSUERef(node_info, ident_opt);
             {
@@ -1470,13 +1585,13 @@ pub mod Language_C_Analysis_DeclAnalysis {
             };
             handleTagDecl((CompDecl(decl)));
             when((handle_def))(/* do */ {
-                maybeM(member_decls_opt)(__op_bind(Lambda(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef::CompDef)))
+                maybeM(member_decls_opt)(__op_bind(|decls| { tCompType }(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef::CompDef)))
             });
             decl
         }
     }
 
-    pub fn tDirectType(handle_sue_def: Bool, node: NodeInfo, ty_quals: Vec<CTypeQual>, canonTySpec: TypeSpecAnalysis) -> m {
+    pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual>, canonTySpec: TypeSpecAnalysis) -> m {
         /* do */ {
             let (quals, attrs) = tTypeQuals(ty_quals);
             {
@@ -1542,11 +1657,11 @@ otherwise { TyFloating(floatType) },
                     };
                     when(is_inline)(astError(node, "member declaration with inline specifier".to_string()));
                     let canonTySpecs = canonicalTypeSpec(typespecs);
-                    let ty = tType(True, node, typequals, canonTySpecs, vec![], vec![]);
+                    let ty = tType(true, node, typequals, canonTySpecs, vec![], vec![]);
                     match ty {
                         DirectType(TyComp(_), _, _) => {
                             return(vec![
-                                MemberDecl((VarDecl(NoName, (DeclAttrs(False, NoStorage, vec![])), ty)), Nothing, node),
+                                MemberDecl((VarDecl(NoName, (DeclAttrs(false, NoStorage, vec![])), ty)), None, node),
                             ])
                         },
                         _ => {
@@ -1556,7 +1671,7 @@ otherwise { TyFloating(floatType) },
                 }
             },
             CDecl(declspecs, declrs, node) => {
-                mapM((uncurry(tMemberDecl)), (zip((True__id_3a726570656174(False)), declrs)))
+                mapM((uncurry(tMemberDecl)), (zip((__op_concat(true, repeat(false))), declrs)))
             },
         }
     }
@@ -1620,7 +1735,7 @@ otherwise { intType(TyChar) },
     pub fn tParamDecl((CDecl(declspecs, declrs, node)): CDecl) -> m {
         /* do */ {
             let declr = getParamDeclr;
-            let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(True, declspecs, declr, vec![], Nothing);
+            let (VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node)) = analyseVarDecl_q(true, declspecs, declr, vec![], None);
             when((is_inline))(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
             let storage = throwOnLeft(computeParamStorage(node, storage_spec));
             {
@@ -1641,7 +1756,7 @@ otherwise { intType(TyChar) },
         }
     }
 
-    pub fn tType(handle_sue_def: Bool, top_node: NodeInfo, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, derived_declrs: Vec<CDerivedDeclr>, oldstyle_params: Vec<CDecl>) -> m {
+    pub fn tType(handle_sue_def: bool, top_node: NodeInfo, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, derived_declrs: Vec<CDerivedDeclr>, oldstyle_params: Vec<CDecl>) -> m {
         __op_bind(mergeOldStyle(top_node, oldstyle_params, derived_declrs), buildType)
     }
 
@@ -1650,7 +1765,7 @@ otherwise { intType(TyChar) },
     }
 
     pub fn typeDefRef(t_node: NodeInfo, name: Ident) -> m {
-        __op_bind(lookupTypeDef(name), Lambda((TypeDefRef(name, (Just(ty)), t_node))))
+        __op_bind(lookupTypeDef(name), |ty| { return }((TypeDefRef(name, (Some(ty)), t_node))))
     }
 
 }
@@ -1683,18 +1798,31 @@ pub mod Language_C_Analysis_DefTable {
     }
     pub use self::TagEntryKind::*;
 
-    pub fn compatIdentEntry(__0: IdentEntry) -> Bool {
+    pub fn compatIdentEntry(__0: IdentEntry) -> bool {
         match (__0) {
             Left(_tydef) => {
-                either((const(True)), (const(False)))
+                either((const(true)), (const(false)))
             },
             Right(def) => {
-                either((const(False)))(Lambda)
+                either((const(false)))(|other_def| { match (def, other_def) {
+                        (EnumeratorDef(_), EnumeratorDef(_)) => {
+                            true
+                        },
+                        (EnumeratorDef(_), _) => {
+                            true
+                        },
+                        (_, EnumeratorDef(_)) => {
+                            true
+                        },
+                        (_, _) => {
+                            true
+                        },
+                    } })
             },
         }
     }
 
-    pub fn compatTagEntry(te1: TagEntry, te2: TagEntry) -> Bool {
+    pub fn compatTagEntry(te1: TagEntry, te2: TagEntry) -> bool {
         (tagKind(te1) == tagKind(te2))
     }
 
@@ -1730,7 +1858,7 @@ otherwise { (KindMismatch(old_def), deftbl) },
         }
     }
 
-    pub fn defRedeclStatus(sameKind: fn(t) -> fn(t) -> Bool, def: t, oldDecl: Option) -> Option {
+    pub fn defRedeclStatus(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option) -> Option {
         match oldDecl {
             Some, def_q => if sameKind(def, def_q) { Redeclared(def_q) }
 otherwise { KindMismatch(def_q) },
@@ -1740,7 +1868,7 @@ otherwise { KindMismatch(def_q) },
         }
     }
 
-    pub fn defRedeclStatusLocal(sameKind: fn(t) -> fn(t) -> Bool, ident: k, def: t, oldDecl: Option) -> Option {
+    pub fn defRedeclStatusLocal(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, oldDecl: Option) -> Option {
         match defRedeclStatus(sameKind, def, oldDecl) {
             NewDecl => {
                 match lookupName(nsm, ident) {
@@ -1773,10 +1901,10 @@ otherwise { KindMismatch(def_q) },
     }
 
     pub fn defineScopedIdent() -> (DeclarationStatus<IdentEntry>, DefTable) {
-        defineScopedIdentWhen((const(True)))
+        defineScopedIdentWhen((const(true)))
     }
 
-    pub fn defineScopedIdentWhen(override_def: fn(IdentDecl) -> Bool, ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
+    pub fn defineScopedIdentWhen(override_def: fn(IdentDecl) -> bool, ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
         (redecl_status, deftbl({
             identDecls: decls_q
         }))
@@ -1831,8 +1959,8 @@ otherwise { KindMismatch(def_q) },
         either(identOfTypeDef, declIdent)
     }
 
-    pub fn inFileScope(dt: DefTable) -> Bool {
-        not((||(hasLocalNames((identDecls(dt))), hasLocalNames((labelDefs(dt))))))
+    pub fn inFileScope(dt: DefTable) -> bool {
+        not(((hasLocalNames((identDecls(dt))) || hasLocalNames((labelDefs(dt))))))
     }
 
     pub fn insertType(dt: DefTable, n: Name, t: Type) -> DefTable {
@@ -1863,7 +1991,7 @@ otherwise { KindMismatch(def_q) },
     pub fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
         {
             let (decls_q, members) = leaveScope((memberDecls(deftbl)));
-        }(in, Dummy, (map(snd, members)), (deftbl({
+        }(in, <Expr::Dummy>, (map(snd, members)), (deftbl({
                 memberDecls: decls_q
             })))
     }
@@ -2031,12 +2159,12 @@ pub mod Language_C_Analysis_Export {
     pub fn exportMemberDecl(__0: MemberDecl) -> CDecl {
         match (__0) {
             AnonBitField(ty, expr, node_info) => {
-                CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(Nothing, Nothing, Just(expr))], node_info)
+                CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
             },
             MemberDecl(vardecl, bitfieldsz, node_info) => {
                 {
                     let (specs, declarator) = exportVarDecl(vardecl);
-                }(in, CDecl, specs, vec![(Just(declarator), Nothing, bitfieldsz)], node_info)
+                }(in, CDecl, specs, vec![(Some(declarator), None, bitfieldsz)], node_info)
             },
         }
     }
@@ -2044,11 +2172,11 @@ pub mod Language_C_Analysis_Export {
     pub fn exportParamDecl(paramdecl: ParamDecl) -> CDecl {
         {
             let (specs, declr) = exportVarDecl((getVarDecl(paramdecl)));
-        }(in, CDecl, specs, vec![(Just(declr), Nothing, Nothing)], (nodeInfo(paramdecl)))
+        }(in, CDecl, specs, vec![(Some(declr), None, None)], (nodeInfo(paramdecl)))
     }
 
     pub fn exportSUERef() -> Option {
-        JustinternalIdentshow
+        SomeinternalIdentshow
     }
 
     pub fn exportStorage(__0: Storage) -> Vec<CStorageSpec> {
@@ -2151,13 +2279,13 @@ pub mod Language_C_Analysis_Export {
         undefNode
     }
 
-    pub fn threadLocal(__0: Bool) -> Vec<CStorageSpec> {
+    pub fn threadLocal(__0: bool) -> Vec<CStorageSpec> {
         match (__0) {
-            False => {
+            false => {
                 id
             },
-            True => {
-                ((CThread(ni))(Operator(":")))
+            true => {
+                ((CThread(ni))(__op_concat))
             },
         }
     }
@@ -2175,10 +2303,10 @@ pub mod Language_C_Analysis_NameSpaceMap {
 
     pub fn defLocal(__0: NameSpaceMap) -> NameSpaceMap {
         match (__0, __1, __2, __3, __4) {
-            (ns, <todo>, NsMap(_, []), ident, def) => {
+            (ns, @, NsMap(_, []), ident, def) => {
                 defGlobal(ns, ident, def)
             },
-            (NsMap(gs, ls__id_3a6c7373), ident, def) => {
+            (NsMap(gs, [ls, ...lss]), ident, def) => {
                 (NsMap(gs, (__op_concat((__op_concat((ident, def), ls)), lss))), Prelude::lookup(ident, ls))
             },
         }
@@ -2201,7 +2329,7 @@ pub mod Language_C_Analysis_NameSpaceMap {
             NsMap(_, []) => {
                 __error!("NsMaps.leaveScope: No local scope!".to_string())
             },
-            NsMap(gs, ls__id_3a6c7373) => {
+            NsMap(gs, [ls, ...lss]) => {
                 (NsMap(gs, lss), ls)
             },
         }
@@ -2232,7 +2360,7 @@ pub mod Language_C_Analysis_NameSpaceMap {
                 lookupGlobal(ns, ident)
             },
             Some(def) => {
-                Just(def)
+                Some(def)
             },
         }
     }
@@ -2307,7 +2435,7 @@ pub mod Language_C_Analysis_SemError {
         }
     }
 
-    pub fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, Operator("@"): ErrorInfo) -> ErrorInfo {
+    pub fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, @: ErrorInfo) -> ErrorInfo {
         ErrorInfo(lvl, (posOfNode(node)), (__op_addadd(vec![redefErrReason(info)], prevDeclMsg(old_node))))
     }
 
@@ -2386,7 +2514,7 @@ pub mod Language_C_Analysis_SemRep {
     struct VarDecl(VarDecl, VarName, DeclAttrs, Type);
 
     #[derive(Clone, Debug)]
-    struct DeclAttrs(DeclAttrs, Bool, Storage, Attributes);
+    struct DeclAttrs(DeclAttrs, bool, Storage, Attributes);
 
     #[derive(Clone, Debug, Eq, Ord)]
     pub enum Storage {
@@ -2417,15 +2545,15 @@ pub mod Language_C_Analysis_SemRep {
 
     #[derive(Clone, Debug)]
     pub enum FunType {
-        FunType(Type, Vec<ParamDecl>, Bool),
+        FunType(Type, Vec<ParamDecl>, bool),
         FunTypeIncomplete(Type)
     }
     pub use self::FunType::*;
 
     #[derive(Clone, Debug)]
     pub enum ArraySize {
-        UnknownArraySize(Bool),
-        ArraySize(Bool, Expr)
+        UnknownArraySize(bool),
+        ArraySize(bool, Expr)
     }
     pub use self::ArraySize::*;
 
@@ -2512,7 +2640,7 @@ pub mod Language_C_Analysis_SemRep {
     struct Attr(Attr, Ident, Vec<Expr>, NodeInfo);
 
     pub fn declAttrs() -> DeclAttrs {
-        (Lambda(getVarDecl))
+        (|VarDecl(_, specs, _)| { specs }(getVarDecl))
     }
 
     pub fn declIdent() -> Ident {
@@ -2537,7 +2665,7 @@ pub mod Language_C_Analysis_SemRep {
     }
 
     pub fn declName() -> VarName {
-        (Lambda(getVarDecl))
+        (|VarDecl(n, _, _)| { n }(getVarDecl))
     }
 
     pub fn declOfDef(def: n) -> Decl {
@@ -2555,14 +2683,14 @@ pub mod Language_C_Analysis_SemRep {
     }
 
     pub fn declType() -> Type {
-        (Lambda(getVarDecl))
+        (|VarDecl(_, _, ty)| { ty }(getVarDecl))
     }
 
     pub fn emptyGlobalDecls() -> GlobalDecls {
         GlobalDecls(Map::empty, Map::empty, Map::empty)
     }
 
-    pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> Bool, gmap: GlobalDecls) -> GlobalDecls {
+    pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) -> GlobalDecls {
         GlobalDecls({
             gObjs: Map::filter((decl_filterDeclEvent), (gObjs(gmap))),
             gTags: Map::filter((decl_filterTagEvent), (gTags(gmap))),
@@ -2570,16 +2698,16 @@ pub mod Language_C_Analysis_SemRep {
         })
     }
 
-    pub fn hasLinkage(__0: Storage) -> Bool {
+    pub fn hasLinkage(__0: Storage) -> bool {
         match (__0) {
             Auto(_) => {
-                False
+                false
             },
             Static(NoLinkage, _) => {
-                False
+                false
             },
             _ => {
-                True
+                true
             },
         }
     }
@@ -2599,23 +2727,23 @@ pub mod Language_C_Analysis_SemRep {
         }
     }
 
-    pub fn isExtDecl() -> Bool {
+    pub fn isExtDecl() -> bool {
         hasLinkagedeclStorage
     }
 
-    pub fn isNoName(__0: VarName) -> Bool {
+    pub fn isNoName(__0: VarName) -> bool {
         match (__0) {
             NoName => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
 
     pub fn mergeAttributes() -> Attributes {
-        (Operator("++"))
+        (__op_addadd)
     }
 
     pub fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
@@ -2635,7 +2763,7 @@ pub mod Language_C_Analysis_SemRep {
     }
 
     pub fn noTypeQuals() -> TypeQuals {
-        TypeQuals(False, False, False)
+        TypeQuals(false, false, false)
     }
 
     pub fn objKindDescr(__0: IdentDecl) -> String {
@@ -2655,7 +2783,7 @@ pub mod Language_C_Analysis_SemRep {
         }
     }
 
-    pub fn splitIdentDecls(include_all: Bool) -> Map {
+    pub fn splitIdentDecls(include_all: bool) -> Map {
         Map::foldWithKey((if(include_all, then, deal, else, deal_q)), (Map::empty, (Map::empty, Map::empty, Map::empty)))
     }
 
@@ -2698,7 +2826,9 @@ pub mod Language_C_Analysis_TravMonad {
     pub fn addRef(use: u, def: d) -> m {
         match (nodeInfo(use), nodeInfo(def)) {
             (NodeInfo(_, _, useName), NodeInfo(_, _, defName)) => {
-                withDefTable((Lambda))
+                withDefTable((|dt| { ((), dt({
+                            refTable: insert((nameId(useName)), defName, (refTable(dt)))
+                        })) }))
             },
             (_, _) => {
                 ()
@@ -2771,7 +2901,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
         liftM(concat)mapM(f)
     }
 
-    pub fn createSUERef(_node_info: NodeInfo, (Just(ident)): Option) -> Option {
+    pub fn createSUERef(_node_info: NodeInfo, (Some(ident)): Option) -> Option {
         return(NamedRef(ident))
     }
 
@@ -2779,7 +2909,7 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
         updDefTable((ST::enterBlockScope))
     }
 
-    pub fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> Bool) -> m {
+    pub fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> bool) -> m {
         /* do */ {
             {
                 let def = Declaration(decl);
@@ -2799,11 +2929,19 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     pub fn generateName() -> Trav {
-        __op_bind(get, Lambda)
+        __op_bind(get, |ts| { /* do */ {
+                {
+                    let (__op_concat(new_name, gen_q)) = nameGenerator(ts);
+                };
+                put(ts({
+                    nameGenerator: gen_q
+                }));
+                new_name
+            } })
     }
 
     pub fn get() -> Trav {
-        Trav((Lambda((s, s))))
+        Trav((|s| { Right }((s, s))))
     }
 
     pub fn getUserState() -> Trav {
@@ -2811,10 +2949,10 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     pub fn gets(f: fn(TravState<s>) -> a) -> Trav {
-        Trav((Lambda((f(s), s))))
+        Trav((|s| { Right }((f(s), s))))
     }
 
-    pub fn hadHardErrors() -> Bool {
+    pub fn hadHardErrors() -> bool {
         (notnullfilter(isHardError))
     }
 
@@ -2844,12 +2982,12 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
         }
     }
 
-    pub fn handleObjectDef(local: Bool, ident: Ident, obj_def: ObjDef) -> m {
+    pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m {
         /* do */ {
             {
                 let def = ObjectDef(obj_def);
             };
-            let redecl = withDefTable(defineScopedIdentWhen((Lambda(def, old)), ident, def));
+            let redecl = withDefTable(defineScopedIdentWhen((|old| { shouldOverride }(def, old)), ident, def));
             checkVarRedef(def, redecl);
             handleDecl(((if(local, then, LocalEvent, else, DeclEvent))(def)));
 
@@ -2858,13 +2996,13 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
 
     pub fn handleParamDecl(__0: ParamDecl, __1: m) -> m {
         match (__0, __1, __2) {
-            (pd, <todo>, AbstractParamDecl(_, _)) => {
+            (pd, @, AbstractParamDecl(_, _)) => {
                 handleDecl((ParamEvent(pd)))
             },
-            (pd, <todo>, ParamDecl(vardecl, node)) => {
+            (pd, @, ParamDecl(vardecl, node)) => {
                 /* do */ {
                     {
-                        let def = ObjectDef((ObjDef(vardecl, Nothing, node)));
+                        let def = ObjectDef((ObjDef(vardecl, None, node)));
                     };
                     let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
                     checkVarRedef(def, redecl);
@@ -2890,10 +3028,10 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     pub fn handleTravError(a: m) -> m {
-        catchTravError(liftM(Just, a), (__op_rshift(Lambda(e), Nothing)))
+        catchTravError(liftM(Some, a), (__op_rshift(|e| { recordError }(e), None)))
     }
 
-    pub fn handleTypeDef(typeDef: TypeDef, Operator("@"): m) -> m {
+    pub fn handleTypeDef(typeDef: TypeDef, @: m) -> m {
         /* do */ {
             let redecl = withDefTable(defineTypeDef(ident, typeDef));
             checkRedef((show(ident)), typeDef, redecl);
@@ -2902,9 +3040,9 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
         }
     }
 
-    pub fn handleVarDecl(is_local: Bool, decl: Decl) -> m {
+    pub fn handleVarDecl(is_local: bool, decl: Decl) -> m {
         /* do */ {
-            let def = enterDecl(decl, (const(False)));
+            let def = enterDecl(decl, (const(false)));
             handleDecl(((if(is_local, then, LocalEvent, else, DeclEvent))(def)))
         }
     }
@@ -2922,13 +3060,13 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
         })
     }
 
-    pub fn isDeclaration(__0: IdentDecl) -> Bool {
+    pub fn isDeclaration(__0: IdentDecl) -> bool {
         match (__0) {
             Declaration(_) => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
@@ -2948,20 +3086,37 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     pub fn lookupObject(ident: Ident) -> m {
         /* do */ {
             let old_decl = liftM((lookupIdent(ident)), getDefTable);
-            mapMaybeM(old_decl)(Lambda)
+            mapMaybeM(old_decl)(|obj| { match obj {
+                    Right(objdef) => {
+                        __op_rshift(addRef(ident, objdef), objdef)
+                    },
+                    Left(_tydef) => {
+                        astError((nodeInfo(ident)), (mismatchErr("lookupObject".to_string(), "an object".to_string(), "a typeDef".to_string())))
+                    },
+                } })
         }
     }
 
     pub fn lookupTypeDef(ident: Ident) -> m {
-        __op_bind(getDefTable, Lambda)
+        __op_bind(getDefTable, |symt| { match lookupIdent(ident, symt) {
+                None => {
+                    astError((nodeInfo(ident)))(__op_addadd("unbound typeDef: ".to_string(), identToString(ident)))
+                },
+                Some(Left(TypeDef(def_ident, ty, _, _))) => {
+                    __op_rshift(addRef(ident, def_ident), ty)
+                },
+                Some(Right(d)) => {
+                    astError((nodeInfo(ident)), (wrongKindErrMsg(d)))
+                },
+            } })
     }
 
     pub fn mapMaybeM(m: Option<a>, f: fn(a) -> m<b>) -> m {
-        maybe((Nothing), (liftM(Just)f), m)
+        maybe((None), (liftM(Some)f), m)
     }
 
     pub fn mapSndM(f: fn(b) -> m<c>, (a, b): (a, b)) -> m {
-        liftM((Dummy(a)), (f(b)))
+        liftM((<Expr::Dummy>(a)), (f(b)))
     }
 
     pub fn maybeM(m: Option<a>, f: fn(a) -> m<()>) -> m {
@@ -2973,23 +3128,23 @@ otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
     }
 
     pub fn modify(f: fn(TravState<s>) -> TravState<s>) -> Trav {
-        Trav((Lambda(((), f(s)))))
+        Trav((|s| { Right }(((), f(s)))))
     }
 
     pub fn modifyOptions(f: fn(TravOptions) -> TravOptions) -> Trav {
-        modify(Lambda({
+        modify(|ts| { ts }({
             options: f((options(ts)))
         }))
     }
 
     pub fn modifyUserState(f: fn(s) -> s) -> Trav {
-        modify(Lambda({
+        modify(|ts| { ts }({
             userState: f((userState(ts)))
         }))
     }
 
     pub fn put(s: TravState) -> TravState {
-        Trav((Lambda(((), s))))
+        Trav((|_| { Right }(((), s))))
     }
 
     pub fn redefErr(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKind) -> m {
@@ -3030,7 +3185,7 @@ otherwise { Right((v, ts)) },
     }
 
     pub fn updDefTable(f: fn(DefTable) -> DefTable) -> m {
-        withDefTable((Lambda))
+        withDefTable((|st| { ((), f(st)) }))
     }
 
     pub fn warn(err: e) -> m {
@@ -3039,7 +3194,7 @@ otherwise { Right((v, ts)) },
 
     pub fn withExtDeclHandler(action: Trav) -> Trav {
         /* do */ {
-            modify(Lambda({
+            modify(|st| { st }({
                 doHandleExtDecl: handler
             }));
             action
@@ -3138,13 +3293,13 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
                             return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
                         },
                         None => {
-                            fail(render(__op_arrow_concat(text("invalid binary operation:".to_string()), __op_arrow_concat(pretty(t1), __op_arrow_concat(pretty(op), pretty(t2))))))
+                            fail(render(<+>(text("invalid binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2))))))
                         },
                     }
                 }
             },
             (_, _, _) => {
-                fail(render(__op_arrow_concat(text("unhandled binary operation:".to_string()), __op_arrow_concat(pretty(t1), __op_arrow_concat(pretty(op), pretty(t2))))))
+                fail(render(<+>(text("unhandled binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2))))))
             },
         }
     }
@@ -3240,7 +3395,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
             (DirectType(TyBuiltin(TyAny), _, _), t2) => {
                 t2
             },
-            (t1, <todo>, DirectType(tn1, q1, a1), t2, <todo>, DirectType(tn2, q2, a2)) => {
+            (t1, @, DirectType(tn1, q1, a1), t2, @, DirectType(tn2, q2, a2)) => {
                 /* do */ {
                     let tn = match (tn1, tn2) {
                         (TyVoid, TyVoid) => {
@@ -3360,7 +3515,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
             (ArrayType(t1_q, _, q1, a1), ArrayType(t2_q, _, q2, a2)) => {
                 /* do */ {
                     let t = compositeType(t1_q, t2_q);
-                    return(ArrayType(t, (UnknownArraySize(False)), (mergeTypeQuals(q1, q2)), (mergeAttrs(a1, a2))))
+                    return(ArrayType(t, (UnknownArraySize(false)), (mergeTypeQuals(q1, q2)), (mergeAttrs(a1, a2))))
                 }
             },
             (t1_q(@, DirectType(tn1, q1, a1)), t2_q(@, DirectType(tn2, q2, a2))) => {
@@ -3388,10 +3543,10 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
             CIntConst(CInteger(_, _, flags), _) => {
                 return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
             },
-            CCharConst(CChar(_, True), _) => {
+            CCharConst(CChar(_, true), _) => {
                 return(DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes))
             },
-            CCharConst(CChar(_, False), _) => {
+            CCharConst(CChar(_, false), _) => {
                 return(DirectType((TyIntegral(TyChar)), noTypeQuals, noAttributes))
             },
             CCharConst(CChars(_, _), _) => {
@@ -3407,7 +3562,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
 ;
                         let ni_q = mkNodeInfo((posOf(ni)), n);
 ;
-                        let arraySize = ArraySize(True, (CConst((CIntConst((cInteger((toInteger((length(chars)))))), ni_q)))));
+                        let arraySize = ArraySize(true, (CConst((CIntConst((cInteger((toInteger((length(chars)))))), ni_q)))));
                     };
                     return(ArrayType((DirectType((TyIntegral(charType)), noTypeQuals, noAttributes)), arraySize, noTypeQuals, vec![]))
                 }
@@ -3418,28 +3573,28 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
     pub fn deepTypeAttrs(__0: Type) -> m {
         match (__0) {
             DirectType(TyComp(CompTypeRef(sue, _, ni)), _, attrs) => {
-                liftM((attrs(Operator("++"))), sueAttrs(ni, sue))
+                liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
             },
             DirectType(TyEnum(EnumTypeRef(sue, ni)), _, attrs) => {
-                liftM((attrs(Operator("++"))), sueAttrs(ni, sue))
+                liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
             },
             DirectType(_, _, attrs) => {
                 attrs
             },
             PtrType(t, _, attrs) => {
-                liftM((attrs(Operator("++"))), deepTypeAttrs(t))
+                liftM((attrs(__op_addadd)), deepTypeAttrs(t))
             },
             ArrayType(t, _, _, attrs) => {
-                liftM((attrs(Operator("++"))), deepTypeAttrs(t))
+                liftM((attrs(__op_addadd)), deepTypeAttrs(t))
             },
             FunctionType(FunType(t, _, _), attrs) => {
-                liftM((attrs(Operator("++"))), deepTypeAttrs(t))
+                liftM((attrs(__op_addadd)), deepTypeAttrs(t))
             },
             FunctionType(FunTypeIncomplete(t), attrs) => {
-                liftM((attrs(Operator("++"))), deepTypeAttrs(t))
+                liftM((attrs(__op_addadd)), deepTypeAttrs(t))
             },
             TypeDefType(TypeDefRef(i, _, ni), _, attrs) => {
-                liftM((attrs(Operator("++"))), typeDefAttrs(ni, i))
+                liftM((attrs(__op_addadd)), typeDefAttrs(ni, i))
             },
         }
     }
@@ -3519,7 +3674,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
     }
 
     pub fn mergeAttrs() -> Attributes {
-        (Operator("++"))
+        (__op_addadd)
     }
 
     pub fn notFound(i: Ident) -> Either {
@@ -3530,7 +3685,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
         renderpretty
     }
 
-    pub fn sizeEqual(__0: CExpr, __1: CExpr) -> Bool {
+    pub fn sizeEqual(__0: CExpr, __1: CExpr) -> bool {
         match (__0, __1) {
             (CConst(CIntConst(i1, _)), CConst(CIntConst(i2, _))) => {
                 (i1 == i2)
@@ -3580,7 +3735,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
                     astError(ni)(__op_addadd("can\'t find typedef name: ".to_string(), identToString(i)))
                 },
                 Some(Left(TypeDef(_, t, attrs, _))) => {
-                    liftM((attrs(Operator("++"))), deepTypeAttrs(t))
+                    liftM((attrs(__op_addadd)), deepTypeAttrs(t))
                 },
                 Some(Right(_)) => {
                     astError(ni)(__op_addadd("not a typedef name: ".to_string(), identToString(i)))
@@ -3607,7 +3762,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
     pub fn varAddrType(d: IdentDecl) -> Either {
         /* do */ {
             match declStorage(d) {
-                Auto(True) => {
+                Auto(true) => {
                     fail("address of register variable".to_string())
                 },
                 _ => {
@@ -3633,43 +3788,43 @@ pub mod Language_C_Analysis_TypeConversions {
     pub fn arithmeticConversion(__0: TypeName, __1: TypeName) -> Option {
         match (__0, __1) {
             (TyComplex(t1), TyComplex(t2)) => {
-                Just(TyComplex(floatConversion(t1, t2)))
+                Some(TyComplex(floatConversion(t1, t2)))
             },
             (TyComplex(t1), TyFloating(t2)) => {
-                Just(TyComplex(floatConversion(t1, t2)))
+                Some(TyComplex(floatConversion(t1, t2)))
             },
             (TyFloating(t1), TyComplex(t2)) => {
-                Just(TyComplex(floatConversion(t1, t2)))
+                Some(TyComplex(floatConversion(t1, t2)))
             },
-            (t1, <todo>, TyComplex(_), TyIntegral(_)) => {
-                Just(t1)
+            (t1, @, TyComplex(_), TyIntegral(_)) => {
+                Some(t1)
             },
-            (TyIntegral(_), t2, <todo>, TyComplex(_)) => {
-                Just(t2)
+            (TyIntegral(_), t2, @, TyComplex(_)) => {
+                Some(t2)
             },
             (TyFloating(t1), TyFloating(t2)) => {
-                Just(TyFloating(floatConversion(t1, t2)))
+                Some(TyFloating(floatConversion(t1, t2)))
             },
-            (t1, <todo>, TyFloating(_), TyIntegral(_)) => {
-                Just(t1)
+            (t1, @, TyFloating(_), TyIntegral(_)) => {
+                Some(t1)
             },
-            (TyIntegral(_), t2, <todo>, TyFloating(_)) => {
-                Just(t2)
+            (TyIntegral(_), t2, @, TyFloating(_)) => {
+                Some(t2)
             },
             (TyIntegral(t1), TyIntegral(t2)) => {
-                Just(TyIntegral(intConversion(t1, t2)))
+                Some(TyIntegral(intConversion(t1, t2)))
             },
             (TyEnum(_), TyEnum(_)) => {
-                Just(TyIntegral(TyInt))
+                Some(TyIntegral(TyInt))
             },
             (TyEnum(_), t2) => {
-                Just(t2)
+                Some(t2)
             },
             (t1, TyEnum(_)) => {
-                Just(t1)
+                Some(t1)
             },
             (_, _) => {
-                Nothing
+                None
             },
         }
     }
@@ -3725,7 +3880,7 @@ pub mod Language_C_Analysis_TypeUtils {
     }
 
     pub fn constPtr(t: Type) -> Type {
-        PtrType(t, (TypeQuals(True, False, False)), vec![])
+        PtrType(t, (TypeQuals(true, false, false)), vec![])
     }
 
     pub fn constVoidPtr() -> Type {
@@ -3774,18 +3929,18 @@ pub mod Language_C_Analysis_TypeUtils {
         DirectType((TyIntegral(ty)), noTypeQuals, noAttributes)
     }
 
-    pub fn isFloatingType(__0: Type) -> Bool {
+    pub fn isFloatingType(__0: Type) -> bool {
         match (__0) {
             DirectType(TyFloating(_), _, _) => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
 
-    pub fn isFunctionType(ty: Type) -> Bool {
+    pub fn isFunctionType(ty: Type) -> bool {
         match ty {
             TypeDefType(TypeDefRef(_, Some(actual_ty), _), _, _) => {
                 isFunctionType(actual_ty)
@@ -3794,44 +3949,44 @@ pub mod Language_C_Analysis_TypeUtils {
                 __error!("isFunctionType: unresolved typeDef".to_string())
             },
             FunctionType(_, _) => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
 
-    pub fn isIntegralType(__0: Type) -> Bool {
+    pub fn isIntegralType(__0: Type) -> bool {
         match (__0) {
             DirectType(TyIntegral(_), _, _) => {
-                True
+                true
             },
             DirectType(TyEnum(_), _, _) => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
 
-    pub fn isPointerType(__0: Type) -> Bool {
+    pub fn isPointerType(__0: Type) -> bool {
         match (__0) {
             PtrType(_, _, _) => {
-                True
+                true
             },
             ArrayType(_, _, _, _) => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
 
-    pub fn isScalarType(t: Type) -> Bool {
-        ||(isIntegralType(t), ||(isPointerType(t), isFloatingType(t)))
+    pub fn isScalarType(t: Type) -> bool {
+        (isIntegralType(t) || (isPointerType(t) || isFloatingType(t)))
     }
 
     pub fn ptrDiffType() -> Type {
@@ -3847,7 +4002,7 @@ pub mod Language_C_Analysis_TypeUtils {
     }
 
     pub fn stringType() -> Type {
-        ArrayType((DirectType((TyIntegral(TyChar)), (TypeQuals(True, False, False)), noAttributes)), (UnknownArraySize(False)), noTypeQuals, vec![])
+        ArrayType((DirectType((TyIntegral(TyChar)), (TypeQuals(true, false, false)), noAttributes)), (UnknownArraySize(false)), noTypeQuals, vec![])
     }
 
     pub fn testFlags(flags: Enum) -> Enum {
@@ -3981,15 +4136,15 @@ pub mod Language_C_Data_Error {
     struct UnsupportedFeature(UnsupportedFeature, String, Position);
 
     pub fn errorLevel() -> ErrorLevel {
-        (Lambda(errorInfo))
+        (|ErrorInfo(lvl, _, _)| { lvl }(errorInfo))
     }
 
     pub fn errorMsgs() -> Vec<String> {
-        (Lambda(errorInfo))
+        (|ErrorInfo(_, _, msgs)| { msgs }(errorInfo))
     }
 
     pub fn errorPos() -> Position {
-        (Lambda(errorInfo))
+        (|ErrorInfo(_, pos, _)| { pos }(errorInfo))
     }
 
     pub fn indent() -> String {
@@ -3997,7 +4152,7 @@ pub mod Language_C_Data_Error {
     }
 
     pub fn indentLines() -> String {
-        unlinesmap((indent(Operator("++"))))lines
+        unlinesmap((indent(__op_addadd)))lines
     }
 
     pub fn internalErr(msg: String) -> a {
@@ -4011,7 +4166,7 @@ pub mod Language_C_Data_Error {
             ])
     }
 
-    pub fn isHardError() -> Bool {
+    pub fn isHardError() -> bool {
         (>((), LevelWarn(errorLevel)))
     }
 
@@ -4024,7 +4179,7 @@ pub mod Language_C_Data_Error {
     }
 
     pub fn showErrorInfo(short_msg: String, (ErrorInfo(level, pos, msgs)): ErrorInfo) -> String {
-        __op_addadd(header, showMsgLines((if(null, short_msg, then, msgs, else, short_msg__id_3a6d736773))))
+        __op_addadd(header, showMsgLines((__op_concat(if(null, short_msg, then, msgs, else, short_msg), msgs))))
     }
 
     pub fn unsupportedFeature(msg: String, a: a) -> UnsupportedFeature {
@@ -4090,18 +4245,18 @@ pub mod Language_C_Data_Ident {
         Ident(s, (quad(s)), (mkNodeInfoPosLen(pos, (pos, length(s)))))
     }
 
-    pub fn isAnonymousRef(__0: SUERef) -> Bool {
+    pub fn isAnonymousRef(__0: SUERef) -> bool {
         match (__0) {
             AnonymousRef(_) => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
 
-    pub fn isInternalIdent((Ident(_, _, nodeinfo)): Ident) -> Bool {
+    pub fn isInternalIdent((Ident(_, _, nodeinfo)): Ident) -> bool {
         isInternalPos((posOfNode(nodeinfo)))
     }
 
@@ -4111,16 +4266,16 @@ pub mod Language_C_Data_Ident {
 
     pub fn quad(__0: String) -> isize {
         match (__0) {
-            c1__id_3a63323a63333a63343a73 => {
-                +((mod((*(ord(c4), +(bits21, *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28)))
+            [c1, ...[c2, ...[c3, ...[c4, ...s]]]] => {
+                +((mod(((ord(c4) * +(bits21, (ord(c3) * +(bits14, (ord(c2) * +(bits7, ord(c1)))))))), bits28)), (mod(quad(s), bits28)))
             },
-            c1__id_3a63323a63333a([]) => {
-                *(ord(c3), +(bits14, *(ord(c2), +(bits7, ord(c1)))))
+            [c1, ...[c2, ...[c3, ...[]]]] => {
+                (ord(c3) * +(bits14, (ord(c2) * +(bits7, ord(c1)))))
             },
-            c1__id_3a63323a([]) => {
-                *(ord(c2), +(bits7, ord(c1)))
+            [c1, ...[c2, ...[]]] => {
+                (ord(c2) * +(bits7, ord(c1)))
             },
-            c1__id_3a([]) => {
+            [c1, ...[]] => {
                 ord(c1)
             },
             [] => {
@@ -4145,7 +4300,7 @@ pub mod Language_C_Data_InputStream {
         }
     }
 
-    pub fn inputStreamEmpty() -> Bool {
+    pub fn inputStreamEmpty() -> bool {
         match () {
             () => {
                 BSW::null
@@ -4206,7 +4361,7 @@ pub mod Language_C_Data_InputStream {
 
     pub fn takeChars(__0: isize, __1: InputStream, __2: Vec<Char>) -> Vec<Char> {
         match (__0, __1, __2) {
-            (<todo>, n, bstr) => {
+            (!, n, bstr) => {
                 BSC::unpack(BSC::take(n, bstr))
             },
             (n, __str) => {
@@ -4263,8 +4418,8 @@ pub mod Language_C_Data_Node {
         undefNode
     }
 
-    pub fn isUndefNode(_: NodeInfo) -> Bool {
-        False
+    pub fn isUndefNode(_: NodeInfo) -> bool {
+        false
     }
 
     pub fn lengthOfNode(ni: NodeInfo) -> Option {
@@ -4272,11 +4427,11 @@ pub mod Language_C_Data_Node {
     }
 
     pub fn mkNodeInfo(pos: Position, name: Name) -> NodeInfo {
-        NodeInfo(pos, (nopos, Operator("-")(1)), name)
+        NodeInfo(pos, (nopos, -(1)), name)
     }
 
     pub fn mkNodeInfoOnlyPos(pos: Position) -> NodeInfo {
-        OnlyPos(pos, (nopos, Operator("-")(1)))
+        OnlyPos(pos, (nopos, -(1)))
     }
 
     pub fn mkNodeInfoPosLen() -> NodeInfo {
@@ -4290,10 +4445,10 @@ pub mod Language_C_Data_Node {
     pub fn nameOfNode(__0: NodeInfo) -> Option {
         match (__0) {
             OnlyPos(_, _) => {
-                Nothing
+                None
             },
             NodeInfo(_, _, name) => {
-                Just(name)
+                Some(name)
             },
         }
     }
@@ -4310,7 +4465,7 @@ pub mod Language_C_Data_Node {
     }
 
     pub fn undefNode() -> NodeInfo {
-        OnlyPos(nopos, (nopos, Operator("-")(1)))
+        OnlyPos(nopos, (nopos, -(1)))
     }
 
 }
@@ -4372,46 +4527,46 @@ pub mod Language_C_Data_Position {
         InternalPosition
     }
 
-    pub fn isBuiltinPos(__0: Position) -> Bool {
+    pub fn isBuiltinPos(__0: Position) -> bool {
         match (__0) {
             BuiltinPosition => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
 
-    pub fn isInternalPos(__0: Position) -> Bool {
+    pub fn isInternalPos(__0: Position) -> bool {
         match (__0) {
             InternalPosition => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
 
-    pub fn isNoPos(__0: Position) -> Bool {
+    pub fn isNoPos(__0: Position) -> bool {
         match (__0) {
             NoPosition => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
 
-    pub fn isSourcePos(__0: Position) -> Bool {
+    pub fn isSourcePos(__0: Position) -> bool {
         match (__0) {
             Position(_, _, _, _) => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
@@ -4477,7 +4632,7 @@ pub mod Language_C_Data_RList {
             Reversed([]) => {
                 __error!("viewr: empty RList".to_string())
             },
-            Reversed(x__id_3a7873) => {
+            Reversed([x, ...xs]) => {
                 (Reversed(xs), x)
             },
         }
@@ -4512,19 +4667,26 @@ pub mod Language_C_Parser_ParserMonad {
 
     struct PState(PState, { /* struct def */ });
 
-    let (P(m)) = |Operator("thenP"), k| {
-        P(Lambda)
+    let (P(m)) = |thenP, k| {
+        P(|s| { match m(s) {
+                POk(s_q, a) => {
+                    (unP((k(a))))(s_q)
+                },
+                PFailed(err, pos) => {
+                    PFailed(err, pos)
+                },
+            } })
     };
 
     pub fn addTypedef(ident: Ident) -> P {
-        (P(Lambda(s, {
+        (P(|s, @, PState, { .. }| { POk }(s, {
             tyidents: Set.insert(ident, tyids)
         }, ())))
     }
 
     pub fn enterScope() -> P {
-        P(Lambda(s, {
-            scopes: tyids__id_3a7373
+        P(|s, @, PState, { .. }| { POk }(s, {
+            scopes: __op_concat(tyids, ss)
         }, ()))
     }
 
@@ -4540,55 +4702,65 @@ pub mod Language_C_Parser_ParserMonad {
     }
 
     pub fn failP(pos: Position, msg: Vec<String>) -> P {
-        P(Lambda(msg, pos))
+        P(|_| { PFailed }(msg, pos))
     }
 
     pub fn getCurrentPosition() -> P {
-        P(Lambda(s, pos))
+        P(|s, @, PState, { .. }| { POk }(s, pos))
     }
 
     pub fn getInput() -> P {
-        P(Lambda(s, i))
+        P(|s, @, PState, { .. }| { POk }(s, i))
     }
 
     pub fn getLastToken() -> P {
-        P(Lambda(s, tok))
+        P(|s, @, PState, { .. }| { POk }(s, tok))
     }
 
     pub fn getNewName() -> P {
-        P(seq(Lambda, POk(s, {
+        P(seq(|s, @, PState, { .. }| { n }, POk(s, {
             namesupply: ns
         }, n)))
     }
 
     pub fn getPos() -> P {
-        P(Lambda(s, pos))
+        P(|s, @, PState, { .. }| { POk }(s, pos))
     }
 
     pub fn getSavedToken() -> P {
-        P(Lambda(s, tok))
+        P(|s, @, PState, { .. }| { POk }(s, tok))
     }
 
     pub fn handleEofToken() -> P {
-        P(Lambda(s, {
+        P(|s| { POk }(s, {
             savedToken: (prevToken(s))
         }, ()))
     }
 
     pub fn isTypeIdent(ident: Ident) -> P {
-        P($!(Lambda(s), Set::member(ident, tyids)))
+        P($!(|s, @, PState, { .. }| { POk }(s), Set::member(ident, tyids)))
     }
 
     pub fn leaveScope() -> P {
-        P(Lambda)
+        P(|s, @, PState, { .. }| { match ss {
+                [] => {
+                    __error!("leaveScope: already in global scope".to_string())
+                },
+                tyids(__id_3a, ss_q) => {
+                    POk(s, {
+                        tyidents: tyids,
+                        scopes: ss_q
+                    }, ())
+                },
+            } })
     }
 
     pub fn returnP(a: a) -> P {
-        P(Lambda(s, a))
+        P(|s| { POk }(s, a))
     }
 
     pub fn setInput(i: InputStream) -> P {
-        P(Lambda(s, {
+        P(|s| { POk }(s, {
             curInput: i
         }, ()))
     }
@@ -4596,12 +4768,12 @@ pub mod Language_C_Parser_ParserMonad {
     pub fn setLastToken(__0: CToken) -> P {
         match (__0) {
             CTokEof => {
-                P(Lambda(s, {
+                P(|s| { POk }(s, {
                     savedToken: (prevToken(s))
                 }, ()))
             },
             tok => {
-                P(Lambda(s, {
+                P(|s| { POk }(s, {
                     prevToken: tok,
                     savedToken: (prevToken(s))
                 }, ()))
@@ -4610,13 +4782,13 @@ pub mod Language_C_Parser_ParserMonad {
     }
 
     pub fn setPos(pos: Position) -> P {
-        P(Lambda(s, {
+        P(|s| { POk }(s, {
             curPos: pos
         }, ()))
     }
 
     pub fn shadowTypedef(ident: Ident) -> P {
-        (P(Lambda(s, {
+        (P(|s, @, PState, { .. }| { POk }(s, {
             tyidents: Set.member(if(ident), Set.delete(tyids(then, ident), tyids(else, tyids)))
         }, ())))
     }
@@ -5114,7 +5286,7 @@ pub mod Language_C_Pretty {
         textidentToString
     }
 
-    pub fn ifP(flag: Bool, doc: Doc) -> Doc {
+    pub fn ifP(flag: bool, doc: Doc) -> Doc {
         if(flag, then, doc, else, empty)
     }
 
@@ -5127,15 +5299,15 @@ pub mod Language_C_Pretty {
     }
 
     pub fn mlistP(pp: fn(Vec<p>) -> Doc, xs: Vec<p>) -> Doc {
-        maybeP(pp, (if(null, xs, then, Nothing, else, Just, xs)))
+        maybeP(pp, (if(null, xs, then, None, else, Some, xs)))
     }
 
     pub fn parenPrec(prec: isize, prec2: isize, t: Doc) -> Doc {
         <=(if(prec), prec2(then, t, else, parens, t))
     }
 
-    pub fn prettyDeclr(show_attrs: Bool, prec: isize, (CDeclr(name, derived_declrs, asmname, cattrs, _)): CDeclr) -> Doc {
-        __op_arrow_concat(ppDeclr(prec, (reverse(derived_declrs))), __op_arrow_concat(prettyAsmName(asmname), ifP(show_attrs, (attrlistP(cattrs)))))
+    pub fn prettyDeclr(show_attrs: bool, prec: isize, (CDeclr(name, derived_declrs, asmname, cattrs, _)): CDeclr) -> Doc {
+        <+>(ppDeclr(prec, (reverse(derived_declrs))), <+>(prettyAsmName(asmname), ifP(show_attrs, (attrlistP(cattrs)))))
     }
 
     pub fn prettyUsingInclude((CTranslUnit(edecls, _)): CTranslUnit) -> Doc {
@@ -5171,14 +5343,14 @@ pub mod Language_C_Syntax_AST {
     pub enum CDerivedDeclarator<a> {
         CPtrDeclr(Vec<CTypeQualifier<a>>, a),
         CArrDeclr(Vec<CTypeQualifier<a>>, CArraySize<a>, a),
-        CFunDeclr(Either<Vec<Ident>, (Vec<CDeclaration<a>>, Bool)>, Vec<CAttribute<a>>, a)
+        CFunDeclr(Either<Vec<Ident>, (Vec<CDeclaration<a>>, bool)>, Vec<CAttribute<a>>, a)
     }
     pub use self::CDerivedDeclarator::*;
 
     #[derive(Clone, Debug)]
     pub enum CArraySize<a> {
-        CNoArrSize(Bool),
-        CArrSize(Bool, CExpression<a>)
+        CNoArrSize(bool),
+        CArrSize(bool, CExpression<a>)
     }
     pub use self::CArraySize::*;
 
@@ -5192,7 +5364,7 @@ pub mod Language_C_Syntax_AST {
         CCompound(Vec<Ident>, Vec<CCompoundBlockItem<a>>, a),
         CIf(CExpression<a>, CStatement<a>, Option<CStatement<a>>, a),
         CSwitch(CExpression<a>, CStatement<a>, a),
-        CWhile(CExpression<a>, CStatement<a>, Bool, a),
+        CWhile(CExpression<a>, CStatement<a>, bool, a),
         CFor(Either<Option<CExpression<a>>, CDeclaration<a>>, Option<CExpression<a>>, Option<CExpression<a>>, CStatement<a>, a),
         CGoto(Ident, a),
         CGotoPtr(CExpression<a>, a),
@@ -5314,7 +5486,7 @@ pub mod Language_C_Syntax_AST {
         CComplexImag(CExpression<a>, a),
         CIndex(CExpression<a>, CExpression<a>, a),
         CCall(CExpression<a>, Vec<CExpression<a>>, a),
-        CMember(CExpression<a>, Ident, Bool, a),
+        CMember(CExpression<a>, Ident, bool, a),
         CVar(Ident, a),
         CConst(CConstant<a>),
         CCompoundLit(CDeclaration<a>, CInitializerList<a>, a),
@@ -5349,19 +5521,19 @@ pub mod Language_C_Syntax_AST {
     }
 
     pub fn fmapInitList(_f: fn(a) -> b) -> CInitializerList<b> {
-        map((Lambda))
+        map((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
     }
 
     pub fn isSUEDef(__0: CTypeSpecifier) -> CTypeSpecifier {
         match (__0) {
             CSUType(CStruct(_, _, Some(_), _, _), _) => {
-                True
+                true
             },
             CEnumType(CEnum(_, Some(_), _, _), _) => {
-                True
+                true
             },
             _ => {
-                False
+                false
             },
         }
     }
@@ -5370,8 +5542,8 @@ pub mod Language_C_Syntax_AST {
         CStrConst(__str, at)
     }
 
-    pub fn partitionDeclSpecs() -> (Vec<CStorageSpecifier<a>>, Vec<CAttribute<a>>, Vec<CTypeQualifier<a>>, Vec<CTypeSpecifier<a>>, Bool) {
-        foldr(deals, (vec![], vec![], vec![], vec![], False))
+    pub fn partitionDeclSpecs() -> (Vec<CStorageSpecifier<a>>, Vec<CAttribute<a>>, Vec<CTypeQualifier<a>>, Vec<CTypeSpecifier<a>>, bool) {
+        foldr(deals, (vec![], vec![], vec![], vec![], false))
     }
 
 }
@@ -5381,8 +5553,8 @@ pub mod Language_C_Syntax_Constants {
     use haskell_support::*;
     #[derive(Clone, Debug, Eq, Ord)]
     pub enum CChar {
-        CChar(Char, Bool),
-        CChars(Vec<Char>, Bool)
+        CChar(Char, bool),
+        CChars(Vec<Char>, bool)
     }
     pub use self::CChar::*;
 
@@ -5410,18 +5582,18 @@ pub mod Language_C_Syntax_Constants {
     struct CFloat(CFloat, String);
 
     #[derive(Clone, Debug, Eq, Ord)]
-    struct CString(CString, Vec<Char>, Bool);
+    struct CString(CString, Vec<Char>, bool);
 
-    pub fn _showWideFlag(flag: Bool) -> ShowS {
+    pub fn _showWideFlag(flag: bool) -> ShowS {
         if(flag, then, showString, "L".to_string(), else, id)
     }
 
     pub fn cChar(c: Char) -> CChar {
-        CChar(c, False)
+        CChar(c, false)
     }
 
     pub fn cChar_w(c: Char) -> CChar {
-        CChar(c, True)
+        CChar(c, true)
     }
 
     pub fn cChars() -> CChar {
@@ -5437,11 +5609,11 @@ pub mod Language_C_Syntax_Constants {
     }
 
     pub fn cString(__str: String) -> CString {
-        CString(__str, False)
+        CString(__str, false)
     }
 
     pub fn cString_w(__str: String) -> CString {
-        CString(__str, True)
+        CString(__str, true)
     }
 
     pub fn clearFlag(flag: f, (Flags(k)): Flags) -> Flags {
@@ -5527,26 +5699,26 @@ pub mod Language_C_Syntax_Constants {
             (err, []) => {
                 __error!(err)
             },
-            (_, x__id_3a5f) => {
+            (_, [x, ..._]) => {
                 x
             },
         }
     }
 
-    pub fn isAsciiSourceChar(c: Char) -> Bool {
+    pub fn isAsciiSourceChar(c: Char) -> bool {
         (isAscii(c) && isPrint(c))
     }
 
-    pub fn isCChar(__0: Char) -> Bool {
+    pub fn isCChar(__0: Char) -> bool {
         match (__0) {
             '\\' => {
-                False
+                false
             },
             '\'' => {
-                False
+                false
             },
             '\n' => {
-                False
+                false
             },
             c => {
                 isAsciiSourceChar(c)
@@ -5554,16 +5726,16 @@ pub mod Language_C_Syntax_Constants {
         }
     }
 
-    pub fn isSChar(__0: Char) -> Bool {
+    pub fn isSChar(__0: Char) -> bool {
         match (__0) {
             '\\' => {
-                False
+                false
             },
             '\"' => {
-                False
+                false
             },
             '\n' => {
-                False
+                false
             },
             c => {
                 isAsciiSourceChar(c)
@@ -5571,7 +5743,7 @@ pub mod Language_C_Syntax_Constants {
         }
     }
 
-    pub fn isWideChar(__0: CChar) -> Bool {
+    pub fn isWideChar(__0: CChar) -> bool {
         match (__0) {
             CChar(_, wideFlag) => {
                 wideFlag
@@ -5582,7 +5754,7 @@ pub mod Language_C_Syntax_Constants {
         }
     }
 
-    pub fn isWideString((CString(_, wideflag)): CString) -> Bool {
+    pub fn isWideString((CString(_, wideflag)): CString) -> bool {
         wideflag
     }
 
@@ -5627,7 +5799,7 @@ pub mod Language_C_Syntax_Constants {
 
     pub fn unescapeChar(__0: String) -> (Char, String) {
         match (__0) {
-            '\\'(<todo>, c__id_3a6373) => {
+            ['\\', ...[c, ...cs]] => {
                 match c {
                     'n' => {
                         ('\n', cs)
@@ -5676,7 +5848,7 @@ pub mod Language_C_Syntax_Constants {
                         }
                     },
                     _ => {
-                        match head_q("bad escape sequence".to_string(), (readOct((c__id_3a6373)))) {
+                        match head_q("bad escape sequence".to_string(), (readOct((__op_concat(c, cs))))) {
                             (i, cs_q) => {
                                 (toEnum(i), cs_q)
                             },
@@ -5684,7 +5856,7 @@ pub mod Language_C_Syntax_Constants {
                     },
                 }
             },
-            c(<todo>, cs) => {
+            [c, ...cs] => {
                 (c, cs)
             },
             [] => {
@@ -5805,23 +5977,23 @@ pub mod Language_C_Syntax_Ops {
         }
     }
 
-    pub fn isBitOp(op: CBinaryOp) -> Bool {
+    pub fn isBitOp(op: CBinaryOp) -> bool {
         elem(op, vec![CShlOp, CShrOp, CAndOp, COrOp, CXorOp])
     }
 
-    pub fn isCmpOp(op: CBinaryOp) -> Bool {
+    pub fn isCmpOp(op: CBinaryOp) -> bool {
         elem(op, vec![CLeqOp, CGeqOp, CLeOp, CGrOp, CEqOp, CNeqOp])
     }
 
-    pub fn isEffectfulOp(op: CUnaryOp) -> Bool {
+    pub fn isEffectfulOp(op: CUnaryOp) -> bool {
         elem(op, vec![CPreIncOp, CPreDecOp, CPostIncOp, CPostDecOp])
     }
 
-    pub fn isLogicOp(op: CBinaryOp) -> Bool {
+    pub fn isLogicOp(op: CBinaryOp) -> bool {
         elem(op, vec![CLndOp, CLorOp])
     }
 
-    pub fn isPtrOp(op: CBinaryOp) -> Bool {
+    pub fn isPtrOp(op: CBinaryOp) -> bool {
         elem(op, vec![CAddOp, CSubOp])
     }
 
@@ -5879,7 +6051,7 @@ pub mod Language_C_Syntax_Utils {
                 concatMap(compoundSubStmts, body)
             },
             CIf(_, sthen, selse, _) => {
-                maybe(vec![sthen], (Lambda), selse)
+                maybe(vec![sthen], (|s| { vec![sthen, s] }), selse)
             },
             CSwitch(_, s, _) => {
                 vec![s]
@@ -5911,7 +6083,7 @@ pub mod Language_C_Syntax_Utils {
         }
     }
 
-    pub fn mapBlockItemStmts(__0: fn(CStat) -> Bool, __1: fn(CStat) -> CStat, __2: CBlockItem) -> CBlockItem {
+    pub fn mapBlockItemStmts(__0: fn(CStat) -> bool, __1: fn(CStat) -> CStat, __2: CBlockItem) -> CBlockItem {
         match (__0, __1, __2) {
             (stop, f, CBlockStmt(s)) => {
                 CBlockStmt((mapSubStmts(stop, f, s)))
@@ -5922,7 +6094,7 @@ pub mod Language_C_Syntax_Utils {
         }
     }
 
-    pub fn mapSubStmts(__0: fn(CStat) -> Bool, __1: fn(CStat) -> CStat, __2: CStat) -> CStat {
+    pub fn mapSubStmts(__0: fn(CStat) -> bool, __1: fn(CStat) -> CStat, __2: CStat) -> CStat {
         match (__0, __1, __2) {
             (stop, f, CLabel(i, s, attrs, ni)) => {
                 f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni)))
@@ -5940,7 +6112,7 @@ pub mod Language_C_Syntax_Utils {
                 f((CCompound(ls, (map((mapBlockItemStmts(stop, f)), body)), ni)))
             },
             (stop, f, CIf(e, sthen, selse, ni)) => {
-                f((CIf(e, (mapSubStmts(stop, f, sthen)), (maybe(Nothing, (JustmapSubStmts(stop, f)), selse)), ni)))
+                f((CIf(e, (mapSubStmts(stop, f, sthen)), (maybe(None, (SomemapSubStmts(stop, f)), selse)), ni)))
             },
             (stop, f, CSwitch(e, s, ni)) => {
                 f((CSwitch(e, (mapSubStmts(stop, f, s)), ni)))
@@ -5975,7 +6147,7 @@ pub mod Language_C_System_GCC {
     }
 
     pub fn gccParseCPPArgs(args: Vec<String>) -> Either {
-        match mungeArgs(((Nothing, Nothing, RList::empty), (RList::empty, RList::empty)), args) {
+        match mungeArgs(((None, None, RList::empty), (RList::empty, RList::empty)), args) {
             Left(err) => {
                 Left(err)
             },
@@ -6026,14 +6198,14 @@ pub mod Language_C_System_Preprocess {
         CppArgs({
             cppOptions: vec![],
             extraOptions: vec![],
-            cppTmpDir: Nothing,
+            cppTmpDir: None,
             inputFile: input_file,
-            outputFile: Nothing
+            outputFile: None
         })
     }
 
-    pub fn isPreprocessed() -> Bool {
-        (".i".to_string()(Operator("isSuffixOf")))
+    pub fn isPreprocessed() -> bool {
+        (".i".to_string()(isSuffixOf))
     }
 
     pub fn mkOutputFile(tmp_dir_opt: Option) -> Option {
@@ -6060,8 +6232,8 @@ pub mod Language_C_System_Preprocess {
             inputFile: input_file,
             cppOptions: vec![],
             extraOptions: opts,
-            outputFile: Nothing,
-            cppTmpDir: Nothing
+            outputFile: None,
+            cppTmpDir: None
         })
     }
 
