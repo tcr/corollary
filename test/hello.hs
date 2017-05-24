@@ -6,8 +6,8 @@ module Language.Rust.Idiomatic (
 
 import qualified Language.Rust.AST as Rust
 
-parseCrateMap :: String -> Either String CrateMap
-parseCrateMap = fmap root . foldrM parseLine (Map.empty, []) . filter (not . null) . map cleanLine . lines
-
-sumEuler :: Int -> Int
-sumEuler = sum . (map euler) . mkList
+compatibleInitializer :: CType -> CType -> Bool
+compatibleInitializer (IsStruct name1 _) (IsStruct name2 _) = name1 == name2
+compatibleInitializer IsStruct{} _ = False
+compatibleInitializer _ IsStruct{} = False
+compatibleInitializer _ _ = True

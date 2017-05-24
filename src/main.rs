@@ -377,7 +377,7 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
         Pat::Brackets(ref pats) => {
             format!("[{}]", print_patterns(state.tab(), pats))
         }
-        Pat::RecordTODO => format!("{{ .. }}"),
+        Pat::Record(..) => "{ /* pat record */ }".to_string(),
         Pat::Arrow(ast::Ident(ref s), ref p) => {
             format!("({} -> {})", s, print_pattern(state.tab(), &**p))
         }
@@ -427,7 +427,7 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Pair(ref a, ref b) => {
             format!("fn({}) -> {}", print_type(state, &**a), print_type(state, &**b))
         }
-        Ty::RecordTODO => "{ /* struct def */ }".to_string(),
+        Ty::Record(..) => "{ /* type record */ }".to_string(),
         Ty::EmptyParen => "()".to_string(),
         Ty::Dummy => "()".to_string(),
     }

@@ -187,8 +187,8 @@ Statement: Statement = {
   <e:ExprSpan> <w:("where" "{" <Semi<Statement>> "}")?> => Statement::Expression(e, w.unwrap_or(vec![])),
 };
 
-TypeRecord: () = {
-  <Ident> "::" <TypeGroup> => (),
+TypeRecord: (Ident, Ty) = {
+  <a:Ident> "::" <b:TypeGroupInner> => (a, b),
 };
 
 TypeSub: Ty = {
@@ -196,8 +196,8 @@ TypeSub: Ty = {
     "[" <Type> "]" => Ty::Brackets(Box::new(<>)),
     "(" <CommaDef<Type>> ")" => Ty::Tuple(<>),
     "(" ")" => Ty::EmptyParen,
-    "{" "}" => Ty::RecordTODO,
-    "{" <CommaDef<TypeRecord>> "}" => Ty::RecordTODO,
+    "{" "}" => Ty::Record(vec![]),
+    "{" <CommaDef<TypeRecord>> "}" => Ty::Record(<>),
     <Ident> => Ty::Ref(<>),
     <Ctor> => Ty::Ref(<>),
     ".." => Ty::Dummy,
@@ -233,8 +233,8 @@ PatSub: Pat = {
     },
     "(" <i:Ident> "->" <s: PatSpan> ")" => Pat::Arrow(i, Box::new(s)),
     "(" ")" => Pat::EmptyParen,
-    "{" "}" => Pat::RecordTODO,
-    "{" <CommaDef<PatRecord>> "}" => Pat::RecordTODO,
+    "{" "}" => Pat::Record(vec![]),
+    "{" <CommaDef<PatRecord>> "}" => Pat::Record(vec![]), //TODO attach this
 
     <Ident> => Pat::Ref(<>),
     <Ctor> => Pat::Ref(<>),
