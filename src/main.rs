@@ -146,7 +146,7 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             format!("{{\n{}{}}}", out.join("\n"), state.indent())
         }
         Ref(ast::Ident(ref i)) => {
-            print_ident(state, i.clone())
+            print_type_ident(state, i.clone())
         }
         Number(n) => return ir::Expr::Number(n),
         Op(ref l, ref op, ref r) => {
