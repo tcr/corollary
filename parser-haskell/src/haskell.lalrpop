@@ -104,15 +104,23 @@ Operator: String = {
 
 // Code structures
 
+Assignment: Assignment = {
+    <pats:PatList> "=" <expr:ExprSpan> => Assignment { pats, expr },
+};
+
 Case: CaseCond = {
     // TODO commas can be used in expr spans, see AST.hs
     <d:PatList> <v:("|" <CommaDef<ExprSpan>> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
     // TODO use pipe groups here:
-    <d:PatList> "->" <v:CommaDef<ExprSpan>> ("where" "{" Semi<Statement> "}")? => CaseCond::Direct(d, v),
-    "where" "{" <Semi<Statement>> "}" => CaseCond::Where,
+    <d:PatList> "->" <v:CommaDef<ExprSpan>> <w:Where> => CaseCond::Direct(d, v),
 };
 
 ExprSpan: Expr = {
+    <span:Expr*> "let" "{" <a:Semi<Assignment>> "}" "in" <e:ExprSpan> => {
+        let mut span = span;
+        span.push(Expr::Let(a, Box::new(e)));
+        Expr::Span(span)
+    },
     <Expr+> => Expr::Span(<>),
 };
 
@@ -146,16 +154,9 @@ Expr: Expr = {
     r"\\\\" => Expr::Operator(<>.to_string()),
 
     "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
-    "let" "{" <stats:Semi<StatementWhere>> "}" => Expr::Let(stats, vec![]),
-    "do" "{" <stats:Semi<StatementWhere>> "}" => Expr::Do(stats, vec![]),
+    "do" "{" <Semi<DoStatement>> "}" => Expr::Do(<>),
     "{" "}" => Expr::Record(vec![]),
     "{" <r:CommaDef<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
-};
-
-// TODO Why is "where"" needed for end of do and let statements but is special cased elsewhere
-StatementWhere: Statement = {
-    <Statement> => <>,
-    "where" "{" Semi<Statement> "}" => Statement::Dummy,
 };
 
 SContext: () = {
@@ -163,11 +164,13 @@ SContext: () = {
   "(" CommaDef<Ident+> ")" "=>" => (),
 };
 
+// maybe rename this to Item?
 Statement: Statement = {
   "import" ImportList+ => Statement::Import,
 
   "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
-    ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
+    //("where" "{" Semi<Statement> "}")?
+    => Statement::Dummy,
   "data" <id:Ident> =>
     Statement::Data(id, vec![], vec![], None),
   "data" <id:Ident> <args:TypeGroup?> "=" <p:Pipe<TypeGroup>>
@@ -182,9 +185,20 @@ Statement: Statement = {
     "where" "{" Semi<Statement> "}" => Statement::Instance,
 
   <id:Ident> <t:("::" <TypeGroup>)> => Statement::Prototype(id, t),
-  <pats:PatList> "=" <value:ExprSpan>
-    ("where" "{" Semi<Statement> "}")? => Statement::Assign(pats, value),
-  <pats:PatList> ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
+  <a:Assignment> <wh:Where> => Statement::Assign(Box::new(a), wh),
+  <pats:PatList>
+    ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+
+    ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
+};
+
+DoStatement: DoStatement = {
+    "let" "{" <Semi<Assignment>> "}" => DoStatement::Let(<>),
+    <Expr+> => DoStatement::Expression(Box::new(Expr::Span(<>))),
+};
+
+Where: Where = {
+    "where" "{" <Semi<Statement>> "}" => <>,
+    () => vec![],
 };
 
 TypeRecord: (Ident, Ty) = {
