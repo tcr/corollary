@@ -20,6 +20,13 @@ cargo run "./language-c/src/Language/C" > out/language_c.rs
 cargo run "./gen" > out/gen.rs
 ```
 
+In the future:
+
+```
+cargo run -- "./language-c/src/" -o ./out/language_c/src
+cargo run -- "./corrode/src/" -o ./out/corrode/src
+```
+
 Look at the `test/input.hs` file and `out/test.rs` for an example of compilation you can (almost!) execute.
 
 ## References

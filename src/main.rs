@@ -460,10 +460,10 @@ fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                 .collect::<Vec<_>>();
 
             if data.len() > 1 {
-                out.push(format!("{}{}pub enum {} {{\n        {}\n{}}}\n{}{}",
+                out.push(format!("{}{}pub enum {} {{\n{}{}\n{}}}\n{}{}",
                     state.indent(),
                     if derive_rust.len() > 0 {
-                        format!("#[derive({})]\n    ", derive_rust.join(", "))
+                        format!("#[derive({})]\n{}", derive_rust.join(", "), state.indent())
                     } else {
                         format!("")
                     },
@@ -472,6 +472,7 @@ fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                         v.extend(args.unwrap_or(vec![]));
                         v
                     })),
+                    state.tab().indent(),
                     data.iter().map(|tyset| {
                         format!("{}{}",
                             print_type(state.tab(), tyset[0].clone()),
@@ -483,7 +484,7 @@ fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                                 "".to_string()
                             }
                         )
-                    }).collect::<Vec<_>>().join(&format!(",\n        ")),
+                    }).collect::<Vec<_>>().join(&format!(",\n{}", state.tab().indent())),
                     state.indent(),
                     state.indent(),
                     format!("pub use self::{}::*;", print_ident(state, name.0)),
@@ -492,9 +493,10 @@ fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                 let props = data.iter().map(|tyset| {
                     print_types(state, tyset)
                 }).collect::<Vec<_>>().join(", ");
-                out.push(format!("    {}struct {}{};",
+                out.push(format!("{}{}struct {}{};",
+                    state.indent(),
                     if derive_rust.len() > 0 {
-                        format!("#[derive({})]\n    ", derive_rust.join(", "))
+                        format!("#[derive({})]\n{}", derive_rust.join(", "), state.indent())
                     } else {
                         format!("")
                     },
@@ -810,12 +812,20 @@ fn convert_file(input: &str, p: &Path) -> (String, String) {
         Ok(v) => {
             //errln!("{:?}", v);
 
-            let _ = writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"));
-            let _ = writeln!(file_out, "    use haskell_support::*;");
-            let state = PrintState::new();
-            let _ = writeln!(file_out, "{}", print_item_list(state.tab(), &v.items));
-            //print_item_list(state.tab(), &v.statements);
-            let _ = writeln!(file_out, "}}\n");
+            let expand_mod = false;
+            if expand_mod {
+                let _ = writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"));
+                let _ = writeln!(file_out, "    use haskell_support::*;");
+                let _ = writeln!(file_out, "");
+                let state = PrintState::new();
+                let _ = writeln!(file_out, "{}", print_item_list(state.tab(), &v.statements));
+                let _ = writeln!(file_out, "}}\n");
+            } else {
+                let _ = writeln!(file_out, "use haskell_support::*;");
+                let _ = writeln!(file_out, "");
+                let state = PrintState::new();
+                let _ = writeln!(file_out, "{}", print_item_list(state, &v.statements));
+            }
         }
         Err(e) => {
             errln!("/* ERROR: cannot convert file {:?}" ,p);
@@ -902,7 +912,10 @@ fn main() {
             //let _ = ::std::fs::create_dir_all(target);
             let mut a = p.components();
             a.next();
-            let t = format!("{}/{}", target, a.as_path().display());
+            a.next();
+            a.next();
+
+            let t = format!("{}/{}", target, a.as_path().display()).to_lowercase();
             let _ = ::std::fs::create_dir_all(&Path::new(&t).parent().unwrap());
 
             let t = t.replace(".lhs", ".rs");
