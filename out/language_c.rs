@@ -1183,7 +1183,14 @@ pub mod Language_C_Analysis_ConstEval {
 pub mod Language_C_Analysis_Debug {
     use haskell_support::*;
     pub fn globalDeclStats(file_filter: fn(FilePath) -> Bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
-        vec![("Enumeration Constants".to_string(), Map::size(enumerators)), ("Total Object/Function Declarations".to_string(), Map::size(all_decls)), ("Object definitions".to_string(), Map::size(objDefs)), ("Function Definitions".to_string(), Map::size(funDefs)), ("Tag definitions".to_string(), Map::size(tagDefs)), ("TypeDefs".to_string(), Map::size(typeDefs))]
+        vec![
+            ("Enumeration Constants".to_string(), Map::size(enumerators)),
+            ("Total Object/Function Declarations".to_string(), Map::size(all_decls)),
+            ("Object definitions".to_string(), Map::size(objDefs)),
+            ("Function Definitions".to_string(), Map::size(funDefs)),
+            ("Tag definitions".to_string(), Map::size(tagDefs)),
+            ("TypeDefs".to_string(), Map::size(typeDefs)),
+        ]
     }
 
     pub fn joinComma() -> Doc {
@@ -1538,7 +1545,9 @@ otherwise { TyFloating(floatType) },
                     let ty = tType(True, node, typequals, canonTySpecs, vec![], vec![]);
                     match ty {
                         DirectType(TyComp(_), _, _) => {
-                            return(vec![MemberDecl((VarDecl(NoName, (DeclAttrs(False, NoStorage, vec![])), ty)), Nothing, node)])
+                            return(vec![
+                                MemberDecl((VarDecl(NoName, (DeclAttrs(False, NoStorage, vec![])), ty)), Nothing, node),
+                            ])
                         },
                         _ => {
                             astError(node, "anonymous member has a non-composite type".to_string())
@@ -3996,7 +4005,10 @@ pub mod Language_C_Data_Error {
     }
 
     pub fn internalErrPrefix() -> String {
-        unlines(vec!["Language.C : Internal Error".to_string(), __op_addadd("This is propably a bug, and should be reported at ".to_string(), "http://www.sivity.net/projects/language.c/newticket".to_string())])
+        unlines(vec![
+                "Language.C : Internal Error".to_string(),
+                __op_addadd("This is propably a bug, and should be reported at ".to_string(), "http://www.sivity.net/projects/language.c/newticket".to_string()),
+            ])
     }
 
     pub fn isHardError() -> Bool {
