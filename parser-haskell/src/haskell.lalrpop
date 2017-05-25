@@ -84,15 +84,16 @@ Num: isize = {
 };
 
 Ident: Ident = {
-  r"[a-zA-Z_.][.a-zA-Z_0-9':]*(:[.+/*=-]+)?" => Ident((<>).to_string()),
+  r"[a-zA-Z_.][.a-zA-Z_0-9']*(\.:[.+/*=-]+)?" => Ident((<>).to_string()),
 };
 
 Ctor: Ident = {
-    r":[!#$%&*+./<=>?@^|~:\\-]*" => Ident(<>.to_string()),
+    r":[!#$%&*+./<=>?@^|~:\\-]+" => Ident(<>.to_string()),
 };
 
 Operator: String = {
-    r"[!#$%&*+/<=>?@^|~][!#$%&*+./<=>?@^|~:\\-]*" => <>.to_string(),
+    r"[!#$%&*+/<=>?@^|~][!#$%&*+./<=>?@^|~\\-]*" => <>.to_string(),
+    ":" => <>.to_string(),
     "." => <>.to_string(),
     ".." => <>.to_string(),
     ".|." => <>.to_string(),
@@ -123,8 +124,13 @@ Expr: Expr = {
     <Ctor> => Expr::Operator(<>.0),
     <Operator> => Expr::Operator(<>),
 
-    r"\\" Ident Expr* "->" Expr => Expr::Lambda,
-    r"\\" "(" CommaDef<ExprSpan> ")" "->" Expr => Expr::Lambda,
+    r"\\" <i:Ident> <e:PatList?> "->" <body:Expr> => Expr::Lambda({
+      let mut a = vec![Pat::Ref(i)];
+      a.extend(e.unwrap_or(vec![]));
+      a
+    }, Box::new(body)),
+    r"\\" "(" <e:CommaDef<PatSpan>> ")" "->" <body:Expr>
+      => Expr::Lambda(vec![Pat::Tuple(e)], Box::new(body)),
 
     "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
     "[" <CommaDef<ExprSpan>> ("::" TypeGroup)? "]" => Expr::Vector(<>),
@@ -182,8 +188,8 @@ Statement: Statement = {
   <e:ExprSpan> <w:("where" "{" <Semi<Statement>> "}")?> => Statement::Expression(e, w.unwrap_or(vec![])),
 };
 
-TypeRecord: () = {
-  <Ident> "::" <TypeGroup> => (),
+TypeRecord: (Ident, Ty) = {
+  <a:Ident> "::" <b:TypeGroupInner> => (a, b),
 };
 
 TypeSub: Ty = {
@@ -191,8 +197,8 @@ TypeSub: Ty = {
     "[" <Type> "]" => Ty::Brackets(Box::new(<>)),
     "(" <CommaDef<Type>> ")" => Ty::Tuple(<>),
     "(" ")" => Ty::EmptyParen,
-    "{" "}" => Ty::RecordTODO,
-    "{" <CommaDef<TypeRecord>> "}" => Ty::RecordTODO,
+    "{" "}" => Ty::Record(vec![]),
+    "{" <CommaDef<TypeRecord>> "}" => Ty::Record(<>),
     <Ident> => Ty::Ref(<>),
     <Ctor> => Ty::Ref(<>),
     ".." => Ty::Dummy,
@@ -208,13 +214,12 @@ Type: Ty = {
 };
 
 TypeGroupInner: Ty = {
-  <a:TypeSub> "=>" <b:TypeGroupInner> => b,
-  <a:TypeSub> "->" <b:TypeGroupInner> => Ty::Pair(Box::new(a), Box::new(b)),
-  <TypeSub> => <>,
+  <a:TypeSpan> "=>" <b:TypeGroupInner> => b,
+  <a:Type> => a,
 };
 
 TypeGroup: Vec<Ty> = {
-    <TypeGroupInner+> => <>,
+    <TypeGroupInner> => vec![<>],
 };
 
 PatSub: Pat = {
@@ -229,12 +234,12 @@ PatSub: Pat = {
     },
     "(" <i:Ident> "->" <s: PatSpan> ")" => Pat::Arrow(i, Box::new(s)),
     "(" ")" => Pat::EmptyParen,
-    "{" "}" => Pat::RecordTODO,
-    "{" <CommaDef<PatRecord>> "}" => Pat::RecordTODO,
+    "{" "}" => Pat::Record(vec![]),
+    "{" <CommaDef<PatRecord>> "}" => Pat::Record(vec![]), //TODO attach this
 
     <Ident> => Pat::Ref(<>),
     <Ctor> => Pat::Ref(<>),
-    <Operator> => Pat::Ref(Ident(<>)),
+    <Operator> => Pat::Operator(<>),
     <Quote> => Pat::Str(decode_literal(&<>)),
     <SingleQuote> => Pat::Char(decode_literal(&<>)),
     <Num> => Pat::Num(<>),

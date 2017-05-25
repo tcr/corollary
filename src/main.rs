@@ -71,16 +71,28 @@ fn print_ident(_: PrintState, mut expr: String) -> String {
 
 fn print_type_ident(state: PrintState, s: &str) -> String {
     // Handle common translations for types here
-    if s == "Int" {
-        format!("isize")
-    } else if s == "Nothing" {
-        format!("None")
-    } else if s == "Just" {
-        format!("Some")
-    } else if s == "Maybe" {
-        format!("Option")
-    } else {
-        print_ident(state, s.to_string())
+    match s {
+        "Int" => format!("isize"),
+        "Nothing" => format!("None"),
+        "Just" => format!("Some"),
+        "Maybe" => format!("Option"),
+        "True" => format!("true"),
+        "False" => format!("false"),
+        "Bool" => format!("bool"),
+        _ => print_ident(state, s.to_string()),
+    }
+}
+
+fn print_op_fn(value: &str) -> String {
+    // Here you add new infix operators.
+    match value {
+        "++" => "__op_addadd".to_string(),
+        ":" => "__op_concat".to_string(),
+        ">>=" => "__op_bind".to_string(),
+        ">>" => "__op_rshift".to_string(),
+        "<<" => "__op_lshift".to_string(),
+        "<=>" => "__op_arrow_concat".to_string(),
+        _ => value.to_string()
     }
 }
 
@@ -147,12 +159,14 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             format!("{{\n{}{}}}", out.join("\n"), state.indent())
         }
         Ref(ast::Ident(ref i)) => {
-            print_ident(state, i.clone())
+            print_type_ident(state, i)
         }
         Number(n) => return ir::Expr::Number(n),
         Op(ref l, ref op, ref r) => {
             if op == "&&"
-                || op == "==" {
+                || op == "=="
+                || op == "*"
+                || op == "||" {
                 format!("({} {} {})", print_expr(state, l), op, print_expr(state, r))
             } else if op == "$" {
                 format!("{}({})", print_expr(state, l), print_expr(state, r))
@@ -166,7 +180,9 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 if let &Expr::Span(ref left) = &l {
                     if let &Expr::Parens(ref span) = &left[0] {
                         if let &Expr::Span(ref innerspan) = &span[0] {
+                            // --> (a b c) ...
                             let mut innerspan = innerspan.clone();
+                            //TODO what about span[1..]
                             innerspan.push(r);
                             format!("{}", print_expr(state, &Expr::Span(vec![Expr::Parens(vec![Expr::Span(innerspan)])])))
                         } else {
@@ -174,8 +190,10 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                             //format!("({} . {})", print_expr(state, &l), print_expr(state, &r))
                         }
                     } else if let &Expr::Ref(..) = &left[0] {
-                        // todo
-                        format!("{}{}", print_expr(state, &l), print_expr(state, &r))
+                        // --> a ...
+                        let mut outer = left.clone();
+                        outer.push(r);
+                        format!("{}", print_expr(state, &Expr::Span(outer)))
                     } else {
                         panic!("WHAT {:?}", l);
                     }
@@ -186,21 +204,7 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             } else if op == "<-" {
                 format!("let {} = {}", print_expr(state, l), print_expr(state, r))
             } else {
-                // Here you add new infix operators.
-                let mut new_op = op.to_string();
-                if new_op == "++" {
-                    new_op = "__op_addadd".to_string();
-                } else if new_op == ":" {
-                    new_op = "__op_concat".to_string();
-                } else if new_op == ">>=" {
-                    new_op = "__op_bind".to_string();
-                } else if new_op == ">>" {
-                    new_op = "__op_rshift".to_string();
-                } else if new_op == "<<" {
-                    new_op = "__op_lshift".to_string();
-                } else if new_op == "<+>" {
-                    new_op = "__op_arrow_concat".to_string();
-                }
+                let new_op = print_op_fn(op);
                 format!("{}({}, {})", new_op, print_expr(state, l), print_expr(state, r))
             }
         }
@@ -230,7 +234,7 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                     // Check for return() here, for now
                     if print_expr(state, &span[0]) == "return" {
                         //TODO handle return more intelligently
-                        print_expr(state, &span[1])
+                        print_expr(state, &Expr::Span(span[1..].to_vec()))
                     } else {
                         let mut span = span.clone();
                         let start = print_expr(state, &span.remove(0));
@@ -272,7 +276,10 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                 .collect::<Vec<_>>()
                                 .join(" | "),
                             state.tab().tab().indent(),
-                            arms.iter().map(|x| print_expr(state.tab().tab(), x)).collect::<Vec<_>>().join("; "),
+                            arms.iter()
+                                .map(|x| print_expr(state.tab().tab(), x))
+                                .collect::<Vec<_>>()
+                                .join("; "),
                             state.tab().indent(),
                         ));
                     }
@@ -283,8 +290,19 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             }
             format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.indent())
         }
-        ref expr => {
-            format!("{:?}", expr)
+        Lambda(ref pats, ref body) => {
+            format!("|{}| {{ {} }}",
+                print_patterns(state.tab(), pats),
+                print_expr(state.tab(), body))
+        }
+        Operator(ref value) => {
+            print_op_fn(value)
+        }
+        Dummy => {
+            format!("<Expr::Dummy>")
+        }
+        Error => {
+            format!("<Expr::Error>")
         }
     };
     ir::Expr::Free(freeform)
@@ -303,12 +321,38 @@ fn unpack_fndef(t: Ty) -> Vec<Ty> {
     }
 }
 
+
+
+// Expand a sequence of expression terms into a nested tree of operators
+// TODO Operator precedence rules should be applied here
+fn pat_explode(span: Vec<Pat>) -> Vec<Pat> {
+    if span.len() < 3 {
+        return span;
+    }
+    for i in 0..span.len() {
+        if let &ast::Pat::Operator(ref op) = &span[i] {
+            if op == ":" {
+                return vec![ast::Pat::Concat(
+                    Box::new(Pat::Span(pat_explode(span[0..i].to_vec().clone()))),
+                    Box::new(Pat::Span(pat_explode(span[i+1..].to_vec().clone()))),
+                )];
+            } else {
+                //TODO exhaustiveness check
+                continue;
+                //panic!("dont know how to translate {:?}", op);
+            }
+        }
+    }
+    span
+}
+
 fn print_pattern(state: PrintState, pat: &Pat) -> String {
     match *pat {
         Pat::Ref(ast::Ident(ref s)) =>{
             print_type_ident(state, s)
         }
         Pat::Span(ref span) => {
+            let span = pat_explode(span.to_vec());
             let mut out_span = print_pattern(state.tab(), &span[0]);
             if span.len() > 1 {
                 out_span.push_str(&format!("({})", print_patterns(state.tab(), &span[1..])));
@@ -333,12 +377,22 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
         Pat::Brackets(ref pats) => {
             format!("[{}]", print_patterns(state.tab(), pats))
         }
-        Pat::RecordTODO => format!("{{ .. }}"),
+        Pat::Record(..) => "{ /* pat record */ }".to_string(),
         Pat::Arrow(ast::Ident(ref s), ref p) => {
             format!("({} -> {})", s, print_pattern(state.tab(), &**p))
         }
         Pat::Not(ref s) => print_pattern(state, &**s),
         Pat::EmptyParen => format!("()"),
+        Pat::Concat(ref a, ref b) => {
+            format!("[{}, ...{}]",
+                print_pattern(state.tab(), &**a),
+                print_pattern(state.tab(), &**b),
+            )
+        }
+        Pat::Operator(ref op) => {
+            // Should only be @
+            format!("{}", op)
+        }
         Pat::Dummy => format!("<todo>"),
     }
 }
@@ -373,7 +427,7 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Pair(ref a, ref b) => {
             format!("fn({}) -> {}", print_type(state, &**a), print_type(state, &**b))
         }
-        Ty::RecordTODO => "{ /* struct def */ }".to_string(),
+        Ty::Record(..) => "{ /* type record */ }".to_string(),
         Ty::EmptyParen => "()".to_string(),
         Ty::Dummy => "()".to_string(),
     }
@@ -727,7 +781,7 @@ fn fix_lhs(s: &str) -> String {
     out.join("\n\n")
 }
 
-fn convert_file(input: &str) -> (String, String) {
+fn convert_file(input: &str, p: &Path) -> (String, String) {
     let mut contents = input.to_string();
     let mut file_out = String::new();
     let mut rust_out = String::new();
@@ -748,8 +802,8 @@ fn convert_file(input: &str) -> (String, String) {
     let mut errors = Vec::new();
     match parser_haskell::parse(&mut errors, &contents) {
         Ok(v) => {
-            // println!("{:?}", p);
-            // continue;
+            //errln!("{:?}", v);
+
             let _ = writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"));
             let _ = writeln!(file_out, "    use haskell_support::*;");
             let state = PrintState::new();
@@ -758,10 +812,11 @@ fn convert_file(input: &str) -> (String, String) {
             let _ = writeln!(file_out, "}}\n");
         }
         Err(e) => {
-            let _ = writeln!(file_out, "/* ERROR: cannot convert file...");
+            errln!("/* ERROR: cannot convert file {:?}" ,p);
             // TODO have this write to Format
             print_parse_error(&contents, &simplify_parse_error(e));
-            let _ = writeln!(file_out, "*/");
+            errln!("*/");
+            panic!("COULDN'T PARSE");
         }
     }
 
@@ -824,7 +879,7 @@ fn main() {
             contents = fix_lhs(&contents);
         }
 
-        let (file_out, rust_out) = convert_file(&contents);
+        let (file_out, rust_out) = convert_file(&contents, p);
         let _ = writeln!(file_section, "{}", file_out);
         rust_section.push_str(&rust_out);
     }
