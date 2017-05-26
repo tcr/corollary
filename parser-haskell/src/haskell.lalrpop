@@ -92,26 +92,41 @@ Ctor: Ident = {
 };
 
 Operator: String = {
-    r"[!#$%&*+/<=>?@^|~][!#$%&*+./<=>?@^|~\\-]*" => <>.to_string(),
+    r"[!#$%&*+/=>?@^~][!#$%&*+./<=>?@^|~\\-]*" => <>.to_string(),
     ":" => <>.to_string(),
     "." => <>.to_string(),
     ".." => <>.to_string(),
     ".|." => <>.to_string(),
     ".&." => <>.to_string(),
     "-" => <>.to_string(),
+    "||" => <>.to_string(),
+    "<" => <>.to_string(),
+    "<=" => <>.to_string(),
+    "<>" => <>.to_string(),
+    "<+>" => <>.to_string(),
+    "<*>" => <>.to_string(),
 };
 
 // Code structures
 
+Assignment: Assignment = {
+    <pats:PatList> ("|" <CommaDef<(<ExprSpan> ("<-" ExprSpan)?)>> "=" <ExprSpan>)+ => Assignment { pats, expr: Expr::Dummy },
+    <pats:PatList> "=" <expr:ExprSpan> => Assignment { pats, expr },
+};
+
 Case: CaseCond = {
     // TODO commas can be used in expr spans, see AST.hs
-    <d:PatList> <v:("|" <CommaDef<ExprSpan>> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
+    <d:PatList> <v:("|" <CommaDef<(<ExprSpan> ("<-" ExprSpan)?)>>  "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
     // TODO use pipe groups here:
-    <d:PatSpan> "->" <v:CommaDef<ExprSpan>> ("where" "{" Semi<Statement> "}")? => CaseCond::Direct(vec![d], v),
-    "where" "{" <Semi<Statement>> "}" => CaseCond::Where,
+    <d:PatList> "->" <v:CommaDef<ExprSpan>> <w:Where> => CaseCond::Direct(d, v),
 };
 
 ExprSpan: Expr = {
+    <span:Expr*> "let" "{" <a:Semi<Assignment>> "}" "in" <e:ExprSpan> => {
+        let mut span = span;
+        span.push(Expr::Let(a, Box::new(e)));
+        Expr::Span(span)
+    },
     <Expr+> => Expr::Span(<>),
 };
 
@@ -124,15 +139,17 @@ Expr: Expr = {
     <Ctor> => Expr::Operator(<>.0),
     <Operator> => Expr::Operator(<>),
 
-    r"\\" <i:Ident> <e:PatList?> "->" <body:Expr> => Expr::Lambda({
+    // TODO this is supposed to take an ExprSpan as a body, but LALRPOP complains
+    // for now, don't take ANY expr so an ExprSpan can be allowed
+    r"\\" <i:Ident> <e:PatList?> "->" => Expr::Lambda({
       let mut a = vec![Pat::Ref(i)];
       a.extend(e.unwrap_or(vec![]));
       a
-    }, Box::new(body)),
+    }, Box::new(Expr::Dummy)),
     r"\\" "(" <e:CommaDef<PatSpan>> ")" "->" <body:Expr>
       => Expr::Lambda(vec![Pat::Tuple(e)], Box::new(body)),
 
-    "[" <CommaDef<ExprSpan>> "|" CommaDef<ExprSpan> "]" => Expr::Dummy,
+    "[" <CommaDef<ExprSpan>> "|" CommaDef<ListGenerator> "]" => Expr::Dummy,
     "[" <CommaDef<ExprSpan>> ("::" TypeGroup)? "]" => Expr::Vector(<>),
     "[" "]" => Expr::Vector(vec![]),
     "(" <CommaDef<(<ExprSpan> ("::" TypeGroup)?)>>  ")" => Expr::Parens(<>),
@@ -145,16 +162,15 @@ Expr: Expr = {
     r"\\\\" => Expr::Operator(<>.to_string()),
 
     "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
-    "let" "{" <stats:Semi<StatementWhere>> "}" => Expr::Let(stats, vec![]),
-    "do" "{" <stats:Semi<StatementWhere>> "}" => Expr::Do(stats, vec![]),
+    "do" "{" <Semi<DoItem>> Where "}" => Expr::Do(<>),
     "{" "}" => Expr::Record(vec![]),
     "{" <r:CommaDef<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
 };
 
-// TODO Why is "where"" needed for end of do and let statements but is special cased elsewhere
-StatementWhere: Statement = {
-    <Statement> => <>,
-    "where" "{" Semi<Statement> "}" => Statement::Dummy,
+ListGenerator: () = {
+    "let" "{" <Assignment> "}" => (),
+    <pat:Expr+> "<-" <expr:ExprSpan> => (), // expr_to_pat
+    <Expr+> => (),
 };
 
 SContext: () = {
@@ -162,30 +178,42 @@ SContext: () = {
   "(" CommaDef<Ident+> ")" "=>" => (),
 };
 
-Statement: Statement = {
-  "import" ImportList+ => Statement::Import,
+Item: Item = {
+  "import" ImportList+ => Item::Import,
 
   "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
-    ("where" "{" Semi<Statement> "}")? => Statement::Dummy,
+    //("where" "{" Semi<Item> "}")?
+    => Item::Dummy,
   "data" <id:Ident> =>
-    Statement::Data(id, vec![], vec![], None),
+    Item::Data(id, vec![], vec![], None),
   "data" <id:Ident> <args:TypeGroup?> "=" <p:Pipe<TypeGroup>>
     <derives:("deriving" <ImportList>)?> =>
-      Statement::Data(id, p, derives.unwrap_or(vec![]), args),
+      Item::Data(id, p, derives.unwrap_or(vec![]), args),
   "newtype" SContext? <id:Ident+> "=" <p:Type>
     <derives:("deriving" <ImportList>)?> =>
-      Statement::Newtype(id[0].clone(), p, derives.unwrap_or(vec![])),
+      Item::Newtype(id[0].clone(), p, derives.unwrap_or(vec![])),
   "class" SContext? Ident+
-    "where" "{" Semi<Statement> "}" => Statement::Class,
+    "where" "{" Semi<Item> "}" => Item::Class,
   "instance" TypeGroup
-    "where" "{" Semi<Statement> "}" => Statement::Instance,
+    "where" "{" Semi<Item> "}" => Item::Instance,
+  "infixr" <n:Num> "`" <i:Ident> "`" => Item::Infixr(n, i),
 
-  // TODO left expr should be PatSpans
-  <ids:CommaDef<ExprSpan>> <t:("::" <TypeGroup>)> => Statement::Prototype(ids, t),
-  <ids:CommaDef<ExprSpan>> "=" <value:ExprSpan>
-    ("where" "{" Semi<Statement> "}")? => Statement::Assign(ids, value),
-  <ExprSpan> ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+ ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
-  <e:ExprSpan> <w:("where" "{" <Semi<Statement>> "}")?> => Statement::Expression(e, w.unwrap_or(vec![])),
+  <id:CommaDef<Ident>> <t:("::" <TypeGroup>)> => Item::Prototype(id[0].clone(), t),
+  <a:Assignment> <wh:Where> => Item::Assign(Box::new(a), wh),
+};
+
+DoItem: DoItem = {
+    "let" "{" <Semi<Assignment>> "}" => DoItem::Let(<>),
+    <expats:Expr+> "<-" <expr:ExprSpan> => {
+        let pats = expats.iter().map(expr_to_pat).collect();
+        DoItem::Bind(pats, Box::new(expr))
+    },
+    <Expr+> => DoItem::Expression(Box::new(Expr::Span(<>))),
+};
+
+Where: Where = {
+    "where" "{" <Semi<Item>> "}" => <>,
+    () => vec![],
 };
 
 TypeRecord: (Ident, Ty) = {
@@ -240,12 +268,11 @@ PatSub: Pat = {
     <Ident> => Pat::Ref(<>),
     <Ctor> => Pat::Ref(<>),
     <Operator> => Pat::Operator(<>),
+    "`" <Ident> "`" => Pat::Infix(<>),
+
     <Quote> => Pat::Str(decode_literal(&<>)),
     <SingleQuote> => Pat::Char(decode_literal(&<>)),
     <Num> => Pat::Num(<>),
-
-    // HACK
-    "`" Ident "`" => Pat::Dummy,
 };
 
 PatRecord: () = {
@@ -260,7 +287,7 @@ PatSpan: Pat = {
 
 // for matching e.g. multiple function args
 PatList: Vec<Pat> = {
-    <PatSub+> => <>,
+    <PatSub+> => rearrange_infix_pat(<>),
 };
 
 ImportName: () = {
@@ -284,8 +311,8 @@ Section: () = {
 
 pub Module: Module = {
   "module" <n:Ident> ("(" Comma<Section> ")")?
-    "where" "{" <s:Semi<Statement>> "}" => Module {
+    "where" "{" <s:Semi<Item>> "}" => Module {
       name: n,
-      statements: s,
+      items: s,
     },
 };

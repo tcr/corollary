@@ -1,3 +1,5 @@
+#[macro_use] extern crate errln;
+
 extern crate lalrpop_util;
 extern crate regex;
 extern crate base64;
@@ -27,7 +29,7 @@ fn strip_comments(text: &str) -> String {
     let text = re.replace_all(&text, "").to_string();
 
     // Strip preprocessor decls
-    let re = Regex::new(r"(?m)^#(if|ifn?def|endif|else).*").unwrap();
+    let re = Regex::new(r"(?m)^#(if|ifn?def|endif|else|include|elif).*").unwrap();
     let text = re.replace_all(&text, "").to_string();
 
     // TODO this should be handled in the parser
@@ -78,8 +80,20 @@ fn decode_literal(s: &str) -> String {
     String::from_utf8(vec).expect("invalid UTF-8")
 }
 
-fn word_is_block_word(word: &str) -> bool {
-    word == "do" || word == "where" || word == "of" || word == "let"
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+enum BlockWord { Do, Where, Of, Let }
+
+impl BlockWord {
+    fn from_str(word: &str) -> Option<Self> {
+        use BlockWord::*;
+        Some(match word {
+            "do" => Do,
+            "where" => Where,
+            "of" => Of,
+            "let" => Let,
+            _ => return None,
+        })
+    }
 }
 
 /// Convert indentation to semicolon-delimited brackets, so it can be parsed more easily.
@@ -92,11 +106,13 @@ fn commify(val: &str) -> String {
     let commentless = strip_comments(val);
 
     // Previous indentation levels
-    let mut stash: Vec<usize> = vec![];
+    let mut stash: Vec<(usize, BlockWord)> = vec![];
+    // Previously popped from `stash`.
+    let mut popped: Option<(usize, BlockWord)> = None;
     // Previous brace nesting levels.
     let mut braces: Vec<isize> = vec![];
-    // Previous word was a block starting word, option containing its indent level.
-    let mut trigger = None;
+    // Previous word was a block starting word.
+    let mut trigger: Option<BlockWord> = None;
     // How many spaces to indent.
     let mut indent = 0;
     // Check if this is the first word in the line.
@@ -126,23 +142,30 @@ fn commify(val: &str) -> String {
         } else if let Some(cap) = re_word.captures(v) {
             let word = &cap[0];
 
+            macro_rules! pop_brace {
+                () => ({
+                    popped = stash.pop();
+                    braces.pop();
+                    out.push_str("}");
+                });
+            }
+
             if first {
                 while {
-                    if let Some(last_level) = stash.last().map(|x| *x) {
+                    if let Some(last_level) = stash.last().map(|&(n, _)| n) {
                         // Check if we decreased our indent level
                         last_level > indent
+                            || (last_level == indent && word == "where")
                     } else {
                         false
                     }
                 } {
                     // out.push_str(&format!("[{:?}{:?}]", last_level, stash.last()));
-                    stash.pop();
-                    braces.pop();
-                    out.push_str("}");
+                    pop_brace!();
                 }
 
-                if let Some(i) = stash.last() {
-                    if *i == indent && trigger.is_none() {
+                if let Some(&(i, _)) = stash.last() {
+                    if i == indent && trigger.is_none() {
                         out.push_str(";");
                     }
                 }
@@ -167,24 +190,35 @@ fn commify(val: &str) -> String {
                     false
                 }
             } {
-                stash.pop();
-                braces.pop();
-                out.push_str("}");
+                pop_brace!();
                 if braces.len() > 0 {
                     *braces.last_mut().unwrap() -= 1;
+                }
+            }
+
+            // make sure `let { ... } in` is closed
+            if word == "in" && !first {
+                // are we still in the `let`?
+                if let Some(&(_, BlockWord::Let)) = stash.last() {
+                    pop_brace!();
+                } else if let Some((_, BlockWord::Let)) = popped {
+                    // a `let { ... }` just closed so we don't have to do anything
+                } else {
+                    let bw = stash.last().expect("`in` at top level").1;
+                    out.push_str(&format!(" /* ERR: `in` while in `{:?}` block */ ", bw));
                 }
             }
 
             out.push_str(word);
             v = &v[word.len()..];
 
-            if trigger.is_some() {
+            if let Some(block_word) = trigger {
                 // The next word after a block word is where the whitespace column begins.
-                stash.push(indent);
+                stash.push((indent, block_word));
             }
             first = false;
 
-            trigger = if word_is_block_word(word) { Some(indent) } else { None };
+            trigger = BlockWord::from_str(word);
             if trigger.is_some() {
                 out.push_str("{");
 
