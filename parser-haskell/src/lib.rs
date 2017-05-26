@@ -27,7 +27,7 @@ fn strip_comments(text: &str) -> String {
     let text = re.replace_all(&text, "").to_string();
 
     // Strip preprocessor decls
-    let re = Regex::new(r"(?m)^#(if|ifn?def|endif|else).*").unwrap();
+    let re = Regex::new(r"(?m)^#(if|ifn?def|endif|else|include|elif).*").unwrap();
     let text = re.replace_all(&text, "").to_string();
 
     // TODO this should be handled in the parser
