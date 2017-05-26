@@ -748,14 +748,13 @@ fn test_no_regressions() {
         if path.ends_with(".lhs") {
             contents = strip_lhx(&contents);
         }
+        let contents = parser_haskell::preprocess(&contents);
 
         // Do not output preprocessed data temp.txt
         //println!("{:?}", path);
         use ::std::io::Write;
         let mut a = ::std::fs::File::create("temp.txt").unwrap();
         a.write_all(contents.as_bytes());
-
-        let contents = parser_haskell::preprocess(&contents);
 
         let mut errors = Vec::new();
         match parser_haskell::parse(&mut errors, &contents) {
