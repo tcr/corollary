@@ -670,12 +670,12 @@ fn test_single_file() {
     file.read_to_string(&mut contents).unwrap();
 
     if a.ends_with(".lhs") {
-        contents = fix_lhs(&contents);
+        contents = strip_lhx(&contents);
     }
     let contents = parser_haskell::preprocess(&contents);
 
-    let mut a = ::std::fs::File::create("temp.txt").unwrap();
-    a.write_all(contents.as_bytes());
+    // let mut a = ::std::fs::File::create("temp.txt").unwrap();
+    // a.write_all(contents.as_bytes());
 
     let mut errors = Vec::new();
     match parser_haskell::parse(&mut errors, &contents) {
@@ -746,14 +746,16 @@ fn test_no_regressions() {
         file.read_to_string(&mut contents).unwrap();
 
         if path.ends_with(".lhs") {
-            contents = fix_lhs(&contents);
+            contents = strip_lhx(&contents);
         }
-        let contents = parser_haskell::preprocess(&contents);
 
         // Do not output preprocessed data temp.txt
         //println!("{:?}", path);
-        //let mut a = ::std::fs::File::create("temp.txt").unwrap();
-        //a.write_all(contents.as_bytes());
+        use ::std::io::Write;
+        let mut a = ::std::fs::File::create("temp.txt").unwrap();
+        a.write_all(contents.as_bytes());
+
+        let contents = parser_haskell::preprocess(&contents);
 
         let mut errors = Vec::new();
         match parser_haskell::parse(&mut errors, &contents) {
@@ -768,11 +770,19 @@ fn test_no_regressions() {
     }
 }
 
-fn fix_lhs(s: &str) -> String {
-    let re = Regex::new(r"```haskell([\s\S]*?)```").unwrap();
+fn strip_lhx(s: &str) -> String {
+    let re = Regex::new(r"([ \t]*)```haskell([\s\S]*?)```").unwrap();
     let mut out = vec![];
     for cap in re.captures_iter(&s) {
-        out.push(cap[1].to_string());
+        let indent = cap[1].to_string().len();
+        let group = cap[2].to_string()
+            .lines()
+            .map(|x| {
+                x.chars().skip(indent).collect::<String>()
+            })
+            .collect::<Vec<_>>()
+            .join("\n");
+        out.push(group);
     }
 
     out.join("\n\n")
@@ -856,9 +866,9 @@ fn main() {
         let p = e.path();
 
         // Check filetype. Allow .lhs and .hs, ignore all else.
-        let mut do_fix_lhs = false;
+        let mut do_strip_lhx = false;
         if p.display().to_string().ends_with(".lhs") {
-            do_fix_lhs = true;
+            do_strip_lhx = true;
         } else if !p.display().to_string().ends_with(".hs") {
             continue;
         }
@@ -872,8 +882,8 @@ fn main() {
         };
 
         // Preprocess the file.
-        if do_fix_lhs {
-            contents = fix_lhs(&contents);
+        if do_strip_lhx {
+            contents = strip_lhx(&contents);
         }
 
         let (file_out, rust_out) = convert_file(&contents, p);
