@@ -424,13 +424,13 @@ where
     iter.into_iter().map(|p| print_pattern(state, p.borrow())).collect::<Vec<_>>().join(", ")
 }
 
-fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
+fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
     let mut types = btreemap![];
     for item in stats {
         //errln!("{:?}", item);
 
         // println!("well {:?}", item);
-        if let &ast::Statement::Prototype(ast::Ident(ref s), ref d) = item {
+        if let &ast::Item::Prototype(ast::Ident(ref s), ref d) = item {
             if types.contains_key(&s) {
                 panic!("that shouldn't happen {:?}", s);
             }
@@ -443,7 +443,7 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
 
     // Print out data structures.
     for item in stats {
-        if let ast::Statement::Data(name, data, derives, args) = item.clone() {
+        if let ast::Item::Data(name, data, derives, args) = item.clone() {
             let derive_rust = derives.iter()
                 .map(|x| {
                     // Convert common Haskell "derive" terms into Rust's
@@ -513,11 +513,11 @@ fn print_statement_list(state: PrintState, stats: &[ast::Statement]) -> String {
     // Print out assignments as fns
     let mut cache: BTreeMap<String, Vec<ast::Assignment>> = btreemap![];
     for item in stats {
-        if let ast::Statement::Assign(assign, where_) = item.clone() {
+        if let ast::Item::Assign(assign, where_) = item.clone() {
             if !where_.is_empty() {
                 // TODO
                 //println!("// push {:?} into fn", where_)
-                //out.push(print_statement_list(state.tab(), w));
+                //out.push(print_item_list(state.tab(), w));
             }
 
             let mut assign = *assign;
@@ -631,21 +631,21 @@ fn print_let(state: PrintState, assign: &ast::Assignment) -> String {
     )
 }
 
-fn print_do(state: PrintState, stmts: &[ast::DoStatement]) -> String {
+fn print_do(state: PrintState, stmts: &[ast::DoItem]) -> String {
     let mut out = vec![];
     for (i, stmt) in stmts.iter().enumerate() {
         match *stmt {
-            ast::DoStatement::Let(ref assigns) => {
+            ast::DoItem::Let(ref assigns) => {
                 for assign in assigns {
                     out.push(print_let(state, assign));
                 }
             }
-            ast::DoStatement::Bind(ref pats, ref expr) => {
+            ast::DoItem::Bind(ref pats, ref expr) => {
                 // good enough for now
                 let assign = ast::Assignment { pats: pats.clone(), expr: *expr.clone() };
                 out.push(print_let(state, &assign));
             }
-            ast::DoStatement::Expression(ref e) => {
+            ast::DoItem::Expression(ref e) => {
                 let mut expr = print_expr(state, &*e);
                 if i + 1 < stmts.len() {
                     expr.push(';');
@@ -813,8 +813,8 @@ fn convert_file(input: &str, p: &Path) -> (String, String) {
             let _ = writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"));
             let _ = writeln!(file_out, "    use haskell_support::*;");
             let state = PrintState::new();
-            let _ = writeln!(file_out, "{}", print_statement_list(state.tab(), &v.statements));
-            //print_statement_list(state.tab(), &v.statements);
+            let _ = writeln!(file_out, "{}", print_item_list(state.tab(), &v.items));
+            //print_item_list(state.tab(), &v.statements);
             let _ = writeln!(file_out, "}}\n");
         }
         Err(e) => {

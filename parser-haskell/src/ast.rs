@@ -3,7 +3,7 @@ pub enum Expr {
     Number(isize),
     Op(Box<Expr>, String, Box<Expr>),
     Ref(Ident),
-    Do(Vec<DoStatement>),
+    Do(Vec<DoItem>),
     Parens(Vec<Expr>),
     Case(Box<Expr>, Vec<CaseCond>),
     /// `let` a = 2; b = 3 `in` ...
@@ -40,7 +40,7 @@ pub enum Opcode {
 }
 
 #[derive(Clone, Debug)]
-pub enum Statement {
+pub enum Item {
     Import,
 
     // Name, Inner Types, Deriving IDs
@@ -58,10 +58,10 @@ pub enum Statement {
     Dummy,
 }
 
-pub type Where = Vec<Statement>;
+pub type Where = Vec<Item>;
 
 #[derive(Clone, Debug)]
-pub enum DoStatement {
+pub enum DoItem {
     Let(Vec<Assignment>),
     Bind(Vec<Pat>, Box<Expr>),
     Expression(Box<Expr>),
@@ -70,7 +70,7 @@ pub enum DoStatement {
 #[derive(Clone, Debug)]
 pub struct Module {
     pub name: Ident,
-    pub statements: Vec<Statement>,
+    pub items: Vec<Item>,
 }
 
 #[derive(Clone, Debug)]

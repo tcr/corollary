@@ -19,8 +19,8 @@ pub fn expr_to_pat(expr: &Expr) -> Pat {
         Expr::Char(ref s) => Pat::Char(s.clone()),
 
         //Expr::Case(Box<Expr>, Vec<CaseCond>),
-        //Expr::Let(Vec<Statement>, Vec<Statement>),
-        //Expr::Do(Vec<Statement>, Vec<Statement>),
+        //Expr::Let(Vec<Item>, Vec<Item>),
+        //Expr::Do(Vec<Item>, Vec<Item>),
         Expr::Lambda(..) |
         Expr::Error |
         _ => {
