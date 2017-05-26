@@ -91,7 +91,8 @@ fn print_op_fn(value: &str) -> String {
         ">>=" => "__op_bind".to_string(),
         ">>" => "__op_rshift".to_string(),
         "<<" => "__op_lshift".to_string(),
-        "<=>" => "__op_arrow_concat".to_string(),
+        "<+>" => "__op_doc_conat".to_string(),
+        "$+$" => "__op_line_concat".to_string(),
         _ => value.to_string()
     }
 }

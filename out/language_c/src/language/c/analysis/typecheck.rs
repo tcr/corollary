@@ -87,13 +87,13 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
                         return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
                     },
                     None => {
-                        fail(render(<+>(text("invalid binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2))))))
+                        fail(render(__op_doc_conat(text("invalid binary operation:".to_string()), __op_doc_conat(pretty(t1), __op_doc_conat(pretty(op), pretty(t2))))))
                     },
                 }
             }
         },
         (_, _, _) => {
-            fail(render(<+>(text("unhandled binary operation:".to_string()), <+>(pretty(t1), <+>(pretty(op), pretty(t2))))))
+            fail(render(__op_doc_conat(text("unhandled binary operation:".to_string()), __op_doc_conat(pretty(t1), __op_doc_conat(pretty(op), pretty(t2))))))
         },
     }
 }

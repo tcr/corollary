@@ -95,7 +95,7 @@ pub fn parenPrec(prec: isize, prec2: isize, t: Doc) -> Doc {
 }
 
 pub fn prettyDeclr(show_attrs: bool, prec: isize, (CDeclr(name, derived_declrs, asmname, cattrs, _)): CDeclr) -> Doc {
-    <+>(ppDeclr(prec, (reverse(derived_declrs))), <+>(prettyAsmName(asmname), ifP(show_attrs, (attrlistP(cattrs)))))
+    __op_doc_conat(ppDeclr(prec, (reverse(derived_declrs))), __op_doc_conat(prettyAsmName(asmname), ifP(show_attrs, (attrlistP(cattrs)))))
 }
 
 pub fn prettyUsingInclude((CTranslUnit(edecls, _)): CTranslUnit) -> Doc {

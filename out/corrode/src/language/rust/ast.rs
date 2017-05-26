@@ -160,13 +160,13 @@ pub fn pPrintBlock(__0: Doc, __1: Block) -> Doc {
     match (__0, __1) {
         (pre, Block([], e)) => {
             sep(vec![
-                    <+>(pre, text("{".to_string())),
+                    __op_doc_conat(pre, text("{".to_string())),
                     nest(4, (maybe(empty, pPrint, e))),
                     text("}".to_string()),
                 ])
         },
         (pre, Block(ss, e)) => {
-            <+>(pre, $+$(text("{".to_string()), $+$(nest(4, (vcat((__op_addadd(map(pPrint, ss), vec![maybe(empty, pPrint, e)]))))), text("}".to_string()))))
+            __op_doc_conat(pre, __op_line_concat(text("{".to_string()), __op_line_concat(nest(4, (vcat((__op_addadd(map(pPrint, ss), vec![maybe(empty, pPrint, e)]))))), text("}".to_string()))))
         },
     }
 }
