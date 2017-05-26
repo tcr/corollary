@@ -139,11 +139,13 @@ Expr: Expr = {
     <Ctor> => Expr::Operator(<>.0),
     <Operator> => Expr::Operator(<>),
 
-    r"\\" <i:Ident> <e:PatList?> "->" <body:Expr> => Expr::Lambda({
+    // TODO this is supposed to take an ExprSpan as a body, but LALRPOP complains
+    // for now, don't take ANY expr so an ExprSpan can be allowed
+    r"\\" <i:Ident> <e:PatList?> "->" => Expr::Lambda({
       let mut a = vec![Pat::Ref(i)];
       a.extend(e.unwrap_or(vec![]));
       a
-    }, Box::new(body)),
+    }, Box::new(Expr::Dummy)),
     r"\\" "(" <e:CommaDef<PatSpan>> ")" "->" <body:Expr>
       => Expr::Lambda(vec![Pat::Tuple(e)], Box::new(body)),
 
