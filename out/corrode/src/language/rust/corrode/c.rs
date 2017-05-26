@@ -12,8 +12,8 @@ struct Initializer(Initializer<Option<Rust::Expr>, IntMap::IntMap<Initializer>>)
 
 #[derive(Debug)]
 pub enum Designator {
-    Base<CType>,
-    From<CType, isize, Vec<CType>, Designator>
+    Base(CType),
+    From(CType, isize, Vec<CType>, Designator)
 }
 pub use self::Designator::*;
 
@@ -30,7 +30,7 @@ pub use self::Signed::*;
 
 #[derive(Debug, Eq)]
 pub enum IntWidth {
-    BitWidth<isize>,
+    BitWidth(isize),
     WordWidth
 }
 pub use self::IntWidth::*;
@@ -38,15 +38,15 @@ pub use self::IntWidth::*;
 #[derive(Debug)]
 pub enum CType {
     IsBool,
-    IsInt<Signed, IntWidth>,
-    IsFloat<isize>,
+    IsInt(Signed, IntWidth),
+    IsFloat(isize),
     IsVoid,
-    IsFunc<CType, Vec<(Option<(Rust::Mutable, Ident)>, CType)>, bool>,
-    IsPtr<Rust::Mutable, CType>,
-    IsArray<Rust::Mutable, isize, CType>,
-    IsStruct<String, Vec<(String, CType)>>,
-    IsEnum<String>,
-    IsIncomplete<Ident>
+    IsFunc(CType, Vec<(Option<(Rust::Mutable, Ident)>, CType)>, bool),
+    IsPtr(Rust::Mutable, CType),
+    IsArray(Rust::Mutable, isize, CType),
+    IsStruct(String, Vec<(String, CType)>),
+    IsEnum(String),
+    IsIncomplete(Ident)
 }
 pub use self::CType::*;
 

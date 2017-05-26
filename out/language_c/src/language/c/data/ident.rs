@@ -2,8 +2,8 @@ use haskell_support::*;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum SUERef {
-    AnonymousRef<Name>,
-    NamedRef<Ident>
+    AnonymousRef(Name),
+    NamedRef(Ident)
 }
 pub use self::SUERef::*;
 

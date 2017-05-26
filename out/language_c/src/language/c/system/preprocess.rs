@@ -1,10 +1,10 @@
 use haskell_support::*;
 
 pub enum CppOption {
-    IncludeDir<FilePath>,
-    Define<String, String>,
-    Undefine<String>,
-    IncludeFile<FilePath>
+    IncludeDir(FilePath),
+    Define(String, String),
+    Undefine(String),
+    IncludeFile(FilePath)
 }
 pub use self::CppOption::*;
 

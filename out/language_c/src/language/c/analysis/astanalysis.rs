@@ -1,7 +1,7 @@
 use haskell_support::*;
 
 pub enum StmtCtx {
-    FunCtx<VarDecl>,
+    FunCtx(VarDecl),
     LoopCtx,
     SwitchCtx
 }

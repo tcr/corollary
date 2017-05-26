@@ -1,8 +1,8 @@
 use haskell_support::*;
 
 pub enum TagFwdDecl {
-    CompDecl<CompTypeRef>,
-    EnumDecl<EnumTypeRef>
+    CompDecl(CompTypeRef),
+    EnumDecl(EnumTypeRef)
 }
 pub use self::TagFwdDecl::*;
 
@@ -11,16 +11,16 @@ struct DefTable(DefTable<{ /* type record */ }>);
 #[derive(Clone, Debug)]
 pub enum DeclarationStatus<t> {
     NewDecl,
-    Redeclared<t>,
-    KeepDef<t>,
-    Shadowed<t>,
-    KindMismatch<t>
+    Redeclared(t),
+    KeepDef(t),
+    Shadowed(t),
+    KindMismatch(t)
 }
 pub use self::DeclarationStatus::*;
 
 #[derive(Eq, Ord)]
 pub enum TagEntryKind {
-    CompKind<CompTyKind>,
+    CompKind(CompTyKind),
     EnumKind
 }
 pub use self::TagEntryKind::*;

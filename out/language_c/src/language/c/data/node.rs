@@ -2,8 +2,8 @@ use haskell_support::*;
 
 #[derive(Clone, Debug)]
 pub enum NodeInfo {
-    OnlyPos<Position, PosLength>,
-    NodeInfo<Position, PosLength, Name>
+    OnlyPos(Position, PosLength),
+    NodeInfo(Position, PosLength, Name)
 }
 pub use self::NodeInfo::*;
 

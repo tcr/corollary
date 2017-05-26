@@ -2,29 +2,29 @@ use haskell_support::*;
 
 #[derive(Clone, Debug)]
 pub enum TagDef {
-    CompDef<CompType>,
-    EnumDef<EnumType>
+    CompDef(CompType),
+    EnumDef(EnumType)
 }
 pub use self::TagDef::*;
 
 #[derive(Clone, Debug)]
 pub enum IdentDecl {
-    Declaration<Decl>,
-    ObjectDef<ObjDef>,
-    FunctionDef<FunDef>,
-    EnumeratorDef<Enumerator>
+    Declaration(Decl),
+    ObjectDef(ObjDef),
+    FunctionDef(FunDef),
+    EnumeratorDef(Enumerator)
 }
 pub use self::IdentDecl::*;
 
 struct GlobalDecls(GlobalDecls<{ /* type record */ }>);
 
 pub enum DeclEvent {
-    TagEvent<TagDef>,
-    DeclEvent<IdentDecl>,
-    ParamEvent<ParamDecl>,
-    LocalEvent<IdentDecl>,
-    TypeDefEvent<TypeDef>,
-    AsmEvent<AsmBlock>
+    TagEvent(TagDef),
+    DeclEvent(IdentDecl),
+    ParamEvent(ParamDecl),
+    LocalEvent(IdentDecl),
+    TypeDefEvent(TypeDef),
+    AsmEvent(AsmBlock)
 }
 pub use self::DeclEvent::*;
 
@@ -39,15 +39,15 @@ struct FunDef(FunDef<VarDecl, Stmt, NodeInfo>);
 
 #[derive(Clone, Debug)]
 pub enum ParamDecl {
-    ParamDecl<VarDecl, NodeInfo>,
-    AbstractParamDecl<VarDecl, NodeInfo>
+    ParamDecl(VarDecl, NodeInfo),
+    AbstractParamDecl(VarDecl, NodeInfo)
 }
 pub use self::ParamDecl::*;
 
 #[derive(Clone, Debug)]
 pub enum MemberDecl {
-    MemberDecl<VarDecl, Option<Expr>, NodeInfo>,
-    AnonBitField<Type, Expr, NodeInfo>
+    MemberDecl(VarDecl, Option<Expr>, NodeInfo),
+    AnonBitField(Type, Expr, NodeInfo)
 }
 pub use self::MemberDecl::*;
 
@@ -63,9 +63,9 @@ struct DeclAttrs(DeclAttrs<bool, Storage, Attributes>);
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum Storage {
     NoStorage,
-    Auto<Register>,
-    Static<Linkage, ThreadLocal>,
-    FunLinkage<Linkage>
+    Auto(Register),
+    Static(Linkage, ThreadLocal),
+    FunLinkage(Linkage)
 }
 pub use self::Storage::*;
 
@@ -79,37 +79,37 @@ pub use self::Linkage::*;
 
 #[derive(Clone, Debug)]
 pub enum Type {
-    DirectType<TypeName, TypeQuals, Attributes>,
-    PtrType<Type, TypeQuals, Attributes>,
-    ArrayType<Type, ArraySize, TypeQuals, Attributes>,
-    FunctionType<FunType, Attributes>,
-    TypeDefType<TypeDefRef, TypeQuals, Attributes>
+    DirectType(TypeName, TypeQuals, Attributes),
+    PtrType(Type, TypeQuals, Attributes),
+    ArrayType(Type, ArraySize, TypeQuals, Attributes),
+    FunctionType(FunType, Attributes),
+    TypeDefType(TypeDefRef, TypeQuals, Attributes)
 }
 pub use self::Type::*;
 
 #[derive(Clone, Debug)]
 pub enum FunType {
-    FunType<Type, Vec<ParamDecl>, bool>,
-    FunTypeIncomplete<Type>
+    FunType(Type, Vec<ParamDecl>, bool),
+    FunTypeIncomplete(Type)
 }
 pub use self::FunType::*;
 
 #[derive(Clone, Debug)]
 pub enum ArraySize {
-    UnknownArraySize<bool>,
-    ArraySize<bool, Expr>
+    UnknownArraySize(bool),
+    ArraySize(bool, Expr)
 }
 pub use self::ArraySize::*;
 
 #[derive(Clone, Debug)]
 pub enum TypeName {
     TyVoid,
-    TyIntegral<IntType>,
-    TyFloating<FloatType>,
-    TyComplex<FloatType>,
-    TyComp<CompTypeRef>,
-    TyEnum<EnumTypeRef>,
-    TyBuiltin<BuiltinType>
+    TyIntegral(IntType),
+    TyFloating(FloatType),
+    TyComplex(FloatType),
+    TyComp(CompTypeRef),
+    TyEnum(EnumTypeRef),
+    TyBuiltin(BuiltinType)
 }
 pub use self::TypeName::*;
 
@@ -175,7 +175,7 @@ struct TypeQuals(TypeQuals<{ /* type record */ }>);
 
 #[derive(Clone, Debug)]
 pub enum VarName {
-    VarName<Ident, Option<AsmName>>,
+    VarName(Ident, Option<AsmName>),
     NoName
 }
 pub use self::VarName::*;

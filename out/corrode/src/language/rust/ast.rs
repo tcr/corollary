@@ -10,11 +10,11 @@ pub use self::LitIntRepr::*;
 
 #[derive(Debug, Eq)]
 pub enum Lit {
-    LitByteStr<String>,
-    LitByteChar<Char>,
-    LitBool<bool>,
-    LitInt<Integer, LitIntRepr, Type>,
-    LitFloat<String, Type>
+    LitByteStr(String),
+    LitByteChar(Char),
+    LitBool(bool),
+    LitInt(Integer, LitIntRepr, Type),
+    LitFloat(String, Type)
 }
 pub use self::Lit::*;
 
@@ -34,9 +34,9 @@ pub use self::Mutable::*;
 
 #[derive(Debug)]
 pub enum Stmt {
-    Stmt<Expr>,
-    Let<Mutable, Var, Option<Type>, Option<Expr>>,
-    StmtItem<Vec<Attribute>, ItemKind>
+    Stmt(Expr),
+    Let(Mutable, Var, Option<Type>, Option<Expr>),
+    StmtItem(Vec<Attribute>, ItemKind)
 }
 pub use self::Stmt::*;
 
@@ -52,83 +52,83 @@ struct Item(Item<Vec<Attribute>, Visibility, ItemKind>);
 #[derive(Debug)]
 pub enum FunctionAttribute {
     UnsafeFn,
-    ExternABI<Option<String>>
+    ExternABI(Option<String>)
 }
 pub use self::FunctionAttribute::*;
 
 #[derive(Debug)]
 pub enum ItemKind {
-    Function<Vec<FunctionAttribute>, String, Vec<(Mutable, Var, Type)>, Type, Block>,
-    Static<Mutable, Var, Type, Expr>,
-    Struct<String, Vec<(String, Type)>>,
-    Extern<Vec<ExternItem>>,
-    Use<String>,
-    Enum<String, Vec<Enumerator>>,
-    CloneImpl<Type>
+    Function(Vec<FunctionAttribute>, String, Vec<(Mutable, Var, Type)>, Type, Block),
+    Static(Mutable, Var, Type, Expr),
+    Struct(String, Vec<(String, Type)>),
+    Extern(Vec<ExternItem>),
+    Use(String),
+    Enum(String, Vec<Enumerator>),
+    CloneImpl(Type)
 }
 pub use self::ItemKind::*;
 
 #[derive(Debug)]
 pub enum ExternItem {
-    ExternFn<String, Vec<(Var, Type)>, bool, Type>,
-    ExternStatic<Mutable, Var, Type>
+    ExternFn(String, Vec<(Var, Type)>, bool, Type),
+    ExternStatic(Mutable, Var, Type)
 }
 pub use self::ExternItem::*;
 
 #[derive(Debug)]
 pub enum Enumerator {
-    EnumeratorAuto<String>,
-    EnumeratorExpr<String, Expr>
+    EnumeratorAuto(String),
+    EnumeratorExpr(String, Expr)
 }
 pub use self::Enumerator::*;
 
 #[derive(Debug)]
 pub enum Expr {
-    Lit<Lit>,
-    Var<Var>,
-    Path<Path>,
-    Index<Expr, Expr>,
-    ArrayExpr<Vec<Expr>>,
-    RepeatArray<Expr, Expr>,
-    StructExpr<String, Vec<(String, Expr)>, Option<Expr>>,
-    Call<Expr, Vec<Expr>>,
-    MethodCall<Expr, Var, Vec<Expr>>,
-    Lambda<Vec<Var>, Expr>,
-    Member<Expr, Var>,
-    BlockExpr<Block>,
-    UnsafeExpr<Block>,
-    IfThenElse<Expr, Block, Block>,
-    Loop<Option<Lifetime>, Block>,
-    While<Option<Lifetime>, Expr, Block>,
-    For<Option<Lifetime>, Var, Expr, Block>,
-    Break<Option<Lifetime>>,
-    Continue<Option<Lifetime>>,
-    Return<Option<Expr>>,
-    Neg<Expr>,
-    Deref<Expr>,
-    Not<Expr>,
-    Borrow<Mutable, Expr>,
-    Cast<Expr, Type>,
-    Mul<Expr, Expr>,
-    Div<Expr, Expr>,
-    Mod<Expr, Expr>,
-    Add<Expr, Expr>,
-    Sub<Expr, Expr>,
-    ShiftL<Expr, Expr>,
-    ShiftR<Expr, Expr>,
-    And<Expr, Expr>,
-    Xor<Expr, Expr>,
-    Or<Expr, Expr>,
-    CmpLT<Expr, Expr>,
-    CmpGT<Expr, Expr>,
-    CmpLE<Expr, Expr>,
-    CmpGE<Expr, Expr>,
-    CmpEQ<Expr, Expr>,
-    CmpNE<Expr, Expr>,
-    LAnd<Expr, Expr>,
-    LOr<Expr, Expr>,
-    Range<Expr, Expr>,
-    Assign<Expr, AssignOp, Expr>
+    Lit(Lit),
+    Var(Var),
+    Path(Path),
+    Index(Expr, Expr),
+    ArrayExpr(Vec<Expr>),
+    RepeatArray(Expr, Expr),
+    StructExpr(String, Vec<(String, Expr)>, Option<Expr>),
+    Call(Expr, Vec<Expr>),
+    MethodCall(Expr, Var, Vec<Expr>),
+    Lambda(Vec<Var>, Expr),
+    Member(Expr, Var),
+    BlockExpr(Block),
+    UnsafeExpr(Block),
+    IfThenElse(Expr, Block, Block),
+    Loop(Option<Lifetime>, Block),
+    While(Option<Lifetime>, Expr, Block),
+    For(Option<Lifetime>, Var, Expr, Block),
+    Break(Option<Lifetime>),
+    Continue(Option<Lifetime>),
+    Return(Option<Expr>),
+    Neg(Expr),
+    Deref(Expr),
+    Not(Expr),
+    Borrow(Mutable, Expr),
+    Cast(Expr, Type),
+    Mul(Expr, Expr),
+    Div(Expr, Expr),
+    Mod(Expr, Expr),
+    Add(Expr, Expr),
+    Sub(Expr, Expr),
+    ShiftL(Expr, Expr),
+    ShiftR(Expr, Expr),
+    And(Expr, Expr),
+    Xor(Expr, Expr),
+    Or(Expr, Expr),
+    CmpLT(Expr, Expr),
+    CmpGT(Expr, Expr),
+    CmpLE(Expr, Expr),
+    CmpGE(Expr, Expr),
+    CmpEQ(Expr, Expr),
+    CmpNE(Expr, Expr),
+    LAnd(Expr, Expr),
+    LOr(Expr, Expr),
+    Range(Expr, Expr),
+    Assign(Expr, AssignOp, Expr)
 }
 pub use self::Expr::*;
 

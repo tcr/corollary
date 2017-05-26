@@ -6,8 +6,8 @@ pub enum StorageSpec {
     AutoSpec,
     RegSpec,
     ThreadSpec,
-    StaticSpec<bool>,
-    ExternSpec<bool>
+    StaticSpec(bool),
+    ExternSpec(bool)
 }
 pub use self::StorageSpec::*;
 
@@ -46,10 +46,10 @@ pub enum TypeSpecAnalysis {
     TSNone,
     TSVoid,
     TSBool,
-    TSNum<NumTypeSpec>,
-    TSTypeDef<TypeDefRef>,
-    TSType<Type>,
-    TSNonBasic<CTypeSpec>
+    TSNum(NumTypeSpec),
+    TSTypeDef(TypeDefRef),
+    TSType(Type),
+    TSNonBasic(CTypeSpec)
 }
 pub use self::TypeSpecAnalysis::*;
 

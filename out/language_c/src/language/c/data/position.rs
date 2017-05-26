@@ -2,7 +2,7 @@ use haskell_support::*;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum Position {
-    Position<{ /* type record */ }>,
+    Position({ /* type record */ }),
     NoPosition,
     BuiltinPosition,
     InternalPosition

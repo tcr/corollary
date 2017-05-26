@@ -475,6 +475,12 @@ fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                     })),
                     state.tab().indent(),
                     data.iter().map(|tyset| {
+                        let mut tyset = tyset.clone();
+                        if tyset.len() == 1 {
+                            if let Ty::Span(values) = tyset[0].clone() {
+                                tyset = values;
+                            }
+                        }
                         format!("{}{}",
                             print_type(state.tab(), tyset[0].clone()),
                             if tyset.len() > 2 {

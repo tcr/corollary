@@ -1,8 +1,8 @@
 use haskell_support::*;
 
 pub enum ParseResult<a> {
-    POk<PState, a>,
-    PFailed<Vec<String>, Position>
+    POk(PState, a),
+    PFailed(Vec<String>, Position)
 }
 pub use self::ParseResult::*;
 

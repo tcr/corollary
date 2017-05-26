@@ -2,8 +2,8 @@ use haskell_support::*;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CChar {
-    CChar<Char, bool>,
-    CChars<Vec<Char>, bool>
+    CChar(Char, bool),
+    CChars(Vec<Char>, bool)
 }
 pub use self::CChar::*;
 

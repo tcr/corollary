@@ -18,9 +18,10 @@ fn main() {
                 .expect("failed to execute process");
 
         if output.status.success() {
-            println!("good: {}", entry.path().display());
+            println!("..... {}", entry.path().display());
         } else {
             println!("BAD!! {}", entry.path().display());
+            print!("{}", String::from_utf8_lossy(&output.stderr));
         }
     }
 }

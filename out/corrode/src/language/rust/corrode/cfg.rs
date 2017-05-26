@@ -5,8 +5,8 @@ struct BasicBlock<s<c>>(BasicBlock<s, Terminator<c>>);
 #[derive(Debug)]
 pub enum Terminator_q<c<l>> {
     Unreachable,
-    Branch<l>,
-    CondBranch<c, l, l>
+    Branch(l),
+    CondBranch(c, l, l)
 }
 pub use self::Terminator_q::*;
 
@@ -20,17 +20,17 @@ struct BuildState<s<c>>(BuildState<{ /* type record */ }>);
 
 #[derive(Debug)]
 pub enum StructureLabel<s<c>> {
-    GoTo<{ /* type record */ }>,
-    ExitTo<{ /* type record */ }>,
-    Nested<Vec<Structure<s, c>>>
+    GoTo({ /* type record */ }),
+    ExitTo({ /* type record */ }),
+    Nested(Vec<Structure<s, c>>)
 }
 pub use self::StructureLabel::*;
 
 #[derive(Debug)]
 pub enum Structure_q<s<c, a>> {
-    Simple<s, StructureTerminator<s, c>>,
-    Loop<a>,
-    Multiple<IntMap::IntMap<a>, a>
+    Simple(s, StructureTerminator<s, c>),
+    Loop(a),
+    Multiple(IntMap::IntMap<a>, a)
 }
 pub use self::Structure_q::*;
 
