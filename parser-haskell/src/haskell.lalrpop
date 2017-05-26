@@ -110,12 +110,13 @@ Operator: String = {
 // Code structures
 
 Assignment: Assignment = {
+    <pats:PatList> ("|" <CommaDef<(<ExprSpan> ("<-" ExprSpan)?)>> "=" <ExprSpan>)+ => Assignment { pats, expr: Expr::Dummy },
     <pats:PatList> "=" <expr:ExprSpan> => Assignment { pats, expr },
 };
 
 Case: CaseCond = {
     // TODO commas can be used in expr spans, see AST.hs
-    <d:PatList> <v:("|" <CommaDef<ExprSpan>> "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
+    <d:PatList> <v:("|" <CommaDef<(<ExprSpan> ("<-" ExprSpan)?)>>  "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
     // TODO use pipe groups here:
     <d:PatList> "->" <v:CommaDef<ExprSpan>> <w:Where> => CaseCond::Direct(d, v),
 };
@@ -197,9 +198,6 @@ Statement: Statement = {
 
   <id:Ident> <t:("::" <TypeGroup>)> => Statement::Prototype(id, t),
   <a:Assignment> <wh:Where> => Statement::Assign(Box::new(a), wh),
-  <pats:PatList>
-    ("|" CommaDef<ExprSpan> "=" <ExprSpan>)+
-    ("where" "{" Semi<Statement> "}")? => Statement::GuardAssign,
 };
 
 DoStatement: DoStatement = {

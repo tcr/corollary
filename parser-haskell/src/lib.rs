@@ -195,7 +195,7 @@ fn commify(val: &str) -> String {
             }
 
             // make sure `let { ... } in` is closed
-            if word == "in" {
+            if word == "in" && !first {
                 // are we still in the `let`?
                 if let Some(&(_, BlockWord::Let)) = stash.last() {
                     pop_brace!();
