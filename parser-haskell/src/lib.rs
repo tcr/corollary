@@ -1,3 +1,5 @@
+#[macro_use] extern crate errln;
+
 extern crate lalrpop_util;
 extern crate regex;
 extern crate base64;

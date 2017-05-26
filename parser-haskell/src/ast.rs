@@ -116,7 +116,9 @@ pub fn rearrange_infix_pat(mut pats: Vec<Pat>) -> Vec<Pat> {
     let mut index = None;
     for (i, pat) in pats.iter().enumerate() {
         if match pat { &Pat::Infix(_) => true, _ => false } {
-            assert!(index.is_none(), "Multiple infix patterns: {:?}", pats);
+            if !index.is_none() {
+                errln!("TODO: assert failed: multiple infix patterns: {:?}", pats);
+            }
             index = Some(i);
         }
     }

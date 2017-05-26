@@ -3,6 +3,7 @@ name = "parser-haskell"
 version = "0.1.0"
 dependencies = [
  "base64 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "errln 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "lalrpop 0.12.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "lalrpop-util 0.12.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
