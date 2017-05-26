@@ -753,8 +753,8 @@ fn test_no_regressions() {
         // Do not output preprocessed data temp.txt
         //println!("{:?}", path);
         use ::std::io::Write;
-        let mut a = ::std::fs::File::create("temp.txt").unwrap();
-        a.write_all(contents.as_bytes());
+        // let mut a = ::std::fs::File::create("temp.txt").unwrap();
+        // a.write_all(contents.as_bytes());
 
         let mut errors = Vec::new();
         match parser_haskell::parse(&mut errors, &contents) {
