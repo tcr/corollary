@@ -196,7 +196,7 @@ Statement: Statement = {
   "instance" TypeGroup
     "where" "{" Semi<Statement> "}" => Statement::Instance,
 
-  <id:Ident> <t:("::" <TypeGroup>)> => Statement::Prototype(id, t),
+  <id:CommaDef<Ident>> <t:("::" <TypeGroup>)> => Statement::Prototype(id[0].clone(), t),
   <a:Assignment> <wh:Where> => Statement::Assign(Box::new(a), wh),
 };
 
