@@ -54,6 +54,8 @@ pub enum Item {
     Assign(Box<Assignment>, Where),
     GuardAssign,
 
+    Infixr(isize, Ident),
+
     // TODO remove this
     Dummy,
 }

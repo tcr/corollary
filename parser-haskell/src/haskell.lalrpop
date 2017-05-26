@@ -194,6 +194,7 @@ Item: Item = {
     "where" "{" Semi<Item> "}" => Item::Class,
   "instance" TypeGroup
     "where" "{" Semi<Item> "}" => Item::Instance,
+  "infixr" <n:Num> "`" <i:Ident> "`" => Item::Infixr(n, i),
 
   <id:CommaDef<Ident>> <t:("::" <TypeGroup>)> => Item::Prototype(id[0].clone(), t),
   <a:Assignment> <wh:Where> => Item::Assign(Box::new(a), wh),
