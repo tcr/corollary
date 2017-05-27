@@ -13,6 +13,7 @@ license = "MIT/Apache-2.0"
 [dependencies]
 clap = "2.24"
 errln = "0.1.0"
+error-chain = "0.10"
 hex = "0.2.0"
 lalrpop-util = "0.12.5"
 maplit = "*"
