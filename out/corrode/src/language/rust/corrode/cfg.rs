@@ -16,12 +16,12 @@ struct DepthFirst;
 
 struct CFG<k<s, c>>(CFG<Label, IntMap::IntMap<BasicBlock<s, c>>>);
 
-struct BuildState<s<c>>(BuildState<{ /* type record */ }>);
+struct BuildState<s<c>>(BuildState<TypeRecord /* todo */>);
 
 #[derive(Debug)]
 pub enum StructureLabel<s<c>> {
-    GoTo({ /* type record */ }),
-    ExitTo({ /* type record */ }),
+    GoTo(TypeRecord /* todo */),
+    ExitTo(TypeRecord /* todo */),
     Nested(Vec<Structure<s, c>>)
 }
 pub use self::StructureLabel::*;
@@ -35,11 +35,11 @@ pub enum Structure_q<s<c, a>> {
 pub use self::Structure_q::*;
 
 #[derive(Debug)]
-struct Structure<s<c>>(Structure<{ /* type record */ }>);
+struct Structure<s<c>>(Structure<TypeRecord /* todo */>);
 
 pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
     /* do */ {
-        modify(|st| { st }({
+        modify(|st| { <Expr::Dummy> }(st, {
             buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
         }))
     }
@@ -47,12 +47,12 @@ pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m
 
 pub fn buildCFG(root: BuildCFGT<m, s, c, Label>) -> m<CFG<Unordered, s, c>> {
     /* do */ {
-        let (label, final) = runStateT(root, (BuildState(0, IntMap::empty)));
+        let label(final) = runStateT(root, (BuildState(0, IntMap::empty)));
         (CFG(label, (buildBlocks(final))))
     }
 }
 
-pub fn depthFirstOrder((CFG(start, blocks)): CFG<k, s, c>) -> CFG<DepthFirst, s, c> {
+pub fn depthFirstOrder(CFG(start, blocks): CFG<k, s, c>) -> CFG<DepthFirst, s, c> {
     CFG(start_q, blocks_q)
 }
 
@@ -72,7 +72,7 @@ pub fn newLabel() -> BuildCFGT<m, s, c, Label> {
     /* do */ {
         let old = get;
         put(old, {
-            buildLabel: +(buildLabel(old), 1)
+            buildLabel: (buildLabel(old) + 1)
         });
         (buildLabel(old))
     }
@@ -86,8 +86,8 @@ pub fn partitionMembers(a: IntSet::IntSet, b: IntSet::IntSet) -> (IntSet::IntSet
     (IntSet.intersection(a, b), IntSet.difference(a, b))
 }
 
-pub fn prettyCFG(fmtS: fn(s) -> Doc, fmtC: fn(c) -> Doc, (CFG(entry, blocks)): CFG<k, s, c>) -> Doc {
-    vcat(__op_concat((<>(text("start @".to_string()), text((show(entry))))), blocks_q))
+pub fn prettyCFG(fmtS: fn(s) -> Doc, fmtC: fn(c) -> Doc, CFG(entry, blocks): CFG<k, s, c>) -> Doc {
+    vcat(__op_concat((__op_ne(text("start @".to_string()), text((show(entry))))), blocks_q))
 }
 
 pub fn prettyStructure() -> Doc {
@@ -97,14 +97,13 @@ pub fn prettyStructure() -> Doc {
 pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s, c>>) -> Vec<Structure<s, c>> {
     {
         let (returns, noreturns) = partitionMembers(entries)(IntSet::unions(map(successors)(IntMap::elems(blocks))));
-;
         let (present, absent) = partitionMembers(entries, (IntMap::keysSet(blocks)));
-    }(in, match (IntSet::toList(noreturns), IntSet::toList(returns)) {
+    match (IntSet::toList(noreturns), IntSet::toList(returns)) {
             ([], []) => {
                 vec![]
             },
             ([entry], []) => {
-                match IntMap::updateLookupWithKey((|_, _| { None }), entry, blocks) {
+                match IntMap::updateLookupWithKey((|_, _| { <Expr::Dummy> }(None)), entry, blocks) {
                     (Some((s, term)), blocks_q) => {
                         __op_concat(Structure({
                             structureEntries: entries,
@@ -119,9 +118,9 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
                     },
                 }
             },
-            _ => if not((IntSet::null(absent))) { __op_concat(if(IntSet::null, present, then, vec![], else, Structure, {
+            _ => if not((IntSet::null(absent))) { __op_concat(__TODO_if(IntSet::null, present, then, vec![], __TODO_else, Structure, {
             structureEntries: entries,
-            structureBody: Multiple((IntMap::fromSet((const(vec![])), absent)), (relooper(present, blocks)))
+            structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
         }), vec![]) },
             ([], _) => {
                 __op_concat(Structure({
@@ -135,19 +134,19 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
                     structureBody: Multiple(handlers, unhandled)
                 }), relooper(followEntries, followBlocks))
             },
-        })
+        }    }
 }
 
-pub fn relooperRoot((CFG(entry, blocks)): CFG<k, s, c>) -> Vec<Structure<s, c>> {
+pub fn relooperRoot(CFG(entry, blocks): CFG<k, s, c>) -> Vec<Structure<s, c>> {
     relooper((IntSet::singleton(entry)))(IntMap::map((|BasicBlock(s, term)| { (s, fmap(GoTo, term)) }), blocks))
 }
 
-pub fn removeEmptyBlocks((CFG(start, blocks)): CFG<k, f<s>, c>) -> CFG<Unordered, f<s>, c> {
+pub fn removeEmptyBlocks(CFG(start, blocks): CFG<k, f<s>, c>) -> CFG<Unordered, f<s>, c> {
     CFG((rewrite(start)), blocks_q)
 }
 
 pub fn restrictKeys(m: IntMap::IntMap<a>, s: IntSet::IntSet) -> IntMap::IntMap<a> {
-    IntMap.intersection(m, IntMap::fromSet((const(())), s))
+    IntMap.intersection(m, IntMap::fromSet((__TODO_const(())), s))
 }
 
 pub fn simplifyStructure() -> Vec<Structure<s, c>> {

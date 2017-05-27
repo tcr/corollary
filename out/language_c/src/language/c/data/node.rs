@@ -30,8 +30,15 @@ pub fn internalNode() -> NodeInfo {
     undefNode
 }
 
-pub fn isUndefNode(_: NodeInfo) -> bool {
-    false
+pub fn isUndefNode(__0: NodeInfo) -> bool {
+    match (__0) {
+        OnlyPos(p, _) => {
+            <Expr::Dummy>
+        },
+        _ => {
+            false
+        },
+    }
 }
 
 pub fn lengthOfNode(ni: NodeInfo) -> Option<isize> {
@@ -42,16 +49,16 @@ pub fn mkNodeInfo(pos: Position, name: Name) -> NodeInfo {
     NodeInfo(pos, (nopos, -(1)), name)
 }
 
+pub fn mkNodeInfo_q(pos: Position, lasttok: PosLength, name: Name) -> NodeInfo {
+    NodeInfo(pos, lasttok, name)
+}
+
 pub fn mkNodeInfoOnlyPos(pos: Position) -> NodeInfo {
     OnlyPos(pos, (nopos, -(1)))
 }
 
 pub fn mkNodeInfoPosLen() -> NodeInfo {
     OnlyPos
-}
-
-pub fn mkNodeInfo_q(pos: Position, lasttok: PosLength, name: Name) -> NodeInfo {
-    NodeInfo(pos, lasttok, name)
 }
 
 pub fn nameOfNode(__0: NodeInfo) -> Option<Name> {

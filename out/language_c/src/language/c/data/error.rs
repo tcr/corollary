@@ -49,7 +49,7 @@ pub fn internalErrPrefix() -> String {
 }
 
 pub fn isHardError() -> bool {
-    (>((), LevelWarn(errorLevel)))
+    ((() > LevelWarn(errorLevel)))
 }
 
 pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
@@ -60,8 +60,8 @@ pub fn showError(short_msg: String) -> String {
     showErrorInfo(short_msg, errorInfo)
 }
 
-pub fn showErrorInfo(short_msg: String, (ErrorInfo(level, pos, msgs)): ErrorInfo) -> String {
-    __op_addadd(header, showMsgLines((__op_concat(if(null, short_msg, then, msgs, else, short_msg), msgs))))
+pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) -> String {
+    __op_addadd(header, showMsgLines((__op_concat(__TODO_if(null, short_msg, then, msgs, __TODO_else, short_msg), msgs))))
 }
 
 pub fn unsupportedFeature(msg: String, a: a) -> UnsupportedFeature {

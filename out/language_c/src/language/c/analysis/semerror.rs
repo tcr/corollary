@@ -29,7 +29,7 @@ pub fn prevDeclMsg(old_node: NodeInfo) -> Vec<String> {
     vec!["The previous declaration was here: ".to_string(), show((posOfNode(old_node)))]
 }
 
-pub fn redefErrLabel((RedefInfo(ident, _, _, _)): RedefInfo) -> String {
+pub fn redefErrLabel(RedefInfo(ident, _, _, _): RedefInfo) -> String {
     __op_addadd(ident, " redefined".to_string())
 }
 
@@ -65,7 +65,7 @@ pub fn typeMismatch() -> TypeMismatch {
     TypeMismatch
 }
 
-pub fn typeMismatchInfo((TypeMismatch(reason, (node1, _ty2), _t2)): TypeMismatch) -> ErrorInfo {
+pub fn typeMismatchInfo(TypeMismatch(reason, (node1, _ty2), _t2): TypeMismatch) -> ErrorInfo {
     ErrorInfo(LevelError, (posOfNode(node1)), vec![reason])
 }
 

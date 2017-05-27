@@ -44,7 +44,7 @@ pub fn binopType(op: CBinaryOp, t1: Type, t2: Type) -> Either<String, Type> {
 isCmpOp(op) { match (t1_q, t2_q) {
         (DirectType(tn1, _, _), DirectType(tn2, _, _)) => {
             match arithmeticConversion(tn1, tn2) {
-                Some(_) => {
+                Some | _ => {
                     boolType
                 },
                 None => {
@@ -83,7 +83,7 @@ otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((
             /* do */ {
                 when((isBitOp(op)), (__op_rshift(checkIntegral(t1), checkIntegral(t2))));
                 match arithmeticConversion(tn1, tn2) {
-                    Some(tn) => {
+                    Some | tn => {
                         return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
                     },
                     None => {
@@ -113,19 +113,23 @@ pub fn castCompatible(t1: Type, t2: Type) -> Either<String, ()> {
     }
 }
 
+pub fn checkIntegral(t: Type) -> Either<String, ()> {
+    <Expr::Dummy>
+}
+
 pub fn checkIntegral_q(ni: NodeInfo) -> m<()> {
     typeErrorOnLeft(ni, checkIntegral)
 }
 
 pub fn checkScalar(t: Type) -> Either<String, ()> {
     match canonicalType(t) {
-        DirectType(_, _, _) => {
+        DirectType | _ | _ | _ => {
             ()
         },
-        PtrType(_, _, _) => {
+        PtrType | _ | _ | _ => {
             ()
         },
-        ArrayType(_, _, _, _) => {
+        ArrayType | _ | _ | _ | _ => {
             ()
         },
         t_q => {
@@ -142,7 +146,7 @@ pub fn compatible(t1: Type, t2: Type) -> Either<String, ()> {
     __op_rshift(compositeType(t1, t2), ())
 }
 
-pub fn compositeDeclAttrs((DeclAttrs(inl, stor, attrs1)): DeclAttrs, (DeclAttrs(_, _, attrs2)): DeclAttrs) -> DeclAttrs {
+pub fn compositeDeclAttrs(DeclAttrs(inl, stor, attrs1): DeclAttrs, DeclAttrs(_, _, attrs2): DeclAttrs) -> DeclAttrs {
     DeclAttrs(inl, stor, (mergeAttrs(attrs1, attrs2)))
 }
 
@@ -163,7 +167,7 @@ pub fn compositeParamDecl(__0: ParamDecl, __1: ParamDecl) -> Either<String, Para
     }
 }
 
-pub fn compositeParamDecl_q(f: fn(VarDecl) -> fn(NodeInfo) -> ParamDecl, (VarDecl(n1, attrs1, t1)): VarDecl, (VarDecl(n2, attrs2, t2)): VarDecl, dni: NodeInfo) -> Either<String, ParamDecl> {
+pub fn compositeParamDecl_q(f: fn(VarDecl) -> fn(NodeInfo) -> ParamDecl, VarDecl(n1, attrs1, t1): VarDecl, VarDecl(n2, attrs2, t2): VarDecl, dni: NodeInfo) -> Either<String, ParamDecl> {
     /* do */ {
         let vd = compositeVarDecl((VarDecl(n1, attrs1, t1_q)), (VarDecl(n2, attrs2, t2_q)));
         return(f(vd, dni))
@@ -177,6 +181,9 @@ pub fn compositeSize(__0: ArraySize, __1: ArraySize) -> Either<String, ArraySize
         },
         (s1, UnknownArraySize(_)) => {
             s1
+        },
+        (ArraySize(s1, e1), ArraySize(s2, e2)) => {
+            <Expr::Dummy>
         },
     }
 }
@@ -212,13 +219,13 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
                     },
                     (TyComp(c1), TyComp(c2)) => {
                         /* do */ {
-                            when((/=(sueRef(c1), sueRef(c2))))(fail(__op_addadd("incompatible composite types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))));
+                            when((__op_assign_div(sueRef(c1), sueRef(c2))))(fail(__op_addadd("incompatible composite types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))));
                             tn1
                         }
                     },
                     (TyEnum(e1), TyEnum(e2)) => {
                         /* do */ {
-                            when((/=(sueRef(e1), sueRef(e2))))(fail(__op_addadd("incompatible enumeration types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))));
+                            when((__op_assign_div(sueRef(e1), sueRef(e2))))(fail(__op_addadd("incompatible enumeration types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))));
                             return(TyEnum(e1))
                         }
                     },
@@ -241,17 +248,29 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
         (PtrType(DirectType(TyVoid, _, _), q1, _), PtrType(t2, q2, a2)) => {
             return(PtrType(t2, (mergeTypeQuals(q1, q2)), a2))
         },
+        (PtrType(t1, q1, a1), t2) => {
+            <Expr::Dummy>
+        },
+        (t1, PtrType(t2, q2, a2)) => {
+            <Expr::Dummy>
+        },
+        (ArrayType(t1, sz1, q1, a1), t2) => {
+            <Expr::Dummy>
+        },
+        (t1, ArrayType(t2, sz2, q2, a2)) => {
+            <Expr::Dummy>
+        },
         (ArrayType(t1, s1, q1, a1), ArrayType(t2, s2, q2, a2)) => {
             /* do */ {
                 let t = compositeType(t1, t2);
                 let s = compositeSize(s1, s2);
-                {
-                    let quals = mergeTypeQuals(q1, q2);
-;
-                    let attrs = mergeAttrs(a1, a2);
-                };
+                let quals = mergeTypeQuals(q1, q2);
+                let attrs = mergeAttrs(a1, a2);
                 (ArrayType(t, s, quals, attrs))
             }
+        },
+        (t1, t2) => {
+            <Expr::Dummy>
         },
         (TypeDefType(tdr1, q1, a1), TypeDefType(tdr2, q2, a2)) => {
             match (tdr1, tdr2) {
@@ -271,7 +290,7 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
                 (FunType(rt1, args1, varargs1), FunType(rt2, args2, varargs2)) => {
                     /* do */ {
                         let args = mapM((uncurry(compositeParamDecl)), (zip(args1, args2)));
-                        when((/=(varargs1, varargs2)))(fail("incompatible varargs declarations".to_string()));
+                        when((__op_assign_div(varargs1, varargs2)))(fail("incompatible varargs declarations".to_string()));
                         doFunType(rt1, rt2, args, varargs1)
                     }
                 },
@@ -295,7 +314,7 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
     }
 }
 
-pub fn compositeVarDecl((VarDecl(n1, attrs1, t1)): VarDecl, (VarDecl(_, attrs2, t2)): VarDecl) -> Either<String, VarDecl> {
+pub fn compositeVarDecl(VarDecl(n1, attrs1, t1): VarDecl, VarDecl(_, attrs2, t2): VarDecl) -> Either<String, VarDecl> {
     /* do */ {
         let t = compositeType(t1, t2);
         (VarDecl(n1, (compositeDeclAttrs(attrs1, attrs2)), t))
@@ -314,7 +333,7 @@ pub fn conditionalType(t1: Type, t2: Type) -> Either<String, Type> {
         },
         (t1_q(@, DirectType(tn1, q1, a1)), t2_q(@, DirectType(tn2, q2, a2))) => {
             match arithmeticConversion(tn1, tn2) {
-                Some(tn) => {
+                Some | tn => {
                     return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
                 },
                 None => {
@@ -352,12 +371,9 @@ pub fn constType(__0: CConst) -> m<Type> {
         CStrConst(CString(chars, wide), ni) => {
             /* do */ {
                 let n = genName;
-                {
-;
-                    let ni_q = mkNodeInfo((posOf(ni)), n);
-;
-                    let arraySize = ArraySize(true, (CConst((CIntConst((cInteger((toInteger((length(chars)))))), ni_q)))));
-                };
+                let charType = <Expr::Dummy>;
+                let ni_q = mkNodeInfo((posOf(ni)), n);
+                let arraySize = ArraySize(true, (CConst((CIntConst((cInteger((toInteger((length(chars)))))), ni_q)))));
                 return(ArrayType((DirectType((TyIntegral(charType)), noTypeQuals, noAttributes)), arraySize, noTypeQuals, vec![]))
             }
         },
@@ -403,10 +419,10 @@ pub fn derefType(__0: Type) -> Either<String, Type> {
         },
         t => {
             match canonicalType(t) {
-                PtrType(t_q, _, _) => {
+                PtrType | t_q | _ | _ => {
                     t_q
                 },
-                ArrayType(t_q, _, _, _) => {
+                ArrayType | t_q | _ | _ | _ => {
                     t_q
                 },
                 _ => {
@@ -419,13 +435,13 @@ pub fn derefType(__0: Type) -> Either<String, Type> {
 
 pub fn expandAnonymous(__0: NodeInfo, __1: (VarName, Type)) -> m<Vec<(Ident, Type)>> {
     match (__0, __1) {
-        (ni, NoName(DirectType(TyComp(ctr), _, _))) => {
+        (ni, (NoName, DirectType(TyComp(ctr), _, _))) => {
             __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni))
         },
-        (_, NoName(_)) => {
+        (_, (NoName, _)) => {
             vec![]
         },
-        (_, VarName(n, _)(t)) => {
+        (_, (VarName(n, _), t)) => {
             vec![(n, t)]
         },
     }
@@ -433,12 +449,12 @@ pub fn expandAnonymous(__0: NodeInfo, __1: (VarName, Type)) -> m<Vec<(Ident, Typ
 
 pub fn fieldType(ni: NodeInfo, m: Ident, t: Type) -> m<Type> {
     match canonicalType(t) {
-        DirectType(TyComp(ctr), _, _) => {
+        DirectType | TyComp(ctr) | _ | _ => {
             /* do */ {
                 let td = lookupSUE(ni, (sueRef(ctr)));
                 let ms = tagMembers(ni, td);
                 match lookup(m, ms) {
-                    Some(ft) => {
+                    Some | ft => {
                         ft
                     },
                     None => {
@@ -457,7 +473,7 @@ pub fn lookupSUE(ni: NodeInfo, sue: SUERef) -> m<TagDef> {
     /* do */ {
         let dt = getDefTable;
         match lookupTag(sue, dt) {
-            Some(Right(td)) => {
+            Some | Right(td) => {
                 td
             },
             _ => {
@@ -497,13 +513,13 @@ pub fn sueAttrs(ni: NodeInfo, sue: SUERef) -> m<Attributes> {
             None => {
                 astError(ni)(__op_addadd("SUE not found: ".to_string(), render((pretty(sue)))))
             },
-            Some(Left(_)) => {
+            Some | Left(_) => {
                 vec![]
             },
-            Some(Right(CompDef(CompType(_, _, _, attrs, _)))) => {
+            Some | Right(CompDef(CompType(_, _, _, attrs, _))) => {
                 attrs
             },
-            Some(Right(EnumDef(EnumType(_, _, attrs, _)))) => {
+            Some | Right(EnumDef(EnumType(_, _, attrs, _))) => {
                 attrs
             },
         }
@@ -512,10 +528,10 @@ pub fn sueAttrs(ni: NodeInfo, sue: SUERef) -> m<Attributes> {
 
 pub fn tagMembers(ni: NodeInfo, td: TagDef) -> m<Vec<(Ident, Type)>> {
     match td {
-        CompDef(CompType(_, _, ms, _, _)) => {
+        CompDef | CompType(_, _, ms, _, _) => {
             getMembers(ms)
         },
-        EnumDef(EnumType(_, es, _, _)) => {
+        EnumDef | EnumType(_, es, _, _) => {
             getMembers(es)
         },
     }
@@ -528,10 +544,10 @@ pub fn typeDefAttrs(ni: NodeInfo, i: Ident) -> m<Attributes> {
             None => {
                 astError(ni)(__op_addadd("can\'t find typedef name: ".to_string(), identToString(i)))
             },
-            Some(Left(TypeDef(_, t, attrs, _))) => {
+            Some | Left(TypeDef(_, t, attrs, _)) => {
                 liftM((attrs(__op_addadd)), deepTypeAttrs(t))
             },
-            Some(Right(_)) => {
+            Some | Right(_) => {
                 astError(ni)(__op_addadd("not a typedef name: ".to_string(), identToString(i)))
             },
         }
@@ -556,7 +572,7 @@ pub fn typeErrorOnLeft(__0: NodeInfo, __1: Either<String, a>) -> m<a> {
 pub fn varAddrType(d: IdentDecl) -> Either<String, Type> {
     /* do */ {
         match declStorage(d) {
-            Auto(true) => {
+            Auto | true => {
                 fail("address of register variable".to_string())
             },
             _ => {
@@ -564,7 +580,7 @@ pub fn varAddrType(d: IdentDecl) -> Either<String, Type> {
             },
         };
         match t {
-            ArrayType(_, _, q, a) => {
+            ArrayType | _ | _ | q | a => {
                 return(PtrType(t, q, a))
             },
             _ => {

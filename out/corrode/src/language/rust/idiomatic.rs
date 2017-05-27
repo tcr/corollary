@@ -13,10 +13,10 @@ pub fn itemIdioms(__0: Rust::Item) -> Rust::Item {
 
 pub fn tailBlock(__0: Rust::Block) -> Rust::Block {
     match (__0) {
-        Rust::Block(b, Some(<todo>)) => {
+        Rust::Block(b, Some((tailExpr -> Some(e)))) => {
             Rust::Block(b, e)
         },
-        Rust::Block(<todo>, None) => {
+        Rust::Block((unsnoc -> Some((b, Rust::Stmt((tailExpr -> Some(e)))))), None) => {
             Rust::Block(b, e)
         },
         b => {
@@ -49,7 +49,7 @@ pub fn unsnoc(__0: Vec<a>) -> Option<(Vec<a>, a)> {
         },
         [x, ...xs] => {
             match unsnoc(xs) {
-                Some((a, b)) => {
+                Some | (a, b) => {
                     Some((__op_concat(x, a), b))
                 },
                 None => {

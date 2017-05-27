@@ -58,6 +58,20 @@ fn print_ident(_: PrintState, mut expr: String) -> String {
         return "__error!".to_string()
     } else if expr == "str" {
         return "__str".to_string()
+    } else if expr == "const" {
+        return "__TODO_const".to_string()
+    } else if expr == "else" {
+        return "__TODO_else".to_string()
+    } else if expr == "if" {
+        return "__TODO_if".to_string()
+    } else if expr == "@" {
+        return "__TODO_at".to_string()
+    } else if expr == "ref" {
+        return "__ref".to_string()
+    } else if expr == "static" {
+        return "__static".to_string()
+    } else if expr == "enum" {
+        return "__enum".to_string()
     }
 
     if expr.find(":").is_some() {
@@ -93,6 +107,17 @@ fn print_op_fn(value: &str) -> String {
         "<<" => "__op_lshift".to_string(),
         "<+>" => "__op_doc_conat".to_string(),
         "$+$" => "__op_line_concat".to_string(),
+        "$$" => "__op_line_something".to_string(), // TODO
+        "$!" => "__op_TODO_dollarnot".to_string(),
+        ".&." => "__op_dotted_and".to_string(),
+        ".|." => "__op_dotted_or".to_string(),
+        "/=" => "__op_assign_div".to_string(),
+        "+=" => "__op_assign_add".to_string(),
+        "-=" => "__op_assign_sub".to_string(),
+        "*=" => "__op_assign_mul".to_string(),
+        "^" => "__op_power".to_string(),
+        "<>" => "__op_ne".to_string(),
+        "\\\\" => "__op_forwardslash".to_string(), // TODO
         _ => value.to_string()
     }
 }
@@ -146,7 +171,13 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             if op == "&&"
                 || op == "=="
                 || op == "*"
-                || op == "||" {
+                || op == "+"
+                || op == "-"
+                || op == "||"
+                || op == ">"
+                || op == "<"
+                || op == ">="
+                || op == "<=" {
                 format!("({} {} {})", print_expr(state, l), op, print_expr(state, r))
             } else if op == "$" {
                 format!("{}({})", print_expr(state, l), print_expr(state, r))
@@ -245,13 +276,13 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                         }
                         out.push(format!("{}{} => if {},",
                             state.tab().indent(),
-                            print_patterns(state, label),
+                            print_case_patterns(state, label),
                             inner.join("\n")));
                     }
                     ast::CaseCond::Direct(labels, arms) => {
                         out.push(format!("{}{} => {{\n{}{}\n{}}},",
                             state.tab().indent(),
-                            print_patterns(state, labels),
+                            print_case_patterns(state, labels),
                             state.tab().tab().indent(),
                             arms.iter()
                                 .map(|x| print_expr(state.tab().tab(), x))
@@ -403,7 +434,7 @@ fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Pair(ref a, ref b) => {
             format!("fn({}) -> {}", print_type(state, &**a), print_type(state, &**b))
         }
-        Ty::Record(..) => "{ /* type record */ }".to_string(),
+        Ty::Record(..) => "TypeRecord /* todo */".to_string(),
         Ty::EmptyParen => "()".to_string(),
         Ty::Dummy => "()".to_string(),
     }
@@ -423,6 +454,14 @@ where
     T: Borrow<Pat>,
 {
     iter.into_iter().map(|p| print_pattern(state, p.borrow())).collect::<Vec<_>>().join(", ")
+}
+
+fn print_case_patterns<I, T>(state: PrintState, iter: I) -> String
+where
+    I: IntoIterator<Item = T>,
+    T: Borrow<Pat>,
+{
+    iter.into_iter().map(|p| print_pattern(state, p.borrow())).collect::<Vec<_>>().join(" | ")
 }
 
 fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
@@ -619,7 +658,7 @@ fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
             out.push(
                 format!("{}pub fn {}({}) -> {} {{\n{}{}\n{}}}\n",
                     state.indent(),
-                    key,
+                    print_type_ident(state, &key),
                     args_span.join(", "),
                     print_type(state.tab(), t.last().unwrap()),
                     state.tab().indent(),

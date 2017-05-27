@@ -6,7 +6,7 @@ pub enum TagFwdDecl {
 }
 pub use self::TagFwdDecl::*;
 
-struct DefTable(DefTable<{ /* type record */ }>);
+struct DefTable(DefTable<TypeRecord /* todo */>);
 
 #[derive(Clone, Debug)]
 pub enum DeclarationStatus<t> {
@@ -28,10 +28,10 @@ pub use self::TagEntryKind::*;
 pub fn compatIdentEntry(__0: IdentEntry) -> bool {
     match (__0) {
         Left(_tydef) => {
-            either((const(true)), (const(false)))
+            either((__TODO_const(true)), (__TODO_const(false)))
         },
         Right(def) => {
-            either((const(false)))(|other_def| { match (def, other_def) {
+            either((__TODO_const(false)))(|other_def| { <Expr::Dummy> }(match (def, other_def) {
                     (EnumeratorDef(_), EnumeratorDef(_)) => {
                         true
                     },
@@ -44,7 +44,7 @@ pub fn compatIdentEntry(__0: IdentEntry) -> bool {
                     (_, _) => {
                         true
                     },
-                } })
+                }))
         },
     }
 }
@@ -80,14 +80,14 @@ pub fn declareTag(sueref: SUERef, decl: TagFwdDecl, deftbl: DefTable) -> (Declar
                 tagDecls: fst(defLocal((tagDecls(deftbl)), sueref, (Left(decl))))
             }))
         },
-        Some, old_def => if (tagKind(old_def) == tagKind((Left(decl)))) { (KeepDef(old_def), deftbl) }
+        Some | old_def => if (tagKind(old_def) == tagKind((Left(decl)))) { (KeepDef(old_def), deftbl) }
 otherwise { (KindMismatch(old_def), deftbl) },
     }
 }
 
 pub fn defRedeclStatus(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option<t>) -> DeclarationStatus<t> {
     match oldDecl {
-        Some, def_q => if sameKind(def, def_q) { Redeclared(def_q) }
+        Some | def_q => if sameKind(def, def_q) { Redeclared(def_q) }
 otherwise { KindMismatch(def_q) },
         None => {
             NewDecl
@@ -99,7 +99,7 @@ pub fn defRedeclStatusLocal(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, 
     match defRedeclStatus(sameKind, def, oldDecl) {
         NewDecl => {
             match lookupName(nsm, ident) {
-                Some(shadowed) => {
+                Some | shadowed => {
                     Shadowed(shadowed)
                 },
                 None => {
@@ -122,13 +122,13 @@ pub fn defineGlobalIdent(ident: Ident, def: IdentDecl, deftbl: DefTable) -> (Dec
 pub fn defineLabel(ident: Ident, deftbl: DefTable) -> (DeclarationStatus<Ident>, DefTable) {
     {
         let (labels_q, old_label) = defLocal((labelDefs(deftbl)), ident, ident);
-    }(in, (maybe(NewDecl, Redeclared, old_label), deftbl({
+    (maybe(NewDecl, Redeclared, old_label), deftbl({
             labelDefs: labels_q
-        })))
+        }))    }
 }
 
 pub fn defineScopedIdent() -> (DeclarationStatus<IdentEntry>, DefTable) {
-    defineScopedIdentWhen((const(true)))
+    defineScopedIdentWhen((__TODO_const(true)))
 }
 
 pub fn defineScopedIdentWhen(override_def: fn(IdentDecl) -> bool, ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
@@ -218,9 +218,9 @@ pub fn leaveLocalScope(deftbl: DefTable) -> DefTable {
 pub fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
     {
         let (decls_q, members) = leaveScope((memberDecls(deftbl)));
-    }(in, <Expr::Dummy>, (map(snd, members)), (deftbl({
-            memberDecls: decls_q
-        })))
+    <Expr::Dummy>((map(snd, members)), (deftbl({
+                memberDecls: decls_q
+            })))    }
 }
 
 pub fn leaveScope_() -> NameSpaceMap<k, a> {
@@ -251,7 +251,7 @@ pub fn lookupType(dt: DefTable, n: Name) -> Option<Type> {
     IntMap::lookup((nameId(n)), (typeTable(dt)))
 }
 
-pub fn mergeDefTable((DefTable(i1, t1, l1, m1, r1, tt1)): DefTable, (DefTable(i2, t2, l2, m2, r2, tt2)): DefTable) -> DefTable {
+pub fn mergeDefTable(DefTable(i1, t1, l1, m1, r1, tt1): DefTable, DefTable(i2, t2, l2, m2, r2, tt2): DefTable) -> DefTable {
     DefTable((mergeNameSpace(i1, i2)), (mergeNameSpace(t1, t2)), (mergeNameSpace(l1, l2)), (mergeNameSpace(m1, m2)), (union(r1, r2)), (union(tt1, tt2)))
 }
 

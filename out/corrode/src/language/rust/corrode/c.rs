@@ -1,12 +1,12 @@
 use haskell_support::*;
 
-struct FunctionContext(FunctionContext<{ /* type record */ }>);
+struct FunctionContext(FunctionContext<TypeRecord /* todo */>);
 
-struct Output(Output<{ /* type record */ }>);
+struct Output(Output<TypeRecord /* todo */>);
 
-struct GlobalState(GlobalState<{ /* type record */ }>);
+struct GlobalState(GlobalState<TypeRecord /* todo */>);
 
-struct EnvState<s>(EnvState<{ /* type record */ }>);
+struct EnvState<s>(EnvState<TypeRecord /* todo */>);
 
 struct Initializer(Initializer<Option<Rust::Expr>, IntMap::IntMap<Initializer>>);
 
@@ -17,9 +17,9 @@ pub enum Designator {
 }
 pub use self::Designator::*;
 
-struct OuterLabels(OuterLabels<{ /* type record */ }>);
+struct OuterLabels(OuterLabels<TypeRecord /* todo */>);
 
-struct Result(Result<{ /* type record */ }>);
+struct Result(Result<TypeRecord /* todo */>);
 
 #[derive(Debug, Eq)]
 pub enum Signed {
@@ -50,7 +50,7 @@ pub enum CType {
 }
 pub use self::CType::*;
 
-struct IntermediateType(IntermediateType<{ /* type record */ }>);
+struct IntermediateType(IntermediateType<TypeRecord /* todo */>);
 
 pub fn addExternIdent(ident: Ident, deferred: EnvMonad<s, IntermediateType>, mkItem: fn(String) -> fn((Rust::Mutable, CType)) -> Rust::ExternItem) -> EnvMonad<s, ()> {
     /* do */ {
@@ -58,17 +58,13 @@ pub fn addExternIdent(ident: Ident, deferred: EnvMonad<s, IntermediateType>, mkI
             let itype = deferred;
             let rewrites = lift(asks(itemRewrites));
             let path = match Map::lookup((Symbol, identToString(ident)), rewrites) {
-                Some(renamed) => {
+                Some | renamed => {
                     (__op_concat("".to_string(), renamed))
                 },
                 None => {
                     /* do */ {
-                        {
-                            let name = applyRenames(ident);
-                        };
-                        {
-                            let ty = (typeMutable(itype), typeRep(itype));
-                        };
+                        let name = applyRenames(ident);
+                        let ty = (typeMutable(itype), typeRep(itype));
                         lift(tell(mempty, {
                             outputExterns: Map::singleton(name, (mkItem(name, ty)))
                         }));
@@ -105,9 +101,7 @@ pub fn addSwitchCase(condition: Option<CExpr>, body: CStat, next: CSourceBuildCF
 
 pub fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust::Mutable, CType)) -> EnvMonad<s, String> {
     /* do */ {
-        {
-            let name = applyRenames(ident);
-        };
+        let name = applyRenames(ident);
         addSymbolIdentAction(ident)(Result({
             resultType: ty,
             resultMutable: __mut,
@@ -119,7 +113,7 @@ pub fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust::Mutable, CType)) -> EnvM
 
 pub fn addSymbolIdentAction(ident: Ident, action: EnvMonad<s, Result>) -> EnvMonad<s, ()> {
     lift(/* do */ {
-        modify(|st| { st }({
+        modify(|st| { <Expr::Dummy> }(st, {
             symbolEnvironment: __op_concat((ident, action), symbolEnvironment(st))
         }))
     })
@@ -127,7 +121,7 @@ pub fn addSymbolIdentAction(ident: Ident, action: EnvMonad<s, Result>) -> EnvMon
 
 pub fn addTagIdent(ident: Ident, ty: EnvMonad<s, CType>) -> EnvMonad<s, ()> {
     lift(/* do */ {
-        modify(|st| { st }({
+        modify(|st| { <Expr::Dummy> }(st, {
             tagEnvironment: __op_concat((ident, ty), tagEnvironment(st))
         }))
     })
@@ -135,7 +129,7 @@ pub fn addTagIdent(ident: Ident, ty: EnvMonad<s, CType>) -> EnvMonad<s, ()> {
 
 pub fn addTypedefIdent(ident: Ident, ty: EnvMonad<s, IntermediateType>) -> EnvMonad<s, ()> {
     lift(/* do */ {
-        modify(|st| { st }({
+        modify(|st| { <Expr::Dummy> }(st, {
             typedefEnvironment: __op_concat((ident, ty), typedefEnvironment(st))
         }))
     })
@@ -185,9 +179,7 @@ pub fn badSource(node: node, msg: String) -> EnvMonad<s, a> {
 
 pub fn baseTypeOf(specs: Vec<CDeclSpec>) -> EnvMonad<s, (Option<CStorageSpec>, EnvMonad<s, IntermediateType>)> {
     /* do */ {
-        {
-            let (storage, _attributes, basequals, basespecs, _inlineNoReturn, _align) = partitionDeclSpecs(specs);
-        };
+        let (storage, _attributes, basequals, basespecs, _inlineNoReturn, _align) = partitionDeclSpecs(specs);
         let mstorage = match storage {
             [] => {
                 None
@@ -195,13 +187,12 @@ pub fn baseTypeOf(specs: Vec<CDeclSpec>) -> EnvMonad<s, (Option<CStorageSpec>, E
             [spec] => {
                 (Some(spec))
             },
-            [_, ...[excess, ..._]] => {
+            _ | : | excess | : | _ => {
                 badSource(excess, "extra storage class specifier".to_string())
             },
         };
         let base = typedef((mutable(basequals)), basespecs);
-        (mstorage, base);
-
+        (mstorage, base)
     }
 }
 
@@ -234,19 +225,15 @@ pub fn binop(expr: CExpr, op: CBinaryOp, lhs: Result, rhs: Result) -> EnvMonad<s
                 (Some(lhs_q), Some(rhs_q)) => {
                     /* do */ {
                         let ptrTo = match compatiblePtr((resultType(lhs_q)), (resultType(rhs_q))) {
-                            IsPtr(_, ptrTo) => {
+                            IsPtr | _ | ptrTo => {
                                 ptrTo
                             },
                             _ => {
                                 badSource(expr, "pointer subtraction of incompatible pointers".to_string())
                             },
                         };
-                        {
-                            let ty = IsInt(Signed, WordWidth);
-                        };
-                        {
-                            let size = rustSizeOfType((toRustType(ptrTo)));
-                        };
+                        let ty = IsInt(Signed, WordWidth);
+                        let size = rustSizeOfType((toRustType(ptrTo)));
                         Result({
                             resultType: ty,
                             resultMutable: Rust::Immutable,
@@ -325,9 +312,9 @@ pub fn bitWidth(__0: isize, __1: IntWidth) -> isize {
     }
 }
 
-pub fn blockToStatements((Rust::Block(stmts, mexpr)): Rust::Block) -> Vec<Rust::Stmt> {
+pub fn blockToStatements(Rust::Block(stmts, mexpr): Rust::Block) -> Vec<Rust::Stmt> {
     match mexpr {
-        Some(expr) => {
+        Some | expr => {
             __op_addadd(stmts, exprToStatements(expr))
         },
         None => {
@@ -338,6 +325,9 @@ pub fn blockToStatements((Rust::Block(stmts, mexpr)): Rust::Block) -> Vec<Rust::
 
 pub fn castTo(__0: CType, __1: Result) -> Rust::Expr {
     match (__0, __1) {
+        (target, source) => {
+            <Expr::Dummy>
+        },
         (target, Result({ /* pat record */ })) => {
             castTo(target, Result, {
                 resultType: IsPtr(__mut, el),
@@ -362,23 +352,16 @@ pub fn castTo(__0: CType, __1: Result) -> Rust::Expr {
 
 pub fn cfgToRust(_node: node, build: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> EnvMonad<s, Vec<Rust::Stmt>> {
     /* do */ {
-        {
-            let builder = buildCFG(/* do */ {
-                    let (early, term) = build;
-                    let entry = newLabel;
-                    addBlock(entry, early, term);
-                    entry
-                });
-        };
-        let (rawCFG, _) = evalRWST(builder, (OuterLabels(None, None, None)), Map::empty);
-        {
-            let cfg = depthFirstOrder((removeEmptyBlocks(rawCFG)));
-        };
-        {
-            let (hasGoto, structured) = structureCFG(mkBreak, mkContinue, mkLoop, mkIf, mkGoto, mkMatch, cfg);
-        };
-        return(__op_concat(if(hasGoto, then, declCurrent), structured(else, structured)));
-
+        let builder = buildCFG(/* do */ {
+            let early(term) = build;
+            let entry = newLabel;
+            addBlock(entry, early, term);
+            entry
+        });
+        let rawCFG(_) = evalRWST(builder, (OuterLabels(None, None, None)), Map::empty);
+        let cfg = depthFirstOrder((removeEmptyBlocks(rawCFG)));
+        let (hasGoto, structured) = structureCFG(mkBreak, mkContinue, mkLoop, mkIf, mkGoto, mkMatch, cfg);
+        return(__op_concat(__TODO_if(hasGoto, then, declCurrent), structured(__TODO_else, structured)))
     }
 }
 
@@ -420,6 +403,9 @@ pub fn compatiblePtr(__0: CType, __1: CType) -> CType {
         (IsPtr(m1, a), IsPtr(m2, b)) => {
             IsPtr((leastMutable(m1, m2)), (compatiblePtr(a, b)))
         },
+        (a, b) => {
+            <Expr::Dummy>
+        },
         (_, _) => {
             IsVoid
         },
@@ -442,78 +428,67 @@ pub fn completeType(__0: CType, __1: EnvMonad<s, CType>) -> EnvMonad<s, CType> {
 
 pub fn compound(expr: CExpr, returnOld: bool, demand: bool, op: CAssignOp, lhs: Result, rhs: Result) -> EnvMonad<s, Result> {
     /* do */ {
-        {
-            let op_q = match op {
-                    CAssignOp => {
-                        None
-                    },
-                    CMulAssOp => {
-                        Some(CMulOp)
-                    },
-                    CDivAssOp => {
-                        Some(CDivOp)
-                    },
-                    CRmdAssOp => {
-                        Some(CRmdOp)
-                    },
-                    CAddAssOp => {
-                        Some(CAddOp)
-                    },
-                    CSubAssOp => {
-                        Some(CSubOp)
-                    },
-                    CShlAssOp => {
-                        Some(CShlOp)
-                    },
-                    CShrAssOp => {
-                        Some(CShrOp)
-                    },
-                    CAndAssOp => {
-                        Some(CAndOp)
-                    },
-                    CXorAssOp => {
-                        Some(CXorOp)
-                    },
-                    COrAssOp => {
-                        Some(COrOp)
-                    },
-                };
+        let op_q = match op {
+            CAssignOp => {
+                None
+            },
+            CMulAssOp => {
+                Some(CMulOp)
+            },
+            CDivAssOp => {
+                Some(CDivOp)
+            },
+            CRmdAssOp => {
+                Some(CRmdOp)
+            },
+            CAddAssOp => {
+                Some(CAddOp)
+            },
+            CSubAssOp => {
+                Some(CSubOp)
+            },
+            CShlAssOp => {
+                Some(CShlOp)
+            },
+            CShrAssOp => {
+                Some(CShrOp)
+            },
+            CAndAssOp => {
+                Some(CAndOp)
+            },
+            CXorAssOp => {
+                Some(CXorOp)
+            },
+            COrAssOp => {
+                Some(COrOp)
+            },
         };
-        {
-            let duplicateLHS = (isJust(op_q) || demand);
-        };
-        {
-            let (bindings1, dereflhs, boundrhs) = (if(not, duplicateLHS) || hasNoSideEffects((result(lhs)), then, (vec![], lhs, rhs), else, {
-                        let lhsvar = Rust::VarName("_lhs".to_string());
-;
-                        let rhsvar = Rust::VarName("_rhs".to_string());
-                    }, in, (vec![
-                        Rust::Let(Rust::Immutable, rhsvar, None, (Some((result(rhs))))),
-                        Rust::Let(Rust::Immutable, lhsvar, None, (Some((Rust::Borrow(Rust::Mutable, (result(lhs))))))),
-                    ], lhs({
-                        result: Rust::Deref((Rust::Var(lhsvar)))
-                    }), rhs({
-                        result: Rust::Var(rhsvar)
-                    }))));
-        };
+        let duplicateLHS = (isJust(op_q) || demand);
+        let (bindings1, dereflhs, boundrhs) = (__TODO_if(not, duplicateLHS) || hasNoSideEffects((result(lhs)), then, (vec![], lhs, rhs), __TODO_else, {
+                let lhsvar = Rust::VarName("_lhs".to_string());
+                let rhsvar = Rust::VarName("_rhs".to_string());
+            (vec![
+                    Rust::Let(Rust::Immutable, rhsvar, None, (Some((result(rhs))))),
+                    Rust::Let(Rust::Immutable, lhsvar, None, (Some((Rust::Borrow(Rust::Mutable, (result(lhs))))))),
+                ], lhs({
+                    result: Rust::Deref((Rust::Var(lhsvar)))
+                }), rhs({
+                    result: Rust::Var(rhsvar)
+                }))            }));
         let rhs_q = match op_q {
-            Some(o) => {
+            Some | o => {
                 binop(expr, o, dereflhs, boundrhs)
             },
             None => {
                 boundrhs
             },
         };
-        {
-            let assignment = Rust::Assign((result(dereflhs)), (Rust::__id_3a3d), (castTo((resultType(lhs)), rhs_q)));
-        };
-        {
-            let (bindings2, ret) = if(not, demand, then, (vec![], None), else, if, not, returnOld, then, (vec![], Some((result(dereflhs)))), else, {
-                        let oldvar = Rust::VarName("_old".to_string());
-                    }, in, (vec![Rust::Let(Rust::Immutable, oldvar, None, (Some((result(dereflhs)))))], Some((Rust::Var(oldvar)))));
-        };
+        let assignment = Rust::Assign((result(dereflhs)), (Rust::__id_3a3d), (castTo((resultType(lhs)), rhs_q)));
+        let (bindings2, ret) = __TODO_if(not, demand, then, (vec![], None), __TODO_else, __TODO_if, not, returnOld, then, (vec![], Some((result(dereflhs)))), __TODO_else, {
+                let oldvar = Rust::VarName("_old".to_string());
+            (vec![Rust::Let(Rust::Immutable, oldvar, None, (Some((result(dereflhs)))))], Some((Rust::Var(oldvar))))            });
         return(match Rust::Block((__op_addadd(bindings1, __op_addadd(bindings2, exprToStatements(assignment)))), ret) {
-            b(@, Rust::Block(body, None)) => {
+            b | @ | Rust::Block(body, None) => {
                 Result({
                     resultType: IsVoid,
                     resultMutable: Rust::Immutable,
@@ -532,19 +507,17 @@ pub fn compound(expr: CExpr, returnOld: bool, demand: bool, op: CAssignOp, lhs: 
                     result: Rust::BlockExpr(b)
                 })
             },
-        });
-
+        })
     }
 }
 
-pub fn derivedDeferredTypeOf(deferred: EnvMonad<s, IntermediateType>, declr: CDeclr, @: Vec<CDecl>, (CDeclr(_, derived, _, _, _)): EnvMonad<s, EnvMonad<s, IntermediateType>>) -> EnvMonad<s, EnvMonad<s, IntermediateType>> {
+pub fn derivedDeferredTypeOf(deferred: EnvMonad<s, IntermediateType>, declr: CDeclr, @: Vec<CDecl>, CDeclr(_, derived, _, _, _): EnvMonad<s, EnvMonad<s, IntermediateType>>) -> EnvMonad<s, EnvMonad<s, IntermediateType>> {
     /* do */ {
         let derived_q = mapM(derive, derived);
         return(/* do */ {
             let basetype = deferred;
             foldrM(($), basetype, derived_q)
-        });
-
+        })
     }
 }
 
@@ -608,7 +581,7 @@ pub fn getSwitchExpression(stmt: CStat) -> CSourceBuildCFGT<s, CExpr> {
             None => {
                 lift(lift(badSource(stmt, "case outside switch".to_string())))
             },
-            Some(expr) => {
+            Some | expr => {
                 expr
             },
         }
@@ -619,7 +592,7 @@ pub fn getSymbolIdent(ident: Ident) -> EnvMonad<s, Option<Result>> {
     /* do */ {
         let env = lift(get);
         match lookup(ident, (symbolEnvironment(env))) {
-            Some(symbol) => {
+            Some | symbol => {
                 fmap(Some, symbol)
             },
             None => {
@@ -638,8 +611,7 @@ pub fn getSymbolIdent(ident: Ident) -> EnvMonad<s, Option<Result>> {
                     },
                 }
             },
-        };
-
+        }
     }
 }
 
@@ -668,7 +640,7 @@ pub fn gotoLabel(ident: Ident) -> CSourceBuildCFGT<s, Label> {
                     label
                 }
             },
-            Some(label) => {
+            Some | label => {
                 label
             },
         }
@@ -682,6 +654,9 @@ pub fn intPromote(__0: CType) -> CType {
         },
         IsEnum(_) => {
             enumReprType
+        },
+        IsInt(_, BitWidth(w)) => {
+            <Expr::Dummy>
         },
         x => {
             x
@@ -697,6 +672,12 @@ pub fn integerConversionRank(__0: IntWidth, __1: IntWidth) -> Option<Ordering> {
         (WordWidth, WordWidth) => {
             Some(EQ)
         },
+        (BitWidth(a), WordWidth) => {
+            <Expr::Dummy>
+        },
+        (WordWidth, BitWidth(b)) => {
+            <Expr::Dummy>
+        },
         (_, _) => {
             None
         },
@@ -711,7 +692,7 @@ pub fn interpretBlockItem(__0: CBlockItem, __1: CSourceBuildCFGT<s, (Vec<Rust::S
         (CBlockDecl(decl), next) => {
             /* do */ {
                 let decl_q = lift(lift((interpretDeclarations(makeLetBinding, decl))));
-                let (rest, end) = next;
+                let rest(end) = next;
                 (__op_addadd(decl_q, rest), end)
             }
         },
@@ -734,11 +715,11 @@ pub fn interpretConstExpr(__0: CExpr) -> EnvMonad<s, Integer> {
 
 pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s, Vec<b>>) -> EnvMonad<s, Vec<b>> {
     match (__0, __1, __2, __3) {
-        (fromItem(makeBinding), declaration, @, CDecl(specs, decls, _)) => {
+        ((fromItem, makeBinding), declaration, @, CDecl(specs, decls, _)) => {
             /* do */ {
-                let (storagespecs, baseTy) = baseTypeOf(specs);
-                let mbinds = forM(decls)(|declarator| { /* do */ {
-                        let (decl, minit) = match declarator {
+                let storagespecs(baseTy) = baseTypeOf(specs);
+                let mbinds = forM(decls)(|declarator| { <Expr::Dummy> }(/* do */ {
+                        let decl(minit) = match declarator {
                             (Some(decl), minit, None) => {
                                 (decl, minit)
                             },
@@ -749,8 +730,8 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                 badSource(declaration, "bitfield declarator".to_string())
                             },
                         };
-                        let (ident, derived) = match decl {
-                            CDeclr(Some(ident), derived, _, _, _) => {
+                        let ident(derived) = match decl {
+                            CDeclr | Some(ident) | derived | _ | _ | _ => {
                                 (ident, derived)
                             },
                             _ => {
@@ -778,31 +759,28 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                             },
                             (_, [CFunDeclr({ /* pat record */ }), ..._]) => {
                                 /* do */ {
-                                    addExternIdent(ident, deferred)(|name, (_mut, ty)| { match ty {
-                                            IsFunc(retTy, args, variadic) => {
+                                    addExternIdent(ident, deferred)(|name, (_mut, ty)| { <Expr::Dummy> }(match ty {
+                                            IsFunc | retTy | args | variadic => {
                                                 {
                                                     let formals = <Expr::Dummy>;
-                                                }(in, Rust::ExternFn, name, formals, variadic, (toRustRetType(retTy)))
+                                                Rust::ExternFn(name, formals, variadic, (toRustRetType(retTy)))                                                }
                                             },
                                             _ => {
                                                 __error!((__op_addadd(show(ident), " is both a function and not a function?".to_string())))
                                             },
-                                        } });
+                                        }));
                                     None
                                 }
                             },
                             (Some(CExtern(_)), _) => {
                                 /* do */ {
-                                    addExternIdent(ident, deferred)(|name, (__mut, ty)| { Rust::ExternStatic }(__mut, (Rust::VarName(name)), (toRustType(ty))));
+                                    addExternIdent(ident, deferred)(|name, (__mut, ty)| { <Expr::Dummy> }(Rust::ExternStatic, __mut, (Rust::VarName(name)), (toRustType(ty))));
                                     None
                                 }
                             },
                             (Some(CStatic(_)), _) => {
                                 /* do */ {
-                                    let IntermediateType({
-                                        typeMutable: __mut,
-                                        typeRep: ty
-                                    }) = deferred;
+                                    let IntermediateType, { /* pat record */ } = deferred;
                                     let name = addSymbolIdent(ident, (__mut, ty));
                                     let expr = interpretInitializer(ty, (fromMaybe((CInitList(vec![], (nodeInfo(decl)))), minit)));
                                     (Some((fromItem((Rust::Static(__mut, (Rust::VarName(name)), (toRustType(ty)), expr))))))
@@ -810,17 +788,14 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                             },
                             _ => {
                                 /* do */ {
-                                    let IntermediateType({
-                                        typeMutable: __mut,
-                                        typeRep: ty
-                                    }) = deferred;
+                                    let IntermediateType, { /* pat record */ } = deferred;
                                     let name = addSymbolIdent(ident, (__mut, ty));
                                     let binding = makeBinding(__mut, (Rust::VarName(name)), ty, (nodeInfo(decl)), minit);
                                     (Some(binding))
                                 }
                             },
                         }
-                    } });
+                    }));
                 (catMaybes(mbinds))
             }
         },
@@ -834,9 +809,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
     match (__0, __1) {
         (demand, CComma(exprs, _)) => {
             /* do */ {
-                {
-                    let (effects, mfinal) = if(demand, then, (init(exprs), Some((last(exprs)))), else, (exprs, None));
-                };
+                let (effects, mfinal) = __TODO_if(demand, then, (init(exprs), Some((last(exprs)))), __TODO_else, (exprs, None));
                 let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
                 let mfinal_q = mapM((interpretExpr(true)), mfinal);
                 Result({
@@ -858,12 +831,11 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
                 let c_q = fmap(toBool, (interpretExpr(true, c)));
                 let t_q = interpretExpr(demand, t);
                 let f_q = interpretExpr(demand, f);
-                if(demand, then, promotePtr, expr, (mkIf(c_q)), t_q, f_q, else, return, Result, {
+                __TODO_if(demand, then, promotePtr, expr, (mkIf(c_q)), t_q, f_q, __TODO_else, return, Result, {
                     resultType: IsVoid,
                     resultMutable: Rust::Immutable,
                     result: mkIf(c_q, (result(t_q)), (result(f_q)))
-                });
-
+                })
             }
         },
         (_, expr, @, CBinary(op, lhs, rhs, _)) => {
@@ -875,12 +847,12 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (_, CCast(decl, expr, _)) => {
             /* do */ {
-                let (_mut, ty) = typeName(decl);
-                let expr_q = interpretExpr((/=(ty, IsVoid)), expr);
+                let _mut(ty) = typeName(decl);
+                let expr_q = interpretExpr((__op_assign_div(ty, IsVoid)), expr);
                 Result({
                     resultType: ty,
                     resultMutable: Rust::Immutable,
-                    result: ((if(ty) == IsVoid(then, result, else, castTo, ty)))(expr_q)
+                    result: ((__TODO_if(ty) == IsVoid(then, result, __TODO_else, castTo, ty)))(expr_q)
                 })
             }
         },
@@ -901,9 +873,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
                 CAdrOp => {
                     /* do */ {
                         let expr_q = interpretExpr(true, expr);
-                        {
-                            let ty_q = IsPtr((resultMutable(expr_q)), (resultType(expr_q)));
-                        };
+                        let ty_q = IsPtr((resultMutable(expr_q)), (resultType(expr_q)));
                         Result({
                             resultType: ty_q,
                             resultMutable: Rust::Immutable,
@@ -915,14 +885,14 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
                     /* do */ {
                         let expr_q = interpretExpr(true, expr);
                         match resultType(expr_q) {
-                            IsPtr(mut_q, ty_q) => {
+                            IsPtr | mut_q | ty_q => {
                                 Result({
                                     resultType: ty_q,
                                     resultMutable: mut_q,
                                     result: Rust::Deref((result(expr_q)))
                                 })
                             },
-                            IsFunc({ /* pat record */ }) => {
+                            IsFunc | { /* pat record */ } => {
                                 expr_q
                             },
                             _ => {
@@ -934,9 +904,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
                 CPlusOp => {
                     /* do */ {
                         let expr_q = interpretExpr(demand, expr);
-                        {
-                            let ty_q = intPromote((resultType(expr_q)));
-                        };
+                        let ty_q = intPromote((resultType(expr_q)));
                         Result({
                             resultType: ty_q,
                             resultMutable: Rust::Immutable,
@@ -970,7 +938,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (_, CSizeofType(decl, _)) => {
             /* do */ {
-                let (_mut, ty) = typeName(decl);
+                let _mut(ty) = typeName(decl);
                 (rustSizeOfType((toRustType(ty))))
             }
         },
@@ -982,7 +950,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (_, CAlignofType(decl, _)) => {
             /* do */ {
-                let (_mut, ty) = typeName(decl);
+                let _mut(ty) = typeName(decl);
                 (rustAlignOfType((toRustType(ty))))
             }
         },
@@ -1001,7 +969,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
                         /* do */ {
                             let ptr = binop(expr, CAddOp, lhs_q, rhs_q);
                             match resultType(ptr) {
-                                IsPtr(__mut, ty) => {
+                                IsPtr | __mut | ty => {
                                     Result({
                                         resultType: ty,
                                         resultMutable: __mut,
@@ -1014,15 +982,14 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
                             }
                         }
                     },
-                };
-
+                }
             }
         },
         (_, expr, @, CCall(func, args, _)) => {
             /* do */ {
                 let func_q = interpretExpr(true, func);
                 match resultType(func_q) {
-                    IsFunc(retTy, argTys, variadic) => {
+                    IsFunc | retTy | argTys | variadic => {
                         /* do */ {
                             let args_q = castArgs(variadic, (map(snd, argTys)), args);
                             Result({
@@ -1035,27 +1002,24 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
                     _ => {
                         badSource(expr, "function call to non-function".to_string())
                     },
-                };
-
+                }
             }
         },
         (_, expr, @, CMember(obj, ident, deref, node)) => {
             /* do */ {
-                let obj_q = interpretExpr(true)(if(deref, then, CUnary, CIndOp, obj, node, else, obj));
+                let obj_q = interpretExpr(true)(__TODO_if(deref, then, CUnary, CIndOp, obj, node, __TODO_else, obj));
                 let objTy = completeType((resultType(obj_q)));
                 let fields = match objTy {
-                    IsStruct(_, fields) => {
+                    IsStruct | _ | fields => {
                         fields
                     },
                     _ => {
                         badSource(expr, "member access of non-struct".to_string())
                     },
                 };
-                {
-                    let field = applyRenames(ident);
-                };
+                let field = applyRenames(ident);
                 let ty = match lookup(field, fields) {
-                    Some(ty) => {
+                    Some | ty => {
                         ty
                     },
                     None => {
@@ -1077,40 +1041,36 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (_, expr, @, CConst(c)) => {
             match c {
-                CIntConst(CInteger(v, repr, flags), _) => {
+                CIntConst | CInteger(v, repr, flags) | _ => {
                     {
                         let allow_signed = not((testFlag(FlagUnsigned, flags)));
-;
-                        let allow_unsigned = (not(allow_signed) || /=(repr, DecRepr));
-;
+                        let allow_unsigned = (not(allow_signed) || __op_assign_div(repr, DecRepr));
                         let widths = vec![
-                                (32, if(any, (testFlag(flags)), vec![FlagLongLong, FlagLong], then, WordWidth, else, BitWidth, 32)),
-                                (64, BitWidth(64)),
-                            ];
-;
+                            (32, __TODO_if(any, (testFlag(flags)), vec![FlagLongLong, FlagLong], then, WordWidth, __TODO_else, BitWidth, 32)),
+                            (64, BitWidth(64)),
+                        ];
                         let allowed_types = <Expr::Dummy>;
-;
                         let repr_q = match repr {
-                                DecRepr => {
-                                    Rust::DecRepr
-                                },
-                                OctalRepr => {
-                                    Rust::OctalRepr
-                                },
-                                HexRepr => {
-                                    Rust::HexRepr
-                                },
-                            };
-                    }(in, match allowed_types {
+                            DecRepr => {
+                                Rust::DecRepr
+                            },
+                            OctalRepr => {
+                                Rust::OctalRepr
+                            },
+                            HexRepr => {
+                                Rust::HexRepr
+                            },
+                        };
+                    match allowed_types {
                             [] => {
                                 badSource(expr, "integer (too big)".to_string())
                             },
-                            [ty, ..._] => {
+                            ty | : | _ => {
                                 (literalNumber(ty, (Rust::LitInt(v, repr_q))))
                             },
-                        })
+                        }                    }
                 },
-                CFloatConst(CFloat(__str), _) => {
+                CFloatConst | CFloat(__str) | _ => {
                     match span((notElem("fF".to_string())), __str) {
                         (v, "") => {
                             (literalNumber((IsFloat(64)), (Rust::LitFloat(v))))
@@ -1123,16 +1083,16 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
                         },
                     }
                 },
-                CCharConst(CChar(ch, false), _) => {
+                CCharConst | CChar(ch, false) | _ => {
                     Result({
                         resultType: charType,
                         resultMutable: Rust::Immutable,
                         result: Rust::Lit((Rust::LitByteChar(ch)))
                     })
                 },
-                CStrConst(CString(__str, false), _) => {
+                CStrConst | CString(__str, false) | _ => {
                     Result({
-                        resultType: IsArray(Rust::Immutable, (+(length(__str), 1)), charType),
+                        resultType: IsArray(Rust::Immutable, ((length(__str) + 1)), charType),
                         resultMutable: Rust::Immutable,
                         result: Rust::Deref((Rust::Lit((Rust::LitByteStr((__op_addadd(__str, "\u{0}".to_string())))))))
                     })
@@ -1144,7 +1104,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (_, CCompoundLit(decl, initials, info)) => {
             /* do */ {
-                let (__mut, ty) = typeName(decl);
+                let __mut(ty) = typeName(decl);
                 let final = interpretInitializer(ty, (CInitList(initials, info)));
                 Result({
                     resultType: ty,
@@ -1155,13 +1115,11 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (demand, stat, @, CStatExpr(CCompound([], stmts, _), _)) => {
             scope(/* do */ {
-                {
-                    let (effects, final) = match last(stmts) {
-                            CBlockStmt, CExpr(expr, _) => if demand { (init(stmts), expr) },
-                            _ => {
-                                (stmts, None)
-                            },
-                        };
+                let (effects, final) = match last(stmts) {
+                    CBlockStmt | CExpr(expr, _) => if demand { (init(stmts), expr) },
+                    _ => {
+                        (stmts, None)
+                    },
                 };
                 let effects_q = cfgToRust(stat, (foldr(interpretBlockItem, ((vec![], Unreachable)), effects)));
                 let final_q = mapM((interpretExpr(true)), final);
@@ -1178,73 +1136,56 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
     }
 }
 
-pub fn interpretFunction((@(CFunDef(specs, declr), (CDeclr(mident, _, _, _, _))(argtypes, body, _))): CFunDef) -> EnvMonad<s, ()> {
+pub fn interpretFunction(CFunDef(specs, declr, @, CDeclr(mident, _, _, _, _), argtypes, body, _): CFunDef) -> EnvMonad<s, ()> {
     /* do */ {
-        let (storage, baseTy) = baseTypeOf(specs);
-        let (attrs, vis) = match storage {
+        let storage(baseTy) = baseTypeOf(specs);
+        let attrs(vis) = match storage {
             None => {
                 (vec![Rust::Attribute("no_mangle".to_string())], Rust::Public)
             },
-            Some(CStatic(_)) => {
+            Some | CStatic(_) => {
                 (vec![], Rust::Private)
             },
-            Some(s) => {
+            Some | s => {
                 badSource(s, "storage class specifier for function".to_string())
             },
         };
-        {
-            let go = |name, funTy| {
-                /* do */ {
-                    let (retTy, args) = match funTy {
-                        IsFunc(_, _, true) => {
-                            unimplemented(declr)
-                        },
-                        IsFunc(retTy, args, false) => {
-                            (retTy, args)
-                        },
-                        _ => {
-                            badSource(declr, "function definition".to_string())
-                        },
-                    };
-                    when(((name == "_c_main".to_string())), (wrapMain(declr, name, (map(snd, args)))));
-                    {
-                        let setRetTy = |flow| {
-                            flow({
-                                functionReturnType: Some(retTy),
-                                functionName: Some(name)
-                            })
-                        };
-                    };
-                    let f_q = mapExceptT((local(setRetTy)))(scope(/* do */ {
-                        let formals = sequence(<Expr::Dummy>);
-                        {
-                            let returnValue = (if(name) == "_c_main".to_string()(then, Some, 0, else, None));
-;
-                            let returnStatement = Rust::Stmt((Rust::Return(returnValue)));
-                        };
-                        let body_q = cfgToRust(declr, (interpretStatement(body, ((vec![returnStatement], Unreachable)))));
-                        (Rust::Item(attrs, vis, (Rust::Function(vec![Rust::UnsafeFn, Rust::ExternABI(None)], name, formals, (toRustRetType(retTy)), (statementsToBlock(body_q))))))
-                    }));
-                    emitItems(vec![f_q])
-                }
+        let go, name, funTy = /* do */ {
+            let retTy(args) = match funTy {
+                IsFunc | _ | _ | true => {
+                    unimplemented(declr)
+                },
+                IsFunc | retTy | args | false => {
+                    (retTy, args)
+                },
+                _ => {
+                    badSource(declr, "function definition".to_string())
+                },
             };
+            when(((name == "_c_main".to_string())), (wrapMain(declr, name, (map(snd, args)))));
+            let setRetTy, flow = flow({
+                functionReturnType: Some(retTy),
+                functionName: Some(name)
+            });
+            let f_q = mapExceptT((local(setRetTy)))(scope(/* do */ {
+                let formals = sequence(<Expr::Dummy>);
+                let returnValue = (__TODO_if(name) == "_c_main".to_string()(then, Some, 0, __TODO_else, None));
+                let returnStatement = Rust::Stmt((Rust::Return(returnValue)));
+                let body_q = cfgToRust(declr, (interpretStatement(body, ((vec![returnStatement], Unreachable)))));
+                (Rust::Item(attrs, vis, (Rust::Function(vec![Rust::UnsafeFn, Rust::ExternABI(None)], name, formals, (toRustRetType(retTy)), (statementsToBlock(body_q))))))
+            }));
+            emitItems(vec![f_q])
         };
         let ident = match mident {
             None => {
                 badSource(declr, "anonymous function definition".to_string())
             },
-            Some(ident) => {
+            Some | ident => {
                 ident
             },
         };
-        {
-            let name = applyRenames(ident);
-        };
-        {
-            let funTy = |itype| {
-                typeToResult(itype, (Rust::Path((Rust::PathSegments(vec![name])))))
-            };
-        };
+        let name = applyRenames(ident);
+        let funTy, itype = typeToResult(itype, (Rust::Path((Rust::PathSegments(vec![name])))));
         let deferred = fmap((fmap(funTy)), (derivedDeferredTypeOf(baseTy, declr, argtypes)));
         let alreadyUsed = lift(gets((usedForwardRefs(globalState))));
         match vis {
@@ -1270,19 +1211,18 @@ pub fn interpretFunction((@(CFunDef(specs, declr), (CDeclr(mident, _, _, _, _))(
 pub fn interpretInitializer(ty: CType, initial: CInit) -> EnvMonad<s, Rust::Expr> {
     /* do */ {
         let initial_q = match initial {
-            CInitExpr(expr, _) => {
+            CInitExpr | expr | _ => {
                 /* do */ {
                     let expr_q = interpretExpr(true, expr);
-                    compatibleInitializer(if(resultType, expr_q), ty(then, pure)(scalar((castTo(ty, expr_q)), else, badSource, initial, "initializer for incompatible type".to_string())))
+                    compatibleInitializer(__TODO_if(resultType, expr_q), ty(then, pure)(scalar((castTo(ty, expr_q)), __TODO_else, badSource, initial, "initializer for incompatible type".to_string())))
                 }
             },
-            CInitList(list, _) => {
+            CInitList | list | _ => {
                 translateInitList(ty, list)
             },
         };
         let zeroed = zeroInitialize(initial_q, ty);
-        helper(ty, zeroed);
-
+        helper(ty, zeroed)
     }
 }
 
@@ -1291,7 +1231,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
         (CLabel(ident, body, _, _), next) => {
             /* do */ {
                 let label = gotoLabel(ident);
-                let (rest, end) = interpretStatement(body, next);
+                let rest(end) = interpretStatement(body, next);
                 addBlock(label, rest, end);
                 (vec![], Branch(label))
             }
@@ -1299,18 +1239,14 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
         (stmt, @, CCase(expr, body, node), next) => {
             /* do */ {
                 let selector = getSwitchExpression(stmt);
-                {
-                    let condition = CBinary(CEqOp, selector, expr, node);
-                };
+                let condition = CBinary(CEqOp, selector, expr, node);
                 addSwitchCase((Some(condition)), body, next)
             }
         },
         (stmt, @, CCases(lower, upper, body, node), next) => {
             /* do */ {
                 let selector = getSwitchExpression(stmt);
-                {
-                    let condition = CBinary(CLndOp, (CBinary(CGeqOp, selector, lower, node)), (CBinary(CLeqOp, selector, upper, node)), node);
-                };
+                let condition = CBinary(CLndOp, (CBinary(CGeqOp, selector, lower, node)), (CBinary(CLeqOp, selector, upper, node)), node);
                 addSwitchCase((Some(condition)), body, next)
             }
         },
@@ -1323,7 +1259,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
         (CExpr(Some(expr), _), next) => {
             /* do */ {
                 let expr_q = lift(lift(interpretExpr(false, expr)));
-                let (rest, end) = next;
+                let rest(end) = next;
                 (__op_addadd(resultToStatements(expr_q), rest), end)
             }
         },
@@ -1340,27 +1276,27 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                     None => {
                         after
                     },
-                    Some(f) => {
+                    Some | f => {
                         /* do */ {
-                            let (falseEntry, falseTerm) = interpretStatement(f, ((vec![], Branch(after))));
+                            let falseEntry(falseTerm) = interpretStatement(f, ((vec![], Branch(after))));
                             let falseLabel = newLabel;
                             addBlock(falseLabel, falseEntry, falseTerm);
                             falseLabel
                         }
                     },
                 };
-                let (trueEntry, trueTerm) = interpretStatement(t, ((vec![], Branch(after))));
+                let trueEntry(trueTerm) = interpretStatement(t, ((vec![], Branch(after))));
                 let trueLabel = newLabel;
                 addBlock(trueLabel, trueEntry, trueTerm);
-                let (rest, end) = next;
+                let rest(end) = next;
                 addBlock(after, rest, end);
                 (vec![], CondBranch(c_q, trueLabel, falseLabel))
             }
         },
         (stmt, @, CSwitch(expr, body, node), next) => {
             /* do */ {
-                let (bindings, expr_q) = match expr {
-                    CVar({ /* pat record */ }) => {
+                let bindings(expr_q) = match expr {
+                    CVar | { /* pat record */ } => {
                         (vec![], expr)
                     },
                     _ => {
@@ -1375,19 +1311,10 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                     },
                 };
                 let after = newLabel;
-                let (_, SwitchCases(cases)) = getSwitchCases(expr_q)(setBreak(after)(interpretStatement(body, ((vec![], Branch(after))))));
-                {
-                    let isDefault = |(Some(condition))| {
-                        Left(condition)
-                    };
-;
-                    let isDefault = |None| {
-                        Right(())
-                    };
-                };
-                {
-                    let (conditions, defaults) = IntMap::mapEither(isDefault, cases);
-                };
+                let _(SwitchCases(cases)) = getSwitchCases(expr_q)(setBreak(after)(interpretStatement(body, ((vec![], Branch(after))))));
+                let isDefault, Some(condition) = Left(condition);
+                let isDefault, None = Right(());
+                let (conditions, defaults) = IntMap::mapEither(isDefault, cases);
                 let defaultCase = match IntMap::keys(defaults) {
                     [] => {
                         after
@@ -1400,10 +1327,9 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                     },
                 };
                 let entry = foldrM(conditionBlock, defaultCase, (IntMap::toList(conditions)));
-                let (rest, end) = next;
+                let rest(end) = next;
                 addBlock(after, rest, end);
-                (bindings, Branch(entry));
-
+                (bindings, Branch(entry))
             }
         },
         (CWhile(c, body, doWhile, _), next) => {
@@ -1411,18 +1337,18 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                 let c_q = lift(lift(interpretExpr(true, c)));
                 let after = newLabel;
                 let headerLabel = newLabel;
-                let (bodyEntry, bodyTerm) = setBreak(after)(setContinue(headerLabel)(interpretStatement(body, ((vec![], Branch(headerLabel))))));
+                let bodyEntry(bodyTerm) = setBreak(after)(setContinue(headerLabel)(interpretStatement(body, ((vec![], Branch(headerLabel))))));
                 let bodyLabel = newLabel;
                 addBlock(bodyLabel, bodyEntry, bodyTerm);
                 addBlock(headerLabel, vec![])(match toBool(c_q) {
-                    Rust::Lit, Rust::LitBool(cont) => if /=(cont, doWhile) { Branch((if(cont, then, bodyLabel, else, after))) },
+                    Rust::Lit | Rust::LitBool(cont) => if __op_assign_div(cont, doWhile) { Branch((__TODO_if(cont, then, bodyLabel, __TODO_else, after))) },
                     _ => {
                         CondBranch(c_q, bodyLabel, after)
                     },
                 });
-                let (rest, end) = next;
+                let rest(end) = next;
                 addBlock(after, rest, end);
-                (vec![], Branch((if(doWhile, then, bodyLabel, else, headerLabel))))
+                (vec![], Branch((__TODO_if(doWhile, then, bodyLabel, __TODO_else, headerLabel))))
             }
         },
         (CFor(initial, mcond, mincr, body, _), next) => {
@@ -1430,16 +1356,16 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                 let after = newLabel;
                 let ret = mapBuildCFGT((mapRWST(scope)))(/* do */ {
                     let prefix = match initial {
-                        Left(None) => {
+                        Left | None => {
                             vec![]
                         },
-                        Left(Some(expr)) => {
+                        Left | Some(expr) => {
                             /* do */ {
                                 let expr_q = lift(lift(interpretExpr(false, expr)));
                                 (resultToStatements(expr_q))
                             }
                         },
-                        Right(decls) => {
+                        Right | decls => {
                             lift(lift(interpretDeclarations(makeLetBinding, decls)))
                         },
                     };
@@ -1448,7 +1374,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                         None => {
                             headerLabel
                         },
-                        Some(incr) => {
+                        Some | incr => {
                             /* do */ {
                                 let incr_q = lift(lift(interpretExpr(false, incr)));
                                 let incrLabel = newLabel;
@@ -1457,11 +1383,11 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                             }
                         },
                     };
-                    let (bodyEntry, bodyTerm) = setBreak(after)(setContinue(incrLabel)(interpretStatement(body, ((vec![], Branch(incrLabel))))));
+                    let bodyEntry(bodyTerm) = setBreak(after)(setContinue(incrLabel)(interpretStatement(body, ((vec![], Branch(incrLabel))))));
                     let bodyLabel = newLabel;
                     addBlock(bodyLabel, bodyEntry, bodyTerm);
                     let cond = match mcond {
-                        Some(cond) => {
+                        Some | cond => {
                             /* do */ {
                                 let cond_q = lift(lift(interpretExpr(true, cond)));
                                 (CondBranch(cond_q, bodyLabel, after))
@@ -1474,7 +1400,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                     addBlock(headerLabel, vec![], cond);
                     (prefix, Branch(headerLabel))
                 });
-                let (rest, end) = next;
+                let rest(end) = next;
                 addBlock(after, rest, end);
                 ret
             }
@@ -1491,7 +1417,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                 let _ = next;
                 let val = lift((asks(onContinue)));
                 match val {
-                    Some(label) => {
+                    Some | label => {
                         (vec![], Branch(label))
                     },
                     None => {
@@ -1505,7 +1431,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                 let _ = next;
                 let val = lift((asks(onBreak)));
                 match val {
-                    Some(label) => {
+                    Some | label => {
                         (vec![], Branch(label))
                     },
                     None => {
@@ -1523,7 +1449,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                         None => {
                             badSource(stmt, "return statement outside function".to_string())
                         },
-                        Some(retTy) => {
+                        Some | retTy => {
                             /* do */ {
                                 let expr_q = mapM((fmap((castTo(retTy)), interpretExpr(true))), expr);
                                 (exprToStatements((Rust::Return(expr_q))), Unreachable)
@@ -1539,12 +1465,12 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
     }
 }
 
-pub fn interpretTranslationUnit(_thisModule: ModuleMap, rewrites: ItemRewrites, (CTranslUnit(decls, _)): CTranslUnit) -> Either<String, Vec<Rust::Item>> {
+pub fn interpretTranslationUnit(_thisModule: ModuleMap, rewrites: ItemRewrites, CTranslUnit(decls, _): CTranslUnit) -> Either<String, Vec<Rust::Item>> {
     match err {
-        Left(msg) => {
+        Left | msg => {
             Left(msg)
         },
-        Right(_) => {
+        Right | _ => {
             Right(items_q)
         },
     }
@@ -1561,9 +1487,7 @@ pub fn makeStaticBinding() -> MakeBinding<s, Rust::Item> {
 pub fn modifyGlobal(f: fn(GlobalState) -> (GlobalState, a)) -> EnvMonad<s, a> {
     lift(/* do */ {
         let st = get;
-        {
-            let (global_q, a) = f((globalState(st)));
-        };
+        let (global_q, a) = f((globalState(st)));
         put(st, {
             globalState: global_q
         });
@@ -1572,23 +1496,23 @@ pub fn modifyGlobal(f: fn(GlobalState) -> (GlobalState, a)) -> EnvMonad<s, a> {
 }
 
 pub fn mutable(quals: Vec<CTypeQualifier<a>>) -> Rust::Mutable {
-    if(any, (|q| { match q {
-                CConstQual(_) => {
+    __TODO_if(any, (|q| { <Expr::Dummy> }(match q {
+                CConstQual | _ => {
                     true
                 },
                 _ => {
                     false
                 },
-            } }), quals, then, Rust::Immutable, else, Rust::Mutable)
+            })), quals, then, Rust::Immutable, __TODO_else, Rust::Mutable)
 }
 
 pub fn nestedObject(ty: CType, desig: Designator) -> Option<Designator> {
     match designatorType(desig) {
-        IsArray(_, size, el) => {
-            Some((From(el, 0, (replicate((-(size, 1)), el)), desig)))
+        IsArray | _ | size | el => {
+            Some((From(el, 0, (replicate(((size - 1)), el)), desig)))
         },
         ty_q => if compatibleInitializer(ty, ty_q) { Some(desig) },
-        IsStruct(_, [(_, ty_q), ...fields]) => {
+        IsStruct | _ | [(_, ty_q), ...fields] => {
             nestedObject(ty, (From(ty_q, 0, (map(snd, fields)), desig)))
         },
         _ => {
@@ -1603,7 +1527,7 @@ pub fn nextObject(__0: Designator, __1: CurrentObject) -> CurrentObject {
             None
         },
         From(_, i, [ty, ...remaining], base) => {
-            Some((From(ty, (+(i, 1)), remaining, base)))
+            Some((From(ty, ((i + 1)), remaining, base)))
         },
         From(_, _, [], base) => {
             nextObject(base)
@@ -1627,14 +1551,14 @@ pub fn objectFromDesignators(__0: CType, __1: Vec<CDesignator>) -> EnvMonad<s, C
             pure(None)
         },
         (ty, desigs) => {
-            <$>(Some, go(ty, desigs, (Base(ty))))
+            (Some < $>((), go(ty, desigs, (Base(ty)))))
         },
     }
 }
 
 pub fn promote(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad<s, Result> {
     match usual((resultType(a)), (resultType(b))) {
-        Some(rt) => {
+        Some | rt => {
             Result({
                 resultType: rt,
                 resultMutable: Rust::Immutable,
@@ -1677,27 +1601,25 @@ pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, 
         None => {
             (None, prior)
         },
-        Some(obj) => {
+        Some | obj => {
             /* do */ {
-                let (obj_q, initial) = match cinitial {
-                    CInitList(list_q, _) => {
+                let obj_q(initial) = match cinitial {
+                    CInitList | list_q | _ => {
                         /* do */ {
                             let initial = translateInitList((designatorType(obj)), list_q);
                             (obj, initial)
                         }
                     },
-                    CInitExpr(expr, _) => {
+                    CInitExpr | expr | _ => {
                         /* do */ {
                             let expr_q = interpretExpr(true, expr);
                             match nestedObject((resultType(expr_q)), obj) {
                                 None => {
                                     badSource(cinitial, "type in initializer".to_string())
                                 },
-                                Some(obj_q) => {
+                                Some | obj_q => {
                                     /* do */ {
-                                        {
-                                            let s = castTo((designatorType(obj_q)), expr_q);
-                                        };
+                                        let s = castTo((designatorType(obj_q)), expr_q);
                                         (obj_q, scalar(s))
                                     }
                                 },
@@ -1705,19 +1627,15 @@ pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, 
                         }
                     },
                 };
-                {
-                    let indices = unfoldr((|o| { match o {
-                                    Base({ /* pat record */ }) => {
-                                        None
-                                    },
-                                    From(_, j, _, p) => {
-                                        Some((j, p))
-                                    },
-                                } }), obj_q);
-                };
-                {
-                    let initializer = foldl((|a, j| { Initializer }(None, (IntMap::singleton(j, a)))), initial, indices);
-                };
+                let indices = unfoldr((|o| { <Expr::Dummy> }(match o {
+                            Base | { /* pat record */ } => {
+                                None
+                            },
+                            From | _ | j | _ | p => {
+                                Some((j, p))
+                            },
+                        })), obj_q);
+                let initializer = foldl((|a, j| { <Expr::Dummy> }(Initializer, None, (IntMap::singleton(j, a)))), initial, indices);
                 (nextObject(obj_q), mappend(prior, initializer))
             }
         },
@@ -1734,7 +1652,7 @@ pub fn runOnce(action: EnvMonad<s, a>) -> EnvMonad<s, EnvMonad<s, a>> {
         return(/* do */ {
             let cache = lift(lift(readSTRef(cacheRef)));
             match cache {
-                Left(todo) => {
+                Left | todo => {
                     /* do */ {
                         lift(lift(writeSTRef(cacheRef)(Left(fail("internal error: runOnce action depends on itself, leading to an infinite loop".to_string())))));
                         let val = todo;
@@ -1742,7 +1660,7 @@ pub fn runOnce(action: EnvMonad<s, a>) -> EnvMonad<s, EnvMonad<s, a>> {
                         val
                     }
                 },
-                Right(val) => {
+                Right | val => {
                     val
                 },
             }
@@ -1750,7 +1668,7 @@ pub fn runOnce(action: EnvMonad<s, a>) -> EnvMonad<s, EnvMonad<s, a>> {
     }
 }
 
-pub fn rustAlignOfType((Rust::TypeName(ty)): Rust::Type) -> Result {
+pub fn rustAlignOfType(Rust::TypeName(ty): Rust::Type) -> Result {
     Result({
         resultType: IsInt(Unsigned, WordWidth),
         resultMutable: Rust::Immutable,
@@ -1758,7 +1676,7 @@ pub fn rustAlignOfType((Rust::TypeName(ty)): Rust::Type) -> Result {
     })
 }
 
-pub fn rustSizeOfType((Rust::TypeName(ty)): Rust::Type) -> Result {
+pub fn rustSizeOfType(Rust::TypeName(ty): Rust::Type) -> Result {
     Result({
         resultType: IsInt(Unsigned, WordWidth),
         resultMutable: Rust::Immutable,
@@ -1774,7 +1692,7 @@ pub fn scope(m: EnvMonad<s, a>) -> EnvMonad<s, a> {
     /* do */ {
         let old = lift(get);
         let a = m;
-        lift((modify((|st| { old }({
+        lift((modify((|st| { <Expr::Dummy> }(old, {
                     globalState: globalState(st)
                 })))));
         a
@@ -1782,13 +1700,13 @@ pub fn scope(m: EnvMonad<s, a>) -> EnvMonad<s, a> {
 }
 
 pub fn setBreak(label: Label) -> CSourceBuildCFGT<s, a> {
-    mapBuildCFGT((local((|flow| { flow }({
+    mapBuildCFGT((local((|flow| { <Expr::Dummy> }(flow, {
                 onBreak: Some(label)
             })))))
 }
 
 pub fn setContinue(label: Label) -> CSourceBuildCFGT<s, a> {
-    mapBuildCFGT((local((|flow| { flow }({
+    mapBuildCFGT((local((|flow| { <Expr::Dummy> }(flow, {
                 onContinue: Some(label)
             })))))
 }
@@ -1817,7 +1735,7 @@ pub fn toBool(__0: Result) -> Rust::Expr {
                 IsBool => {
                     v
                 },
-                IsPtr(_, _) => {
+                IsPtr | _ | _ => {
                     Rust::Not((Rust::MethodCall(v, (Rust::VarName("is_null".to_string())), vec![])))
                 },
                 _ => {
@@ -1841,7 +1759,7 @@ pub fn toNotBool(__0: Result) -> Rust::Expr {
                 IsBool => {
                     Rust::Not(v)
                 },
-                IsPtr(_, _) => {
+                IsPtr | _ | _ => {
                     Rust::MethodCall(v, (Rust::VarName("is_null".to_string())), vec![])
                 },
                 _ => {
@@ -1894,7 +1812,7 @@ pub fn toRustType(__0: CType) -> Rust::Type {
                         'u'
                     },
                 }), (match w {
-                    BitWidth(b) => {
+                    BitWidth | b => {
                         show(b)
                     },
                     WordWidth => {
@@ -1913,15 +1831,13 @@ pub fn toRustType(__0: CType) -> Rust::Type {
                     "unsafe extern fn(".to_string(),
                     args_q,
                     ")".to_string(),
-                    /=(if(retTy), __op_addadd(IsVoid(then, " -> ".to_string()), typename(retTy, else, "".to_string()))),
+                    __op_assign_div(__TODO_if(retTy), __op_addadd(IsVoid(then, " -> ".to_string()), typename(retTy, __TODO_else, "".to_string()))),
                 ]))
         },
         IsPtr(__mut, to) => {
             {
-                let Rust::TypeName = |to_q| {
-                    toRustType(to, in, Rust::TypeName, (__op_addadd(rustMut(__mut), to_q)))
-                };
-            }
+                let Rust::TypeName, to_q = toRustType(to);
+            Rust::TypeName((__op_addadd(rustMut(__mut), to_q)))            }
         },
         IsArray(_, size, el) => {
             Rust::TypeName((__op_addadd("[".to_string(), __op_addadd(typename(el), __op_addadd("; ".to_string(), __op_addadd(show(size), "]".to_string()))))))
@@ -1944,20 +1860,18 @@ pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad<s, Initializer>
                 let currObj = objectFromDesignators(ty, desigs);
                 pure((currObj, initial))
             } });
-        {
-            let base = match ty {
-                    IsArray(_, size, el) => {
-                        From(el, 0, (replicate((-(size, 1)), el)), (Base(ty)))
-                    },
-                    IsStruct(_, [(_, ty_q), ...fields]) => {
-                        From(ty_q, 0, (map(snd, fields)), (Base(ty)))
-                    },
-                    _ => {
-                        Base(ty)
-                    },
-                };
+        let base = match ty {
+            IsArray | _ | size | el => {
+                From(el, 0, (replicate(((size - 1)), el)), (Base(ty)))
+            },
+            IsStruct | _ | [(_, ty_q), ...fields] => {
+                From(ty_q, 0, (map(snd, fields)), (Base(ty)))
+            },
+            _ => {
+                Base(ty)
+            },
         };
-        let (_, initializer) = foldM(resolveCurrentObject, (Some(base), mempty), objectsAndInitializers);
+        let _(initializer) = foldM(resolveCurrentObject, (Some(base), mempty), objectsAndInitializers);
         initializer
     }
 }
@@ -1969,9 +1883,9 @@ pub fn typeName(__0: CDecl, __1: EnvMonad<s, (Rust::Mutable, CType)>) -> EnvMona
         },
         (decl, @, CDecl(spec, declarators, _)) => {
             /* do */ {
-                let (storage, base) = baseTypeOf(spec);
+                let storage(base) = baseTypeOf(spec);
                 match storage {
-                    Some(s) => {
+                    Some | s => {
                         badSource(s, "storage class specifier in type name".to_string())
                     },
                     None => {
@@ -2009,15 +1923,15 @@ pub fn unimplemented(node: node) -> EnvMonad<s, a> {
 }
 
 pub fn uniqueName(base: String) -> EnvMonad<s, String> {
-    modifyGlobal(|st| { (st({
-            unique: +(unique(st), 1)
-        }), __op_addadd(base, show((unique(st))))) })
+    modifyGlobal(|st| { <Expr::Dummy> }((st({
+            unique: (unique(st) + 1)
+        }), __op_addadd(base, show((unique(st)))))))
 }
 
 pub fn useForwardRef(ident: Ident) -> EnvMonad<s, ()> {
-    modifyGlobal(|st| { (st({
+    modifyGlobal(|st| { <Expr::Dummy> }((st({
             usedForwardRefs: Set::insert(ident, (usedForwardRefs(st)))
-        }), ()) })
+        }), ())))
 }
 
 pub fn usual(__0: CType, __1: CType) -> Option<CType> {
@@ -2043,7 +1957,7 @@ pub fn usual(__0: CType, __1: CType) -> Option<CType> {
                 (IsInt(as, aw), IsInt(_bs, bw)) => {
                     /* do */ {
                         let rank = integerConversionRank(aw, bw);
-                        Some((IsInt(as, ((if(rank) == GT(then, aw, else, bw))))))
+                        Some((IsInt(as, ((__TODO_if(rank) == GT(then, aw, __TODO_else, bw))))))
                     }
                 },
                 _ => {
@@ -2056,34 +1970,13 @@ pub fn usual(__0: CType, __1: CType) -> Option<CType> {
 
 pub fn wrapMain(declr: CDeclr, realName: String, argTypes: Vec<CType>) -> EnvMonad<s, ()> {
     /* do */ {
-        let (setup, args) = wrapArgv(argTypes);
-        {
-            let ret = Rust::VarName("ret".to_string());
-        };
+        let setup(args) = wrapArgv(argTypes);
+        let ret = Rust::VarName("ret".to_string());
         emitItems(vec![
                 Rust::Item(vec![], Rust::Private, (Rust::Function(vec![], "main".to_string(), vec![], (Rust::TypeName("()".to_string())), (statementsToBlock((__op_addadd(setup, __op_addadd(vec![
                             bind(Rust::Immutable, ret)(Rust::UnsafeExpr(Rust::Block(vec![])(Some(call(realName, args))))),
                         ], exprToStatements((call("::std::process::exit".to_string(), vec![Rust::Var(ret)]))))))))))),
-            ]);
-;
-        let wrapArgv = |vec![]| {
-            (vec![], vec![])
-        };
-;
-;
-        let wrapArgv = |_| {
-            unimplemented(declr)
-        };
-;
-        let wrapEnvp = |vec![]| {
-            (vec![], vec![])
-        };
-;
-;
-        let wrapEnvp = |_| {
-            unimplemented(declr)
-        };
-
+            ])
     }
 }
 
@@ -2091,32 +1984,32 @@ pub fn wrapping(__0: Result, __1: Result) -> Result {
     match (__0, __1, __2) {
         (r, @, Result({ /* pat record */ })) => {
             match result(r) {
-                Rust::Add(lhs, rhs) => {
+                Rust::Add | lhs | rhs => {
                     r({
                         result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_add".to_string())), vec![rhs])
                     })
                 },
-                Rust::Sub(lhs, rhs) => {
+                Rust::Sub | lhs | rhs => {
                     r({
                         result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_sub".to_string())), vec![rhs])
                     })
                 },
-                Rust::Mul(lhs, rhs) => {
+                Rust::Mul | lhs | rhs => {
                     r({
                         result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_mul".to_string())), vec![rhs])
                     })
                 },
-                Rust::Div(lhs, rhs) => {
+                Rust::Div | lhs | rhs => {
                     r({
                         result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_div".to_string())), vec![rhs])
                     })
                 },
-                Rust::Mod(lhs, rhs) => {
+                Rust::Mod | lhs | rhs => {
                     r({
                         result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_rem".to_string())), vec![rhs])
                     })
                 },
-                Rust::Neg(e) => {
+                Rust::Neg | e => {
                     r({
                         result: Rust::MethodCall(e, (Rust::VarName("wrapping_neg".to_string())), vec![])
                     })

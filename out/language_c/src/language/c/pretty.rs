@@ -6,7 +6,7 @@ pub fn attrlistP(__0: Vec<CAttr>) -> Doc {
             empty
         },
         attrs => {
-            <>(text("__attribute__".to_string()), parens((parens((hcat(punctuate(comma, map(pretty)(attrs))))))))
+            __op_ne(text("__attribute__".to_string()), parens((parens((hcat(punctuate(comma, map(pretty)(attrs))))))))
         },
     }
 }
@@ -75,7 +75,7 @@ pub fn identP() -> Doc {
 }
 
 pub fn ifP(flag: bool, doc: Doc) -> Doc {
-    if(flag, then, doc, else, empty)
+    __TODO_if(flag, then, doc, __TODO_else, empty)
 }
 
 pub fn ii() -> Doc {
@@ -87,18 +87,18 @@ pub fn maybeP() -> Doc {
 }
 
 pub fn mlistP(pp: fn(Vec<p>) -> Doc, xs: Vec<p>) -> Doc {
-    maybeP(pp, (if(null, xs, then, None, else, Some, xs)))
+    maybeP(pp, (__TODO_if(null, xs, then, None, __TODO_else, Some, xs)))
 }
 
 pub fn parenPrec(prec: isize, prec2: isize, t: Doc) -> Doc {
-    <=(if(prec), prec2(then, t, else, parens, t))
+    (__TODO_if(prec) <= prec2(then, t, __TODO_else, parens, t))
 }
 
-pub fn prettyDeclr(show_attrs: bool, prec: isize, (CDeclr(name, derived_declrs, asmname, cattrs, _)): CDeclr) -> Doc {
+pub fn prettyDeclr(show_attrs: bool, prec: isize, CDeclr(name, derived_declrs, asmname, cattrs, _): CDeclr) -> Doc {
     __op_doc_conat(ppDeclr(prec, (reverse(derived_declrs))), __op_doc_conat(prettyAsmName(asmname), ifP(show_attrs, (attrlistP(cattrs)))))
 }
 
-pub fn prettyUsingInclude((CTranslUnit(edecls, _)): CTranslUnit) -> Doc {
-    $$(includeWarning(headerFiles), (vcat(map((either(includeHeader, pretty)), mappedDecls))))
+pub fn prettyUsingInclude(CTranslUnit(edecls, _): CTranslUnit) -> Doc {
+    __op_line_something(includeWarning(headerFiles), (vcat(map((either(includeHeader, pretty)), mappedDecls))))
 }
 

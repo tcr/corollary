@@ -34,7 +34,7 @@ struct CFloat(CFloat<String>);
 struct CString(CString<Vec<Char>, bool>);
 
 pub fn _showWideFlag(flag: bool) -> ShowS {
-    if(flag, then, showString, "L".to_string(), else, id)
+    __TODO_if(flag, then, showString, "L".to_string(), __TODO_else, id)
 }
 
 pub fn cChar(c: Char) -> CChar {
@@ -65,7 +65,7 @@ pub fn cString_w(__str: String) -> CString {
     CString(__str, true)
 }
 
-pub fn clearFlag(flag: f, (Flags(k)): Flags<f>) -> Flags<f> {
+pub fn clearFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
     Flags(clearBit(k, fromEnum(flag)))
 }
 
@@ -77,8 +77,15 @@ pub fn dQuote(s: String, t: ShowS) -> ShowS {
     __op_addadd((__op_concat('\"', s)), __op_addadd("\"".to_string(), t))
 }
 
-pub fn escapeCChar('\'': Char) -> String {
-    "\\\'".to_string()
+pub fn escapeCChar(__0: Char) -> String {
+    match (__0) {
+        '\'' => {
+            "\\\'".to_string()
+        },
+        c => {
+            <Expr::Dummy>
+        },
+    }
 }
 
 pub fn escapeChar(__0: Char) -> String {
@@ -110,6 +117,9 @@ pub fn escapeChar(__0: Char) -> String {
         '\u{b}' => {
             "\\v".to_string()
         },
+        c => {
+            <Expr::Dummy>
+        },
     }
 }
 
@@ -135,11 +145,11 @@ pub fn getCCharAsInt(__0: CChar) -> Integer {
     }
 }
 
-pub fn getCInteger((CInteger(i, _, _)): CInteger) -> Integer {
+pub fn getCInteger(CInteger(i, _, _): CInteger) -> Integer {
     i
 }
 
-pub fn getCString((CString(__str, _)): CString) -> String {
+pub fn getCString(CString(__str, _): CString) -> String {
     __str
 }
 
@@ -203,7 +213,7 @@ pub fn isWideChar(__0: CChar) -> bool {
     }
 }
 
-pub fn isWideString((CString(_, wideflag)): CString) -> bool {
+pub fn isWideString(CString(_, wideflag): CString) -> bool {
     wideflag
 }
 
@@ -230,7 +240,7 @@ pub fn sQuote(s: String, t: ShowS) -> ShowS {
     __op_addadd("\'".to_string(), __op_addadd(s, __op_addadd("\'".to_string(), t)))
 }
 
-pub fn setFlag(flag: f, (Flags(k)): Flags<f>) -> Flags<f> {
+pub fn setFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
     Flags(setBit(k, fromEnum(flag)))
 }
 
@@ -242,7 +252,7 @@ pub fn showStringLit() -> ShowS {
     dQuote(concatMap(showStringChar))
 }
 
-pub fn testFlag(flag: f, (Flags(k)): Flags<f>) -> bool {
+pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
     testBit(k, fromEnum(flag))
 }
 

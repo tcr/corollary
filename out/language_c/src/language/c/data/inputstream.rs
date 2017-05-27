@@ -55,8 +55,15 @@ pub fn readInputStream() -> IO<InputStream> {
     }
 }
 
-pub fn takeByte(bs: InputStream) -> (Word8, InputStream) {
-    seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
+pub fn takeByte(__0: InputStream) -> (Word8, InputStream) {
+    match (__0) {
+        bs => {
+            seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
+        },
+        bs => {
+            <Expr::Dummy>
+        },
+    }
 }
 
 pub fn takeChar(__0: InputStream) -> (Char, InputStream) {
@@ -70,9 +77,9 @@ pub fn takeChar(__0: InputStream) -> (Char, InputStream) {
     }
 }
 
-pub fn takeChars(__0: isize, __1: InputStream, __2: Vec<Char>) -> Vec<Char> {
-    match (__0, __1, __2) {
-        (!, n, bstr) => {
+pub fn takeChars(__0: isize, __1: InputStream) -> Vec<Char> {
+    match (__0, __1) {
+        (n, bstr) => {
             BSC::unpack(BSC::take(n, bstr))
         },
         (n, __str) => {

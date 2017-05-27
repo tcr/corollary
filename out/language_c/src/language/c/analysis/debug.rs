@@ -20,7 +20,7 @@ pub fn prettyAssocs(label: String) -> Doc {
 }
 
 pub fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
-    $$(text(label), (nest(8))((vcat(map(prettyEntry, theMap)))))
+    __op_line_something(text(label), (nest(8))((vcat(map(prettyEntry, theMap)))))
 }
 
 pub fn terminateSemi() -> Doc {
@@ -28,6 +28,6 @@ pub fn terminateSemi() -> Doc {
 }
 
 pub fn terminateSemi_() -> Doc {
-    hsep(map((<>(semi))))
+    hsep(map((__op_ne(semi))))
 }
 

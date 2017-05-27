@@ -16,7 +16,7 @@ pub enum IdentDecl {
 }
 pub use self::IdentDecl::*;
 
-struct GlobalDecls(GlobalDecls<{ /* type record */ }>);
+struct GlobalDecls(GlobalDecls<TypeRecord /* todo */>);
 
 pub enum DeclEvent {
     TagEvent(TagDef),
@@ -171,7 +171,7 @@ struct EnumType(EnumType<SUERef, Vec<Enumerator>, Attributes, NodeInfo>);
 struct Enumerator(Enumerator<Ident, Expr, EnumType, NodeInfo>);
 
 #[derive(Clone, Debug)]
-struct TypeQuals(TypeQuals<{ /* type record */ }>);
+struct TypeQuals(TypeQuals<TypeRecord /* todo */>);
 
 #[derive(Clone, Debug)]
 pub enum VarName {
@@ -196,13 +196,13 @@ pub fn declLinkage(decl: d) -> Linkage {
         NoStorage => {
             undefined
         },
-        Auto(_) => {
+        Auto | _ => {
             NoLinkage
         },
-        Static(linkage, _) => {
+        Static | linkage | _ => {
             linkage
         },
-        FunLinkage(linkage) => {
+        FunLinkage | linkage => {
             linkage
         },
     }
@@ -214,8 +214,8 @@ pub fn declName() -> VarName {
 
 pub fn declOfDef(def: n) -> Decl {
     {
-        let vd = getVarDecl(def, in, Decl, vd, (nodeInfo(def)));
-    }
+        let vd = getVarDecl(def);
+    Decl(vd, (nodeInfo(def)))    }
 }
 
 pub fn declStorage(d: d) -> Storage {
@@ -256,7 +256,7 @@ pub fn hasLinkage(__0: Storage) -> bool {
     }
 }
 
-pub fn identOfTypeDef((TypeDef(ide, _, _, _)): TypeDef) -> Ident {
+pub fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
     ide
 }
 
@@ -286,6 +286,10 @@ pub fn isNoName(__0: VarName) -> bool {
     }
 }
 
+pub fn isTentative(ObjDef(decl, init_opt, _): ObjDef) -> bool {
+    <Expr::Dummy>
+}
+
 pub fn mergeAttributes() -> Attributes {
     (__op_addadd)
 }
@@ -298,7 +302,7 @@ pub fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
     })
 }
 
-pub fn mergeTypeQuals((TypeQuals(c1, v1, r1)): TypeQuals, (TypeQuals(c2, v2, r2)): TypeQuals) -> TypeQuals {
+pub fn mergeTypeQuals(TypeQuals(c1, v1, r1): TypeQuals, TypeQuals(c2, v2, r2): TypeQuals) -> TypeQuals {
     TypeQuals(((c1 && c2)), ((v1 && v2)), ((r1 && r2)))
 }
 
@@ -328,15 +332,15 @@ pub fn objKindDescr(__0: IdentDecl) -> String {
 }
 
 pub fn splitIdentDecls(include_all: bool) -> (Map<Ident, Decl>, (Map<Ident, Enumerator>, Map<Ident, ObjDef>, Map<Ident, FunDef>)) {
-    Map::foldWithKey((if(include_all, then, deal, else, deal_q)), (Map::empty, (Map::empty, Map::empty, Map::empty)))
+    Map::foldWithKey((__TODO_if(include_all, then, deal, __TODO_else, deal_q)), (Map::empty, (Map::empty, Map::empty, Map::empty)))
 }
 
-pub fn typeOfCompDef((CompType(ref, tag, _, _, _)): CompType) -> TypeName {
-    TyComp((CompTypeRef(ref, tag, undefNode)))
+pub fn typeOfCompDef(CompType(__ref, tag, _, _, _): CompType) -> TypeName {
+    TyComp((CompTypeRef(__ref, tag, undefNode)))
 }
 
-pub fn typeOfEnumDef((EnumType(ref, _, _, _)): EnumType) -> TypeName {
-    TyEnum((EnumTypeRef(ref, undefNode)))
+pub fn typeOfEnumDef(EnumType(__ref, _, _, _): EnumType) -> TypeName {
+    TyEnum((EnumTypeRef(__ref, undefNode)))
 }
 
 pub fn typeOfTagDef(__0: TagDef) -> TypeName {

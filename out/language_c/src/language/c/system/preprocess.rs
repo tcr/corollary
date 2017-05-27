@@ -8,7 +8,7 @@ pub enum CppOption {
 }
 pub use self::CppOption::*;
 
-struct CppArgs(CppArgs<{ /* type record */ }>);
+struct CppArgs(CppArgs<TypeRecord /* todo */>);
 
 pub fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
     cpp_args({
@@ -32,6 +32,10 @@ pub fn cppFile(input_file: FilePath) -> CppArgs {
     })
 }
 
+pub fn getOutputFileName(fp: FilePath) -> FilePath {
+    <Expr::Dummy>
+}
+
 pub fn isPreprocessed() -> bool {
     (".i".to_string()(isSuffixOf))
 }
@@ -45,7 +49,7 @@ pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> IO<F
 
 pub fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> IO<FilePath> {
     /* do */ {
-        let (path, file_handle) = openTempFile(tmp_dir, file_templ);
+        let path(file_handle) = openTempFile(tmp_dir, file_templ);
         hClose(file_handle);
         path
     }
@@ -67,8 +71,7 @@ pub fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
 
 pub fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO<Either<ExitCode, InputStream>> {
     /* do */ {
-        bracket(getActualOutFile, removeTmpOutFile, invokeCpp);
-
+        bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
     }
 }
 

@@ -197,7 +197,7 @@ pub use self::CConstant::*;
 #[derive(Clone, Debug)]
 struct CStringLiteral<a>(CStrLit<CString, a>);
 
-pub fn cstringOfLit((CStrLit(cstr, _)): CStringLiteral<a>) -> CString {
+pub fn cstringOfLit(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
     cstr
 }
 
@@ -219,7 +219,7 @@ pub fn isSUEDef(__0: CTypeSpecifier<a>) -> bool {
     }
 }
 
-pub fn liftStrLit((CStrLit(__str, at)): CStringLiteral<a>) -> CConstant<a> {
+pub fn liftStrLit(CStrLit(__str, at): CStringLiteral<a>) -> CConstant<a> {
     CStrConst(__str, at)
 }
 

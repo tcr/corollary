@@ -2,7 +2,7 @@ use haskell_support::*;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum Position {
-    Position({ /* type record */ }),
+    Position(TypeRecord /* todo */),
     NoPosition,
     BuiltinPosition,
     InternalPosition
@@ -27,7 +27,7 @@ pub fn builtinPos() -> Position {
 pub fn incOffset(__0: Position, __1: isize) -> Position {
     match (__0, __1) {
         (Position(o, f, r, c), n) => {
-            Position((+(o, n)), f, r, c)
+            Position(((o + n)), f, r, c)
         },
         (p, n) => {
             p
@@ -38,7 +38,7 @@ pub fn incOffset(__0: Position, __1: isize) -> Position {
 pub fn incPos(__0: Position, __1: isize) -> Position {
     match (__0, __1) {
         (Position(offs, fname, row, col), n) => {
-            Position((+(offs, n)), fname, row, (+(col, n)))
+            Position(((offs + n)), fname, row, ((col + n)))
         },
         (p, _) => {
             p
@@ -109,7 +109,7 @@ pub fn position() -> Position {
 pub fn retPos(__0: Position) -> Position {
     match (__0) {
         Position(offs, fname, row, _) => {
-            Position((+(offs, 1)), fname, (+(row, 1)), 1)
+            Position(((offs + 1)), fname, ((row + 1)), 1)
         },
         p => {
             p

@@ -1,6 +1,6 @@
 use haskell_support::*;
 
-struct MachineDesc(MachineDesc<{ /* type record */ }>);
+struct MachineDesc(MachineDesc<TypeRecord /* todo */>);
 
 pub fn alignofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
     match (__0, __1, __2) {
@@ -43,10 +43,10 @@ pub fn alignofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
 pub fn boolValue(__0: CExpr) -> Option<bool> {
     match (__0) {
         CConst(CIntConst(i, _)) => {
-            Some(/=(getCInteger(i), 0))
+            Some(__op_assign_div(getCInteger(i), 0))
         },
         CConst(CCharConst(c, _)) => {
-            Some(/=(getCCharAsInt(c), 0))
+            Some(__op_assign_div(getCCharAsInt(c), 0))
         },
         CConst(CStrConst(_, _)) => {
             Some(true)
@@ -61,14 +61,12 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
     /* do */ {
         let dt = getDefTable;
         match lookupTag((sueRef(ctr)), dt) {
-            Some(Left(_)) => {
+            Some | Left(_) => {
                 astError((nodeInfo(ctr)), "composite declared but not defined".to_string())
             },
-            Some(Right(CompDef(CompType(_, tag, ms, _, ni)))) => {
+            Some | Right(CompDef(CompType(_, tag, ms, _, ni))) => {
                 /* do */ {
-                    {
-                        let ts = map(declType, ms);
-                    };
+                    let ts = map(declType, ms);
                     let sizes = mapM((sizeofType(md, ni)), ts);
                     match tag {
                         StructTag => {
@@ -80,7 +78,7 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
                     }
                 }
             },
-            Some(Right(EnumDef(_))) => {
+            Some | Right(EnumDef(_)) => {
                 return(iSize(md, TyInt))
             },
             None => {
@@ -95,13 +93,13 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
         (md, env, CCond(e1, me2, e3, ni)) => {
             /* do */ {
                 let e1_q = constEval(md, env, e1);
-                let me2_q = maybe((None), (liftM(|e| { Some }, constEval(md, env, e))), me2);
+                let me2_q = maybe((None), (liftM(|e| { <Expr::Dummy> }(Some), constEval(md, env, e))), me2);
                 let e3_q = constEval(md, env, e3);
                 match boolValue(e1_q) {
-                    Some(true) => {
+                    Some | true => {
                         return(fromMaybe(e1_q, me2_q))
                     },
-                    Some(false) => {
+                    Some | false => {
                         e3_q
                     },
                     None => {
@@ -132,9 +130,9 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
                 let t = tExpr(vec![], RValue, e);
                 let bytes = liftM(fromIntegral, sizeofType(md, e, t));
                 match intValue(e_q) {
-                    Some(i) => {
+                    Some | i => {
                         match intUnOp(op, i) {
-                            Some(i_q) => {
+                            Some | i_q => {
                                 intExpr(ni, (withWordBytes(bytes, i_q)))
                             },
                             None => {
@@ -154,7 +152,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
                 let t = analyseTypeDecl(d);
                 let bytes = liftM(fromIntegral, sizeofType(md, d, t));
                 match intValue(e_q) {
-                    Some(i) => {
+                    Some | i => {
                         intExpr(ni, (withWordBytes(bytes, i)))
                     },
                     None => {
@@ -192,14 +190,17 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, env, e, @, CVar(i, _)) => {
+            <Expr::Dummy>
+        },
+        (md, env, e, @, CVar(i, _)) => {
             /* do */ {
                 let t = tExpr(vec![], RValue, e);
                 match derefTypeDef(t) {
-                    DirectType(TyEnum(etr), _, _) => {
+                    DirectType | TyEnum(etr) | _ | _ => {
                         /* do */ {
                             let dt = getDefTable;
                             match lookupTag((sueRef(etr)), dt) {
-                                Some(Right(EnumDef(EnumType(_, es, _, _)))) => {
+                                Some | Right(EnumDef(EnumType(_, es, _, _))) => {
                                     /* do */ {
                                         let env_q = foldM(enumConst, env, es);
                                         return(fromMaybe(e)(Map::lookup(i, env_q)))
@@ -224,16 +225,16 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
 }
 
 pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
-    __op_bind(genName, |name| { return }(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
+    __op_bind(genName, |name| { <Expr::Dummy> }(return)(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
 }
 
 pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
     match (__0, __1, __2) {
         (CAddOp, i1, i2) => {
-            +(i1, i2)
+            (i1 + i2)
         },
         (CSubOp, i1, i2) => {
-            -(i1, i2)
+            (i1 - i2)
         },
         (CMulOp, i1, i2) => {
             (i1 * i2)
@@ -251,22 +252,22 @@ pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
             shiftR(i1, fromInteger(i2))
         },
         (CLeOp, i1, i2) => {
-            toInteger(fromEnum(<(i1, i2)))
+            toInteger(fromEnum((i1 < i2)))
         },
         (CGrOp, i1, i2) => {
-            toInteger(fromEnum(>(i1, i2)))
+            toInteger(fromEnum((i1 > i2)))
         },
         (CLeqOp, i1, i2) => {
-            toInteger(fromEnum(<=(i1, i2)))
+            toInteger(fromEnum((i1 <= i2)))
         },
         (CGeqOp, i1, i2) => {
-            toInteger(fromEnum(>=(i1, i2)))
+            toInteger(fromEnum((i1 >= i2)))
         },
         (CEqOp, i1, i2) => {
             toInteger(fromEnum((i1 == i2)))
         },
         (CNeqOp, i1, i2) => {
-            toInteger(fromEnum(/=(i1, i2)))
+            toInteger(fromEnum(__op_assign_div(i1, i2)))
         },
         (CAndOp, i1, i2) => {
             .&.(i1, i2)
@@ -278,10 +279,10 @@ pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
             .|.(i1, i2)
         },
         (CLndOp, i1, i2) => {
-            toInteger(fromEnum(((/=(i1, 0)) && (/=(i2, 0)))))
+            toInteger(fromEnum(((__op_assign_div(i1, 0)) && (__op_assign_div(i2, 0)))))
         },
         (CLorOp, i1, i2) => {
-            toInteger(fromEnum(((/=(i1, 0)) || (/=(i2, 0)))))
+            toInteger(fromEnum(((__op_assign_div(i1, 0)) || (__op_assign_div(i2, 0)))))
         },
     }
 }
@@ -353,7 +354,7 @@ pub fn sizeofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
             /* do */ {
                 let sz_q = constEval(md, Map::empty, sz);
                 match sz_q {
-                    CConst(CIntConst(i, _)) => {
+                    CConst | CIntConst(i, _) => {
                         /* do */ {
                             let s = sizeofType(md, n, bt);
                             return((getCInteger(i) * s))
