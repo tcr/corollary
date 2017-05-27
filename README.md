@@ -21,6 +21,12 @@ cargo run -- "./language-c/src/" -R -o ./out/language_c/src \
   --alias ./language-c/src/Language/C/Parser/Parser.hs=./gen/Parser.hs
 ```
 
+What needs to be worked on next? Help fix the errors found by this command:
+
+```
+cargo script scanall.rs
+```
+
 ## References
 
 * [Ten Things You Should Know About Haskell Syntax](https://www.fpcomplete.com/blog/2012/09/ten-things-you-should-know-about-haskell-syntax)
