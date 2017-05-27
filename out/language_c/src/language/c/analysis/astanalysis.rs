@@ -26,7 +26,7 @@ pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls>
     }
 }
 
-pub fn analyseDecl(is_local: bool, decl: CDecl, @: m<()>) -> m<()> {
+pub fn analyseDecl(is_local: bool, decl: CDecl, __OP__: m<()>) -> m<()> {
     <Expr::Dummy>
 }
 
@@ -61,7 +61,7 @@ pub fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info):
 
 pub fn analyseFunctionBody(__0: NodeInfo, __1: VarDecl, __2: CStat, __3: m<Stmt>) -> m<Stmt> {
     match (__0, __1, __2, __3, __4) {
-        (node_info, decl, s, @, CCompound(localLabels, items, _)) => {
+        (node_info, decl, s, __OP__, CCompound(localLabels, items, _)) => {
             /* do */ {
                 enterFunctionScope;
                 mapM_((withDefTable(defineLabel)), (__op_addadd(localLabels, getLabels(s))));
@@ -110,16 +110,16 @@ pub fn checkInits(__0: Type, __1: Vec<CDesignator>, __2: CInitList) -> m<()> {
         (_, _, []) => {
             ()
         },
-        (t, dds, [(ds, i), ...is]) => {
+        (t, dds, [(ds, i), is]) => {
             /* do */ {
                 let dds_q(ds_q) = match (dds, ds) {
                     ([], []) => {
                         typeError((nodeInfo(i)), "excess elements in initializer".to_string())
                     },
-                    ([dd_q, ...rest], []) => {
+                    ([dd_q, rest], []) => {
                         (rest, vec![dd_q])
                     },
-                    (_, [d, ..._]) => {
+                    (_, [d, _]) => {
                         (advanceDesigList(dds, d), ds)
                     },
                 };
@@ -171,126 +171,126 @@ pub fn computeFunDefStorage(__0: Ident, __1: StorageSpec) -> m<Storage> {
 }
 
 pub fn defaultMD() -> MachineDesc {
-    MachineDesc({
-        iSize: |it| { <Expr::Dummy> }(match it {
-                        TyBool => {
-                            1
-                        },
-                        TyChar => {
-                            1
-                        },
-                        TySChar => {
-                            1
-                        },
-                        TyUChar => {
-                            1
-                        },
-                        TyShort => {
-                            2
-                        },
-                        TyUShort => {
-                            2
-                        },
-                        TyInt => {
-                            4
-                        },
-                        TyUInt => {
-                            4
-                        },
-                        TyLong => {
-                            4
-                        },
-                        TyULong => {
-                            4
-                        },
-                        TyLLong => {
-                            8
-                        },
-                        TyULLong => {
-                            8
-                        },
-                    }),
-        fSize: |ft| { <Expr::Dummy> }(match ft {
-                        TyFloat => {
-                            4
-                        },
-                        TyDouble => {
-                            8
-                        },
-                        TyLDouble => {
-                            16
-                        },
-                    }),
-        builtinSize: |bt| { <Expr::Dummy> }(match bt {
-                        TyVaList => {
-                            4
-                        },
-                        TyAny => {
-                            4
-                        },
-                    }),
-        ptrSize: 4,
-        voidSize: 1,
-        iAlign: |it| { <Expr::Dummy> }(match it {
-                        TyBool => {
-                            1
-                        },
-                        TyChar => {
-                            1
-                        },
-                        TySChar => {
-                            1
-                        },
-                        TyUChar => {
-                            1
-                        },
-                        TyShort => {
-                            2
-                        },
-                        TyUShort => {
-                            2
-                        },
-                        TyInt => {
-                            4
-                        },
-                        TyUInt => {
-                            4
-                        },
-                        TyLong => {
-                            4
-                        },
-                        TyULong => {
-                            4
-                        },
-                        TyLLong => {
-                            8
-                        },
-                        TyULLong => {
-                            8
-                        },
-                    }),
-        fAlign: |ft| { <Expr::Dummy> }(match ft {
-                        TyFloat => {
-                            4
-                        },
-                        TyDouble => {
-                            8
-                        },
-                        TyLDouble => {
-                            16
-                        },
-                    }),
-        builtinAlign: |bt| { <Expr::Dummy> }(match bt {
-                        TyVaList => {
-                            4
-                        },
-                        TyAny => {
-                            4
-                        },
-                    }),
-        ptrAlign: 4,
-        voidAlign: 1
-    })
+    MachineDesc {
+    iSize: |it| { <Expr::Dummy> }(match it {
+                    TyBool => {
+                        1
+                    },
+                    TyChar => {
+                        1
+                    },
+                    TySChar => {
+                        1
+                    },
+                    TyUChar => {
+                        1
+                    },
+                    TyShort => {
+                        2
+                    },
+                    TyUShort => {
+                        2
+                    },
+                    TyInt => {
+                        4
+                    },
+                    TyUInt => {
+                        4
+                    },
+                    TyLong => {
+                        4
+                    },
+                    TyULong => {
+                        4
+                    },
+                    TyLLong => {
+                        8
+                    },
+                    TyULLong => {
+                        8
+                    },
+                }),
+    fSize: |ft| { <Expr::Dummy> }(match ft {
+                    TyFloat => {
+                        4
+                    },
+                    TyDouble => {
+                        8
+                    },
+                    TyLDouble => {
+                        16
+                    },
+                }),
+    builtinSize: |bt| { <Expr::Dummy> }(match bt {
+                    TyVaList => {
+                        4
+                    },
+                    TyAny => {
+                        4
+                    },
+                }),
+    ptrSize: 4,
+    voidSize: 1,
+    iAlign: |it| { <Expr::Dummy> }(match it {
+                    TyBool => {
+                        1
+                    },
+                    TyChar => {
+                        1
+                    },
+                    TySChar => {
+                        1
+                    },
+                    TyUChar => {
+                        1
+                    },
+                    TyShort => {
+                        2
+                    },
+                    TyUShort => {
+                        2
+                    },
+                    TyInt => {
+                        4
+                    },
+                    TyUInt => {
+                        4
+                    },
+                    TyLong => {
+                        4
+                    },
+                    TyULong => {
+                        4
+                    },
+                    TyLLong => {
+                        8
+                    },
+                    TyULLong => {
+                        8
+                    },
+                }),
+    fAlign: |ft| { <Expr::Dummy> }(match ft {
+                    TyFloat => {
+                        4
+                    },
+                    TyDouble => {
+                        8
+                    },
+                    TyLDouble => {
+                        16
+                    },
+                }),
+    builtinAlign: |bt| { <Expr::Dummy> }(match bt {
+                    TyVaList => {
+                        4
+                    },
+                    TyAny => {
+                        4
+                    },
+                }),
+    ptrAlign: 4,
+    voidAlign: 1
+}
 }
 
 pub fn defineParams(ni: NodeInfo, decl: VarDecl) -> m<()> {
@@ -309,10 +309,10 @@ pub fn enclosingFunctionType(__0: Vec<StmtCtx>) -> Option<Type> {
         [] => {
             None
         },
-        [FunCtx(vd), ..._] => {
+        [FunCtx(vd), _] => {
             Some(declType(vd))
         },
-        [_, ...cs] => {
+        [_, cs] => {
             enclosingFunctionType(cs)
         },
     }
@@ -406,29 +406,29 @@ pub fn tBlockItem(__0: Vec<StmtCtx>, __1: CBlockItem) -> m<Type> {
 
 pub fn tDesignator(__0: Type, __1: Vec<CDesignator>) -> m<Type> {
     match (__0, __1) {
-        (ArrayType(bt, _, _, _), [CArrDesig(e, ni), ...ds]) => {
+        (ArrayType(bt, _, _, _), [CArrDesig(e, ni), ds]) => {
             /* do */ {
                 __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                 tDesignator(bt, ds)
             }
         },
-        (ArrayType(bt, _, _, _), [CRangeDesig(e1, e2, ni), ...ds]) => {
+        (ArrayType(bt, _, _, _), [CRangeDesig(e1, e2, ni), ds]) => {
             /* do */ {
                 __op_bind(tExpr(vec![], RValue, e1), checkIntegral_q(ni));
                 __op_bind(tExpr(vec![], RValue, e2), checkIntegral_q(ni));
                 tDesignator(bt, ds)
             }
         },
-        (ArrayType(_, _, _, _), [d, ...ds]) => {
+        (ArrayType(_, _, _, _), [d, ds]) => {
             typeError((nodeInfo(d)), "member designator in array initializer".to_string())
         },
-        (t, @, DirectType(TyComp(_), _, _), [CMemberDesig(m, ni), ...ds]) => {
+        (t, __OP__, DirectType(TyComp(_), _, _), [CMemberDesig(m, ni), ds]) => {
             /* do */ {
                 let mt = fieldType(ni, m, t);
                 tDesignator((canonicalType(mt)), ds)
             }
         },
-        (t, @, DirectType(TyComp(_), _, _), [d, ..._]) => {
+        (t, __OP__, DirectType(TyComp(_), _, _), [d, _]) => {
             typeError((nodeInfo(d)), "array designator in compound initializer".to_string())
         },
         (t, []) => {
@@ -673,14 +673,14 @@ pub fn tExpr_q(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m<Type> {
 
 pub fn tInit(__0: Type, __1: CInit, __2: m<Initializer>) -> m<Initializer> {
     match (__0, __1, __2, __3) {
-        (t, i, @, CInitExpr(e, ni)) => {
+        (t, i, __OP__, CInitExpr(e, ni)) => {
             /* do */ {
                 let it = tExpr(vec![], RValue, e);
                 assignCompatible_q(ni, CAssignOp, t, it);
                 i
             }
         },
-        (t, i, @, CInitList(initList, ni)) => {
+        (t, i, __OP__, CInitList(initList, ni)) => {
             __op_rshift(tInitList(ni, (canonicalType(t)), initList), i)
         },
     }
@@ -688,16 +688,16 @@ pub fn tInit(__0: Type, __1: CInit, __2: m<Initializer>) -> m<Initializer> {
 
 pub fn tInitList(__0: NodeInfo, __1: Type, __2: CInitList, __3: m<()>) -> m<()> {
     match (__0, __1, __2, __3, __4) {
-        (ni, t, @, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [([], CInitExpr(e, @, CConst(CStrConst(_, _)), _))]) => {
+        (ni, t, __OP__, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [([], CInitExpr(e, __OP__, CConst(CStrConst(_, _)), _))]) => {
             __op_rshift(tExpr(vec![], RValue, e), ())
         },
-        (ni, t, @, ArrayType(_, _, _, _), initList) => {
+        (ni, t, __OP__, ArrayType(_, _, _, _), initList) => {
             /* do */ {
                 let default_ds = repeat((CArrDesig((CConst((CIntConst((cInteger(0)), ni)))), ni)));
                 checkInits(t, default_ds, initList)
             }
         },
-        (ni, t, @, DirectType(TyComp(ctr), _, _), initList) => {
+        (ni, t, __OP__, DirectType(TyComp(ctr), _, _), initList) => {
             /* do */ {
                 let td = lookupSUE(ni, (sueRef(ctr)));
                 let ms = tagMembers(ni, td);

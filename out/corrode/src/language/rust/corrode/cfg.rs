@@ -105,16 +105,16 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
             ([entry], []) => {
                 match IntMap::updateLookupWithKey((|_, _| { <Expr::Dummy> }(None)), entry, blocks) {
                     (Some((s, term)), blocks_q) => {
-                        __op_concat(Structure({
-                            structureEntries: entries,
-                            structureBody: Simple(s, term)
-                        }), relooper((successors((s, term))), blocks_q))
+                        __op_concat(Structure {
+                        structureEntries: entries,
+                        structureBody: Simple(s, term)
+                    }, relooper((successors((s, term))), blocks_q))
                     },
                     (None, _) => {
-                        __op_concat(Structure({
-                            structureEntries: entries,
-                            structureBody: Simple(mempty, (Branch((GoTo(entry)))))
-                        }), vec![])
+                        __op_concat(Structure {
+                        structureEntries: entries,
+                        structureBody: Simple(mempty, (Branch((GoTo(entry)))))
+                    }, vec![])
                     },
                 }
             },
@@ -123,16 +123,16 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
             structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
         }), vec![]) },
             ([], _) => {
-                __op_concat(Structure({
-                    structureEntries: entries,
-                    structureBody: Loop((relooper(entries, blocks_q)))
-                }), relooper(followEntries, followBlocks))
+                __op_concat(Structure {
+                structureEntries: entries,
+                structureBody: Loop((relooper(entries, blocks_q)))
+            }, relooper(followEntries, followBlocks))
             },
             _ => {
-                __op_concat(Structure({
-                    structureEntries: entries,
-                    structureBody: Multiple(handlers, unhandled)
-                }), relooper(followEntries, followBlocks))
+                __op_concat(Structure {
+                structureEntries: entries,
+                structureBody: Multiple(handlers, unhandled)
+            }, relooper(followEntries, followBlocks))
             },
         }    }
 }

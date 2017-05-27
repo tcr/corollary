@@ -158,7 +158,7 @@ pub fn head_q(__0: String, __1: Vec<a>) -> a {
         (err, []) => {
             __error!(err)
         },
-        (_, [x, ..._]) => {
+        (_, [x, _]) => {
             x
         },
     }
@@ -258,7 +258,7 @@ pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
 
 pub fn unescapeChar(__0: String) -> (Char, String) {
     match (__0) {
-        ['\\', ...[c, ...cs]] => {
+        ['\\', [c, cs]] => {
             match c {
                 'n' => {
                     ('\n', cs)
@@ -315,7 +315,7 @@ pub fn unescapeChar(__0: String) -> (Char, String) {
                 },
             }
         },
-        [c, ...cs] => {
+        [c, cs] => {
             (c, cs)
         },
         [] => {

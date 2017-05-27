@@ -53,7 +53,7 @@ pub fn redefErrReason(__0: RedefInfo) -> String {
     }
 }
 
-pub fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, @: ErrorInfo) -> ErrorInfo {
+pub fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, __OP__: ErrorInfo) -> ErrorInfo {
     ErrorInfo(lvl, (posOfNode(node)), (__op_addadd(vec![redefErrReason(info)], prevDeclMsg(old_node))))
 }
 

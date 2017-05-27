@@ -8,10 +8,10 @@ pub fn defGlobal(NsMap(gs, lss): NameSpaceMap<k, a>, ident: k, def: a) -> (NameS
 
 pub fn defLocal(__0: NameSpaceMap<k, a>, __1: k, __2: a, __3: (NameSpaceMap<k, a>, Option<a>)) -> (NameSpaceMap<k, a>, Option<a>) {
     match (__0, __1, __2, __3, __4) {
-        (ns, @, NsMap(_, []), ident, def) => {
+        (ns, __OP__, NsMap(_, []), ident, def) => {
             defGlobal(ns, ident, def)
         },
-        (NsMap(gs, [ls, ...lss]), ident, def) => {
+        (NsMap(gs, [ls, lss]), ident, def) => {
             (NsMap(gs, (__op_concat((__op_concat((ident, def), ls)), lss))), Prelude::lookup(ident, ls))
         },
     }
@@ -34,7 +34,7 @@ pub fn leaveScope(__0: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>) 
         NsMap(_, []) => {
             __error!("NsMaps.leaveScope: No local scope!".to_string())
         },
-        NsMap(gs, [ls, ...lss]) => {
+        NsMap(gs, [ls, lss]) => {
             (NsMap(gs, lss), ls)
         },
     }
@@ -48,9 +48,9 @@ pub fn lookupGlobal(NsMap(gs, _): NameSpaceMap<k, a>, ident: k) -> Option<a> {
     Map::lookup(ident, gs)
 }
 
-pub fn lookupInnermostScope(nsm: NameSpaceMap<k, a>, @: k, NsMap(_gs, localDefs): Option<a>) -> Option<a> {
+pub fn lookupInnermostScope(nsm: NameSpaceMap<k, a>, __OP__: k, NsMap(_gs, localDefs): Option<a>) -> Option<a> {
     match localDefs {
-        [ls, ..._lss] => {
+        [ls, _lss] => {
             Prelude::lookup(ident, ls)
         },
         [] => {
@@ -59,7 +59,7 @@ pub fn lookupInnermostScope(nsm: NameSpaceMap<k, a>, @: k, NsMap(_gs, localDefs)
     }
 }
 
-pub fn lookupName(ns: NameSpaceMap<k, a>, @: k, NsMap(_, localDefs): Option<a>) -> Option<a> {
+pub fn lookupName(ns: NameSpaceMap<k, a>, __OP__: k, NsMap(_, localDefs): Option<a>) -> Option<a> {
     match (lookupLocal(localDefs)) {
         None => {
             lookupGlobal(ns, ident)

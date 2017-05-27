@@ -72,6 +72,10 @@ fn print_ident(_: PrintState, mut expr: String) -> String {
         return "__static".to_string()
     } else if expr == "enum" {
         return "__enum".to_string()
+    } else if expr == "use" {
+        return "__use".to_string()
+    } else if expr == "mod" {
+        return "__mod".to_string()
     }
 
     if expr.find(":").is_some() {
@@ -236,7 +240,15 @@ fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         }
         Span(ref span) => {
             let span = expr_explode(span.clone());
-            if span.len() == 1 {
+            if span.len() == 2 && ({
+                if let ast::Expr::Record(..) = span[1] {
+                    true
+                } else { false }
+            }) {
+                format!("{} {}",
+                    print_expr(state, &span[0].clone()),
+                    print_expr(state, &span[1].clone()))
+            } else if span.len() == 1 {
                 print_expr(state, &span[0])
             } else {
                 if span.len() == 0 {
@@ -389,14 +401,14 @@ fn print_pattern(state: PrintState, pat: &Pat) -> String {
         Pat::Not(ref s) => print_pattern(state, &**s),
         Pat::EmptyParen => format!("()"),
         Pat::Concat(ref a, ref b) => {
-            format!("[{}, ...{}]",
+            format!("[{}, {}]", // TODO expand second argument
                 print_pattern(state.tab(), &**a),
                 print_pattern(state.tab(), &**b),
             )
         }
         Pat::Operator(ref op) => {
             // Should only be @
-            format!("{}", op)
+            format!("__OP__")
         }
         Pat::Infix(ref ident) => {
             panic!("Infix pattern `{}` was not rearranged", ident.0)

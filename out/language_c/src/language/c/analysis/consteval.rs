@@ -108,7 +108,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
                 }
             }
         },
-        (md, env, e, @, CBinary(op, e1, e2, ni)) => {
+        (md, env, e, __OP__, CBinary(op, e1, e2, ni)) => {
             /* do */ {
                 let e1_q = constEval(md, env, e1);
                 let e2_q = constEval(md, env, e2);
@@ -189,10 +189,10 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
                 intExpr(ni, sz)
             }
         },
-        (md, env, e, @, CVar(i, _)) => {
+        (md, env, e, __OP__, CVar(i, _)) => {
             <Expr::Dummy>
         },
-        (md, env, e, @, CVar(i, _)) => {
+        (md, env, e, __OP__, CVar(i, _)) => {
             /* do */ {
                 let t = tExpr(vec![], RValue, e);
                 match derefTypeDef(t) {
@@ -270,13 +270,13 @@ pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
             toInteger(fromEnum(__op_assign_div(i1, i2)))
         },
         (CAndOp, i1, i2) => {
-            .&.(i1, i2)
+            __op_dotted_and(i1, i2)
         },
         (CXorOp, i1, i2) => {
             xor(i1, i2)
         },
         (COrOp, i1, i2) => {
-            .|.(i1, i2)
+            __op_dotted_or(i1, i2)
         },
         (CLndOp, i1, i2) => {
             toInteger(fromEnum(((__op_assign_div(i1, 0)) && (__op_assign_div(i2, 0)))))

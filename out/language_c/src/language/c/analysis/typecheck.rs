@@ -196,7 +196,7 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
         (DirectType(TyBuiltin(TyAny), _, _), t2) => {
             t2
         },
-        (t1, @, DirectType(tn1, q1, a1), t2, @, DirectType(tn2, q2, a2)) => {
+        (t1, __OP__, DirectType(tn1, q1, a1), t2, __OP__, DirectType(tn2, q2, a2)) => {
             /* do */ {
                 let tn = match (tn1, tn2) {
                     (TyVoid, TyVoid) => {
@@ -331,7 +331,7 @@ pub fn conditionalType(t1: Type, t2: Type) -> Either<String, Type> {
                 return(ArrayType(t, (UnknownArraySize(false)), (mergeTypeQuals(q1, q2)), (mergeAttrs(a1, a2))))
             }
         },
-        (t1_q(@, DirectType(tn1, q1, a1)), t2_q(@, DirectType(tn2, q2, a2))) => {
+        (t1_q(__OP__, DirectType(tn1, q1, a1)), t2_q(__OP__, DirectType(tn2, q2, a2))) => {
             match arithmeticConversion(tn1, tn2) {
                 Some | tn => {
                     return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))

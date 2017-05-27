@@ -37,7 +37,7 @@ pub fn viewr(__0: Reversed<Vec<a>>) -> (Reversed<Vec<a>>, a) {
         Reversed([]) => {
             __error!("viewr: empty RList".to_string())
         },
-        Reversed([x, ...xs]) => {
+        Reversed([x, xs]) => {
             (Reversed(xs), x)
         },
     }

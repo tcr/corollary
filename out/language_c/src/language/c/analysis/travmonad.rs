@@ -12,12 +12,12 @@ struct TravOptions(TravOptions<TypeRecord /* todo */>);
 
 struct TravState<s>(TravState<TypeRecord /* todo */>);
 
-pub fn addRef(use: u, def: d) -> m<()> {
-    match (nodeInfo(use), nodeInfo(def)) {
+pub fn addRef(__use: u, def: d) -> m<()> {
+    match (nodeInfo(__use), nodeInfo(def)) {
         (NodeInfo(_, _, useName), NodeInfo(_, _, defName)) => {
-            withDefTable((|dt| { <Expr::Dummy> }(((), dt({
-                        refTable: insert((nameId(useName)), defName, (refTable(dt)))
-                    })))))
+            withDefTable((|dt| { <Expr::Dummy> }(((), dt {
+                    refTable: insert((nameId(useName)), defName, (refTable(dt)))
+                }))))
         },
         (_, _) => {
             ()
@@ -124,10 +124,10 @@ pub fn enterPrototypeScope() -> m<()> {
 
 pub fn generateName() -> Trav<s, Name> {
     __op_bind(get, |ts| { <Expr::Dummy> }(/* do */ {
-            let [new_name, ...gen_q] = nameGenerator(ts);
-            put(ts({
-                nameGenerator: gen_q
-            }));
+            let [new_name, gen_q] = nameGenerator(ts);
+            put(ts {
+            nameGenerator: gen_q
+        });
             new_name
         }))
 }
@@ -181,10 +181,10 @@ pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
 
 pub fn handleParamDecl(__0: ParamDecl, __1: m<()>) -> m<()> {
     match (__0, __1, __2) {
-        (pd, @, AbstractParamDecl(_, _)) => {
+        (pd, __OP__, AbstractParamDecl(_, _)) => {
             handleDecl((ParamEvent(pd)))
         },
-        (pd, @, ParamDecl(vardecl, node)) => {
+        (pd, __OP__, ParamDecl(vardecl, node)) => {
             /* do */ {
                 let def = ObjectDef((ObjDef(vardecl, None, node)));
                 let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
@@ -214,7 +214,7 @@ pub fn handleTravError(a: m<a>) -> m<Option<a>> {
     catchTravError(liftM(Some, a), (__op_rshift(|e| { <Expr::Dummy> }(recordError, e), None)))
 }
 
-pub fn handleTypeDef(typeDef: TypeDef, @: m<()>) -> m<()> {
+pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
     /* do */ {
         let redecl = withDefTable(defineTypeDef(ident, typeDef));
         checkRedef((show(ident)), typeDef, redecl);
@@ -231,16 +231,16 @@ pub fn handleVarDecl(is_local: bool, decl: Decl) -> m<()> {
 }
 
 pub fn initTravState(userst: s) -> TravState<s> {
-    TravState({
-        symbolTable: emptyDefTable,
-        rerrors: RList::empty,
-        nameGenerator: newNameSupply,
-        doHandleExtDecl: __TODO_const((())),
-        userState: userst,
-        options: TravOptions({
-                    language: C99
-                })
-    })
+    TravState {
+    symbolTable: emptyDefTable,
+    rerrors: RList::empty,
+    nameGenerator: newNameSupply,
+    doHandleExtDecl: __TODO_const((())),
+    userState: userst,
+    options: TravOptions {
+            language: C99
+        }
+}
 }
 
 pub fn isDeclaration(__0: IdentDecl) -> bool {

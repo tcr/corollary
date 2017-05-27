@@ -102,12 +102,12 @@ pub fn emptyDeclr(node: NodeInfo) -> CDeclr {
 }
 
 pub fn emptyNumTypeSpec() -> NumTypeSpec {
-    NumTypeSpec({
-        base: NoBaseType,
-        signSpec: NoSignSpec,
-        sizeMod: NoSizeMod,
-        isComplex: false
-    })
+    NumTypeSpec {
+    base: NoBaseType,
+    signSpec: NoSignSpec,
+    sizeMod: NoSizeMod,
+    isComplex: false
+}
 }
 
 pub fn getOnlyDeclr(__0: CDecl) -> m<CDeclr> {
@@ -147,7 +147,7 @@ pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) ->
         (_node, [], declrs) => {
             declrs
         },
-        (node, oldstyle_params, [CFunDeclr(params, attrs, fdnode), ...dds]) => {
+        (node, oldstyle_params, [CFunDeclr(params, attrs, fdnode), dds]) => {
             match params {
                 Left | list => {
                     /* do */ {
@@ -211,7 +211,7 @@ pub fn nameOfDecl(d: CDecl) -> m<Ident> {
         }))
 }
 
-pub fn splitCDecl(decl: CDecl, @: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
+pub fn splitCDecl(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
     match declrs {
         [] => {
             internalErr("splitCDecl applied to empty declaration".to_string())
@@ -219,7 +219,7 @@ pub fn splitCDecl(decl: CDecl, @: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
         [declr] => {
             vec![decl]
         },
-        [d1, ...ds] => {
+        [d1, ds] => {
             {
                 let declspecs_q = map(elideSUEDef, declspecs);
             return(__op_concat((CDecl(declspecs, vec![d1], node)), <Expr::Dummy>))            }

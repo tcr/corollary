@@ -9,13 +9,13 @@ pub use self::ParseResult::*;
 struct PState(PState<TypeRecord /* todo */>);
 
 pub fn addTypedef(ident: Ident) -> P<()> {
-    (P(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, {
+    (P(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, {
         tyidents: Set.insert(ident, tyids)
     }, ())))
 }
 
 pub fn enterScope() -> P<()> {
-    P(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, {
+    P(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, {
         scopes: __op_concat(tyids, ss)
     }, ()))
 }
@@ -36,29 +36,29 @@ pub fn failP(pos: Position, msg: Vec<String>) -> P<a> {
 }
 
 pub fn getCurrentPosition() -> P<Position> {
-    P(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, pos))
+    P(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, pos))
 }
 
 pub fn getInput() -> P<InputStream> {
-    P(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, i))
+    P(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, i))
 }
 
 pub fn getLastToken() -> P<CToken> {
-    P(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, tok))
+    P(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, tok))
 }
 
 pub fn getNewName() -> P<Name> {
-    P(seq(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(n), POk(s, {
+    P(seq(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(n), POk(s, {
         namesupply: ns
     }, n)))
 }
 
 pub fn getPos() -> P<Position> {
-    P(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, pos))
+    P(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, pos))
 }
 
 pub fn getSavedToken() -> P<CToken> {
-    P(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, tok))
+    P(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, tok))
 }
 
 pub fn handleEofToken() -> P<()> {
@@ -68,15 +68,15 @@ pub fn handleEofToken() -> P<()> {
 }
 
 pub fn isTypeIdent(ident: Ident) -> P<bool> {
-    P(__op_TODO_dollarnot(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s), Set::member(ident, tyids)))
+    P(__op_TODO_dollarnot(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s), Set::member(ident, tyids)))
 }
 
 pub fn leaveScope() -> P<()> {
-    P(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(match ss {
+    P(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(match ss {
             [] => {
                 __error!("leaveScope: already in global scope".to_string())
             },
-            [tyids, ...ss_q] => {
+            [tyids, ss_q] => {
                 POk(s, {
                     tyidents: tyids,
                     scopes: ss_q
@@ -118,7 +118,7 @@ pub fn setPos(pos: Position) -> P<()> {
 }
 
 pub fn shadowTypedef(ident: Ident) -> P<()> {
-    (P(|s, @, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, {
+    (P(|s, __OP__, PState, { /* pat record */ }| { <Expr::Dummy> }(POk, s, {
         tyidents: Set.member(__TODO_if(ident), Set.delete(tyids(then, ident), tyids(__TODO_else, tyids)))
     }, ())))
 }
