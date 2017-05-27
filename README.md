@@ -15,23 +15,16 @@ This project contains a proof-of-concept cross-compiler from Haskell to Rust whi
 See the current status by looking at the cross-compiled files in the out/ directory. These are equivalent to:
 
 ```
-cargo run "./corrode/src/Language" > out/corrode.rs
-cargo run "./language-c/src/Language/C" > out/language_c.rs
-cargo run "./gen" > out/gen.rs
+cargo run -- "./corrode/src/" -R -o ./out/corrode/src
+cargo run -- "./language-c/src/" -R -o ./out/language_c/src \
+  --alias ./language-c/src/Language/C/Parser/Lexer.hs=./gen/Lexer.hs \
+  --alias ./language-c/src/Language/C/Parser/Parser.hs=./gen/Parser.hs
 ```
-
-In the future:
-
-```
-cargo run -- "./language-c/src/" -o ./out/language_c/src
-cargo run -- "./corrode/src/" -o ./out/corrode/src
-```
-
-Look at the `test/input.hs` file and `out/test.rs` for an example of compilation you can (almost!) execute.
 
 ## References
 
-* Great Haskell language reference: http://echo.rsmw.net/n00bfaq.html
+* [Ten Things You Should Know About Haskell Syntax](https://www.fpcomplete.com/blog/2012/09/ten-things-you-should-know-about-haskell-syntax)
+* [Haskell: The Confusing Parts](http://echo.rsmw.net/n00bfaq.html)
 
 ## License
 

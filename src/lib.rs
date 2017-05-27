@@ -1,3 +1,4 @@
+#[macro_use] extern crate errln;
 #[macro_use] extern crate maplit;
 extern crate clap;
 extern crate hex;
@@ -390,7 +391,8 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
             format!("__OP__")
         }
         Pat::Infix(ref ident) => {
-            panic!("Infix pattern `{}` was not rearranged", ident.0)
+            errln!("Infix pattern `{}` was not rearranged", ident.0);
+            format!("/* TODO(INFIX) */")
         }
         Pat::Dummy => format!("<todo>"),
     }

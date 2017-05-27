@@ -1,4 +1,5 @@
 #[macro_use] extern crate errln;
+#[macro_use] extern crate error_chain;
 extern crate clap;
 extern crate hex;
 extern crate lalrpop_util;
@@ -13,15 +14,26 @@ use parser_haskell::util::{print_parse_error, simplify_parse_error};
 use clap::{Arg, App};
 use regex::Regex;
 use std::fmt::Write;
-use std::fs::{File};
+use std::fs::{File, create_dir_all};
 use std::io::prelude::*;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::process::Command;
 use tempdir::TempDir;
 use walkdir::WalkDir;
 
 use corollary::print_item_list;
 use corollary::ir::PrintState;
+
+// Define error chain.
+mod errors {
+    error_chain! {
+        foreign_links {
+            Walkdir(::walkdir::Error);
+            Io(::std::io::Error);
+        }
+    }
+}
+use errors::*;
 
 #[test] #[ignore]
 fn test_single_file() {
@@ -153,7 +165,8 @@ fn strip_lhs(s: &str) -> String {
     out.join("\n\n")
 }
 
-fn convert_file(input: &str, p: &Path) -> (String, String) {
+/// Converts a Haskell file by its path into a Rust module.
+fn convert_file(input: &str, p: &Path, inline_mod: bool) -> (String, String) {
     let mut contents = input.to_string();
     let mut file_out = String::new();
     let mut rust_out = String::new();
@@ -176,8 +189,7 @@ fn convert_file(input: &str, p: &Path) -> (String, String) {
         Ok(v) => {
             //errln!("{:?}", v);
 
-            let expand_mod = false;
-            if expand_mod {
+            if inline_mod {
                 let _ = writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"));
                 let _ = writeln!(file_out, "    use haskell_support::*;");
                 let _ = writeln!(file_out, "");
@@ -203,9 +215,9 @@ fn convert_file(input: &str, p: &Path) -> (String, String) {
     (file_out, rust_out)
 }
 
+quick_main!(run);
 
-#[cfg(not(test))]
-fn main() {
+fn run() -> Result<()> {
     use std::io::Write;
 
     let matches = App::new("corollary")
@@ -220,24 +232,42 @@ fn main() {
             .long("out")
             .help("Output path")
             .takes_value(true))
+        .arg(Arg::with_name("recursive")
+            .short("R")
+            .long("recursive")
+            .help("Recursively recreate folder structure, not a single file"))
         .arg(Arg::with_name("INPUT")
             .help("Sets the input file to use")
             .required(true)
             .index(1))
+        .arg(Arg::with_name("alias")
+            .long("alias")
+            .help("Alias a file for a recursive output (virtual=actual)")
+            .multiple(true)
+            .takes_value(true))
         .get_matches();
 
-    let file = matches.value_of("INPUT").unwrap();
-    let do_run = matches.is_present("run");
-    if do_run {
-        errln!("running {:?}...", file);
-    } else {
-        errln!("cross-compiling {:?}...", file);
+    let arg_input = matches.value_of("INPUT").unwrap();
+    let arg_run = matches.is_present("run");
+    let arg_recursive = matches.is_present("recursive");
+    let arg_out: Option<_> = matches.value_of("out");
+    let arg_alias = matches.values_of("alias");
+
+    if arg_run && arg_recursive {
+        bail!("Cannot use --run and --recursive at the same time.");
+    }
+    if arg_alias.is_some() && !arg_recursive {
+        bail!("Cannot use --alias without --recursive.")
+    }
+    if arg_recursive && arg_out.is_none() {
+        bail!("Please specify an --out path to use --recursive.");
     }
 
-    // Create target directory.
-    let target_dir = matches.value_of("out");
-    if let Some(target) = target_dir {
-        let _ = ::std::fs::create_dir_all(target);
+    // Starting message.
+    if arg_run {
+        errln!("running {:?}...", arg_input);
+    } else {
+        errln!("cross-compiling {:?}...", arg_input);
     }
 
     let mut rust_section = "".to_string();
@@ -245,20 +275,35 @@ fn main() {
 
     let _ = writeln!(file_section, "{}", include_str!("haskell_support.txt"));
     let _ = writeln!(file_section, "");
-    for entry in WalkDir::new(file) {
-        let e = entry.unwrap();
-        let p = e.path();
 
+    let mut inputs: Vec<(PathBuf, PathBuf)> = WalkDir::new(arg_input).into_iter()
+        .map(|entry| {
+            let path_buf = entry.unwrap().path().to_owned();
+            (path_buf.clone(), path_buf.clone())
+        })
+        .collect();
+
+    if let Some(aliases) = arg_alias {
+        for item in aliases {
+            let mut item_parts = item.split("=");
+            let value = item_parts.next().unwrap().to_owned();
+            let key = item_parts.next().unwrap().to_owned();
+            inputs.push((PathBuf::from(key), PathBuf::from(value)));
+        }
+    }
+
+    for (source_path, virtual_path) in inputs {
         // Check filetype. Allow .lhs and .hs, ignore all else.
         let mut do_strip_lhs = false;
-        if p.display().to_string().ends_with(".lhs") {
+        if virtual_path.display().to_string().ends_with(".lhs") {
             do_strip_lhs = true;
-        } else if !p.display().to_string().ends_with(".hs") {
+        } else if !virtual_path.display().to_string().ends_with(".hs") {
             continue;
         }
 
         // Read file contents.
-        let mut file = File::open(p).unwrap();
+        let mut file = File::open(source_path.as_path())
+            .chain_err(|| format!("Could not open {:?}", source_path))?;
         let mut contents = String::new();
         match file.read_to_string(&mut contents) {
             Ok(..) => (),
@@ -269,63 +314,78 @@ fn main() {
         if do_strip_lhs {
             contents = strip_lhs(&contents);
         }
+        let (file_out, rust_out) = convert_file(&contents, source_path.as_path(), !arg_recursive);
 
-        let (file_out, rust_out) = convert_file(&contents, p);
-
-        if let Some(target) = target_dir {
-            //let _ = ::std::fs::create_dir_all(target);
-            let mut a = p.components();
+        // Switch on recursive switch.
+        if arg_recursive {
+            // Trim initial components.
+            //TODO why three segments?
+            let mut a = virtual_path.components();
             a.next();
             a.next();
             a.next();
 
-            let t = format!("{}/{}", target, a.as_path().display()).to_lowercase();
-            let _ = ::std::fs::create_dir_all(&Path::new(&t).parent().unwrap());
-
+            // Write out file.
+            let t = format!("{}/{}", arg_out.unwrap(), a.as_path().display()).to_lowercase();
             let t = t.replace(".lhs", ".rs");
             let t = t.replace(".hs", ".rs");
 
-            let mut f = File::create(&t).unwrap();
+            // Create directory.
+            let _ = create_dir_all(&Path::new(&t).parent().unwrap());
+
+            // Write out file.
+            let mut f = File::create(&t)?;
             let _ = f.write_all(file_out.as_bytes());
             let _ = f.write_all(rust_out.as_bytes());
             drop(f);
         } else {
+            // Accumulate file output.
             let _ = writeln!(file_section, "{}", file_out);
             rust_section.push_str(&rust_out);
         }
     }
 
-    if let Some(_) = target_dir {
-        return;
-    }
-    let _ = writeln!(file_section, "");
-    let _ = writeln!(file_section, "");
-    if rust_section.len() > 0 {
-        let _ = writeln!(file_section, "{}", include_str!("haskell_support.txt"));
-        let _ = writeln!(file_section, "/* RUST ... /RUST */");
-        let _ = writeln!(file_section, "{}", rust_section);
-    }
-
-    // Evaluate --run
-    if !do_run {
-        print!("{}", file_section);
-    } else {
-        let dir = TempDir::new("corollary").unwrap();
-        let file_path = dir.path().join("script.rs");
-
-        let mut f = File::create(&file_path).unwrap();
-        let _ = f.write_all(file_section.as_bytes());
-        drop(f);
-
-        let output = Command::new("cargo")
-                    .args(&["script", &file_path.display().to_string()])
-                    .output()
-                    .expect("failed to execute process");
-
-        if !output.status.success() {
-            err!("{}", String::from_utf8_lossy(&output.stderr));
+    // If we have an output directory, we've already finished writing it.
+    if !arg_recursive {
+        // Add Rust segments RUST ... /RUST and Haskell support code.
+        let _ = writeln!(file_section, "");
+        let _ = writeln!(file_section, "");
+        if rust_section.len() > 0 {
+            let _ = writeln!(file_section, "{}", include_str!("haskell_support.txt"));
+            let _ = writeln!(file_section, "/* RUST ... /RUST */");
+            let _ = writeln!(file_section, "{}", rust_section);
         }
-        err!("{}", String::from_utf8_lossy(&output.stdout));
-        ::std::process::exit(output.status.code().unwrap());
+
+        if let Some(out_path) = arg_out {
+            let mut f = File::create(&out_path)?;
+            let _ = f.write_all(file_section.as_bytes());
+        } else if !arg_run {
+            // Print file to stdout.
+            print!("{}", file_section);
+        }
+
+        // Evaluate --run
+        if arg_run {
+            // Run the file.
+            let dir = TempDir::new("corollary")?;
+            let file_path = dir.path().join("script.rs");
+
+            let mut f = File::create(&file_path)?;
+            let _ = f.write_all(file_section.as_bytes());
+            drop(f);
+
+            let output = Command::new("cargo")
+                        .args(&["script", &file_path.display().to_string()])
+                        .output()
+                        .expect("failed to execute process");
+
+            if !output.status.success() {
+                err!("{}", String::from_utf8_lossy(&output.stderr));
+            }
+            err!("{}", String::from_utf8_lossy(&output.stdout));
+            ::std::process::exit(output.status.code().unwrap());
+        }
     }
+
+    Ok(())
 }
