@@ -2,7 +2,6 @@
 
 use std::cmp;
 use std::fmt::{self, Display, Formatter};
-use std::io::prelude::*;
 
 pub enum Expr {
     Free(String),
