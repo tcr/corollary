@@ -825,13 +825,13 @@ fn convert_file(input: &str, p: &Path) -> (String, String) {
                 let _ = writeln!(file_out, "    use haskell_support::*;");
                 let _ = writeln!(file_out, "");
                 let state = PrintState::new();
-                let _ = writeln!(file_out, "{}", print_item_list(state.tab(), &v.statements));
+                let _ = writeln!(file_out, "{}", print_item_list(state.tab(), &v.items));
                 let _ = writeln!(file_out, "}}\n");
             } else {
                 let _ = writeln!(file_out, "use haskell_support::*;");
                 let _ = writeln!(file_out, "");
                 let state = PrintState::new();
-                let _ = writeln!(file_out, "{}", print_item_list(state, &v.statements));
+                let _ = writeln!(file_out, "{}", print_item_list(state, &v.items));
             }
         }
         Err(e) => {
