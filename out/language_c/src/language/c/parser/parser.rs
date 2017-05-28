@@ -80,7 +80,8 @@ pub fn action_0(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, 
     }
 }
 
-let __0 = match (__0) {
+pub fn action_1(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -264,11 +265,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_390;
+pub fn action_10(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_390
+}
 
-let __0 = match (__0) {
+pub fn action_100(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_168)
         },
@@ -287,22 +292,30 @@ let __0 = match (__0) {
         _ => {
             happyReduce_248
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_101(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         33 => {
             happyGoto(action_164)
         },
         _ => {
             happyReduce_89
         },
-    };
+    }
+}
 
-let _ = happyReduce_262;
+pub fn action_102(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_262
+}
 
-let _ = happyReduce_263;
+pub fn action_103(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_263
+}
 
-let __0 = match (__0) {
+pub fn action_104(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         185 => {
             happyShift(action_160)
         },
@@ -321,9 +334,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_105(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -450,11 +465,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let _ = happyReduce_454;
+pub fn action_106(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_454
+}
 
-let __0 = match (__0) {
+pub fn action_107(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -491,9 +510,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_108(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -539,18 +560,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_109(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_141)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_11(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         144 => {
             happyShift(action_295)
         },
@@ -563,19 +588,31 @@ let __0 = match (__0) {
         _ => {
             happyReduce_394
         },
-    };
+    }
+}
 
-let _ = happyReduce_114;
+pub fn action_110(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_114
+}
 
-let _ = happyReduce_129;
+pub fn action_111(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_129
+}
 
-let _ = happyReduce_121;
+pub fn action_112(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_121
+}
 
-let _ = happyReduce_130;
+pub fn action_113(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_130
+}
 
-let _ = happyReduce_126;
+pub fn action_114(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_126
+}
 
-let __0 = match (__0) {
+pub fn action_115(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -591,17 +628,27 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_112;
+pub fn action_116(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_112
+}
 
-let _ = happyReduce_125;
+pub fn action_117(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_125
+}
 
-let _ = happyReduce_123;
+pub fn action_118(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_123
+}
 
-let _ = happyReduce_124;
+pub fn action_119(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_124
+}
 
-let __0 = match (__0) {
+pub fn action_12(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         142 => {
             happyShift(action_293)
         },
@@ -611,36 +658,58 @@ let __0 = match (__0) {
         _ => {
             happyReduce_397
         },
-    };
+    }
+}
 
-let _ = happyReduce_115;
+pub fn action_120(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_115
+}
 
-let _ = happyReduce_122;
+pub fn action_121(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_122
+}
 
-let _ = happyReduce_127;
+pub fn action_122(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_127
+}
 
-let _ = happyReduce_113;
+pub fn action_123(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_113
+}
 
-let _ = happyReduce_178;
+pub fn action_124(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_178
+}
 
-let _ = happyReduce_111;
+pub fn action_125(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_111
+}
 
-let __0 = match (__0) {
+pub fn action_126(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_138)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_116;
+pub fn action_127(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_116
+}
 
-let _ = happyReduce_179;
+pub fn action_128(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_179
+}
 
-let _ = happyReduce_128;
+pub fn action_129(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_128
+}
 
-let __0 = match (__0) {
+pub fn action_13(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         148 => {
             happyShift(action_291)
         },
@@ -650,24 +719,34 @@ let __0 = match (__0) {
         _ => {
             happyReduce_400
         },
-    };
+    }
+}
 
-let _ = happyReduce_120;
+pub fn action_130(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_120
+}
 
-let _ = happyReduce_259;
+pub fn action_131(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_259
+}
 
-let _ = happyReduce_159;
+pub fn action_132(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_159
+}
 
-let __0 = match (__0) {
+pub fn action_133(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_137)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_134(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -851,29 +930,37 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_135(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         232 => {
             happyAccept
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_10;
+pub fn action_136(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_10
+}
 
-let __0 = match (__0) {
+pub fn action_137(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_473)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_138(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -1099,9 +1186,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_139(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_470)
         },
@@ -1117,9 +1206,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_14(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         150 => {
             happyShift(action_287)
         },
@@ -1135,9 +1226,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_405
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_140(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -1147,9 +1240,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_141(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         222 => {
             happyShift(action_41)
         },
@@ -1159,9 +1254,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_142(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -1216,13 +1313,19 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_250;
+pub fn action_143(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_250
+}
 
-let _ = happyReduce_264;
+pub fn action_144(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_264
+}
 
-let __0 = match (__0) {
+pub fn action_145(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -1253,18 +1356,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_146(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_462)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_147(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_168)
         },
@@ -1286,18 +1393,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_148(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_460)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_149(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -1325,9 +1436,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_15(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         154 => {
             happyShift(action_285)
         },
@@ -1337,9 +1450,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_408
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_150(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -1349,15 +1464,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_104;
+pub fn action_151(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_104
+}
 
-let _ = happyReduce_137;
+pub fn action_152(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_137
+}
 
-let _ = happyReduce_148;
+pub fn action_153(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_148
+}
 
-let __0 = match (__0) {
+pub fn action_154(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyReduce_26
         },
@@ -1373,50 +1496,72 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_155(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         33 => {
             happyGoto(action_453)
         },
         _ => {
             happyReduce_89
         },
-    };
+    }
+}
 
-let _ = happyReduce_455;
+pub fn action_156(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_455
+}
 
-let __0 = match (__0) {
+pub fn action_157(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_452)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_165;
+pub fn action_158(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_165
+}
 
-let _ = happyReduce_214;
+pub fn action_159(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_214
+}
 
-let __0 = match (__0) {
+pub fn action_16(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         147 => {
             happyShift(action_284)
         },
         _ => {
             happyReduce_410
         },
-    };
+    }
+}
 
-let _ = happyReduce_210;
+pub fn action_160(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_210
+}
 
-let _ = happyReduce_213;
+pub fn action_161(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_213
+}
 
-let _ = happyReduce_212;
+pub fn action_162(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_212
+}
 
-let _ = happyReduce_211;
+pub fn action_163(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_211
+}
 
-let __0 = match (__0) {
+pub fn action_164(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -1561,11 +1706,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_254;
+pub fn action_165(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_254
+}
 
-let __0 = match (__0) {
+pub fn action_166(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         134 => {
             happyShift(action_169)
         },
@@ -1575,11 +1724,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_298
         },
-    };
+    }
+}
 
-let _ = happyReduce_300;
+pub fn action_167(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_300
+}
 
-let __0 = match (__0) {
+pub fn action_168(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -1736,9 +1889,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_269
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_169(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -1901,18 +2056,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_440
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_17(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         156 => {
             happyShift(action_283)
         },
         _ => {
             happyReduce_412
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_170(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -1922,17 +2081,27 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_105;
+pub fn action_171(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_105
+}
 
-let _ = happyReduce_138;
+pub fn action_172(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_138
+}
 
-let _ = happyReduce_149;
+pub fn action_173(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_149
+}
 
-let _ = happyReduce_215;
+pub fn action_174(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_215
+}
 
-let __0 = match (__0) {
+pub fn action_175(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyReduce_26
         },
@@ -1948,18 +2117,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_176(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         33 => {
             happyGoto(action_423)
         },
         _ => {
             happyReduce_89
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_177(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -2101,29 +2274,37 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_178(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_413)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_162;
+pub fn action_179(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_162
+}
 
-let __0 = match (__0) {
+pub fn action_18(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         157 => {
             happyShift(action_282)
         },
         _ => {
             happyReduce_414
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_180(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_412)
         },
@@ -2139,56 +2320,98 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_153;
+pub fn action_181(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_153
+}
 
-let _ = happyReduce_171;
+pub fn action_182(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_171
+}
 
-let _ = happyReduce_172;
+pub fn action_183(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_172
+}
 
-let _ = happyReduce_157;
+pub fn action_184(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_157
+}
 
-let _ = happyReduce_109;
+pub fn action_185(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_109
+}
 
-let _ = happyReduce_110;
+pub fn action_186(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_110
+}
 
-let _ = happyReduce_158;
+pub fn action_187(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_158
+}
 
-let _ = happyReduce_144;
+pub fn action_188(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_144
+}
 
-let _ = happyReduce_151;
+pub fn action_189(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_151
+}
 
-let __0 = match (__0) {
+pub fn action_19(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         158 => {
             happyShift(action_281)
         },
         _ => {
             happyReduce_416
         },
-    };
+    }
+}
 
-let _ = happyReduce_152;
+pub fn action_190(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_152
+}
 
-let _ = happyReduce_86;
+pub fn action_191(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_86
+}
 
-let _ = happyReduce_145;
+pub fn action_192(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_145
+}
 
-let _ = happyReduce_146;
+pub fn action_193(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_146
+}
 
-let _ = happyReduce_85;
+pub fn action_194(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_85
+}
 
-let _ = happyReduce_132;
+pub fn action_195(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_132
+}
 
-let _ = happyReduce_141;
+pub fn action_196(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_141
+}
 
-let _ = happyReduce_140;
+pub fn action_197(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_140
+}
 
-let _ = happyReduce_142;
+pub fn action_198(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_142
+}
 
-let _ = happyReduce_133;
+pub fn action_199(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_133
+}
 
-let __0 = match (__0) {
+pub fn action_2(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -2393,9 +2616,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_20(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         159 => {
             happyShift(action_279)
         },
@@ -2405,13 +2630,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_418
         },
-    };
+    }
+}
 
-let _ = happyReduce_134;
+pub fn action_200(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_134
+}
 
-let _ = happyReduce_135;
+pub fn action_201(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_135
+}
 
-let __0 = match (__0) {
+pub fn action_202(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -2421,9 +2652,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_203(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         179 => {
             happyShift(action_389)
         },
@@ -2436,41 +2669,61 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let _ = happyReduce_218;
+pub fn action_204(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_218
+}
 
-let _ = happyReduce_222;
+pub fn action_205(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_222
+}
 
-let _ = happyReduce_225;
+pub fn action_206(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_225
+}
 
-let _ = happyReduce_226;
+pub fn action_207(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_226
+}
 
-let _ = happyReduce_221;
+pub fn action_208(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_221
+}
 
-let _ = happyReduce_235;
+pub fn action_209(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_235
+}
 
-let _ = happyReduce_421;
+pub fn action_21(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_421
+}
 
-let __0 = match (__0) {
+pub fn action_210(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyReduce_26
         },
         _ => {
             happyReduce_217
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_211(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         33 => {
             happyGoto(action_408)
         },
         _ => {
             happyReduce_89
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_212(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_406)
         },
@@ -2525,9 +2778,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_213(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_401)
         },
@@ -2591,9 +2846,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_214(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -2612,9 +2869,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_223
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_215(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -2624,15 +2883,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_107;
+pub fn action_216(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_107
+}
 
-let _ = happyReduce_131;
+pub fn action_217(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_131
+}
 
-let _ = happyReduce_143;
+pub fn action_218(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_143
+}
 
-let __0 = match (__0) {
+pub fn action_219(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyReduce_26
         },
@@ -2648,40 +2915,52 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_22(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_278)
         },
         _ => {
             happyReduce_434
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_220(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         33 => {
             happyGoto(action_392)
         },
         _ => {
             happyReduce_89
         },
-    };
+    }
+}
 
-let _ = happyReduce_108;
+pub fn action_221(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_108
+}
 
-let __0 = match (__0) {
+pub fn action_222(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_391)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_154;
+pub fn action_223(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_154
+}
 
-let __0 = match (__0) {
+pub fn action_224(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -2691,9 +2970,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_225(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         179 => {
             happyShift(action_389)
         },
@@ -2706,18 +2987,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_226(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         33 => {
             happyGoto(action_386)
         },
         _ => {
             happyReduce_89
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_227(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -2733,11 +3018,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_87;
+pub fn action_228(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_87
+}
 
-let __0 = match (__0) {
+pub fn action_229(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -2753,22 +3042,30 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_23(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         232 => {
             happyAccept
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_88;
+pub fn action_230(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_88
+}
 
-let _ = happyReduce_12;
+pub fn action_231(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_12
+}
 
-let __0 = match (__0) {
+pub fn action_232(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -2901,9 +3198,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_233(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -3036,20 +3335,26 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_439;
+pub fn action_234(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_439
+}
 
-let __0 = match (__0) {
+pub fn action_235(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_381)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_236(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -3182,18 +3487,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_237(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_379)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_238(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -3326,13 +3635,19 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_450;
+pub fn action_239(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_450
+}
 
-let _ = happyReduce_348;
+pub fn action_24(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_348
+}
 
-let __0 = match (__0) {
+pub fn action_240(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -3552,18 +3867,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_438
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_241(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         218 => {
             happyShift(action_375)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_242(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -3768,15 +4087,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_67;
+pub fn action_243(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_67
+}
 
-let _ = happyReduce_388;
+pub fn action_244(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_388
+}
 
-let _ = happyReduce_442;
+pub fn action_245(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_442
+}
 
-let __0 = match (__0) {
+pub fn action_246(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyShift(action_372)
         },
@@ -3786,24 +4113,34 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_68;
+pub fn action_247(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_68
+}
 
-let __0 = match (__0) {
+pub fn action_248(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_371)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_75;
+pub fn action_249(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_75
+}
 
-let _ = happyReduce_349;
+pub fn action_25(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_349
+}
 
-let __0 = match (__0) {
+pub fn action_250(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         201 => {
             happyShift(action_370)
         },
@@ -3816,9 +4153,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_42
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_251(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -3834,11 +4173,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_57;
+pub fn action_252(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_57
+}
 
-let __0 = match (__0) {
+pub fn action_253(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -3935,9 +4278,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_254(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -4034,9 +4379,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_255(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -4166,11 +4513,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_380;
+pub fn action_256(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_380
+}
 
-let __0 = match (__0) {
+pub fn action_257(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -4402,13 +4753,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_379;
+pub fn action_258(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_379
+}
 
-let _ = happyReduce_373;
+pub fn action_259(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_373
+}
 
-let __0 = match (__0) {
+pub fn action_26(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -4640,22 +4997,30 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_260(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         222 => {
             happyShift(action_362)
         },
         _ => {
             happyReduce_447
         },
-    };
+    }
+}
 
-let _ = happyReduce_448;
+pub fn action_261(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_448
+}
 
-let _ = happyReduce_375;
+pub fn action_262(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_375
+}
 
-let __0 = match (__0) {
+pub fn action_263(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -4887,11 +5252,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_377;
+pub fn action_264(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_377
+}
 
-let __0 = match (__0) {
+pub fn action_265(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -5123,26 +5492,38 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_381;
+pub fn action_266(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_381
+}
 
-let _ = happyReduce_372;
+pub fn action_267(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_372
+}
 
-let _ = happyReduce_371;
+pub fn action_268(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_371
+}
 
-let __0 = match (__0) {
+pub fn action_269(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_359)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_387;
+pub fn action_27(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_387
+}
 
-let __0 = match (__0) {
+pub fn action_270(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_356)
         },
@@ -5173,9 +5554,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_291
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_271(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -5236,9 +5619,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_117
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_272(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         185 => {
             happyShift(action_160)
         },
@@ -5263,9 +5648,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_118
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_273(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         185 => {
             happyShift(action_160)
         },
@@ -5290,9 +5677,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_119
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_274(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_356)
         },
@@ -5410,27 +5799,33 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_275(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_349)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_276(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_348)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_277(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -5503,9 +5898,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_278(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -5638,9 +6035,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_279(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -5761,11 +6160,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_386;
+pub fn action_28(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_386
+}
 
-let __0 = match (__0) {
+pub fn action_280(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -5901,9 +6304,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_281(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -6021,9 +6426,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_282(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -6138,9 +6545,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_283(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -6252,9 +6661,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_284(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -6363,9 +6774,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_285(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -6471,9 +6884,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_286(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -6579,9 +6994,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_287(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -6684,9 +7101,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_288(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -6789,9 +7208,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_289(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -6894,9 +7315,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_29(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_257)
         },
@@ -6987,9 +7410,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_290(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -7092,9 +7517,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_291(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -7194,9 +7621,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_292(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -7296,9 +7725,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_293(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -7395,9 +7826,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_294(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -7494,9 +7927,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_295(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -7590,9 +8025,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_296(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -7686,9 +8123,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_297(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -7782,11 +8221,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_374;
+pub fn action_298(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_374
+}
 
-let __0 = match (__0) {
+pub fn action_299(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -7916,9 +8359,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_3(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -8051,9 +8496,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_30(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_257)
         },
@@ -8144,33 +8591,59 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_423;
+pub fn action_300(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_423
+}
 
-let _ = happyReduce_427;
+pub fn action_301(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_427
+}
 
-let _ = happyReduce_428;
+pub fn action_302(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_428
+}
 
-let _ = happyReduce_424;
+pub fn action_303(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_424
+}
 
-let _ = happyReduce_425;
+pub fn action_304(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_425
+}
 
-let _ = happyReduce_426;
+pub fn action_305(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_426
+}
 
-let _ = happyReduce_431;
+pub fn action_306(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_431
+}
 
-let _ = happyReduce_432;
+pub fn action_307(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_432
+}
 
-let _ = happyReduce_433;
+pub fn action_308(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_433
+}
 
-let _ = happyReduce_429;
+pub fn action_309(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_429
+}
 
-let _ = happyReduce_384;
+pub fn action_31(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_384
+}
 
-let _ = happyReduce_430;
+pub fn action_310(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_430
+}
 
-let __0 = match (__0) {
+pub fn action_311(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -8306,9 +8779,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_312(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -8441,9 +8916,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_313(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_239)
         },
@@ -8456,9 +8933,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_314(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_239)
         },
@@ -8471,32 +8950,50 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_364;
+pub fn action_315(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_364
+}
 
-let _ = happyReduce_365;
+pub fn action_316(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_365
+}
 
-let _ = happyReduce_7;
+pub fn action_317(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_7
+}
 
-let _ = happyReduce_6;
+pub fn action_318(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_6
+}
 
-let _ = happyReduce_362;
+pub fn action_319(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_362
+}
 
-let _ = happyReduce_385;
+pub fn action_32(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_385
+}
 
-let _ = happyReduce_363;
+pub fn action_320(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_363
+}
 
-let __0 = match (__0) {
+pub fn action_321(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_616)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_322(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_614)
         },
@@ -8506,21 +9003,35 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_368;
+pub fn action_323(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_368
+}
 
-let _ = happyReduce_360;
+pub fn action_324(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_360
+}
 
-let _ = happyReduce_422;
+pub fn action_325(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_422
+}
 
-let _ = happyReduce_393;
+pub fn action_326(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_393
+}
 
-let _ = happyReduce_392;
+pub fn action_327(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_392
+}
 
-let _ = happyReduce_391;
+pub fn action_328(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_391
+}
 
-let __0 = match (__0) {
+pub fn action_329(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         144 => {
             happyShift(action_295)
         },
@@ -8533,11 +9044,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_396
         },
-    };
+    }
+}
 
-let _ = happyReduce_383;
+pub fn action_33(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_383
+}
 
-let __0 = match (__0) {
+pub fn action_330(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         144 => {
             happyShift(action_295)
         },
@@ -8550,9 +9065,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_395
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_331(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         142 => {
             happyShift(action_293)
         },
@@ -8562,9 +9079,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_399
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_332(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         142 => {
             happyShift(action_293)
         },
@@ -8574,9 +9093,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_398
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_333(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         148 => {
             happyShift(action_291)
         },
@@ -8586,9 +9107,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_404
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_334(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         148 => {
             happyShift(action_291)
         },
@@ -8598,9 +9121,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_402
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_335(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         148 => {
             happyShift(action_291)
         },
@@ -8610,9 +9135,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_403
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_336(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         148 => {
             happyShift(action_291)
         },
@@ -8622,9 +9149,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_401
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_337(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         150 => {
             happyShift(action_287)
         },
@@ -8640,9 +9169,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_407
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_338(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         150 => {
             happyShift(action_287)
         },
@@ -8658,9 +9189,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_406
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_339(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         154 => {
             happyShift(action_285)
         },
@@ -8670,47 +9203,59 @@ let __0 = match (__0) {
         _ => {
             happyReduce_409
         },
-    };
+    }
+}
 
-let _ = happyReduce_382;
+pub fn action_34(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_382
+}
 
-let __0 = match (__0) {
+pub fn action_340(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         147 => {
             happyShift(action_284)
         },
         _ => {
             happyReduce_411
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_341(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         156 => {
             happyShift(action_283)
         },
         _ => {
             happyReduce_413
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_342(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         157 => {
             happyShift(action_282)
         },
         _ => {
             happyReduce_415
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_343(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyShift(action_613)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_344(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -8837,31 +9382,41 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_345(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         158 => {
             happyShift(action_281)
         },
         _ => {
             happyReduce_417
         },
-    };
+    }
+}
 
-let _ = happyReduce_436;
+pub fn action_346(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_436
+}
 
-let __0 = match (__0) {
+pub fn action_347(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_611)
         },
         _ => {
             happyReduce_435
         },
-    };
+    }
+}
 
-let _ = happyReduce_350;
+pub fn action_348(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_350
+}
 
-let __0 = match (__0) {
+pub fn action_349(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -8958,9 +9513,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_35(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_239)
         },
@@ -8973,15 +9530,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_294;
+pub fn action_350(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_294
+}
 
-let _ = happyReduce_297;
+pub fn action_351(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_297
+}
 
-let _ = happyReduce_295;
+pub fn action_352(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_295
+}
 
-let __0 = match (__0) {
+pub fn action_353(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -8991,9 +9556,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_296
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_354(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -9081,9 +9648,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_355(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyReduce_454
         },
@@ -9150,9 +9719,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_293
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_356(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_356)
         },
@@ -9327,9 +9898,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_269
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_357(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_356)
         },
@@ -9387,13 +9960,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_313
         },
-    };
+    }
+}
 
-let _ = happyReduce_292;
+pub fn action_358(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_292
+}
 
-let _ = happyReduce_351;
+pub fn action_359(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_351
+}
 
-let __0 = match (__0) {
+pub fn action_36(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_265)
         },
@@ -9484,65 +10063,81 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_360(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_600)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_361(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_599)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_449;
+pub fn action_362(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_449
+}
 
-let __0 = match (__0) {
+pub fn action_363(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_598)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_364(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_597)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_365(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_596)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_366(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_595)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_367(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -9747,9 +10342,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_368(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -10110,9 +10707,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_41
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_369(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         201 => {
             happyShift(action_581)
         },
@@ -10122,9 +10721,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_42
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_37(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_263)
         },
@@ -10215,9 +10816,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_370(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_443)
         },
@@ -10227,9 +10830,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_371(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         222 => {
             happyShift(action_41)
         },
@@ -10239,9 +10844,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_372(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -10446,9 +11053,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_373(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -10578,20 +11187,26 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_36;
+pub fn action_374(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_36
+}
 
-let __0 = match (__0) {
+pub fn action_375(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_575)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_376(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -10730,60 +11345,78 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_377(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_573)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_378(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_572)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_65;
+pub fn action_379(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_65
+}
 
-let _ = happyReduce_444;
+pub fn action_38(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_444
+}
 
-let __0 = match (__0) {
+pub fn action_380(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_571)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_69;
+pub fn action_381(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_69
+}
 
-let __0 = match (__0) {
+pub fn action_382(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_570)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_383(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_569)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_384(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -10808,9 +11441,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_385(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_501)
         },
@@ -10859,9 +11494,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_386(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -11006,9 +11643,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_387(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_493)
         },
@@ -11018,9 +11657,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_331
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_388(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -11036,22 +11677,30 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_389(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_563)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_443;
+pub fn action_39(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_443
+}
 
-let _ = happyReduce_14;
+pub fn action_390(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_14
+}
 
-let __0 = match (__0) {
+pub fn action_391(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -11277,9 +11926,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_392(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -11424,9 +12075,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_393(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_493)
         },
@@ -11436,13 +12089,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_331
         },
-    };
+    }
+}
 
-let _ = happyReduce_16;
+pub fn action_394(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_16
+}
 
-let _ = happyReduce_224;
+pub fn action_395(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_224
+}
 
-let __0 = match (__0) {
+pub fn action_396(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -11593,9 +12252,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_269
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_397(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_558)
         },
@@ -11668,24 +12329,34 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_227;
+pub fn action_398(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_227
+}
 
-let _ = happyReduce_239;
+pub fn action_399(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_239
+}
 
-let __0 = match (__0) {
+pub fn action_4(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         8 => {
             happyGoto(action_5)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_445;
+pub fn action_40(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_445
+}
 
-let __0 = match (__0) {
+pub fn action_400(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_548)
         },
@@ -11728,9 +12399,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_401(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_406)
         },
@@ -11785,27 +12458,33 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_402(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_552)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_403(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_551)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_404(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -11824,9 +12503,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_405(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_548)
         },
@@ -11860,9 +12541,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_406(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_406)
         },
@@ -11917,11 +12600,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_245;
+pub fn action_407(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_245
+}
 
-let __0 = match (__0) {
+pub fn action_408(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -12066,9 +12753,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_409(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_493)
         },
@@ -12078,9 +12767,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_331
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_41(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         222 => {
             happyShift(action_261)
         },
@@ -12090,29 +12781,37 @@ let __0 = match (__0) {
         _ => {
             happyReduce_446
         },
-    };
+    }
+}
 
-let _ = happyReduce_15;
+pub fn action_410(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_15
+}
 
-let __0 = match (__0) {
+pub fn action_411(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_543)
         },
         _ => {
             happyReduce_177
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_412(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         52 => {
             happyGoto(action_542)
         },
         _ => {
             happyReduce_180
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_413(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -12338,9 +13037,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_414(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -12350,17 +13051,27 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_106;
+pub fn action_415(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_106
+}
 
-let _ = happyReduce_139;
+pub fn action_416(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_139
+}
 
-let _ = happyReduce_150;
+pub fn action_417(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_150
+}
 
-let _ = happyReduce_216;
+pub fn action_418(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_216
+}
 
-let __0 = match (__0) {
+pub fn action_419(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyReduce_26
         },
@@ -12376,31 +13087,41 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let _ = happyReduce_347;
+pub fn action_42(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_347
+}
 
-let __0 = match (__0) {
+pub fn action_420(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         33 => {
             happyGoto(action_537)
         },
         _ => {
             happyReduce_89
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_421(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_536)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_168;
+pub fn action_422(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_168
+}
 
-let __0 = match (__0) {
+pub fn action_423(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -12545,9 +13266,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_424(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_493)
         },
@@ -12557,11 +13280,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_331
         },
-    };
+    }
+}
 
-let _ = happyReduce_17;
+pub fn action_425(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_17
+}
 
-let __0 = match (__0) {
+pub fn action_426(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -12724,20 +13451,26 @@ let __0 = match (__0) {
         _ => {
             happyReduce_440
         },
-    };
+    }
+}
 
-let _ = happyReduce_441;
+pub fn action_427(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_441
+}
 
-let __0 = match (__0) {
+pub fn action_428(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_529)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_429(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -12888,9 +13621,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_440
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_43(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -12984,9 +13719,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_430(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyReduce_452
         },
@@ -13005,9 +13742,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_383
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_431(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -13026,9 +13765,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_432(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_517)
         },
@@ -13086,9 +13827,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_274
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_433(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_512)
         },
@@ -13242,9 +13985,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_278
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_434(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_517)
         },
@@ -13302,9 +14047,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_281
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_435(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -13353,9 +14100,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_101
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_436(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -13401,9 +14150,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_118
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_437(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_512)
         },
@@ -13557,27 +14308,33 @@ let __0 = match (__0) {
         _ => {
             happyReduce_285
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_438(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_507)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_439(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_506)
         },
         _ => {
             happyReduce_270
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_44(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_257)
         },
@@ -13668,11 +14425,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_272;
+pub fn action_440(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_272
+}
 
-let __0 = match (__0) {
+pub fn action_441(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_504)
         },
@@ -13682,9 +14443,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_442(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -13778,17 +14541,27 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let _ = happyReduce_289;
+pub fn action_443(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_289
+}
 
-let _ = happyReduce_301;
+pub fn action_444(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_301
+}
 
-let _ = happyReduce_19;
+pub fn action_445(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_19
+}
 
-let _ = happyReduce_90;
+pub fn action_446(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_90
+}
 
-let __0 = match (__0) {
+pub fn action_447(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_501)
         },
@@ -13837,9 +14610,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_448(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -13972,9 +14747,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_449(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_501)
         },
@@ -14023,9 +14800,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_45(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_257)
         },
@@ -14116,9 +14895,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_450(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -14251,9 +15032,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_451(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -14368,9 +15151,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_452(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -14596,9 +15381,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_453(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -14743,9 +15530,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_454(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_493)
         },
@@ -14755,20 +15544,26 @@ let __0 = match (__0) {
         _ => {
             happyReduce_331
         },
-    };
+    }
+}
 
-let _ = happyReduce_13;
+pub fn action_455(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_13
+}
 
-let __0 = match (__0) {
+pub fn action_456(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_491)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_457(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -14790,9 +15585,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_458(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -14823,9 +15620,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_459(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -14865,18 +15664,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_46(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_255)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_460(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -14895,11 +15698,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_267
         },
-    };
+    }
+}
 
-let _ = happyReduce_260;
+pub fn action_461(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_260
+}
 
-let __0 = match (__0) {
+pub fn action_462(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -14918,11 +15725,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_255
         },
-    };
+    }
+}
 
-let _ = happyReduce_251;
+pub fn action_463(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_251
+}
 
-let __0 = match (__0) {
+pub fn action_464(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -14941,13 +15752,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_248
         },
-    };
+    }
+}
 
-let _ = happyReduce_252;
+pub fn action_465(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_252
+}
 
-let _ = happyReduce_265;
+pub fn action_466(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_265
+}
 
-let __0 = match (__0) {
+pub fn action_467(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -14993,36 +15810,44 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_468(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_484)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_469(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_483)
         },
         _ => {
             happyReduce_203
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_47(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_254)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_470(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_239)
         },
@@ -15041,27 +15866,33 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_471(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_479)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_472(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_478)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_473(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         185 => {
             happyShift(action_476)
         },
@@ -15077,9 +15908,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_459
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_474(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_736)
         },
@@ -15089,35 +15922,49 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_457;
+pub fn action_475(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_457
+}
 
-let _ = happyReduce_461;
+pub fn action_476(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_461
+}
 
-let __0 = match (__0) {
+pub fn action_477(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_735)
         },
         _ => {
             happyReduce_460
         },
-    };
+    }
+}
 
-let _ = happyReduce_160;
+pub fn action_478(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_160
+}
 
-let _ = happyReduce_161;
+pub fn action_479(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_161
+}
 
-let __0 = match (__0) {
+pub fn action_48(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_253)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_480(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_733)
         },
@@ -15127,11 +15974,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_204;
+pub fn action_481(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_204
+}
 
-let __0 = match (__0) {
+pub fn action_482(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_732)
         },
@@ -15144,9 +15995,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_206
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_483(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_239)
         },
@@ -15165,24 +16018,34 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_484(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_729)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_253;
+pub fn action_485(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_253
+}
 
-let _ = happyReduce_256;
+pub fn action_486(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_256
+}
 
-let _ = happyReduce_268;
+pub fn action_487(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_268
+}
 
-let __0 = match (__0) {
+pub fn action_488(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -15231,9 +16094,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_489(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -15255,20 +16120,26 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_49(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         232 => {
             happyAccept
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_261;
+pub fn action_490(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_261
+}
 
-let __0 = match (__0) {
+pub fn action_491(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -15287,11 +16158,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_257
         },
-    };
+    }
+}
 
-let _ = happyReduce_94;
+pub fn action_492(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_94
+}
 
-let __0 = match (__0) {
+pub fn action_493(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -15427,29 +16302,37 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_20;
+pub fn action_494(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_20
+}
 
-let __0 = match (__0) {
+pub fn action_495(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_726)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_496(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_725)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_497(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         179 => {
             happyShift(action_389)
         },
@@ -15462,9 +16345,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_498(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         179 => {
             happyShift(action_389)
         },
@@ -15477,9 +16362,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_499(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -15609,9 +16496,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_5(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -15801,13 +16690,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_27;
+pub fn action_50(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_27
+}
 
-let _ = happyReduce_217;
+pub fn action_500(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_217
+}
 
-let __0 = match (__0) {
+pub fn action_501(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_723)
         },
@@ -15856,9 +16751,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_502(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_722)
         },
@@ -15916,9 +16813,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_503(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         179 => {
             happyShift(action_389)
         },
@@ -15931,20 +16830,26 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let _ = happyReduce_266;
+pub fn action_504(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_266
+}
 
-let __0 = match (__0) {
+pub fn action_505(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_720)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_506(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         177 => {
             happyShift(action_719)
         },
@@ -16080,11 +16985,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_299;
+pub fn action_507(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_299
+}
 
-let __0 = match (__0) {
+pub fn action_508(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -16100,13 +17009,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_287;
+pub fn action_509(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_287
+}
 
-let _ = happyReduce_28;
+pub fn action_51(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_28
+}
 
-let __0 = match (__0) {
+pub fn action_510(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -16215,9 +17130,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_511(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyReduce_454
         },
@@ -16302,9 +17219,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_286
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_512(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_512)
         },
@@ -16491,9 +17410,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_269
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_513(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_512)
         },
@@ -16566,9 +17487,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_313
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_514(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -16584,9 +17507,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_515(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -16602,11 +17527,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_282;
+pub fn action_516(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_282
+}
 
-let __0 = match (__0) {
+pub fn action_517(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_517)
         },
@@ -16799,9 +17728,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_269
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_518(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_517)
         },
@@ -16886,9 +17817,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_313
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_519(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -16904,13 +17837,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_29;
+pub fn action_52(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_29
+}
 
-let _ = happyReduce_279;
+pub fn action_520(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_279
+}
 
-let __0 = match (__0) {
+pub fn action_521(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -16926,9 +17865,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_522(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -16944,11 +17885,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_275;
+pub fn action_523(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_275
+}
 
-let __0 = match (__0) {
+pub fn action_524(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         185 => {
             happyShift(action_160)
         },
@@ -16979,9 +17924,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_525(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -17126,27 +18073,33 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_526(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_703)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_527(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_702)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_528(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyReduce_452
         },
@@ -17165,31 +18118,41 @@ let __0 = match (__0) {
         _ => {
             happyReduce_383
         },
-    };
+    }
+}
 
-let _ = happyReduce_302;
+pub fn action_529(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_302
+}
 
-let _ = happyReduce_30;
+pub fn action_53(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_30
+}
 
-let __0 = match (__0) {
+pub fn action_530(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_700)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_531(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         208 => {
             happyShift(action_699)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_532(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -17346,9 +18309,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_440
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_533(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyReduce_452
         },
@@ -17367,13 +18332,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_383
         },
-    };
+    }
+}
 
-let _ = happyReduce_92;
+pub fn action_534(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_92
+}
 
-let _ = happyReduce_24;
+pub fn action_535(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_24
+}
 
-let __0 = match (__0) {
+pub fn action_536(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -17599,9 +18570,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_537(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -17746,9 +18719,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_538(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_493)
         },
@@ -17758,31 +18733,41 @@ let __0 = match (__0) {
         _ => {
             happyReduce_331
         },
-    };
+    }
+}
 
-let _ = happyReduce_18;
+pub fn action_539(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_18
+}
 
-let _ = happyReduce_31;
+pub fn action_54(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_31
+}
 
-let __0 = match (__0) {
+pub fn action_540(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_691)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_541(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_690)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_542(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_687)
         },
@@ -17894,22 +18879,30 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_543(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         52 => {
             happyGoto(action_680)
         },
         _ => {
             happyReduce_180
         },
-    };
+    }
+}
 
-let _ = happyReduce_98;
+pub fn action_544(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_98
+}
 
-let _ = happyReduce_22;
+pub fn action_545(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_22
+}
 
-let __0 = match (__0) {
+pub fn action_546(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -17931,18 +18924,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_547(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_678)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_548(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_548)
         },
@@ -17979,9 +18976,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_549(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_548)
         },
@@ -18033,20 +19032,26 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_32;
+pub fn action_55(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_32
+}
 
-let __0 = match (__0) {
+pub fn action_550(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_676)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_551(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -18065,9 +19070,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_242
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_552(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -18086,9 +19093,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_231
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_553(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -18110,15 +19119,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_228;
+pub fn action_554(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_228
+}
 
-let _ = happyReduce_229;
+pub fn action_555(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_229
+}
 
-let _ = happyReduce_240;
+pub fn action_556(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_240
+}
 
-let __0 = match (__0) {
+pub fn action_557(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_672)
         },
@@ -18182,9 +19199,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_558(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_406)
         },
@@ -18239,33 +19258,45 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_91;
+pub fn action_559(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_91
+}
 
-let _ = happyReduce_33;
+pub fn action_56(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_33
+}
 
-let _ = happyReduce_23;
+pub fn action_560(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_23
+}
 
-let __0 = match (__0) {
+pub fn action_561(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_668)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_562(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_667)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_563(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         222 => {
             happyShift(action_41)
         },
@@ -18275,15 +19306,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_96;
+pub fn action_564(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_96
+}
 
-let _ = happyReduce_97;
+pub fn action_565(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_97
+}
 
-let _ = happyReduce_21;
+pub fn action_566(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_21
+}
 
-let __0 = match (__0) {
+pub fn action_567(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         179 => {
             happyShift(action_389)
         },
@@ -18296,9 +19335,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_568(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         179 => {
             happyShift(action_389)
         },
@@ -18311,9 +19352,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_569(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -18518,18 +19561,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_57(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_252)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_570(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -18734,9 +19781,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_571(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -18941,11 +19990,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_66;
+pub fn action_572(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_66
+}
 
-let __0 = match (__0) {
+pub fn action_573(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -19081,9 +20134,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_438
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_574(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -19219,9 +20274,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_438
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_575(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -19354,20 +20411,26 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_576(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyShift(action_657)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_35;
+pub fn action_577(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_35
+}
 
-let __0 = match (__0) {
+pub fn action_578(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_655)
         },
@@ -19377,9 +20440,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_579(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_505)
         },
@@ -19389,18 +20454,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_58(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyShift(action_251)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_580(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -19761,9 +20830,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_41
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_581(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_443)
         },
@@ -19773,28 +20844,42 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_44;
+pub fn action_582(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_44
+}
 
-let __0 = match (__0) {
+pub fn action_583(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         176 => {
             happyShift(action_651)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_43;
+pub fn action_584(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_43
+}
 
-let _ = happyReduce_45;
+pub fn action_585(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_45
+}
 
-let _ = happyReduce_47;
+pub fn action_586(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_47
+}
 
-let _ = happyReduce_46;
+pub fn action_587(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_46
+}
 
-let __0 = match (__0) {
+pub fn action_588(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_501)
         },
@@ -19846,9 +20931,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_589(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -19984,11 +21071,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_56;
+pub fn action_59(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_56
+}
 
-let __0 = match (__0) {
+pub fn action_590(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_501)
         },
@@ -20040,9 +21131,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_591(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -20178,18 +21271,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_592(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyReduce_451
         },
         _ => {
             happyReduce_159
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_593(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -20424,11 +21521,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_34;
+pub fn action_594(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_34
+}
 
-let __0 = match (__0) {
+pub fn action_595(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -20525,9 +21626,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_596(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_239)
         },
@@ -20543,9 +21646,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_597(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -20642,47 +21747,59 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_598(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_610)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_599(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_610)
         },
         _ => {
             happyReduce_376
         },
-    };
+    }
+}
 
-let _ = happyReduce_358;
+pub fn action_6(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_358
+}
 
-let __0 = match (__0) {
+pub fn action_60(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         15 => {
             happyGoto(action_250)
         },
         _ => {
             happyReduce_40
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_600(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_610)
         },
         _ => {
             happyReduce_378
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_601(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_356)
         },
@@ -20740,11 +21857,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_315;
+pub fn action_602(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_315
+}
 
-let __0 = match (__0) {
+pub fn action_603(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_356)
         },
@@ -20793,27 +21914,33 @@ let __0 = match (__0) {
         _ => {
             happyReduce_317
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_604(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_636)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_605(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_635)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_606(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_634)
         },
@@ -20826,9 +21953,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_607(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_356)
         },
@@ -20946,13 +22075,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let _ = happyReduce_327;
+pub fn action_608(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_327
+}
 
-let _ = happyReduce_389;
+pub fn action_609(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_389
+}
 
-let __0 = match (__0) {
+pub fn action_61(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         185 => {
             happyShift(action_160)
         },
@@ -20974,9 +22109,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_74
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_610(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -21139,9 +22276,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_333
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_611(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -21271,11 +22410,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_420;
+pub fn action_612(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_420
+}
 
-let __0 = match (__0) {
+pub fn action_613(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -21402,11 +22545,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_361;
+pub fn action_614(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_361
+}
 
-let __0 = match (__0) {
+pub fn action_615(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -21536,28 +22683,42 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_359;
+pub fn action_616(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_359
+}
 
-let _ = happyReduce_369;
+pub fn action_617(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_369
+}
 
-let _ = happyReduce_419;
+pub fn action_618(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_419
+}
 
-let _ = happyReduce_437;
+pub fn action_619(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_437
+}
 
-let __0 = match (__0) {
+pub fn action_62(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_247)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_334;
+pub fn action_620(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_334
+}
 
-let __0 = match (__0) {
+pub fn action_621(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_818)
         },
@@ -21567,9 +22728,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_622(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -21705,9 +22868,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_623(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         134 => {
             happyShift(action_628)
         },
@@ -21726,11 +22891,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_341;
+pub fn action_624(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_341
+}
 
-let __0 = match (__0) {
+pub fn action_625(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         134 => {
             happyReduce_345
         },
@@ -21743,20 +22912,26 @@ let __0 = match (__0) {
         _ => {
             happyReduce_340
         },
-    };
+    }
+}
 
-let _ = happyReduce_328;
+pub fn action_626(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_328
+}
 
-let __0 = match (__0) {
+pub fn action_627(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyShift(action_813)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_628(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -21886,9 +23061,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_629(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_239)
         },
@@ -21901,9 +23078,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_63(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -22033,9 +23212,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_630(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -22198,27 +23379,33 @@ let __0 = match (__0) {
         _ => {
             happyReduce_333
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_631(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_809)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_632(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_808)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_633(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_807)
         },
@@ -22231,11 +23418,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_320;
+pub fn action_634(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_320
+}
 
-let __0 = match (__0) {
+pub fn action_635(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -22254,26 +23445,38 @@ let __0 = match (__0) {
         _ => {
             happyReduce_319
         },
-    };
+    }
+}
 
-let _ = happyReduce_321;
+pub fn action_636(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_321
+}
 
-let _ = happyReduce_318;
+pub fn action_637(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_318
+}
 
-let _ = happyReduce_316;
+pub fn action_638(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_316
+}
 
-let _ = happyReduce_314;
+pub fn action_639(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_314
+}
 
-let __0 = match (__0) {
+pub fn action_64(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_243)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_640(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         185 => {
             happyShift(action_160)
         },
@@ -22298,18 +23501,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_641(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_805)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_642(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_802)
         },
@@ -22322,22 +23529,30 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_355;
+pub fn action_643(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_355
+}
 
-let __0 = match (__0) {
+pub fn action_644(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_801)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_48;
+pub fn action_645(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_48
+}
 
-let __0 = match (__0) {
+pub fn action_646(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -22347,9 +23562,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_647(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -22482,9 +23699,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_648(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -22494,9 +23713,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_649(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -22506,18 +23727,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_65(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyShift(action_242)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_650(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -22527,11 +23752,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_38;
+pub fn action_651(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_38
+}
 
-let __0 = match (__0) {
+pub fn action_652(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_505)
         },
@@ -22541,29 +23770,37 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_653(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         176 => {
             happyShift(action_794)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_54;
+pub fn action_654(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_54
+}
 
-let __0 = match (__0) {
+pub fn action_655(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_793)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_656(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         134 => {
             happyShift(action_792)
         },
@@ -22585,9 +23822,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_76
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_657(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -22792,27 +24031,33 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_658(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_786)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_659(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_785)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_66(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -23017,31 +24262,41 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_660(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_784)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_661(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         191 => {
             happyShift(action_783)
         },
         _ => {
             happyReduce_58
         },
-    };
+    }
+}
 
-let _ = happyReduce_60;
+pub fn action_662(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_60
+}
 
-let _ = happyReduce_61;
+pub fn action_663(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_61
+}
 
-let __0 = match (__0) {
+pub fn action_664(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_493)
         },
@@ -23051,9 +24306,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_331
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_665(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_493)
         },
@@ -23063,22 +24320,30 @@ let __0 = match (__0) {
         _ => {
             happyReduce_331
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_666(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_780)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_155;
+pub fn action_667(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_155
+}
 
-let _ = happyReduce_156;
+pub fn action_668(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_156
+}
 
-let __0 = match (__0) {
+pub fn action_669(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -23100,22 +24365,30 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_67(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_240)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_230;
+pub fn action_670(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_230
+}
 
-let _ = happyReduce_241;
+pub fn action_671(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_241
+}
 
-let __0 = match (__0) {
+pub fn action_672(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_723)
         },
@@ -23164,17 +24437,27 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_236;
+pub fn action_673(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_236
+}
 
-let _ = happyReduce_232;
+pub fn action_674(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_232
+}
 
-let _ = happyReduce_244;
+pub fn action_675(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_244
+}
 
-let _ = happyReduce_243;
+pub fn action_676(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_243
+}
 
-let __0 = match (__0) {
+pub fn action_677(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_548)
         },
@@ -23235,9 +24518,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_678(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -23256,11 +24541,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_233
         },
-    };
+    }
+}
 
-let _ = happyReduce_246;
+pub fn action_679(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_246
+}
 
-let __0 = match (__0) {
+pub fn action_68(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         144 => {
             happyShift(action_238)
         },
@@ -23276,9 +24565,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_680(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_687)
         },
@@ -23390,9 +24681,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_681(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_501)
         },
@@ -23447,11 +24740,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_191
         },
-    };
+    }
+}
 
-let _ = happyReduce_182;
+pub fn action_682(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_182
+}
 
-let __0 = match (__0) {
+pub fn action_683(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_770)
         },
@@ -23461,9 +24758,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_684(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_768)
         },
@@ -23473,9 +24772,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_685(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -23569,9 +24870,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_686(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -23671,13 +24974,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let _ = happyReduce_181;
+pub fn action_687(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_181
+}
 
-let _ = happyReduce_176;
+pub fn action_688(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_176
+}
 
-let __0 = match (__0) {
+pub fn action_689(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -23783,62 +25092,82 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_69(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_236)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_163;
+pub fn action_690(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_163
+}
 
-let _ = happyReduce_164;
+pub fn action_691(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_164
+}
 
-let _ = happyReduce_93;
+pub fn action_692(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_93
+}
 
-let _ = happyReduce_25;
+pub fn action_693(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_25
+}
 
-let __0 = match (__0) {
+pub fn action_694(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_761)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_695(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_760)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_696(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_759)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_697(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_758)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_698(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyReduce_452
         },
@@ -23857,9 +25186,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_383
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_699(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -23875,9 +25206,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_7(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_311)
         },
@@ -23899,9 +25232,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_370
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_70(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -24037,33 +25372,45 @@ let __0 = match (__0) {
         _ => {
             happyReduce_438
         },
-    };
+    }
+}
 
-let _ = happyReduce_304;
+pub fn action_700(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_304
+}
 
-let __0 = match (__0) {
+pub fn action_701(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_755)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_303;
+pub fn action_702(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_303
+}
 
-let _ = happyReduce_309;
+pub fn action_703(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_309
+}
 
-let __0 = match (__0) {
+pub fn action_704(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_754)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_705(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -24193,15 +25540,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_276;
+pub fn action_706(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_276
+}
 
-let _ = happyReduce_277;
+pub fn action_707(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_277
+}
 
-let _ = happyReduce_280;
+pub fn action_708(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_280
+}
 
-let __0 = match (__0) {
+pub fn action_709(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_517)
         },
@@ -24286,18 +25641,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_71(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_233)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_710(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_517)
         },
@@ -24373,9 +25732,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_317
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_711(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_517)
         },
@@ -24511,13 +25872,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let _ = happyReduce_283;
+pub fn action_712(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_283
+}
 
-let _ = happyReduce_284;
+pub fn action_713(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_284
+}
 
-let __0 = match (__0) {
+pub fn action_714(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_512)
         },
@@ -24590,9 +25957,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_715(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_512)
         },
@@ -24656,9 +26025,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_317
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_716(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_512)
         },
@@ -24788,26 +26159,38 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let _ = happyReduce_288;
+pub fn action_717(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_288
+}
 
-let _ = happyReduce_273;
+pub fn action_718(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_273
+}
 
-let _ = happyReduce_271;
+pub fn action_719(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_271
+}
 
-let __0 = match (__0) {
+pub fn action_72(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_232)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_290;
+pub fn action_720(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_290
+}
 
-let __0 = match (__0) {
+pub fn action_721(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_750)
         },
@@ -24874,9 +26257,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_722(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_723)
         },
@@ -24925,9 +26310,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_723(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_723)
         },
@@ -24976,9 +26363,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_724(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         179 => {
             happyShift(action_389)
         },
@@ -24991,28 +26380,42 @@ let __0 = match (__0) {
         _ => {
             happyReduce_219
         },
-    };
+    }
+}
 
-let _ = happyReduce_166;
+pub fn action_725(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_166
+}
 
-let _ = happyReduce_167;
+pub fn action_726(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_167
+}
 
-let _ = happyReduce_332;
+pub fn action_727(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_332
+}
 
-let _ = happyReduce_258;
+pub fn action_728(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_258
+}
 
-let _ = happyReduce_11;
+pub fn action_729(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_11
+}
 
-let __0 = match (__0) {
+pub fn action_73(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyReduce_450
         },
         _ => {
             happyReduce_347
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_730(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_748)
         },
@@ -25022,18 +26425,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_731(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_747)
         },
         _ => {
             happyReduce_207
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_732(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -25163,9 +26570,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_733(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         176 => {
             happyShift(action_745)
         },
@@ -25184,11 +26593,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_199;
+pub fn action_734(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_199
+}
 
-let __0 = match (__0) {
+pub fn action_735(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -25324,18 +26737,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_736(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_739)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_737(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         185 => {
             happyShift(action_476)
         },
@@ -25348,15 +26765,23 @@ let __0 = match (__0) {
         _ => {
             happyReduce_459
         },
-    };
+    }
+}
 
-let _ = happyReduce_458;
+pub fn action_738(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_458
+}
 
-let _ = happyReduce_456;
+pub fn action_739(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_456
+}
 
-let _ = happyReduce_451;
+pub fn action_74(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_451
+}
 
-let __0 = match (__0) {
+pub fn action_740(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_300)
         },
@@ -25396,11 +26821,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_388
         },
-    };
+    }
+}
 
-let _ = happyReduce_464;
+pub fn action_741(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_464
+}
 
-let __0 = match (__0) {
+pub fn action_742(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_856)
         },
@@ -25410,17 +26839,27 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_463;
+pub fn action_743(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_463
+}
 
-let _ = happyReduce_205;
+pub fn action_744(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_205
+}
 
-let _ = happyReduce_200;
+pub fn action_745(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_200
+}
 
-let _ = happyReduce_209;
+pub fn action_746(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_209
+}
 
-let __0 = match (__0) {
+pub fn action_747(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -25550,9 +26989,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_748(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         176 => {
             happyShift(action_854)
         },
@@ -25571,20 +27012,26 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_201;
+pub fn action_749(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_201
+}
 
-let __0 = match (__0) {
+pub fn action_75(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         232 => {
             happyAccept
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_750(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_723)
         },
@@ -25633,9 +27080,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_751(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -25681,9 +27130,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_752(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_548)
         },
@@ -25741,22 +27192,30 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_753(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_853)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_306;
+pub fn action_754(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_306
+}
 
-let _ = happyReduce_310;
+pub fn action_755(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_310
+}
 
-let __0 = match (__0) {
+pub fn action_756(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -25886,30 +27345,46 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_757(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_851)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_305;
+pub fn action_758(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_305
+}
 
-let _ = happyReduce_311;
+pub fn action_759(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_311
+}
 
-let _ = happyReduce_8;
+pub fn action_76(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_8
+}
 
-let _ = happyReduce_169;
+pub fn action_760(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_169
+}
 
-let _ = happyReduce_170;
+pub fn action_761(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_170
+}
 
-let _ = happyReduce_185;
+pub fn action_762(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_185
+}
 
-let __0 = match (__0) {
+pub fn action_763(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -25919,18 +27394,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_187
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_764(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyShift(action_849)
         },
         _ => {
             happyReduce_195
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_765(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -26060,9 +27539,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_766(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -26093,9 +27574,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_767(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         182 => {
             happyShift(action_111)
         },
@@ -26183,9 +27666,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_453
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_768(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -26201,11 +27686,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_183;
+pub fn action_769(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_183
+}
 
-let __0 = match (__0) {
+pub fn action_77(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -26215,9 +27704,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_770(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -26233,11 +27724,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_184;
+pub fn action_771(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_184
+}
 
-let __0 = match (__0) {
+pub fn action_772(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -26253,18 +27748,22 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_773(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         161 => {
             happyShift(action_843)
         },
         _ => {
             happyReduce_192
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_774(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -26394,13 +27893,19 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_175;
+pub fn action_775(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_175
+}
 
-let _ = happyReduce_234;
+pub fn action_776(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_234
+}
 
-let __0 = match (__0) {
+pub fn action_777(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_548)
         },
@@ -26458,9 +27963,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_778(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -26482,19 +27989,31 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_237;
+pub fn action_779(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_237
+}
 
-let _ = happyReduce_9;
+pub fn action_78(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_9
+}
 
-let _ = happyReduce_220;
+pub fn action_780(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_220
+}
 
-let _ = happyReduce_99;
+pub fn action_781(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_99
+}
 
-let _ = happyReduce_95;
+pub fn action_782(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_95
+}
 
-let __0 = match (__0) {
+pub fn action_783(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -26699,9 +28218,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_784(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -26837,9 +28358,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_438
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_785(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -26975,20 +28498,26 @@ let __0 = match (__0) {
         _ => {
             happyReduce_438
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_786(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_837)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_37;
+pub fn action_787(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_37
+}
 
-let __0 = match (__0) {
+pub fn action_788(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_835)
         },
@@ -26998,18 +28527,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_789(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_834)
         },
         _ => {
             happyReduce_77
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_79(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_229)
         },
@@ -27019,20 +28552,26 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_78;
+pub fn action_790(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_78
+}
 
-let __0 = match (__0) {
+pub fn action_791(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_833)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_792(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_831)
         },
@@ -27042,21 +28581,35 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_70;
+pub fn action_793(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_70
+}
 
-let _ = happyReduce_39;
+pub fn action_794(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_39
+}
 
-let _ = happyReduce_55;
+pub fn action_795(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_55
+}
 
-let _ = happyReduce_49;
+pub fn action_796(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_49
+}
 
-let _ = happyReduce_51;
+pub fn action_797(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_51
+}
 
-let _ = happyReduce_50;
+pub fn action_798(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_50
+}
 
-let __0 = match (__0) {
+pub fn action_799(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         175 => {
             happyShift(action_60)
         },
@@ -27066,9 +28619,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_8(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_300)
         },
@@ -27108,9 +28663,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_388
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_80(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_227)
         },
@@ -27120,15 +28677,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_52;
+pub fn action_800(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_52
+}
 
-let _ = happyReduce_354;
+pub fn action_801(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_354
+}
 
-let _ = happyReduce_353;
+pub fn action_802(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_353
+}
 
-let __0 = match (__0) {
+pub fn action_803(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -27261,9 +28826,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_804(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         223 => {
             happyShift(action_239)
         },
@@ -27276,15 +28843,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_352;
+pub fn action_805(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_352
+}
 
-let _ = happyReduce_322;
+pub fn action_806(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_322
+}
 
-let _ = happyReduce_324;
+pub fn action_807(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_324
+}
 
-let __0 = match (__0) {
+pub fn action_808(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_396)
         },
@@ -27303,11 +28878,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_323
         },
-    };
+    }
+}
 
-let _ = happyReduce_325;
+pub fn action_809(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_325
+}
 
-let __0 = match (__0) {
+pub fn action_81(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_212)
         },
@@ -27368,9 +28947,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_810(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         173 => {
             happyShift(action_825)
         },
@@ -27380,11 +28961,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_344;
+pub fn action_811(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_344
+}
 
-let __0 = match (__0) {
+pub fn action_812(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_823)
         },
@@ -27394,19 +28979,31 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_339;
+pub fn action_813(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_339
+}
 
-let _ = happyReduce_342;
+pub fn action_814(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_342
+}
 
-let _ = happyReduce_345;
+pub fn action_815(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_345
+}
 
-let _ = happyReduce_338;
+pub fn action_816(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_338
+}
 
-let _ = happyReduce_335;
+pub fn action_817(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_335
+}
 
-let __0 = match (__0) {
+pub fn action_818(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -27569,11 +29166,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_366;
+pub fn action_819(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_366
+}
 
-let __0 = match (__0) {
+pub fn action_82(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -27718,11 +29319,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_336;
+pub fn action_820(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_336
+}
 
-let __0 = match (__0) {
+pub fn action_821(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -27858,13 +29463,19 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_367;
+pub fn action_822(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_367
+}
 
-let _ = happyReduce_343;
+pub fn action_823(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_343
+}
 
-let __0 = match (__0) {
+pub fn action_824(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -27994,9 +29605,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_825(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -28159,46 +29772,64 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_329;
+pub fn action_826(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_329
+}
 
-let _ = happyReduce_326;
+pub fn action_827(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_326
+}
 
-let _ = happyReduce_356;
+pub fn action_828(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_356
+}
 
-let __0 = match (__0) {
+pub fn action_829(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_875)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_103;
+pub fn action_83(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_103
+}
 
-let _ = happyReduce_53;
+pub fn action_830(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_53
+}
 
-let __0 = match (__0) {
+pub fn action_831(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_874)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_832(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_873)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_833(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -28331,9 +29962,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_834(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         134 => {
             happyShift(action_792)
         },
@@ -28349,18 +29982,22 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_835(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_870)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_836(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         134 => {
             happyShift(action_792)
         },
@@ -28382,29 +30019,37 @@ let __0 = match (__0) {
         _ => {
             happyReduce_76
         },
-    };
+    }
+}
 
-let _ = happyReduce_62;
+pub fn action_837(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_62
+}
 
-let __0 = match (__0) {
+pub fn action_838(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_868)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_839(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_867)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_84(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_212)
         },
@@ -28465,15 +30110,23 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_59;
+pub fn action_840(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_59
+}
 
-let _ = happyReduce_238;
+pub fn action_841(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_238
+}
 
-let _ = happyReduce_193;
+pub fn action_842(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_193
+}
 
-let __0 = match (__0) {
+pub fn action_843(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -28603,11 +30256,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_189;
+pub fn action_844(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_189
+}
 
-let __0 = match (__0) {
+pub fn action_845(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_458)
         },
@@ -28638,9 +30295,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_846(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_501)
         },
@@ -28695,9 +30354,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_847(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -28707,11 +30368,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_186
         },
-    };
+    }
+}
 
-let _ = happyReduce_196;
+pub fn action_848(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_196
+}
 
-let __0 = match (__0) {
+pub fn action_849(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -28841,32 +30506,50 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_136;
+pub fn action_85(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_136
+}
 
-let _ = happyReduce_198;
+pub fn action_850(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_198
+}
 
-let _ = happyReduce_312;
+pub fn action_851(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_312
+}
 
-let __0 = match (__0) {
+pub fn action_852(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_862)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_307;
+pub fn action_853(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_307
+}
 
-let _ = happyReduce_202;
+pub fn action_854(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_202
+}
 
-let _ = happyReduce_208;
+pub fn action_855(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_208
+}
 
-let _ = happyReduce_462;
+pub fn action_856(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_462
+}
 
-let __0 = match (__0) {
+pub fn action_857(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -28996,9 +30679,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_858(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_257)
         },
@@ -29089,11 +30774,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_465;
+pub fn action_859(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_465
+}
 
-let __0 = match (__0) {
+pub fn action_86(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -29178,9 +30867,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_100
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_860(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         162 => {
             happyShift(action_300)
         },
@@ -29220,15 +30911,23 @@ let __0 = match (__0) {
         _ => {
             happyReduce_388
         },
-    };
+    }
+}
 
-let _ = happyReduce_466;
+pub fn action_861(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_466
+}
 
-let _ = happyReduce_308;
+pub fn action_862(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_308
+}
 
-let _ = happyReduce_197;
+pub fn action_863(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_197
+}
 
-let __0 = match (__0) {
+pub fn action_864(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -29244,9 +30943,11 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_865(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -29256,11 +30957,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_188
         },
-    };
+    }
+}
 
-let _ = happyReduce_194;
+pub fn action_866(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_194
+}
 
-let __0 = match (__0) {
+pub fn action_867(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -29465,9 +31170,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_868(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -29672,9 +31379,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_869(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_883)
         },
@@ -29684,9 +31393,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_87(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -29768,22 +31479,30 @@ let __0 = match (__0) {
         _ => {
             happyReduce_117
         },
-    };
+    }
+}
 
-let _ = happyReduce_71;
+pub fn action_870(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_71
+}
 
-let _ = happyReduce_79;
+pub fn action_871(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_79
+}
 
-let __0 = match (__0) {
+pub fn action_872(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_882)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_873(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         222 => {
             happyShift(action_41)
         },
@@ -29793,9 +31512,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_874(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         222 => {
             happyShift(action_41)
         },
@@ -29805,26 +31526,38 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_357;
+pub fn action_875(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_357
+}
 
-let _ = happyReduce_330;
+pub fn action_876(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_330
+}
 
-let __0 = match (__0) {
+pub fn action_877(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         135 => {
             happyShift(action_879)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_337;
+pub fn action_878(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_337
+}
 
-let _ = happyReduce_346;
+pub fn action_879(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_346
+}
 
-let __0 = match (__0) {
+pub fn action_88(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_194)
         },
@@ -29876,38 +31609,48 @@ let __0 = match (__0) {
         _ => {
             happyReduce_101
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_880(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_895)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_881(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_894)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_80;
+pub fn action_882(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_80
+}
 
-let __0 = match (__0) {
+pub fn action_883(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_893)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_884(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         222 => {
             happyShift(action_41)
         },
@@ -29920,22 +31663,30 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_885(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         16 => {
             happyGoto(action_890)
         },
         _ => {
             happyReduce_41
         },
-    };
+    }
+}
 
-let _ = happyReduce_63;
+pub fn action_886(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_63
+}
 
-let _ = happyReduce_190;
+pub fn action_887(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_190
+}
 
-let __0 = match (__0) {
+pub fn action_888(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_257)
         },
@@ -30026,11 +31777,15 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_467;
+pub fn action_889(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_467
+}
 
-let __0 = match (__0) {
+pub fn action_89(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_191)
         },
@@ -30079,11 +31834,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_118
         },
-    };
+    }
+}
 
-let _ = happyReduce_64;
+pub fn action_890(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_64
+}
 
-let __0 = match (__0) {
+pub fn action_891(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_898)
         },
@@ -30093,13 +31852,19 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_83;
+pub fn action_892(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_83
+}
 
-let _ = happyReduce_72;
+pub fn action_893(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_72
+}
 
-let __0 = match (__0) {
+pub fn action_894(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -30232,9 +31997,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_895(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -30367,36 +32134,44 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_896(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_903)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_897(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         133 => {
             happyShift(action_902)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_898(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         174 => {
             happyShift(action_901)
         },
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_899(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         222 => {
             happyShift(action_41)
         },
@@ -30406,9 +32181,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_9(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_26)
         },
@@ -30502,9 +32279,11 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let __0 = match (__0) {
+pub fn action_90(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -30553,17 +32332,27 @@ let __0 = match (__0) {
         _ => {
             happyReduce_102
         },
-    };
+    }
+}
 
-let _ = happyReduce_84;
+pub fn action_900(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_84
+}
 
-let _ = happyReduce_73;
+pub fn action_901(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_73
+}
 
-let _ = happyReduce_82;
+pub fn action_902(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_82
+}
 
-let _ = happyReduce_81;
+pub fn action_903(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_81
+}
 
-let __0 = match (__0) {
+pub fn action_91(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         180 => {
             happyShift(action_110)
         },
@@ -30609,13 +32398,19 @@ let __0 = match (__0) {
         _ => {
             happyReduce_119
         },
-    };
+    }
+}
 
-let _ = happyReduce_147;
+pub fn action_92(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_147
+}
 
-let _ = happyReduce_173;
+pub fn action_93(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_173
+}
 
-let __0 = match (__0) {
+pub fn action_94(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         225 => {
             happyShift(action_133)
         },
@@ -30631,11 +32426,15 @@ let __0 = match (__0) {
         _ => {
             happyReduce_452
         },
-    };
+    }
+}
 
-let _ = happyReduce_174;
+pub fn action_95(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_174
+}
 
-let __0 = match (__0) {
+pub fn action_96(__0: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (__0) {
         132 => {
             happyShift(action_107)
         },
@@ -30780,13 +32579,20 @@ let __0 = match (__0) {
         _ => {
             happyFail
         },
-    };
+    }
+}
 
-let _ = happyReduce_26;
+pub fn action_97(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_26
+}
 
-let _ = happyReduce_247;
+pub fn action_98(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_247
+}
 
-let _ = happyReduce_249;
+pub fn action_99(_: isize) -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce_249
+}
 
 pub fn addTrailingAttrs(declspecs: Reversed<Vec<CDeclSpec>>, new_attrs: Vec<CAttr>) -> Reversed<Vec<CDeclSpec>> {
     match viewr(declspecs) {
@@ -30850,7 +32656,10 @@ pub fn emptyDeclr() -> CDeclrR {
     CDeclrR(None, empty, None, vec![], undefNode)
 }
 
+/* TODO infer type:
+let expression = happySomeParser;
 
+*/
 pub fn expressionP() -> P<CExpr> {
     expression
 }
@@ -30859,7 +32668,10 @@ pub fn extDeclP() -> P<CExtDecl> {
     external_declaration
 }
 
+/* TODO infer type:
+let external_declaration = happySomeParser;
 
+*/
 pub fn funDeclr(CDeclrR(ident, derivedDeclrs, asmname, dcattrs, dat): CDeclrR, params: Either<Vec<Ident>, (Vec<CDecl>, bool)>, cattrs: Vec<CAttr>, at: NodeInfo) -> CDeclrR {
     CDeclrR(ident, (snoc(derivedDeclrs, CFunDeclr(params, cattrs, at))), asmname, dcattrs, dat)
 }
@@ -30868,7 +32680,8 @@ pub fn getCDeclrIdent(CDeclr(mIdent, _, _, _, _): CDeclr) -> Option<Ident> {
     mIdent
 }
 
-let __0 = |__1, __2, __3, __4| {
+/* TODO infer type:
+let happyAccept = |__0, __1, __2, __3, __4| {
     match (__0, __1, __2, __3, __4) {
         (1, tk, st, sts, HappyStk(_, /* TODO(INFIX) */, ans, _)) => {
             happyReturn1(ans)
@@ -30879,15 +32692,17 @@ let __0 = |__1, __2, __3, __4| {
     }
 };
 
+*/
 pub fn happyDoSeq(a: a, b: b) -> b {
     seq(a, b)
 }
 
-let a = |b| {
+pub fn happyDontSeq(a: a, b: b) -> b {
     b
-};
+}
 
-let __0 = |__1| {
+/* TODO infer type:
+let happyDrop = |__0, __1| {
     match (__0, __1) {
         (0, l) => {
             l
@@ -30898,7 +32713,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyDropStk = |__0, __1| {
     match (__0, __1) {
         (0, l) => {
             l
@@ -30909,6 +32726,7 @@ let __0 = |__1| {
     }
 };
 
+*/
 pub fn happyError() -> P<a> {
     parseError
 }
@@ -30917,7 +32735,8 @@ pub fn happyError_q(tk: CToken) -> P<a> {
     (|token| { happyError })(tk)
 }
 
-let __0 = |__1| {
+/* TODO infer type:
+let happyError_ = |__0, __1| {
     match (__0, __1) {
         (232, tk) => {
             happyError_q(tk)
@@ -30928,7 +32747,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1, __2, __3, __4, __5, __6| {
+*/
+/* TODO infer type:
+let happyFail = |__0, __1, __2, __3, __4, __5, __6| {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (1, tk, old_st, _, stk, __OP__, HappyStk(x, _)) => {
             {
@@ -30946,11 +32767,15 @@ let __0 = |__1, __2, __3, __4, __5, __6| {
     }
 };
 
-let action = |j, tk, st| {
+*/
+/* TODO infer type:
+let happyGoto = |action, j, tk, st| {
     action(j, j, tk, (HappyState(action)))
 };
 
-let __0 = |__1, __2, __3, __4, __5, __6, __7| {
+*/
+/* TODO infer type:
+let happyMonad2Reduce = |__0, __1, __2, __3, __4, __5, __6, __7| {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
         (k, nt, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -30970,7 +32795,9 @@ let __0 = |__1, __2, __3, __4, __5, __6, __7| {
     }
 };
 
-let __0 = |__1, __2, __3, __4, __5, __6, __7| {
+*/
+/* TODO infer type:
+let happyMonadReduce = |__0, __1, __2, __3, __4, __5, __6, __7| {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
         (k, nt, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -30988,7 +32815,9 @@ let __0 = |__1, __2, __3, __4, __5, __6, __7| {
     }
 };
 
-let action = |sts, stk| {
+*/
+/* TODO infer type:
+let happyNewToken = |action, sts, stk| {
     lexC((|tk| { () }({
                 let cont = |i| {
                     action(i, i, tk, (HappyState(action)), sts, stk)
@@ -31304,9 +33133,15 @@ let action = |sts, stk| {
                 }            })))
 };
 
-let start_state = happyNewToken(start_state, notHappyAtAll, notHappyAtAll);
+*/
+/* TODO infer type:
+let happyParse = |start_state| {
+    happyNewToken(start_state, notHappyAtAll, notHappyAtAll)
+};
 
-let __0 = |__1, __2, __3, __4, __5, __6, __7| {
+*/
+/* TODO infer type:
+let happyReduce = |__0, __1, __2, __3, __4, __5, __6, __7| {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
         (k, i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -31324,474 +33159,1865 @@ let __0 = |__1, __2, __3, __4, __5, __6, __7| {
     }
 };
 
+*/
+pub fn happyReduce_10() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(9, happyReduction_10)
+}
+
+pub fn happyReduce_100() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(37, happyReduction_100)
+}
+
+pub fn happyReduce_101() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(37, happyReduction_101)
+}
+
+pub fn happyReduce_102() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(37, happyReduction_102)
+}
+
+pub fn happyReduce_103() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(38, happyReduction_103)
+}
+
+pub fn happyReduce_104() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(38, happyReduction_104)
+}
+
+pub fn happyReduce_105() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(38, happyReduction_105)
+}
+
+pub fn happyReduce_106() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(38, happyReduction_106)
+}
+
+pub fn happyReduce_107() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(38, happyReduction_107)
+}
+
+pub fn happyReduce_108() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(38, happyReduction_108)
+}
+
+pub fn happyReduce_109() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(39, happyReduction_109)
+}
+
+pub fn happyReduce_11() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 9, happyReduction_11)
+}
+
+pub fn happyReduce_110() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(39, happyReduction_110)
+}
+
+pub fn happyReduce_111() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 40, happyReduction_111)
+}
+
+pub fn happyReduce_112() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 40, happyReduction_112)
+}
+
+pub fn happyReduce_113() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 40, happyReduction_113)
+}
+
+pub fn happyReduce_114() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 40, happyReduction_114)
+}
+
+pub fn happyReduce_115() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 40, happyReduction_115)
+}
+
+pub fn happyReduce_116() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 40, happyReduction_116)
+}
+
+pub fn happyReduce_117() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(41, happyReduction_117)
+}
+
+pub fn happyReduce_118() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(41, happyReduction_118)
+}
+
+pub fn happyReduce_119() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(41, happyReduction_119)
+}
+
+pub fn happyReduce_12() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 10, happyReduction_12)
+}
+
+pub fn happyReduce_120() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_120)
+}
+
+pub fn happyReduce_121() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_121)
+}
+
+pub fn happyReduce_122() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_122)
+}
 
+pub fn happyReduce_123() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_123)
+}
 
+pub fn happyReduce_124() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_124)
+}
 
+pub fn happyReduce_125() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_125)
+}
 
+pub fn happyReduce_126() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_126)
+}
 
+pub fn happyReduce_127() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_127)
+}
 
+pub fn happyReduce_128() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_128)
+}
 
+pub fn happyReduce_129() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_129)
+}
 
+pub fn happyReduce_13() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 10, happyReduction_13)
+}
 
+pub fn happyReduce_130() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 42, happyReduction_130)
+}
 
+pub fn happyReduce_131() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(43, happyReduction_131)
+}
 
+pub fn happyReduce_132() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(43, happyReduction_132)
+}
 
+pub fn happyReduce_133() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(43, happyReduction_133)
+}
 
+pub fn happyReduce_134() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(43, happyReduction_134)
+}
 
+pub fn happyReduce_135() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(43, happyReduction_135)
+}
 
+pub fn happyReduce_136() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(44, happyReduction_136)
+}
 
+pub fn happyReduce_137() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(44, happyReduction_137)
+}
 
+pub fn happyReduce_138() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(44, happyReduction_138)
+}
 
+pub fn happyReduce_139() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(44, happyReduction_139)
+}
 
+pub fn happyReduce_14() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 10, happyReduction_14)
+}
 
+pub fn happyReduce_140() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(44, happyReduction_140)
+}
 
+pub fn happyReduce_141() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(44, happyReduction_141)
+}
 
+pub fn happyReduce_142() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(44, happyReduction_142)
+}
 
+pub fn happyReduce_143() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(45, happyReduction_143)
+}
 
+pub fn happyReduce_144() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(45, happyReduction_144)
+}
 
+pub fn happyReduce_145() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(45, happyReduction_145)
+}
 
+pub fn happyReduce_146() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(45, happyReduction_146)
+}
 
+pub fn happyReduce_147() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(46, happyReduction_147)
+}
 
+pub fn happyReduce_148() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(46, happyReduction_148)
+}
 
+pub fn happyReduce_149() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(46, happyReduction_149)
+}
 
+pub fn happyReduce_15() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 10, happyReduction_15)
+}
 
+pub fn happyReduce_150() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(46, happyReduction_150)
+}
 
+pub fn happyReduce_151() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(46, happyReduction_151)
+}
 
+pub fn happyReduce_152() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(46, happyReduction_152)
+}
 
+pub fn happyReduce_153() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(47, happyReduction_153)
+}
 
+pub fn happyReduce_154() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 47, happyReduction_154)
+}
 
+pub fn happyReduce_155() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 47, happyReduction_155)
+}
 
+pub fn happyReduce_156() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 47, happyReduction_156)
+}
 
+pub fn happyReduce_157() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(47, happyReduction_157)
+}
 
+pub fn happyReduce_158() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(47, happyReduction_158)
+}
 
+pub fn happyReduce_159() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 48, happyReduction_159)
+}
 
+pub fn happyReduce_16() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 10, happyReduction_16)
+}
 
+pub fn happyReduce_160() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 48, happyReduction_160)
+}
 
+pub fn happyReduce_161() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 48, happyReduction_161)
+}
 
+pub fn happyReduce_162() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 48, happyReduction_162)
+}
 
+pub fn happyReduce_163() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 48, happyReduction_163)
+}
 
+pub fn happyReduce_164() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 48, happyReduction_164)
+}
 
+pub fn happyReduce_165() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 48, happyReduction_165)
+}
 
+pub fn happyReduce_166() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 48, happyReduction_166)
+}
 
+pub fn happyReduce_167() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 48, happyReduction_167)
+}
 
+pub fn happyReduce_168() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 48, happyReduction_168)
+}
 
+pub fn happyReduce_169() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 48, happyReduction_169)
+}
 
+pub fn happyReduce_17() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 10, happyReduction_17)
+}
 
+pub fn happyReduce_170() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 48, happyReduction_170)
+}
 
+pub fn happyReduce_171() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(48, happyReduction_171)
+}
 
+pub fn happyReduce_172() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(48, happyReduction_172)
+}
 
+pub fn happyReduce_173() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 49, happyReduction_173)
+}
 
+pub fn happyReduce_174() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 49, happyReduction_174)
+}
 
+pub fn happyReduce_175() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 50, happyReduction_175)
+}
 
+pub fn happyReduce_176() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 50, happyReduction_176)
+}
 
+pub fn happyReduce_177() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 50, happyReduction_177)
+}
 
+pub fn happyReduce_178() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(51, happyReduction_178)
+}
 
+pub fn happyReduce_179() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(51, happyReduction_179)
+}
 
+pub fn happyReduce_18() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 10, happyReduction_18)
+}
 
+pub fn happyReduce_180() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(52, happyReduction_180)
+}
 
+pub fn happyReduce_181() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(52, happyReduction_181)
+}
 
+pub fn happyReduce_182() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(52, happyReduction_182)
+}
 
+pub fn happyReduce_183() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(53, happyReduction_183)
+}
 
+pub fn happyReduce_184() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(53, happyReduction_184)
+}
 
+pub fn happyReduce_185() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(53, happyReduction_185)
+}
 
+pub fn happyReduce_186() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 54, happyReduction_186)
+}
 
+pub fn happyReduce_187() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 54, happyReduction_187)
+}
 
+pub fn happyReduce_188() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 54, happyReduction_188)
+}
 
+pub fn happyReduce_189() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 55, happyReduction_189)
+}
 
+pub fn happyReduce_19() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 10, happyReduction_19)
+}
 
+pub fn happyReduce_190() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(5, 55, happyReduction_190)
+}
 
+pub fn happyReduce_191() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 55, happyReduction_191)
+}
 
+pub fn happyReduce_192() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(56, happyReduction_192)
+}
 
+pub fn happyReduce_193() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(56, happyReduction_193)
+}
 
+pub fn happyReduce_194() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(56, happyReduction_194)
+}
 
+pub fn happyReduce_195() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(57, happyReduction_195)
+}
 
+pub fn happyReduce_196() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(57, happyReduction_196)
+}
 
+pub fn happyReduce_197() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(57, happyReduction_197)
+}
 
+pub fn happyReduce_198() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(57, happyReduction_198)
+}
 
+pub fn happyReduce_199() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 58, happyReduction_199)
+}
 
+pub fn happyReduce_20() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 10, happyReduction_20)
+}
 
+pub fn happyReduce_200() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 58, happyReduction_200)
+}
 
+pub fn happyReduce_201() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 58, happyReduction_201)
+}
 
+pub fn happyReduce_202() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(7, 58, happyReduction_202)
+}
 
+pub fn happyReduce_203() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 58, happyReduction_203)
+}
 
+pub fn happyReduce_204() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(59, happyReduction_204)
+}
 
+pub fn happyReduce_205() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(59, happyReduction_205)
+}
 
+pub fn happyReduce_206() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(60, happyReduction_206)
+}
 
+pub fn happyReduce_207() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(60, happyReduction_207)
+}
 
+pub fn happyReduce_208() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 60, happyReduction_208)
+}
 
+pub fn happyReduce_209() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(60, happyReduction_209)
+}
 
+pub fn happyReduce_21() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 10, happyReduction_21)
+}
 
+pub fn happyReduce_210() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 61, happyReduction_210)
+}
 
+pub fn happyReduce_211() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 61, happyReduction_211)
+}
 
+pub fn happyReduce_212() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 61, happyReduction_212)
+}
 
+pub fn happyReduce_213() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 61, happyReduction_213)
+}
 
+pub fn happyReduce_214() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(62, happyReduction_214)
+}
 
+pub fn happyReduce_215() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(62, happyReduction_215)
+}
 
+pub fn happyReduce_216() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(62, happyReduction_216)
+}
 
+pub fn happyReduce_217() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(63, happyReduction_217)
+}
 
+pub fn happyReduce_218() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(63, happyReduction_218)
+}
 
+pub fn happyReduce_219() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(64, happyReduction_219)
+}
 
+pub fn happyReduce_22() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 10, happyReduction_22)
+}
 
+pub fn happyReduce_220() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 64, happyReduction_220)
+}
 
+pub fn happyReduce_221() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(65, happyReduction_221)
+}
 
+pub fn happyReduce_222() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(65, happyReduction_222)
+}
 
+pub fn happyReduce_223() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 66, happyReduction_223)
+}
 
+pub fn happyReduce_224() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 66, happyReduction_224)
+}
 
+pub fn happyReduce_225() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(66, happyReduction_225)
+}
 
+pub fn happyReduce_226() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(67, happyReduction_226)
+}
 
+pub fn happyReduce_227() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 67, happyReduction_227)
+}
 
+pub fn happyReduce_228() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 67, happyReduction_228)
+}
 
+pub fn happyReduce_229() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 67, happyReduction_229)
+}
 
+pub fn happyReduce_23() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 10, happyReduction_23)
+}
 
+pub fn happyReduce_230() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 67, happyReduction_230)
+}
 
+pub fn happyReduce_231() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(68, happyReduction_231)
+}
 
+pub fn happyReduce_232() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 68, happyReduction_232)
+}
 
+pub fn happyReduce_233() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 68, happyReduction_233)
+}
 
+pub fn happyReduce_234() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(5, 68, happyReduction_234)
+}
 
+pub fn happyReduce_235() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(69, happyReduction_235)
+}
 
+pub fn happyReduce_236() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 69, happyReduction_236)
+}
 
+pub fn happyReduce_237() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 69, happyReduction_237)
+}
 
+pub fn happyReduce_238() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 69, happyReduction_238)
+}
 
+pub fn happyReduce_239() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 69, happyReduction_239)
+}
 
+pub fn happyReduce_24() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 10, happyReduction_24)
+}
 
+pub fn happyReduce_240() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 69, happyReduction_240)
+}
 
+pub fn happyReduce_241() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 69, happyReduction_241)
+}
 
+pub fn happyReduce_242() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(70, happyReduction_242)
+}
 
+pub fn happyReduce_243() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 70, happyReduction_243)
+}
 
+pub fn happyReduce_244() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 70, happyReduction_244)
+}
 
+pub fn happyReduce_245() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 71, happyReduction_245)
+}
 
+pub fn happyReduce_246() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(71, happyReduction_246)
+}
 
+pub fn happyReduce_247() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(72, happyReduction_247)
+}
 
+pub fn happyReduce_248() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(72, happyReduction_248)
+}
 
+pub fn happyReduce_249() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(73, happyReduction_249)
+}
 
+pub fn happyReduce_25() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 10, happyReduction_25)
+}
 
+pub fn happyReduce_250() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 73, happyReduction_250)
+}
 
+pub fn happyReduce_251() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 73, happyReduction_251)
+}
 
+pub fn happyReduce_252() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 73, happyReduction_252)
+}
 
+pub fn happyReduce_253() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 73, happyReduction_253)
+}
 
+pub fn happyReduce_254() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(74, happyReduction_254)
+}
 
+pub fn happyReduce_255() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(74, happyReduction_255)
+}
 
+pub fn happyReduce_256() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 74, happyReduction_256)
+}
 
+pub fn happyReduce_257() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 74, happyReduction_257)
+}
 
+pub fn happyReduce_258() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(5, 74, happyReduction_258)
+}
 
+pub fn happyReduce_259() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 75, happyReduction_259)
+}
 
+pub fn happyReduce_26() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 11, happyReduction_26)
+}
 
+pub fn happyReduce_260() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(75, happyReduction_260)
+}
 
+pub fn happyReduce_261() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 75, happyReduction_261)
+}
 
+pub fn happyReduce_262() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(76, happyReduction_262)
+}
 
+pub fn happyReduce_263() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(77, happyReduction_263)
+}
 
+pub fn happyReduce_264() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 77, happyReduction_264)
+}
 
+pub fn happyReduce_265() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 77, happyReduction_265)
+}
 
+pub fn happyReduce_266() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 78, happyReduction_266)
+}
 
+pub fn happyReduce_267() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(78, happyReduction_267)
+}
 
+pub fn happyReduce_268() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 78, happyReduction_268)
+}
 
+pub fn happyReduce_269() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(79, happyReduction_269)
+}
 
+pub fn happyReduce_27() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(12, happyReduction_27)
+}
 
+pub fn happyReduce_270() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(79, happyReduction_270)
+}
 
+pub fn happyReduce_271() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(79, happyReduction_271)
+}
 
+pub fn happyReduce_272() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(80, happyReduction_272)
+}
 
+pub fn happyReduce_273() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(80, happyReduction_273)
+}
 
+pub fn happyReduce_274() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 81, happyReduction_274)
+}
 
+pub fn happyReduce_275() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 81, happyReduction_275)
+}
 
+pub fn happyReduce_276() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 81, happyReduction_276)
+}
 
+pub fn happyReduce_277() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 81, happyReduction_277)
+}
 
+pub fn happyReduce_278() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 81, happyReduction_278)
+}
 
+pub fn happyReduce_279() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 81, happyReduction_279)
+}
 
+pub fn happyReduce_28() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(12, happyReduction_28)
+}
 
+pub fn happyReduce_280() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 81, happyReduction_280)
+}
 
+pub fn happyReduce_281() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 81, happyReduction_281)
+}
 
+pub fn happyReduce_282() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 81, happyReduction_282)
+}
 
+pub fn happyReduce_283() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 81, happyReduction_283)
+}
 
+pub fn happyReduce_284() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 81, happyReduction_284)
+}
 
+pub fn happyReduce_285() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 81, happyReduction_285)
+}
 
+pub fn happyReduce_286() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 81, happyReduction_286)
+}
 
+pub fn happyReduce_287() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 81, happyReduction_287)
+}
 
+pub fn happyReduce_288() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 81, happyReduction_288)
+}
 
+pub fn happyReduce_289() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(82, happyReduction_289)
+}
 
+pub fn happyReduce_29() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(12, happyReduction_29)
+}
 
+pub fn happyReduce_290() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(82, happyReduction_290)
+}
 
+pub fn happyReduce_291() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 83, happyReduction_291)
+}
 
+pub fn happyReduce_292() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 83, happyReduction_292)
+}
 
+pub fn happyReduce_293() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 83, happyReduction_293)
+}
 
+pub fn happyReduce_294() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 83, happyReduction_294)
+}
 
+pub fn happyReduce_295() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(84, happyReduction_295)
+}
 
+pub fn happyReduce_296() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(84, happyReduction_296)
+}
 
+pub fn happyReduce_297() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(84, happyReduction_297)
+}
 
+pub fn happyReduce_298() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(85, happyReduction_298)
+}
 
+pub fn happyReduce_299() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 85, happyReduction_299)
+}
 
+pub fn happyReduce_30() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(12, happyReduction_30)
+}
 
+pub fn happyReduce_300() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(86, happyReduction_300)
+}
 
+pub fn happyReduce_301() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(86, happyReduction_301)
+}
 
+pub fn happyReduce_302() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 87, happyReduction_302)
+}
 
+pub fn happyReduce_303() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 87, happyReduction_303)
+}
 
+pub fn happyReduce_304() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 87, happyReduction_304)
+}
 
+pub fn happyReduce_305() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 87, happyReduction_305)
+}
 
+pub fn happyReduce_306() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 87, happyReduction_306)
+}
 
+pub fn happyReduce_307() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 87, happyReduction_307)
+}
 
+pub fn happyReduce_308() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(7, 87, happyReduction_308)
+}
 
+pub fn happyReduce_309() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 87, happyReduction_309)
+}
 
+pub fn happyReduce_31() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(12, happyReduction_31)
+}
 
+pub fn happyReduce_310() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 87, happyReduction_310)
+}
 
+pub fn happyReduce_311() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 87, happyReduction_311)
+}
 
+pub fn happyReduce_312() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 87, happyReduction_312)
+}
 
+pub fn happyReduce_313() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 88, happyReduction_313)
+}
 
+pub fn happyReduce_314() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 88, happyReduction_314)
+}
 
+pub fn happyReduce_315() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 88, happyReduction_315)
+}
 
+pub fn happyReduce_316() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 88, happyReduction_316)
+}
 
+pub fn happyReduce_317() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 88, happyReduction_317)
+}
 
+pub fn happyReduce_318() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 88, happyReduction_318)
+}
 
+pub fn happyReduce_319() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(89, happyReduction_319)
+}
 
+pub fn happyReduce_32() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(12, happyReduction_32)
+}
 
+pub fn happyReduce_320() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(89, happyReduction_320)
+}
 
+pub fn happyReduce_321() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(89, happyReduction_321)
+}
 
+pub fn happyReduce_322() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 89, happyReduction_322)
+}
 
+pub fn happyReduce_323() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 89, happyReduction_323)
+}
 
+pub fn happyReduce_324() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 89, happyReduction_324)
+}
 
+pub fn happyReduce_325() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 89, happyReduction_325)
+}
 
+pub fn happyReduce_326() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(5, 89, happyReduction_326)
+}
 
+pub fn happyReduce_327() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(89, happyReduction_327)
+}
 
+pub fn happyReduce_328() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 90, happyReduction_328)
+}
 
+pub fn happyReduce_329() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 90, happyReduction_329)
+}
 
+pub fn happyReduce_33() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 12, happyReduction_33)
+}
 
+pub fn happyReduce_330() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 90, happyReduction_330)
+}
 
+pub fn happyReduce_331() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(91, happyReduction_331)
+}
 
+pub fn happyReduce_332() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(91, happyReduction_332)
+}
 
+pub fn happyReduce_333() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(92, happyReduction_333)
+}
 
+pub fn happyReduce_334() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(92, happyReduction_334)
+}
 
+pub fn happyReduce_335() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(92, happyReduction_335)
+}
 
+pub fn happyReduce_336() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(92, happyReduction_336)
+}
 
+pub fn happyReduce_337() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 92, happyReduction_337)
+}
 
+pub fn happyReduce_338() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(93, happyReduction_338)
+}
 
+pub fn happyReduce_339() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 93, happyReduction_339)
+}
 
+pub fn happyReduce_34() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 13, happyReduction_34)
+}
 
+pub fn happyReduce_340() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(93, happyReduction_340)
+}
 
+pub fn happyReduce_341() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(94, happyReduction_341)
+}
 
+pub fn happyReduce_342() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(94, happyReduction_342)
+}
 
+pub fn happyReduce_343() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 95, happyReduction_343)
+}
 
+pub fn happyReduce_344() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 95, happyReduction_344)
+}
 
+pub fn happyReduce_345() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(95, happyReduction_345)
+}
 
+pub fn happyReduce_346() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 96, happyReduction_346)
+}
 
+pub fn happyReduce_347() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 97, happyReduction_347)
+}
 
+pub fn happyReduce_348() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(97, happyReduction_348)
+}
 
+pub fn happyReduce_349() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(97, happyReduction_349)
+}
 
+pub fn happyReduce_35() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 13, happyReduction_35)
+}
 
+pub fn happyReduce_350() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(97, happyReduction_350)
+}
 
+pub fn happyReduce_351() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 97, happyReduction_351)
+}
 
+pub fn happyReduce_352() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 97, happyReduction_352)
+}
 
+pub fn happyReduce_353() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 97, happyReduction_353)
+}
 
+pub fn happyReduce_354() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 97, happyReduction_354)
+}
 
+pub fn happyReduce_355() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 98, happyReduction_355)
+}
 
+pub fn happyReduce_356() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 98, happyReduction_356)
+}
 
+pub fn happyReduce_357() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 98, happyReduction_357)
+}
 
+pub fn happyReduce_358() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(99, happyReduction_358)
+}
 
+pub fn happyReduce_359() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 99, happyReduction_359)
+}
 
+pub fn happyReduce_36() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 13, happyReduction_36)
+}
 
+pub fn happyReduce_360() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 99, happyReduction_360)
+}
 
+pub fn happyReduce_361() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 99, happyReduction_361)
+}
 
+pub fn happyReduce_362() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 99, happyReduction_362)
+}
 
+pub fn happyReduce_363() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 99, happyReduction_363)
+}
 
+pub fn happyReduce_364() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 99, happyReduction_364)
+}
 
+pub fn happyReduce_365() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 99, happyReduction_365)
+}
 
+pub fn happyReduce_366() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 99, happyReduction_366)
+}
 
+pub fn happyReduce_367() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(7, 99, happyReduction_367)
+}
 
+pub fn happyReduce_368() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(100, happyReduction_368)
+}
 
+pub fn happyReduce_369() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(100, happyReduction_369)
+}
 
+pub fn happyReduce_37() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 13, happyReduction_37)
+}
 
+pub fn happyReduce_370() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(101, happyReduction_370)
+}
 
+pub fn happyReduce_371() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 101, happyReduction_371)
+}
 
+pub fn happyReduce_372() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 101, happyReduction_372)
+}
 
+pub fn happyReduce_373() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(101, happyReduction_373)
+}
 
+pub fn happyReduce_374() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 101, happyReduction_374)
+}
 
+pub fn happyReduce_375() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 101, happyReduction_375)
+}
 
+pub fn happyReduce_376() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 101, happyReduction_376)
+}
 
+pub fn happyReduce_377() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 101, happyReduction_377)
+}
 
+pub fn happyReduce_378() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 101, happyReduction_378)
+}
 
+pub fn happyReduce_379() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 101, happyReduction_379)
+}
 
+pub fn happyReduce_38() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 14, happyReduction_38)
+}
 
+pub fn happyReduce_380() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 101, happyReduction_380)
+}
 
+pub fn happyReduce_381() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 101, happyReduction_381)
+}
 
+pub fn happyReduce_382() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(102, happyReduction_382)
+}
 
+pub fn happyReduce_383() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(102, happyReduction_383)
+}
 
+pub fn happyReduce_384() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(102, happyReduction_384)
+}
 
+pub fn happyReduce_385() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(102, happyReduction_385)
+}
 
+pub fn happyReduce_386() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(102, happyReduction_386)
+}
 
+pub fn happyReduce_387() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(102, happyReduction_387)
+}
 
+pub fn happyReduce_388() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(103, happyReduction_388)
+}
 
+pub fn happyReduce_389() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 103, happyReduction_389)
+}
 
+pub fn happyReduce_39() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 14, happyReduction_39)
+}
 
+pub fn happyReduce_390() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(104, happyReduction_390)
+}
 
+pub fn happyReduce_391() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 104, happyReduction_391)
+}
 
+pub fn happyReduce_392() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 104, happyReduction_392)
+}
 
+pub fn happyReduce_393() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 104, happyReduction_393)
+}
 
+pub fn happyReduce_394() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(105, happyReduction_394)
+}
 
+pub fn happyReduce_395() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 105, happyReduction_395)
+}
 
+pub fn happyReduce_396() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 105, happyReduction_396)
+}
 
+pub fn happyReduce_397() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(106, happyReduction_397)
+}
 
+pub fn happyReduce_398() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 106, happyReduction_398)
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pub fn happyReduce_399() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 106, happyReduction_399)
+}
 
 pub fn happyReduce_4() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
     happyMonadReduce(1, 7, happyReduction_4)
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let __0 = |__1| {
+pub fn happyReduce_40() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(0, 15, happyReduction_40)
+}
+
+pub fn happyReduce_400() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(107, happyReduction_400)
+}
+
+pub fn happyReduce_401() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 107, happyReduction_401)
+}
+
+pub fn happyReduce_402() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 107, happyReduction_402)
+}
+
+pub fn happyReduce_403() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 107, happyReduction_403)
+}
+
+pub fn happyReduce_404() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 107, happyReduction_404)
+}
+
+pub fn happyReduce_405() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(108, happyReduction_405)
+}
+
+pub fn happyReduce_406() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 108, happyReduction_406)
+}
+
+pub fn happyReduce_407() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 108, happyReduction_407)
+}
+
+pub fn happyReduce_408() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(109, happyReduction_408)
+}
+
+pub fn happyReduce_409() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 109, happyReduction_409)
+}
+
+pub fn happyReduce_41() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(0, 16, happyReduction_41)
+}
+
+pub fn happyReduce_410() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(110, happyReduction_410)
+}
+
+pub fn happyReduce_411() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 110, happyReduction_411)
+}
+
+pub fn happyReduce_412() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(111, happyReduction_412)
+}
+
+pub fn happyReduce_413() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 111, happyReduction_413)
+}
+
+pub fn happyReduce_414() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(112, happyReduction_414)
+}
+
+pub fn happyReduce_415() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 112, happyReduction_415)
+}
+
+pub fn happyReduce_416() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(113, happyReduction_416)
+}
+
+pub fn happyReduce_417() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 113, happyReduction_417)
+}
+
+pub fn happyReduce_418() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(114, happyReduction_418)
+}
+
+pub fn happyReduce_419() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 114, happyReduction_419)
+}
+
+pub fn happyReduce_42() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(17, happyReduction_42)
+}
+
+pub fn happyReduce_420() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 114, happyReduction_420)
+}
+
+pub fn happyReduce_421() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(115, happyReduction_421)
+}
+
+pub fn happyReduce_422() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 115, happyReduction_422)
+}
+
+pub fn happyReduce_423() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_423)
+}
+
+pub fn happyReduce_424() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_424)
+}
+
+pub fn happyReduce_425() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_425)
+}
+
+pub fn happyReduce_426() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_426)
+}
+
+pub fn happyReduce_427() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_427)
+}
+
+pub fn happyReduce_428() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_428)
+}
+
+pub fn happyReduce_429() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_429)
+}
+
+pub fn happyReduce_43() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(17, happyReduction_43)
+}
+
+pub fn happyReduce_430() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_430)
+}
+
+pub fn happyReduce_431() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_431)
+}
+
+pub fn happyReduce_432() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_432)
+}
+
+pub fn happyReduce_433() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(116, happyReduction_433)
+}
+
+pub fn happyReduce_434() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(117, happyReduction_434)
+}
+
+pub fn happyReduce_435() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 117, happyReduction_435)
+}
+
+pub fn happyReduce_436() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(118, happyReduction_436)
+}
+
+pub fn happyReduce_437() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(118, happyReduction_437)
+}
+
+pub fn happyReduce_438() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(119, happyReduction_438)
+}
+
+pub fn happyReduce_439() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(119, happyReduction_439)
+}
+
+pub fn happyReduce_44() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(18, happyReduction_44)
+}
+
+pub fn happyReduce_440() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(120, happyReduction_440)
+}
+
+pub fn happyReduce_441() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(120, happyReduction_441)
+}
+
+pub fn happyReduce_442() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(121, happyReduction_442)
+}
+
+pub fn happyReduce_443() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 122, happyReduction_443)
+}
+
+pub fn happyReduce_444() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 122, happyReduction_444)
+}
+
+pub fn happyReduce_445() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 122, happyReduction_445)
+}
+
+pub fn happyReduce_446() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 123, happyReduction_446)
+}
+
+pub fn happyReduce_447() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 123, happyReduction_447)
+}
+
+pub fn happyReduce_448() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(124, happyReduction_448)
+}
+
+pub fn happyReduce_449() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(124, happyReduction_449)
+}
+
+pub fn happyReduce_45() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(18, happyReduction_45)
+}
+
+pub fn happyReduce_450() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(125, happyReduction_450)
+}
+
+pub fn happyReduce_451() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(125, happyReduction_451)
+}
+
+pub fn happyReduce_452() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(126, happyReduction_452)
+}
+
+pub fn happyReduce_453() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(126, happyReduction_453)
+}
+
+pub fn happyReduce_454() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(127, happyReduction_454)
+}
+
+pub fn happyReduce_455() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(127, happyReduction_455)
+}
+
+pub fn happyReduce_456() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(6, 128, happyReduction_456)
+}
+
+pub fn happyReduce_457() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(129, happyReduction_457)
+}
+
+pub fn happyReduce_458() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(129, happyReduction_458)
+}
+
+pub fn happyReduce_459() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(130, happyReduction_459)
+}
+
+pub fn happyReduce_46() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(19, happyReduction_46)
+}
+
+pub fn happyReduce_460() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 130, happyReduction_460)
+}
+
+pub fn happyReduce_461() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 130, happyReduction_461)
+}
+
+pub fn happyReduce_462() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 130, happyReduction_462)
+}
+
+pub fn happyReduce_463() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 130, happyReduction_463)
+}
+
+pub fn happyReduce_464() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(131, happyReduction_464)
+}
+
+pub fn happyReduce_465() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(131, happyReduction_465)
+}
+
+pub fn happyReduce_466() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(131, happyReduction_466)
+}
+
+pub fn happyReduce_467() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(5, 131, happyReduction_467)
+}
+
+pub fn happyReduce_47() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(19, happyReduction_47)
+}
+
+pub fn happyReduce_48() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(19, happyReduction_48)
+}
+
+pub fn happyReduce_49() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 20, happyReduction_49)
+}
+
+pub fn happyReduce_5() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(8, happyReduction_5)
+}
+
+pub fn happyReduce_50() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 20, happyReduction_50)
+}
+
+pub fn happyReduce_51() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 20, happyReduction_51)
+}
+
+pub fn happyReduce_52() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 20, happyReduction_52)
+}
+
+pub fn happyReduce_53() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 20, happyReduction_53)
+}
+
+pub fn happyReduce_54() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(21, happyReduction_54)
+}
+
+pub fn happyReduce_55() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyReduce(4, 21, happyReduction_55)
+}
+
+pub fn happyReduce_56() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(1, 22, happyReduction_56)
+}
+
+pub fn happyReduce_57() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 22, happyReduction_57)
+}
+
+pub fn happyReduce_58() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 23, happyReduction_58)
+}
+
+pub fn happyReduce_59() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(7, 23, happyReduction_59)
+}
+
+pub fn happyReduce_6() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(8, happyReduction_6)
+}
+
+pub fn happyReduce_60() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 23, happyReduction_60)
+}
+
+pub fn happyReduce_61() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 24, happyReduction_61)
+}
+
+pub fn happyReduce_62() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(7, 24, happyReduction_62)
+}
+
+pub fn happyReduce_63() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(9, 24, happyReduction_63)
+}
+
+pub fn happyReduce_64() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(10, 24, happyReduction_64)
+}
+
+pub fn happyReduce_65() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 25, happyReduction_65)
+}
+
+pub fn happyReduce_66() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 25, happyReduction_66)
+}
+
+pub fn happyReduce_67() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 25, happyReduction_67)
+}
+
+pub fn happyReduce_68() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 25, happyReduction_68)
+}
+
+pub fn happyReduce_69() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(3, 25, happyReduction_69)
+}
+
+pub fn happyReduce_7() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(8, happyReduction_7)
+}
+
+pub fn happyReduce_70() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 26, happyReduction_70)
+}
+
+pub fn happyReduce_71() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(8, 26, happyReduction_71)
+}
+
+pub fn happyReduce_72() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(10, 26, happyReduction_72)
+}
+
+pub fn happyReduce_73() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(12, 26, happyReduction_73)
+}
+
+pub fn happyReduce_74() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(27, happyReduction_74)
+}
+
+pub fn happyReduce_75() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(27, happyReduction_75)
+}
+
+pub fn happyReduce_76() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(28, happyReduction_76)
+}
+
+pub fn happyReduce_77() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(28, happyReduction_77)
+}
+
+pub fn happyReduce_78() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(29, happyReduction_78)
+}
+
+pub fn happyReduce_79() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(29, happyReduction_79)
+}
+
+pub fn happyReduce_8() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(9, happyReduction_8)
+}
+
+pub fn happyReduce_80() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 30, happyReduction_80)
+}
+
+pub fn happyReduce_81() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(7, 30, happyReduction_81)
+}
+
+pub fn happyReduce_82() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(7, 30, happyReduction_82)
+}
+
+pub fn happyReduce_83() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(31, happyReduction_83)
+}
+
+pub fn happyReduce_84() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_3(31, happyReduction_84)
+}
+
+pub fn happyReduce_85() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 32, happyReduction_85)
+}
+
+pub fn happyReduce_86() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 32, happyReduction_86)
+}
+
+pub fn happyReduce_87() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 32, happyReduction_87)
+}
+
+pub fn happyReduce_88() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(2, 32, happyReduction_88)
+}
+
+pub fn happyReduce_89() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_0(33, happyReduction_89)
+}
+
+pub fn happyReduce_9() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_1(9, happyReduction_9)
+}
+
+pub fn happyReduce_90() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(33, happyReduction_90)
+}
+
+pub fn happyReduce_91() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 34, happyReduction_91)
+}
+
+pub fn happyReduce_92() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 34, happyReduction_92)
+}
+
+pub fn happyReduce_93() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(5, 34, happyReduction_93)
+}
+
+pub fn happyReduce_94() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 34, happyReduction_94)
+}
+
+pub fn happyReduce_95() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 34, happyReduction_95)
+}
+
+pub fn happyReduce_96() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happySpecReduce_2(35, happyReduction_96)
+}
+
+pub fn happyReduce_97() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 36, happyReduction_97)
+}
+
+pub fn happyReduce_98() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(4, 36, happyReduction_98)
+}
+
+pub fn happyReduce_99() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    happyMonadReduce(6, 36, happyReduction_99)
+}
+
+/* TODO infer type:
+let happyReduction_10 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn9(happy_var_2), _) => {
             HappyAbsSyn9((happy_var_2))
@@ -31802,43 +35028,61 @@ let __0 = |__1| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_100 = |__0| {
+    match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_101 = |__0| {
+    match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_102 = |__0| {
+    match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_103 = |__0| {
+    match (__0) {
         HappyAbsSyn40(happy_var_1) => {
             HappyAbsSyn38((singleton((CStorageSpec(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_104 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn38((snoc(reverseList((liftCAttrs(happy_var_1))), (CStorageSpec(happy_var_2)))))
@@ -31849,7 +35093,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_105 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((snoc(rmap(CTypeQual, happy_var_1), CStorageSpec(happy_var_2))))
@@ -31860,7 +35106,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_106 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn40(happy_var_3), HappyAbsSyn126(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((snoc((rappend(rmap(CTypeQual, happy_var_1), liftCAttrs(happy_var_2))), CStorageSpec(happy_var_3))))
@@ -31871,7 +35119,9 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_107 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn39(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
@@ -31882,7 +35132,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_108 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -31893,132 +35145,194 @@ let __0 = |__1| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_109 = |__0| {
+    match (__0) {
         HappyAbsSyn40(happy_var_1) => {
             HappyAbsSyn39((CStorageSpec(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_11 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAsmExt(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn9(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_110 = |__0| {
+    match (__0) {
         HappyAbsSyn61(happy_var_1) => {
             HappyAbsSyn39((CTypeQual(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_111 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CTypedef))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_112 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CExtern))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_113 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CStatic))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_114 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAuto))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_115 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CRegister))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_116 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CThread))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_117 = |__0| {
+    match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_118 = |__0| {
+    match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_119 = |__0| {
+    match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_12 = |HappyStk(HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, vec![], happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_120 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CVoidType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_121 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCharType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_122 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CShortType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_123 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CIntType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_124 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CLongType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_125 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CFloatType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_126 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDoubleType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_127 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CSignedType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_128 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CUnsigType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_129 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBoolType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_13 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_130 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CComplexType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_131 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
@@ -32029,7 +35343,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_132 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CStorageSpec(happy_var_2))))
@@ -32040,7 +35356,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_133 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn39(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
@@ -32051,7 +35369,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_134 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
@@ -32062,7 +35382,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_135 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -32073,16 +35395,22 @@ let __0 = |__1| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_136 = |__0| {
+    match (__0) {
         HappyAbsSyn42(happy_var_1) => {
             HappyAbsSyn38((singleton((CTypeSpec(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_137 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn38((snoc((reverseList(liftCAttrs(happy_var_1))), (CTypeSpec(happy_var_2)))))
@@ -32093,7 +35421,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_138 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((snoc(rmap(CTypeQual, happy_var_1), CTypeSpec(happy_var_2))))
@@ -32104,7 +35434,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_139 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn42(happy_var_3), HappyAbsSyn126(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec(happy_var_3)))))
@@ -32115,11 +35447,15 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_14 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_140 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeQual(happy_var_2))))
@@ -32130,7 +35466,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_141 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
@@ -32141,7 +35479,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_142 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -32152,7 +35492,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_143 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
@@ -32163,7 +35505,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_144 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CStorageSpec(happy_var_2))))
@@ -32174,7 +35518,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_145 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn39(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
@@ -32185,7 +35531,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_146 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -32196,16 +35544,22 @@ let __0 = |__1| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_147 = |__0| {
+    match (__0) {
         HappyAbsSyn42(happy_var_1) => {
             HappyAbsSyn38((singleton((CTypeSpec(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_148 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn38((snoc((reverseList(liftCAttrs(happy_var_1))), (CTypeSpec(happy_var_2)))))
@@ -32216,7 +35570,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_149 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((snoc(rmap(CTypeQual, happy_var_1), CTypeSpec(happy_var_2))))
@@ -32227,11 +35583,15 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_15 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_150 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn42(happy_var_3), HappyAbsSyn126(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec(happy_var_3)))))
@@ -32242,7 +35602,9 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_151 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeQual(happy_var_2))))
@@ -32253,7 +35615,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_152 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -32264,7 +35628,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_153 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CStorageSpec(happy_var_2))))
@@ -32275,19 +35641,27 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_154 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(happy_var_1, CTypeSpec((CTypeDef(happy_var_2, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_155 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(happy_var_1, CTypeSpec((CTypeOfExpr(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_156 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(happy_var_1, CTypeSpec((CTypeOfType(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_157 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn39(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
@@ -32298,7 +35672,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_158 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -32309,63 +35685,93 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_159 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(|at| { singleton((CTypeSpec((CTypeDef(happy_var_1, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_16 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_160 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(|at| { singleton((CTypeSpec((CTypeOfExpr(happy_var_3, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_161 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(|at| { singleton((CTypeSpec((CTypeOfType(happy_var_3, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_162 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(rmap(CTypeQual, happy_var_1), CTypeSpec((CTypeDef(happy_var_2, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_163 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(rmap(CTypeQual, happy_var_1), CTypeSpec((CTypeOfExpr(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_164 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(rmap(CTypeQual, happy_var_1), CTypeSpec((CTypeOfType(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_165 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(reverseList((liftCAttrs(happy_var_1))), (CTypeSpec((CTypeDef(happy_var_2, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_166 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(|at| { snoc(reverseList((liftCAttrs(happy_var_1))), (CTypeSpec((CTypeOfExpr(happy_var_4, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_167 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(reverseList((liftCAttrs(happy_var_1))), (CTypeSpec((CTypeOfType(happy_var_4, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_3)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_168 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_3)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_3)(|at| { rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeDef(happy_var_3, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_169 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_3)(|at| { rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeOfExpr(happy_var_5, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_17 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_170 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_3)(|at| { rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeOfType(happy_var_5, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_171 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeQual(happy_var_2))))
@@ -32376,7 +35782,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_172 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -32387,50 +35795,75 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn50(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_173 = |HappyStk(HappyAbsSyn50(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CSUType(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(HappyAbsSyn58(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_174 = |HappyStk(HappyAbsSyn58(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CEnumType(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_175 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), (Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn50(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_176 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn50(r))) }))
 };
 
-let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_177 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), (Some(happy_var_3)), None, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn50(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_178 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn51((L(CStructTag, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_179 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn51((L(CUnionTag, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_18 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
+*/
+/* TODO infer type:
+let happyReduction_180 = HappyAbsSyn33((empty));
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_181 = |__0, __1| {
     match (__0, __1) {
         (_, HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn33((happy_var_1))
@@ -32441,7 +35874,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_182 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn32(happy_var_2), HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn33((snoc(happy_var_1, happy_var_2)))
@@ -32452,7 +35887,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_183 = |__0, __1| {
     match (__0, __1) {
         (_, HappyAbsSyn32(happy_var_1)) => {
             HappyAbsSyn32((match happy_var_1 {
@@ -32467,7 +35904,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_184 = |__0, __1| {
     match (__0, __1) {
         (_, HappyAbsSyn32(happy_var_1)) => {
             HappyAbsSyn32((match happy_var_1 {
@@ -32482,7 +35921,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_185 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn32(happy_var_2), _) => {
             HappyAbsSyn32((happy_var_2))
@@ -32493,7 +35934,9 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn56(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_186 = |HappyStk(HappyAbsSyn56(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_3 {
             (d, s) => {
                 CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![(d, None, s)])
@@ -32501,7 +35944,9 @@ let HappyStk(HappyAbsSyn56(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy
         }))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_187 = |HappyStk(HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_2 {
             (d, s) => {
                 CDecl((liftCAttrs(happy_var_1)), vec![(d, None, s)])
@@ -32509,7 +35954,10 @@ let HappyStk(HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy
         }))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = HappyStk(HappyAbsSyn32((match happy_var_1 {
+*/
+/* TODO infer type:
+let happyReduction_188 = |HappyStk(HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest)| {
+    HappyStk(HappyAbsSyn32((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 match happy_var_4 {
                     (Some(d), s) => {
@@ -32520,9 +35968,12 @@ let HappyStk(HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy
                     },
                 }
             },
-        })), happyRest);
+        })), happyRest)
+};
 
-let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_189 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_2 {
             (Some(d), s) => {
                 CDecl(happy_var_1, vec![(__op_TODO_dollarnot(Some, appendObjAttrs(happy_var_3, d)), None, s)])
@@ -32533,11 +35984,16 @@ let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn56(happy
         }))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_19 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, (reverse(happy_var_2)), happy_var_3)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = HappyStk(HappyAbsSyn32((match happy_var_1 {
+*/
+/* TODO infer type:
+let happyReduction_190 = |HappyStk(HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest)| {
+    HappyStk(HappyAbsSyn32((match happy_var_1 {
             CDecl | declspecs | dies | attr => {
                 match happy_var_4 {
                     (Some(d), s) => {
@@ -32548,22 +36004,31 @@ let HappyStk(HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn56(happy
                     },
                 }
             },
-        })), happyRest);
+        })), happyRest)
+};
 
-let HappyStk(HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_191 = |HappyStk(HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_192 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn56(((Some((reverseDeclr(happy_var_1))), None)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_193 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn97(happy_var_2), _) => {
             HappyAbsSyn56(((None, Some(happy_var_2))))
@@ -32574,7 +36039,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_194 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn63(happy_var_1)) => {
             HappyAbsSyn56(((Some((reverseDeclr(happy_var_1))), Some(happy_var_3))))
@@ -32585,16 +36052,22 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_195 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn56(((Some((reverseDeclr(happy_var_1))), None)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_196 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn97(happy_var_2), _) => {
             HappyAbsSyn56(((None, Some(happy_var_2))))
@@ -32605,7 +36078,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_197 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn63(happy_var_1)) => {
             HappyAbsSyn56(((Some((reverseDeclr(happy_var_1))), Some(happy_var_3))))
@@ -32616,7 +36091,9 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_198 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn56(happy_var_1)) => {
             HappyAbsSyn56((match happy_var_1 {
@@ -32634,40 +36111,58 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_199 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CEnum(None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_20 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_2)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_200 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CEnum(None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_201 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_202 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
-let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_203 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), None, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_204 = |__0| {
+    match (__0) {
         HappyAbsSyn60(happy_var_1) => {
             HappyAbsSyn59((singleton(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_205 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn60(happy_var_3), _, HappyAbsSyn59(happy_var_1)) => {
             HappyAbsSyn59((snoc(happy_var_1, happy_var_3)))
@@ -32678,16 +36173,22 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_206 = |__0| {
+    match (__0) {
         HappyAbsSyn125(happy_var_1) => {
             HappyAbsSyn60(((happy_var_1, None)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_207 = |__0, __1| {
     match (__0, __1) {
         (_, HappyAbsSyn125(happy_var_1)) => {
             HappyAbsSyn60(((happy_var_1, None)))
@@ -32698,9 +36199,15 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest) = HappyStk(HappyAbsSyn60(((happy_var_1, Some(happy_var_4)))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_208 = |HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest)| {
+    HappyStk(HappyAbsSyn60(((happy_var_1, Some(happy_var_4)))), happyRest)
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_209 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn125(happy_var_1)) => {
             HappyAbsSyn60(((happy_var_1, Some(happy_var_3))))
@@ -32711,27 +36218,39 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_21 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_210 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CConstQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_211 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CVolatQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_212 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CRestrQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_213 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CInlineQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_214 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn62((snoc(reverseList((map(CAttrQual, happy_var_1))), happy_var_2)))
@@ -32742,7 +36261,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_215 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn62((snoc(happy_var_1, happy_var_2)))
@@ -32753,7 +36274,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_216 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn61(happy_var_3), HappyAbsSyn126(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn62((snoc((rappend(happy_var_1, map(CAttrQual, happy_var_2))), happy_var_3)))
@@ -32764,96 +36287,145 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_217 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_218 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
+*/
+/* TODO infer type:
+let happyReduction_219 = HappyAbsSyn64((None));
 
-let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_22 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn64((Some(happy_var_3))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_220 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn64((Some(happy_var_3))), happyRest)
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_221 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_222 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_223 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn85(happy_var_2), /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_224 = |HappyStk(HappyAbsSyn85(happy_var_2), /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(|at| { happy_var_2((mkVarDeclr(happy_var_1, at))) }))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_225 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_226 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_227 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_228 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_229 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_23 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_230 = |HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_231 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -32864,50 +36436,82 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_232 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_233 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
+};
 
-let HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_234 = |HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest)
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_235 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_236 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_237 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_238 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_5, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_239 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_24 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_240 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_241 = |HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_242 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -32918,15 +36522,27 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn85(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((happy_var_3(happy_var_2))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_243 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn85(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((happy_var_3(happy_var_2))), happyRest)
+};
 
-let HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_244 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
+};
 
-let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_245 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_246 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -32937,54 +36553,78 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_247 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_248 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_249 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_25 = |HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, (reverse(happy_var_4)), happy_var_5)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_250 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_251 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_252 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_253 = |HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_254 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn85(happy_var_2), HappyAbsSyn63(happy_var_1)) => {
             HappyAbsSyn63((happy_var_2(happy_var_1)))
@@ -32995,7 +36635,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_255 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -33006,24 +36648,42 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_256 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_257 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
+};
 
-let HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_258 = |HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest)
+};
 
-let HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_259 = |HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_26 = |HappyStk(HappyAbsSyn63(happy_var_1), happyRest), tk| {
     happyThen((({
             let declr = reverseDeclr(happy_var_1);
 
         __op_rshift(enterScope, __op_rshift(doFuncParamDeclIdent(declr), declr))        })), (|r| { happyReturn((HappyAbsSyn11(r))) }))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_260 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -33034,39 +36694,59 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_261 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_262 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn11((reverseDeclr(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_263 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_264 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_265 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_266 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(funDeclr(happy_var_1, (Left(reverse(happy_var_3))), vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_267 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -33077,28 +36757,45 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_268 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
+};
 
+*/
+/* TODO infer type:
+let happyReduction_269 = HappyAbsSyn79(((vec![], false)));
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_27 = |__0| {
+    match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_270 = |__0| {
+    match (__0) {
         HappyAbsSyn33(happy_var_1) => {
             HappyAbsSyn79(((reverse(happy_var_1), false)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_271 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, _, HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn79(((reverse(happy_var_1), true)))
@@ -33109,16 +36806,22 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_272 = |__0| {
+    match (__0) {
         HappyAbsSyn32(happy_var_1) => {
             HappyAbsSyn33((singleton(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_273 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn32(happy_var_3), _, HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn33((snoc(happy_var_1, happy_var_3)))
@@ -33129,104 +36832,148 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_274 = |HappyStk(HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_275 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_276 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_277 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_278 = |HappyStk(HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_279 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_28 = |__0| {
+    match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_280 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_281 = |HappyStk(HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_282 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_283 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_284 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_285 = |HappyStk(HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_286 = |HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_287 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_288 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_289 = |__0| {
+    match (__0) {
         HappyTerminal(CTokIdent(_, happy_var_1)) => {
             HappyAbsSyn21((singleton(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_29 = |__0| {
+    match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_290 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyTerminal(CTokIdent(_, happy_var_3)), _, HappyAbsSyn21(happy_var_1)) => {
             HappyAbsSyn21((snoc(happy_var_1, happy_var_3)))
@@ -33237,59 +36984,85 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_291 = |HappyStk(HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_292 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_293 = |HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_294 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_295 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_296 = |__0| {
+    match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_297 = |__0| {
+    match (__0) {
         HappyAbsSyn85(happy_var_1) => {
             HappyAbsSyn63((happy_var_1(emptyDeclr)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_298 = |__0| {
+    match (__0) {
         HappyAbsSyn85(happy_var_1) => {
             HappyAbsSyn85((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn79(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_299 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn79(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(|at, declr| { match happy_var_2 {
                 (params, variadic) => {
                     funDeclr(declr, (Right((params, variadic))), vec![], at)
@@ -33297,25 +37070,35 @@ let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn79(happy_var_2), /* TODO(INFIX) */
             } }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_30 = |__0| {
+    match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_300 = |__0| {
+    match (__0) {
         HappyAbsSyn85(happy_var_1) => {
             HappyAbsSyn85((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_301 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn85(happy_var_2), HappyAbsSyn85(happy_var_1)) => {
             HappyAbsSyn85((|decl| { happy_var_2((happy_var_1(decl))) }))
@@ -33326,84 +37109,124 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_302 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(|at, declr| { arrDeclr(declr, vec![], false, false, happy_var_2, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_303 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttributePF(happy_var_1, happy_var_2)(|at, declr| { arrDeclr(declr, vec![], false, false, happy_var_3, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_304 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), false, false, happy_var_3, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_305 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), false, false, happy_var_4, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_306 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { arrDeclr(declr, vec![], false, true, (Some(happy_var_4)), at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_307 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttributePF(happy_var_1, happy_var_4)(|at, declr| { arrDeclr(declr, (reverse(happy_var_3)), false, true, (Some(happy_var_5)), at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_308 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_3, happy_var_5)))(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), false, true, (Some(happy_var_6)), at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_309 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { arrDeclr(declr, vec![], true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_31 = |__0| {
+    match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_310 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_2, happy_var_4)))(|at, declr| { arrDeclr(declr, vec![], true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_311 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttributePF(happy_var_1, happy_var_4)(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_312 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_3, happy_var_5)))(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_313 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(emptyDeclr, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_314 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(emptyDeclr, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_315 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_316 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_317 = |HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(emptyDeclr, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_318 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_319 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -33414,16 +37237,22 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_32 = |__0| {
+    match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_320 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -33434,7 +37263,9 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_321 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn85(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2(emptyDeclr)))
@@ -33445,17 +37276,39 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_322 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_323 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_324 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn85(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_3(emptyDeclr))))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_325 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn85(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_3(emptyDeclr))))), happyRest)
+};
 
-let HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_326 = |HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest)
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_327 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn63(happy_var_1)) => {
             HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_1)))
@@ -33466,24 +37319,37 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_328 = |HappyStk(HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CInitExpr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn90(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_329 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CInitList((reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn90(r))) }))
 };
 
-let HappyStk(HappyAbsSyn26(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_33 = |HappyStk(HappyAbsSyn26(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1, (CAsm(happy_var_1))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_330 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CInitList((reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn90(r))) }))
 };
 
+*/
+/* TODO infer type:
+let happyReduction_331 = HappyAbsSyn91((None));
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_332 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn90(happy_var_2), _) => {
             HappyAbsSyn91((Some(happy_var_2)))
@@ -33494,17 +37360,26 @@ let __0 = |__1| {
     }
 };
 
+*/
+/* TODO infer type:
+let happyReduction_333 = HappyAbsSyn92((empty));
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_334 = |__0| {
+    match (__0) {
         HappyAbsSyn90(happy_var_1) => {
             HappyAbsSyn92((singleton((vec![], happy_var_1))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_335 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn90(happy_var_2), HappyAbsSyn93(happy_var_1)) => {
             HappyAbsSyn92((singleton((happy_var_1, happy_var_2))))
@@ -33515,7 +37390,9 @@ let __0 = |__1| {
     }
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_336 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn90(happy_var_3), _, HappyAbsSyn92(happy_var_1)) => {
             HappyAbsSyn92((snoc(happy_var_1, (vec![], happy_var_3))))
@@ -33526,9 +37403,15 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn90(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn93(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_1), happyRest) = HappyStk(HappyAbsSyn92((snoc(happy_var_1, (happy_var_3, happy_var_4)))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_337 = |HappyStk(HappyAbsSyn90(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn93(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_1), happyRest)| {
+    HappyStk(HappyAbsSyn92((snoc(happy_var_1, (happy_var_3, happy_var_4)))), happyRest)
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_338 = |__0, __1| {
     match (__0, __1) {
         (_, HappyAbsSyn94(happy_var_1)) => {
             HappyAbsSyn93((reverse(happy_var_1)))
@@ -33539,33 +37422,47 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_339 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(|at| { vec![CMemberDesig(happy_var_1, at)] }))), (|r| { happyReturn((HappyAbsSyn93(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_34 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CLabel(happy_var_1, happy_var_4, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_340 = |__0| {
+    match (__0) {
         HappyAbsSyn95(happy_var_1) => {
             HappyAbsSyn93((vec![happy_var_1]))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_341 = |__0| {
+    match (__0) {
         HappyAbsSyn95(happy_var_1) => {
             HappyAbsSyn94((singleton(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_342 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn95(happy_var_2), HappyAbsSyn94(happy_var_1)) => {
             HappyAbsSyn94((snoc(happy_var_1, happy_var_2)))
@@ -33576,54 +37473,78 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_343 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CArrDesig(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn95(r))) }))
 };
 
-let HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_344 = |HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CMemberDesig(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn95(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_345 = |__0| {
+    match (__0) {
         HappyAbsSyn95(happy_var_1) => {
             HappyAbsSyn95((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_346 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CRangeDesig(happy_var_2, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn95(r))) }))
 };
 
-let HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_347 = |HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CVar(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_348 = |__0| {
+    match (__0) {
         HappyAbsSyn122(happy_var_1) => {
             HappyAbsSyn97((CConst(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_349 = |__0| {
+    match (__0) {
         HappyAbsSyn123(happy_var_1) => {
             HappyAbsSyn97((CConst((liftStrLit(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_35 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCase(happy_var_2, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_350 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn97(happy_var_2), _) => {
             HappyAbsSyn97((happy_var_2))
@@ -33634,93 +37555,137 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_351 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CStatExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_352 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinVaArg(happy_var_3, happy_var_5))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_353 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinOffsetOf(happy_var_3, (reverse(happy_var_5))))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_354 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinTypesCompatible(happy_var_3, happy_var_5))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn125(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_355 = |HappyStk(HappyAbsSyn125(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(singleton(CMemberDesig(happy_var_1))))), (|r| { happyReturn((HappyAbsSyn94(r))) }))
 };
 
-let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_356 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CMemberDesig(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn94(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_357 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CArrDesig(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn94(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_358 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_359 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CIndex(happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_36 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDefault(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_360 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCall(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_361 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCall(happy_var_1, (reverse(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_362 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CMember(happy_var_1, happy_var_3, false)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_363 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CMember(happy_var_1, happy_var_3, true)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_364 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CUnary(CPostIncOp, happy_var_1)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_365 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CUnary(CPostDecOp, happy_var_1)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_366 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCompoundLit(happy_var_2, (reverse(happy_var_5)))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_367 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCompoundLit(happy_var_2, (reverse(happy_var_5)))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_368 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn100((singleton(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_369 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn100(happy_var_1)) => {
             HappyAbsSyn100((snoc(happy_var_1, happy_var_3)))
@@ -33731,28 +37696,40 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_37 = |HappyStk(HappyAbsSyn12(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCases(happy_var_2, happy_var_4, happy_var_6)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_370 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_371 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CUnary(CPreIncOp, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_372 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CUnary(CPreDecOp, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_373 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn97(happy_var_2), _) => {
             HappyAbsSyn97((happy_var_2))
@@ -33763,169 +37740,247 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn102(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_374 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn102(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CUnary((unL(happy_var_1)), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_375 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CSizeofExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_376 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CSizeofType(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_377 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAlignofExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_378 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAlignofType(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_379 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CComplexReal(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_38 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCompound(vec![], (reverse(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_380 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CComplexImag(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_381 = |HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CLabAddrExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_382 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CAdrOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_383 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CIndOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_384 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CPlusOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_385 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CMinOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_386 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CCompOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_387 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CNegOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_388 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_389 = |HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCast(happy_var_2, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_39 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCompound((reverse(happy_var_3)), (reverse(happy_var_4)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_390 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_391 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CMulOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_392 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CDivOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_393 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CRmdOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_394 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_395 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CAddOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_396 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CSubOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_397 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_398 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CShlOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_399 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CShrOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn8(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_4 = |HappyStk(HappyAbsSyn8(happy_var_1), happyRest), tk| {
     happyThen((({
             let decls = reverse(happy_var_1);
 
@@ -33945,216 +38000,317 @@ let HappyStk(HappyAbsSyn8(happy_var_1), happyRest) = |tk| {
             }        })), (|r| { happyReturn((HappyAbsSyn7(r))) }))
 };
 
-let happyRest = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_40 = |happyRest, tk| {
     happyThen(((enterScope)), (|r| { happyReturn((HappyAbsSyn15(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_400 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_401 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CLeOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_402 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CGrOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_403 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CLeqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_404 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CGeqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_405 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_406 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CEqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_407 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CNeqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_408 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_409 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CAndOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let happyRest = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_41 = |happyRest, tk| {
     happyThen(((leaveScope)), (|r| { happyReturn((HappyAbsSyn15(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_410 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_411 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CXorOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_412 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_413 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(COrOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_414 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_415 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CLndOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_416 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_417 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CLorOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_418 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_419 = |HappyStk(HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, (Some(happy_var_3)), happy_var_5)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
+*/
+/* TODO infer type:
+let happyReduction_42 = HappyAbsSyn17((empty));
 
-let HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_420 = |HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, None, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_421 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn116(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_422 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn116(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAssign((unL(happy_var_2)), happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_423 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CAssignOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_424 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CMulAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_425 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CDivAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_426 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CRmdAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_427 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CAddAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_428 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CSubAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_429 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CShlAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_43 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn18(happy_var_2), HappyAbsSyn17(happy_var_1)) => {
             HappyAbsSyn17((snoc(happy_var_1, happy_var_2)))
@@ -34165,68 +38321,96 @@ let __0 = |__1| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_430 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CShrAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_431 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CAndAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_432 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CXorAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_433 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(COrAssOp, (posOf(happy_var_1)))))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_434 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_435 = |HappyStk(HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen((({
             let es = reverse(happy_var_3);
 
         withNodeInfo(es)(CComma((__op_concat(happy_var_1, es))))        })), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_436 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn100((singleton(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_437 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn100(happy_var_1)) => {
             HappyAbsSyn100((snoc(happy_var_1, happy_var_3)))
@@ -34237,45 +38421,69 @@ let __0 = |__1, __2| {
     }
 };
 
+*/
+/* TODO infer type:
+let happyReduction_438 = HappyAbsSyn119((None));
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_439 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn119((Some(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_44 = |__0| {
+    match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn18((CBlockStmt(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
+*/
+/* TODO infer type:
+let happyReduction_440 = HappyAbsSyn119((None));
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_441 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn119((Some(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_442 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_443 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokILit | _ | i => {
                 CIntConst(i)
@@ -34283,7 +38491,9 @@ let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
         }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_444 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokCLit | _ | c => {
                 CCharConst(c)
@@ -34291,7 +38501,9 @@ let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
         }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_445 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokFLit | _ | f => {
                 CFloatConst(f)
@@ -34299,7 +38511,9 @@ let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
         }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_446 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokSLit | _ | s => {
                 CStrLit(s)
@@ -34307,7 +38521,9 @@ let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
         }))), (|r| { happyReturn((HappyAbsSyn123(r))) }))
 };
 
-let HappyStk(HappyAbsSyn124(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_447 = |HappyStk(HappyAbsSyn124(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokSLit | _ | s => {
                 CStrLit((concatCStrings((__op_concat(s, reverse(happy_var_2))))))
@@ -34315,7 +38531,10 @@ let HappyStk(HappyAbsSyn124(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy
         }))), (|r| { happyReturn((HappyAbsSyn123(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_448 = |__0| {
+    match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn124((match happy_var_1 {
                     CTokSLit | _ | s => {
@@ -34326,9 +38545,12 @@ let __0 = match (__0) {
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_449 = |__0, __1| {
     match (__0, __1) {
         (HappyTerminal(happy_var_2), HappyAbsSyn124(happy_var_1)) => {
             HappyAbsSyn124((match happy_var_2 {
@@ -34343,53 +38565,78 @@ let __0 = |__1| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_45 = |__0| {
+    match (__0) {
         HappyAbsSyn18(happy_var_1) => {
             HappyAbsSyn18((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_450 = |__0| {
+    match (__0) {
         HappyTerminal(CTokIdent(_, happy_var_1)) => {
             HappyAbsSyn125((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_451 = |__0| {
+    match (__0) {
         HappyTerminal(CTokTyIdent(_, happy_var_1)) => {
             HappyAbsSyn125((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
+*/
+/* TODO infer type:
+let happyReduction_452 = HappyAbsSyn126((vec![]));
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_453 = |__0| {
+    match (__0) {
         HappyAbsSyn126(happy_var_1) => {
             HappyAbsSyn126((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_454 = |__0| {
+    match (__0) {
         HappyAbsSyn126(happy_var_1) => {
             HappyAbsSyn126((happy_var_1))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_455 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn126((__op_addadd(happy_var_1, happy_var_2)))
@@ -34400,9 +38647,16 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn129(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn126((reverse(happy_var_4))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_456 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn129(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, happyRest)| {
+    HappyStk(HappyAbsSyn126((reverse(happy_var_4))), happyRest)
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_457 = |__0| {
+    match (__0) {
         HappyAbsSyn130(happy_var_1) => {
             HappyAbsSyn129((match happy_var_1 {
                     None => {
@@ -34416,9 +38670,12 @@ let __0 = match (__0) {
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_458 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn130(happy_var_3), _, HappyAbsSyn129(happy_var_1)) => {
             HappyAbsSyn129(((maybe(id, (flip(snoc)), happy_var_3))(happy_var_1)))
@@ -34429,46 +38686,69 @@ let __0 = |__1, __2| {
     }
 };
 
+*/
+/* TODO infer type:
+let happyReduction_459 = HappyAbsSyn130((None));
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_46 = |__0| {
+    match (__0) {
         HappyAbsSyn32(happy_var_1) => {
             HappyAbsSyn18((CBlockDecl(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_460 = |HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
 };
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_461 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(Some(CAttr((internalIdent("const".to_string())), vec![]))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_462 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, (reverse(happy_var_3))))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_463 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_464 = |__0| {
+    match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn100((singleton(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let _ = |_, _| {
+*/
+/* TODO infer type:
+let happyReduction_465 = |_, _, _| {
     HappyAbsSyn100((Reversed(vec![])))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_466 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn100(happy_var_1)) => {
             HappyAbsSyn100((snoc(happy_var_1, happy_var_3)))
@@ -34479,18 +38759,28 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_1), happyRest) = HappyStk(HappyAbsSyn100((happy_var_1)), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_467 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_1), happyRest)| {
+    HappyStk(HappyAbsSyn100((happy_var_1)), happyRest)
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_47 = |__0| {
+    match (__0) {
         HappyAbsSyn10(happy_var_1) => {
             HappyAbsSyn18((CNestedFunDef(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_48 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn18(happy_var_2), _) => {
             HappyAbsSyn18((happy_var_2))
@@ -34501,28 +38791,43 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_49 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
+*/
+/* TODO infer type:
+let happyReduction_5 = HappyAbsSyn8((empty));
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_50 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_51 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_52 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_53 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_54 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (_, HappyAbsSyn21(happy_var_2), _) => {
             HappyAbsSyn21((happy_var_2))
@@ -34533,25 +38838,39 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_1), happyRest) = HappyStk(HappyAbsSyn21((rappendr(happy_var_1, happy_var_3))), happyRest);
+*/
+/* TODO infer type:
+let happyReduction_55 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_1), happyRest)| {
+    HappyStk(HappyAbsSyn21((rappendr(happy_var_1, happy_var_3))), happyRest)
+};
 
-let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_56 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CExpr(None)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_57 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CExpr((Some(happy_var_1)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_58 = |HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CIf(happy_var_3, happy_var_5, None)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_59 = |HappyStk(HappyAbsSyn12(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CIf(happy_var_3, happy_var_5, (Some(happy_var_7)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_6 = |__0, __1| {
     match (__0, __1) {
         (_, HappyAbsSyn8(happy_var_1)) => {
             HappyAbsSyn8((happy_var_1))
@@ -34562,47 +38881,69 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_60 = |HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CSwitch(happy_var_3, happy_var_5)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_61 = |HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CWhile(happy_var_3, happy_var_5, false)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_62 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CWhile(happy_var_5, happy_var_2, true)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_63 = |HappyStk(HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CFor((Left(happy_var_3)), happy_var_5, happy_var_7, happy_var_9)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_64 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CFor((Right(happy_var_4)), happy_var_5, happy_var_7, happy_var_9)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_65 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CGoto(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_66 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CGotoPtr(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_67 = |HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CCont))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_68 = |HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CBreak))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_69 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CReturn(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_7 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn9(happy_var_2), HappyAbsSyn8(happy_var_1)) => {
             HappyAbsSyn8((snoc(happy_var_1, happy_var_2)))
@@ -34613,52 +38954,80 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_70 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, vec![], vec![], vec![])))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_71 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, vec![], vec![])))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_72 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, happy_var_8, vec![])))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn31(happy_var_10), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_73 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn31(happy_var_10), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, happy_var_8, (reverse(happy_var_10)))))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
 };
 
+*/
+/* TODO infer type:
+let happyReduction_74 = HappyAbsSyn27((None));
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_75 = |__0| {
+    match (__0) {
         HappyAbsSyn61(happy_var_1) => {
             HappyAbsSyn27((Some(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
+*/
+/* TODO infer type:
+let happyReduction_76 = HappyAbsSyn28((vec![]));
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_77 = |__0| {
+    match (__0) {
         HappyAbsSyn29(happy_var_1) => {
             HappyAbsSyn28((reverse(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_78 = |__0| {
+    match (__0) {
         HappyAbsSyn30(happy_var_1) => {
             HappyAbsSyn29((singleton(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_79 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn30(happy_var_3), _, HappyAbsSyn29(happy_var_1)) => {
             HappyAbsSyn29((snoc(happy_var_1, happy_var_3)))
@@ -34669,37 +39038,53 @@ let __0 = |__1, __2| {
     }
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_8 = |__0| {
+    match (__0) {
         HappyAbsSyn10(happy_var_1) => {
             HappyAbsSyn9((CFDefExt(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_80 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAsmOperand(None, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn30(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_81 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAsmOperand((Some(happy_var_2)), happy_var_4, happy_var_6)))), (|r| { happyReturn((HappyAbsSyn30(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_82 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CAsmOperand((Some(happy_var_2)), happy_var_4, happy_var_6)))), (|r| { happyReturn((HappyAbsSyn30(r))) }))
 };
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_83 = |__0| {
+    match (__0) {
         HappyAbsSyn123(happy_var_1) => {
             HappyAbsSyn31((singleton(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1, __2| {
+*/
+/* TODO infer type:
+let happyReduction_84 = |__0, __1, __2| {
     match (__0, __1, __2) {
         (HappyAbsSyn123(happy_var_3), _, HappyAbsSyn31(happy_var_1)) => {
             HappyAbsSyn31((snoc(happy_var_1, happy_var_3)))
@@ -34710,15 +39095,21 @@ let __0 = |__1, __2| {
     }
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_85 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_86 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_87 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest), tk| {
     happyThen(((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 withLength(at, (CDecl(declspecs, (List::reverse(dies)))))
@@ -34726,7 +39117,9 @@ let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk|
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_88 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest), tk| {
     happyThen(((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 withLength(at, (CDecl(declspecs, (List::reverse(dies)))))
@@ -34734,17 +39127,26 @@ let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk|
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
+*/
+/* TODO infer type:
+let happyReduction_89 = HappyAbsSyn33((empty));
 
-let __0 = match (__0) {
+*/
+/* TODO infer type:
+let happyReduction_9 = |__0| {
+    match (__0) {
         HappyAbsSyn32(happy_var_1) => {
             HappyAbsSyn9((CDeclExt(happy_var_1)))
         },
         _ => {
             notHappyAtAll
         },
-    };
+    }
+};
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_90 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn32(happy_var_2), HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn33((snoc(happy_var_1, happy_var_2)))
@@ -34755,7 +39157,9 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_91 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
     happyThen((({
             let declspecs = reverse(happy_var_1);
 
@@ -34767,7 +39171,9 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
             }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_92 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen((({
             let declspecs = liftTypeQuals(happy_var_1);
 
@@ -34779,7 +39185,9 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
             }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn91(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_93 = |HappyStk(HappyAbsSyn91(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
     happyThen((({
             let declspecs = liftTypeQuals(happy_var_1);
 
@@ -34791,7 +39199,9 @@ let HappyStk(HappyAbsSyn91(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn35(happy_
             }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_94 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
     happyThen((({
             let declspecs = liftCAttrs(happy_var_1);
 
@@ -34803,7 +39213,9 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
             }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_95 = |HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest), tk| {
     happyThen(((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 /* do */ {
@@ -34816,7 +39228,9 @@ let HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let __0 = |__1| {
+*/
+/* TODO infer type:
+let happyReduction_96 = |__0, __1| {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn64(happy_var_1)) => {
             HappyAbsSyn35(((happy_var_1, happy_var_2)))
@@ -34827,7 +39241,9 @@ let __0 = |__1| {
     }
 };
 
-let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_97 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((/* do */ {
             let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
 
@@ -34836,7 +39252,9 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_98 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
     happyThen(((/* do */ {
             let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
 
@@ -34845,7 +39263,9 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
-let HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk| {
+*/
+/* TODO infer type:
+let happyReduction_99 = |HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest), tk| {
     happyThen(((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 /* do */ {
@@ -34858,6 +39278,7 @@ let HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
+*/
 pub fn happyReturn() -> P<a> {
     (return)
 }
@@ -34866,8 +39287,12 @@ pub fn happyReturn1() -> P<a> {
     happyReturn
 }
 
+/* TODO infer type:
+let happySeq = happyDontSeq;
 
-let __0 = |__1, __2, __3, __4, __5, __6, __7| {
+*/
+/* TODO infer type:
+let happyShift = |__0, __1, __2, __3, __4, __5, __6, __7| {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
         (new_state, 1, tk, st, sts, stk, __OP__, HappyStk(x, _)) => {
             {
@@ -34885,7 +39310,9 @@ let __0 = |__1, __2, __3, __4, __5, __6, __7| {
     }
 };
 
-let __0 = |__1, __2, __3, __4, __5, __6| {
+*/
+/* TODO infer type:
+let happySpecReduce_0 = |__0, __1, __2, __3, __4, __5, __6| {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -34896,7 +39323,9 @@ let __0 = |__1, __2, __3, __4, __5, __6| {
     }
 };
 
-let __0 = |__1, __2, __3, __4, __5, __6| {
+*/
+/* TODO infer type:
+let happySpecReduce_1 = |__0, __1, __2, __3, __4, __5, __6| {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -34910,7 +39339,9 @@ let __0 = |__1, __2, __3, __4, __5, __6| {
     }
 };
 
-let __0 = |__1, __2, __3, __4, __5, __6| {
+*/
+/* TODO infer type:
+let happySpecReduce_2 = |__0, __1, __2, __3, __4, __5, __6| {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -34924,7 +39355,9 @@ let __0 = |__1, __2, __3, __4, __5, __6| {
     }
 };
 
-let __0 = |__1, __2, __3, __4, __5, __6| {
+*/
+/* TODO infer type:
+let happySpecReduce_3 = |__0, __1, __2, __3, __4, __5, __6| {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -34938,11 +39371,15 @@ let __0 = |__1, __2, __3, __4, __5, __6| {
     }
 };
 
+*/
 pub fn happyThen() -> P<b> {
     (__op_bind)
 }
 
+/* TODO infer type:
+let happyThen1 = happyThen;
 
+*/
 pub fn liftCAttrs() -> Vec<CDeclSpec> {
     map((CTypeQual(CAttrQual)))
 }
@@ -34986,7 +39423,10 @@ pub fn setAsmName(mAsmName: Option<CStrLit>, CDeclrR(ident, indirections, oldNam
     }
 }
 
+/* TODO infer type:
+let statement = happySomeParser;
 
+*/
 pub fn statementP() -> P<CStat> {
     statement
 }
@@ -34995,7 +39435,10 @@ pub fn translUnitP() -> P<CTranslUnit> {
     translation_unit
 }
 
+/* TODO infer type:
+let translation_unit = happySomeParser;
 
+*/
 pub fn unL(L(a, pos): Located<a>) -> a {
     a
 }

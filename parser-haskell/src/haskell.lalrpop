@@ -233,8 +233,8 @@ Item: Item = {
     "infixr" <n:Num> "`" <i:Ident> "`"
       => Item::Infixr(n, i),
 
-    <id:CommaOnce<Ident>> <t:("::" <TypeGroup>)>
-      => Item::Prototype(id[0].clone(), t),
+    <ids:CommaOnce<Ident>> <t:("::" <TypeGroup>)>
+      => Item::Prototype(ids, t),
     <a:Assignment> <wh:Where>
       => Item::Assign(Box::new(a), wh),
 };

@@ -52,7 +52,7 @@ pub enum Item {
     Class,
     Instance,
 
-    Prototype(Ident, Vec<Ty>),
+    Prototype(Vec<Ident>, Vec<Ty>),
     Assign(Box<Assignment>, Where),
     GuardAssign,
 

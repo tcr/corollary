@@ -474,11 +474,13 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
         //errln!("{:?}", item);
 
         // println!("well {:?}", item);
-        if let &ast::Item::Prototype(ast::Ident(ref s), ref d) = item {
-            if types.contains_key(&s) {
-                panic!("that shouldn't happen {:?}", s);
+        if let &ast::Item::Prototype(ref idents, ref d) = item {
+            for &ast::Ident(ref s) in idents {
+                if types.contains_key(&s) {
+                    panic!("that shouldn't happen {:?}", s);
+                }
+                types.insert(s, d.clone());
             }
-            types.insert(s, d.clone());
         }
     }
 
@@ -617,7 +619,6 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
             let res = vec![ast::Assignment { pats, expr }];
             new_cache.insert(key, res);
         } else {
-            //TODO waitaminute
             new_cache.insert(key, fnset);
         }
     }
@@ -626,7 +627,13 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
         for ast::Assignment { pats: args, expr } in fnset {
             // For type-less functions,
             if !types.contains_key(&key) {
-                out.push(print_let(state, &ast::Assignment { pats: args, expr }));
+                // TODO we want to infer these function types, probably
+                let let_str = print_let(state, &ast::Assignment { pats: {
+                    let mut out = vec![ast::Pat::Ref(ast::Ident(key.to_string()))];
+                    out.extend(args);
+                    out
+                }, expr });
+                out.push(format!("/* TODO infer type:\n{}\n*/", let_str));
                 continue;
             }
 
