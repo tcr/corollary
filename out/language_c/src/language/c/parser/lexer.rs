@@ -28,7 +28,7 @@ pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Po
     seq(offs_q, seq(fname_q, seq(row_q, (position(offs_q, fname_q, row_q, 1)))))
 }
 
-let alexAndPred = |p1, p2, user, in1, len, in2| {
+let p1 = |p2, user, in1, len, in2| {
     (p1(user, in1, len, in2) && p2(user, in1, len, in2))
 };
 
@@ -40,11 +40,11 @@ pub fn alexGetChar((p, is): AlexInput) -> Option<(Char, AlexInput)> {
     /* Expr::Dummy */ Dummy
 }
 
-let alexIndexInt16OffAddr = |arr, off| {
+let arr = |off| {
     !(arr, off)
 };
 
-let alexIndexInt32OffAddr = |arr, off| {
+let arr = |off| {
     !(arr, off)
 };
 
@@ -69,19 +69,19 @@ pub fn alexMove(__0: Position, __1: Char) -> Position {
     }
 }
 
-let alexPrevCharIs = |c, _, input, _, _| {
+let c = |_, input, _, _| {
     (c == alexInputPrevChar(input))
 };
 
-let alexPrevCharIsOneOf = |arr, _, input, _, _| {
+let arr = |_, input, _, _| {
     !(arr, alexInputPrevChar(input))
 };
 
-let alexPrevCharMatches = |f, _, input, _, _| {
+let f = |_, input, _, _| {
     f((alexInputPrevChar(input)))
 };
 
-let alexRightContext = |sc, user, _, _, input| {
+let sc = |user, _, _, input| {
     match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
         (AlexNone, _) => {
             false
@@ -92,11 +92,11 @@ let alexRightContext = |sc, user, _, _, input| {
     }
 };
 
-let alexScan = |input, sc| {
+let input = |sc| {
     alexScanUser(undefined, input, (sc))
 };
 
-let alexScanUser = |user, input, sc| {
+let user = |input, sc| {
     match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
         (AlexNone, input_q) => {
             match alexGetByte(input) {
@@ -117,502 +117,71 @@ let alexScanUser = |user, input, sc| {
     }
 };
 
-let alex_accept = listArray((0, 241), vec![
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccNone,
-            AlexAccSkip,
-            AlexAcc(120),
-            AlexAccSkip,
-            AlexAccSkip,
-            AlexAcc(119),
-            AlexAcc(118),
-            AlexAcc(117),
-            AlexAcc(116),
-            AlexAcc(115),
-            AlexAcc(114),
-            AlexAcc(113),
-            AlexAcc(112),
-            AlexAcc(111),
-            AlexAcc(110),
-            AlexAcc(109),
-            AlexAcc(108),
-            AlexAcc(107),
-            AlexAcc(106),
-            AlexAcc(105),
-            AlexAcc(104),
-            AlexAcc(103),
-            AlexAcc(102),
-            AlexAcc(101),
-            AlexAcc(100),
-            AlexAcc(99),
-            AlexAcc(98),
-            AlexAcc(97),
-            AlexAcc(96),
-            AlexAcc(95),
-            AlexAcc(94),
-            AlexAcc(93),
-            AlexAcc(92),
-            AlexAcc(91),
-            AlexAcc(90),
-            AlexAcc(89),
-            AlexAcc(88),
-            AlexAcc(87),
-            AlexAcc(86),
-            AlexAcc(85),
-            AlexAcc(84),
-            AlexAcc(83),
-            AlexAcc(82),
-            AlexAcc(81),
-            AlexAcc(80),
-            AlexAcc(79),
-            AlexAcc(78),
-            AlexAcc(77),
-            AlexAcc(76),
-            AlexAcc(75),
-            AlexAcc(74),
-            AlexAcc(73),
-            AlexAcc(72),
-            AlexAcc(71),
-            AlexAcc(70),
-            AlexAcc(69),
-            AlexAcc(68),
-            AlexAcc(67),
-            AlexAcc(66),
-            AlexAcc(65),
-            AlexAcc(64),
-            AlexAcc(63),
-            AlexAcc(62),
-            AlexAcc(61),
-            AlexAcc(60),
-            AlexAcc(59),
-            AlexAcc(58),
-            AlexAcc(57),
-            AlexAcc(56),
-            AlexAcc(55),
-            AlexAcc(54),
-            AlexAcc(53),
-            AlexAcc(52),
-            AlexAcc(51),
-            AlexAcc(50),
-            AlexAcc(49),
-            AlexAcc(48),
-            AlexAcc(47),
-            AlexAcc(46),
-            AlexAcc(45),
-            AlexAcc(44),
-            AlexAcc(43),
-            AlexAcc(42),
-            AlexAcc(41),
-            AlexAcc(40),
-            AlexAcc(39),
-            AlexAcc(38),
-            AlexAcc(37),
-            AlexAcc(36),
-            AlexAcc(35),
-            AlexAcc(34),
-            AlexAcc(33),
-            AlexAcc(32),
-            AlexAcc(31),
-            AlexAcc(30),
-            AlexAcc(29),
-            AlexAcc(28),
-            AlexAcc(27),
-            AlexAcc(26),
-            AlexAcc(25),
-            AlexAcc(24),
-            AlexAcc(23),
-            AlexAcc(22),
-            AlexAcc(21),
-            AlexAcc(20),
-            AlexAcc(19),
-            AlexAcc(18),
-            AlexAcc(17),
-            AlexAcc(16),
-            AlexAcc(15),
-            AlexAcc(14),
-            AlexAcc(13),
-            AlexAcc(12),
-            AlexAcc(11),
-            AlexAcc(10),
-            AlexAcc(9),
-            AlexAcc(8),
-            AlexAcc(7),
-            AlexAcc(6),
-            AlexAcc(5),
-            AlexAcc(4),
-            AlexAcc(3),
-            AlexAcc(2),
-            AlexAcc(1),
-            AlexAcc(0),
-        ]);
-
-let alex_action_1 = __op_rshift(|pos, len, __str| { /* Expr::Dummy */ Dummy }(setPos, (adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false));
-
-let alex_action_10 = token(CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))));
-
-let alex_action_11 = token(CTokCLit, (flip(cChars, false, unescapeMultiChars(tail))));
-
-let alex_action_12 = token(CTokCLit, (flip(cChars, true, unescapeMultiChars(tail(tail)))));
-
-let alex_action_13 = token(CTokFLit, readCFloat);
-
-let alex_action_14 = token(CTokFLit, readCFloat);
-
-let alex_action_15 = token_fail("Hexadecimal floating constant requires an exponent".to_string());
-
-let alex_action_16 = token(CTokSLit, (cString(unescapeString(init(tail)))));
-
-let alex_action_17 = token(CTokSLit, (cString_w(unescapeString(init(tail(tail))))));
-
-let alex_action_18 = token_fail("Universal character names are unsupported".to_string());
-
-let alex_action_19 = token_fail("Invalid escape sequence".to_string());
-
-let alex_action_20 = token_fail("Universal character names in string literals are unsupported".to_string());
-
-let alex_action_21 = token_(1, CTokLParen);
-
-let alex_action_22 = token_(1, CTokRParen);
-
-let alex_action_23 = token_(1, CTokLBracket);
-
-let alex_action_24 = token_(1, CTokRBracket);
-
-let alex_action_25 = token_(2, CTokArrow);
-
-let alex_action_26 = token_(1, CTokDot);
-
-let alex_action_27 = token_(1, CTokExclam);
-
-let alex_action_28 = token_(1, CTokTilde);
-
-let alex_action_29 = token_(2, CTokInc);
-
-let alex_action_30 = token_(2, CTokDec);
-
-let alex_action_31 = token_(1, CTokPlus);
-
-let alex_action_32 = token_(1, CTokMinus);
-
-let alex_action_33 = token_(1, CTokStar);
-
-let alex_action_34 = token_(1, CTokSlash);
-
-let alex_action_35 = token_(1, CTokPercent);
-
-let alex_action_36 = token_(1, CTokAmper);
-
-let alex_action_37 = token_(2, CTokShiftL);
-
-let alex_action_38 = token_(2, CTokShiftR);
-
-let alex_action_39 = token_(1, CTokLess);
-
-let alex_action_4 = |pos, len, __str| { /* Expr::Dummy */ Dummy }(idkwtok, (takeChars(len, __str)), pos);
-
-let alex_action_40 = token_(2, CTokLessEq);
-
-let alex_action_41 = token_(1, CTokHigh);
-
-let alex_action_42 = token_(2, CTokHighEq);
-
-let alex_action_43 = token_(2, CTokEqual);
-
-let alex_action_44 = token_(2, CTokUnequal);
-
-let alex_action_45 = token_(1, CTokHat);
-
-let alex_action_46 = token_(1, CTokBar);
-
-let alex_action_47 = token_(2, CTokAnd);
-
-let alex_action_48 = token_(2, CTokOr);
-
-let alex_action_49 = token_(1, CTokQuest);
-
-let alex_action_5 = token_plus(CTokILit, readCOctal);
-
-let alex_action_50 = token_(1, CTokColon);
-
-let alex_action_51 = token_(1, CTokAssign);
-
-let alex_action_52 = token_(2, CTokPlusAss);
-
-let alex_action_53 = token_(2, CTokMinusAss);
-
-let alex_action_54 = token_(2, CTokStarAss);
-
-let alex_action_55 = token_(2, CTokSlashAss);
-
-let alex_action_56 = token_(2, CTokPercAss);
-
-let alex_action_57 = token_(2, CTokAmpAss);
-
-let alex_action_58 = token_(2, CTokHatAss);
-
-let alex_action_59 = token_(2, CTokBarAss);
-
-let alex_action_6 = token_plus(CTokILit, (readCInteger(DecRepr)));
-
-let alex_action_60 = token_(3, CTokSLAss);
-
-let alex_action_61 = token_(3, CTokSRAss);
-
-let alex_action_62 = token_(1, CTokComma);
-
-let alex_action_63 = token_(1, CTokSemic);
-
-let alex_action_64 = token_(1, CTokLBrace);
-
-let alex_action_65 = token_(1, CTokRBrace);
-
-let alex_action_66 = token_(3, CTokEllipsis);
-
-let alex_action_7 = token_plus(CTokILit, (readCInteger(HexRepr, drop(2))));
-
-let alex_action_8 = token_fail("Invalid integer constant suffix".to_string());
-
-let alex_action_9 = token(CTokCLit, (cChar(fst(unescapeChar(tail)))));
-
-let alex_actions = array((0, 121), vec![
-            (120, alex_action_1),
-            (119, alex_action_4),
-            (118, alex_action_4),
-            (117, alex_action_5),
-            (116, alex_action_5),
-            (115, alex_action_5),
-            (114, alex_action_5),
-            (113, alex_action_5),
-            (112, alex_action_5),
-            (111, alex_action_5),
-            (110, alex_action_5),
-            (109, alex_action_5),
-            (108, alex_action_5),
-            (107, alex_action_5),
-            (106, alex_action_5),
-            (105, alex_action_5),
-            (104, alex_action_5),
-            (103, alex_action_5),
-            (102, alex_action_5),
-            (101, alex_action_5),
-            (100, alex_action_6),
-            (99, alex_action_6),
-            (98, alex_action_6),
-            (97, alex_action_6),
-            (96, alex_action_6),
-            (95, alex_action_6),
-            (94, alex_action_6),
-            (93, alex_action_6),
-            (92, alex_action_6),
-            (91, alex_action_6),
-            (90, alex_action_6),
-            (89, alex_action_6),
-            (88, alex_action_6),
-            (87, alex_action_6),
-            (86, alex_action_6),
-            (85, alex_action_6),
-            (84, alex_action_7),
-            (83, alex_action_7),
-            (82, alex_action_7),
-            (81, alex_action_7),
-            (80, alex_action_7),
-            (79, alex_action_7),
-            (78, alex_action_7),
-            (77, alex_action_7),
-            (76, alex_action_7),
-            (75, alex_action_7),
-            (74, alex_action_7),
-            (73, alex_action_7),
-            (72, alex_action_7),
-            (71, alex_action_7),
-            (70, alex_action_7),
-            (69, alex_action_7),
-            (68, alex_action_7),
-            (67, alex_action_8),
-            (66, alex_action_9),
-            (65, alex_action_10),
-            (64, alex_action_11),
-            (63, alex_action_12),
-            (62, alex_action_13),
-            (61, alex_action_13),
-            (60, alex_action_13),
-            (59, alex_action_13),
-            (58, alex_action_13),
-            (57, alex_action_14),
-            (56, alex_action_14),
-            (55, alex_action_14),
-            (54, alex_action_14),
-            (53, alex_action_15),
-            (52, alex_action_16),
-            (51, alex_action_16),
-            (50, alex_action_17),
-            (49, alex_action_17),
-            (48, alex_action_18),
-            (47, alex_action_19),
-            (46, alex_action_20),
-            (45, alex_action_21),
-            (44, alex_action_22),
-            (43, alex_action_23),
-            (42, alex_action_24),
-            (41, alex_action_25),
-            (40, alex_action_26),
-            (39, alex_action_27),
-            (38, alex_action_28),
-            (37, alex_action_29),
-            (36, alex_action_30),
-            (35, alex_action_31),
-            (34, alex_action_32),
-            (33, alex_action_33),
-            (32, alex_action_34),
-            (31, alex_action_35),
-            (30, alex_action_36),
-            (29, alex_action_37),
-            (28, alex_action_38),
-            (27, alex_action_39),
-            (26, alex_action_40),
-            (25, alex_action_41),
-            (24, alex_action_42),
-            (23, alex_action_43),
-            (22, alex_action_44),
-            (21, alex_action_45),
-            (20, alex_action_46),
-            (19, alex_action_47),
-            (18, alex_action_48),
-            (17, alex_action_49),
-            (16, alex_action_50),
-            (15, alex_action_51),
-            (14, alex_action_52),
-            (13, alex_action_53),
-            (12, alex_action_54),
-            (11, alex_action_55),
-            (10, alex_action_56),
-            (9, alex_action_57),
-            (8, alex_action_58),
-            (7, alex_action_59),
-            (6, alex_action_60),
-            (5, alex_action_61),
-            (4, alex_action_62),
-            (3, alex_action_63),
-            (2, alex_action_64),
-            (1, alex_action_65),
-            (0, alex_action_66),
-        ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 pub fn alex_base() -> Array<isize, isize> {
     listArray((0, 241), vec![
@@ -10633,9 +10202,10 @@ pub fn alex_deflt() -> Array<isize, isize> {
         ])
 }
 
-let alex_scan_tkn = |user, orig_input, len, input, s, last_acc| {
+let user = |orig_input, len, input, s, last_acc| {
     seq(input, {
         let new_acc = (check_accs((quickIndex(alex_accept, (s)))));
+
     seq(new_acc, match alexGetByte(input) {
             None => {
                 (new_acc, input)
@@ -10645,9 +10215,13 @@ let alex_scan_tkn = |user, orig_input, len, input, s, last_acc| {
                     ord_c => {
                         {
                             let base = alexIndexInt32OffAddr(alex_base, s);
+
                             let offset = ((base + ord_c));
+
                             let check = alexIndexInt16OffAddr(alex_check, offset);
+
                             let new_s = (__TODO_if(((offset >= (0)))) && ((check == ord_c))(then, alexIndexInt16OffAddr, alex_table, offset, __TODO_else, alexIndexInt16OffAddr, alex_deflt, s));
+
                         match new_s {
                                 __OP__(1) => {
                                     (new_acc, input)
@@ -20191,8 +19765,7 @@ pub fn alex_table() -> Array<isize, isize> {
         ])
 }
 
-let idkwtok = |__0| {
-    match (__0) {
+let __0 = match (__0) {
         ['_', ['B', ['o', ['o', ['l', []]]]]] => {
             tok(5, CTokBool)
         },
@@ -20400,18 +19973,21 @@ let idkwtok = |__0| {
         cs => {
             |pos| { /* Expr::Dummy */ Dummy }(/* do */ {
                     let name = getNewName;
+
                     let len = match length(cs) {
-                        l => {
-                            l
-                        },
-                    };
+                            l => {
+                                l
+                            },
+                        };
+
                     let ident = mkIdent(pos, cs, name);
+
                     let tyident = isTypeIdent(ident);
+
                     __TODO_if(tyident, then, return, (CTokTyIdent((pos, len), ident)), __TODO_else, return, (CTokIdent((pos, len), ident)))
                 })
         },
-    }
-};
+    };
 
 pub fn ignoreAttribute() -> P<()> {
     skipTokens((0))
@@ -20420,6 +19996,7 @@ pub fn ignoreAttribute() -> P<()> {
 pub fn lexC(cont: fn(CToken) -> P<a>) -> P<a> {
     /* do */ {
         let tok = lexToken;
+
         cont(tok)
     }
 }
@@ -20431,7 +20008,9 @@ pub fn lexToken() -> P<CToken> {
 pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
     /* do */ {
         let pos = getPos;
+
         let inp = getInput;
+
         match alexScan((pos, inp), 0) {
             AlexEOF => {
                 /* do */ {
@@ -20454,6 +20033,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                     setPos(pos_q);
                     setInput(inp_q);
                     let tok = action(pos, len, inp);
+
                     when(modifyCache)(setLastToken(tok));
                     tok
                 }
@@ -20465,7 +20045,9 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
 pub fn lexicalError() -> P<a> {
     /* do */ {
         let pos = getPos;
+
         let c(cs) = liftM(takeChar, getInput);
+
         failP(pos, vec![
                 "Lexical error !".to_string(),
                 __op_addadd("The character ".to_string(), __op_addadd(show(c), " does not fit here.".to_string())),
@@ -20476,6 +20058,7 @@ pub fn lexicalError() -> P<a> {
 pub fn parseError() -> P<a> {
     /* do */ {
         let tok = getLastToken;
+
         failP((posOf(tok)), vec![
                 "Syntax error !".to_string(),
                 __op_addadd("The symbol `".to_string(), __op_addadd(show(tok), "\' does not fit here.".to_string())),
@@ -20483,7 +20066,7 @@ pub fn parseError() -> P<a> {
     }
 }
 
-let quickIndex = |arr, i| {
+let arr = |i| {
     !(arr, i)
 };
 

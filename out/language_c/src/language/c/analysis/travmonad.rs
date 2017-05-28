@@ -108,7 +108,9 @@ pub fn enterBlockScope() -> m<()> {
 pub fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> bool) -> m<IdentDecl> {
     /* do */ {
         let def = Declaration(decl);
+
         let redecl = withDefTable(defineScopedIdentWhen(cond, (declIdent(def)), def));
+
         checkVarRedef(def, redecl);
         def
     }
@@ -125,6 +127,7 @@ pub fn enterPrototypeScope() -> m<()> {
 pub fn generateName() -> Trav<s, Name> {
     __op_bind(get, |ts| { /* Expr::Dummy */ Dummy }(/* do */ {
             let [new_name, gen_q] = nameGenerator(ts);
+
             put(ts {
             nameGenerator: gen_q
         });
@@ -155,7 +158,9 @@ pub fn handleAsmBlock(asm: AsmBlock) -> m<()> {
 pub fn handleEnumeratorDef(enumerator: Enumerator) -> m<()> {
     /* do */ {
         let ident = declIdent(enumerator);
+
         let redecl = withDefTable(defineScopedIdent(ident, (EnumeratorDef(enumerator))));
+
         checkRedef((show(ident)), ident, redecl);
         ()
     }
@@ -164,7 +169,9 @@ pub fn handleEnumeratorDef(enumerator: Enumerator) -> m<()> {
 pub fn handleFunDef(ident: Ident, fun_def: FunDef) -> m<()> {
     /* do */ {
         let def = FunctionDef(fun_def);
+
         let redecl = withDefTable(defineScopedIdentWhen(isDeclaration, ident, def));
+
         checkVarRedef(def, redecl);
         handleDecl((DeclEvent(def)))
     }
@@ -173,7 +180,9 @@ pub fn handleFunDef(ident: Ident, fun_def: FunDef) -> m<()> {
 pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
     /* do */ {
         let def = ObjectDef(obj_def);
+
         let redecl = withDefTable(defineScopedIdentWhen((|old| { /* Expr::Dummy */ Dummy }(shouldOverride, def, old)), ident, def));
+
         checkVarRedef(def, redecl);
         handleDecl(((__TODO_if(local, then, LocalEvent, __TODO_else, DeclEvent))(def)))
     }
@@ -187,7 +196,9 @@ pub fn handleParamDecl(__0: ParamDecl, __1: m<()>) -> m<()> {
         (pd, __OP__, ParamDecl(vardecl, node)) => {
             /* do */ {
                 let def = ObjectDef((ObjDef(vardecl, None, node)));
+
                 let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
+
                 checkVarRedef(def, redecl);
                 handleDecl((ParamEvent(pd)))
             }
@@ -198,6 +209,7 @@ pub fn handleParamDecl(__0: ParamDecl, __1: m<()>) -> m<()> {
 pub fn handleTagDecl(decl: TagFwdDecl) -> m<()> {
     /* do */ {
         let redecl = withDefTable(declareTag((sueRef(decl)), decl));
+
         checkRedef((show(sueRef(decl))), decl, redecl)
     }
 }
@@ -205,6 +217,7 @@ pub fn handleTagDecl(decl: TagFwdDecl) -> m<()> {
 pub fn handleTagDef(def: TagDef) -> m<()> {
     /* do */ {
         let redecl = withDefTable(defineTag((sueRef(def)), def));
+
         checkRedef((show(sueRef(def))), def, redecl);
         handleDecl((TagEvent(def)))
     }
@@ -217,6 +230,7 @@ pub fn handleTravError(a: m<a>) -> m<Option<a>> {
 pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
     /* do */ {
         let redecl = withDefTable(defineTypeDef(ident, typeDef));
+
         checkRedef((show(ident)), typeDef, redecl);
         handleDecl((TypeDefEvent(typeDef)));
         ()
@@ -226,6 +240,7 @@ pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
 pub fn handleVarDecl(is_local: bool, decl: Decl) -> m<()> {
     /* do */ {
         let def = enterDecl(decl, (__TODO_const(false)));
+
         handleDecl(((__TODO_if(is_local, then, LocalEvent, __TODO_else, DeclEvent))(def)))
     }
 }
@@ -269,6 +284,7 @@ pub fn leavePrototypeScope() -> m<()> {
 pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
     /* do */ {
         let old_decl = liftM((lookupIdent(ident)), getDefTable);
+
         mapMaybeM(old_decl)(|obj| { /* Expr::Dummy */ Dummy }(match obj {
                 Right | objdef => {
                     __op_rshift(addRef(ident, objdef), objdef)
@@ -347,7 +363,9 @@ otherwise { Right((v, ts)) },
 pub fn runTrav_(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
     fmap(fst, runTrav(())(/* do */ {
             let r = t;
+
             let es = getErrors;
+
             (r, es)
         }))
 }

@@ -60,6 +60,7 @@ pub fn boolValue(__0: CExpr) -> Option<bool> {
 pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
     /* do */ {
         let dt = getDefTable;
+
         match lookupTag((sueRef(ctr)), dt) {
             Some | Left(_) => {
                 astError((nodeInfo(ctr)), "composite declared but not defined".to_string())
@@ -67,7 +68,9 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
             Some | Right(CompDef(CompType(_, tag, ms, _, ni))) => {
                 /* do */ {
                     let ts = map(declType, ms);
+
                     let sizes = mapM((sizeofType(md, ni)), ts);
+
                     match tag {
                         StructTag => {
                             return(sum(sizes))
@@ -93,8 +96,11 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
         (md, env, CCond(e1, me2, e3, ni)) => {
             /* do */ {
                 let e1_q = constEval(md, env, e1);
+
                 let me2_q = maybe((None), (liftM(|e| { /* Expr::Dummy */ Dummy }(Some), constEval(md, env, e))), me2);
+
                 let e3_q = constEval(md, env, e3);
+
                 match boolValue(e1_q) {
                     Some | true => {
                         return(fromMaybe(e1_q, me2_q))
@@ -111,9 +117,13 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
         (md, env, e, __OP__, CBinary(op, e1, e2, ni)) => {
             /* do */ {
                 let e1_q = constEval(md, env, e1);
+
                 let e2_q = constEval(md, env, e2);
+
                 let t = tExpr(vec![], RValue, e);
+
                 let bytes = liftM(fromIntegral, sizeofType(md, e, t));
+
                 match (intValue(e1_q), intValue(e2_q)) {
                     (Some(i1), Some(i2)) => {
                         intExpr(ni, (withWordBytes(bytes, (intOp(op, i1, i2)))))
@@ -127,8 +137,11 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
         (md, env, CUnary(op, e, ni)) => {
             /* do */ {
                 let e_q = constEval(md, env, e);
+
                 let t = tExpr(vec![], RValue, e);
+
                 let bytes = liftM(fromIntegral, sizeofType(md, e, t));
+
                 match intValue(e_q) {
                     Some | i => {
                         match intUnOp(op, i) {
@@ -149,8 +162,11 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
         (md, env, CCast(d, e, ni)) => {
             /* do */ {
                 let e_q = constEval(md, env, e);
+
                 let t = analyseTypeDecl(d);
+
                 let bytes = liftM(fromIntegral, sizeofType(md, d, t));
+
                 match intValue(e_q) {
                     Some | i => {
                         intExpr(ni, (withWordBytes(bytes, i)))
@@ -164,28 +180,36 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
         (md, _, CSizeofExpr(e, ni)) => {
             /* do */ {
                 let t = tExpr(vec![], RValue, e);
+
                 let sz = sizeofType(md, e, t);
+
                 intExpr(ni, sz)
             }
         },
         (md, _, CSizeofType(d, ni)) => {
             /* do */ {
                 let t = analyseTypeDecl(d);
+
                 let sz = sizeofType(md, d, t);
+
                 intExpr(ni, sz)
             }
         },
         (md, _, CAlignofExpr(e, ni)) => {
             /* do */ {
                 let t = tExpr(vec![], RValue, e);
+
                 let sz = alignofType(md, e, t);
+
                 intExpr(ni, sz)
             }
         },
         (md, _, CAlignofType(d, ni)) => {
             /* do */ {
                 let t = analyseTypeDecl(d);
+
                 let sz = alignofType(md, d, t);
+
                 intExpr(ni, sz)
             }
         },
@@ -195,14 +219,17 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
         (md, env, e, __OP__, CVar(i, _)) => {
             /* do */ {
                 let t = tExpr(vec![], RValue, e);
+
                 match derefTypeDef(t) {
                     DirectType | TyEnum(etr) | _ | _ => {
                         /* do */ {
                             let dt = getDefTable;
+
                             match lookupTag((sueRef(etr)), dt) {
                                 Some | Right(EnumDef(EnumType(_, es, _, _))) => {
                                     /* do */ {
                                         let env_q = foldM(enumConst, env, es);
+
                                         return(fromMaybe(e)(Map::lookup(i, env_q)))
                                     }
                                 },
@@ -353,10 +380,12 @@ pub fn sizeofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
         (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
             /* do */ {
                 let sz_q = constEval(md, Map::empty, sz);
+
                 match sz_q {
                     CConst | CIntConst(i, _) => {
                         /* do */ {
                             let s = sizeofType(md, n, bt);
+
                             return((getCInteger(i) * s))
                         }
                     },

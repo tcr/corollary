@@ -114,6 +114,7 @@ pub fn exportMemberDecl(__0: MemberDecl) -> CDecl {
         MemberDecl(vardecl, bitfieldsz, node_info) => {
             {
                 let (specs, declarator) = exportVarDecl(vardecl);
+
             CDecl(specs, vec![(Some(declarator), None, bitfieldsz)], node_info)            }
         },
     }
@@ -122,6 +123,7 @@ pub fn exportMemberDecl(__0: MemberDecl) -> CDecl {
 pub fn exportParamDecl(paramdecl: ParamDecl) -> CDecl {
     {
         let (specs, declr) = exportVarDecl((getVarDecl(paramdecl)));
+
     CDecl(specs, vec![(Some(declr), None, None)], (nodeInfo(paramdecl)))    }
 }
 

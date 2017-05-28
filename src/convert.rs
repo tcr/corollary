@@ -611,24 +611,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
         for ast::Assignment { pats: args, expr } in fnset {
             // For type-less functions,
             if !types.contains_key(&key) {
-                // With no type signature, we print a lambda.
-                // If there are no arguments, we compute it now (non-lazily).
-                if args.len() == 0 {
-                    out.push(
-                        format!("{}let {} = {};\n",
-                            state.indent(),
-                            key,
-                            print_expr(state.tab(), &expr)));
-                } else {
-                    out.push(
-                        format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
-                            state.indent(),
-                            key,
-                            print_patterns(state, args),
-                            state.tab().indent(),
-                            print_expr(state.tab(), &expr),
-                            state.indent()));
-                }
+                out.push(print_let(state, &ast::Assignment { pats: args, expr }));
                 continue;
             }
 
@@ -660,12 +643,26 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
 }
 
 pub fn print_let(state: PrintState, assign: &ast::Assignment) -> String {
-    format!(
-        "{}let {} = {};",
-        state.indent(),
-        print_patterns(state, &assign.pats),
-        print_expr(state, &assign.expr),
-    )
+    // With no type signature, we print a lambda.
+    // If there are no arguments, we compute it now (non-lazily).
+    let &ast::Assignment { ref pats, ref expr } = assign;
+    if pats.len() == 0 {
+        // TODO why does this case occur?
+        format!("")
+    } else if pats.len() == 1 {
+        format!("{}let {} = {};\n",
+            state.indent(),
+            print_pattern(state, &pats[0]),
+            print_expr(state.tab(), expr))
+    } else {
+        format!("{}let {} = |{}| {{\n{}{}\n{}}};\n",
+            state.indent(),
+            print_pattern(state, &pats[0]),
+            print_patterns(state, &pats[1..]),
+            state.tab().indent(),
+            print_expr(state.tab(), expr),
+            state.indent())
+    }
 }
 
 pub fn print_do(state: PrintState, stmts: &[ast::DoItem], items: &[ast::Item]) -> String {

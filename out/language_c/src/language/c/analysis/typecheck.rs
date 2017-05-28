@@ -170,6 +170,7 @@ pub fn compositeParamDecl(__0: ParamDecl, __1: ParamDecl) -> Either<String, Para
 pub fn compositeParamDecl_q(f: fn(VarDecl) -> fn(NodeInfo) -> ParamDecl, VarDecl(n1, attrs1, t1): VarDecl, VarDecl(n2, attrs2, t2): VarDecl, dni: NodeInfo) -> Either<String, ParamDecl> {
     /* do */ {
         let vd = compositeVarDecl((VarDecl(n1, attrs1, t1_q)), (VarDecl(n2, attrs2, t2_q)));
+
         return(f(vd, dni))
     }
 }
@@ -199,46 +200,47 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
         (t1, __OP__, DirectType(tn1, q1, a1), t2, __OP__, DirectType(tn2, q2, a2)) => {
             /* do */ {
                 let tn = match (tn1, tn2) {
-                    (TyVoid, TyVoid) => {
-                        TyVoid
-                    },
-                    (TyIntegral(_), TyEnum(_)) => {
-                        tn1
-                    },
-                    (TyEnum(_), TyIntegral(_)) => {
-                        tn2
-                    },
-                    (TyIntegral(i1), TyIntegral(i2)) => {
-                        return(TyIntegral((intConversion(i1, i2))))
-                    },
-                    (TyFloating(f1), TyFloating(f2)) => {
-                        return(TyFloating((floatConversion(f1, f2))))
-                    },
-                    (TyComplex(f1), TyComplex(f2)) => {
-                        return(TyComplex((floatConversion(f1, f2))))
-                    },
-                    (TyComp(c1), TyComp(c2)) => {
-                        /* do */ {
-                            when((__op_assign_div(sueRef(c1), sueRef(c2))))(fail(__op_addadd("incompatible composite types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))));
+                        (TyVoid, TyVoid) => {
+                            TyVoid
+                        },
+                        (TyIntegral(_), TyEnum(_)) => {
                             tn1
-                        }
-                    },
-                    (TyEnum(e1), TyEnum(e2)) => {
-                        /* do */ {
-                            when((__op_assign_div(sueRef(e1), sueRef(e2))))(fail(__op_addadd("incompatible enumeration types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))));
-                            return(TyEnum(e1))
-                        }
-                    },
-                    (TyBuiltin(TyVaList), TyBuiltin(TyVaList)) => {
-                        return(TyBuiltin(TyVaList))
-                    },
-                    (TyBuiltin(_), TyBuiltin(_)) => {
-                        fail(__op_addadd("incompatible builtin types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2)))))
-                    },
-                    (_, _) => {
-                        fail(__op_addadd("incompatible direct types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2)))))
-                    },
-                };
+                        },
+                        (TyEnum(_), TyIntegral(_)) => {
+                            tn2
+                        },
+                        (TyIntegral(i1), TyIntegral(i2)) => {
+                            return(TyIntegral((intConversion(i1, i2))))
+                        },
+                        (TyFloating(f1), TyFloating(f2)) => {
+                            return(TyFloating((floatConversion(f1, f2))))
+                        },
+                        (TyComplex(f1), TyComplex(f2)) => {
+                            return(TyComplex((floatConversion(f1, f2))))
+                        },
+                        (TyComp(c1), TyComp(c2)) => {
+                            /* do */ {
+                                when((__op_assign_div(sueRef(c1), sueRef(c2))))(fail(__op_addadd("incompatible composite types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))));
+                                tn1
+                            }
+                        },
+                        (TyEnum(e1), TyEnum(e2)) => {
+                            /* do */ {
+                                when((__op_assign_div(sueRef(e1), sueRef(e2))))(fail(__op_addadd("incompatible enumeration types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))));
+                                return(TyEnum(e1))
+                            }
+                        },
+                        (TyBuiltin(TyVaList), TyBuiltin(TyVaList)) => {
+                            return(TyBuiltin(TyVaList))
+                        },
+                        (TyBuiltin(_), TyBuiltin(_)) => {
+                            fail(__op_addadd("incompatible builtin types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2)))))
+                        },
+                        (_, _) => {
+                            fail(__op_addadd("incompatible direct types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2)))))
+                        },
+                    };
+
                 return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
             }
         },
@@ -263,9 +265,13 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
         (ArrayType(t1, s1, q1, a1), ArrayType(t2, s2, q2, a2)) => {
             /* do */ {
                 let t = compositeType(t1, t2);
+
                 let s = compositeSize(s1, s2);
+
                 let quals = mergeTypeQuals(q1, q2);
+
                 let attrs = mergeAttrs(a1, a2);
+
                 (ArrayType(t, s, quals, attrs))
             }
         },
@@ -290,6 +296,7 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
                 (FunType(rt1, args1, varargs1), FunType(rt2, args2, varargs2)) => {
                     /* do */ {
                         let args = mapM((uncurry(compositeParamDecl)), (zip(args1, args2)));
+
                         when((__op_assign_div(varargs1, varargs2)))(fail("incompatible varargs declarations".to_string()));
                         doFunType(rt1, rt2, args, varargs1)
                     }
@@ -303,6 +310,7 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
                 (FunTypeIncomplete(rt1), FunTypeIncomplete(rt2)) => {
                     /* do */ {
                         let rt = compositeType(rt1, rt2);
+
                         (FunctionType((FunTypeIncomplete(rt)), (mergeAttrs(attrs1, attrs2))))
                     }
                 },
@@ -317,6 +325,7 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
 pub fn compositeVarDecl(VarDecl(n1, attrs1, t1): VarDecl, VarDecl(_, attrs2, t2): VarDecl) -> Either<String, VarDecl> {
     /* do */ {
         let t = compositeType(t1, t2);
+
         (VarDecl(n1, (compositeDeclAttrs(attrs1, attrs2)), t))
     }
 }
@@ -328,6 +337,7 @@ pub fn conditionalType(t1: Type, t2: Type) -> Either<String, Type> {
         (ArrayType(t1_q, _, q1, a1), ArrayType(t2_q, _, q2, a2)) => {
             /* do */ {
                 let t = compositeType(t1_q, t2_q);
+
                 return(ArrayType(t, (UnknownArraySize(false)), (mergeTypeQuals(q1, q2)), (mergeAttrs(a1, a2))))
             }
         },
@@ -371,9 +381,13 @@ pub fn constType(__0: CConst) -> m<Type> {
         CStrConst(CString(chars, wide), ni) => {
             /* do */ {
                 let n = genName;
+
                 let charType = /* Expr::Dummy */ Dummy;
+
                 let ni_q = mkNodeInfo((posOf(ni)), n);
+
                 let arraySize = ArraySize(true, (CConst((CIntConst((cInteger((toInteger((length(chars)))))), ni_q)))));
+
                 return(ArrayType((DirectType((TyIntegral(charType)), noTypeQuals, noAttributes)), arraySize, noTypeQuals, vec![]))
             }
         },
@@ -452,7 +466,9 @@ pub fn fieldType(ni: NodeInfo, m: Ident, t: Type) -> m<Type> {
         DirectType | TyComp(ctr) | _ | _ => {
             /* do */ {
                 let td = lookupSUE(ni, (sueRef(ctr)));
+
                 let ms = tagMembers(ni, td);
+
                 match lookup(m, ms) {
                     Some | ft => {
                         ft
@@ -472,6 +488,7 @@ pub fn fieldType(ni: NodeInfo, m: Ident, t: Type) -> m<Type> {
 pub fn lookupSUE(ni: NodeInfo, sue: SUERef) -> m<TagDef> {
     /* do */ {
         let dt = getDefTable;
+
         match lookupTag(sue, dt) {
             Some | Right(td) => {
                 td
@@ -509,6 +526,7 @@ pub fn sizeEqual(__0: CExpr, __1: CExpr) -> bool {
 pub fn sueAttrs(ni: NodeInfo, sue: SUERef) -> m<Attributes> {
     /* do */ {
         let dt = getDefTable;
+
         match lookupTag(sue, dt) {
             None => {
                 astError(ni)(__op_addadd("SUE not found: ".to_string(), render((pretty(sue)))))
@@ -540,6 +558,7 @@ pub fn tagMembers(ni: NodeInfo, td: TagDef) -> m<Vec<(Ident, Type)>> {
 pub fn typeDefAttrs(ni: NodeInfo, i: Ident) -> m<Attributes> {
     /* do */ {
         let dt = getDefTable;
+
         match lookupIdent(i, dt) {
             None => {
                 astError(ni)(__op_addadd("can\'t find typedef name: ".to_string(), identToString(i)))

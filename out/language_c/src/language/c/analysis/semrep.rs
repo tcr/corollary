@@ -215,6 +215,7 @@ pub fn declName() -> VarName {
 pub fn declOfDef(def: n) -> Decl {
     {
         let vd = getVarDecl(def);
+
     Decl(vd, (nodeInfo(def)))    }
 }
 

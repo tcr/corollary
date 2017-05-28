@@ -122,6 +122,7 @@ pub fn defineGlobalIdent(ident: Ident, def: IdentDecl, deftbl: DefTable) -> (Dec
 pub fn defineLabel(ident: Ident, deftbl: DefTable) -> (DeclarationStatus<Ident>, DefTable) {
     {
         let (labels_q, old_label) = defLocal((labelDefs(deftbl)), ident, ident);
+
     (maybe(NewDecl, Redeclared, old_label), deftbl {
         labelDefs: labels_q
     })    }
@@ -218,6 +219,7 @@ pub fn leaveLocalScope(deftbl: DefTable) -> DefTable {
 pub fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
     {
         let (decls_q, members) = leaveScope((memberDecls(deftbl)));
+
     __op_tuple2((), (map(snd, members))((deftbl {
             memberDecls: decls_q
         })))    }

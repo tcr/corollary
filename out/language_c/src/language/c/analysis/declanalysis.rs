@@ -60,9 +60,13 @@ pub fn analyseTypeDecl(CDecl(declspecs, declrs, node): CDecl) -> m<Type> {
 pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: bool, CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node): CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
     /* do */ {
         let storage_spec = canonicalStorageSpec(storage_specs);
+
         let typ = tType(handle_sue_def, node, typequals, canonTySpecs, derived_declrs, oldstyle_params);
+
         let attrs_q = mapM(tAttr, (__op_addadd(decl_attrs, declr_attrs)));
+
         let name = mkVarName(node, name_opt, asmname_opt);
+
         return(VarDeclInfo(name, inline, storage_spec, attrs_q, typ, node))
     }
 }
@@ -70,7 +74,9 @@ pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, de
 pub fn analyseVarDecl_q(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
     /* do */ {
         let (storage_specs, attrs, type_quals, type_specs, inline) = partitionDeclSpecs(declspecs);
+
         let canonTySpecs = canonicalTypeSpec(type_specs);
+
         analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, inline, declr, oldstyle, init_opt)
     }
 }
@@ -152,8 +158,11 @@ pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) ->
                 Left | list => {
                     /* do */ {
                         let oldstyle_params_q = liftM(concat)(mapM(splitCDecl, oldstyle_params));
+
                         let param_map = liftM(Map::fromList)(mapM(attachNameOfDecl, oldstyle_params_q));
+
                         let newstyle_params(param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
+
                         when((not(Map::null(param_map_q))))(astError(node)(__op_addadd("declarations for parameter(s) ".to_string(), __op_addadd(showParamMap(param_map_q), " but no such parameter".to_string()))));
                         return((__op_concat(CFunDeclr((Right((newstyle_params, false))), attrs, fdnode), dds)))
                     }
@@ -222,6 +231,7 @@ pub fn splitCDecl(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
         [d1, ds] => {
             {
                 let declspecs_q = map(elideSUEDef, declspecs);
+
             return(__op_concat((CDecl(declspecs, vec![d1], node)), /* Expr::Dummy */ Dummy))            }
         },
     }
@@ -252,9 +262,13 @@ pub fn tCompType(tag: SUERef, sue_ref: CompTyKind, member_decls: Vec<CDecl>, att
 pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt, attrs, node_info): CStructUnion) -> m<CompTypeRef> {
     /* do */ {
         let sue_ref = createSUERef(node_info, ident_opt);
+
         let tag_q = tTag(tag);
+
         let attrs_q = mapM(tAttr, attrs);
+
         let decl = CompTypeRef(sue_ref, tag_q, node_info);
+
         handleTagDecl((CompDecl(decl)));
         when((handle_def))(/* do */ {
             maybeM(member_decls_opt)(__op_bind(|decls| { /* Expr::Dummy */ Dummy }(tCompType, sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef::CompDef)))
@@ -266,7 +280,11 @@ pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt,
 pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual>, canonTySpec: TypeSpecAnalysis) -> m<Type> {
     /* do */ {
         let quals(attrs) = tTypeQuals(ty_quals);
-        let baseType, ty_name = DirectType(ty_name, quals, attrs);
+
+        let baseType = |ty_name| {
+            DirectType(ty_name, quals, attrs)
+        };
+
         match canonTySpec {
             TSNone => {
                 return(baseType((TyIntegral(TyInt))))
@@ -280,6 +298,7 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
             TSNum | tsnum => {
                 /* do */ {
                     let numType = tNumType(tsnum);
+
                     baseType(match numType {
                         Left | (floatType, iscomplex) => if iscomplex { TyComplex(floatType) }
 otherwise { TyFloating(floatType) },
@@ -324,9 +343,12 @@ pub fn tMemberDecls(__0: CDecl) -> m<Vec<MemberDecl>> {
         CDecl(declspecs, [], node) => {
             /* do */ {
                 let (storage_specs, _attrs, typequals, typespecs, is_inline) = partitionDeclSpecs(declspecs);
+
                 when(is_inline)(astError(node, "member declaration with inline specifier".to_string()));
                 let canonTySpecs = canonicalTypeSpec(typespecs);
+
                 let ty = tType(true, node, typequals, canonTySpecs, vec![], vec![]);
+
                 match ty {
                     DirectType | TyComp(_) | _ | _ => {
                         return(vec![
@@ -404,10 +426,14 @@ otherwise { intType(TyChar) },
 pub fn tParamDecl(CDecl(declspecs, declrs, node): CDecl) -> m<ParamDecl> {
     /* do */ {
         let declr = getParamDeclr;
+
         let VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node) = analyseVarDecl_q(true, declspecs, declr, vec![], None);
+
         when((is_inline))(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
         let storage = throwOnLeft(computeParamStorage(node, storage_spec));
+
         let paramDecl = mkParamDecl(name, storage, attrs, ty, declr_node);
+
         return(paramDecl)
     }
 }

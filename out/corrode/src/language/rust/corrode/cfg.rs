@@ -48,6 +48,7 @@ pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m
 pub fn buildCFG(root: BuildCFGT<m, s, c, Label>) -> m<CFG<Unordered, s, c>> {
     /* do */ {
         let label(final) = runStateT(root, (BuildState(0, IntMap::empty)));
+
         (CFG(label, (buildBlocks(final))))
     }
 }
@@ -71,6 +72,7 @@ pub fn mapBuildCFGT() -> BuildCFGT<n, s, c, b> {
 pub fn newLabel() -> BuildCFGT<m, s, c, Label> {
     /* do */ {
         let old = get;
+
         put old {
         buildLabel: (buildLabel(old) + 1)
     };
@@ -97,7 +99,9 @@ pub fn prettyStructure() -> Doc {
 pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s, c>>) -> Vec<Structure<s, c>> {
     {
         let (returns, noreturns) = partitionMembers(entries)(IntSet::unions(map(successors)(IntMap::elems(blocks))));
+
         let (present, absent) = partitionMembers(entries, (IntMap::keysSet(blocks)));
+
     match (IntSet::toList(noreturns), IntSet::toList(returns)) {
             ([], []) => {
                 vec![]
