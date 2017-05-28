@@ -8,11 +8,13 @@ extern crate regex;
 extern crate tempdir;
 extern crate walkdir;
 extern crate corollary;
+extern crate inflector;
 
 use parser_haskell::util::{print_parse_error, simplify_parse_error};
 
+use inflector::Inflector;
 use clap::{Arg, App};
-use regex::Regex;
+use regex::{Regex, Captures};
 use std::fmt::Write;
 use std::fs::{File, create_dir_all};
 use std::io::prelude::*;
@@ -324,10 +326,19 @@ fn run() -> Result<()> {
             a.next();
             a.next();
 
+            // Generate output path.
+            let output_path = a.as_path().display().to_string();
+            let re = Regex::new(r"[^/]+").unwrap();
+            let output_path = re.replace_all(&output_path, |cap: &Captures| {
+                cap[0].to_string().to_snake_case().replace("_.", ".")
+            });
+
             // Write out file.
-            let t = format!("{}/{}", arg_out.unwrap(), a.as_path().display()).to_lowercase();
+            let t = format!("{}/{}", arg_out.unwrap(), output_path);
             let t = t.replace(".lhs", ".rs");
             let t = t.replace(".hs", ".rs");
+            
+            errln!("...writing out {}", t);
 
             // Create directory.
             let _ = create_dir_all(&Path::new(&t).parent().unwrap());
