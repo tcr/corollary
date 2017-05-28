@@ -15,8 +15,8 @@ This project contains a proof-of-concept cross-compiler from Haskell to Rust whi
 See the current status by looking at the cross-compiled files in the out/ directory. These are equivalent to:
 
 ```
-cargo run -- "./corrode/src/" -R -o ./out/corrode/src
-cargo run -- "./language-c/src/" -R -o ./out/language_c/src \
+cargo run --bin "corollary" -- "./corrode/src/" -R -o ./out/corrode/src
+cargo run --bin "corollary" -- "./language-c/src/" -R -o ./out/language_c/src \
   --alias ./language-c/src/Language/C/Parser/Lexer.hs=./gen/Lexer.hs \
   --alias ./language-c/src/Language/C/Parser/Parser.hs=./gen/Parser.hs
 ```
