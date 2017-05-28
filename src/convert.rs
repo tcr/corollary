@@ -203,9 +203,19 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                     i,
                     print_expr(state.tab().tab(), v)));
             }
-            format!("{} {{\n{}\n{}}}",
-                print_expr(state.tab(), base),
-                out.join(",\n"), state.untab().indent())
+            match **base {
+                Expr::Ref(..) => {
+                    format!("{} {{\n{}\n{}}}",
+                        print_expr(state.tab(), base),
+                        out.join(",\n"), state.untab().indent())   
+                }
+                _ => {
+                    // For non-refs, create a macro that will augment keys onto original object.
+                    format!("__assign!({}, {{\n{}\n{}}})",
+                        print_expr(state.tab(), base),
+                        out.join(",\n"), state.untab().indent())   
+                }
+            }
         }
         Str(ref s) => return ir::Expr::StrLiteral(s.clone()),
         Char(ref s) => {
