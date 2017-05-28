@@ -299,7 +299,7 @@ pub fn mapMaybeM(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
 }
 
 pub fn mapSndM(f: fn(b) -> m<c>, (a, b): (a, b)) -> m<(a, c)> {
-    liftM((,(a)), (f(b)))
+    liftM((__op_tuple2(a)), (f(b)))
 }
 
 pub fn maybeM(m: Option<a>, f: fn(a) -> m<()>) -> m<()> {

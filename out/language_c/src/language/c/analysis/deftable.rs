@@ -218,7 +218,7 @@ pub fn leaveLocalScope(deftbl: DefTable) -> DefTable {
 pub fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
     {
         let (decls_q, members) = leaveScope((memberDecls(deftbl)));
-    ,((), (map(snd, members))((deftbl {
+    __op_tuple2((), (map(snd, members))((deftbl {
             memberDecls: decls_q
         })))    }
 }
