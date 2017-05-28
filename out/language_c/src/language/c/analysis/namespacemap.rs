@@ -1,6 +1,6 @@
 use haskell_support::*;
 
-struct NameSpaceMap<k<v>>(NsMap<Map<k, v>, Vec<Vec<(k, v)>>>);
+struct NameSpaceMap<k, v>(NsMap<Map<k, v>, Vec<Vec<(k, v)>>>);
 
 pub fn defGlobal(NsMap(gs, lss): NameSpaceMap<k, a>, ident: k, def: a) -> (NameSpaceMap<k, a>, Option<a>) {
     (NsMap((Map::insert(ident, def, gs)), lss), Map::lookup(ident, gs))

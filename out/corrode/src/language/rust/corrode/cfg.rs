@@ -1,9 +1,9 @@
 use haskell_support::*;
 
-struct BasicBlock<s<c>>(BasicBlock<s, Terminator<c>>);
+struct BasicBlock<s, c>(BasicBlock<s, Terminator<c>>);
 
 #[derive(Debug)]
-pub enum Terminator_q<c<l>> {
+pub enum Terminator_q<c, l> {
     Unreachable,
     Branch(l),
     CondBranch(c, l, l)
@@ -14,12 +14,12 @@ struct Unordered;
 
 struct DepthFirst;
 
-struct CFG<k<s, c>>(CFG<Label, IntMap::IntMap<BasicBlock<s, c>>>);
+struct CFG<k, s, c>(CFG<Label, IntMap::IntMap<BasicBlock<s, c>>>);
 
-struct BuildState<s<c>>(BuildState<TypeRecord /* todo */>);
+struct BuildState<s, c>(BuildState<TypeRecord /* todo */>);
 
 #[derive(Debug)]
-pub enum StructureLabel<s<c>> {
+pub enum StructureLabel<s, c> {
     GoTo(TypeRecord /* todo */),
     ExitTo(TypeRecord /* todo */),
     Nested(Vec<Structure<s, c>>)
@@ -27,7 +27,7 @@ pub enum StructureLabel<s<c>> {
 pub use self::StructureLabel::*;
 
 #[derive(Debug)]
-pub enum Structure_q<s<c, a>> {
+pub enum Structure_q<s, c, a> {
     Simple(s, StructureTerminator<s, c>),
     Loop(a),
     Multiple(IntMap::IntMap<a>, a)
@@ -35,7 +35,7 @@ pub enum Structure_q<s<c, a>> {
 pub use self::Structure_q::*;
 
 #[derive(Debug)]
-struct Structure<s<c>>(Structure<TypeRecord /* todo */>);
+struct Structure<s, c>(Structure<TypeRecord /* todo */>);
 
 pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
     /* do */ {

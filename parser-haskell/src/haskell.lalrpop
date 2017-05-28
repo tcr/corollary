@@ -203,8 +203,8 @@ Item: Item = {
       Where
       => Item::Dummy,
     "data" <id:Ident>
-      => Item::Data(id, vec![], vec![], None),
-    "data" <id:Ident> <args:TypeGroup?> "=" <p:Pipe<TypeGroup>>
+      => Item::Data(id, vec![], vec![], vec![]),
+    "data" <id:Ident> <args:TypeSub*> "=" <p:Pipe<TypeGroup>>
       <derives:("deriving" <ImportList>)?>
       => Item::Data(id, p, derives.unwrap_or(vec![]), args),
     "newtype" SContext? <id:Ident+> "=" <p:Type>

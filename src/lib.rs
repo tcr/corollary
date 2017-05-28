@@ -510,7 +510,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                     },
                     print_type(state, Ty::Span({
                         let mut v = vec![Ty::Ref(name.clone())];
-                        v.extend(args.unwrap_or(vec![]));
+                        v.extend(args);
                         v
                     })),
                     state.tab().indent(),
@@ -549,7 +549,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                     },
                     print_type(state, Ty::Span({
                         let mut v = vec![Ty::Ref(name)];
-                        v.extend(args.unwrap_or(vec![]));
+                        v.extend(args);
                         v
                     })),
                     if data.len() > 0 { format!("({})", props) } else { "".to_string() }
