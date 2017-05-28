@@ -40,11 +40,7 @@ Comma<T>: Vec<T> = {
     }
 };
 
-Commaish<T>: Vec<T> = {
-    <(<T> ","?)+> => <>,
-};
-
-CommaDef<T>: Vec<T> = {
+CommaOnce<T>: Vec<T> = {
     <v:(<T> ",")*> <e:T> => {
         let mut v = v;
         v.push(e);
@@ -110,15 +106,15 @@ Operator: String = {
 // Code structures
 
 Assignment: Assignment = {
-    <pats:PatList> ("|" <CommaDef<(<ExprSpan> ("<-" ExprSpan)?)>> "=" <ExprSpan>)+ => Assignment { pats, expr: Expr::Dummy },
+    <pats:PatList> ("|" <CommaOnce<(<ExprSpan> ("<-" ExprSpan)?)>> "=" <ExprSpan>)+ => Assignment { pats, expr: Expr::Dummy },
     <pats:PatList> "=" <expr:ExprSpan> => Assignment { pats, expr },
 };
 
 Case: CaseCond = {
     // TODO commas can be used in expr spans, see AST.hs
-    <d:PatList> <v:("|" <CommaDef<(<ExprSpan> ("<-" ExprSpan)?)>>  "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
+    <d:PatList> <v:("|" <CommaOnce<(<ExprSpan> ("<-" ExprSpan)?)>>  "->" <ExprSpan>)*> => CaseCond::Matching(d, v),
     // TODO use pipe groups here:
-    <d:PatList> "->" <v:CommaDef<ExprSpan>> <w:Where> => CaseCond::Direct(d, v),
+    <d:PatList> "->" <v:CommaOnce<ExprSpan>> <w:Where> => CaseCond::Direct(d, v),
 };
 
 ExprSpan: Expr = {
@@ -146,13 +142,13 @@ Expr: Expr = {
       a.extend(e.unwrap_or(vec![]));
       a
     }, Box::new(Expr::Dummy)),
-    r"\\" "(" <e:CommaDef<PatSpan>> ")" "->" <body:Expr>
+    r"\\" "(" <e:CommaOnce<PatSpan>> ")" "->" <body:Expr>
       => Expr::Lambda(vec![Pat::Tuple(e)], Box::new(body)),
 
-    "[" <CommaDef<ExprSpan>> "|" CommaDef<ListGenerator> "]" => Expr::Dummy,
-    "[" <CommaDef<ExprSpan>> ("::" TypeGroup)? "]" => Expr::Vector(<>),
+    "[" <CommaOnce<ExprSpan>> "|" CommaOnce<ListGenerator> "]" => Expr::Dummy,
+    "[" <CommaOnce<ExprSpan>> ("::" TypeGroup)? "]" => Expr::Vector(<>),
     "[" "]" => Expr::Vector(vec![]),
-    "(" <CommaDef<(<ExprSpan> ("::" TypeGroup)?)>>  ")" => Expr::Parens(<>),
+    "(" <CommaOnce<(<ExprSpan> ("::" TypeGroup)?)>>  ")" => Expr::Parens(<>),
     "(" ")" => Expr::Parens(vec![]),
     "(" "," ")" => Expr::Dummy,
     "(" Ident "->" PatList ")" => Expr::Dummy,
@@ -164,7 +160,7 @@ Expr: Expr = {
     "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}" => Expr::Case(Box::new(e), s),
     "do" "{" <Semi<DoItem>> Where "}" => Expr::Do(<>),
     "{" "}" => Expr::Record(vec![]),
-    "{" <r:CommaDef<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
+    "{" <r:CommaOnce<(<Ident> "=" <ExprSpan>)>> ";"? "}" => Expr::Record(r),
 };
 
 ListGenerator: () = {
@@ -175,7 +171,7 @@ ListGenerator: () = {
 
 SContext: () = {
   Ident+ "=>" => (),
-  "(" CommaDef<Ident+> ")" "=>" => (),
+  "(" CommaOnce<Ident+> ")" "=>" => (),
 };
 
 Item: Item = {
@@ -198,7 +194,7 @@ Item: Item = {
     "where" "{" Semi<Item> "}" => Item::Instance,
   "infixr" <n:Num> "`" <i:Ident> "`" => Item::Infixr(n, i),
 
-  <id:CommaDef<Ident>> <t:("::" <TypeGroup>)> => Item::Prototype(id[0].clone(), t),
+  <id:CommaOnce<Ident>> <t:("::" <TypeGroup>)> => Item::Prototype(id[0].clone(), t),
   <a:Assignment> <wh:Where> => Item::Assign(Box::new(a), wh),
 };
 
@@ -223,10 +219,10 @@ TypeRecord: (Ident, Ty) = {
 TypeSub: Ty = {
     "!" <TypeSub> => Ty::Not(Box::new(<>)),
     "[" <Type> "]" => Ty::Brackets(Box::new(<>)),
-    "(" <CommaDef<Type>> ")" => Ty::Tuple(<>),
+    "(" <CommaOnce<Type>> ")" => Ty::Tuple(<>),
     "(" ")" => Ty::EmptyParen,
     "{" "}" => Ty::Record(vec![]),
-    "{" <CommaDef<TypeRecord>> "}" => Ty::Record(<>),
+    "{" <CommaOnce<TypeRecord>> "}" => Ty::Record(<>),
     <Ident> => Ty::Ref(<>),
     <Ctor> => Ty::Ref(<>),
     ".." => Ty::Dummy,
@@ -252,10 +248,10 @@ TypeGroup: Vec<Ty> = {
 
 PatSub: Pat = {
     "!" <PatSub> => Pat::Not(Box::new(<>)),
-    "[" <CommaDef<PatSpan>> "]" => Pat::Brackets(<>),
+    "[" <CommaOnce<PatSpan>> "]" => Pat::Brackets(<>),
     "[" "]" => Pat::Brackets(vec![]),
     "(" <PatSpan> ")" => <>,
-    "(" <h:PatSpan> "," <t:CommaDef<PatSpan>> ")" => {
+    "(" <h:PatSpan> "," <t:CommaOnce<PatSpan>> ")" => {
         let mut vec = vec![h];
         vec.extend_from_slice(&t);
         Pat::Tuple(vec)
@@ -263,7 +259,7 @@ PatSub: Pat = {
     "(" <i:Ident> "->" <s: PatSpan> ")" => Pat::Arrow(i, Box::new(s)),
     "(" ")" => Pat::EmptyParen,
     "{" "}" => Pat::Record(vec![]),
-    "{" <CommaDef<PatRecord>> "}" => Pat::Record(vec![]), //TODO attach this
+    "{" <CommaOnce<PatRecord>> "}" => Pat::Record(vec![]), //TODO attach this
 
     <Ident> => Pat::Ref(<>),
     <Ctor> => Pat::Ref(<>),
@@ -296,17 +292,17 @@ ImportName: () = {
 };
 
 ImportList: Vec<Ident> = {
-    "(" <a:Commaish<(<Ident> ("(" ImportName ")")?)>> ")" => a,
-    "(" ")" => vec![],
-    <Ident> => vec![<>],
+  <Ident> => vec![<>],
 
-    "(" "(<|>)" ")" => vec![], // ??? see DefTable.hs
+  "(" ")" => vec![],
+  "(" <a:CommaOnce<(<Ident> ("(" ImportName ")")?)>> ")" => a,
+  "(" "(<|>)" ")" => vec![], // ??? see DefTable.hs
 };
 
 Section: () = {
     Ident ("(" ".." ")")? => (),
     Ident "(" Ident* ")" => (),
-    "module" Ident ("(" CommaDef<Section> ")")? => (),
+    "module" Ident ("(" CommaOnce<Section> ")")? => (),
 };
 
 pub Module: Module = {
