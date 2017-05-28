@@ -16,7 +16,7 @@ pub fn expr_to_pat(expr: &Expr) -> Pat {
             Pat::Brackets(inner.iter().map(|x| expr_to_pat(x)).collect::<Vec<_>>())
         }
 
-        Expr::Record(ref inner) => Pat::Record(vec![]), // TODO
+        Expr::Record(ref base, ref inner) => Pat::Dummy, // TODO
         Expr::Number(num) => Pat::Num(num),
         Expr::Str(ref s) => Pat::Str(s.clone()),
         Expr::Char(ref s) => Pat::Char(s.clone()),
@@ -28,6 +28,7 @@ pub fn expr_to_pat(expr: &Expr) -> Pat {
         Expr::Let(..) |
         Expr::Do(..) |
         Expr::Lambda(..) |
+        Expr::RecordArgs(..) |
         Expr::Error => {
             panic!("Invalid expr to pat conversion: {:?}", expr);
         }

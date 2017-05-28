@@ -39,9 +39,9 @@ struct Structure<s<c>>(Structure<TypeRecord /* todo */>);
 
 pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
     /* do */ {
-        modify(|st| { <Expr::Dummy> }(st, {
-            buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
-        }))
+        modify(|st| { /* Expr::Dummy */ Dummy } st {
+        buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
+    })
     }
 }
 
@@ -57,7 +57,7 @@ pub fn depthFirstOrder(CFG(start, blocks): CFG<k, s, c>) -> CFG<DepthFirst, s, c
 }
 
 pub fn flipEdges(edges: IntMap::IntMap<IntSet::IntSet>) -> IntMap::IntMap<IntSet::IntSet> {
-    IntMap::unionsWith(IntSet::union, <Expr::Dummy>)
+    IntMap::unionsWith(IntSet::union, /* Expr::Dummy */ Dummy)
 }
 
 pub fn hasMultiple() -> bool {
@@ -71,19 +71,19 @@ pub fn mapBuildCFGT() -> BuildCFGT<n, s, c, b> {
 pub fn newLabel() -> BuildCFGT<m, s, c, Label> {
     /* do */ {
         let old = get;
-        put(old, {
-            buildLabel: (buildLabel(old) + 1)
-        });
+        put old {
+        buildLabel: (buildLabel(old) + 1)
+    };
         (buildLabel(old))
     }
 }
 
 pub fn outEdges(blocks: IntMap::IntMap<StructureBlock<s, c>>) -> IntSet::IntSet {
-    IntSet.difference(IntSet::unions((map(successors)(IntMap::elems(blocks)))), IntMap::keysSet(blocks))
+    IntSet::difference(IntSet::unions((map(successors)(IntMap::elems(blocks)))), IntMap::keysSet(blocks))
 }
 
 pub fn partitionMembers(a: IntSet::IntSet, b: IntSet::IntSet) -> (IntSet::IntSet, IntSet::IntSet) {
-    (IntSet.intersection(a, b), IntSet.difference(a, b))
+    (IntSet::intersection(a, b), IntSet::difference(a, b))
 }
 
 pub fn prettyCFG(fmtS: fn(s) -> Doc, fmtC: fn(c) -> Doc, CFG(entry, blocks): CFG<k, s, c>) -> Doc {
@@ -103,7 +103,7 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
                 vec![]
             },
             ([entry], []) => {
-                match IntMap::updateLookupWithKey((|_, _| { <Expr::Dummy> }(None)), entry, blocks) {
+                match IntMap::updateLookupWithKey((|_, _| { /* Expr::Dummy */ Dummy }(None)), entry, blocks) {
                     (Some((s, term)), blocks_q) => {
                         __op_concat(Structure {
                         structureEntries: entries,
@@ -118,7 +118,7 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
                     },
                 }
             },
-            _ => if not((IntSet::null(absent))) { __op_concat(__TODO_if(IntSet::null, present, then, vec![], __TODO_else, Structure, {
+            _ => if not((IntSet::null(absent))) { __op_concat(__TODO_if(IntSet::null, present, then, vec![], __TODO_else, Structure {
             structureEntries: entries,
             structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
         }), vec![]) },
@@ -146,7 +146,7 @@ pub fn removeEmptyBlocks(CFG(start, blocks): CFG<k, f<s>, c>) -> CFG<Unordered, 
 }
 
 pub fn restrictKeys(m: IntMap::IntMap<a>, s: IntSet::IntSet) -> IntMap::IntMap<a> {
-    IntMap.intersection(m, IntMap::fromSet((__TODO_const(())), s))
+    IntMap::intersection(m, IntMap::fromSet((__TODO_const(())), s))
 }
 
 pub fn simplifyStructure() -> Vec<Structure<s, c>> {
@@ -158,6 +158,6 @@ pub fn structureCFG(mkBreak: fn(Option<Label>) -> s, mkContinue: fn(Option<Label
 }
 
 pub fn successors((_, term): StructureBlock<s, c>) -> IntSet::IntSet {
-    IntSet::fromList(<Expr::Dummy>)
+    IntSet::fromList(/* Expr::Dummy */ Dummy)
 }
 

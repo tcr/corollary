@@ -287,7 +287,7 @@ pub fn isNoName(__0: VarName) -> bool {
 }
 
 pub fn isTentative(ObjDef(decl, init_opt, _): ObjDef) -> bool {
-    <Expr::Dummy>
+    /* Expr::Dummy */ Dummy
 }
 
 pub fn mergeAttributes() -> Attributes {

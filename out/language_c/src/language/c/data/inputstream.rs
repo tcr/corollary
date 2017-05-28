@@ -61,7 +61,7 @@ pub fn takeByte(__0: InputStream) -> (Word8, InputStream) {
             seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
         },
         bs => {
-            <Expr::Dummy>
+            /* Expr::Dummy */ Dummy
         },
     }
 }

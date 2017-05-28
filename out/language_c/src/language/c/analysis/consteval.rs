@@ -93,7 +93,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
         (md, env, CCond(e1, me2, e3, ni)) => {
             /* do */ {
                 let e1_q = constEval(md, env, e1);
-                let me2_q = maybe((None), (liftM(|e| { <Expr::Dummy> }(Some), constEval(md, env, e))), me2);
+                let me2_q = maybe((None), (liftM(|e| { /* Expr::Dummy */ Dummy }(Some), constEval(md, env, e))), me2);
                 let e3_q = constEval(md, env, e3);
                 match boolValue(e1_q) {
                     Some | true => {
@@ -190,7 +190,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, env, e, __OP__, CVar(i, _)) => {
-            <Expr::Dummy>
+            /* Expr::Dummy */ Dummy
         },
         (md, env, e, __OP__, CVar(i, _)) => {
             /* do */ {
@@ -225,7 +225,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
 }
 
 pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
-    __op_bind(genName, |name| { <Expr::Dummy> }(return)(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
+    __op_bind(genName, |name| { /* Expr::Dummy */ Dummy }(return)(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
 }
 
 pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
@@ -243,7 +243,7 @@ pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
             div(i1, i2)
         },
         (CRmdOp, i1, i2) => {
-            mod(i1, i2)
+            __mod(i1, i2)
         },
         (CShlOp, i1, i2) => {
             shiftL(i1, fromInteger(i2))

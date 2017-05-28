@@ -33,7 +33,7 @@ pub fn internalNode() -> NodeInfo {
 pub fn isUndefNode(__0: NodeInfo) -> bool {
     match (__0) {
         OnlyPos(p, _) => {
-            <Expr::Dummy>
+            /* Expr::Dummy */ Dummy
         },
         _ => {
             false

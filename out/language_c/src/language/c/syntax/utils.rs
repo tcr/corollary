@@ -49,7 +49,7 @@ pub fn getSubStmts(__0: CStat) -> Vec<CStat> {
             concatMap(compoundSubStmts, body)
         },
         CIf(_, sthen, selse, _) => {
-            maybe(vec![sthen], (|s| { <Expr::Dummy> }(vec![sthen, s])), selse)
+            maybe(vec![sthen], (|s| { /* Expr::Dummy */ Dummy }(vec![sthen, s])), selse)
         },
         CSwitch(_, s, _) => {
             vec![s]
@@ -95,7 +95,7 @@ pub fn mapBlockItemStmts(__0: fn(CStat) -> bool, __1: fn(CStat) -> CStat, __2: C
 pub fn mapSubStmts(__0: fn(CStat) -> bool, __1: fn(CStat) -> CStat, __2: CStat) -> CStat {
     match (__0, __1, __2) {
         (stop, _, s) => {
-            <Expr::Dummy>
+            /* Expr::Dummy */ Dummy
         },
         (stop, f, CLabel(i, s, attrs, ni)) => {
             f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni)))

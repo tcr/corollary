@@ -33,7 +33,7 @@ pub fn cppFile(input_file: FilePath) -> CppArgs {
 }
 
 pub fn getOutputFileName(fp: FilePath) -> FilePath {
-    <Expr::Dummy>
+    /* Expr::Dummy */ Dummy
 }
 
 pub fn isPreprocessed() -> bool {

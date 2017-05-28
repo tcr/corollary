@@ -31,7 +31,7 @@ pub fn compatIdentEntry(__0: IdentEntry) -> bool {
             either((__TODO_const(true)), (__TODO_const(false)))
         },
         Right(def) => {
-            either((__TODO_const(false)))(|other_def| { <Expr::Dummy> }(match (def, other_def) {
+            either((__TODO_const(false)))(|other_def| { /* Expr::Dummy */ Dummy }(match (def, other_def) {
                     (EnumeratorDef(_), EnumeratorDef(_)) => {
                         true
                     },
@@ -218,9 +218,9 @@ pub fn leaveLocalScope(deftbl: DefTable) -> DefTable {
 pub fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
     {
         let (decls_q, members) = leaveScope((memberDecls(deftbl)));
-    <Expr::Dummy>((map(snd, members)), (deftbl {
+    ,((), (map(snd, members))((deftbl {
             memberDecls: decls_q
-        }))    }
+        })))    }
 }
 
 pub fn leaveScope_() -> NameSpaceMap<k, a> {

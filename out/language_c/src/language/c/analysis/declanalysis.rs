@@ -54,7 +54,7 @@ pub enum TypeSpecAnalysis {
 pub use self::TypeSpecAnalysis::*;
 
 pub fn analyseTypeDecl(CDecl(declspecs, declrs, node): CDecl) -> m<Type> {
-    <Expr::Dummy>
+    /* Expr::Dummy */ Dummy
 }
 
 pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: bool, CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node): CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
@@ -139,7 +139,7 @@ pub fn hasThreadLocalSpec(__0: StorageSpec) -> bool {
 }
 
 pub fn isTypeDef(declspecs: Vec<CDeclSpec>) -> bool {
-    not(null(<Expr::Dummy>))
+    not(null(/* Expr::Dummy */ Dummy))
 }
 
 pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) -> m<Vec<CDerivedDeclr>> {
@@ -201,7 +201,7 @@ pub fn mkVarName(__0: NodeInfo, __1: Option<Ident>, __2: Option<AsmName>) -> m<V
 }
 
 pub fn nameOfDecl(d: CDecl) -> m<Ident> {
-    __op_bind(getOnlyDeclr(d), |declr| { <Expr::Dummy> }(match declr {
+    __op_bind(getOnlyDeclr(d), |declr| { /* Expr::Dummy */ Dummy }(match declr {
             CDeclr(Some(name), _, _, _, _) => {
                 name
             },
@@ -222,7 +222,7 @@ pub fn splitCDecl(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
         [d1, ds] => {
             {
                 let declspecs_q = map(elideSUEDef, declspecs);
-            return(__op_concat((CDecl(declspecs, vec![d1], node)), <Expr::Dummy>))            }
+            return(__op_concat((CDecl(declspecs, vec![d1], node)), /* Expr::Dummy */ Dummy))            }
         },
     }
 }
@@ -257,7 +257,7 @@ pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt,
         let decl = CompTypeRef(sue_ref, tag_q, node_info);
         handleTagDecl((CompDecl(decl)));
         when((handle_def))(/* do */ {
-            maybeM(member_decls_opt)(__op_bind(|decls| { <Expr::Dummy> }(tCompType, sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef::CompDef)))
+            maybeM(member_decls_opt)(__op_bind(|decls| { /* Expr::Dummy */ Dummy }(tCompType, sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef::CompDef)))
         });
         decl
     }
@@ -316,7 +316,7 @@ pub fn tEnumType(sue_ref: SUERef, enumerators: Vec<(Ident, Option<CExpr>)>, attr
 }
 
 pub fn tEnumTypeDecl(handle_def: bool, CEnum(ident_opt, enumerators_opt, attrs, node_info): CEnum) -> m<EnumTypeRef> {
-    <Expr::Dummy>
+    /* Expr::Dummy */ Dummy
 }
 
 pub fn tMemberDecls(__0: CDecl) -> m<Vec<MemberDecl>> {
@@ -432,6 +432,6 @@ pub fn tTypeQuals() -> m<(TypeQuals, Attributes)> {
 }
 
 pub fn typeDefRef(t_node: NodeInfo, name: Ident) -> m<TypeDefRef> {
-    __op_bind(lookupTypeDef(name), |ty| { <Expr::Dummy> }(return, (TypeDefRef(name, (Some(ty)), t_node))))
+    __op_bind(lookupTypeDef(name), |ty| { /* Expr::Dummy */ Dummy }(return, (TypeDefRef(name, (Some(ty)), t_node))))
 }
 

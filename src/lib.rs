@@ -91,7 +91,7 @@ pub fn print_op_fn(value: &str) -> String {
         "<<" => "__op_lshift".to_string(),
         "<+>" => "__op_doc_conat".to_string(),
         "$+$" => "__op_line_concat".to_string(),
-        "$$" => "__op_line_something".to_string(), // TODO
+        "$$" => "__op_line_something".to_string(), // TODO what does this do
         "$!" => "__op_TODO_dollarnot".to_string(),
         ".&." => "__op_dotted_and".to_string(),
         ".|." => "__op_dotted_or".to_string(),
@@ -101,8 +101,8 @@ pub fn print_op_fn(value: &str) -> String {
         "*=" => "__op_assign_mul".to_string(),
         "^" => "__op_power".to_string(),
         "<>" => "__op_ne".to_string(),
-        "\\\\" => "__op_forwardslash".to_string(), // TODO
-        _ => value.to_string()
+        "\\\\" => "__op_forwardslash".to_string(), // TODO what does this do
+        _ => print_type_ident(PrintState::new(), value)
     }
 }
 
@@ -140,7 +140,9 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             });
             return ir::Expr::VecLiteral { exprs, line_length };
         }
-        Do(ref stmts) => print_do(state.tab(), stmts),
+        Do(ref stmts, ref whence) => {
+            print_do(state.tab(), stmts, whence)
+        }
         Let(ref assigns, ref expr) => {
             let mut out = assigns.iter().map(|a| print_let(state.tab(), a)).collect::<Vec<_>>();
             out.push(format!("{}{}", state.indent(), print_expr(state.tab(), expr)));
@@ -203,7 +205,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 format!("{}({}, {})", new_op, print_expr(state, l), print_expr(state, r))
             }
         }
-        Record(ref items) => {
+        Record(ref base, ref items) => {
             let mut out = vec![];
             for &(ast::Ident(ref i), ref v) in items {
                 out.push(format!("{}{}: {}",
@@ -211,7 +213,9 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                     i,
                     print_expr(state.tab().tab(), v)));
             }
-            format!("{{\n{}\n{}}}", out.join(",\n"), state.untab().indent())
+            format!("{} {{\n{}\n{}}}",
+                print_expr(state.tab(), base),
+                out.join(",\n"), state.untab().indent())
         }
         Str(ref s) => return ir::Expr::StrLiteral(s.clone()),
         Char(ref s) => {
@@ -296,10 +300,10 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             print_op_fn(value)
         }
         Dummy => {
-            format!("<Expr::Dummy>")
+            format!("/* Expr::Dummy */ Dummy")
         }
-        Error => {
-            format!("<Expr::Error>")
+        RecordArgs(..) | Error => {
+            format!("/* Expr::Error */ Error")
         }
     };
     ir::Expr::Free(freeform)
@@ -374,7 +378,10 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
         Pat::Brackets(ref pats) => {
             format!("[{}]", print_patterns(state.tab(), pats))
         }
-        Pat::Record(..) => "{ /* pat record */ }".to_string(),
+        Pat::Record(ref id, ..) => {
+            format!("{} {{ /* TODO pat record */ }}",
+                print_type_ident(state, &id.0))
+        }
         Pat::Arrow(ast::Ident(ref s), ref p) => {
             format!("({} -> {})", s, print_pattern(state.tab(), &**p))
         }
@@ -672,28 +679,33 @@ pub fn print_let(state: PrintState, assign: &ast::Assignment) -> String {
     )
 }
 
-pub fn print_do(state: PrintState, stmts: &[ast::DoItem]) -> String {
-    let mut out = vec![];
+pub fn print_do(state: PrintState, stmts: &[ast::DoItem], items: &[ast::Item]) -> String {
+    let mut whence = print_item_list(state, items);
+    if whence.len() > 0 {
+        whence.push_str("\n\n");
+    }
+
+    let mut body = vec![];
     for (i, stmt) in stmts.iter().enumerate() {
         match *stmt {
             ast::DoItem::Let(ref assigns) => {
                 for assign in assigns {
-                    out.push(print_let(state, assign));
+                    body.push(print_let(state, assign));
                 }
             }
             ast::DoItem::Bind(ref pats, ref expr) => {
                 // good enough for now
                 let assign = ast::Assignment { pats: pats.clone(), expr: *expr.clone() };
-                out.push(print_let(state, &assign));
+                body.push(print_let(state, &assign));
             }
             ast::DoItem::Expression(ref e) => {
                 let mut expr = print_expr(state, &*e);
                 if i + 1 < stmts.len() {
                     expr.push(';');
                 }
-                out.push(format!("{}{}", state.indent(), expr));
+                body.push(format!("{}{}", state.indent(), expr));
             }
         }
     }
-    format!("/* do */ {{\n{}\n{}}}", out.join("\n"), state.untab().indent())
+    format!("/* do */ {{\n{}{}\n{}}}", whence, body.join("\n"), state.untab().indent())
 }

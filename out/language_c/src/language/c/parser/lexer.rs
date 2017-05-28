@@ -33,11 +33,11 @@ let alexAndPred = |p1, p2, user, in1, len, in2| {
 };
 
 pub fn alexGetByte((p, is): AlexInput) -> Option<(Word8, AlexInput)> {
-    <Expr::Dummy>
+    /* Expr::Dummy */ Dummy
 }
 
 pub fn alexGetChar((p, is): AlexInput) -> Option<(Char, AlexInput)> {
-    <Expr::Dummy>
+    /* Expr::Dummy */ Dummy
 }
 
 let alexIndexInt16OffAddr = |arr, off| {
@@ -362,7 +362,7 @@ let alex_accept = listArray((0, 241), vec![
             AlexAcc(0),
         ]);
 
-let alex_action_1 = __op_rshift(|pos, len, __str| { <Expr::Dummy> }(setPos, (adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false));
+let alex_action_1 = __op_rshift(|pos, len, __str| { /* Expr::Dummy */ Dummy }(setPos, (adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false));
 
 let alex_action_10 = token(CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))));
 
@@ -424,7 +424,7 @@ let alex_action_38 = token_(2, CTokShiftR);
 
 let alex_action_39 = token_(1, CTokLess);
 
-let alex_action_4 = |pos, len, __str| { <Expr::Dummy> }(idkwtok, (takeChars(len, __str)), pos);
+let alex_action_4 = |pos, len, __str| { /* Expr::Dummy */ Dummy }(idkwtok, (takeChars(len, __str)), pos);
 
 let alex_action_40 = token_(2, CTokLessEq);
 
@@ -20398,7 +20398,7 @@ let idkwtok = |__0| {
             tok(5, CTokWhile)
         },
         cs => {
-            |pos| { <Expr::Dummy> }(/* do */ {
+            |pos| { /* Expr::Dummy */ Dummy }(/* do */ {
                     let name = getNewName;
                     let len = match length(cs) {
                         l => {

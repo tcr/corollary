@@ -68,7 +68,7 @@ pub fn mkIdent(pos: Position, s: String, name: Name) -> Ident {
 pub fn quad(__0: String) -> isize {
     match (__0) {
         [c1, [c2, [c3, [c4, s]]]] => {
-            ((mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (mod(quad(s), bits28)))
+            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
         [c1, [c2, [c3, []]]] => {
             (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))

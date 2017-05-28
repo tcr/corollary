@@ -114,14 +114,33 @@ Case: CaseCond = {
       => CaseCond::Direct(d, v),
 };
 
+// TODO name this better
+ExprSpanSimple: Vec<Expr> = {
+  <Expr+> => {
+      // Process out Records
+      <>.into_iter()
+          .fold(vec![], |mut acc, x| {
+            if let Expr::RecordArgs(args) = x {
+                if let Some(base) = acc.pop() {
+                    acc.push(Expr::Record(Box::new(base), args));
+                } else {
+                    acc.push(Expr::Error);
+                }
+            } else {
+                acc.push(x);
+            }
+            acc
+          })
+  },
+};
+
 ExprSpan: Expr = {
     <span:Expr*> "let" "{" <a:Semi<Assignment>> "}" "in" <e:ExprSpan> => {
         let mut span = span;
         span.push(Expr::Let(a, Box::new(e)));
         Expr::Span(span)
     },
-    <Expr+>
-      => Expr::Span(<>),
+    <ExprSpanSimple> => Expr::Span(<>),
 };
 
 Expr: Expr = {
@@ -157,10 +176,10 @@ Expr: Expr = {
 
     "case" <e:ExprSpan> "of" "{" <s:Semi<Case>> "}"
       => Expr::Case(Box::new(e), s),
-    "do" "{" <Semi<DoItem>> Where "}"
-      => Expr::Do(<>),
+    "do" "{" <body:Semi<DoItem>> <w:Where> "}"
+      => Expr::Do(body, w),
     "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> ";"? "}"
-      => Expr::Record(r),
+      => Expr::RecordArgs(r),
 };
 
 ListGenerator: () = {
@@ -208,11 +227,12 @@ Item: Item = {
 
 DoItem: DoItem = {
     "let" "{" <Semi<Assignment>> "}" => DoItem::Let(<>),
-    <expats:Expr+> "<-" <expr:ExprSpan> => {
+    <expats:ExprSpanSimple> "<-" <expr:ExprSpan> => {
         let pats = expats.iter().map(expr_to_pat).collect();
         DoItem::Bind(pats, Box::new(expr))
     },
-    <Expr+> => DoItem::Expression(Box::new(Expr::Span(<>))),
+    <ExprSpanSimple>
+      => DoItem::Expression(Box::new(Expr::Span(<>))),
 };
 
 Where: Where = {
@@ -287,8 +307,8 @@ PatSub: Pat = {
       => Pat::Arrow(i, Box::new(s)),
     "(" ")"
       => Pat::EmptyParen,
-    "{" <Comma<PatRecord>> "}"
-      => Pat::Record(vec![]), //TODO attach this
+    <i:Ident> "{" <body:Comma<PatRecord>> "}"
+      => Pat::Record(i, vec![]), //TODO attach this
 };
 
 PatRecord: () = {

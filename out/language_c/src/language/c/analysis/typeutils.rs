@@ -84,11 +84,11 @@ pub fn floating(ty: FloatType) -> Type {
 }
 
 pub fn getFloatType(fs: String) -> FloatType {
-    <Expr::Dummy>
+    /* Expr::Dummy */ Dummy
 }
 
 pub fn getIntType(flags: Flags<CIntFlag>) -> IntType {
-    <Expr::Dummy>
+    /* Expr::Dummy */ Dummy
 }
 
 pub fn integral(ty: IntType) -> Type {

@@ -3,7 +3,7 @@ pub enum Expr {
     Number(isize),
     Op(Box<Expr>, String, Box<Expr>),
     Ref(Ident),
-    Do(Vec<DoItem>),
+    Do(Vec<DoItem>,  Where),
     Parens(Vec<Expr>),
     Case(Box<Expr>, Vec<CaseCond>),
     /// `let` a = 2; b = 3 `in` ...
@@ -11,10 +11,12 @@ pub enum Expr {
     Span(Vec<Expr>),
     Vector(Vec<Expr>),
     Operator(String),
-    Record(Vec<(Ident, Expr)>),
+    Record(Box<Expr>, Vec<(Ident, Expr)>),
     Lambda(Vec<Pat>, Box<Expr>),
     Str(String),
     Char(String),
+
+    RecordArgs(Vec<(Ident, Expr)>), // Should be preprocessed out
     Error,
     Dummy,
 }
@@ -97,7 +99,7 @@ pub enum Pat {
     Infix(Ident),
     Tuple(Vec<Pat>),
     Brackets(Vec<Pat>),
-    Record(Vec<(Ident, Pat)>),
+    Record(Ident, Vec<(Ident, Pat)>),
     Operator(String),
     Str(String),
     Char(String),

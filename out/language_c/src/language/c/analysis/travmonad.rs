@@ -15,7 +15,7 @@ struct TravState<s>(TravState<TypeRecord /* todo */>);
 pub fn addRef(__use: u, def: d) -> m<()> {
     match (nodeInfo(__use), nodeInfo(def)) {
         (NodeInfo(_, _, useName), NodeInfo(_, _, defName)) => {
-            withDefTable((|dt| { <Expr::Dummy> }(((), dt {
+            withDefTable((|dt| { /* Expr::Dummy */ Dummy }(((), dt {
                     refTable: insert((nameId(useName)), defName, (refTable(dt)))
                 }))))
         },
@@ -96,7 +96,7 @@ pub fn createSUERef(__0: NodeInfo, __1: Option<Ident>) -> m<SUERef> {
             return(NamedRef(ident))
         },
         (node_info, None) => {
-            <Expr::Dummy>
+            /* Expr::Dummy */ Dummy
         },
     }
 }
@@ -123,7 +123,7 @@ pub fn enterPrototypeScope() -> m<()> {
 }
 
 pub fn generateName() -> Trav<s, Name> {
-    __op_bind(get, |ts| { <Expr::Dummy> }(/* do */ {
+    __op_bind(get, |ts| { /* Expr::Dummy */ Dummy }(/* do */ {
             let [new_name, gen_q] = nameGenerator(ts);
             put(ts {
             nameGenerator: gen_q
@@ -133,7 +133,7 @@ pub fn generateName() -> Trav<s, Name> {
 }
 
 pub fn get() -> Trav<s, TravState<s>> {
-    Trav((|s| { <Expr::Dummy> }(Right, (s, s))))
+    Trav((|s| { /* Expr::Dummy */ Dummy }(Right, (s, s))))
 }
 
 pub fn getUserState() -> Trav<s, s> {
@@ -141,7 +141,7 @@ pub fn getUserState() -> Trav<s, s> {
 }
 
 pub fn gets(f: fn(TravState<s>) -> a) -> Trav<s, a> {
-    Trav((|s| { <Expr::Dummy> }(Right, (f(s), s))))
+    Trav((|s| { /* Expr::Dummy */ Dummy }(Right, (f(s), s))))
 }
 
 pub fn hadHardErrors() -> bool {
@@ -173,7 +173,7 @@ pub fn handleFunDef(ident: Ident, fun_def: FunDef) -> m<()> {
 pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
     /* do */ {
         let def = ObjectDef(obj_def);
-        let redecl = withDefTable(defineScopedIdentWhen((|old| { <Expr::Dummy> }(shouldOverride, def, old)), ident, def));
+        let redecl = withDefTable(defineScopedIdentWhen((|old| { /* Expr::Dummy */ Dummy }(shouldOverride, def, old)), ident, def));
         checkVarRedef(def, redecl);
         handleDecl(((__TODO_if(local, then, LocalEvent, __TODO_else, DeclEvent))(def)))
     }
@@ -211,7 +211,7 @@ pub fn handleTagDef(def: TagDef) -> m<()> {
 }
 
 pub fn handleTravError(a: m<a>) -> m<Option<a>> {
-    catchTravError(liftM(Some, a), (__op_rshift(|e| { <Expr::Dummy> }(recordError, e), None)))
+    catchTravError(liftM(Some, a), (__op_rshift(|e| { /* Expr::Dummy */ Dummy }(recordError, e), None)))
 }
 
 pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
@@ -269,7 +269,7 @@ pub fn leavePrototypeScope() -> m<()> {
 pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
     /* do */ {
         let old_decl = liftM((lookupIdent(ident)), getDefTable);
-        mapMaybeM(old_decl)(|obj| { <Expr::Dummy> }(match obj {
+        mapMaybeM(old_decl)(|obj| { /* Expr::Dummy */ Dummy }(match obj {
                 Right | objdef => {
                     __op_rshift(addRef(ident, objdef), objdef)
                 },
@@ -281,7 +281,7 @@ pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
 }
 
 pub fn lookupTypeDef(ident: Ident) -> m<Type> {
-    __op_bind(getDefTable, |symt| { <Expr::Dummy> }(match lookupIdent(ident, symt) {
+    __op_bind(getDefTable, |symt| { /* Expr::Dummy */ Dummy }(match lookupIdent(ident, symt) {
             None => {
                 astError((nodeInfo(ident)))(__op_addadd("unbound typeDef: ".to_string(), identToString(ident)))
             },
@@ -299,7 +299,7 @@ pub fn mapMaybeM(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
 }
 
 pub fn mapSndM(f: fn(b) -> m<c>, (a, b): (a, b)) -> m<(a, c)> {
-    liftM((<Expr::Dummy>(a)), (f(b)))
+    liftM((,(a)), (f(b)))
 }
 
 pub fn maybeM(m: Option<a>, f: fn(a) -> m<()>) -> m<()> {
@@ -311,23 +311,23 @@ pub fn mismatchErr(ctx: String, expect: String, found: String) -> String {
 }
 
 pub fn modify(f: fn(TravState<s>) -> TravState<s>) -> Trav<s, ()> {
-    Trav((|s| { <Expr::Dummy> }(Right, ((), f(s)))))
+    Trav((|s| { /* Expr::Dummy */ Dummy }(Right, ((), f(s)))))
 }
 
 pub fn modifyOptions(f: fn(TravOptions) -> TravOptions) -> Trav<s, ()> {
-    modify(|ts| { <Expr::Dummy> }(ts, {
-        options: f((options(ts)))
-    }))
+    modify(|ts| { /* Expr::Dummy */ Dummy } ts {
+    options: f((options(ts)))
+})
 }
 
 pub fn modifyUserState(f: fn(s) -> s) -> Trav<s, ()> {
-    modify(|ts| { <Expr::Dummy> }(ts, {
-        userState: f((userState(ts)))
-    }))
+    modify(|ts| { /* Expr::Dummy */ Dummy } ts {
+    userState: f((userState(ts)))
+})
 }
 
 pub fn put(s: TravState<s>) -> Trav<s, ()> {
-    Trav((|_| { <Expr::Dummy> }(Right, ((), s))))
+    Trav((|_| { /* Expr::Dummy */ Dummy }(Right, ((), s))))
 }
 
 pub fn redefErr(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKind) -> m<()> {
@@ -368,7 +368,7 @@ pub fn travErrors() -> Vec<CError> {
 }
 
 pub fn updDefTable(f: fn(DefTable) -> DefTable) -> m<()> {
-    withDefTable((|st| { <Expr::Dummy> }(((), f(st)))))
+    withDefTable((|st| { /* Expr::Dummy */ Dummy }(((), f(st)))))
 }
 
 pub fn warn(err: e) -> m<()> {
@@ -377,9 +377,9 @@ pub fn warn(err: e) -> m<()> {
 
 pub fn withExtDeclHandler(action: Trav<s, a>, handler: fn(DeclEvent) -> Trav<s, ()>) -> Trav<s, a> {
     /* do */ {
-        modify(|st| { <Expr::Dummy> }(st, {
-            doHandleExtDecl: handler
-        }));
+        modify(|st| { /* Expr::Dummy */ Dummy } st {
+        doHandleExtDecl: handler
+    });
         action
     }
 }
