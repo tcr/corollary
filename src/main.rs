@@ -291,6 +291,12 @@ fn run() -> Result<()> {
         }
     }
 
+    // Write out a cargo.toml
+    if arg_recursive {
+        let mut f = File::create(format!("{}/Cargo.toml", arg_out.unwrap()))?;
+        f.write_all(b"[package]\n")?;
+    }
+
     for (source_path, virtual_path) in inputs {
         // Check filetype. Allow .lhs and .hs, ignore all else.
         let mut do_strip_lhs = false;
@@ -332,7 +338,7 @@ fn run() -> Result<()> {
             });
 
             // Write out file.
-            let t = format!("{}/{}", arg_out.unwrap(), output_path);
+            let t = format!("{}/src/{}", arg_out.unwrap(), output_path);
             let t = t.replace(".lhs", ".rs");
             let t = t.replace(".hs", ".rs");
             
