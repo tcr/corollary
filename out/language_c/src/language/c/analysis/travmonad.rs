@@ -350,7 +350,7 @@ pub fn redefErr(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKin
     throwTravError(redefinition(lvl, (show(name)), kind, (nodeInfo(new)), (nodeInfo(old))))
 }
 
-pub fn runTrav(state: forall<s, a::, s>, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravState<s>)> {
+pub fn runTrav(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravState<s>)> {
     match unTrav(action, (initTravState(state))) {
         Left | trav_err => {
             Left(vec![trav_err])

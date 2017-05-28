@@ -72,6 +72,10 @@ fn strip_comments(text: &str) -> String {
         format!("\"{}\"", base64::encode(&v))
     }).to_string();
 
+    // Convert forall a b. to forall a b; for simpler parsing
+    let re = Regex::new(r"forall\s+(.*?)\.").unwrap();
+    let text = re.replace_all(&text, "forall $1;").to_string();
+
     text
 }
 

@@ -263,7 +263,7 @@ TypeSub: Ty = {
       => Ty::Not(Box::new(<>)),
     "[" <Type> "]"
       => Ty::Brackets(Box::new(<>)),
-    "(" <CommaOnce<Type>> ")"
+    "(" <CommaOnce<TypeGroupInner>> ")"
       => Ty::Tuple(<>),
     "(" ")"
       => Ty::EmptyParen,
@@ -288,8 +288,8 @@ Type: Ty = {
 };
 
 TypeGroupInner: Ty = {
-    <a:TypeSpan> "=>" <b:TypeGroupInner> => b,
-    <a:Type> => a,
+    ("forall" Ident+ ";")? <a:TypeSpan> "=>" <b:TypeGroupInner> => b,
+    ("forall" Ident+ ";")? <a:Type> => a,
 };
 
 TypeGroup: Vec<Ty> = {
