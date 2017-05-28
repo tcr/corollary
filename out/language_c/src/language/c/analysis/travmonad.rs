@@ -76,10 +76,10 @@ pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m
             redefVarErr(old_def, DiffKindRedecl)
         },
         KeepDef | Right(old_def) => if not((agreeOnLinkage(def, old_def))) { linkageErr(def, old_def) }
-otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
+else { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
         Redeclared | Right(old_def) => if not((agreeOnLinkage(def, old_def))) { linkageErr(def, old_def) }
 not((canBeOverwritten(old_def))) { redefVarErr(old_def, DuplicateDef) }
-otherwise { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
+else { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) },
         _ => {
             ()
         },
@@ -356,7 +356,7 @@ pub fn runTrav(state: forall<s, a::, s>, traversal: Trav<s, a>) -> Either<Vec<CE
             Left(vec![trav_err])
         },
         Right | (v, ts) => if hadHardErrors((travErrors(ts))) { Left((travErrors(ts))) }
-otherwise { Right((v, ts)) },
+else { Right((v, ts)) },
     }
 }
 

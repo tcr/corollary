@@ -301,7 +301,7 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
 
                     baseType(match numType {
                         Left | (floatType, iscomplex) => if iscomplex { TyComplex(floatType) }
-otherwise { TyFloating(floatType) },
+else { TyFloating(floatType) },
                         Right | intType => {
                             TyIntegral(intType)
                         },
@@ -371,7 +371,7 @@ pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Eit
     match (basetype, sgn, sz) {
         (BaseChar, _, NoSizeMod) => if Signed { intType(TySChar) }
 Unsigned { intType(TyUChar) }
-otherwise { intType(TyChar) },
+else { intType(TyChar) },
         (intbase, _, NoSizeMod) => if optBase(BaseInt, intbase) { intType(match sgn {
         Unsigned => {
             TyUInt

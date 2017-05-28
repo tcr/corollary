@@ -30831,7 +30831,7 @@ pub fn doDeclIdent(declspecs: Vec<CDeclSpec>, CDeclrR(mIdent, _, _, _, _): CDecl
             ()
         },
         Some | ident => if any(iypedef, declspecs) { addTypedef(ident) }
-otherwise { shadowTypedef(ident) },
+else { shadowTypedef(ident) },
     }
 }
 

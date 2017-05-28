@@ -40,6 +40,7 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "enum" => "__enum".to_string(),
         "use" => "__use".to_string(),
         "mod" => "__mod".to_string(),
+        "otherwise" => "else".to_string(), // TODO
         _ => {
             let mut expr = expr.to_string();
 

@@ -17,12 +17,12 @@ pub fn assignCompatible(__0: CAssignOp, __1: Type, __2: Type) -> Either<String, 
                 compatible((baseType(t1_q)), (baseType(t2_q)))
             } },
                 (DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) => if (sueRef(c1) == sueRef(c2)) { () }
-otherwise { fail(__op_addadd("incompatible compound types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) },
+else { fail(__op_addadd("incompatible compound types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) },
                 (DirectType(TyBuiltin(TyVaList), _, _), DirectType(TyBuiltin(TyVaList), _, _)) => {
                     ()
                 },
                 (DirectType(tn1, _, _), DirectType(tn2, _, _)) => if isJust((arithmeticConversion(tn1, tn2))) { () }
-otherwise { fail(__op_addadd("incompatible direct types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) },
+else { fail(__op_addadd("incompatible direct types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) },
                 (t1_q, t2_q) => {
                     compatible(t1_q, t2_q)
                 },
@@ -74,10 +74,10 @@ isCmpOp(op) { match (t1_q, t2_q) {
             __op_rshift(compatible(t1_q, t2_q), ptrDiffType)
         },
         (_, PtrType(_, _, _), t2_q) => if (isPtrOp(op) && isIntegralType(t2_q)) { t1 }
-otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((pretty(op))))) },
+else { fail(__op_addadd("invalid pointer operation: ".to_string(), render((pretty(op))))) },
         (CAddOp, t1_q, PtrType(_, _, _)) => if isIntegralType(t1_q) { t2 },
         (_, ArrayType(_, _, _, _), t2_q) => if (isPtrOp(op) && isIntegralType(t2_q)) { t1 }
-otherwise { fail(__op_addadd("invalid pointer operation: ".to_string(), render((pretty(op))))) },
+else { fail(__op_addadd("invalid pointer operation: ".to_string(), render((pretty(op))))) },
         (CAddOp, t1_q, ArrayType(_, _, _, _)) => if isIntegralType(t1_q) { t2 },
         (_, DirectType(tn1, q1, a1), DirectType(tn2, q2, a2)) => {
             /* do */ {
