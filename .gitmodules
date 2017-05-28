@@ -1,6 +1,6 @@
 [submodule "language-c"]
-	path = language-c
+	path = src-language-c
 	url = https://github.com/acowley/language-c
 [submodule "corrode"]
-	path = corrode
+	path = src-corrode
 	url = https://github.com/jameysharp/corrode.git

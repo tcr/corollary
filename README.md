@@ -6,20 +6,19 @@ It'd be cool if there existed a port of [Corrode, the C to Rust translator writt
 git clone http://github.com/tcr/corrode-but-in-rust --recursive
 ```
 
-This project contains a proof-of-concept cross-compiler from Haskell to Rust which is not designed to be either correct or generalizable. Instead, it's tailored for these libraries, each written in a conventional programming style.
+This project contains a proof-of-concept cross-compiler from Haskell to Rust which is not designed to be either correct or generalizable. Instead, it's tailored for these two libraries.
 
-**[Follow along in the tracking issue.](https://github.com/tcr/corrode-but-in-rust/issues/1)**
-
-## Status
-
-See the current status by looking at the cross-compiled files in the out/ directory. These are equivalent to:
+**The current result is in the `rust-corrode/` and `rust-language-c/` folders.**. These are crates generated using automated source conversion, generated using these commands:
 
 ```
-cargo run --bin "corollary" -- "./corrode/src/" -R -o ./out/corrode/src
-cargo run --bin "corollary" -- "./language-c/src/" -R -o ./out/language_c/src \
-  --alias ./language-c/src/Language/C/Parser/Lexer.hs=./gen/Lexer.hs \
-  --alias ./language-c/src/Language/C/Parser/Parser.hs=./gen/Parser.hs
+# source code in `src-corrode/` and `src-language-c/` w/ additional pregenerated files in `gen/`
+cargo run --bin "corollary" -- "./src-corrode/src/" -R -o ./rust-corrode/src
+cargo run --bin "corollary" -- "./src-language-c/src/" -R -o ./rust-language-c/src \
+  --alias ./src-language-c/src/Language/C/Parser/Lexer.hs=./gen/Lexer.hs \
+  --alias ./src-language-c/src/Language/C/Parser/Parser.hs=./gen/Parser.hs
 ```
+
+You'll note that the converted source code doesn't compile yet; fixes to the compiler are very appreciated! **[Or follow along in the tracking issue.](https://github.com/tcr/corrode-but-in-rust/issues/1)**
 
 ## References
 
