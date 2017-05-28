@@ -31,7 +31,7 @@ pub fn compatIdentEntry(__0: IdentEntry) -> bool {
             either((__TODO_const(true)), (__TODO_const(false)))
         },
         Right(def) => {
-            either((__TODO_const(false)))(|other_def| { /* Expr::Dummy */ Dummy }(match (def, other_def) {
+            either((__TODO_const(false)))(|other_def| { match (def, other_def) {
                     (EnumeratorDef(_), EnumeratorDef(_)) => {
                         true
                     },
@@ -44,7 +44,7 @@ pub fn compatIdentEntry(__0: IdentEntry) -> bool {
                     (_, _) => {
                         true
                     },
-                }))
+                } })
         },
     }
 }

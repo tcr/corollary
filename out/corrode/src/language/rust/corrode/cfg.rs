@@ -39,9 +39,9 @@ struct Structure<s, c>(Structure<TypeRecord /* todo */>);
 
 pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
     /* do */ {
-        modify(|st| { /* Expr::Dummy */ Dummy } st {
-        buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
-    })
+        modify(|st| { st {
+            buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
+        } })
     }
 }
 
@@ -107,7 +107,7 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
                 vec![]
             },
             ([entry], []) => {
-                match IntMap::updateLookupWithKey((|_, _| { /* Expr::Dummy */ Dummy }(None)), entry, blocks) {
+                match IntMap::updateLookupWithKey((|_, _| { None }), entry, blocks) {
                     (Some((s, term)), blocks_q) => {
                         __op_concat(Structure {
                         structureEntries: entries,

@@ -210,14 +210,14 @@ pub fn mkVarName(__0: NodeInfo, __1: Option<Ident>, __2: Option<AsmName>) -> m<V
 }
 
 pub fn nameOfDecl(d: CDecl) -> m<Ident> {
-    __op_bind(getOnlyDeclr(d), |declr| { /* Expr::Dummy */ Dummy }(match declr {
+    __op_bind(getOnlyDeclr(d), |declr| { match declr {
             CDeclr(Some(name), _, _, _, _) => {
                 name
             },
             CDeclr(None, _, _, _, node) => {
                 internalErr("nameOfDecl: abstract declarator".to_string())
             },
-        }))
+        } })
 }
 
 pub fn splitCDecl(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
@@ -271,7 +271,7 @@ pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt,
 
         handleTagDecl((CompDecl(decl)));
         when((handle_def))(/* do */ {
-            maybeM(member_decls_opt)(__op_bind(|decls| { /* Expr::Dummy */ Dummy }(tCompType, sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef::CompDef)))
+            maybeM(member_decls_opt)(|decls| { __op_bind(tCompType(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef::CompDef)) })
         });
         decl
     }
@@ -458,6 +458,6 @@ pub fn tTypeQuals() -> m<(TypeQuals, Attributes)> {
 }
 
 pub fn typeDefRef(t_node: NodeInfo, name: Ident) -> m<TypeDefRef> {
-    __op_bind(lookupTypeDef(name), |ty| { /* Expr::Dummy */ Dummy }(return, (TypeDefRef(name, (Some(ty)), t_node))))
+    __op_bind(lookupTypeDef(name), |ty| { (TypeDefRef(name, (Some(ty)), t_node)) })
 }
 

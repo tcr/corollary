@@ -21,7 +21,7 @@ pub fn advanceDesigList(ds: Vec<CDesignator>, d: CDesignator) -> Vec<CDesignator
 pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls> {
     /* do */ {
         mapRecoverM_(analyseExt, decls);
-        __op_bind(getDefTable, |dt| { /* Expr::Dummy */ Dummy }(when, (not((inFileScope(dt)))))(__error!("Internal Error: Not in filescope after analysis".to_string())));
+        __op_bind(getDefTable, |dt| { when((not((inFileScope(dt)))))(__error!("Internal Error: Not in filescope after analysis".to_string())) });
         liftM(globalDefs, getDefTable)
     }
 }
@@ -186,7 +186,7 @@ pub fn computeFunDefStorage(__0: Ident, __1: StorageSpec) -> m<Storage> {
 
 pub fn defaultMD() -> MachineDesc {
     MachineDesc {
-    iSize: |it| { /* Expr::Dummy */ Dummy }(match it {
+    iSize: |it| { match it {
                     TyBool => {
                         1
                     },
@@ -223,8 +223,8 @@ pub fn defaultMD() -> MachineDesc {
                     TyULLong => {
                         8
                     },
-                }),
-    fSize: |ft| { /* Expr::Dummy */ Dummy }(match ft {
+                } },
+    fSize: |ft| { match ft {
                     TyFloat => {
                         4
                     },
@@ -234,18 +234,18 @@ pub fn defaultMD() -> MachineDesc {
                     TyLDouble => {
                         16
                     },
-                }),
-    builtinSize: |bt| { /* Expr::Dummy */ Dummy }(match bt {
+                } },
+    builtinSize: |bt| { match bt {
                     TyVaList => {
                         4
                     },
                     TyAny => {
                         4
                     },
-                }),
+                } },
     ptrSize: 4,
     voidSize: 1,
-    iAlign: |it| { /* Expr::Dummy */ Dummy }(match it {
+    iAlign: |it| { match it {
                     TyBool => {
                         1
                     },
@@ -282,8 +282,8 @@ pub fn defaultMD() -> MachineDesc {
                     TyULLong => {
                         8
                     },
-                }),
-    fAlign: |ft| { /* Expr::Dummy */ Dummy }(match ft {
+                } },
+    fAlign: |ft| { match ft {
                     TyFloat => {
                         4
                     },
@@ -293,15 +293,15 @@ pub fn defaultMD() -> MachineDesc {
                     TyLDouble => {
                         16
                     },
-                }),
-    builtinAlign: |bt| { /* Expr::Dummy */ Dummy }(match bt {
+                } },
+    builtinAlign: |bt| { match bt {
                     TyVaList => {
                         4
                     },
                     TyAny => {
                         4
                     },
-                }),
+                } },
     ptrAlign: 4,
     voidAlign: 1
 }
@@ -472,7 +472,7 @@ pub fn tExpr(c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m<Type> {
                         /* do */ {
                             let t = tExpr_q(c, side, e);
 
-                            withDefTable((|dt| { /* Expr::Dummy */ Dummy }((t, insertType(dt, n, t)))))
+                            withDefTable((|dt| { (t, insertType(dt, n, t)) }))
                         }
                     },
                 }
@@ -752,7 +752,7 @@ pub fn tInitList(__0: NodeInfo, __1: Type, __2: CInitList, __3: m<()>) -> m<()> 
 
                 let ms = tagMembers(ni, td);
 
-                let default_ds = map((|m| { /* Expr::Dummy */ Dummy }(CMemberDesig, (fst(m)), ni)), ms);
+                let default_ds = map((|m| { CMemberDesig((fst(m)), ni) }), ms);
 
                 checkInits(t, default_ds, initList)
             }
@@ -788,7 +788,7 @@ pub fn tStmt(__0: Vec<StmtCtx>, __1: CStat) -> m<Type> {
             }
         },
         (c, CIf(e, sthen, selse, _)) => {
-            __op_rshift(checkGuard(c, e), __op_rshift(tStmt(c, sthen), __op_rshift(maybe((()), (__op_rshift(|s| { /* Expr::Dummy */ Dummy }(tStmt, c, s), ())), selse), voidType)))
+            __op_rshift(checkGuard(c, e), __op_rshift(tStmt(c, sthen), __op_rshift(maybe((()), (|s| { __op_rshift(tStmt(c, s), ()) }), selse), voidType)))
         },
         (c, CSwitch(e, s, ni)) => {
             __op_bind(tExpr(c, RValue, e), __op_rshift(checkIntegral_q(ni), tStmt((__op_concat(SwitchCtx, c)), s)))

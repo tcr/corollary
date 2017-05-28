@@ -116,10 +116,10 @@ Case: CaseCond = {
 
 // TODO name this better
 ExprSpanSimple: Vec<Expr> = {
-  <Expr+> => {
-      // Process out Records
-      <>.into_iter()
-          .fold(vec![], |mut acc, x| {
+    <Expr+> => {
+        <>
+          .into_iter().fold(vec![], |mut acc, x| {
+            // Process out Records
             if let Expr::RecordArgs(args) = x {
                 if let Some(base) = acc.pop() {
                     acc.push(Expr::Record(Box::new(base), args));
@@ -131,7 +131,21 @@ ExprSpanSimple: Vec<Expr> = {
             }
             acc
           })
-  },
+          .into_iter().fold(vec![], |mut acc, x| {
+            // Fix lambas; this should be a parser concern, see Expr::Lambda parsing note below
+            let mut lambda_fill = false;
+            if let Some(&mut Expr::Lambda(_, ref mut body)) = acc.last_mut() {
+                lambda_fill = true;
+                if let Expr::Span(ref mut span) = **body {
+                    span.push(x.clone());
+                }
+            }
+            if !lambda_fill {
+                acc.push(x);
+            }
+            acc
+          })
+    },
 };
 
 ExprSpan: Expr = {
@@ -163,7 +177,7 @@ Expr: Expr = {
       let mut a = vec![Pat::Ref(i)];
       a.extend(e.unwrap_or(vec![]));
       a
-    }, Box::new(Expr::Dummy)),
+    }, Box::new(Expr::Span(vec![]))),
     r"\\" "(" <e:CommaOnce<PatSpan>> ")" "->" <body:Expr>
       => Expr::Lambda(vec![Pat::Tuple(e)], Box::new(body)),
 

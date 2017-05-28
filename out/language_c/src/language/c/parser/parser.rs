@@ -30914,7 +30914,7 @@ pub fn happyError() -> P<a> {
 }
 
 pub fn happyError_q(tk: CToken) -> P<a> {
-    (|token| { /* Expr::Dummy */ Dummy }(happyError))(tk)
+    (|token| { happyError })(tk)
 }
 
 let __0 = |__1| {
@@ -30963,7 +30963,7 @@ let __0 = |__1, __2, __3, __4, __5, __6, __7| {
 
                         let new_state = action;
 
-                    happyThen1((fn(stk, tk)), (|r| { /* Expr::Dummy */ Dummy }(happyNewToken, new_state, sts1, (HappyStk(r, drop_stk)))))                    }
+                    happyThen1((fn(stk, tk)), (|r| { happyNewToken(new_state, sts1, (HappyStk(r, drop_stk))) }))                    }
                 },
             }
         },
@@ -30981,7 +30981,7 @@ let __0 = |__1, __2, __3, __4, __5, __6, __7| {
                     {
                         let drop_stk = happyDropStk(k, stk);
 
-                    happyThen1((fn(stk, tk)), (|r| { /* Expr::Dummy */ Dummy }(action, nt, j, tk, st1, sts1, (HappyStk(r, drop_stk)))))                    }
+                    happyThen1((fn(stk, tk)), (|r| { action(nt, j, tk, st1, sts1, (HappyStk(r, drop_stk))) }))                    }
                 },
             }
         },
@@ -30989,7 +30989,7 @@ let __0 = |__1, __2, __3, __4, __5, __6, __7| {
 };
 
 let action = |sts, stk| {
-    lexC((|tk| { /* Expr::Dummy */ Dummy }({
+    lexC((|tk| { () }({
                 let cont = |i| {
                     action(i, i, tk, (HappyState(action)), sts, stk)
                 };
@@ -31903,7 +31903,7 @@ let __0 = match (__0) {
     };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAsmExt(happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn9(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAsmExt(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn9(r))) }))
 };
 
 let __0 = match (__0) {
@@ -31916,27 +31916,27 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CTypedef))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn40(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CTypedef))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CExtern))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn40(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CExtern))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CStatic))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn40(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CStatic))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAuto))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn40(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAuto))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CRegister))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn40(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CRegister))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CThread))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn40(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CThread))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
 };
 
 let __0 = match (__0) {
@@ -31967,55 +31967,55 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, vec![], happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, vec![], happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CVoidType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CVoidType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCharType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCharType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CShortType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CShortType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CIntType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CIntType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CLongType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CLongType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CFloatType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CFloatType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDoubleType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDoubleType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CSignedType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CSignedType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CUnsigType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CUnsigType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBoolType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBoolType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CComplexType))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CComplexType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let __0 = |__1| {
@@ -32116,7 +32116,7 @@ let __0 = |__1, __2| {
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let __0 = |__1| {
@@ -32228,7 +32228,7 @@ let __0 = |__1| {
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let __0 = |__1, __2| {
@@ -32276,15 +32276,15 @@ let __0 = |__1| {
 };
 
 let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_2)(snoc(|at| { /* Expr::Dummy */ Dummy }(happy_var_1), CTypeSpec((CTypeDef(happy_var_2, at))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(happy_var_1, CTypeSpec((CTypeDef(happy_var_2, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_2)(snoc(|at| { /* Expr::Dummy */ Dummy }(happy_var_1), CTypeSpec((CTypeOfExpr(happy_var_4, at))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(happy_var_1, CTypeSpec((CTypeOfExpr(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_2)(snoc(|at| { /* Expr::Dummy */ Dummy }(happy_var_1), CTypeSpec((CTypeOfType(happy_var_4, at))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(happy_var_1, CTypeSpec((CTypeOfType(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let __0 = |__1| {
@@ -32310,59 +32310,59 @@ let __0 = |__1| {
 };
 
 let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(|at| { /* Expr::Dummy */ Dummy }(singleton, (CTypeSpec((CTypeDef(happy_var_1, at)))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(|at| { singleton((CTypeSpec((CTypeDef(happy_var_1, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(|at| { /* Expr::Dummy */ Dummy }(singleton, (CTypeSpec((CTypeOfExpr(happy_var_3, at)))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(|at| { singleton((CTypeSpec((CTypeOfExpr(happy_var_3, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(|at| { /* Expr::Dummy */ Dummy }(singleton, (CTypeSpec((CTypeOfType(happy_var_3, at)))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(|at| { singleton((CTypeSpec((CTypeOfType(happy_var_3, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_2)(snoc(|at| { /* Expr::Dummy */ Dummy }(rmap, CTypeQual, happy_var_1), CTypeSpec((CTypeDef(happy_var_2, at))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(rmap(CTypeQual, happy_var_1), CTypeSpec((CTypeDef(happy_var_2, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_2)(snoc(|at| { /* Expr::Dummy */ Dummy }(rmap, CTypeQual, happy_var_1), CTypeSpec((CTypeOfExpr(happy_var_4, at))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(rmap(CTypeQual, happy_var_1), CTypeSpec((CTypeOfExpr(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_2)(snoc(|at| { /* Expr::Dummy */ Dummy }(rmap, CTypeQual, happy_var_1), CTypeSpec((CTypeOfType(happy_var_4, at))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(rmap(CTypeQual, happy_var_1), CTypeSpec((CTypeOfType(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_2)(snoc(|at| { /* Expr::Dummy */ Dummy }(reverseList, (liftCAttrs(happy_var_1))), (CTypeSpec((CTypeDef(happy_var_2, at)))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(reverseList((liftCAttrs(happy_var_1))), (CTypeSpec((CTypeDef(happy_var_2, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(snoc(|at| { /* Expr::Dummy */ Dummy }(reverseList, (liftCAttrs(happy_var_1))), (CTypeSpec((CTypeOfExpr(happy_var_4, at)))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(|at| { snoc(reverseList((liftCAttrs(happy_var_1))), (CTypeSpec((CTypeOfExpr(happy_var_4, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_2)(snoc(|at| { /* Expr::Dummy */ Dummy }(reverseList, (liftCAttrs(happy_var_1))), (CTypeSpec((CTypeOfType(happy_var_4, at)))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(reverseList((liftCAttrs(happy_var_1))), (CTypeSpec((CTypeOfType(happy_var_4, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_3)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_3)(rappend(|at| { /* Expr::Dummy */ Dummy }(rmap, CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeDef(happy_var_3, at)))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_3)(|at| { rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeDef(happy_var_3, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_3)(rappend(|at| { /* Expr::Dummy */ Dummy }(rmap, CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeOfExpr(happy_var_5, at)))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_3)(|at| { rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeOfExpr(happy_var_5, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_3)(rappend(|at| { /* Expr::Dummy */ Dummy }(rmap, CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeOfType(happy_var_5, at)))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn38(r)))))
+    happyThen(((withNodeInfo(happy_var_3)(|at| { rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeOfType(happy_var_5, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
 };
 
 let __0 = |__1| {
@@ -32388,23 +32388,23 @@ let __0 = |__1| {
 };
 
 let HappyStk(HappyAbsSyn50(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CSUType(happy_var_1)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CSUType(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(HappyAbsSyn58(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CEnumType(happy_var_1)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn42(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CEnumType(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), (Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn50(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), (Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn50(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn50(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn50(r))) }))
 };
 
 let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), (Some(happy_var_3)), None, happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn50(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), (Some(happy_var_3)), None, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn50(r))) }))
 };
 
 let __0 = match (__0) {
@@ -32426,7 +32426,7 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 
@@ -32498,7 +32498,7 @@ let HappyStk(HappyAbsSyn56(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy
             (d, s) => {
                 CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![(d, None, s)])
             },
-        }))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+        }))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
@@ -32506,7 +32506,7 @@ let HappyStk(HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy
             (d, s) => {
                 CDecl((liftCAttrs(happy_var_1)), vec![(d, None, s)])
             },
-        }))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+        }))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = HappyStk(HappyAbsSyn32((match happy_var_1 {
@@ -32530,11 +32530,11 @@ let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn56(happy
             (None, s) => {
                 CDecl(happy_var_1, vec![(None, None, s)])
             },
-        }))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+        }))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, (reverse(happy_var_2)), happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, (reverse(happy_var_2)), happy_var_3)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = HappyStk(HappyAbsSyn32((match happy_var_1 {
@@ -32551,7 +32551,7 @@ let HappyStk(HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn56(happy
         })), happyRest);
 
 let HappyStk(HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let __0 = match (__0) {
@@ -32635,27 +32635,27 @@ let __0 = |__1| {
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CEnum(None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn58(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CEnum(None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_2)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((withNodeInfo(happy_var_2)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CEnum(None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn58(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CEnum(None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn58(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn58(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
 let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), None, happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn58(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), None, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
 };
 
 let __0 = match (__0) {
@@ -32712,23 +32712,23 @@ let __0 = |__1, __2| {
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CConstQual))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn61(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CConstQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CVolatQual))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn61(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CVolatQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CRestrQual))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn61(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CRestrQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CInlineQual))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn61(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CInlineQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
 };
 
 let __0 = |__1| {
@@ -32784,7 +32784,7 @@ let __0 = match (__0) {
 
 
 let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn64((Some(happy_var_3))), happyRest);
@@ -32808,11 +32808,11 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn85(happy_var_2), /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(|at| { /* Expr::Dummy */ Dummy }(happy_var_2, (mkVarDeclr(happy_var_1, at)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(|at| { happy_var_2((mkVarDeclr(happy_var_1, at))) }))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let __0 = match (__0) {
@@ -32834,23 +32834,23 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let __0 = |__1, __2| {
@@ -32880,31 +32880,31 @@ let __0 = match (__0) {
     };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_5, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_5, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let __0 = |__1, __2| {
@@ -32923,7 +32923,7 @@ let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn85(happy_var_3), /* TODO(INFIX) */
 let HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest);
 
 let HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let __0 = |__1, __2| {
@@ -32965,23 +32965,23 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, (reverse(happy_var_4)), happy_var_5)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, (reverse(happy_var_4)), happy_var_5)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let __0 = |__1| {
@@ -33013,14 +33013,14 @@ let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */
 let HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest) = HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest);
 
 let HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_1), happyRest) = |tk| {
     happyThen((({
             let declr = reverseDeclr(happy_var_1);
 
-        __op_rshift(enterScope, __op_rshift(doFuncParamDeclIdent(declr), declr))        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn11(r)))))
+        __op_rshift(enterScope, __op_rshift(doFuncParamDeclIdent(declr), declr))        })), (|r| { happyReturn((HappyAbsSyn11(r))) }))
 };
 
 let __0 = |__1, __2| {
@@ -33055,15 +33055,15 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(funDeclr(happy_var_1, (Left(reverse(happy_var_3))), vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(funDeclr(happy_var_1, (Left(reverse(happy_var_3))), vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let __0 = |__1, __2| {
@@ -33130,31 +33130,31 @@ let __0 = |__1, __2| {
 };
 
 let HappyStk(HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
-            ])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+            ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
-            ])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+            ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33169,43 +33169,43 @@ let __0 = match (__0) {
 let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
-            ])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+            ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
-            ])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+            ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
-            ])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+            ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None)])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33238,19 +33238,19 @@ let __0 = |__1, __2| {
 };
 
 let HappyStk(HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33290,11 +33290,11 @@ let __0 = match (__0) {
     };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn79(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(|at, declr| { /* Expr::Dummy */ Dummy }(match happy_var_2 {
+    happyThen(((withNodeInfo(happy_var_1)(|at, declr| { match happy_var_2 {
                 (params, variadic) => {
                     funDeclr(declr, (Right((params, variadic))), vec![], at)
                 },
-            })))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+            } }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33318,7 +33318,7 @@ let __0 = match (__0) {
 let __0 = |__1| {
     match (__0, __1) {
         (HappyAbsSyn85(happy_var_2), HappyAbsSyn85(happy_var_1)) => {
-            HappyAbsSyn85((|decl| { /* Expr::Dummy */ Dummy }(happy_var_2, (happy_var_1(decl)))))
+            HappyAbsSyn85((|decl| { happy_var_2((happy_var_1(decl))) }))
         },
         (_, _) => {
             notHappyAtAll
@@ -33327,35 +33327,35 @@ let __0 = |__1| {
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, vec![], false, false, happy_var_2, at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(|at, declr| { arrDeclr(declr, vec![], false, false, happy_var_2, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttributePF(happy_var_1, happy_var_2)(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, vec![], false, false, happy_var_3, at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withAttributePF(happy_var_1, happy_var_2)(|at, declr| { arrDeclr(declr, vec![], false, false, happy_var_3, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, (reverse(happy_var_2)), false, false, happy_var_3, at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), false, false, happy_var_3, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, (reverse(happy_var_2)), false, false, happy_var_4, at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), false, false, happy_var_4, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, vec![], false, true, (Some(happy_var_4)), at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { arrDeclr(declr, vec![], false, true, (Some(happy_var_4)), at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttributePF(happy_var_1, happy_var_4)(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, (reverse(happy_var_3)), false, true, (Some(happy_var_5)), at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withAttributePF(happy_var_1, happy_var_4)(|at, declr| { arrDeclr(declr, (reverse(happy_var_3)), false, true, (Some(happy_var_5)), at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_3, happy_var_5)))(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, (reverse(happy_var_2)), false, true, (Some(happy_var_6)), at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_3, happy_var_5)))(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), false, true, (Some(happy_var_6)), at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, vec![], true, false, None, at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { arrDeclr(declr, vec![], true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33368,39 +33368,39 @@ let __0 = match (__0) {
     };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_2, happy_var_4)))(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, vec![], true, false, None, at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_2, happy_var_4)))(|at, declr| { arrDeclr(declr, vec![], true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttributePF(happy_var_1, happy_var_4)(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, (reverse(happy_var_2)), true, false, None, at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withAttributePF(happy_var_1, happy_var_4)(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_3, happy_var_5)))(|at, declr| { /* Expr::Dummy */ Dummy }(arrDeclr, declr, (reverse(happy_var_2)), true, false, None, at)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn85(r)))))
+    happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_3, happy_var_5)))(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(emptyDeclr, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(emptyDeclr, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(emptyDeclr, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(emptyDeclr, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(emptyDeclr, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(emptyDeclr, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn63(r)))))
+    happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
 };
 
 let __0 = |__1, __2| {
@@ -33467,19 +33467,19 @@ let __0 = |__1| {
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CInitExpr(happy_var_1)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn90(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CInitExpr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn90(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CInitList((reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn90(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CInitList((reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn90(r))) }))
 };
 
 let HappyStk(HappyAbsSyn26(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1, (CAsm(happy_var_1))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1, (CAsm(happy_var_1))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CInitList((reverse(happy_var_2)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn90(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CInitList((reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn90(r))) }))
 };
 
 
@@ -33540,11 +33540,11 @@ let __0 = |__1| {
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(|at| { /* Expr::Dummy */ Dummy }(vec![CMemberDesig(happy_var_1, at)])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn93(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(|at| { vec![CMemberDesig(happy_var_1, at)] }))), (|r| { happyReturn((HappyAbsSyn93(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CLabel(happy_var_1, happy_var_4, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CLabel(happy_var_1, happy_var_4, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33577,11 +33577,11 @@ let __0 = |__1| {
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CArrDesig(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn95(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CArrDesig(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn95(r))) }))
 };
 
 let HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CMemberDesig(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn95(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CMemberDesig(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn95(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33594,11 +33594,11 @@ let __0 = match (__0) {
     };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CRangeDesig(happy_var_2, happy_var_4)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn95(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CRangeDesig(happy_var_2, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn95(r))) }))
 };
 
 let HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CVar(happy_var_1)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CVar(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33620,7 +33620,7 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCase(happy_var_2, happy_var_4)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCase(happy_var_2, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let __0 = |__1, __2| {
@@ -33635,31 +33635,31 @@ let __0 = |__1, __2| {
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CStatExpr(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CStatExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinVaArg(happy_var_3, happy_var_5))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinVaArg(happy_var_3, happy_var_5))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinOffsetOf(happy_var_3, (reverse(happy_var_5))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinOffsetOf(happy_var_3, (reverse(happy_var_5))))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinTypesCompatible(happy_var_3, happy_var_5))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinTypesCompatible(happy_var_3, happy_var_5))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn125(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(singleton(CMemberDesig(happy_var_1))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn94(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(singleton(CMemberDesig(happy_var_1))))), (|r| { happyReturn((HappyAbsSyn94(r))) }))
 };
 
 let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CMemberDesig(happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn94(r)))))
+    happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CMemberDesig(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn94(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CArrDesig(happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn94(r)))))
+    happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CArrDesig(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn94(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33672,43 +33672,43 @@ let __0 = match (__0) {
     };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CIndex(happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CIndex(happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDefault(happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDefault(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCall(happy_var_1, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCall(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCall(happy_var_1, (reverse(happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCall(happy_var_1, (reverse(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CMember(happy_var_1, happy_var_3, false)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CMember(happy_var_1, happy_var_3, false)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CMember(happy_var_1, happy_var_3, true)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CMember(happy_var_1, happy_var_3, true)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CUnary(CPostIncOp, happy_var_1)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CUnary(CPostIncOp, happy_var_1)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CUnary(CPostDecOp, happy_var_1)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CUnary(CPostDecOp, happy_var_1)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCompoundLit(happy_var_2, (reverse(happy_var_5)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCompoundLit(happy_var_2, (reverse(happy_var_5)))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCompoundLit(happy_var_2, (reverse(happy_var_5)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCompoundLit(happy_var_2, (reverse(happy_var_5)))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33732,7 +33732,7 @@ let __0 = |__1, __2| {
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCases(happy_var_2, happy_var_4, happy_var_6)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCases(happy_var_2, happy_var_4, happy_var_6)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33745,11 +33745,11 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CUnary(CPreIncOp, happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CUnary(CPreIncOp, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CUnary(CPreDecOp, happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CUnary(CPreDecOp, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = |__1| {
@@ -33764,39 +33764,39 @@ let __0 = |__1| {
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn102(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CUnary((unL(happy_var_1)), happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CUnary((unL(happy_var_1)), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CSizeofExpr(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CSizeofExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CSizeofType(happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CSizeofType(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAlignofExpr(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAlignofExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAlignofType(happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAlignofType(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CComplexReal(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CComplexReal(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCompound(vec![], (reverse(happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCompound(vec![], (reverse(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CComplexImag(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CComplexImag(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CLabAddrExpr(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CLabAddrExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33863,11 +33863,11 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCast(happy_var_2, happy_var_4)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCast(happy_var_2, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCompound((reverse(happy_var_3)), (reverse(happy_var_4)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCompound((reverse(happy_var_3)), (reverse(happy_var_4)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33880,32 +33880,15 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CMulOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CMulOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CDivOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CDivOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CRmdOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
-};
-
-let __0 = match (__0) {
-        HappyAbsSyn97(happy_var_1) => {
-            HappyAbsSyn97((happy_var_1))
-        },
-        _ => {
-            notHappyAtAll
-        },
-    };
-
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CAddOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
-};
-
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CSubOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CRmdOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33918,11 +33901,28 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CShlOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CAddOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CShrOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CSubOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
+};
+
+let __0 = match (__0) {
+        HappyAbsSyn97(happy_var_1) => {
+            HappyAbsSyn97((happy_var_1))
+        },
+        _ => {
+            notHappyAtAll
+        },
+    };
+
+let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CShlOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
+};
+
+let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CShrOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn8(happy_var_1), happyRest) = |tk| {
@@ -33942,11 +33942,11 @@ let HappyStk(HappyAbsSyn8(happy_var_1), happyRest) = |tk| {
                 [d, ds] => {
                     withNodeInfo(d)(CTranslUnit(decls))
                 },
-            }        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn7(r)))))
+            }        })), (|r| { happyReturn((HappyAbsSyn7(r))) }))
 };
 
 let happyRest = |tk| {
-    happyThen(((enterScope)), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn15(r)))))
+    happyThen(((enterScope)), (|r| { happyReturn((HappyAbsSyn15(r))) }))
 };
 
 let __0 = match (__0) {
@@ -33959,36 +33959,19 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CLeOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CLeOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CGrOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CGrOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CLeqOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CLeqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CGeqOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
-};
-
-let __0 = match (__0) {
-        HappyAbsSyn97(happy_var_1) => {
-            HappyAbsSyn97((happy_var_1))
-        },
-        _ => {
-            notHappyAtAll
-        },
-    };
-
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CEqOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
-};
-
-let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CNeqOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CGeqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34001,11 +33984,28 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CAndOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CEqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
+};
+
+let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CNeqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
+};
+
+let __0 = match (__0) {
+        HappyAbsSyn97(happy_var_1) => {
+            HappyAbsSyn97((happy_var_1))
+        },
+        _ => {
+            notHappyAtAll
+        },
+    };
+
+let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CAndOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let happyRest = |tk| {
-    happyThen(((leaveScope)), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn15(r)))))
+    happyThen(((leaveScope)), (|r| { happyReturn((HappyAbsSyn15(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34018,7 +34018,7 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CXorOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CXorOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34031,7 +34031,7 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(COrOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(COrOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34044,7 +34044,7 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CLndOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CLndOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34057,7 +34057,7 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBinary(CLorOp, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBinary(CLorOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34070,12 +34070,12 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, (Some(happy_var_3)), happy_var_5)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, (Some(happy_var_3)), happy_var_5)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 
 let HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, None, happy_var_4)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, None, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34088,7 +34088,7 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn116(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAssign((unL(happy_var_2)), happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAssign((unL(happy_var_2)), happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34214,7 +34214,7 @@ let HappyStk(HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) *
     happyThen((({
             let es = reverse(happy_var_3);
 
-        withNodeInfo(es)(CComma((__op_concat(happy_var_1, es))))        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn97(r)))))
+        withNodeInfo(es)(CComma((__op_concat(happy_var_1, es))))        })), (|r| { happyReturn((HappyAbsSyn97(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34280,7 +34280,7 @@ let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
             CTokILit | _ | i => {
                 CIntConst(i)
             },
-        }))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn122(r)))))
+        }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
@@ -34288,7 +34288,7 @@ let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
             CTokCLit | _ | c => {
                 CCharConst(c)
             },
-        }))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn122(r)))))
+        }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
@@ -34296,7 +34296,7 @@ let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
             CTokFLit | _ | f => {
                 CFloatConst(f)
             },
-        }))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn122(r)))))
+        }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
@@ -34304,7 +34304,7 @@ let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
             CTokSLit | _ | s => {
                 CStrLit(s)
             },
-        }))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn123(r)))))
+        }))), (|r| { happyReturn((HappyAbsSyn123(r))) }))
 };
 
 let HappyStk(HappyAbsSyn124(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
@@ -34312,7 +34312,7 @@ let HappyStk(HappyAbsSyn124(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy
             CTokSLit | _ | s => {
                 CStrLit((concatCStrings((__op_concat(s, reverse(happy_var_2))))))
             },
-        }))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn123(r)))))
+        }))), (|r| { happyReturn((HappyAbsSyn123(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34440,19 +34440,19 @@ let __0 = match (__0) {
     };
 
 let HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn130(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
 };
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(Some(CAttr((internalIdent("const".to_string())), vec![]))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn130(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(Some(CAttr((internalIdent("const".to_string())), vec![]))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, (reverse(happy_var_3))))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn130(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, (reverse(happy_var_3))))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn130(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34502,24 +34502,24 @@ let __0 = |__1| {
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
-    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn10(r)))))
+    happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
 };
 
 let __0 = |__1, __2| {
@@ -34536,19 +34536,19 @@ let __0 = |__1, __2| {
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_1), happyRest) = HappyStk(HappyAbsSyn21((rappendr(happy_var_1, happy_var_3))), happyRest);
 
 let HappyStk(HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CExpr(None)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CExpr(None)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CExpr((Some(happy_var_1)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CExpr((Some(happy_var_1)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CIf(happy_var_3, happy_var_5, None)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CIf(happy_var_3, happy_var_5, None)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CIf(happy_var_3, happy_var_5, (Some(happy_var_7)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CIf(happy_var_3, happy_var_5, (Some(happy_var_7)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let __0 = |__1| {
@@ -34563,43 +34563,43 @@ let __0 = |__1| {
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CSwitch(happy_var_3, happy_var_5)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CSwitch(happy_var_3, happy_var_5)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CWhile(happy_var_3, happy_var_5, false)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CWhile(happy_var_3, happy_var_5, false)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CWhile(happy_var_5, happy_var_2, true)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CWhile(happy_var_5, happy_var_2, true)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CFor((Left(happy_var_3)), happy_var_5, happy_var_7, happy_var_9)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CFor((Left(happy_var_3)), happy_var_5, happy_var_7, happy_var_9)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CFor((Right(happy_var_4)), happy_var_5, happy_var_7, happy_var_9)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CFor((Right(happy_var_4)), happy_var_5, happy_var_7, happy_var_9)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CGoto(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CGoto(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CGotoPtr(happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CGotoPtr(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CCont))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CCont))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CBreak))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CBreak))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CReturn(happy_var_2)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn12(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CReturn(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
 };
 
 let __0 = |__1| {
@@ -34614,19 +34614,19 @@ let __0 = |__1| {
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, vec![], vec![], vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn26(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, vec![], vec![], vec![])))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, vec![], vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn26(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, vec![], vec![])))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, happy_var_8, vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn26(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, happy_var_8, vec![])))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn31(happy_var_10), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, happy_var_8, (reverse(happy_var_10)))))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn26(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, happy_var_8, (reverse(happy_var_10)))))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
 };
 
 
@@ -34679,15 +34679,15 @@ let __0 = match (__0) {
     };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAsmOperand(None, happy_var_1, happy_var_3)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn30(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAsmOperand(None, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn30(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAsmOperand((Some(happy_var_2)), happy_var_4, happy_var_6)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn30(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAsmOperand((Some(happy_var_2)), happy_var_4, happy_var_6)))), (|r| { happyReturn((HappyAbsSyn30(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CAsmOperand((Some(happy_var_2)), happy_var_4, happy_var_6)))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn30(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CAsmOperand((Some(happy_var_2)), happy_var_4, happy_var_6)))), (|r| { happyReturn((HappyAbsSyn30(r))) }))
 };
 
 let __0 = match (__0) {
@@ -34711,11 +34711,11 @@ let __0 = |__1, __2| {
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest) = |tk| {
-    happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+    happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk| {
@@ -34723,7 +34723,7 @@ let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk|
             CDecl | declspecs | dies | at => {
                 withLength(at, (CDecl(declspecs, (List::reverse(dies)))))
             },
-        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk| {
@@ -34731,7 +34731,7 @@ let HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk|
             CDecl | declspecs | dies | at => {
                 withLength(at, (CDecl(declspecs, (List::reverse(dies)))))
             },
-        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 
@@ -34764,7 +34764,7 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
 
                 doDeclIdent(declspecs, declr);
                 withNodeInfo(happy_var_1)(CDecl(declspecs, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
-            }        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+            }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
@@ -34776,7 +34776,7 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
 
                 doDeclIdent(declspecs, declr);
                 withNodeInfo(happy_var_1)(CDecl(declspecs, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
-            }        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+            }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn91(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest) = |tk| {
@@ -34788,7 +34788,7 @@ let HappyStk(HappyAbsSyn91(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn35(happy_
 
                 doDeclIdent(declspecs, declr);
                 withNodeInfo(happy_var_1)(CDecl((__op_addadd(declspecs, liftCAttrs(happy_var_2))), vec![(Some((reverseDeclr(declr))), happy_var_5, None)]))
-            }        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+            }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest) = |tk| {
@@ -34800,7 +34800,7 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
 
                 doDeclIdent(declspecs, declr);
                 withNodeInfo(happy_var_1)(CDecl(declspecs, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
-            }        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+            }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk| {
@@ -34813,7 +34813,7 @@ let HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_
                     withLength(at)(CDecl(declspecs, (__op_concat((Some((reverseDeclr(declr))), happy_var_6, None), dies))))
                 }
             },
-        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let __0 = |__1| {
@@ -34833,7 +34833,7 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
 
             doDeclIdent(happy_var_1, declr);
             withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
-        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest) = |tk| {
@@ -34842,7 +34842,7 @@ let HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_
 
             doDeclIdent(happy_var_1, declr);
             withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
-        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 let HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest) = |tk| {
@@ -34855,7 +34855,7 @@ let HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_
                     (CDecl(declspecs, (__op_concat((Some((reverseDeclr(declr))), happy_var_6, None), dies)), at))
                 }
             },
-        })), (|r| { /* Expr::Dummy */ Dummy }(happyReturn, (HappyAbsSyn32(r)))))
+        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
 };
 
 pub fn happyReturn() -> P<a> {

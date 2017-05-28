@@ -19971,7 +19971,7 @@ let __0 = match (__0) {
             tok(5, CTokWhile)
         },
         cs => {
-            |pos| { /* Expr::Dummy */ Dummy }(/* do */ {
+            |pos| { /* do */ {
                     let name = getNewName;
 
                     let len = match length(cs) {
@@ -19985,7 +19985,7 @@ let __0 = match (__0) {
                     let tyident = isTypeIdent(ident);
 
                     __TODO_if(tyident, then, return, (CTokTyIdent((pos, len), ident)), __TODO_else, return, (CTokIdent((pos, len), ident)))
-                })
+                } }
         },
     };
 

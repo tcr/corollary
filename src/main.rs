@@ -186,7 +186,7 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool) -> (String, String) {
     let mut errors = Vec::new();
     match parser_haskell::parse(&mut errors, &contents) {
         Ok(v) => {
-            //errln!("{:?}", v);
+            // errln!("{:?}", v);
 
             if inline_mod {
                 let _ = writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"));

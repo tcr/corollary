@@ -49,7 +49,7 @@ pub fn getSubStmts(__0: CStat) -> Vec<CStat> {
             concatMap(compoundSubStmts, body)
         },
         CIf(_, sthen, selse, _) => {
-            maybe(vec![sthen], (|s| { /* Expr::Dummy */ Dummy }(vec![sthen, s])), selse)
+            maybe(vec![sthen], (|s| { vec![sthen, s] }), selse)
         },
         CSwitch(_, s, _) => {
             vec![s]

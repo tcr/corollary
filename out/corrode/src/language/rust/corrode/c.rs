@@ -124,25 +124,25 @@ pub fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust::Mutable, CType)) -> EnvM
 
 pub fn addSymbolIdentAction(ident: Ident, action: EnvMonad<s, Result>) -> EnvMonad<s, ()> {
     lift(/* do */ {
-        modify(|st| { /* Expr::Dummy */ Dummy } st {
-        symbolEnvironment: __op_concat((ident, action), symbolEnvironment(st))
-    })
+        modify(|st| { st {
+            symbolEnvironment: __op_concat((ident, action), symbolEnvironment(st))
+        } })
     })
 }
 
 pub fn addTagIdent(ident: Ident, ty: EnvMonad<s, CType>) -> EnvMonad<s, ()> {
     lift(/* do */ {
-        modify(|st| { /* Expr::Dummy */ Dummy } st {
-        tagEnvironment: __op_concat((ident, ty), tagEnvironment(st))
-    })
+        modify(|st| { st {
+            tagEnvironment: __op_concat((ident, ty), tagEnvironment(st))
+        } })
     })
 }
 
 pub fn addTypedefIdent(ident: Ident, ty: EnvMonad<s, IntermediateType>) -> EnvMonad<s, ()> {
     lift(/* do */ {
-        modify(|st| { /* Expr::Dummy */ Dummy } st {
-        typedefEnvironment: __op_concat((ident, ty), typedefEnvironment(st))
-    })
+        modify(|st| { st {
+            typedefEnvironment: __op_concat((ident, ty), typedefEnvironment(st))
+        } })
     })
 }
 
@@ -763,7 +763,7 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
             /* do */ {
                 let storagespecs(baseTy) = baseTypeOf(specs);
 
-                let mbinds = forM(decls)(|declarator| { /* Expr::Dummy */ Dummy }(/* do */ {
+                let mbinds = forM(decls)(|declarator| { /* do */ {
                             let decl(minit) = match declarator {
                                     (Some(decl), minit, None) => {
                                         (decl, minit)
@@ -808,7 +808,7 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                 },
                                 (_, [CFunDeclr { /* TODO pat record */ }, _]) => {
                                     /* do */ {
-                                        addExternIdent(ident, deferred)(|name, (_mut, ty)| { /* Expr::Dummy */ Dummy }(match ty {
+                                        addExternIdent(ident, deferred)(|name, (_mut, ty)| { match ty {
                                                 IsFunc | retTy | args | variadic => {
                                                     {
                                                         let formals = /* Expr::Dummy */ Dummy;
@@ -818,13 +818,13 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                                 _ => {
                                                     __error!((__op_addadd(show(ident), " is both a function and not a function?".to_string())))
                                                 },
-                                            }));
+                                            } });
                                         None
                                     }
                                 },
                                 (Some(CExtern(_)), _) => {
                                     /* do */ {
-                                        addExternIdent(ident, deferred)(|name, (__mut, ty)| { /* Expr::Dummy */ Dummy }(Rust::ExternStatic, __mut, (Rust::VarName(name)), (toRustType(ty))));
+                                        addExternIdent(ident, deferred)(|name, (__mut, ty)| { Rust::ExternStatic(__mut, (Rust::VarName(name)), (toRustType(ty))) });
                                         None
                                     }
                                 },
@@ -851,7 +851,7 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                     }
                                 },
                             }
-                        }));
+                        } });
 
                 (catMaybes(mbinds))
             }
@@ -1685,14 +1685,14 @@ pub fn modifyGlobal(f: fn(GlobalState) -> (GlobalState, a)) -> EnvMonad<s, a> {
 }
 
 pub fn mutable(quals: Vec<CTypeQualifier<a>>) -> Rust::Mutable {
-    __TODO_if(any, (|q| { /* Expr::Dummy */ Dummy }(match q {
+    __TODO_if(any, (|q| { match q {
                 CConstQual | _ => {
                     true
                 },
                 _ => {
                     false
                 },
-            })), quals, then, Rust::Immutable, __TODO_else, Rust::Mutable)
+            } }), quals, then, Rust::Immutable, __TODO_else, Rust::Mutable)
 }
 
 pub fn nestedObject(ty: CType, desig: Designator) -> Option<Designator> {
@@ -1820,16 +1820,16 @@ pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, 
                         },
                     };
 
-                let indices = unfoldr((|o| { /* Expr::Dummy */ Dummy }(match o {
+                let indices = unfoldr((|o| { match o {
                                 Base { /* TODO pat record */ } => {
                                     None
                                 },
                                 From | _ | j | _ | p => {
                                     Some((j, p))
                                 },
-                            })), obj_q);
+                            } }), obj_q);
 
-                let initializer = foldl((|a, j| { /* Expr::Dummy */ Dummy }(Initializer, None, (IntMap::singleton(j, a)))), initial, indices);
+                let initializer = foldl((|a, j| { Initializer(None, (IntMap::singleton(j, a))) }), initial, indices);
 
                 (nextObject(obj_q), mappend(prior, initializer))
             }
@@ -1892,23 +1892,23 @@ pub fn scope(m: EnvMonad<s, a>) -> EnvMonad<s, a> {
 
         let a = m;
 
-        lift((modify((|st| { /* Expr::Dummy */ Dummy } old {
-                globalState: globalState(st)
-            }))));
+        lift((modify((|st| { old {
+                    globalState: globalState(st)
+                } }))));
         a
     }
 }
 
 pub fn setBreak(label: Label) -> CSourceBuildCFGT<s, a> {
-    mapBuildCFGT((local((|flow| { /* Expr::Dummy */ Dummy } flow {
-            onBreak: Some(label)
-        }))))
+    mapBuildCFGT((local((|flow| { flow {
+                onBreak: Some(label)
+            } }))))
 }
 
 pub fn setContinue(label: Label) -> CSourceBuildCFGT<s, a> {
-    mapBuildCFGT((local((|flow| { /* Expr::Dummy */ Dummy } flow {
-            onContinue: Some(label)
-        }))))
+    mapBuildCFGT((local((|flow| { flow {
+                onContinue: Some(label)
+            } }))))
 }
 
 pub fn statementsToBlock(__0: Vec<Rust::Stmt>) -> Rust::Block {
@@ -2132,15 +2132,15 @@ pub fn unimplemented(node: node) -> EnvMonad<s, a> {
 }
 
 pub fn uniqueName(base: String) -> EnvMonad<s, String> {
-    modifyGlobal(|st| { /* Expr::Dummy */ Dummy }((st {
+    modifyGlobal(|st| { (st {
         unique: (unique(st) + 1)
-    }, __op_addadd(base, show((unique(st)))))))
+    }, __op_addadd(base, show((unique(st))))) })
 }
 
 pub fn useForwardRef(ident: Ident) -> EnvMonad<s, ()> {
-    modifyGlobal(|st| { /* Expr::Dummy */ Dummy }((st {
+    modifyGlobal(|st| { (st {
         usedForwardRefs: Set::insert(ident, (usedForwardRefs(st)))
-    }, ())))
+    }, ()) })
 }
 
 pub fn usual(__0: CType, __1: CType) -> Option<CType> {

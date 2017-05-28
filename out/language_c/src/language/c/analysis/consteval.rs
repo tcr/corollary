@@ -97,7 +97,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             /* do */ {
                 let e1_q = constEval(md, env, e1);
 
-                let me2_q = maybe((None), (liftM(|e| { /* Expr::Dummy */ Dummy }(Some), constEval(md, env, e))), me2);
+                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
 
                 let e3_q = constEval(md, env, e3);
 
@@ -252,7 +252,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
 }
 
 pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
-    __op_bind(genName, |name| { /* Expr::Dummy */ Dummy }(return)(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))))
+    __op_bind(genName, |name| { return(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))) })
 }
 
 pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
