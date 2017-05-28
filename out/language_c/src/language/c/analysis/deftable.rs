@@ -80,15 +80,15 @@ pub fn declareTag(sueref: SUERef, decl: TagFwdDecl, deftbl: DefTable) -> (Declar
             tagDecls: fst(defLocal((tagDecls(deftbl)), sueref, (Left(decl))))
         })
         },
-        Some | old_def => if (tagKind(old_def) == tagKind((Left(decl)))) { (KeepDef(old_def), deftbl) }
-else { (KindMismatch(old_def), deftbl) },
+Some | old_def if (tagKind(old_def) == tagKind((Left(decl)))) => { (KeepDef(old_def), deftbl) }
+Some | old_def => { (KindMismatch(old_def), deftbl) }
     }
 }
 
 pub fn defRedeclStatus(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option<t>) -> DeclarationStatus<t> {
     match oldDecl {
-        Some | def_q => if sameKind(def, def_q) { Redeclared(def_q) }
-else { KindMismatch(def_q) },
+Some | def_q if sameKind(def, def_q) => { Redeclared(def_q) }
+Some | def_q => { KindMismatch(def_q) }
         None => {
             NewDecl
         },

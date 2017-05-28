@@ -1213,7 +1213,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         (demand, stat, __OP__, CStatExpr(CCompound([], stmts, _), _)) => {
             scope(/* do */ {
                 let (effects, final) = match last(stmts) {
-                        CBlockStmt | CExpr(expr, _) => if demand { (init(stmts), expr) },
+CBlockStmt | CExpr(expr, _) if demand => { (init(stmts), expr) }
                         _ => {
                             (stmts, None)
                         },
@@ -1310,7 +1310,7 @@ pub fn interpretFunction(CFunDef(specs, declr, __OP__, CDeclr(mident, _, _, _, _
         let alreadyUsed = lift(gets((usedForwardRefs(globalState))));
 
         match vis {
-            Rust::Private => if Set::notMember(ident, alreadyUsed) { /* do */ {
+Rust::Private if Set::notMember(ident, alreadyUsed) => { /* do */ {
             let action = runOnce(/* do */ {
                     let ty = deferred;
 
@@ -1319,7 +1319,7 @@ pub fn interpretFunction(CFunDef(specs, declr, __OP__, CDeclr(mident, _, _, _, _
                 });
 
             addSymbolIdentAction(ident, action)
-        } },
+        } }
             _ => {
                 /* do */ {
                     let ty = deferred;
@@ -1505,7 +1505,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
 
                 addBlock(bodyLabel, bodyEntry, bodyTerm);
                 addBlock(headerLabel, vec![])(match toBool(c_q) {
-                    Rust::Lit | Rust::LitBool(cont) => if __op_assign_div(cont, doWhile) { Branch((__TODO_if(cont, then, bodyLabel, __TODO_else, after))) },
+Rust::Lit | Rust::LitBool(cont) if __op_assign_div(cont, doWhile) => { Branch((__TODO_if(cont, then, bodyLabel, __TODO_else, after))) }
                     _ => {
                         CondBranch(c_q, bodyLabel, after)
                     },
@@ -1700,7 +1700,7 @@ pub fn nestedObject(ty: CType, desig: Designator) -> Option<Designator> {
         IsArray | _ | size | el => {
             Some((From(el, 0, (replicate(((size - 1)), el)), desig)))
         },
-        ty_q => if compatibleInitializer(ty, ty_q) { Some(desig) },
+ty_q if compatibleInitializer(ty, ty_q) => { Some(desig) }
         IsStruct | _ | [(_, ty_q), fields] => {
             nestedObject(ty, (From(ty_q, 0, (map(snd, fields)), desig)))
         },
@@ -2156,7 +2156,7 @@ pub fn usual(__0: CType, __1: CType) -> Option<CType> {
         },
         (origA, origB) => {
             match (intPromote(origA), intPromote(origB)) {
-                (a, b) => if (a == b) { Some(a) },
+(a, b) if (a == b) => { Some(a) }
                 (IsInt(Signed, sw), IsInt(Unsigned, uw)) => {
                     mixedSign(sw, uw)
                 },

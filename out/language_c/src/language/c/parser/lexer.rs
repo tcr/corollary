@@ -20072,7 +20072,7 @@ let arr = |i| {
 
 pub fn readCOctal(s: String, __OP__: Either<String, CInteger>) -> Either<String, CInteger> {
     match r {
-        [c, _] => if isDigit(c) { readCInteger(OctalRepr, r) },
+[c, _] if isDigit(c) => { readCInteger(OctalRepr, r) }
         _ => {
             readCInteger(DecRepr, s)
         },

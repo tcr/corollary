@@ -40,7 +40,6 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "enum" => "__enum".to_string(),
         "use" => "__use".to_string(),
         "mod" => "__mod".to_string(),
-        "otherwise" => "else".to_string(), // TODO
         _ => {
             let mut expr = expr.to_string();
 
@@ -263,17 +262,22 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             for item in rest {
                 match item.clone() {
                     ast::CaseCond::Matching(label, arms) => {
-                        let mut inner = vec![];
                         for (cond, arm) in arms {
-                            inner.push(format!("{} {{ {} }}",
-                                cond.iter().map(|x| print_expr(state, x)).collect::<Vec<_>>().join(" && "),
-                                print_expr(state, &arm),
-                            ));
+                            let label_str = print_case_patterns(state, label.clone());
+                            let cond_str = cond.iter().map(|x| print_expr(state, x)).collect::<Vec<_>>().join(" && ");
+                            if cond_str == "otherwise" {
+                                out.push(format!("{} => {{ {} }}",
+                                    label_str,
+                                    print_expr(state, &arm),
+                                ));
+                            } else {
+                                out.push(format!("{} if {} => {{ {} }}",
+                                    label_str,
+                                    cond_str,
+                                    print_expr(state, &arm),
+                                ));
+                            }
                         }
-                        out.push(format!("{}{} => if {},",
-                            state.tab().indent(),
-                            print_case_patterns(state, label),
-                            inner.join("\n")));
                     }
                     ast::CaseCond::Direct(labels, arms) => {
                         out.push(format!("{}{} => {{\n{}{}\n{}}},",

@@ -300,8 +300,8 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
                     let numType = tNumType(tsnum);
 
                     baseType(match numType {
-                        Left | (floatType, iscomplex) => if iscomplex { TyComplex(floatType) }
-else { TyFloating(floatType) },
+Left | (floatType, iscomplex) if iscomplex => { TyComplex(floatType) }
+Left | (floatType, iscomplex) => { TyFloating(floatType) }
                         Right | intType => {
                             TyIntegral(intType)
                         },
@@ -369,18 +369,18 @@ pub fn tMemberDecls(__0: CDecl) -> m<Vec<MemberDecl>> {
 
 pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Either<(FloatType, bool), IntType>> {
     match (basetype, sgn, sz) {
-        (BaseChar, _, NoSizeMod) => if Signed { intType(TySChar) }
-Unsigned { intType(TyUChar) }
-else { intType(TyChar) },
-        (intbase, _, NoSizeMod) => if optBase(BaseInt, intbase) { intType(match sgn {
+(BaseChar, _, NoSizeMod) if Signed => { intType(TySChar) }
+(BaseChar, _, NoSizeMod) if Unsigned => { intType(TyUChar) }
+(BaseChar, _, NoSizeMod) => { intType(TyChar) }
+(intbase, _, NoSizeMod) if optBase(BaseInt, intbase) => { intType(match sgn {
         Unsigned => {
             TyUInt
         },
         _ => {
             TyInt
         },
-    }) },
-        (intbase, signed, sizemod) => if optBase(BaseInt, intbase) && optSign(Signed, signed) { intType(match sizemod {
+    }) }
+(intbase, signed, sizemod) if optBase(BaseInt, intbase) && optSign(Signed, signed) => { intType(match sizemod {
         ShortMod => {
             TyShort
         },
@@ -393,8 +393,8 @@ else { intType(TyChar) },
         _ => {
             internalErr("numTypeMapping: unexpected pattern matching error".to_string())
         },
-    }) },
-        (intbase, Unsigned, sizemod) => if optBase(BaseInt, intbase) { intType(match sizemod {
+    }) }
+(intbase, Unsigned, sizemod) if optBase(BaseInt, intbase) => { intType(match sizemod {
         ShortMod => {
             TyUShort
         },
@@ -407,7 +407,7 @@ else { intType(TyChar) },
         _ => {
             internalErr("numTypeMapping: unexpected pattern matching error".to_string())
         },
-    }) },
+    }) }
         (BaseFloat, NoSignSpec, NoSizeMod) => {
             floatType(TyFloat)
         },

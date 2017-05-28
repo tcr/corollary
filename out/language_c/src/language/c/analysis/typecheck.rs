@@ -10,19 +10,19 @@ pub fn assignCompatible(__0: CAssignOp, __1: Type, __2: Type) -> Either<String, 
                 (_, DirectType(TyBuiltin(TyAny), _, _)) => {
                     ()
                 },
-                (PtrType(DirectType(TyVoid, _, _), _, _), t2_q) => if isPointerType(t2_q) { () },
-                (t1_q, PtrType(DirectType(TyVoid, _, _), _, _)) => if isPointerType(t1_q) { () },
-                (PtrType(_, _, _), t2_q) => if isIntegralType(t2_q) { () },
-                (t1_q, t2_q) => if (isPointerType(t1_q) && isPointerType(t2_q)) { /* do */ {
+(PtrType(DirectType(TyVoid, _, _), _, _), t2_q) if isPointerType(t2_q) => { () }
+(t1_q, PtrType(DirectType(TyVoid, _, _), _, _)) if isPointerType(t1_q) => { () }
+(PtrType(_, _, _), t2_q) if isIntegralType(t2_q) => { () }
+(t1_q, t2_q) if (isPointerType(t1_q) && isPointerType(t2_q)) => { /* do */ {
                 compatible((baseType(t1_q)), (baseType(t2_q)))
-            } },
-                (DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) => if (sueRef(c1) == sueRef(c2)) { () }
-else { fail(__op_addadd("incompatible compound types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) },
+            } }
+(DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) if (sueRef(c1) == sueRef(c2)) => { () }
+(DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) => { fail(__op_addadd("incompatible compound types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) }
                 (DirectType(TyBuiltin(TyVaList), _, _), DirectType(TyBuiltin(TyVaList), _, _)) => {
                     ()
                 },
-                (DirectType(tn1, _, _), DirectType(tn2, _, _)) => if isJust((arithmeticConversion(tn1, tn2))) { () }
-else { fail(__op_addadd("incompatible direct types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) },
+(DirectType(tn1, _, _), DirectType(tn2, _, _)) if isJust((arithmeticConversion(tn1, tn2))) => { () }
+(DirectType(tn1, _, _), DirectType(tn2, _, _)) => { fail(__op_addadd("incompatible direct types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) }
                 (t1_q, t2_q) => {
                     compatible(t1_q, t2_q)
                 },
@@ -40,8 +40,8 @@ pub fn assignCompatible_q(ni: NodeInfo, op: CAssignOp, t1: Type, t2: Type) -> m<
 
 pub fn binopType(op: CBinaryOp, t1: Type, t2: Type) -> Either<String, Type> {
     match (op, canonicalType(t1), canonicalType(t2)) {
-        (_, t1_q, t2_q) => if isLogicOp(op) { __op_rshift(checkScalar(t1_q), __op_rshift(checkScalar(t2_q), boolType)) }
-isCmpOp(op) { match (t1_q, t2_q) {
+(_, t1_q, t2_q) if isLogicOp(op) => { __op_rshift(checkScalar(t1_q), __op_rshift(checkScalar(t2_q), boolType)) }
+(_, t1_q, t2_q) if isCmpOp(op) => { match (t1_q, t2_q) {
         (DirectType(tn1, _, _), DirectType(tn2, _, _)) => {
             match arithmeticConversion(tn1, tn2) {
                 Some | _ => {
@@ -52,15 +52,15 @@ isCmpOp(op) { match (t1_q, t2_q) {
                 },
             }
         },
-        (PtrType(DirectType(TyVoid, _, _), _, _), _) => if isPointerType(t2_q) { boolType },
-        (_, PtrType(DirectType(TyVoid, _, _), _, _)) => if isPointerType(t1_q) { boolType },
-        (_, _) => if (isPointerType(t1_q) && isIntegralType(t2_q)) { boolType }
-(isIntegralType(t1_q) && isPointerType(t2_q)) { boolType }
-(isPointerType(t1_q) && isPointerType(t2_q)) { __op_rshift(compatible(t1_q, t2_q), boolType) },
+(PtrType(DirectType(TyVoid, _, _), _, _), _) if isPointerType(t2_q) => { boolType }
+(_, PtrType(DirectType(TyVoid, _, _), _, _)) if isPointerType(t1_q) => { boolType }
+(_, _) if (isPointerType(t1_q) && isIntegralType(t2_q)) => { boolType }
+(_, _) if (isIntegralType(t1_q) && isPointerType(t2_q)) => { boolType }
+(_, _) if (isPointerType(t1_q) && isPointerType(t2_q)) => { __op_rshift(compatible(t1_q, t2_q), boolType) }
         (_, _) => {
             fail("incompatible types in comparison".to_string())
         },
-    } },
+    } }
         (CSubOp, ArrayType(t1_q, _, _, _), ArrayType(t2_q, _, _, _)) => {
             __op_rshift(compatible(t1_q, t2_q), ptrDiffType)
         },
@@ -73,12 +73,12 @@ isCmpOp(op) { match (t1_q, t2_q) {
         (CSubOp, PtrType(t1_q, _, _), PtrType(t2_q, _, _)) => {
             __op_rshift(compatible(t1_q, t2_q), ptrDiffType)
         },
-        (_, PtrType(_, _, _), t2_q) => if (isPtrOp(op) && isIntegralType(t2_q)) { t1 }
-else { fail(__op_addadd("invalid pointer operation: ".to_string(), render((pretty(op))))) },
-        (CAddOp, t1_q, PtrType(_, _, _)) => if isIntegralType(t1_q) { t2 },
-        (_, ArrayType(_, _, _, _), t2_q) => if (isPtrOp(op) && isIntegralType(t2_q)) { t1 }
-else { fail(__op_addadd("invalid pointer operation: ".to_string(), render((pretty(op))))) },
-        (CAddOp, t1_q, ArrayType(_, _, _, _)) => if isIntegralType(t1_q) { t2 },
+(_, PtrType(_, _, _), t2_q) if (isPtrOp(op) && isIntegralType(t2_q)) => { t1 }
+(_, PtrType(_, _, _), t2_q) => { fail(__op_addadd("invalid pointer operation: ".to_string(), render((pretty(op))))) }
+(CAddOp, t1_q, PtrType(_, _, _)) if isIntegralType(t1_q) => { t2 }
+(_, ArrayType(_, _, _, _), t2_q) if (isPtrOp(op) && isIntegralType(t2_q)) => { t1 }
+(_, ArrayType(_, _, _, _), t2_q) => { fail(__op_addadd("invalid pointer operation: ".to_string(), render((pretty(op))))) }
+(CAddOp, t1_q, ArrayType(_, _, _, _)) if isIntegralType(t1_q) => { t2 }
         (_, DirectType(tn1, q1, a1), DirectType(tn2, q2, a2)) => {
             /* do */ {
                 when((isBitOp(op)), (__op_rshift(checkIntegral(t1), checkIntegral(t2))));
@@ -332,8 +332,8 @@ pub fn compositeVarDecl(VarDecl(n1, attrs1, t1): VarDecl, VarDecl(_, attrs2, t2)
 
 pub fn conditionalType(t1: Type, t2: Type) -> Either<String, Type> {
     match (canonicalType(t1), canonicalType(t2)) {
-        (PtrType(DirectType(TyVoid, _, _), _, _), t2_q) => if isPointerType(t2_q) { t2 },
-        (t1_q, PtrType(DirectType(TyVoid, _, _), _, _)) => if isPointerType(t1_q) { t1 },
+(PtrType(DirectType(TyVoid, _, _), _, _), t2_q) if isPointerType(t2_q) => { t2 }
+(t1_q, PtrType(DirectType(TyVoid, _, _), _, _)) if isPointerType(t1_q) => { t1 }
         (ArrayType(t1_q, _, q1, a1), ArrayType(t2_q, _, q2, a2)) => {
             /* do */ {
                 let t = compositeType(t1_q, t2_q);

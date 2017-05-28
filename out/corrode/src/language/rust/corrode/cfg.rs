@@ -122,10 +122,10 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
                     },
                 }
             },
-            _ => if not((IntSet::null(absent))) { __op_concat(__TODO_if(IntSet::null, present, then, vec![], __TODO_else, Structure {
+_ if not((IntSet::null(absent))) => { __op_concat(__TODO_if(IntSet::null, present, then, vec![], __TODO_else, Structure {
             structureEntries: entries,
             structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
-        }), vec![]) },
+        }), vec![]) }
             ([], _) => {
                 __op_concat(Structure {
                 structureEntries: entries,
