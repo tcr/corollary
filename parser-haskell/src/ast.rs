@@ -72,7 +72,7 @@ pub enum DoItem {
 #[derive(Clone, Debug)]
 pub struct Module {
     pub name: Ident,
-    pub items: Vec<Item>,
+    pub items: Where,
 }
 
 #[derive(Clone, Debug)]

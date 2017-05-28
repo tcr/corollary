@@ -37,8 +37,6 @@ use errors::*;
 
 #[test] #[ignore]
 fn test_single_file() {
-    use std::io::Write;
-
     let a = "./corrode/src/Language/Rust/Corrode/C.lhs";
     // let a = "./corrode/src/Language/Rust/Corrode/C.hs";
     // let a = "./test/input.hs";
@@ -130,13 +128,14 @@ fn test_no_regressions() {
 
         // Do not output preprocessed data temp.txt
         //println!("{:?}", path);
-        use ::std::io::Write;
+        // use ::std::io::Write;
         // let mut a = ::std::fs::File::create("temp.txt").unwrap();
         // a.write_all(contents.as_bytes());
 
         let mut errors = Vec::new();
         match parser_haskell::parse(&mut errors, &contents) {
-            Ok(v) => {
+            Ok(_) => {
+                // OK
             }
             Err(e) => {
                 //TODO print_parse_error return string, feed to panic
