@@ -95,7 +95,7 @@ pub fn mapBlockItemStmts(__0: fn(CStat) -> bool, __1: fn(CStat) -> CStat, __2: C
 pub fn mapSubStmts(__0: fn(CStat) -> bool, __1: fn(CStat) -> CStat, __2: CStat) -> CStat {
     match (__0, __1, __2) {
         (stop, _, s) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (stop, f, CLabel(i, s, attrs, ni)) => {
             f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni)))

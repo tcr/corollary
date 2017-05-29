@@ -101,7 +101,7 @@ Operator: String = {
 Assignment: Assignment = {
     <pats:PatList>
       ("|" <CommaOnce<(<ExprSpan> ("<-" ExprSpan)?)>> "=" <ExprSpan>)+
-      => Assignment { pats, expr: Expr::Dummy },
+      => Assignment { pats, expr: Expr::Error }, // TODO this
     <pats:PatList> "=" <expr:ExprSpan>
       => Assignment { pats, expr },
 };
@@ -215,7 +215,7 @@ Item: Item = {
 
     "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
       Where
-      => Item::Dummy,
+      => Item::Type, //TODO populate
     "data" <id:Ident>
       => Item::Data(id, vec![], vec![], vec![]),
     "data" <id:Ident> <args:TypeSub*> "=" <p:Pipe<TypeGroup>>
@@ -275,7 +275,7 @@ TypeSub: Ty = {
     <Ctor>
       => Ty::Ref(<>),
     ".."
-      => Ty::Dummy, // TODO ??
+      => Ty::RangeOp, // TODO ??
 };
 
 TypeSpan: Ty = {

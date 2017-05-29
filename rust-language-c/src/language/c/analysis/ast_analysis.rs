@@ -27,7 +27,7 @@ pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls>
 }
 
 pub fn analyseDecl(is_local: bool, decl: CDecl, __OP__: m<()>) -> m<()> {
-    /* Expr::Dummy */ Dummy
+    /* Expr::Error */ Error
 }
 
 pub fn analyseExt(__0: CExtDecl) -> m<()> {
@@ -644,7 +644,7 @@ pub fn tExpr_q(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m<Type> {
             builtinType(b)
         },
         (c, side, CCall(CVar(i, _), args, ni)) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (c, _, CCall(fe, args, ni)) => {
             /* do */ {

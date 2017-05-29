@@ -83,7 +83,7 @@ pub fn escapeCChar(__0: Char) -> String {
             "\\\'".to_string()
         },
         c => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
     }
 }
@@ -118,7 +118,7 @@ pub fn escapeChar(__0: Char) -> String {
             "\\v".to_string()
         },
         c => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
     }
 }

@@ -96,7 +96,7 @@ pub fn createSUERef(__0: NodeInfo, __1: Option<Ident>) -> m<SUERef> {
             return(NamedRef(ident))
         },
         (node_info, None) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
     }
 }

@@ -343,7 +343,7 @@ pub fn blockToStatements(Rust::Block(stmts, mexpr): Rust::Block) -> Vec<Rust::St
 pub fn castTo(__0: CType, __1: Result) -> Rust::Expr {
     match (__0, __1) {
         (target, source) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (target, Result { /* TODO pat record */ }) => {
             castTo(target, Result {
@@ -427,7 +427,7 @@ pub fn compatiblePtr(__0: CType, __1: CType) -> CType {
             IsPtr((leastMutable(m1, m2)), (compatiblePtr(a, b)))
         },
         (a, b) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (_, _) => {
             IsVoid
@@ -698,7 +698,7 @@ pub fn intPromote(__0: CType) -> CType {
             enumReprType
         },
         IsInt(_, BitWidth(w)) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         x => {
             x
@@ -715,10 +715,10 @@ pub fn integerConversionRank(__0: IntWidth, __1: IntWidth) -> Option<Ordering> {
             Some(EQ)
         },
         (BitWidth(a), WordWidth) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (WordWidth, BitWidth(b)) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (_, _) => {
             None
@@ -830,7 +830,7 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                 },
                                 (Some(CStatic(_)), _) => {
                                     /* do */ {
-                                        let <todo> = deferred;
+                                        let _TODO_RECORD_ { /* TODO pat record */ } = deferred;
 
                                         let name = addSymbolIdent(ident, (__mut, ty));
 
@@ -841,7 +841,7 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                 },
                                 _ => {
                                     /* do */ {
-                                        let <todo> = deferred;
+                                        let _TODO_RECORD_ { /* TODO pat record */ } = deferred;
 
                                         let name = addSymbolIdent(ident, (__mut, ty));
 

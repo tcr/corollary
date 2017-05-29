@@ -316,9 +316,6 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         Generator(..) => {
             format!("/* Expr::Generator */ Generator")
         }
-        Dummy => {
-            format!("/* Expr::Dummy */ Dummy")
-        }
         RecordArgs(..) | Error => {
             format!("/* Expr::Error */ Error")
         }
@@ -453,6 +450,7 @@ pub fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         }
         Ty::Record(..) => "TypeRecord /* todo */".to_string(),
         Ty::EmptyParen => "()".to_string(),
+        Ty::RangeOp => ".. /* todo range */".to_string(),
         Ty::Dummy => "()".to_string(),
     }
 }

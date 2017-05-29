@@ -114,7 +114,7 @@ pub fn castCompatible(t1: Type, t2: Type) -> Either<String, ()> {
 }
 
 pub fn checkIntegral(t: Type) -> Either<String, ()> {
-    /* Expr::Dummy */ Dummy
+    /* Expr::Error */ Error
 }
 
 pub fn checkIntegral_q(ni: NodeInfo) -> m<()> {
@@ -184,7 +184,7 @@ pub fn compositeSize(__0: ArraySize, __1: ArraySize) -> Either<String, ArraySize
             s1
         },
         (ArraySize(s1, e1), ArraySize(s2, e2)) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
     }
 }
@@ -251,16 +251,16 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
             return(PtrType(t2, (mergeTypeQuals(q1, q2)), a2))
         },
         (PtrType(t1, q1, a1), t2) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (t1, PtrType(t2, q2, a2)) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (ArrayType(t1, sz1, q1, a1), t2) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (t1, ArrayType(t2, sz2, q2, a2)) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (ArrayType(t1, s1, q1, a1), ArrayType(t2, s2, q2, a2)) => {
             /* do */ {
@@ -276,7 +276,7 @@ pub fn compositeType(__0: Type, __1: Type) -> Either<String, Type> {
             }
         },
         (t1, t2) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (TypeDefType(tdr1, q1, a1), TypeDefType(tdr2, q2, a2)) => {
             match (tdr1, tdr2) {
@@ -382,7 +382,7 @@ pub fn constType(__0: CConst) -> m<Type> {
             /* do */ {
                 let n = genName;
 
-                let charType = /* Expr::Dummy */ Dummy;
+                let charType = /* Expr::Error */ Error;
 
                 let ni_q = mkNodeInfo((posOf(ni)), n);
 

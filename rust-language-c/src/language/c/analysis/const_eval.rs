@@ -214,7 +214,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, env, e, __OP__, CVar(i, _)) => {
-            /* Expr::Dummy */ Dummy
+            /* Expr::Error */ Error
         },
         (md, env, e, __OP__, CVar(i, _)) => {
             /* do */ {

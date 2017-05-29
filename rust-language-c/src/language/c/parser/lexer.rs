@@ -33,11 +33,11 @@ pub fn alexAndPred(p1: bool) -> bool {
 }
 
 pub fn alexGetByte((p, is): AlexInput) -> Option<(Word8, AlexInput)> {
-    /* Expr::Dummy */ Dummy
+    /* Expr::Error */ Error
 }
 
 pub fn alexGetChar((p, is): AlexInput) -> Option<(Char, AlexInput)> {
-    /* Expr::Dummy */ Dummy
+    /* Expr::Error */ Error
 }
 
 pub fn alexIndexInt16OffAddr(arr: bool) -> bool {

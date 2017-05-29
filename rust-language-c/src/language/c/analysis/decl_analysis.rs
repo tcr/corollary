@@ -54,7 +54,7 @@ pub enum TypeSpecAnalysis {
 pub use self::TypeSpecAnalysis::*;
 
 pub fn analyseTypeDecl(CDecl(declspecs, declrs, node): CDecl) -> m<Type> {
-    /* Expr::Dummy */ Dummy
+    /* Expr::Error */ Error
 }
 
 pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: bool, CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node): CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
@@ -335,7 +335,7 @@ pub fn tEnumType(sue_ref: SUERef, enumerators: Vec<(Ident, Option<CExpr>)>, attr
 }
 
 pub fn tEnumTypeDecl(handle_def: bool, CEnum(ident_opt, enumerators_opt, attrs, node_info): CEnum) -> m<EnumTypeRef> {
-    /* Expr::Dummy */ Dummy
+    /* Expr::Error */ Error
 }
 
 pub fn tMemberDecls(__0: CDecl) -> m<Vec<MemberDecl>> {

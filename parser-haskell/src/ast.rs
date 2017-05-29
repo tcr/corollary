@@ -19,7 +19,6 @@ pub enum Expr {
 
     RecordArgs(Vec<(Ident, Expr)>), // Should be preprocessed out
     Error,
-    Dummy,
 }
 
 #[derive(Clone, Debug)]
@@ -88,6 +87,8 @@ pub enum Ty {
     Brackets(Box<Ty>),
     Record(Vec<(Ident, Ty)>),
     EmptyParen,
+    RangeOp,
+
     Dummy,
 }
 
