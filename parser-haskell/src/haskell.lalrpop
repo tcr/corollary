@@ -318,7 +318,7 @@ PatSub: Pat = {
         Pat::Tuple(vec)
     },
     "(" <i:Ident> "->" <s: PatSpan> ")"
-      => Pat::Arrow(i, Box::new(s)),
+      => Pat::ViewPattern(i, Box::new(s)),
     "(" ")"
       => Pat::EmptyParen,
     <i:Ident> "{" <body:Comma<PatRecord>> "}"

@@ -399,8 +399,8 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
             format!("{} {{ /* TODO pat record */ }}",
                 print_type_ident(state, &id.0))
         }
-        Pat::Arrow(ast::Ident(ref s), ref p) => {
-            format!("(Fn({}) -> {})", s, print_pattern(state.tab(), &**p))
+        Pat::ViewPattern(ast::Ident(ref s), ref p) => {
+            format!("/* TODO ViewPattern */ {}", s) // print_pattern(state.tab(), &**p))
         }
         Pat::Not(ref s) => print_pattern(state, &**s),
         Pat::EmptyParen => format!("()"),

@@ -92,7 +92,7 @@ pub enum Ty {
 #[derive(Clone, Debug)]
 pub enum Pat {
     Span(Vec<Pat>),
-    Arrow(Ident, Box<Pat>),
+    ViewPattern(Ident, Box<Pat>),
     Not(Box<Pat>),
     Ref(Ident),
     Infix(Ident),

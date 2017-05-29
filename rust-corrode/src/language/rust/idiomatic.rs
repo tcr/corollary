@@ -13,10 +13,10 @@ pub fn itemIdioms(__0: Rust::Item) -> Rust::Item {
 
 pub fn tailBlock(__0: Rust::Block) -> Rust::Block {
     match (__0) {
-        Rust::Block(b, Some((Fn(tailExpr) -> Some(e)))) => {
+        Rust::Block(b, Some(/* TODO ViewPattern */ tailExpr)) => {
             Rust::Block(b, e)
         },
-        Rust::Block((Fn(unsnoc) -> Some((b, Rust::Stmt((Fn(tailExpr) -> Some(e)))))), None) => {
+        Rust::Block(/* TODO ViewPattern */ unsnoc, None) => {
             Rust::Block(b, e)
         },
         b => {
