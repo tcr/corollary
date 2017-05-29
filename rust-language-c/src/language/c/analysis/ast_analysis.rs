@@ -304,7 +304,7 @@ pub fn defaultMD() -> MachineDesc {
                 } },
     ptrAlign: 4,
     voidAlign: 1
-}
+    }
 }
 
 pub fn defineParams(ni: NodeInfo, decl: VarDecl) -> m<()> {
@@ -697,7 +697,7 @@ pub fn tExpr_q(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m<Type> {
 
                 when((constant(typeQuals(lt))))(typeError(ni)(__op_addadd("assignment to lvalue with `constant\' qualifier: ".to_string(), (render(pretty))(le))));
                 match (canonicalType(lt), re) {
-(lt_q, CConst(CIntConst(i, _))) if (isPointerType(lt_q) && (getCInteger(i) == 0)) => { () }
+                    (lt_q, CConst(CIntConst(i, _))) if (isPointerType(lt_q) && (getCInteger(i) == 0)) => { () }
                     (_, _) => {
                         assignCompatible_q(ni, op, lt, rt)
                     },

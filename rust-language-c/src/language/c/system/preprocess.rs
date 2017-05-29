@@ -13,13 +13,13 @@ struct CppArgs(CppArgs<TypeRecord /* todo */>);
 pub fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
     cpp_args {
     cppOptions: __op_concat(opt, (cppOptions(cpp_args)))
-}
+    }
 }
 
 pub fn addExtraOption(cpp_args: CppArgs, extra: String) -> CppArgs {
     cpp_args {
     extraOptions: __op_concat(extra, (extraOptions(cpp_args)))
-}
+    }
 }
 
 pub fn cppFile(input_file: FilePath) -> CppArgs {
@@ -29,7 +29,7 @@ pub fn cppFile(input_file: FilePath) -> CppArgs {
     cppTmpDir: None,
     inputFile: input_file,
     outputFile: None
-}
+    }
 }
 
 pub fn getOutputFileName(fp: FilePath) -> FilePath {
@@ -68,7 +68,7 @@ pub fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
     extraOptions: opts,
     outputFile: None,
     cppTmpDir: None
-}
+    }
 }
 
 pub fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO<Either<ExitCode, InputStream>> {

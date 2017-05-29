@@ -17,7 +17,7 @@ pub fn addRef(__use: u, def: d) -> m<()> {
         (NodeInfo(_, _, useName), NodeInfo(_, _, defName)) => {
             withDefTable((|dt| { ((), dt {
                     refTable: insert((nameId(useName)), defName, (refTable(dt)))
-                }) }))
+                    }) }))
         },
         (_, _) => {
             ()
@@ -75,11 +75,11 @@ pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m
         KindMismatch | old_def => {
             redefVarErr(old_def, DiffKindRedecl)
         },
-KeepDef | Right(old_def) if not((agreeOnLinkage(def, old_def))) => { linkageErr(def, old_def) }
-KeepDef | Right(old_def) => { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) }
-Redeclared | Right(old_def) if not((agreeOnLinkage(def, old_def))) => { linkageErr(def, old_def) }
-Redeclared | Right(old_def) if not((canBeOverwritten(old_def))) => { redefVarErr(old_def, DuplicateDef) }
-Redeclared | Right(old_def) => { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) }
+        KeepDef | Right(old_def) if not((agreeOnLinkage(def, old_def))) => { linkageErr(def, old_def) }
+        KeepDef | Right(old_def) => { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) }
+        Redeclared | Right(old_def) if not((agreeOnLinkage(def, old_def))) => { linkageErr(def, old_def) }
+        Redeclared | Right(old_def) if not((canBeOverwritten(old_def))) => { redefVarErr(old_def, DuplicateDef) }
+        Redeclared | Right(old_def) => { throwOnLeft(checkCompatibleTypes(new_ty, (declType(old_def)))) }
         _ => {
             ()
         },
@@ -130,7 +130,7 @@ pub fn generateName() -> Trav<s, Name> {
 
             put(ts {
             nameGenerator: gen_q
-        });
+            });
             new_name
         } })
 }
@@ -254,8 +254,8 @@ pub fn initTravState(userst: s) -> TravState<s> {
     userState: userst,
     options: TravOptions {
             language: C99
-        }
-}
+            }
+    }
 }
 
 pub fn isDeclaration(__0: IdentDecl) -> bool {
@@ -333,13 +333,13 @@ pub fn modify(f: fn(TravState<s>) -> TravState<s>) -> Trav<s, ()> {
 pub fn modifyOptions(f: fn(TravOptions) -> TravOptions) -> Trav<s, ()> {
     modify(|ts| { ts {
         options: f((options(ts)))
-    } })
+        } })
 }
 
 pub fn modifyUserState(f: fn(s) -> s) -> Trav<s, ()> {
     modify(|ts| { ts {
         userState: f((userState(ts)))
-    } })
+        } })
 }
 
 pub fn put(s: TravState<s>) -> Trav<s, ()> {
@@ -355,8 +355,8 @@ pub fn runTrav(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravS
         Left | trav_err => {
             Left(vec![trav_err])
         },
-Right | (v, ts) if hadHardErrors((travErrors(ts))) => { Left((travErrors(ts))) }
-Right | (v, ts) => { Right((v, ts)) }
+        Right | (v, ts) if hadHardErrors((travErrors(ts))) => { Left((travErrors(ts))) }
+        Right | (v, ts) => { Right((v, ts)) }
     }
 }
 
@@ -397,7 +397,7 @@ pub fn withExtDeclHandler(action: Trav<s, a>, handler: fn(DeclEvent) -> Trav<s, 
     /* do */ {
         modify(|st| { st {
             doHandleExtDecl: handler
-        } });
+            } });
         action
     }
 }

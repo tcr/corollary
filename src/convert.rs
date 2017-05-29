@@ -206,13 +206,13 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 Expr::Ref(..) => {
                     format!("{} {{\n{}\n{}}}",
                         print_expr(state.tab(), base),
-                        out.join(",\n"), state.untab().indent())   
+                        out.join(",\n"), state.indent())   
                 }
                 _ => {
                     // For non-refs, create a macro that will augment keys onto original object.
                     format!("__assign!({}, {{\n{}\n{}}})",
                         print_expr(state.tab(), base),
-                        out.join(",\n"), state.untab().indent())   
+                        out.join(",\n"), state.indent())   
                 }
             }
         }
@@ -263,18 +263,20 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 match item.clone() {
                     ast::CaseCond::Matching(label, arms) => {
                         for (cond, arm) in arms {
-                            let label_str = print_case_patterns(state, label.clone());
+                            let label_str = print_case_patterns(state, vec![Pat::Span(label.clone())]);
                             let cond_str = cond.iter().map(|x| print_expr(state, x)).collect::<Vec<_>>().join(" && ");
                             if cond_str == "otherwise" {
-                                out.push(format!("{} => {{ {} }}",
+                                out.push(format!("{}{} => {{ {} }}",
+                                    state.tab().indent(),
                                     label_str,
-                                    print_expr(state, &arm),
+                                    print_expr(state.tab(), &arm),
                                 ));
                             } else {
-                                out.push(format!("{} if {} => {{ {} }}",
+                                out.push(format!("{}{} if {} => {{ {} }}",
+                                    state.tab().indent(),
                                     label_str,
                                     cond_str,
-                                    print_expr(state, &arm),
+                                    print_expr(state.tab(), &arm),
                                 ));
                             }
                         }

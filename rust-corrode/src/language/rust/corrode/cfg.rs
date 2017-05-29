@@ -41,7 +41,7 @@ pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m
     /* do */ {
         modify(|st| { st {
             buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
-        } })
+            } })
     }
 }
 
@@ -75,7 +75,7 @@ pub fn newLabel() -> BuildCFGT<m, s, c, Label> {
 
         put old {
         buildLabel: (buildLabel(old) + 1)
-    };
+        };
         (buildLabel(old))
     }
 }
@@ -112,31 +112,31 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
                         __op_concat(Structure {
                         structureEntries: entries,
                         structureBody: Simple(s, term)
-                    }, relooper((successors((s, term))), blocks_q))
+                        }, relooper((successors((s, term))), blocks_q))
                     },
                     (None, _) => {
                         __op_concat(Structure {
                         structureEntries: entries,
                         structureBody: Simple(mempty, (Branch((GoTo(entry)))))
-                    }, vec![])
+                        }, vec![])
                     },
                 }
             },
-_ if not((IntSet::null(absent))) => { __op_concat(__TODO_if(IntSet::null, present, then, vec![], __TODO_else, Structure {
-            structureEntries: entries,
-            structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
-        }), vec![]) }
+            _ if not((IntSet::null(absent))) => { __op_concat(__TODO_if(IntSet::null, present, then, vec![], __TODO_else, Structure {
+                structureEntries: entries,
+                structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
+                }), vec![]) }
             ([], _) => {
                 __op_concat(Structure {
                 structureEntries: entries,
                 structureBody: Loop((relooper(entries, blocks_q)))
-            }, relooper(followEntries, followBlocks))
+                }, relooper(followEntries, followBlocks))
             },
             _ => {
                 __op_concat(Structure {
                 structureEntries: entries,
                 structureBody: Multiple(handlers, unhandled)
-            }, relooper(followEntries, followBlocks))
+                }, relooper(followEntries, followBlocks))
             },
         }    }
 }

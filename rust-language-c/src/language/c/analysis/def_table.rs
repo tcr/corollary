@@ -78,17 +78,17 @@ pub fn declareTag(sueref: SUERef, decl: TagFwdDecl, deftbl: DefTable) -> (Declar
         None => {
             (NewDecl, deftbl {
             tagDecls: fst(defLocal((tagDecls(deftbl)), sueref, (Left(decl))))
-        })
+            })
         },
-Some | old_def if (tagKind(old_def) == tagKind((Left(decl)))) => { (KeepDef(old_def), deftbl) }
-Some | old_def => { (KindMismatch(old_def), deftbl) }
+        Some | old_def if (tagKind(old_def) == tagKind((Left(decl)))) => { (KeepDef(old_def), deftbl) }
+        Some | old_def => { (KindMismatch(old_def), deftbl) }
     }
 }
 
 pub fn defRedeclStatus(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option<t>) -> DeclarationStatus<t> {
     match oldDecl {
-Some | def_q if sameKind(def, def_q) => { Redeclared(def_q) }
-Some | def_q => { KindMismatch(def_q) }
+        Some | def_q if sameKind(def, def_q) => { Redeclared(def_q) }
+        Some | def_q => { KindMismatch(def_q) }
         None => {
             NewDecl
         },
@@ -116,7 +116,7 @@ pub fn defRedeclStatusLocal(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, 
 pub fn defineGlobalIdent(ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
     (defRedeclStatus(compatIdentEntry, (Right(def)), oldDecl), deftbl {
     identDecls: decls_q
-})
+    })
 }
 
 pub fn defineLabel(ident: Ident, deftbl: DefTable) -> (DeclarationStatus<Ident>, DefTable) {
@@ -125,7 +125,7 @@ pub fn defineLabel(ident: Ident, deftbl: DefTable) -> (DeclarationStatus<Ident>,
 
     (maybe(NewDecl, Redeclared, old_label), deftbl {
         labelDefs: labels_q
-    })    }
+        })    }
 }
 
 pub fn defineScopedIdent() -> (DeclarationStatus<IdentEntry>, DefTable) {
@@ -135,19 +135,19 @@ pub fn defineScopedIdent() -> (DeclarationStatus<IdentEntry>, DefTable) {
 pub fn defineScopedIdentWhen(override_def: fn(IdentDecl) -> bool, ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
     (redecl_status, deftbl {
     identDecls: decls_q
-})
+    })
 }
 
 pub fn defineTag(sueref: SUERef, def: TagDef, deftbl: DefTable) -> (DeclarationStatus<TagEntry>, DefTable) {
     (redeclStatus, deftbl {
     tagDecls: decls_q
-})
+    })
 }
 
 pub fn defineTypeDef(ident: Ident, tydef: TypeDef, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
     (defRedeclStatus(compatIdentEntry, (Left(tydef)), oldDecl), deftbl {
     identDecls: decls_q
-})
+    })
 }
 
 pub fn emptyDefTable() -> DefTable {
@@ -157,26 +157,26 @@ pub fn emptyDefTable() -> DefTable {
 pub fn enterBlockScope(deftbl: DefTable) -> DefTable {
     enterLocalScope(deftbl {
     labelDefs: enterNewScope((labelDefs(deftbl)))
-})
+    })
 }
 
 pub fn enterFunctionScope(deftbl: DefTable) -> DefTable {
     enterLocalScope(deftbl {
     labelDefs: enterNewScope((labelDefs(deftbl)))
-})
+    })
 }
 
 pub fn enterLocalScope(deftbl: DefTable) -> DefTable {
     deftbl {
     identDecls: enterNewScope((identDecls(deftbl))),
     tagDecls: enterNewScope((tagDecls(deftbl)))
-}
+    }
 }
 
 pub fn enterMemberDecl(deftbl: DefTable) -> DefTable {
     deftbl {
     memberDecls: enterNewScope((memberDecls(deftbl)))
-}
+    }
 }
 
 pub fn globalDefs(deftbl: DefTable) -> GlobalDecls {
@@ -194,26 +194,26 @@ pub fn inFileScope(dt: DefTable) -> bool {
 pub fn insertType(dt: DefTable, n: Name, t: Type) -> DefTable {
     dt {
     typeTable: IntMap::insert((nameId(n)), t, (typeTable(dt)))
-}
+    }
 }
 
 pub fn leaveBlockScope(deftbl: DefTable) -> DefTable {
     leaveLocalScope(deftbl {
     labelDefs: leaveScope_((labelDefs(deftbl)))
-})
+    })
 }
 
 pub fn leaveFunctionScope(deftbl: DefTable) -> DefTable {
     leaveLocalScope(deftbl {
     labelDefs: leaveScope_((labelDefs(deftbl)))
-})
+    })
 }
 
 pub fn leaveLocalScope(deftbl: DefTable) -> DefTable {
     deftbl {
     identDecls: leaveScope_((identDecls(deftbl))),
     tagDecls: leaveScope_((tagDecls(deftbl)))
-}
+    }
 }
 
 pub fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
@@ -222,7 +222,7 @@ pub fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
 
     __op_tuple2((), (map(snd, members))((deftbl {
             memberDecls: decls_q
-        })))    }
+            })))    }
 }
 
 pub fn leaveScope_() -> NameSpaceMap<k, a> {
