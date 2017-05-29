@@ -2,7 +2,7 @@
   -fno-warn-unused-binds -fno-warn-missing-signatures #-}
 {-# LANGUAGE CPP #-}
 
-{-# LINE 49 "Lexer.x" #-}
+{-# LINE 49 "../src-language-c/src/Language/C/Parser/Lexer.x" #-}
 module Language.C.Parser.Lexer
   ( lexC
   , parseError
@@ -122,6 +122,7 @@ alex_action_96 :: Int
 alex_action_97 :: Int
 alex_action_98 :: Int
 alex_action_99 :: Int
+
 
 import Control.Monad (liftM, when)
 import Data.Char (chr, isDigit)
@@ -20076,7 +20077,7 @@ alex_actions =
     , (0, alex_action_66)
     ]
 
-{-# LINE 254 "Lexer.x" #-}
+{-# LINE 254 "../src-language-c/src/Language/C/Parser/Lexer.x" #-}
 -- Fix the 'octal' lexing of '0'
 readCOctal :: String -> Either String CInteger
 readCOctal s@('0':r) =
@@ -20509,9 +20510,9 @@ alex_action_66 = token_ 3 CTokEllipsis
 {-# LINE 1 "templates/GenericTemplate.hs" #-}
 {-# LINE 1 "<built-in>" #-}
 {-# LINE 16 "<built-in>" #-}
-{-# LINE 1 "/usr/local/Cellar/ghc/8.0.2/lib/ghc-8.0.2/include/ghcversion.h" #-}
+{-# LINE 1 "/Users/trim/.stack/programs/x86_64-osx/ghc-8.0.2/lib/ghc-8.0.2/include/ghcversion.h" #-}
 {-# LINE 17 "<built-in>" #-}
-{-# LINE 1 "/var/folders/h0/_n2wg5cj6ndcm8zdw89lz5vw01_mbj/T/ghc84042_0/ghc_2.h" #-}
+{-# LINE 1 "/var/folders/h0/_n2wg5cj6ndcm8zdw89lz5vw01_mbj/T/ghc59344_0/ghc_2.h" #-}
 {-# LINE 18 "<built-in>" #-}
 {-# LINE 1 "templates/GenericTemplate.hs" #-}
 -- -----------------------------------------------------------------------------

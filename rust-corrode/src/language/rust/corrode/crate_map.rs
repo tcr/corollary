@@ -19,7 +19,7 @@ pub fn parseCrateMap() -> Either<String, CrateMap> {
 }
 
 pub fn rewritesFromCratesMap(crates: CratesMap) -> ItemRewrites {
-    Map::fromList(/* Expr::Dummy */ Dummy)
+    Map::fromList(/* Expr::Generator */ Generator)
 }
 
 pub fn splitModuleMap(modName: String, crates: CratesMap) -> (ModuleMap, CratesMap) {

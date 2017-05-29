@@ -16,7 +16,7 @@ pub fn addRef(__use: u, def: d) -> m<()> {
     match (nodeInfo(__use), nodeInfo(def)) {
         (NodeInfo(_, _, useName), NodeInfo(_, _, defName)) => {
             withDefTable((|dt| { ((), dt {
-                    refTable: insert((nameId(useName)), defName, (refTable(dt)))
+                        refTable: insert((nameId(useName)), defName, (refTable(dt)))
                     }) }))
         },
         (_, _) => {
@@ -129,7 +129,7 @@ pub fn generateName() -> Trav<s, Name> {
             let [new_name, gen_q] = nameGenerator(ts);
 
             put(ts {
-            nameGenerator: gen_q
+                nameGenerator: gen_q
             });
             new_name
         } })
@@ -247,13 +247,13 @@ pub fn handleVarDecl(is_local: bool, decl: Decl) -> m<()> {
 
 pub fn initTravState(userst: s) -> TravState<s> {
     TravState {
-    symbolTable: emptyDefTable,
-    rerrors: RList::empty,
-    nameGenerator: newNameSupply,
-    doHandleExtDecl: __TODO_const((())),
-    userState: userst,
-    options: TravOptions {
-            language: C99
+        symbolTable: emptyDefTable,
+        rerrors: RList::empty,
+        nameGenerator: newNameSupply,
+        doHandleExtDecl: __TODO_const((())),
+        userState: userst,
+        options: TravOptions {
+                language: C99
             }
     }
 }
@@ -332,13 +332,13 @@ pub fn modify(f: fn(TravState<s>) -> TravState<s>) -> Trav<s, ()> {
 
 pub fn modifyOptions(f: fn(TravOptions) -> TravOptions) -> Trav<s, ()> {
     modify(|ts| { ts {
-        options: f((options(ts)))
+            options: f((options(ts)))
         } })
 }
 
 pub fn modifyUserState(f: fn(s) -> s) -> Trav<s, ()> {
     modify(|ts| { ts {
-        userState: f((userState(ts)))
+            userState: f((userState(ts)))
         } })
 }
 
@@ -396,7 +396,7 @@ pub fn warn(err: e) -> m<()> {
 pub fn withExtDeclHandler(action: Trav<s, a>, handler: fn(DeclEvent) -> Trav<s, ()>) -> Trav<s, a> {
     /* do */ {
         modify(|st| { st {
-            doHandleExtDecl: handler
+                doHandleExtDecl: handler
             } });
         action
     }

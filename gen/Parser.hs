@@ -10,6 +10,7 @@ module Language.C.Parser.Parser
   , expressionP
   ) where
 
+
 happyNewToken :: Bool
 happyError_ :: Bool
 translation_unit :: Bool
@@ -15094,9 +15095,9 @@ expressionP = expression
 {-# LINE 1 "templates/GenericTemplate.hs" #-}
 {-# LINE 1 "<built-in>" #-}
 {-# LINE 16 "<built-in>" #-}
-{-# LINE 1 "/usr/local/Cellar/ghc/8.0.2/lib/ghc-8.0.2/include/ghcversion.h" #-}
+{-# LINE 1 "/Users/trim/.stack/programs/x86_64-osx/ghc-8.0.2/lib/ghc-8.0.2/include/ghcversion.h" #-}
 {-# LINE 17 "<built-in>" #-}
-{-# LINE 1 "/var/folders/h0/_n2wg5cj6ndcm8zdw89lz5vw01_mbj/T/ghc83635_0/ghc_2.h" #-}
+{-# LINE 1 "/var/folders/h0/_n2wg5cj6ndcm8zdw89lz5vw01_mbj/T/ghc60041_0/ghc_2.h" #-}
 {-# LINE 18 "<built-in>" #-}
 {-# LINE 1 "templates/GenericTemplate.hs" #-}
 -- Id: GenericTemplate.hs,v 1.26 2005/01/14 14:47:22 simonmar Exp 

@@ -29,6 +29,7 @@ pub fn expr_to_pat(expr: &Expr) -> Pat {
         Expr::Do(..) |
         Expr::Lambda(..) |
         Expr::RecordArgs(..) |
+        Expr::Generator(..) |
         Expr::Error => {
             panic!("Invalid expr to pat conversion: {:?}", expr);
         }

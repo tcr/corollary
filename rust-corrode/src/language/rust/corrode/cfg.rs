@@ -40,7 +40,7 @@ struct Structure<s, c>(Structure<TypeRecord /* todo */>);
 pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
     /* do */ {
         modify(|st| { st {
-            buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
+                buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
             } })
     }
 }
@@ -58,7 +58,7 @@ pub fn depthFirstOrder(CFG(start, blocks): CFG<k, s, c>) -> CFG<DepthFirst, s, c
 }
 
 pub fn flipEdges(edges: IntMap::IntMap<IntSet::IntSet>) -> IntMap::IntMap<IntSet::IntSet> {
-    IntMap::unionsWith(IntSet::union, /* Expr::Dummy */ Dummy)
+    IntMap::unionsWith(IntSet::union, /* Expr::Generator */ Generator)
 }
 
 pub fn hasMultiple() -> bool {
@@ -73,9 +73,9 @@ pub fn newLabel() -> BuildCFGT<m, s, c, Label> {
     /* do */ {
         let old = get;
 
-        put old {
-        buildLabel: (buildLabel(old) + 1)
-        };
+        put(old {
+                buildLabel: (buildLabel(old) + 1)
+            });
         (buildLabel(old))
     }
 }
@@ -110,32 +110,32 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
                 match IntMap::updateLookupWithKey((|_, _| { None }), entry, blocks) {
                     (Some((s, term)), blocks_q) => {
                         __op_concat(Structure {
-                        structureEntries: entries,
-                        structureBody: Simple(s, term)
+                            structureEntries: entries,
+                            structureBody: Simple(s, term)
                         }, relooper((successors((s, term))), blocks_q))
                     },
                     (None, _) => {
                         __op_concat(Structure {
-                        structureEntries: entries,
-                        structureBody: Simple(mempty, (Branch((GoTo(entry)))))
+                            structureEntries: entries,
+                            structureBody: Simple(mempty, (Branch((GoTo(entry)))))
                         }, vec![])
                     },
                 }
             },
             _ if not((IntSet::null(absent))) => { __op_concat(__TODO_if(IntSet::null, present, then, vec![], __TODO_else, Structure {
-                structureEntries: entries,
-                structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
+                    structureEntries: entries,
+                    structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
                 }), vec![]) }
             ([], _) => {
                 __op_concat(Structure {
-                structureEntries: entries,
-                structureBody: Loop((relooper(entries, blocks_q)))
+                    structureEntries: entries,
+                    structureBody: Loop((relooper(entries, blocks_q)))
                 }, relooper(followEntries, followBlocks))
             },
             _ => {
                 __op_concat(Structure {
-                structureEntries: entries,
-                structureBody: Multiple(handlers, unhandled)
+                    structureEntries: entries,
+                    structureBody: Multiple(handlers, unhandled)
                 }, relooper(followEntries, followBlocks))
             },
         }    }
@@ -162,6 +162,6 @@ pub fn structureCFG(mkBreak: fn(Option<Label>) -> s, mkContinue: fn(Option<Label
 }
 
 pub fn successors((_, term): StructureBlock<s, c>) -> IntSet::IntSet {
-    IntSet::fromList(/* Expr::Dummy */ Dummy)
+    IntSet::fromList(/* Expr::Generator */ Generator)
 }
 

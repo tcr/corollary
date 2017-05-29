@@ -1,3 +1,61 @@
+// cargo-deps: command-macros="0.1.10" error-chain="*"
+
+//! ```
+//! stack install alex hindent happy
+//! ```
+
+#[macro_use] extern crate command_macros;
+#[macro_use] extern crate error_chain;
+
+use std::fs::File;
+use std::io::prelude::*;
+
+// Error chain
+mod errors {
+    error_chain! {
+        foreign_links {
+            Io(::std::io::Error);
+        }
+    }
+}
+use errors::*;
+
+quick_main!(run);
+
+fn run() -> Result<()> {
+    println!("Lexer...");
+    cmd!( alex ("../src-language-c/src/Language/C/Parser/Lexer.x") ("-o") ("../gen/Lexer.hs") ).status();
+    println!("...hindent..."); 
+    cmd!( hindent ("../gen/Lexer.hs") ).status();
+
+    let mut contents = String::new();
+    {
+        File::open("../gen/Lexer.hs")?.read_to_string(&mut contents)?;
+    }
+
+    let contents = contents.replacen("where", &format!("where\n\n{}", lexer_heading), 1);
+    {
+        File::create("../gen/Lexer.hs")?.write_all(contents.as_bytes())?;
+    }
+
+    println!("Parser...");
+    cmd!( happy ("../src-language-c/src/Language/C/Parser/Parser.y") ("-o") ("../gen/Parser.hs") ).status();
+    println!("...hindent...");
+    cmd!( hindent ("../gen/Parser.hs") ).status();
+
+    let mut contents = String::new();
+    {
+        File::open("../gen/Parser.hs")?.read_to_string(&mut contents)?;
+    }
+
+    let contents = contents.replacen("where", &format!("where\n\n{}", parser_heading), 1);
+    {
+        File::create("../gen/Parser.hs")?.write_all(contents.as_bytes())?;
+    }
+
+    Ok(())
+}
+
 const lexer_heading: &'static str = "
 alexAndPred :: Bool
 alexIndexInt16OffAddr :: Bool

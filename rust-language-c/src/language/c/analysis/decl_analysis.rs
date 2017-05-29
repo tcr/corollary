@@ -109,10 +109,10 @@ pub fn emptyDeclr(node: NodeInfo) -> CDeclr {
 
 pub fn emptyNumTypeSpec() -> NumTypeSpec {
     NumTypeSpec {
-    base: NoBaseType,
-    signSpec: NoSignSpec,
-    sizeMod: NoSizeMod,
-    isComplex: false
+        base: NoBaseType,
+        signSpec: NoSignSpec,
+        sizeMod: NoSizeMod,
+        isComplex: false
     }
 }
 
@@ -145,7 +145,7 @@ pub fn hasThreadLocalSpec(__0: StorageSpec) -> bool {
 }
 
 pub fn isTypeDef(declspecs: Vec<CDeclSpec>) -> bool {
-    not(null(/* Expr::Dummy */ Dummy))
+    not(null(/* Expr::Generator */ Generator))
 }
 
 pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) -> m<Vec<CDerivedDeclr>> {
@@ -232,7 +232,7 @@ pub fn splitCDecl(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
             {
                 let declspecs_q = map(elideSUEDef, declspecs);
 
-            return(__op_concat((CDecl(declspecs, vec![d1], node)), /* Expr::Dummy */ Dummy))            }
+            return(__op_concat((CDecl(declspecs, vec![d1], node)), /* Expr::Generator */ Generator))            }
         },
     }
 }

@@ -41,6 +41,7 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "use" => "__use".to_string(),
         "mod" => "__mod".to_string(),
         "final" => "__final".to_string(),
+        "__fn" => "__fn".to_string(),
         _ => {
             let mut expr = expr.to_string();
 
@@ -201,7 +202,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             let mut out = vec![];
             for &(ast::Ident(ref i), ref v) in items {
                 out.push(format!("{}{}: {}",
-                    state.indent(),
+                    state.tab().indent(),
                     i,
                     print_expr(state.tab().tab(), v)));
             }
@@ -226,15 +227,19 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         }
         Span(ref span) => {
             let span = expr_explode(span.clone());
+
+            // TODO this is a highly specific accident the parser now relies on
+            // this should be removed asap
             if span.len() == 2 && ({
                 if let ast::Expr::Record(..) = span[1] {
                     true
                 } else { false }
-            }) {
+            }) && print_expr(state, &span[0].clone()) == "in" {
                 format!("{} {}",
                     print_expr(state, &span[0].clone()),
                     print_expr(state, &span[1].clone()))
-            } else if span.len() == 1 {
+            }
+            else if span.len() == 1 {
                 print_expr(state, &span[0])
             } else {
                 if span.len() == 0 {
@@ -307,6 +312,9 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         }
         Operator(ref value) => {
             print_op_fn(value)
+        }
+        Generator(..) => {
+            format!("/* Expr::Generator */ Generator")
         }
         Dummy => {
             format!("/* Expr::Dummy */ Dummy")

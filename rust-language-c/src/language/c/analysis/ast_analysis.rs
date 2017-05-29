@@ -186,7 +186,7 @@ pub fn computeFunDefStorage(__0: Ident, __1: StorageSpec) -> m<Storage> {
 
 pub fn defaultMD() -> MachineDesc {
     MachineDesc {
-    iSize: |it| { match it {
+        iSize: |it| { match it {
                     TyBool => {
                         1
                     },
@@ -224,7 +224,7 @@ pub fn defaultMD() -> MachineDesc {
                         8
                     },
                 } },
-    fSize: |ft| { match ft {
+        fSize: |ft| { match ft {
                     TyFloat => {
                         4
                     },
@@ -235,7 +235,7 @@ pub fn defaultMD() -> MachineDesc {
                         16
                     },
                 } },
-    builtinSize: |bt| { match bt {
+        builtinSize: |bt| { match bt {
                     TyVaList => {
                         4
                     },
@@ -243,9 +243,9 @@ pub fn defaultMD() -> MachineDesc {
                         4
                     },
                 } },
-    ptrSize: 4,
-    voidSize: 1,
-    iAlign: |it| { match it {
+        ptrSize: 4,
+        voidSize: 1,
+        iAlign: |it| { match it {
                     TyBool => {
                         1
                     },
@@ -283,7 +283,7 @@ pub fn defaultMD() -> MachineDesc {
                         8
                     },
                 } },
-    fAlign: |ft| { match ft {
+        fAlign: |ft| { match ft {
                     TyFloat => {
                         4
                     },
@@ -294,7 +294,7 @@ pub fn defaultMD() -> MachineDesc {
                         16
                     },
                 } },
-    builtinAlign: |bt| { match bt {
+        builtinAlign: |bt| { match bt {
                     TyVaList => {
                         4
                     },
@@ -302,8 +302,8 @@ pub fn defaultMD() -> MachineDesc {
                         4
                     },
                 } },
-    ptrAlign: 4,
-    voidAlign: 1
+        ptrAlign: 4,
+        voidAlign: 1
     }
 }
 

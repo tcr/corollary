@@ -237,9 +237,9 @@ pub fn emptyGlobalDecls() -> GlobalDecls {
 
 pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) -> GlobalDecls {
     GlobalDecls {
-    gObjs: Map::filter((decl_filter(DeclEvent)), (gObjs(gmap))),
-    gTags: Map::filter((decl_filter(TagEvent)), (gTags(gmap))),
-    gTypeDefs: Map::filter((decl_filter(TypeDefEvent)), (gTypeDefs(gmap)))
+        gObjs: Map::filter((decl_filter(DeclEvent)), (gObjs(gmap))),
+        gTags: Map::filter((decl_filter(TagEvent)), (gTags(gmap))),
+        gTypeDefs: Map::filter((decl_filter(TypeDefEvent)), (gTypeDefs(gmap)))
     }
 }
 
@@ -297,9 +297,9 @@ pub fn mergeAttributes() -> Attributes {
 
 pub fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
     GlobalDecls {
-    gObjs: Map::union((gObjs(gmap1)), (gObjs(gmap2))),
-    gTags: Map::union((gTags(gmap1)), (gTags(gmap2))),
-    gTypeDefs: Map::union((gTypeDefs(gmap1)), (gTypeDefs(gmap2)))
+        gObjs: Map::union((gObjs(gmap1)), (gObjs(gmap2))),
+        gTags: Map::union((gTags(gmap1)), (gTags(gmap2))),
+        gTypeDefs: Map::union((gTypeDefs(gmap1)), (gTypeDefs(gmap2)))
     }
 }
 

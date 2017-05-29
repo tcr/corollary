@@ -181,8 +181,8 @@ Expr: Expr = {
     r"\\" "(" <e:CommaOnce<PatSpan>> ")" "->" <body:Expr>
       => Expr::Lambda(vec![Pat::Tuple(e)], Box::new(body)),
 
-    "[" <CommaOnce<ExprSpan>> "|" CommaOnce<ListGenerator> "]"
-      => Expr::Dummy,
+    "[" <cond:CommaOnce<ExprSpan>> "|" <body:CommaOnce<ListGenerator>> "]"
+      => Expr::Generator(cond, body),
     "[" <Comma<ExprSpan>> ("::" TypeGroup)? "]"
       => Expr::Vector(<>),
     "(" <Comma<(<ExprSpan> ("::" TypeGroup)?)>>  ")"

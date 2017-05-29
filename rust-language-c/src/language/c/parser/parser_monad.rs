@@ -10,13 +10,13 @@ struct PState(PState<TypeRecord /* todo */>);
 
 pub fn addTypedef(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s {
-            tyidents: Set::insert(ident, tyids)
+                tyidents: Set::insert(ident, tyids)
             }, ()) }))
 }
 
 pub fn enterScope() -> P<()> {
     P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s {
-            scopes: __op_concat(tyids, ss)
+                scopes: __op_concat(tyids, ss)
             }, ()) })
 }
 
@@ -49,7 +49,7 @@ pub fn getLastToken() -> P<CToken> {
 
 pub fn getNewName() -> P<Name> {
     P(|s, __OP__, PState { /* TODO pat record */ }| { seq(n, POk(s {
-            namesupply: ns
+                namesupply: ns
             }, n)) })
 }
 
@@ -63,7 +63,7 @@ pub fn getSavedToken() -> P<CToken> {
 
 pub fn handleEofToken() -> P<()> {
     P(|s| { POk(s {
-            savedToken: (prevToken(s))
+                savedToken: (prevToken(s))
             }, ()) })
 }
 
@@ -78,8 +78,8 @@ pub fn leaveScope() -> P<()> {
             },
             [tyids, ss_q] => {
                 POk(s {
-                    tyidents: tyids,
-                    scopes: ss_q
+                        tyidents: tyids,
+                        scopes: ss_q
                     }, ())
             },
         } })
@@ -91,7 +91,7 @@ pub fn returnP(a: a) -> P<a> {
 
 pub fn setInput(i: InputStream) -> P<()> {
     P(|s| { POk(s {
-            curInput: i
+                curInput: i
             }, ()) })
 }
 
@@ -99,13 +99,13 @@ pub fn setLastToken(__0: CToken) -> P<()> {
     match (__0) {
         CTokEof => {
             P(|s| { POk(s {
-                    savedToken: (prevToken(s))
+                        savedToken: (prevToken(s))
                     }, ()) })
         },
         tok => {
             P(|s| { POk(s {
-                    prevToken: tok,
-                    savedToken: (prevToken(s))
+                        prevToken: tok,
+                        savedToken: (prevToken(s))
                     }, ()) })
         },
     }
@@ -113,13 +113,13 @@ pub fn setLastToken(__0: CToken) -> P<()> {
 
 pub fn setPos(pos: Position) -> P<()> {
     P(|s| { POk(s {
-            curPos: pos
+                curPos: pos
             }, ()) })
 }
 
 pub fn shadowTypedef(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s {
-            tyidents: Set::member(__TODO_if(ident), Set::delete(tyids(then, ident), tyids(__TODO_else, tyids)))
+                tyidents: Set::member(__TODO_if(ident), Set::delete(tyids(then, ident), tyids(__TODO_else, tyids)))
             }, ()) }))
 }
 

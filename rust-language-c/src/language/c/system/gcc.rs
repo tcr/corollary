@@ -16,8 +16,8 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
         },
         Right | ((Some(input_file), output_file_opt, cpp_opts), (extra_args, other_args)) => {
             Right((__assign!((rawCppArgs((RList::reverse(extra_args)), input_file)), {
-                outputFile: output_file_opt,
-                cppOptions: RList::reverse(cpp_opts)
+                    outputFile: output_file_opt,
+                    cppOptions: RList::reverse(cpp_opts)
                 }), RList::reverse(other_args)))
         },
     }

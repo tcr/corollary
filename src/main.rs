@@ -32,6 +32,7 @@ mod errors {
         foreign_links {
             Walkdir(::walkdir::Error);
             Io(::std::io::Error);
+            Fmt(::std::fmt::Error);
         }
     }
 }
@@ -128,9 +129,9 @@ fn test_no_regressions() {
 
         // Do not output preprocessed data temp.txt
         //println!("{:?}", path);
-        use ::std::io::Write;
-        let mut a = ::std::fs::File::create("temp.txt").unwrap();
-        a.write_all(contents.as_bytes());
+        // use ::std::io::Write;
+        // let mut a = ::std::fs::File::create("temp.txt").unwrap();
+        // a.write_all(contents.as_bytes());
 
         let mut errors = Vec::new();
         match parser_haskell::parse(&mut errors, &contents) {
@@ -165,7 +166,7 @@ fn strip_lhs(s: &str) -> String {
 }
 
 /// Converts a Haskell file by its path into a Rust module.
-fn convert_file(input: &str, p: &Path, inline_mod: bool) -> (String, String) {
+fn convert_file(input: &str, p: &Path, inline_mod: bool) -> Result<(String, String)> {
     let mut contents = input.to_string();
     let mut file_out = String::new();
     let mut rust_out = String::new();
@@ -189,17 +190,17 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool) -> (String, String) {
             // errln!("{:?}", v);
 
             if inline_mod {
-                let _ = writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"));
-                let _ = writeln!(file_out, "    use haskell_support::*;");
-                let _ = writeln!(file_out, "");
+                writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"))?;
+                writeln!(file_out, "    use haskell_support::*;")?;
+                writeln!(file_out, "")?;
                 let state = PrintState::new();
-                let _ = writeln!(file_out, "{}", print_item_list(state.tab(), &v.items));
-                let _ = writeln!(file_out, "}}\n");
+                writeln!(file_out, "{}", print_item_list(state.tab(), &v.items))?;
+                writeln!(file_out, "}}\n")?;
             } else {
-                let _ = writeln!(file_out, "use haskell_support::*;");
-                let _ = writeln!(file_out, "");
+                writeln!(file_out, "use haskell_support::*;")?;
+                writeln!(file_out, "")?;
                 let state = PrintState::new();
-                let _ = writeln!(file_out, "{}", print_item_list(state, &v.items));
+                writeln!(file_out, "{}", print_item_list(state, &v.items))?;
             }
         }
         Err(e) => {
@@ -211,7 +212,7 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool) -> (String, String) {
         }
     }
 
-    (file_out, rust_out)
+    Ok((file_out, rust_out))
 }
 
 quick_main!(run);
@@ -319,7 +320,7 @@ fn run() -> Result<()> {
         if do_strip_lhs {
             contents = strip_lhs(&contents);
         }
-        let (file_out, rust_out) = convert_file(&contents, source_path.as_path(), !arg_recursive);
+        let (file_out, rust_out) = convert_file(&contents, source_path.as_path(), !arg_recursive)?;
 
         // Switch on recursive switch.
         if arg_recursive {

@@ -6,6 +6,7 @@ pub enum Expr {
     Do(Vec<DoItem>,  Where),
     Parens(Vec<Expr>),
     Case(Box<Expr>, Vec<CaseCond>),
+    Generator(Vec<Expr>, Vec<()>), //TODO listgenerator body
     /// `let` a = 2; b = 3 `in` ...
     Let(Vec<Assignment>, Box<Expr>),
     Span(Vec<Expr>),

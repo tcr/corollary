@@ -32644,7 +32644,7 @@ pub fn doDeclIdent(declspecs: Vec<CDeclSpec>, CDeclrR(mIdent, _, _, _, _): CDecl
 pub fn doFuncParamDeclIdent(__0: CDeclr) -> P<()> {
     match (__0) {
         CDeclr(_, [CFunDeclr(params, _, _), _], _, _, _) => {
-            sequence_(/* Expr::Dummy */ Dummy)
+            sequence_(/* Expr::Generator */ Generator)
         },
         _ => {
             ()
