@@ -47,7 +47,7 @@ pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m
 
 pub fn buildCFG(root: BuildCFGT<m, s, c, Label>) -> m<CFG<Unordered, s, c>> {
     /* do */ {
-        let label(__final) = runStateT(root, (BuildState(0, IntMap::empty)));
+        let (label, __final) = runStateT(root, (BuildState(0, IntMap::empty)));
 
         (CFG(label, (buildBlocks(__final))))
     }

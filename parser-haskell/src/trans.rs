@@ -41,9 +41,8 @@ pub fn expr_to_pat(expr: &Expr) -> Pat {
         Expr::Operator(ref s) => Pat::Operator(s.to_string()),
         Expr::Ref(ref id) => Pat::Ref(id.clone()),
 
-        //TODO Parens is wrong? Don't make a span?
         Expr::Parens(ref inner) => {
-            Pat::Span(inner.iter().map(|x| expr_to_pat(x)).collect::<Vec<_>>())
+            Pat::Tuple(inner.iter().map(|x| expr_to_pat(x)).collect::<Vec<_>>())
         },
         Expr::Span(ref inner) => {
             Pat::Span(inner.iter().map(|x| expr_to_pat(x)).collect::<Vec<_>>())

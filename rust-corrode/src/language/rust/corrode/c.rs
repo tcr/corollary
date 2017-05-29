@@ -370,7 +370,7 @@ pub fn castTo(__0: CType, __1: Result) -> Rust::Expr {
 pub fn cfgToRust(_node: node, build: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> EnvMonad<s, Vec<Rust::Stmt>> {
     /* do */ {
         let builder = buildCFG(/* do */ {
-                let early(term) = build;
+                let (early, term) = build;
 
                 let entry = newLabel;
 
@@ -378,7 +378,7 @@ pub fn cfgToRust(_node: node, build: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Termi
                 entry
             });
 
-        let rawCFG(_) = evalRWST(builder, (OuterLabels(None, None, None)), Map::empty);
+        let (rawCFG, _) = evalRWST(builder, (OuterLabels(None, None, None)), Map::empty);
 
         let cfg = depthFirstOrder((removeEmptyBlocks(rawCFG)));
 
@@ -735,7 +735,7 @@ pub fn interpretBlockItem(__0: CBlockItem, __1: CSourceBuildCFGT<s, (Vec<Rust::S
             /* do */ {
                 let decl_q = lift(lift((interpretDeclarations(makeLetBinding, decl))));
 
-                let rest(end) = next;
+                let (rest, end) = next;
 
                 (__op_addadd(decl_q, rest), end)
             }
@@ -761,10 +761,10 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
     match (__0, __1, __2, __3) {
         ((fromItem, makeBinding), declaration, __OP__, CDecl(specs, decls, _)) => {
             /* do */ {
-                let storagespecs(baseTy) = baseTypeOf(specs);
+                let (storagespecs, baseTy) = baseTypeOf(specs);
 
                 let mbinds = forM(decls)(|declarator| { /* do */ {
-                            let decl(minit) = match declarator {
+                            let (decl, minit) = match declarator {
                                     (Some(decl), minit, None) => {
                                         (decl, minit)
                                     },
@@ -776,7 +776,7 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                     },
                                 };
 
-                            let ident(derived) = match decl {
+                            let (ident, derived) = match decl {
                                     CDeclr(Some(ident), derived, _, _, _) => {
                                         (ident, derived)
                                     },
@@ -914,7 +914,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (_, CCast(decl, expr, _)) => {
             /* do */ {
-                let _mut(ty) = typeName(decl);
+                let (_mut, ty) = typeName(decl);
 
                 let expr_q = interpretExpr((__op_assign_div(ty, IsVoid)), expr);
 
@@ -1014,7 +1014,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (_, CSizeofType(decl, _)) => {
             /* do */ {
-                let _mut(ty) = typeName(decl);
+                let (_mut, ty) = typeName(decl);
 
                 (rustSizeOfType((toRustType(ty))))
             }
@@ -1028,7 +1028,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (_, CAlignofType(decl, _)) => {
             /* do */ {
-                let _mut(ty) = typeName(decl);
+                let (_mut, ty) = typeName(decl);
 
                 (rustAlignOfType((toRustType(ty))))
             }
@@ -1199,7 +1199,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
         },
         (_, CCompoundLit(decl, initials, info)) => {
             /* do */ {
-                let __mut(ty) = typeName(decl);
+                let (__mut, ty) = typeName(decl);
 
                 let __final = interpretInitializer(ty, (CInitList(initials, info)));
 
@@ -1238,9 +1238,9 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
 
 pub fn interpretFunction(CFunDef(specs, declr, __OP__, CDeclr(mident, _, _, _, _), argtypes, body, _): CFunDef) -> EnvMonad<s, ()> {
     /* do */ {
-        let storage(baseTy) = baseTypeOf(specs);
+        let (storage, baseTy) = baseTypeOf(specs);
 
-        let attrs(vis) = match storage {
+        let (attrs, vis) = match storage {
                 None => {
                     (vec![Rust::Attribute("no_mangle".to_string())], Rust::Public)
                 },
@@ -1254,7 +1254,7 @@ pub fn interpretFunction(CFunDef(specs, declr, __OP__, CDeclr(mident, _, _, _, _
 
         let go = |name, funTy| {
             /* do */ {
-                let retTy(args) = match funTy {
+                let (retTy, args) = match funTy {
                         IsFunc(_, _, true) => {
                             unimplemented(declr)
                         },
@@ -1359,7 +1359,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
             /* do */ {
                 let label = gotoLabel(ident);
 
-                let rest(end) = interpretStatement(body, next);
+                let (rest, end) = interpretStatement(body, next);
 
                 addBlock(label, rest, end);
                 (vec![], Branch(label))
@@ -1393,7 +1393,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
             /* do */ {
                 let expr_q = lift(lift(interpretExpr(false, expr)));
 
-                let rest(end) = next;
+                let (rest, end) = next;
 
                 (__op_addadd(resultToStatements(expr_q), rest), end)
             }
@@ -1415,7 +1415,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                         },
                         Some(f) => {
                             /* do */ {
-                                let falseEntry(falseTerm) = interpretStatement(f, ((vec![], Branch(after))));
+                                let (falseEntry, falseTerm) = interpretStatement(f, ((vec![], Branch(after))));
 
                                 let falseLabel = newLabel;
 
@@ -1425,12 +1425,12 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                         },
                     };
 
-                let trueEntry(trueTerm) = interpretStatement(t, ((vec![], Branch(after))));
+                let (trueEntry, trueTerm) = interpretStatement(t, ((vec![], Branch(after))));
 
                 let trueLabel = newLabel;
 
                 addBlock(trueLabel, trueEntry, trueTerm);
-                let rest(end) = next;
+                let (rest, end) = next;
 
                 addBlock(after, rest, end);
                 (vec![], CondBranch(c_q, trueLabel, falseLabel))
@@ -1438,7 +1438,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
         },
         (stmt, __OP__, CSwitch(expr, body, node), next) => {
             /* do */ {
-                let bindings(expr_q) = match expr {
+                let (bindings, expr_q) = match expr {
                         CVar { /* TODO pat record */ } => {
                             (vec![], expr)
                         },
@@ -1459,7 +1459,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
 
                 let after = newLabel;
 
-                let _(SwitchCases(cases)) = getSwitchCases(expr_q)(setBreak(after)(interpretStatement(body, ((vec![], Branch(after))))));
+                let (_, SwitchCases(cases)) = getSwitchCases(expr_q)(setBreak(after)(interpretStatement(body, ((vec![], Branch(after))))));
 
                 let isDefault = |Some(condition)| {
                     Left(condition)
@@ -1485,7 +1485,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
 
                 let entry = foldrM(conditionBlock, defaultCase, (IntMap::toList(conditions)));
 
-                let rest(end) = next;
+                let (rest, end) = next;
 
                 addBlock(after, rest, end);
                 (bindings, Branch(entry))
@@ -1499,7 +1499,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
 
                 let headerLabel = newLabel;
 
-                let bodyEntry(bodyTerm) = setBreak(after)(setContinue(headerLabel)(interpretStatement(body, ((vec![], Branch(headerLabel))))));
+                let (bodyEntry, bodyTerm) = setBreak(after)(setContinue(headerLabel)(interpretStatement(body, ((vec![], Branch(headerLabel))))));
 
                 let bodyLabel = newLabel;
 
@@ -1510,7 +1510,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                         CondBranch(c_q, bodyLabel, after)
                     },
                 });
-                let rest(end) = next;
+                let (rest, end) = next;
 
                 addBlock(after, rest, end);
                 (vec![], Branch((__TODO_if(doWhile, then, bodyLabel, __TODO_else, headerLabel))))
@@ -1555,7 +1555,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                                 },
                             };
 
-                        let bodyEntry(bodyTerm) = setBreak(after)(setContinue(incrLabel)(interpretStatement(body, ((vec![], Branch(incrLabel))))));
+                        let (bodyEntry, bodyTerm) = setBreak(after)(setContinue(incrLabel)(interpretStatement(body, ((vec![], Branch(incrLabel))))));
 
                         let bodyLabel = newLabel;
 
@@ -1577,7 +1577,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
                         (prefix, Branch(headerLabel))
                     });
 
-                let rest(end) = next;
+                let (rest, end) = next;
 
                 addBlock(after, rest, end);
                 ret
@@ -1740,7 +1740,7 @@ pub fn objectFromDesignators(__0: CType, __1: Vec<CDesignator>) -> EnvMonad<s, C
             __pure(None)
         },
         (ty, desigs) => {
-            (Some < $>((), go(ty, desigs, (Base(ty)))))
+            __op_dollar_arrow(Some, go(ty, desigs, (Base(ty))))
         },
     }
 }
@@ -1792,7 +1792,7 @@ pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, 
         },
         Some(obj) => {
             /* do */ {
-                let obj_q(initial) = match cinitial {
+                let (obj_q, initial) = match cinitial {
                         CInitList(list_q, _) => {
                             /* do */ {
                                 let initial = translateInitList((designatorType(obj)), list_q);
@@ -2077,7 +2077,7 @@ pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad<s, Initializer>
                 },
             };
 
-        let _(initializer) = foldM(resolveCurrentObject, (Some(base), mempty), objectsAndInitializers);
+        let (_, initializer) = foldM(resolveCurrentObject, (Some(base), mempty), objectsAndInitializers);
 
         initializer
     }
@@ -2090,7 +2090,7 @@ pub fn typeName(__0: CDecl, __1: EnvMonad<s, (Rust::Mutable, CType)>) -> EnvMona
         },
         (decl, __OP__, CDecl(spec, declarators, _)) => {
             /* do */ {
-                let storage(base) = baseTypeOf(spec);
+                let (storage, base) = baseTypeOf(spec);
 
                 match storage {
                     Some(s) => {
@@ -2163,11 +2163,11 @@ pub fn usual(__0: CType, __1: CType) -> Option<CType> {
                 (IsInt(Unsigned, uw), IsInt(Signed, sw)) => {
                     mixedSign(sw, uw)
                 },
-                (IsInt(as, aw), IsInt(_bs, bw)) => {
+                (IsInt(__as, aw), IsInt(_bs, bw)) => {
                     /* do */ {
                         let rank = integerConversionRank(aw, bw);
 
-                        Some((IsInt(as, ((__TODO_if(rank) == GT(then, aw, __TODO_else, bw))))))
+                        Some((IsInt(__as, ((__TODO_if(rank) == GT(then, aw, __TODO_else, bw))))))
                     }
                 },
                 _ => {
@@ -2180,7 +2180,7 @@ pub fn usual(__0: CType, __1: CType) -> Option<CType> {
 
 pub fn wrapMain(declr: CDeclr, realName: String, argTypes: Vec<CType>) -> EnvMonad<s, ()> {
     /* do */ {
-        let setup(args) = wrapArgv(argTypes);
+        let (setup, args) = wrapArgv(argTypes);
 
         let ret = Rust::VarName("ret".to_string());
 

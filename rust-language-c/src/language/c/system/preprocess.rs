@@ -50,7 +50,7 @@ pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> IO<F
 
 pub fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> IO<FilePath> {
     /* do */ {
-        let path(file_handle) = openTempFile(tmp_dir, file_templ);
+        let (path, file_handle) = openTempFile(tmp_dir, file_templ);
 
         hClose(file_handle);
         path

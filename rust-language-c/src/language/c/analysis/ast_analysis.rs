@@ -121,7 +121,7 @@ pub fn checkInits(__0: Type, __1: Vec<CDesignator>, __2: CInitList) -> m<()> {
         },
         (t, dds, [(ds, i), is]) => {
             /* do */ {
-                let dds_q(ds_q) = match (dds, ds) {
+                let (dds_q, ds_q) = match (dds, ds) {
                         ([], []) => {
                             typeError((nodeInfo(i)), "excess elements in initializer".to_string())
                         },
@@ -350,7 +350,7 @@ pub fn extFunProto(VarDeclInfo(var_name, is_inline, storage_spec, attrs, ty, nod
 pub fn extVarDecl(VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
     /* do */ {
         when((isNoName(var_name)))(astError(node_info, "NoName in extVarDecl".to_string()));
-        let storage(is_def) = globalStorage(storage_spec);
+        let (storage, is_def) = globalStorage(storage_spec);
 
         let vardecl = VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ);
 
@@ -391,7 +391,7 @@ pub fn inSwitch(c: Vec<StmtCtx>) -> bool {
 pub fn localVarDecl(VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
     /* do */ {
         when((isNoName(var_name)))(astError(node_info, "NoName in localVarDecl".to_string()));
-        let storage(is_def) = localStorage(storage_spec);
+        let (storage, is_def) = localStorage(storage_spec);
 
         let vardecl = VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ);
 

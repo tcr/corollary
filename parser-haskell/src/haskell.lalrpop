@@ -93,6 +93,7 @@ Operator: String = {
     "<>" => <>.to_string(),
     "<+>" => <>.to_string(),
     "<*>" => <>.to_string(),
+    "<$>" => <>.to_string(),
 };
 
 // Code structures

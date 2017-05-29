@@ -20611,7 +20611,7 @@ pub fn lexicalError() -> P<a> {
     /* do */ {
         let pos = getPos;
 
-        let c(cs) = liftM(takeChar, getInput);
+        let (c, cs) = liftM(takeChar, getInput);
 
         failP(pos, vec![
                 "Lexical error !".to_string(),

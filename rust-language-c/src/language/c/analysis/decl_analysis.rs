@@ -161,7 +161,7 @@ pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) ->
 
                         let param_map = liftM(Map::fromList)(mapM(attachNameOfDecl, oldstyle_params_q));
 
-                        let newstyle_params(param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
+                        let (newstyle_params, param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
 
                         when((not(Map::null(param_map_q))))(astError(node)(__op_addadd("declarations for parameter(s) ".to_string(), __op_addadd(showParamMap(param_map_q), " but no such parameter".to_string()))));
                         return((__op_concat(CFunDeclr((Right((newstyle_params, false))), attrs, fdnode), dds)))
@@ -279,7 +279,7 @@ pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt,
 
 pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual>, canonTySpec: TypeSpecAnalysis) -> m<Type> {
     /* do */ {
-        let quals(attrs) = tTypeQuals(ty_quals);
+        let (quals, attrs) = tTypeQuals(ty_quals);
 
         let baseType = |ty_name| {
             DirectType(ty_name, quals, attrs)

@@ -43,6 +43,7 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "final" => "__final".to_string(),
         "fn" => "__fn".to_string(),
         "pure" => "__pure".to_string(),
+        "as" => "__as".to_string(),
         _ => {
             let mut expr = expr.to_string();
 
@@ -84,6 +85,7 @@ pub fn print_op_fn(value: &str) -> String {
         "<+>" => "__op_doc_conat".to_string(),
         "$+$" => "__op_line_concat".to_string(),
         "$$" => "__op_line_something".to_string(), // TODO what does this do
+        "<$>" => "__op_dollar_arrow".to_string(), // TODO what does this do
         "$!" => "__op_TODO_dollarnot".to_string(),
         ".&." => "__op_dotted_and".to_string(),
         ".|." => "__op_dotted_or".to_string(),
