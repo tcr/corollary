@@ -32636,8 +32636,8 @@ pub fn doDeclIdent(declspecs: Vec<CDeclSpec>, CDeclrR(mIdent, _, _, _, _): CDecl
         None => {
             ()
         },
-        Some | ident if any(iypedef, declspecs) => { addTypedef(ident) }
-        Some | ident => { shadowTypedef(ident) }
+        Some(ident) if any(iypedef, declspecs) => { addTypedef(ident) }
+        Some(ident) => { shadowTypedef(ident) }
     }
 }
 
@@ -32656,10 +32656,10 @@ pub fn emptyDeclr() -> CDeclrR {
     CDeclrR(None, empty, None, vec![], undefNode)
 }
 
-/* TODO infer type:
-let expression = happySomeParser;
+pub fn expression() -> bool {
+    happySomeParser
+}
 
-*/
 pub fn expressionP() -> P<CExpr> {
     expression
 }
@@ -32668,10 +32668,10 @@ pub fn extDeclP() -> P<CExtDecl> {
     external_declaration
 }
 
-/* TODO infer type:
-let external_declaration = happySomeParser;
+pub fn external_declaration() -> bool {
+    happySomeParser
+}
 
-*/
 pub fn funDeclr(CDeclrR(ident, derivedDeclrs, asmname, dcattrs, dat): CDeclrR, params: Either<Vec<Ident>, (Vec<CDecl>, bool)>, cattrs: Vec<CAttr>, at: NodeInfo) -> CDeclrR {
     CDeclrR(ident, (snoc(derivedDeclrs, CFunDeclr(params, cattrs, at))), asmname, dcattrs, dat)
 }
@@ -32680,8 +32680,7 @@ pub fn getCDeclrIdent(CDeclr(mIdent, _, _, _, _): CDeclr) -> Option<Ident> {
     mIdent
 }
 
-/* TODO infer type:
-let happyAccept = |__0, __1, __2, __3, __4| {
+pub fn happyAccept(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4) {
         (1, tk, st, sts, HappyStk(_, /* TODO(INFIX) */, ans, _)) => {
             happyReturn1(ans)
@@ -32690,9 +32689,8 @@ let happyAccept = |__0, __1, __2, __3, __4| {
             (happyReturn1(ans))
         },
     }
-};
+}
 
-*/
 pub fn happyDoSeq(a: a, b: b) -> b {
     seq(a, b)
 }
@@ -32701,8 +32699,7 @@ pub fn happyDontSeq(a: a, b: b) -> b {
     b
 }
 
-/* TODO infer type:
-let happyDrop = |__0, __1| {
+pub fn happyDrop(__0: bool) -> bool {
     match (__0, __1) {
         (0, l) => {
             l
@@ -32711,11 +32708,9 @@ let happyDrop = |__0, __1| {
             happyDrop(((n - ((1)))), t)
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyDropStk = |__0, __1| {
+pub fn happyDropStk(__0: bool) -> bool {
     match (__0, __1) {
         (0, l) => {
             l
@@ -32724,9 +32719,8 @@ let happyDropStk = |__0, __1| {
             happyDropStk(((n - ((1)))), xs)
         },
     }
-};
+}
 
-*/
 pub fn happyError() -> P<a> {
     parseError
 }
@@ -32735,8 +32729,7 @@ pub fn happyError_q(tk: CToken) -> P<a> {
     (|token| { happyError })(tk)
 }
 
-/* TODO infer type:
-let happyError_ = |__0, __1| {
+pub fn happyError_(__0: bool) -> bool {
     match (__0, __1) {
         (232, tk) => {
             happyError_q(tk)
@@ -32745,11 +32738,9 @@ let happyError_ = |__0, __1| {
             happyError_q(tk)
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyFail = |__0, __1, __2, __3, __4, __5, __6| {
+pub fn happyFail(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (1, tk, old_st, _, stk, __OP__, HappyStk(x, _)) => {
             {
@@ -32765,17 +32756,13 @@ let happyFail = |__0, __1, __2, __3, __4, __5, __6| {
             action((1), (1), tk, (HappyState((action))), sts, (HappyStk((HappyErrorToken((i))), stk)))
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyGoto = |action, j, tk, st| {
+pub fn happyGoto(action: bool) -> bool {
     action(j, j, tk, (HappyState(action)))
-};
+}
 
-*/
-/* TODO infer type:
-let happyMonad2Reduce = |__0, __1, __2, __3, __4, __5, __6, __7| {
+pub fn happyMonad2Reduce(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
         (k, nt, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -32793,11 +32780,9 @@ let happyMonad2Reduce = |__0, __1, __2, __3, __4, __5, __6, __7| {
             }
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyMonadReduce = |__0, __1, __2, __3, __4, __5, __6, __7| {
+pub fn happyMonadReduce(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
         (k, nt, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -32813,11 +32798,9 @@ let happyMonadReduce = |__0, __1, __2, __3, __4, __5, __6, __7| {
             }
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyNewToken = |action, sts, stk| {
+pub fn happyNewToken(action: bool) -> bool {
     lexC((|tk| { () }({
                 let cont = |i| {
                     action(i, i, tk, (HappyState(action)), sts, stk)
@@ -33131,17 +33114,13 @@ let happyNewToken = |action, sts, stk| {
                         happyError_q(tk)
                     },
                 }            })))
-};
+}
 
-*/
-/* TODO infer type:
-let happyParse = |start_state| {
+pub fn happyParse(start_state: bool) -> bool {
     happyNewToken(start_state, notHappyAtAll, notHappyAtAll)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduce = |__0, __1, __2, __3, __4, __5, __6, __7| {
+pub fn happyReduce(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
         (k, i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -33157,9 +33136,8 @@ let happyReduce = |__0, __1, __2, __3, __4, __5, __6, __7| {
             }
         },
     }
-};
+}
 
-*/
 pub fn happyReduce_10() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> fn(Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
     happySpecReduce_2(9, happyReduction_10)
 }
@@ -35016,8 +34994,7 @@ pub fn happyReduce_99() -> fn(isize) -> fn(CToken) -> fn(HappyState<CToken, fn(H
     happyMonadReduce(6, 36, happyReduction_99)
 }
 
-/* TODO infer type:
-let happyReduction_10 = |__0, __1| {
+pub fn happyReduction_10(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn9(happy_var_2), _) => {
             HappyAbsSyn9((happy_var_2))
@@ -35026,11 +35003,9 @@ let happyReduction_10 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_100 = |__0| {
+pub fn happyReduction_100(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
@@ -35039,11 +35014,9 @@ let happyReduction_100 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_101 = |__0| {
+pub fn happyReduction_101(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
@@ -35052,11 +35025,9 @@ let happyReduction_101 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_102 = |__0| {
+pub fn happyReduction_102(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
@@ -35065,11 +35036,9 @@ let happyReduction_102 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_103 = |__0| {
+pub fn happyReduction_103(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn40(happy_var_1) => {
             HappyAbsSyn38((singleton((CStorageSpec(happy_var_1)))))
@@ -35078,11 +35047,9 @@ let happyReduction_103 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_104 = |__0, __1| {
+pub fn happyReduction_104(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn38((snoc(reverseList((liftCAttrs(happy_var_1))), (CStorageSpec(happy_var_2)))))
@@ -35091,11 +35058,9 @@ let happyReduction_104 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_105 = |__0, __1| {
+pub fn happyReduction_105(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((snoc(rmap(CTypeQual, happy_var_1), CStorageSpec(happy_var_2))))
@@ -35104,11 +35069,9 @@ let happyReduction_105 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_106 = |__0, __1, __2| {
+pub fn happyReduction_106(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn40(happy_var_3), HappyAbsSyn126(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((snoc((rappend(rmap(CTypeQual, happy_var_1), liftCAttrs(happy_var_2))), CStorageSpec(happy_var_3))))
@@ -35117,11 +35080,9 @@ let happyReduction_106 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_107 = |__0, __1| {
+pub fn happyReduction_107(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn39(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
@@ -35130,11 +35091,9 @@ let happyReduction_107 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_108 = |__0, __1| {
+pub fn happyReduction_108(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -35143,11 +35102,9 @@ let happyReduction_108 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_109 = |__0| {
+pub fn happyReduction_109(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn40(happy_var_1) => {
             HappyAbsSyn39((CStorageSpec(happy_var_1)))
@@ -35156,17 +35113,13 @@ let happyReduction_109 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_11 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_11(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAsmExt(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn9(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_110 = |__0| {
+pub fn happyReduction_110(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn61(happy_var_1) => {
             HappyAbsSyn39((CTypeQual(happy_var_1)))
@@ -35175,47 +35128,33 @@ let happyReduction_110 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_111 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_111(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CTypedef))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_112 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_112(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CExtern))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_113 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_113(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CStatic))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_114 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_114(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAuto))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_115 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_115(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CRegister))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_116 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_116(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CThread))), (|r| { happyReturn((HappyAbsSyn40(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_117 = |__0| {
+pub fn happyReduction_117(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
@@ -35224,11 +35163,9 @@ let happyReduction_117 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_118 = |__0| {
+pub fn happyReduction_118(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
@@ -35237,11 +35174,9 @@ let happyReduction_118 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_119 = |__0| {
+pub fn happyReduction_119(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn38(happy_var_1) => {
             HappyAbsSyn37((reverse(happy_var_1)))
@@ -35250,89 +35185,61 @@ let happyReduction_119 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_12 = |HappyStk(HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest), tk| {
+pub fn happyReduction_12(HappyStk(HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, vec![], happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_120 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_120(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CVoidType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_121 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_121(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCharType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_122 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_122(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CShortType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_123 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_123(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CIntType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_124 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_124(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CLongType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_125 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_125(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CFloatType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_126 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_126(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDoubleType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_127 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_127(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CSignedType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_128 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_128(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CUnsigType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_129 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_129(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBoolType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_13 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
+pub fn happyReduction_13(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_130 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_130(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CComplexType))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_131 = |__0, __1| {
+pub fn happyReduction_131(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
@@ -35341,11 +35248,9 @@ let happyReduction_131 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_132 = |__0, __1| {
+pub fn happyReduction_132(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CStorageSpec(happy_var_2))))
@@ -35354,11 +35259,9 @@ let happyReduction_132 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_133 = |__0, __1| {
+pub fn happyReduction_133(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn39(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
@@ -35367,11 +35270,9 @@ let happyReduction_133 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_134 = |__0, __1| {
+pub fn happyReduction_134(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
@@ -35380,11 +35281,9 @@ let happyReduction_134 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_135 = |__0, __1| {
+pub fn happyReduction_135(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -35393,11 +35292,9 @@ let happyReduction_135 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_136 = |__0| {
+pub fn happyReduction_136(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn42(happy_var_1) => {
             HappyAbsSyn38((singleton((CTypeSpec(happy_var_1)))))
@@ -35406,11 +35303,9 @@ let happyReduction_136 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_137 = |__0, __1| {
+pub fn happyReduction_137(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn38((snoc((reverseList(liftCAttrs(happy_var_1))), (CTypeSpec(happy_var_2)))))
@@ -35419,11 +35314,9 @@ let happyReduction_137 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_138 = |__0, __1| {
+pub fn happyReduction_138(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((snoc(rmap(CTypeQual, happy_var_1), CTypeSpec(happy_var_2))))
@@ -35432,11 +35325,9 @@ let happyReduction_138 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_139 = |__0, __1, __2| {
+pub fn happyReduction_139(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn42(happy_var_3), HappyAbsSyn126(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec(happy_var_3)))))
@@ -35445,17 +35336,13 @@ let happyReduction_139 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_14 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_14(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_140 = |__0, __1| {
+pub fn happyReduction_140(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeQual(happy_var_2))))
@@ -35464,11 +35351,9 @@ let happyReduction_140 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_141 = |__0, __1| {
+pub fn happyReduction_141(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
@@ -35477,11 +35362,9 @@ let happyReduction_141 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_142 = |__0, __1| {
+pub fn happyReduction_142(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -35490,11 +35373,9 @@ let happyReduction_142 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_143 = |__0, __1| {
+pub fn happyReduction_143(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
@@ -35503,11 +35384,9 @@ let happyReduction_143 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_144 = |__0, __1| {
+pub fn happyReduction_144(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CStorageSpec(happy_var_2))))
@@ -35516,11 +35395,9 @@ let happyReduction_144 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_145 = |__0, __1| {
+pub fn happyReduction_145(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn39(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
@@ -35529,11 +35406,9 @@ let happyReduction_145 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_146 = |__0, __1| {
+pub fn happyReduction_146(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -35542,11 +35417,9 @@ let happyReduction_146 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_147 = |__0| {
+pub fn happyReduction_147(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn42(happy_var_1) => {
             HappyAbsSyn38((singleton((CTypeSpec(happy_var_1)))))
@@ -35555,11 +35428,9 @@ let happyReduction_147 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_148 = |__0, __1| {
+pub fn happyReduction_148(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn38((snoc((reverseList(liftCAttrs(happy_var_1))), (CTypeSpec(happy_var_2)))))
@@ -35568,11 +35439,9 @@ let happyReduction_148 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_149 = |__0, __1| {
+pub fn happyReduction_149(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn42(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((snoc(rmap(CTypeQual, happy_var_1), CTypeSpec(happy_var_2))))
@@ -35581,17 +35450,13 @@ let happyReduction_149 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_15 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_15(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_150 = |__0, __1, __2| {
+pub fn happyReduction_150(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn42(happy_var_3), HappyAbsSyn126(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn38((rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec(happy_var_3)))))
@@ -35600,11 +35465,9 @@ let happyReduction_150 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_151 = |__0, __1| {
+pub fn happyReduction_151(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeQual(happy_var_2))))
@@ -35613,11 +35476,9 @@ let happyReduction_151 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_152 = |__0, __1| {
+pub fn happyReduction_152(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -35626,11 +35487,9 @@ let happyReduction_152 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_153 = |__0, __1| {
+pub fn happyReduction_153(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn40(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CStorageSpec(happy_var_2))))
@@ -35639,29 +35498,21 @@ let happyReduction_153 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_154 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_154(HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(happy_var_1, CTypeSpec((CTypeDef(happy_var_2, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_155 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_155(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(happy_var_1, CTypeSpec((CTypeOfExpr(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_156 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_156(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(happy_var_1, CTypeSpec((CTypeOfType(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_157 = |__0, __1| {
+pub fn happyReduction_157(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn39(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
@@ -35670,11 +35521,9 @@ let happyReduction_157 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_158 = |__0, __1| {
+pub fn happyReduction_158(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -35683,95 +35532,65 @@ let happyReduction_158 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_159 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest), tk| {
+pub fn happyReduction_159(HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(|at| { singleton((CTypeSpec((CTypeDef(happy_var_1, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_16 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_16(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_160 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_160(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(|at| { singleton((CTypeSpec((CTypeOfExpr(happy_var_3, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_161 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_161(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(|at| { singleton((CTypeSpec((CTypeOfType(happy_var_3, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_162 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_162(HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(rmap(CTypeQual, happy_var_1), CTypeSpec((CTypeDef(happy_var_2, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_163 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_163(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(rmap(CTypeQual, happy_var_1), CTypeSpec((CTypeOfExpr(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_164 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_164(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(rmap(CTypeQual, happy_var_1), CTypeSpec((CTypeOfType(happy_var_4, at)))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_165 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
+pub fn happyReduction_165(HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(reverseList((liftCAttrs(happy_var_1))), (CTypeSpec((CTypeDef(happy_var_2, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_166 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
+pub fn happyReduction_166(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(|at| { snoc(reverseList((liftCAttrs(happy_var_1))), (CTypeSpec((CTypeOfExpr(happy_var_4, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_167 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
+pub fn happyReduction_167(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_2)(|at| { snoc(reverseList((liftCAttrs(happy_var_1))), (CTypeSpec((CTypeOfType(happy_var_4, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_168 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_3)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_168(HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_3)), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_3)(|at| { rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeDef(happy_var_3, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_169 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_169(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_3)(|at| { rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeOfExpr(happy_var_5, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_17 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_17(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_170 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_170(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_3)(|at| { rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec((CTypeOfType(happy_var_5, at))))) }))), (|r| { happyReturn((HappyAbsSyn38(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_171 = |__0, __1| {
+pub fn happyReduction_171(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((snoc(happy_var_1, CTypeQual(happy_var_2))))
@@ -35780,11 +35599,9 @@ let happyReduction_171 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_172 = |__0, __1| {
+pub fn happyReduction_172(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn38(happy_var_1)) => {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
@@ -35793,41 +35610,29 @@ let happyReduction_172 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_173 = |HappyStk(HappyAbsSyn50(happy_var_1), happyRest), tk| {
+pub fn happyReduction_173(HappyStk(HappyAbsSyn50(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CSUType(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_174 = |HappyStk(HappyAbsSyn58(happy_var_1), happyRest), tk| {
+pub fn happyReduction_174(HappyStk(HappyAbsSyn58(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CEnumType(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn42(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_175 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest), tk| {
+pub fn happyReduction_175(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), (Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn50(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_176 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest), tk| {
+pub fn happyReduction_176(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn50(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_177 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest), tk| {
+pub fn happyReduction_177(HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn51(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CStruct((unL(happy_var_1)), (Some(happy_var_3)), None, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn50(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_178 = |__0| {
+pub fn happyReduction_178(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn51((L(CStructTag, (posOf(happy_var_1)))))
@@ -35836,11 +35641,9 @@ let happyReduction_178 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_179 = |__0| {
+pub fn happyReduction_179(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn51((L(CUnionTag, (posOf(happy_var_1)))))
@@ -35849,21 +35652,17 @@ let happyReduction_179 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_18 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_18(HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_180 = HappyAbsSyn33((empty));
+pub fn happyReduction_180() -> bool {
+    HappyAbsSyn33((empty))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_181 = |__0, __1| {
+pub fn happyReduction_181(__0: bool) -> bool {
     match (__0, __1) {
         (_, HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn33((happy_var_1))
@@ -35872,11 +35671,9 @@ let happyReduction_181 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_182 = |__0, __1| {
+pub fn happyReduction_182(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn32(happy_var_2), HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn33((snoc(happy_var_1, happy_var_2)))
@@ -35885,11 +35682,9 @@ let happyReduction_182 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_183 = |__0, __1| {
+pub fn happyReduction_183(__0: bool) -> bool {
     match (__0, __1) {
         (_, HappyAbsSyn32(happy_var_1)) => {
             HappyAbsSyn32((match happy_var_1 {
@@ -35902,11 +35697,9 @@ let happyReduction_183 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_184 = |__0, __1| {
+pub fn happyReduction_184(__0: bool) -> bool {
     match (__0, __1) {
         (_, HappyAbsSyn32(happy_var_1)) => {
             HappyAbsSyn32((match happy_var_1 {
@@ -35919,11 +35712,9 @@ let happyReduction_184 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_185 = |__0, __1| {
+pub fn happyReduction_185(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn32(happy_var_2), _) => {
             HappyAbsSyn32((happy_var_2))
@@ -35932,31 +35723,25 @@ let happyReduction_185 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_186 = |HappyStk(HappyAbsSyn56(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_186(HappyStk(HappyAbsSyn56(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_3 {
             (d, s) => {
                 CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![(d, None, s)])
             },
         }))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_187 = |HappyStk(HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
+pub fn happyReduction_187(HappyStk(HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_2 {
             (d, s) => {
                 CDecl((liftCAttrs(happy_var_1)), vec![(d, None, s)])
             },
         }))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_188 = |HappyStk(HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest)| {
+pub fn happyReduction_188(HappyStk(HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn32((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 match happy_var_4 {
@@ -35969,11 +35754,9 @@ let happyReduction_188 = |HappyStk(HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */
                 }
             },
         })), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_189 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_189(HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_2 {
             (Some(d), s) => {
                 CDecl(happy_var_1, vec![(__op_TODO_dollarnot(Some, appendObjAttrs(happy_var_3, d)), None, s)])
@@ -35982,17 +35765,13 @@ let happyReduction_189 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) *
                 CDecl(happy_var_1, vec![(None, None, s)])
             },
         }))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_19 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest), tk| {
+pub fn happyReduction_19(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef(vec![], happy_var_1, (reverse(happy_var_2)), happy_var_3)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_190 = |HappyStk(HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest)| {
+pub fn happyReduction_190(HappyStk(HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn32((match happy_var_1 {
             CDecl | declspecs | dies | attr => {
                 match happy_var_4 {
@@ -36005,17 +35784,13 @@ let happyReduction_190 = |HappyStk(HappyAbsSyn126(happy_var_5), /* TODO(INFIX) *
                 }
             },
         })), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_191 = |HappyStk(HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_191(HappyStk(HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_192 = |__0| {
+pub fn happyReduction_192(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn56(((Some((reverseDeclr(happy_var_1))), None)))
@@ -36024,11 +35799,9 @@ let happyReduction_192 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_193 = |__0, __1| {
+pub fn happyReduction_193(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn97(happy_var_2), _) => {
             HappyAbsSyn56(((None, Some(happy_var_2))))
@@ -36037,11 +35810,9 @@ let happyReduction_193 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_194 = |__0, __1, __2| {
+pub fn happyReduction_194(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn63(happy_var_1)) => {
             HappyAbsSyn56(((Some((reverseDeclr(happy_var_1))), Some(happy_var_3))))
@@ -36050,11 +35821,9 @@ let happyReduction_194 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_195 = |__0| {
+pub fn happyReduction_195(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn56(((Some((reverseDeclr(happy_var_1))), None)))
@@ -36063,11 +35832,9 @@ let happyReduction_195 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_196 = |__0, __1| {
+pub fn happyReduction_196(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn97(happy_var_2), _) => {
             HappyAbsSyn56(((None, Some(happy_var_2))))
@@ -36076,11 +35843,9 @@ let happyReduction_196 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_197 = |__0, __1, __2| {
+pub fn happyReduction_197(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn63(happy_var_1)) => {
             HappyAbsSyn56(((Some((reverseDeclr(happy_var_1))), Some(happy_var_3))))
@@ -36089,11 +35854,9 @@ let happyReduction_197 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_198 = |__0, __1| {
+pub fn happyReduction_198(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn56(happy_var_1)) => {
             HappyAbsSyn56((match happy_var_1 {
@@ -36109,47 +35872,33 @@ let happyReduction_198 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_199 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_199(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CEnum(None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_20 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
+pub fn happyReduction_20(HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_2)(CFunDef((liftCAttrs(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_200 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_200(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CEnum(None, (Some(reverse(happy_var_4))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_201 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_201(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_202 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_202(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn59(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), (Some(reverse(happy_var_5))), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_203 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_203(HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CEnum((Some(happy_var_3)), None, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn58(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_204 = |__0| {
+pub fn happyReduction_204(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn60(happy_var_1) => {
             HappyAbsSyn59((singleton(happy_var_1)))
@@ -36158,11 +35907,9 @@ let happyReduction_204 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_205 = |__0, __1, __2| {
+pub fn happyReduction_205(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn60(happy_var_3), _, HappyAbsSyn59(happy_var_1)) => {
             HappyAbsSyn59((snoc(happy_var_1, happy_var_3)))
@@ -36171,11 +35918,9 @@ let happyReduction_205 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_206 = |__0| {
+pub fn happyReduction_206(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn125(happy_var_1) => {
             HappyAbsSyn60(((happy_var_1, None)))
@@ -36184,11 +35929,9 @@ let happyReduction_206 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_207 = |__0, __1| {
+pub fn happyReduction_207(__0: bool) -> bool {
     match (__0, __1) {
         (_, HappyAbsSyn125(happy_var_1)) => {
             HappyAbsSyn60(((happy_var_1, None)))
@@ -36197,17 +35940,13 @@ let happyReduction_207 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_208 = |HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest)| {
+pub fn happyReduction_208(HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn60(((happy_var_1, Some(happy_var_4)))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_209 = |__0, __1, __2| {
+pub fn happyReduction_209(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn125(happy_var_1)) => {
             HappyAbsSyn60(((happy_var_1, Some(happy_var_3))))
@@ -36216,41 +35955,29 @@ let happyReduction_209 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_21 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_21(HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_210 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_210(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CConstQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_211 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_211(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CVolatQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_212 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_212(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CRestrQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_213 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_213(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CInlineQual))), (|r| { happyReturn((HappyAbsSyn61(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_214 = |__0, __1| {
+pub fn happyReduction_214(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn62((snoc(reverseList((map(CAttrQual, happy_var_1))), happy_var_2)))
@@ -36259,11 +35986,9 @@ let happyReduction_214 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_215 = |__0, __1| {
+pub fn happyReduction_215(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn61(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn62((snoc(happy_var_1, happy_var_2)))
@@ -36272,11 +35997,9 @@ let happyReduction_215 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_216 = |__0, __1, __2| {
+pub fn happyReduction_216(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn61(happy_var_3), HappyAbsSyn126(happy_var_2), HappyAbsSyn62(happy_var_1)) => {
             HappyAbsSyn62((snoc((rappend(happy_var_1, map(CAttrQual, happy_var_2))), happy_var_3)))
@@ -36285,11 +36008,9 @@ let happyReduction_216 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_217 = |__0| {
+pub fn happyReduction_217(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36298,11 +36019,9 @@ let happyReduction_217 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_218 = |__0| {
+pub fn happyReduction_218(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36311,27 +36030,21 @@ let happyReduction_218 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_219 = HappyAbsSyn64((None));
+pub fn happyReduction_219() -> bool {
+    HappyAbsSyn64((None))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_22 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_22(HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_220 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_220(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn64((Some(happy_var_3))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_221 = |__0| {
+pub fn happyReduction_221(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36340,11 +36053,9 @@ let happyReduction_221 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_222 = |__0| {
+pub fn happyReduction_222(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36353,23 +36064,17 @@ let happyReduction_222 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_223 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest), tk| {
+pub fn happyReduction_223(HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_224 = |HappyStk(HappyAbsSyn85(happy_var_2), /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest), tk| {
+pub fn happyReduction_224(HappyStk(HappyAbsSyn85(happy_var_2), /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(|at| { happy_var_2((mkVarDeclr(happy_var_1, at))) }))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_225 = |__0| {
+pub fn happyReduction_225(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36378,11 +36083,9 @@ let happyReduction_225 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_226 = |__0| {
+pub fn happyReduction_226(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36391,41 +36094,29 @@ let happyReduction_226 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_227 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_227(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_228 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_228(HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_229 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_229(HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_23 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_23(HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_230 = |HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_230(HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_231 = |__0, __1, __2| {
+pub fn happyReduction_231(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -36434,29 +36125,21 @@ let happyReduction_231 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_232 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_232(HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_233 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_233(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_234 = |HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_234(HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_235 = |__0| {
+pub fn happyReduction_235(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36465,53 +36148,37 @@ let happyReduction_235 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_236 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_236(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_237 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_237(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_238 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_238(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_5, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_239 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_239(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_24 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_24(HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, (reverse(happy_var_3)), happy_var_4)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_240 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_240(HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_241 = |HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_241(HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_242 = |__0, __1, __2| {
+pub fn happyReduction_242(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -36520,29 +36187,21 @@ let happyReduction_242 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_243 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn85(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_243(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn85(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((happy_var_3(happy_var_2))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_244 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_244(HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_245 = |HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest), tk| {
+pub fn happyReduction_245(HappyStk(HappyTerminal(CTokTyIdent(_, happy_var_1)), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_246 = |__0, __1, __2| {
+pub fn happyReduction_246(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -36551,11 +36210,9 @@ let happyReduction_246 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_247 = |__0| {
+pub fn happyReduction_247(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36564,11 +36221,9 @@ let happyReduction_247 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_248 = |__0| {
+pub fn happyReduction_248(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36577,11 +36232,9 @@ let happyReduction_248 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_249 = |__0| {
+pub fn happyReduction_249(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36590,41 +36243,29 @@ let happyReduction_249 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_25 = |HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_25(HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn33(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, (reverse(happy_var_4)), happy_var_5)))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_250 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_250(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_251 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_251(HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_252 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_252(HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_253 = |HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_253(HappyStk(HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(happy_var_4, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_254 = |__0, __1| {
+pub fn happyReduction_254(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn85(happy_var_2), HappyAbsSyn63(happy_var_1)) => {
             HappyAbsSyn63((happy_var_2(happy_var_1)))
@@ -36633,11 +36274,9 @@ let happyReduction_254 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_255 = |__0, __1, __2| {
+pub fn happyReduction_255(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -36646,44 +36285,32 @@ let happyReduction_255 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_256 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_256(HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_257 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_257(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_258 = |HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_258(HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_259 = |HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
+pub fn happyReduction_259(HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(mkVarDeclr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_26 = |HappyStk(HappyAbsSyn63(happy_var_1), happyRest), tk| {
+pub fn happyReduction_26(HappyStk(HappyAbsSyn63(happy_var_1), happyRest): bool) -> bool {
     happyThen((({
             let declr = reverseDeclr(happy_var_1);
 
         __op_rshift(enterScope, __op_rshift(doFuncParamDeclIdent(declr), declr))        })), (|r| { happyReturn((HappyAbsSyn11(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_260 = |__0, __1, __2| {
+pub fn happyReduction_260(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -36692,17 +36319,13 @@ let happyReduction_260 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_261 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_261(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_262 = |__0| {
+pub fn happyReduction_262(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn11((reverseDeclr(happy_var_1)))
@@ -36711,11 +36334,9 @@ let happyReduction_262 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_263 = |__0| {
+pub fn happyReduction_263(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -36724,29 +36345,21 @@ let happyReduction_263 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_264 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_264(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_265 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_265(HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_266 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_1), happyRest), tk| {
+pub fn happyReduction_266(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(funDeclr(happy_var_1, (Left(reverse(happy_var_3))), vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_267 = |__0, __1, __2| {
+pub fn happyReduction_267(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -36755,21 +36368,17 @@ let happyReduction_267 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_268 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_268(HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_269 = HappyAbsSyn79(((vec![], false)));
+pub fn happyReduction_269() -> bool {
+    HappyAbsSyn79(((vec![], false)))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_27 = |__0| {
+pub fn happyReduction_27(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
@@ -36778,11 +36387,9 @@ let happyReduction_27 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_270 = |__0| {
+pub fn happyReduction_270(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn33(happy_var_1) => {
             HappyAbsSyn79(((reverse(happy_var_1), false)))
@@ -36791,11 +36398,9 @@ let happyReduction_270 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_271 = |__0, __1, __2| {
+pub fn happyReduction_271(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, _, HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn79(((reverse(happy_var_1), true)))
@@ -36804,11 +36409,9 @@ let happyReduction_271 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_272 = |__0| {
+pub fn happyReduction_272(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn32(happy_var_1) => {
             HappyAbsSyn33((singleton(happy_var_1)))
@@ -36817,11 +36420,9 @@ let happyReduction_272 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_273 = |__0, __1, __2| {
+pub fn happyReduction_273(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn32(happy_var_3), _, HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn33((snoc(happy_var_1, happy_var_3)))
@@ -36830,51 +36431,37 @@ let happyReduction_273 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_274 = |HappyStk(HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_274(HappyStk(HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_275 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_275(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_276 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_276(HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_277 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_277(HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_278 = |HappyStk(HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_278(HappyStk(HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_279 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_279(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_28 = |__0| {
+pub fn happyReduction_28(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
@@ -36883,71 +36470,51 @@ let happyReduction_28 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_280 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_280(HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_281 = |HappyStk(HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_281(HappyStk(HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_282 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_282(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_283 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_283(HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_284 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_284(HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![
                 (Some((__op_TODO_dollarnot(reverseDeclr, appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None),
             ])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_285 = |HappyStk(HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_285(HappyStk(HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_286 = |HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_286(HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_287 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_287(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_288 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_288(HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(appendDeclrAttrs(happy_var_3, happy_var_2)))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_289 = |__0| {
+pub fn happyReduction_289(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(CTokIdent(_, happy_var_1)) => {
             HappyAbsSyn21((singleton(happy_var_1)))
@@ -36956,11 +36523,9 @@ let happyReduction_289 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_29 = |__0| {
+pub fn happyReduction_29(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
@@ -36969,11 +36534,9 @@ let happyReduction_29 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_290 = |__0, __1, __2| {
+pub fn happyReduction_290(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyTerminal(CTokIdent(_, happy_var_3)), _, HappyAbsSyn21(happy_var_1)) => {
             HappyAbsSyn21((snoc(happy_var_1, happy_var_3)))
@@ -36982,35 +36545,25 @@ let happyReduction_290 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_291 = |HappyStk(HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_291(HappyStk(HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_292 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_292(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_293 = |HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_293(HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_294 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_294(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((liftTypeQuals(happy_var_1)), vec![(Some((reverseDeclr(happy_var_2))), None, None)])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_295 = |__0| {
+pub fn happyReduction_295(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -37019,11 +36572,9 @@ let happyReduction_295 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_296 = |__0| {
+pub fn happyReduction_296(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn63(happy_var_1) => {
             HappyAbsSyn63((happy_var_1))
@@ -37032,11 +36583,9 @@ let happyReduction_296 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_297 = |__0| {
+pub fn happyReduction_297(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn85(happy_var_1) => {
             HappyAbsSyn63((happy_var_1(emptyDeclr)))
@@ -37045,11 +36594,9 @@ let happyReduction_297 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_298 = |__0| {
+pub fn happyReduction_298(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn85(happy_var_1) => {
             HappyAbsSyn85((happy_var_1))
@@ -37058,21 +36605,17 @@ let happyReduction_298 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_299 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn79(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_299(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn79(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(|at, declr| { match happy_var_2 {
                 (params, variadic) => {
                     funDeclr(declr, (Right((params, variadic))), vec![], at)
                 },
             } }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_30 = |__0| {
+pub fn happyReduction_30(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
@@ -37081,11 +36624,9 @@ let happyReduction_30 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_300 = |__0| {
+pub fn happyReduction_300(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn85(happy_var_1) => {
             HappyAbsSyn85((happy_var_1))
@@ -37094,11 +36635,9 @@ let happyReduction_300 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_301 = |__0, __1| {
+pub fn happyReduction_301(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn85(happy_var_2), HappyAbsSyn85(happy_var_1)) => {
             HappyAbsSyn85((|decl| { happy_var_2((happy_var_1(decl))) }))
@@ -37107,59 +36646,41 @@ let happyReduction_301 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_302 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_302(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(|at, declr| { arrDeclr(declr, vec![], false, false, happy_var_2, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_303 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_303(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttributePF(happy_var_1, happy_var_2)(|at, declr| { arrDeclr(declr, vec![], false, false, happy_var_3, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_304 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_304(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), false, false, happy_var_3, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_305 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_305(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), false, false, happy_var_4, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_306 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_306(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { arrDeclr(declr, vec![], false, true, (Some(happy_var_4)), at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_307 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_307(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttributePF(happy_var_1, happy_var_4)(|at, declr| { arrDeclr(declr, (reverse(happy_var_3)), false, true, (Some(happy_var_5)), at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_308 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_308(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_3, happy_var_5)))(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), false, true, (Some(happy_var_6)), at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_309 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_309(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttributePF(happy_var_1, happy_var_3)(|at, declr| { arrDeclr(declr, vec![], true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_31 = |__0| {
+pub fn happyReduction_31(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
@@ -37168,65 +36689,45 @@ let happyReduction_31 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_310 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_310(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_2, happy_var_4)))(|at, declr| { arrDeclr(declr, vec![], true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_311 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_311(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttributePF(happy_var_1, happy_var_4)(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_312 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_312(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttributePF(happy_var_1, (__op_addadd(happy_var_3, happy_var_5)))(|at, declr| { arrDeclr(declr, (reverse(happy_var_2)), true, false, None, at) }))), (|r| { happyReturn((HappyAbsSyn85(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_313 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_313(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(emptyDeclr, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_314 = |HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_314(HappyStk(HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttribute(happy_var_1, happy_var_3)(ptrDeclr(emptyDeclr, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_315 = |HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_315(HappyStk(HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_2, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_316 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_316(HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(ptrDeclr(happy_var_3, (reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_317 = |HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_317(HappyStk(HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(emptyDeclr, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_318 = |HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_318(HappyStk(HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withAttribute(happy_var_1, happy_var_2)(ptrDeclr(happy_var_3, vec![])))), (|r| { happyReturn((HappyAbsSyn63(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_319 = |__0, __1, __2| {
+pub fn happyReduction_319(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -37235,11 +36736,9 @@ let happyReduction_319 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_32 = |__0| {
+pub fn happyReduction_32(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn12((happy_var_1))
@@ -37248,11 +36747,9 @@ let happyReduction_32 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_320 = |__0, __1, __2| {
+pub fn happyReduction_320(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn63(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2))
@@ -37261,11 +36758,9 @@ let happyReduction_320 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_321 = |__0, __1, __2| {
+pub fn happyReduction_321(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn85(happy_var_2), _) => {
             HappyAbsSyn63((happy_var_2(emptyDeclr)))
@@ -37274,41 +36769,29 @@ let happyReduction_321 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_322 = |HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_322(HappyStk(HappyAbsSyn85(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((happy_var_4(happy_var_2))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_323 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_323(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_324 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_324(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_3))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_325 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn85(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_325(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn85(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_3(emptyDeclr))))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_326 = |HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_326(HappyStk(HappyAbsSyn85(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn63((appendDeclrAttrs(happy_var_2, (happy_var_5(happy_var_3))))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_327 = |__0, __1| {
+pub fn happyReduction_327(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn63(happy_var_1)) => {
             HappyAbsSyn63((appendDeclrAttrs(happy_var_2, happy_var_1)))
@@ -37317,39 +36800,29 @@ let happyReduction_327 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_328 = |HappyStk(HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_328(HappyStk(HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CInitExpr(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn90(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_329 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_329(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CInitList((reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn90(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_33 = |HappyStk(HappyAbsSyn26(happy_var_1), happyRest), tk| {
+pub fn happyReduction_33(HappyStk(HappyAbsSyn26(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1, (CAsm(happy_var_1))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_330 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_330(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CInitList((reverse(happy_var_2)))))), (|r| { happyReturn((HappyAbsSyn90(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_331 = HappyAbsSyn91((None));
+pub fn happyReduction_331() -> bool {
+    HappyAbsSyn91((None))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_332 = |__0, __1| {
+pub fn happyReduction_332(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn90(happy_var_2), _) => {
             HappyAbsSyn91((Some(happy_var_2)))
@@ -37358,15 +36831,13 @@ let happyReduction_332 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_333 = HappyAbsSyn92((empty));
+pub fn happyReduction_333() -> bool {
+    HappyAbsSyn92((empty))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_334 = |__0| {
+pub fn happyReduction_334(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn90(happy_var_1) => {
             HappyAbsSyn92((singleton((vec![], happy_var_1))))
@@ -37375,11 +36846,9 @@ let happyReduction_334 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_335 = |__0, __1| {
+pub fn happyReduction_335(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn90(happy_var_2), HappyAbsSyn93(happy_var_1)) => {
             HappyAbsSyn92((singleton((happy_var_1, happy_var_2))))
@@ -37388,11 +36857,9 @@ let happyReduction_335 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_336 = |__0, __1, __2| {
+pub fn happyReduction_336(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn90(happy_var_3), _, HappyAbsSyn92(happy_var_1)) => {
             HappyAbsSyn92((snoc(happy_var_1, (vec![], happy_var_3))))
@@ -37401,17 +36868,13 @@ let happyReduction_336 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_337 = |HappyStk(HappyAbsSyn90(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn93(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_1), happyRest)| {
+pub fn happyReduction_337(HappyStk(HappyAbsSyn90(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn93(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_1), happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn92((snoc(happy_var_1, (happy_var_3, happy_var_4)))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_338 = |__0, __1| {
+pub fn happyReduction_338(__0: bool) -> bool {
     match (__0, __1) {
         (_, HappyAbsSyn94(happy_var_1)) => {
             HappyAbsSyn93((reverse(happy_var_1)))
@@ -37420,23 +36883,17 @@ let happyReduction_338 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_339 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest), tk| {
+pub fn happyReduction_339(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(|at| { vec![CMemberDesig(happy_var_1, at)] }))), (|r| { happyReturn((HappyAbsSyn93(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_34 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest), tk| {
+pub fn happyReduction_34(HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CLabel(happy_var_1, happy_var_4, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_340 = |__0| {
+pub fn happyReduction_340(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn95(happy_var_1) => {
             HappyAbsSyn93((vec![happy_var_1]))
@@ -37445,11 +36902,9 @@ let happyReduction_340 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_341 = |__0| {
+pub fn happyReduction_341(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn95(happy_var_1) => {
             HappyAbsSyn94((singleton(happy_var_1)))
@@ -37458,11 +36913,9 @@ let happyReduction_341 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_342 = |__0, __1| {
+pub fn happyReduction_342(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn95(happy_var_2), HappyAbsSyn94(happy_var_1)) => {
             HappyAbsSyn94((snoc(happy_var_1, happy_var_2)))
@@ -37471,23 +36924,17 @@ let happyReduction_342 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_343 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_343(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CArrDesig(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn95(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_344 = |HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_344(HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CMemberDesig(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn95(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_345 = |__0| {
+pub fn happyReduction_345(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn95(happy_var_1) => {
             HappyAbsSyn95((happy_var_1))
@@ -37496,23 +36943,17 @@ let happyReduction_345 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_346 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_346(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CRangeDesig(happy_var_2, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn95(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_347 = |HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
+pub fn happyReduction_347(HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CVar(happy_var_1)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_348 = |__0| {
+pub fn happyReduction_348(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn122(happy_var_1) => {
             HappyAbsSyn97((CConst(happy_var_1)))
@@ -37521,11 +36962,9 @@ let happyReduction_348 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_349 = |__0| {
+pub fn happyReduction_349(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn123(happy_var_1) => {
             HappyAbsSyn97((CConst((liftStrLit(happy_var_1)))))
@@ -37534,17 +36973,13 @@ let happyReduction_349 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_35 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_35(HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCase(happy_var_2, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_350 = |__0, __1, __2| {
+pub fn happyReduction_350(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn97(happy_var_2), _) => {
             HappyAbsSyn97((happy_var_2))
@@ -37553,53 +36988,37 @@ let happyReduction_350 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_351 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_351(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CStatExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_352 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_352(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinVaArg(happy_var_3, happy_var_5))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_353 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_353(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinOffsetOf(happy_var_3, (reverse(happy_var_5))))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_354 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_354(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBuiltinExpr(CBuiltinTypesCompatible(happy_var_3, happy_var_5))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_355 = |HappyStk(HappyAbsSyn125(happy_var_1), happyRest), tk| {
+pub fn happyReduction_355(HappyStk(HappyAbsSyn125(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(singleton(CMemberDesig(happy_var_1))))), (|r| { happyReturn((HappyAbsSyn94(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_356 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest), tk| {
+pub fn happyReduction_356(HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CMemberDesig(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn94(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_357 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest), tk| {
+pub fn happyReduction_357(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn94(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_3)((snoc(happy_var_1, CArrDesig(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn94(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_358 = |__0| {
+pub fn happyReduction_358(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -37608,71 +37027,49 @@ let happyReduction_358 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_359 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_359(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CIndex(happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_36 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_36(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDefault(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_360 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_360(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCall(happy_var_1, vec![])))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_361 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_361(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCall(happy_var_1, (reverse(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_362 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_362(HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CMember(happy_var_1, happy_var_3, false)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_363 = |HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_363(HappyStk(HappyAbsSyn125(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CMember(happy_var_1, happy_var_3, true)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_364 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_364(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CUnary(CPostIncOp, happy_var_1)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_365 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_365(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CUnary(CPostDecOp, happy_var_1)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_366 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_366(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCompoundLit(happy_var_2, (reverse(happy_var_5)))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_367 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_367(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn92(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCompoundLit(happy_var_2, (reverse(happy_var_5)))))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_368 = |__0| {
+pub fn happyReduction_368(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn100((singleton(happy_var_1)))
@@ -37681,11 +37078,9 @@ let happyReduction_368 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_369 = |__0, __1, __2| {
+pub fn happyReduction_369(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn100(happy_var_1)) => {
             HappyAbsSyn100((snoc(happy_var_1, happy_var_3)))
@@ -37694,17 +37089,13 @@ let happyReduction_369 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_37 = |HappyStk(HappyAbsSyn12(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_37(HappyStk(HappyAbsSyn12(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCases(happy_var_2, happy_var_4, happy_var_6)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_370 = |__0| {
+pub fn happyReduction_370(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -37713,23 +37104,17 @@ let happyReduction_370 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_371 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_371(HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CUnary(CPreIncOp, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_372 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_372(HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CUnary(CPreDecOp, happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_373 = |__0, __1| {
+pub fn happyReduction_373(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn97(happy_var_2), _) => {
             HappyAbsSyn97((happy_var_2))
@@ -37738,65 +37123,45 @@ let happyReduction_373 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_374 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn102(happy_var_1), happyRest), tk| {
+pub fn happyReduction_374(HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn102(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CUnary((unL(happy_var_1)), happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_375 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_375(HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CSizeofExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_376 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_376(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CSizeofType(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_377 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_377(HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAlignofExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_378 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_378(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAlignofType(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_379 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_379(HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CComplexReal(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_38 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_38(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCompound(vec![], (reverse(happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_380 = |HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_380(HappyStk(HappyAbsSyn97(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CComplexImag(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_381 = |HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_381(HappyStk(HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CLabAddrExpr(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_382 = |__0| {
+pub fn happyReduction_382(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CAdrOp, (posOf(happy_var_1)))))
@@ -37805,11 +37170,9 @@ let happyReduction_382 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_383 = |__0| {
+pub fn happyReduction_383(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CIndOp, (posOf(happy_var_1)))))
@@ -37818,11 +37181,9 @@ let happyReduction_383 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_384 = |__0| {
+pub fn happyReduction_384(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CPlusOp, (posOf(happy_var_1)))))
@@ -37831,11 +37192,9 @@ let happyReduction_384 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_385 = |__0| {
+pub fn happyReduction_385(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CMinOp, (posOf(happy_var_1)))))
@@ -37844,11 +37203,9 @@ let happyReduction_385 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_386 = |__0| {
+pub fn happyReduction_386(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CCompOp, (posOf(happy_var_1)))))
@@ -37857,11 +37214,9 @@ let happyReduction_386 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_387 = |__0| {
+pub fn happyReduction_387(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn102((L(CNegOp, (posOf(happy_var_1)))))
@@ -37870,11 +37225,9 @@ let happyReduction_387 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_388 = |__0| {
+pub fn happyReduction_388(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -37883,23 +37236,17 @@ let happyReduction_388 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_389 = |HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_389(HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCast(happy_var_2, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_39 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_39(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn17(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCompound((reverse(happy_var_3)), (reverse(happy_var_4)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_390 = |__0| {
+pub fn happyReduction_390(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -37908,29 +37255,21 @@ let happyReduction_390 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_391 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_391(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CMulOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_392 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_392(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CDivOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_393 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_393(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CRmdOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_394 = |__0| {
+pub fn happyReduction_394(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -37939,23 +37278,17 @@ let happyReduction_394 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_395 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_395(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CAddOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_396 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_396(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CSubOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_397 = |__0| {
+pub fn happyReduction_397(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -37964,23 +37297,17 @@ let happyReduction_397 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_398 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_398(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CShlOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_399 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_399(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CShrOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_4 = |HappyStk(HappyAbsSyn8(happy_var_1), happyRest), tk| {
+pub fn happyReduction_4(HappyStk(HappyAbsSyn8(happy_var_1), happyRest): bool) -> bool {
     happyThen((({
             let decls = reverse(happy_var_1);
 
@@ -37998,17 +37325,13 @@ let happyReduction_4 = |HappyStk(HappyAbsSyn8(happy_var_1), happyRest), tk| {
                     withNodeInfo(d)(CTranslUnit(decls))
                 },
             }        })), (|r| { happyReturn((HappyAbsSyn7(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_40 = |happyRest, tk| {
+pub fn happyReduction_40(happyRest: bool) -> bool {
     happyThen(((enterScope)), (|r| { happyReturn((HappyAbsSyn15(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_400 = |__0| {
+pub fn happyReduction_400(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38017,35 +37340,25 @@ let happyReduction_400 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_401 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_401(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CLeOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_402 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_402(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CGrOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_403 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_403(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CLeqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_404 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_404(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CGeqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_405 = |__0| {
+pub fn happyReduction_405(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38054,23 +37367,17 @@ let happyReduction_405 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_406 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_406(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CEqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_407 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_407(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CNeqOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_408 = |__0| {
+pub fn happyReduction_408(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38079,23 +37386,17 @@ let happyReduction_408 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_409 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_409(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CAndOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_41 = |happyRest, tk| {
+pub fn happyReduction_41(happyRest: bool) -> bool {
     happyThen(((leaveScope)), (|r| { happyReturn((HappyAbsSyn15(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_410 = |__0| {
+pub fn happyReduction_410(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38104,17 +37405,13 @@ let happyReduction_410 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_411 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_411(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CXorOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_412 = |__0| {
+pub fn happyReduction_412(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38123,17 +37420,13 @@ let happyReduction_412 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_413 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_413(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(COrOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_414 = |__0| {
+pub fn happyReduction_414(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38142,17 +37435,13 @@ let happyReduction_414 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_415 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_415(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CLndOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_416 = |__0| {
+pub fn happyReduction_416(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38161,17 +37450,13 @@ let happyReduction_416 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_417 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_417(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBinary(CLorOp, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_418 = |__0| {
+pub fn happyReduction_418(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38180,27 +37465,21 @@ let happyReduction_418 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_419 = |HappyStk(HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_419(HappyStk(HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, (Some(happy_var_3)), happy_var_5)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_42 = HappyAbsSyn17((empty));
+pub fn happyReduction_42() -> bool {
+    HappyAbsSyn17((empty))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_420 = |HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_420(HappyStk(HappyAbsSyn97(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCond(happy_var_1, None, happy_var_4)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_421 = |__0| {
+pub fn happyReduction_421(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38209,17 +37488,13 @@ let happyReduction_421 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_422 = |HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn116(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_422(HappyStk(HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn116(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAssign((unL(happy_var_2)), happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_423 = |__0| {
+pub fn happyReduction_423(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CAssignOp, (posOf(happy_var_1)))))
@@ -38228,11 +37503,9 @@ let happyReduction_423 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_424 = |__0| {
+pub fn happyReduction_424(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CMulAssOp, (posOf(happy_var_1)))))
@@ -38241,11 +37514,9 @@ let happyReduction_424 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_425 = |__0| {
+pub fn happyReduction_425(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CDivAssOp, (posOf(happy_var_1)))))
@@ -38254,11 +37525,9 @@ let happyReduction_425 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_426 = |__0| {
+pub fn happyReduction_426(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CRmdAssOp, (posOf(happy_var_1)))))
@@ -38267,11 +37536,9 @@ let happyReduction_426 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_427 = |__0| {
+pub fn happyReduction_427(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CAddAssOp, (posOf(happy_var_1)))))
@@ -38280,11 +37547,9 @@ let happyReduction_427 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_428 = |__0| {
+pub fn happyReduction_428(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CSubAssOp, (posOf(happy_var_1)))))
@@ -38293,11 +37558,9 @@ let happyReduction_428 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_429 = |__0| {
+pub fn happyReduction_429(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CShlAssOp, (posOf(happy_var_1)))))
@@ -38306,11 +37569,9 @@ let happyReduction_429 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_43 = |__0, __1| {
+pub fn happyReduction_43(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn18(happy_var_2), HappyAbsSyn17(happy_var_1)) => {
             HappyAbsSyn17((snoc(happy_var_1, happy_var_2)))
@@ -38319,11 +37580,9 @@ let happyReduction_43 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_430 = |__0| {
+pub fn happyReduction_430(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CShrAssOp, (posOf(happy_var_1)))))
@@ -38332,11 +37591,9 @@ let happyReduction_430 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_431 = |__0| {
+pub fn happyReduction_431(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CAndAssOp, (posOf(happy_var_1)))))
@@ -38345,11 +37602,9 @@ let happyReduction_431 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_432 = |__0| {
+pub fn happyReduction_432(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(CXorAssOp, (posOf(happy_var_1)))))
@@ -38358,11 +37613,9 @@ let happyReduction_432 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_433 = |__0| {
+pub fn happyReduction_433(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn116((L(COrAssOp, (posOf(happy_var_1)))))
@@ -38371,11 +37624,9 @@ let happyReduction_433 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_434 = |__0| {
+pub fn happyReduction_434(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38384,20 +37635,16 @@ let happyReduction_434 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_435 = |HappyStk(HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_435(HappyStk(HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen((({
             let es = reverse(happy_var_3);
 
         withNodeInfo(es)(CComma((__op_concat(happy_var_1, es))))        })), (|r| { happyReturn((HappyAbsSyn97(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_436 = |__0| {
+pub fn happyReduction_436(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn100((singleton(happy_var_1)))
@@ -38406,11 +37653,9 @@ let happyReduction_436 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_437 = |__0, __1, __2| {
+pub fn happyReduction_437(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn100(happy_var_1)) => {
             HappyAbsSyn100((snoc(happy_var_1, happy_var_3)))
@@ -38419,15 +37664,13 @@ let happyReduction_437 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_438 = HappyAbsSyn119((None));
+pub fn happyReduction_438() -> bool {
+    HappyAbsSyn119((None))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_439 = |__0| {
+pub fn happyReduction_439(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn119((Some(happy_var_1)))
@@ -38436,11 +37679,9 @@ let happyReduction_439 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_44 = |__0| {
+pub fn happyReduction_44(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn12(happy_var_1) => {
             HappyAbsSyn18((CBlockStmt(happy_var_1)))
@@ -38449,15 +37690,13 @@ let happyReduction_44 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_440 = HappyAbsSyn119((None));
+pub fn happyReduction_440() -> bool {
+    HappyAbsSyn119((None))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_441 = |__0| {
+pub fn happyReduction_441(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn119((Some(happy_var_1)))
@@ -38466,11 +37705,9 @@ let happyReduction_441 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_442 = |__0| {
+pub fn happyReduction_442(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn97((happy_var_1))
@@ -38479,61 +37716,49 @@ let happyReduction_442 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_443 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_443(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokILit | _ | i => {
                 CIntConst(i)
             },
         }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_444 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_444(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokCLit | _ | c => {
                 CCharConst(c)
             },
         }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_445 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_445(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokFLit | _ | f => {
                 CFloatConst(f)
             },
         }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_446 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_446(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokSLit | _ | s => {
                 CStrLit(s)
             },
         }))), (|r| { happyReturn((HappyAbsSyn123(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_447 = |HappyStk(HappyAbsSyn124(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_447(HappyStk(HappyAbsSyn124(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
             CTokSLit | _ | s => {
                 CStrLit((concatCStrings((__op_concat(s, reverse(happy_var_2))))))
             },
         }))), (|r| { happyReturn((HappyAbsSyn123(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_448 = |__0| {
+pub fn happyReduction_448(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn124((match happy_var_1 {
@@ -38546,11 +37771,9 @@ let happyReduction_448 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_449 = |__0, __1| {
+pub fn happyReduction_449(__0: bool) -> bool {
     match (__0, __1) {
         (HappyTerminal(happy_var_2), HappyAbsSyn124(happy_var_1)) => {
             HappyAbsSyn124((match happy_var_2 {
@@ -38563,11 +37786,9 @@ let happyReduction_449 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_45 = |__0| {
+pub fn happyReduction_45(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn18(happy_var_1) => {
             HappyAbsSyn18((happy_var_1))
@@ -38576,11 +37797,9 @@ let happyReduction_45 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_450 = |__0| {
+pub fn happyReduction_450(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(CTokIdent(_, happy_var_1)) => {
             HappyAbsSyn125((happy_var_1))
@@ -38589,11 +37808,9 @@ let happyReduction_450 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_451 = |__0| {
+pub fn happyReduction_451(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(CTokTyIdent(_, happy_var_1)) => {
             HappyAbsSyn125((happy_var_1))
@@ -38602,15 +37819,13 @@ let happyReduction_451 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_452 = HappyAbsSyn126((vec![]));
+pub fn happyReduction_452() -> bool {
+    HappyAbsSyn126((vec![]))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_453 = |__0| {
+pub fn happyReduction_453(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn126(happy_var_1) => {
             HappyAbsSyn126((happy_var_1))
@@ -38619,11 +37834,9 @@ let happyReduction_453 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_454 = |__0| {
+pub fn happyReduction_454(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn126(happy_var_1) => {
             HappyAbsSyn126((happy_var_1))
@@ -38632,11 +37845,9 @@ let happyReduction_454 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_455 = |__0, __1| {
+pub fn happyReduction_455(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn126(happy_var_1)) => {
             HappyAbsSyn126((__op_addadd(happy_var_1, happy_var_2)))
@@ -38645,17 +37856,13 @@ let happyReduction_455 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_456 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn129(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, happyRest)| {
+pub fn happyReduction_456(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn129(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn126((reverse(happy_var_4))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_457 = |__0| {
+pub fn happyReduction_457(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn130(happy_var_1) => {
             HappyAbsSyn129((match happy_var_1 {
@@ -38671,11 +37878,9 @@ let happyReduction_457 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_458 = |__0, __1, __2| {
+pub fn happyReduction_458(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn130(happy_var_3), _, HappyAbsSyn129(happy_var_1)) => {
             HappyAbsSyn129(((maybe(id, (flip(snoc)), happy_var_3))(happy_var_1)))
@@ -38684,15 +37889,13 @@ let happyReduction_458 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_459 = HappyAbsSyn130((None));
+pub fn happyReduction_459() -> bool {
+    HappyAbsSyn130((None))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_46 = |__0| {
+pub fn happyReduction_46(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn32(happy_var_1) => {
             HappyAbsSyn18((CBlockDecl(happy_var_1)))
@@ -38701,35 +37904,25 @@ let happyReduction_46 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_460 = |HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
+pub fn happyReduction_460(HappyStk(HappyTerminal(CTokIdent(_, happy_var_1)), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_461 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_461(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(Some(CAttr((internalIdent("const".to_string())), vec![]))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_462 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
+pub fn happyReduction_462(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, (reverse(happy_var_3))))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_463 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest), tk| {
+pub fn happyReduction_463(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_1)), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(Some(CAttr(happy_var_1, vec![]))))), (|r| { happyReturn((HappyAbsSyn130(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_464 = |__0| {
+pub fn happyReduction_464(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn97(happy_var_1) => {
             HappyAbsSyn100((singleton(happy_var_1)))
@@ -38738,17 +37931,13 @@ let happyReduction_464 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_465 = |_, _, _| {
+pub fn happyReduction_465(_: bool) -> bool {
     HappyAbsSyn100((Reversed(vec![])))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_466 = |__0, __1, __2| {
+pub fn happyReduction_466(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn97(happy_var_3), _, HappyAbsSyn100(happy_var_1)) => {
             HappyAbsSyn100((snoc(happy_var_1, happy_var_3)))
@@ -38757,17 +37946,13 @@ let happyReduction_466 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_467 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_1), happyRest)| {
+pub fn happyReduction_467(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn100(happy_var_1), happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn100((happy_var_1)), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_47 = |__0| {
+pub fn happyReduction_47(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn10(happy_var_1) => {
             HappyAbsSyn18((CNestedFunDef(happy_var_1)))
@@ -38776,11 +37961,9 @@ let happyReduction_47 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_48 = |__0, __1| {
+pub fn happyReduction_48(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn18(happy_var_2), _) => {
             HappyAbsSyn18((happy_var_2))
@@ -38789,45 +37972,33 @@ let happyReduction_48 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_49 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_49(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_5 = HappyAbsSyn8((empty));
+pub fn happyReduction_5() -> bool {
+    HappyAbsSyn8((empty))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_50 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_50(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef(happy_var_1, happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_51 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_51(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((reverse(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_52 = |HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_52(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((liftTypeQuals(happy_var_1)), happy_var_2, vec![], happy_var_3)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_53 = |HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_53(HappyStk(HappyAbsSyn12(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn11(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen(((__op_rshift(leaveScope, (withNodeInfo(happy_var_1)(CFunDef((__op_addadd(liftTypeQuals(happy_var_1), liftCAttrs(happy_var_2))), happy_var_3, vec![], happy_var_4)))))), (|r| { happyReturn((HappyAbsSyn10(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_54 = |__0, __1, __2| {
+pub fn happyReduction_54(__0: bool) -> bool {
     match (__0, __1, __2) {
         (_, HappyAbsSyn21(happy_var_2), _) => {
             HappyAbsSyn21((happy_var_2))
@@ -38836,41 +38007,29 @@ let happyReduction_54 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_55 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_1), happyRest)| {
+pub fn happyReduction_55(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn21(happy_var_1), happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn21((rappendr(happy_var_1, happy_var_3))), happyRest)
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_56 = |HappyStk(HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_56(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CExpr(None)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_57 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest), tk| {
+pub fn happyReduction_57(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CExpr((Some(happy_var_1)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_58 = |HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_58(HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CIf(happy_var_3, happy_var_5, None)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_59 = |HappyStk(HappyAbsSyn12(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_59(HappyStk(HappyAbsSyn12(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CIf(happy_var_3, happy_var_5, (Some(happy_var_7)))))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_6 = |__0, __1| {
+pub fn happyReduction_6(__0: bool) -> bool {
     match (__0, __1) {
         (_, HappyAbsSyn8(happy_var_1)) => {
             HappyAbsSyn8((happy_var_1))
@@ -38879,71 +38038,49 @@ let happyReduction_6 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_60 = |HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_60(HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CSwitch(happy_var_3, happy_var_5)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_61 = |HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_61(HappyStk(HappyAbsSyn12(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CWhile(happy_var_3, happy_var_5, false)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_62 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_62(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CWhile(happy_var_5, happy_var_2, true)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_63 = |HappyStk(HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_63(HappyStk(HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CFor((Left(happy_var_3)), happy_var_5, happy_var_7, happy_var_9)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_64 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_64(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn12(happy_var_9), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_7), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn32(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CFor((Right(happy_var_4)), happy_var_5, happy_var_7, happy_var_9)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_65 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_65(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn125(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CGoto(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_66 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_66(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CGotoPtr(happy_var_3)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_67 = |HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_67(HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CCont))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_68 = |HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_68(HappyStk(_, /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CBreak))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_69 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_69(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn119(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CReturn(happy_var_2)))), (|r| { happyReturn((HappyAbsSyn12(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_7 = |__0, __1| {
+pub fn happyReduction_7(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn9(happy_var_2), HappyAbsSyn8(happy_var_1)) => {
             HappyAbsSyn8((snoc(happy_var_1, happy_var_2)))
@@ -38952,39 +38089,29 @@ let happyReduction_7 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_70 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_70(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, vec![], vec![], vec![])))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_71 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_71(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, vec![], vec![])))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_72 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_72(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, happy_var_8, vec![])))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_73 = |HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn31(happy_var_10), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_73(HappyStk(_, /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn31(happy_var_10), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_8), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn28(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn27(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAsmStmt(happy_var_2, happy_var_4, happy_var_6, happy_var_8, (reverse(happy_var_10)))))), (|r| { happyReturn((HappyAbsSyn26(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_74 = HappyAbsSyn27((None));
+pub fn happyReduction_74() -> bool {
+    HappyAbsSyn27((None))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_75 = |__0| {
+pub fn happyReduction_75(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn61(happy_var_1) => {
             HappyAbsSyn27((Some(happy_var_1)))
@@ -38993,15 +38120,13 @@ let happyReduction_75 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_76 = HappyAbsSyn28((vec![]));
+pub fn happyReduction_76() -> bool {
+    HappyAbsSyn28((vec![]))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_77 = |__0| {
+pub fn happyReduction_77(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn29(happy_var_1) => {
             HappyAbsSyn28((reverse(happy_var_1)))
@@ -39010,11 +38135,9 @@ let happyReduction_77 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_78 = |__0| {
+pub fn happyReduction_78(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn30(happy_var_1) => {
             HappyAbsSyn29((singleton(happy_var_1)))
@@ -39023,11 +38146,9 @@ let happyReduction_78 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_79 = |__0, __1, __2| {
+pub fn happyReduction_79(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn30(happy_var_3), _, HappyAbsSyn29(happy_var_1)) => {
             HappyAbsSyn29((snoc(happy_var_1, happy_var_3)))
@@ -39036,11 +38157,9 @@ let happyReduction_79 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_8 = |__0| {
+pub fn happyReduction_8(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn10(happy_var_1) => {
             HappyAbsSyn9((CFDefExt(happy_var_1)))
@@ -39049,29 +38168,21 @@ let happyReduction_8 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_80 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_1), happyRest), tk| {
+pub fn happyReduction_80(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAsmOperand(None, happy_var_1, happy_var_3)))), (|r| { happyReturn((HappyAbsSyn30(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_81 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_81(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAsmOperand((Some(happy_var_2)), happy_var_4, happy_var_6)))), (|r| { happyReturn((HappyAbsSyn30(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_82 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest), tk| {
+pub fn happyReduction_82(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn97(happy_var_6), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn123(happy_var_4), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyTerminal(CTokTyIdent(_, happy_var_2)), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CAsmOperand((Some(happy_var_2)), happy_var_4, happy_var_6)))), (|r| { happyReturn((HappyAbsSyn30(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_83 = |__0| {
+pub fn happyReduction_83(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn123(happy_var_1) => {
             HappyAbsSyn31((singleton(happy_var_1)))
@@ -39080,11 +38191,9 @@ let happyReduction_83 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_84 = |__0, __1, __2| {
+pub fn happyReduction_84(__0: bool) -> bool {
     match (__0, __1, __2) {
         (HappyAbsSyn123(happy_var_3), _, HappyAbsSyn31(happy_var_1)) => {
             HappyAbsSyn31((snoc(happy_var_1, happy_var_3)))
@@ -39093,47 +38202,37 @@ let happyReduction_84 = |__0, __1, __2| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_85 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_85(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_86 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_86(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(CDecl((reverse(happy_var_1)), vec![])))), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_87 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest), tk| {
+pub fn happyReduction_87(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     happyThen(((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 withLength(at, (CDecl(declspecs, (List::reverse(dies)))))
             },
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_88 = |HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest), tk| {
+pub fn happyReduction_88(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     happyThen(((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 withLength(at, (CDecl(declspecs, (List::reverse(dies)))))
             },
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_89 = HappyAbsSyn33((empty));
+pub fn happyReduction_89() -> bool {
+    HappyAbsSyn33((empty))
+}
 
-*/
-/* TODO infer type:
-let happyReduction_9 = |__0| {
+pub fn happyReduction_9(__0: bool) -> bool {
     match (__0) {
         HappyAbsSyn32(happy_var_1) => {
             HappyAbsSyn9((CDeclExt(happy_var_1)))
@@ -39142,11 +38241,9 @@ let happyReduction_9 = |__0| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_90 = |__0, __1| {
+pub fn happyReduction_90(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn32(happy_var_2), HappyAbsSyn33(happy_var_1)) => {
             HappyAbsSyn33((snoc(happy_var_1, happy_var_2)))
@@ -39155,11 +38252,9 @@ let happyReduction_90 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_91 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest), tk| {
+pub fn happyReduction_91(HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn38(happy_var_1), happyRest): bool) -> bool {
     happyThen((({
             let declspecs = reverse(happy_var_1);
 
@@ -39169,11 +38264,9 @@ let happyReduction_91 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */,
                 doDeclIdent(declspecs, declr);
                 withNodeInfo(happy_var_1)(CDecl(declspecs, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
             }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_92 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_92(HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen((({
             let declspecs = liftTypeQuals(happy_var_1);
 
@@ -39183,11 +38276,9 @@ let happyReduction_92 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */,
                 doDeclIdent(declspecs, declr);
                 withNodeInfo(happy_var_1)(CDecl(declspecs, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
             }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_93 = |HappyStk(HappyAbsSyn91(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest), tk| {
+pub fn happyReduction_93(HappyStk(HappyAbsSyn91(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn62(happy_var_1), happyRest): bool) -> bool {
     happyThen((({
             let declspecs = liftTypeQuals(happy_var_1);
 
@@ -39197,11 +38288,9 @@ let happyReduction_93 = |HappyStk(HappyAbsSyn91(happy_var_5), /* TODO(INFIX) */,
                 doDeclIdent(declspecs, declr);
                 withNodeInfo(happy_var_1)(CDecl((__op_addadd(declspecs, liftCAttrs(happy_var_2))), vec![(Some((reverseDeclr(declr))), happy_var_5, None)]))
             }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_94 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest), tk| {
+pub fn happyReduction_94(HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_1), happyRest): bool) -> bool {
     happyThen((({
             let declspecs = liftCAttrs(happy_var_1);
 
@@ -39211,11 +38300,9 @@ let happyReduction_94 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */,
                 doDeclIdent(declspecs, declr);
                 withNodeInfo(happy_var_1)(CDecl(declspecs, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
             }        })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_95 = |HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest), tk| {
+pub fn happyReduction_95(HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     happyThen(((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 /* do */ {
@@ -39226,11 +38313,9 @@ let happyReduction_95 = |HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */,
                 }
             },
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_96 = |__0, __1| {
+pub fn happyReduction_96(__0: bool) -> bool {
     match (__0, __1) {
         (HappyAbsSyn126(happy_var_2), HappyAbsSyn64(happy_var_1)) => {
             HappyAbsSyn35(((happy_var_1, happy_var_2)))
@@ -39239,33 +38324,27 @@ let happyReduction_96 = |__0, __1| {
             notHappyAtAll
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_97 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_97(HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((/* do */ {
             let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
 
             doDeclIdent(happy_var_1, declr);
             withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_98 = |HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest), tk| {
+pub fn happyReduction_98(HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_3), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_2), /* TODO(INFIX) */, HappyAbsSyn37(happy_var_1), happyRest): bool) -> bool {
     happyThen(((/* do */ {
             let declr = withAsmNameAttrs(happy_var_3, happy_var_2);
 
             doDeclIdent(happy_var_1, declr);
             withNodeInfo(happy_var_1)(CDecl(happy_var_1, vec![(Some((reverseDeclr(declr))), happy_var_4, None)]))
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
-/* TODO infer type:
-let happyReduction_99 = |HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest), tk| {
+pub fn happyReduction_99(HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     happyThen(((match happy_var_1 {
             CDecl | declspecs | dies | at => {
                 /* do */ {
@@ -39276,9 +38355,8 @@ let happyReduction_99 = |HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */,
                 }
             },
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
-};
+}
 
-*/
 pub fn happyReturn() -> P<a> {
     (return)
 }
@@ -39287,12 +38365,11 @@ pub fn happyReturn1() -> P<a> {
     happyReturn
 }
 
-/* TODO infer type:
-let happySeq = happyDontSeq;
+pub fn happySeq() -> bool {
+    happyDontSeq
+}
 
-*/
-/* TODO infer type:
-let happyShift = |__0, __1, __2, __3, __4, __5, __6, __7| {
+pub fn happyShift(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
         (new_state, 1, tk, st, sts, stk, __OP__, HappyStk(x, _)) => {
             {
@@ -39308,11 +38385,9 @@ let happyShift = |__0, __1, __2, __3, __4, __5, __6, __7| {
             happyNewToken(new_state, (__op_concat((st), (sts))), (HappyStk((HappyTerminal((tk))), stk)))
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happySpecReduce_0 = |__0, __1, __2, __3, __4, __5, __6| {
+pub fn happySpecReduce_0(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -39321,11 +38396,9 @@ let happySpecReduce_0 = |__0, __1, __2, __3, __4, __5, __6| {
             action(nt, j, tk, st, (__op_concat((st), (sts))), (HappyStk(fn, stk)))
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happySpecReduce_1 = |__0, __1, __2, __3, __4, __5, __6| {
+pub fn happySpecReduce_1(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -39337,11 +38410,9 @@ let happySpecReduce_1 = |__0, __1, __2, __3, __4, __5, __6| {
             happySeq(r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))            }
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happySpecReduce_2 = |__0, __1, __2, __3, __4, __5, __6| {
+pub fn happySpecReduce_2(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -39353,11 +38424,9 @@ let happySpecReduce_2 = |__0, __1, __2, __3, __4, __5, __6| {
             happySeq(r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))            }
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let happySpecReduce_3 = |__0, __1, __2, __3, __4, __5, __6| {
+pub fn happySpecReduce_3(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6) {
         (i, fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -39369,17 +38438,16 @@ let happySpecReduce_3 = |__0, __1, __2, __3, __4, __5, __6| {
             happySeq(r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))            }
         },
     }
-};
+}
 
-*/
 pub fn happyThen() -> P<b> {
     (__op_bind)
 }
 
-/* TODO infer type:
-let happyThen1 = happyThen;
+pub fn happyThen1() -> bool {
+    happyThen
+}
 
-*/
 pub fn liftCAttrs() -> Vec<CDeclSpec> {
     map((CTypeQual(CAttrQual)))
 }
@@ -39423,10 +38491,10 @@ pub fn setAsmName(mAsmName: Option<CStrLit>, CDeclrR(ident, indirections, oldNam
     }
 }
 
-/* TODO infer type:
-let statement = happySomeParser;
+pub fn statement() -> bool {
+    happySomeParser
+}
 
-*/
 pub fn statementP() -> P<CStat> {
     statement
 }
@@ -39435,10 +38503,10 @@ pub fn translUnitP() -> P<CTranslUnit> {
     translation_unit
 }
 
-/* TODO infer type:
-let translation_unit = happySomeParser;
+pub fn translation_unit() -> bool {
+    happySomeParser
+}
 
-*/
 pub fn unL(L(a, pos): Located<a>) -> a {
     a
 }

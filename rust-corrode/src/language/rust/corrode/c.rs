@@ -254,7 +254,7 @@ pub fn binop(expr: CExpr, op: CBinaryOp, lhs: Result, rhs: Result) -> EnvMonad<s
                         return Result {
                         resultType: ty,
                         resultMutable: Rust::Immutable,
-                        result: /((Rust::MethodCall((castTo(ty, lhs_q)), (Rust::VarName("wrapping_sub".to_string())), vec![castTo(ty, rhs_q)])), castTo(ty, size))
+                        result: __op_div((Rust::MethodCall((castTo(ty, lhs_q)), (Rust::VarName("wrapping_sub".to_string())), vec![castTo(ty, rhs_q)])), castTo(ty, size))
                         }
                     }
                 },
@@ -551,7 +551,7 @@ pub fn derivedDeferredTypeOf(deferred: EnvMonad<s, IntermediateType>, declr: CDe
         return(/* do */ {
             let basetype = deferred;
 
-            foldrM(($), basetype, derived_q)
+            foldrM((__op_dollar), basetype, derived_q)
         })
     }
 }
@@ -1201,19 +1201,19 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
             /* do */ {
                 let __mut(ty) = typeName(decl);
 
-                let final = interpretInitializer(ty, (CInitList(initials, info)));
+                let __final = interpretInitializer(ty, (CInitList(initials, info)));
 
                 return Result {
                 resultType: ty,
                 resultMutable: __mut,
-                result: final
+                result: __final
                 }
             }
         },
         (demand, stat, __OP__, CStatExpr(CCompound([], stmts, _), _)) => {
             scope(/* do */ {
-                let (effects, final) = match last(stmts) {
-                        CBlockStmt | CExpr(expr, _) if demand => { (init(stmts), expr) }
+                let (effects, __final) = match last(stmts) {
+                        CBlockStmt(CExpr(expr, _)) if demand => { (init(stmts), expr) }
                         _ => {
                             (stmts, None)
                         },
@@ -1221,7 +1221,7 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
 
                 let effects_q = cfgToRust(stat, (foldr(interpretBlockItem, ((vec![], Unreachable)), effects)));
 
-                let final_q = mapM((interpretExpr(true)), final);
+                let final_q = mapM((interpretExpr(true)), __final);
 
                 return Result {
                 resultType: maybe(IsVoid, resultType, final_q),
@@ -1505,7 +1505,7 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
 
                 addBlock(bodyLabel, bodyEntry, bodyTerm);
                 addBlock(headerLabel, vec![])(match toBool(c_q) {
-                    Rust::Lit | Rust::LitBool(cont) if __op_assign_div(cont, doWhile) => { Branch((__TODO_if(cont, then, bodyLabel, __TODO_else, after))) }
+                    Rust::Lit(Rust::LitBool(cont)) if __op_assign_div(cont, doWhile) => { Branch((__TODO_if(cont, then, bodyLabel, __TODO_else, after))) }
                     _ => {
                         CondBranch(c_q, bodyLabel, after)
                     },

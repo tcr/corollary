@@ -300,8 +300,8 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
                     let numType = tNumType(tsnum);
 
                     baseType(match numType {
-                        Left | (floatType, iscomplex) if iscomplex => { TyComplex(floatType) }
-                        Left | (floatType, iscomplex) => { TyFloating(floatType) }
+                        Left((floatType, iscomplex)) if iscomplex => { TyComplex(floatType) }
+                        Left((floatType, iscomplex)) => { TyFloating(floatType) }
                         Right | intType => {
                             TyIntegral(intType)
                         },

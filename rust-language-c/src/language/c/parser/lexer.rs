@@ -28,12 +28,10 @@ pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Po
     seq(offs_q, seq(fname_q, seq(row_q, (position(offs_q, fname_q, row_q, 1)))))
 }
 
-/* TODO infer type:
-let alexAndPred = |p1, p2, user, in1, len, in2| {
+pub fn alexAndPred(p1: bool) -> bool {
     (p1(user, in1, len, in2) && p2(user, in1, len, in2))
-};
+}
 
-*/
 pub fn alexGetByte((p, is): AlexInput) -> Option<(Word8, AlexInput)> {
     /* Expr::Dummy */ Dummy
 }
@@ -42,18 +40,14 @@ pub fn alexGetChar((p, is): AlexInput) -> Option<(Char, AlexInput)> {
     /* Expr::Dummy */ Dummy
 }
 
-/* TODO infer type:
-let alexIndexInt16OffAddr = |arr, off| {
+pub fn alexIndexInt16OffAddr(arr: bool) -> bool {
     !(arr, off)
-};
+}
 
-*/
-/* TODO infer type:
-let alexIndexInt32OffAddr = |arr, off| {
+pub fn alexIndexInt32OffAddr(arr: bool) -> bool {
     !(arr, off)
-};
+}
 
-*/
 pub fn alexInputPrevChar(_: AlexInput) -> Char {
     __error!("alexInputPrevChar not used".to_string())
 }
@@ -75,26 +69,19 @@ pub fn alexMove(__0: Position, __1: Char) -> Position {
     }
 }
 
-/* TODO infer type:
-let alexPrevCharIs = |c, _, input, _, _| {
+pub fn alexPrevCharIs(c: bool) -> bool {
     (c == alexInputPrevChar(input))
-};
+}
 
-*/
-/* TODO infer type:
-let alexPrevCharIsOneOf = |arr, _, input, _, _| {
+pub fn alexPrevCharIsOneOf(arr: bool) -> bool {
     !(arr, alexInputPrevChar(input))
-};
+}
 
-*/
-/* TODO infer type:
-let alexPrevCharMatches = |f, _, input, _, _| {
+pub fn alexPrevCharMatches(f: bool) -> bool {
     f((alexInputPrevChar(input)))
-};
+}
 
-*/
-/* TODO infer type:
-let alexRightContext = |sc, user, _, _, input| {
+pub fn alexRightContext(sc: bool) -> bool {
     match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
         (AlexNone, _) => {
             false
@@ -103,17 +90,13 @@ let alexRightContext = |sc, user, _, _, input| {
             true
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let alexScan = |input, sc| {
+pub fn alexScan(input: bool) -> bool {
     alexScanUser(undefined, input, (sc))
-};
+}
 
-*/
-/* TODO infer type:
-let alexScanUser = |user, input, sc| {
+pub fn alexScanUser(user: bool) -> bool {
     match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
         (AlexNone, input_q) => {
             match alexGetByte(input) {
@@ -132,11 +115,10 @@ let alexScanUser = |user, input, sc| {
             AlexToken(input_q_q_q, len, (!(alex_actions, k)))
         },
     }
-};
+}
 
-*/
-/* TODO infer type:
-let alex_accept = listArray((0, 241), vec![
+pub fn alex_accept() -> bool {
+    listArray((0, 241), vec![
             AlexAccNone,
             AlexAccNone,
             AlexAccNone,
@@ -379,267 +361,267 @@ let alex_accept = listArray((0, 241), vec![
             AlexAcc(2),
             AlexAcc(1),
             AlexAcc(0),
-        ]);
-
-*/
-/* TODO infer type:
-let alex_action_1 = |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) };
-
-*/
-/* TODO infer type:
-let alex_action_10 = token(CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))));
-
-*/
-/* TODO infer type:
-let alex_action_11 = token(CTokCLit, (flip(cChars, false, unescapeMultiChars(tail))));
-
-*/
-/* TODO infer type:
-let alex_action_12 = token(CTokCLit, (flip(cChars, true, unescapeMultiChars(tail(tail)))));
-
-*/
-/* TODO infer type:
-let alex_action_13 = token(CTokFLit, readCFloat);
-
-*/
-/* TODO infer type:
-let alex_action_14 = token(CTokFLit, readCFloat);
-
-*/
-/* TODO infer type:
-let alex_action_15 = token_fail("Hexadecimal floating constant requires an exponent".to_string());
-
-*/
-/* TODO infer type:
-let alex_action_16 = token(CTokSLit, (cString(unescapeString(init(tail)))));
-
-*/
-/* TODO infer type:
-let alex_action_17 = token(CTokSLit, (cString_w(unescapeString(init(tail(tail))))));
-
-*/
-/* TODO infer type:
-let alex_action_18 = token_fail("Universal character names are unsupported".to_string());
-
-*/
-/* TODO infer type:
-let alex_action_19 = token_fail("Invalid escape sequence".to_string());
-
-*/
-/* TODO infer type:
-let alex_action_20 = token_fail("Universal character names in string literals are unsupported".to_string());
-
-*/
-/* TODO infer type:
-let alex_action_21 = token_(1, CTokLParen);
-
-*/
-/* TODO infer type:
-let alex_action_22 = token_(1, CTokRParen);
-
-*/
-/* TODO infer type:
-let alex_action_23 = token_(1, CTokLBracket);
-
-*/
-/* TODO infer type:
-let alex_action_24 = token_(1, CTokRBracket);
-
-*/
-/* TODO infer type:
-let alex_action_25 = token_(2, CTokArrow);
-
-*/
-/* TODO infer type:
-let alex_action_26 = token_(1, CTokDot);
-
-*/
-/* TODO infer type:
-let alex_action_27 = token_(1, CTokExclam);
-
-*/
-/* TODO infer type:
-let alex_action_28 = token_(1, CTokTilde);
-
-*/
-/* TODO infer type:
-let alex_action_29 = token_(2, CTokInc);
-
-*/
-/* TODO infer type:
-let alex_action_30 = token_(2, CTokDec);
-
-*/
-/* TODO infer type:
-let alex_action_31 = token_(1, CTokPlus);
-
-*/
-/* TODO infer type:
-let alex_action_32 = token_(1, CTokMinus);
-
-*/
-/* TODO infer type:
-let alex_action_33 = token_(1, CTokStar);
-
-*/
-/* TODO infer type:
-let alex_action_34 = token_(1, CTokSlash);
-
-*/
-/* TODO infer type:
-let alex_action_35 = token_(1, CTokPercent);
-
-*/
-/* TODO infer type:
-let alex_action_36 = token_(1, CTokAmper);
-
-*/
-/* TODO infer type:
-let alex_action_37 = token_(2, CTokShiftL);
-
-*/
-/* TODO infer type:
-let alex_action_38 = token_(2, CTokShiftR);
-
-*/
-/* TODO infer type:
-let alex_action_39 = token_(1, CTokLess);
-
-*/
-/* TODO infer type:
-let alex_action_4 = |pos, len, __str| { idkwtok((takeChars(len, __str)), pos) };
-
-*/
-/* TODO infer type:
-let alex_action_40 = token_(2, CTokLessEq);
-
-*/
-/* TODO infer type:
-let alex_action_41 = token_(1, CTokHigh);
-
-*/
-/* TODO infer type:
-let alex_action_42 = token_(2, CTokHighEq);
-
-*/
-/* TODO infer type:
-let alex_action_43 = token_(2, CTokEqual);
-
-*/
-/* TODO infer type:
-let alex_action_44 = token_(2, CTokUnequal);
-
-*/
-/* TODO infer type:
-let alex_action_45 = token_(1, CTokHat);
-
-*/
-/* TODO infer type:
-let alex_action_46 = token_(1, CTokBar);
-
-*/
-/* TODO infer type:
-let alex_action_47 = token_(2, CTokAnd);
-
-*/
-/* TODO infer type:
-let alex_action_48 = token_(2, CTokOr);
-
-*/
-/* TODO infer type:
-let alex_action_49 = token_(1, CTokQuest);
-
-*/
-/* TODO infer type:
-let alex_action_5 = token_plus(CTokILit, readCOctal);
-
-*/
-/* TODO infer type:
-let alex_action_50 = token_(1, CTokColon);
-
-*/
-/* TODO infer type:
-let alex_action_51 = token_(1, CTokAssign);
-
-*/
-/* TODO infer type:
-let alex_action_52 = token_(2, CTokPlusAss);
-
-*/
-/* TODO infer type:
-let alex_action_53 = token_(2, CTokMinusAss);
-
-*/
-/* TODO infer type:
-let alex_action_54 = token_(2, CTokStarAss);
-
-*/
-/* TODO infer type:
-let alex_action_55 = token_(2, CTokSlashAss);
-
-*/
-/* TODO infer type:
-let alex_action_56 = token_(2, CTokPercAss);
-
-*/
-/* TODO infer type:
-let alex_action_57 = token_(2, CTokAmpAss);
-
-*/
-/* TODO infer type:
-let alex_action_58 = token_(2, CTokHatAss);
-
-*/
-/* TODO infer type:
-let alex_action_59 = token_(2, CTokBarAss);
-
-*/
-/* TODO infer type:
-let alex_action_6 = token_plus(CTokILit, (readCInteger(DecRepr)));
-
-*/
-/* TODO infer type:
-let alex_action_60 = token_(3, CTokSLAss);
-
-*/
-/* TODO infer type:
-let alex_action_61 = token_(3, CTokSRAss);
-
-*/
-/* TODO infer type:
-let alex_action_62 = token_(1, CTokComma);
-
-*/
-/* TODO infer type:
-let alex_action_63 = token_(1, CTokSemic);
-
-*/
-/* TODO infer type:
-let alex_action_64 = token_(1, CTokLBrace);
-
-*/
-/* TODO infer type:
-let alex_action_65 = token_(1, CTokRBrace);
-
-*/
-/* TODO infer type:
-let alex_action_66 = token_(3, CTokEllipsis);
-
-*/
-/* TODO infer type:
-let alex_action_7 = token_plus(CTokILit, (readCInteger(HexRepr, drop(2))));
-
-*/
-/* TODO infer type:
-let alex_action_8 = token_fail("Invalid integer constant suffix".to_string());
-
-*/
-/* TODO infer type:
-let alex_action_9 = token(CTokCLit, (cChar(fst(unescapeChar(tail)))));
-
-*/
-/* TODO infer type:
-let alex_actions = array((0, 121), vec![
+        ])
+}
+
+pub fn alex_action_1() -> isize {
+    |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) }
+}
+
+pub fn alex_action_10() -> isize {
+    token(CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))))
+}
+
+pub fn alex_action_11() -> isize {
+    token(CTokCLit, (flip(cChars, false, unescapeMultiChars(tail))))
+}
+
+pub fn alex_action_12() -> isize {
+    token(CTokCLit, (flip(cChars, true, unescapeMultiChars(tail(tail)))))
+}
+
+pub fn alex_action_13() -> isize {
+    token(CTokFLit, readCFloat)
+}
+
+pub fn alex_action_14() -> isize {
+    token(CTokFLit, readCFloat)
+}
+
+pub fn alex_action_15() -> isize {
+    token_fail("Hexadecimal floating constant requires an exponent".to_string())
+}
+
+pub fn alex_action_16() -> isize {
+    token(CTokSLit, (cString(unescapeString(init(tail)))))
+}
+
+pub fn alex_action_17() -> isize {
+    token(CTokSLit, (cString_w(unescapeString(init(tail(tail))))))
+}
+
+pub fn alex_action_18() -> isize {
+    token_fail("Universal character names are unsupported".to_string())
+}
+
+pub fn alex_action_19() -> isize {
+    token_fail("Invalid escape sequence".to_string())
+}
+
+pub fn alex_action_20() -> isize {
+    token_fail("Universal character names in string literals are unsupported".to_string())
+}
+
+pub fn alex_action_21() -> isize {
+    token_(1, CTokLParen)
+}
+
+pub fn alex_action_22() -> isize {
+    token_(1, CTokRParen)
+}
+
+pub fn alex_action_23() -> isize {
+    token_(1, CTokLBracket)
+}
+
+pub fn alex_action_24() -> isize {
+    token_(1, CTokRBracket)
+}
+
+pub fn alex_action_25() -> isize {
+    token_(2, CTokArrow)
+}
+
+pub fn alex_action_26() -> isize {
+    token_(1, CTokDot)
+}
+
+pub fn alex_action_27() -> isize {
+    token_(1, CTokExclam)
+}
+
+pub fn alex_action_28() -> isize {
+    token_(1, CTokTilde)
+}
+
+pub fn alex_action_29() -> isize {
+    token_(2, CTokInc)
+}
+
+pub fn alex_action_30() -> isize {
+    token_(2, CTokDec)
+}
+
+pub fn alex_action_31() -> isize {
+    token_(1, CTokPlus)
+}
+
+pub fn alex_action_32() -> isize {
+    token_(1, CTokMinus)
+}
+
+pub fn alex_action_33() -> isize {
+    token_(1, CTokStar)
+}
+
+pub fn alex_action_34() -> isize {
+    token_(1, CTokSlash)
+}
+
+pub fn alex_action_35() -> isize {
+    token_(1, CTokPercent)
+}
+
+pub fn alex_action_36() -> isize {
+    token_(1, CTokAmper)
+}
+
+pub fn alex_action_37() -> isize {
+    token_(2, CTokShiftL)
+}
+
+pub fn alex_action_38() -> isize {
+    token_(2, CTokShiftR)
+}
+
+pub fn alex_action_39() -> isize {
+    token_(1, CTokLess)
+}
+
+pub fn alex_action_4() -> isize {
+    |pos, len, __str| { idkwtok((takeChars(len, __str)), pos) }
+}
+
+pub fn alex_action_40() -> isize {
+    token_(2, CTokLessEq)
+}
+
+pub fn alex_action_41() -> isize {
+    token_(1, CTokHigh)
+}
+
+pub fn alex_action_42() -> isize {
+    token_(2, CTokHighEq)
+}
+
+pub fn alex_action_43() -> isize {
+    token_(2, CTokEqual)
+}
+
+pub fn alex_action_44() -> isize {
+    token_(2, CTokUnequal)
+}
+
+pub fn alex_action_45() -> isize {
+    token_(1, CTokHat)
+}
+
+pub fn alex_action_46() -> isize {
+    token_(1, CTokBar)
+}
+
+pub fn alex_action_47() -> isize {
+    token_(2, CTokAnd)
+}
+
+pub fn alex_action_48() -> isize {
+    token_(2, CTokOr)
+}
+
+pub fn alex_action_49() -> isize {
+    token_(1, CTokQuest)
+}
+
+pub fn alex_action_5() -> isize {
+    token_plus(CTokILit, readCOctal)
+}
+
+pub fn alex_action_50() -> isize {
+    token_(1, CTokColon)
+}
+
+pub fn alex_action_51() -> isize {
+    token_(1, CTokAssign)
+}
+
+pub fn alex_action_52() -> isize {
+    token_(2, CTokPlusAss)
+}
+
+pub fn alex_action_53() -> isize {
+    token_(2, CTokMinusAss)
+}
+
+pub fn alex_action_54() -> isize {
+    token_(2, CTokStarAss)
+}
+
+pub fn alex_action_55() -> isize {
+    token_(2, CTokSlashAss)
+}
+
+pub fn alex_action_56() -> isize {
+    token_(2, CTokPercAss)
+}
+
+pub fn alex_action_57() -> isize {
+    token_(2, CTokAmpAss)
+}
+
+pub fn alex_action_58() -> isize {
+    token_(2, CTokHatAss)
+}
+
+pub fn alex_action_59() -> isize {
+    token_(2, CTokBarAss)
+}
+
+pub fn alex_action_6() -> isize {
+    token_plus(CTokILit, (readCInteger(DecRepr)))
+}
+
+pub fn alex_action_60() -> isize {
+    token_(3, CTokSLAss)
+}
+
+pub fn alex_action_61() -> isize {
+    token_(3, CTokSRAss)
+}
+
+pub fn alex_action_62() -> isize {
+    token_(1, CTokComma)
+}
+
+pub fn alex_action_63() -> isize {
+    token_(1, CTokSemic)
+}
+
+pub fn alex_action_64() -> isize {
+    token_(1, CTokLBrace)
+}
+
+pub fn alex_action_65() -> isize {
+    token_(1, CTokRBrace)
+}
+
+pub fn alex_action_66() -> isize {
+    token_(3, CTokEllipsis)
+}
+
+pub fn alex_action_7() -> isize {
+    token_plus(CTokILit, (readCInteger(HexRepr, drop(2))))
+}
+
+pub fn alex_action_8() -> isize {
+    token_fail("Invalid integer constant suffix".to_string())
+}
+
+pub fn alex_action_9() -> isize {
+    token(CTokCLit, (cChar(fst(unescapeChar(tail)))))
+}
+
+pub fn alex_actions() -> bool {
+    array((0, 121), vec![
             (120, alex_action_1),
             (119, alex_action_4),
             (118, alex_action_4),
@@ -761,9 +743,9 @@ let alex_actions = array((0, 121), vec![
             (2, alex_action_64),
             (1, alex_action_65),
             (0, alex_action_66),
-        ]);
+        ])
+}
 
-*/
 pub fn alex_base() -> Array<isize, isize> {
     listArray((0, 241), vec![
             -(8),
@@ -10783,8 +10765,7 @@ pub fn alex_deflt() -> Array<isize, isize> {
         ])
 }
 
-/* TODO infer type:
-let alex_scan_tkn = |user, orig_input, len, input, s, last_acc| {
+pub fn alex_scan_tkn(user: bool) -> bool {
     seq(input, {
         let new_acc = (check_accs((quickIndex(alex_accept, (s)))));
 
@@ -10816,9 +10797,8 @@ let alex_scan_tkn = |user, orig_input, len, input, s, last_acc| {
                 }
             },
         })    })
-};
+}
 
-*/
 pub fn alex_tab_size() -> isize {
     8
 }
@@ -20348,8 +20328,7 @@ pub fn alex_table() -> Array<isize, isize> {
         ])
 }
 
-/* TODO infer type:
-let idkwtok = |__0| {
+pub fn idkwtok(__0: bool) -> bool {
     match (__0) {
         ['_', ['B', ['o', ['o', ['l', []]]]]] => {
             tok(5, CTokBool)
@@ -20573,9 +20552,8 @@ let idkwtok = |__0| {
                 } }
         },
     }
-};
+}
 
-*/
 pub fn ignoreAttribute() -> P<()> {
     skipTokens((0))
 }
@@ -20653,12 +20631,10 @@ pub fn parseError() -> P<a> {
     }
 }
 
-/* TODO infer type:
-let quickIndex = |arr, i| {
+pub fn quickIndex(arr: bool) -> bool {
     !(arr, i)
-};
+}
 
-*/
 pub fn readCOctal(s: String, __OP__: Either<String, CInteger>) -> Either<String, CInteger> {
     match r {
         [c, _] if isDigit(c) => { readCInteger(OctalRepr, r) }

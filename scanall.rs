@@ -11,6 +11,9 @@ fn walk(input: &str) {
         if !entry.file_type().is_file() {
             continue;
         }
+        if !entry.path().display().to_string().ends_with(".rs") {
+            continue;
+        }
 
         let output = Command::new("rustc")
                 .args(&["-Zprint-link-args", "-Zparse-only", &entry.path().display().to_string()])

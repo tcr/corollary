@@ -40,6 +40,7 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "enum" => "__enum".to_string(),
         "use" => "__use".to_string(),
         "mod" => "__mod".to_string(),
+        "final" => "__final".to_string(),
         _ => {
             let mut expr = expr.to_string();
 
@@ -72,6 +73,7 @@ pub fn print_type_ident(state: PrintState, s: &str) -> String {
 pub fn print_op_fn(value: &str) -> String {
     // Here you add new infix operators.
     match value {
+        "/" => "__op_div".to_string(),
         "++" => "__op_addadd".to_string(),
         ":" => "__op_concat".to_string(),
         ">>=" => "__op_bind".to_string(),
@@ -91,6 +93,7 @@ pub fn print_op_fn(value: &str) -> String {
         "<>" => "__op_ne".to_string(),
         "," => "__op_tuple2".to_string(),
         "\\\\" => "__op_forwardslash".to_string(), // TODO what does this do
+        "$" => "__op_dollar".to_string(), // TODO what does this do
         _ => print_type_ident(PrintState::new(), value)
     }
 }
@@ -629,14 +632,15 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
         for ast::Assignment { pats: args, expr } in fnset {
             // For type-less functions,
             if !types.contains_key(&key) {
-                // TODO we want to infer these function types, probably
-                let let_str = print_let(state, &ast::Assignment { pats: {
-                    let mut out = vec![ast::Pat::Ref(ast::Ident(key.to_string()))];
-                    out.extend(args);
-                    out
-                }, expr });
-                out.push(format!("/* TODO infer type:\n{}\n*/", let_str));
-                continue;
+                // TODO Unless we can infer top-level types, we just bail.
+                // let let_str = print_let(state, &ast::Assignment { pats: {
+                //     let mut out = vec![ast::Pat::Ref(ast::Ident(key.to_string()))];
+                //     out.extend(args);
+                //     out
+                // }, expr });
+                // out.push(format!("{}", let_str));
+                // continue;
+                panic!("Cannot print untyped fn {:?}", key);
             }
 
             let d = types[&key].clone();
