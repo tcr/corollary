@@ -32764,10 +32764,10 @@ pub fn happyGoto(action: bool) -> bool {
 
 pub fn happyMonad2Reduce(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
-        (k, nt, fn, 1, tk, st, sts, stk) => {
+        (k, nt, __fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
         },
-        (k, nt, fn, j, tk, st, sts, stk) => {
+        (k, nt, __fn, j, tk, st, sts, stk) => {
             match happyDrop(k, (__op_concat((st), (sts)))) {
                 sts1 | __OP__ | [st1(__OP__, HappyState(action)), _] => {
                     {
@@ -32775,7 +32775,7 @@ pub fn happyMonad2Reduce(__0: bool) -> bool {
 
                         let new_state = action;
 
-                    happyThen1((fn(stk, tk)), (|r| { happyNewToken(new_state, sts1, (HappyStk(r, drop_stk))) }))                    }
+                    happyThen1((__fn(stk, tk)), (|r| { happyNewToken(new_state, sts1, (HappyStk(r, drop_stk))) }))                    }
                 },
             }
         },
@@ -32784,16 +32784,16 @@ pub fn happyMonad2Reduce(__0: bool) -> bool {
 
 pub fn happyMonadReduce(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
-        (k, nt, fn, 1, tk, st, sts, stk) => {
+        (k, nt, __fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
         },
-        (k, nt, fn, j, tk, st, sts, stk) => {
+        (k, nt, __fn, j, tk, st, sts, stk) => {
             match happyDrop(k, (__op_concat((st), (sts)))) {
                 sts1 | __OP__ | [st1(__OP__, HappyState(action)), _] => {
                     {
                         let drop_stk = happyDropStk(k, stk);
 
-                    happyThen1((fn(stk, tk)), (|r| { action(nt, j, tk, st1, sts1, (HappyStk(r, drop_stk))) }))                    }
+                    happyThen1((__fn(stk, tk)), (|r| { action(nt, j, tk, st1, sts1, (HappyStk(r, drop_stk))) }))                    }
                 },
             }
         },
@@ -33122,14 +33122,14 @@ pub fn happyParse(start_state: bool) -> bool {
 
 pub fn happyReduce(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6, __7) {
-        (k, i, fn, 1, tk, st, sts, stk) => {
+        (k, i, __fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
         },
-        (k, nt, fn, j, tk, st, sts, stk) => {
+        (k, nt, __fn, j, tk, st, sts, stk) => {
             match happyDrop(((k - ((1)))), sts) {
                 sts1 | __OP__ | [st1(__OP__, HappyState(action)), _] => {
                     {
-                        let r = fn(stk);
+                        let r = __fn(stk);
 
                     happyDoSeq(r, (action(nt, j, tk, st1, sts1, r)))                    }
                 },
@@ -38389,23 +38389,23 @@ pub fn happyShift(__0: bool) -> bool {
 
 pub fn happySpecReduce_0(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6) {
-        (i, fn, 1, tk, st, sts, stk) => {
+        (i, __fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
         },
-        (nt, fn, j, tk, st, __OP__, HappyState(action), sts, stk) => {
-            action(nt, j, tk, st, (__op_concat((st), (sts))), (HappyStk(fn, stk)))
+        (nt, __fn, j, tk, st, __OP__, HappyState(action), sts, stk) => {
+            action(nt, j, tk, st, (__op_concat((st), (sts))), (HappyStk(__fn, stk)))
         },
     }
 }
 
 pub fn happySpecReduce_1(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6) {
-        (i, fn, 1, tk, st, sts, stk) => {
+        (i, __fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
         },
-        (nt, fn, j, tk, _, sts, __OP__, [st(__OP__, HappyState(action)), _], HappyStk(v1, stk_q)) => {
+        (nt, __fn, j, tk, _, sts, __OP__, [st(__OP__, HappyState(action)), _], HappyStk(v1, stk_q)) => {
             {
-                let r = fn(v1);
+                let r = __fn(v1);
 
             happySeq(r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))            }
         },
@@ -38414,12 +38414,12 @@ pub fn happySpecReduce_1(__0: bool) -> bool {
 
 pub fn happySpecReduce_2(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6) {
-        (i, fn, 1, tk, st, sts, stk) => {
+        (i, __fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
         },
-        (nt, fn, j, tk, _, [_, sts(__OP__, [st(__OP__, HappyState(action)), _])], HappyStk(v1, /* TODO(INFIX) */, v2, stk_q)) => {
+        (nt, __fn, j, tk, _, [_, sts(__OP__, [st(__OP__, HappyState(action)), _])], HappyStk(v1, /* TODO(INFIX) */, v2, stk_q)) => {
             {
-                let r = fn(v1, v2);
+                let r = __fn(v1, v2);
 
             happySeq(r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))            }
         },
@@ -38428,12 +38428,12 @@ pub fn happySpecReduce_2(__0: bool) -> bool {
 
 pub fn happySpecReduce_3(__0: bool) -> bool {
     match (__0, __1, __2, __3, __4, __5, __6) {
-        (i, fn, 1, tk, st, sts, stk) => {
+        (i, __fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
         },
-        (nt, fn, j, tk, _, [_, [_, sts(__OP__, [st(__OP__, HappyState(action)), _])]], HappyStk(v1, /* TODO(INFIX) */, v2, /* TODO(INFIX) */, v3, stk_q)) => {
+        (nt, __fn, j, tk, _, [_, [_, sts(__OP__, [st(__OP__, HappyState(action)), _])]], HappyStk(v1, /* TODO(INFIX) */, v2, /* TODO(INFIX) */, v3, stk_q)) => {
             {
-                let r = fn(v1, v2, v3);
+                let r = __fn(v1, v2, v3);
 
             happySeq(r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))            }
         },

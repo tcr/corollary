@@ -1339,7 +1339,7 @@ pub fn interpretInitializer(ty: CType, initial: CInit) -> EnvMonad<s, Rust::Expr
                     /* do */ {
                         let expr_q = interpretExpr(true, expr);
 
-                        compatibleInitializer(__TODO_if(resultType, expr_q), ty(then, pure)(scalar((castTo(ty, expr_q)), __TODO_else, badSource, initial, "initializer for incompatible type".to_string())))
+                        compatibleInitializer(__TODO_if(resultType, expr_q), ty(then, __pure)(scalar((castTo(ty, expr_q)), __TODO_else, badSource, initial, "initializer for incompatible type".to_string())))
                     }
                 },
                 CInitList | list | _ => {
@@ -1737,7 +1737,7 @@ pub fn noTranslation(node: node, msg: String) -> EnvMonad<s, a> {
 pub fn objectFromDesignators(__0: CType, __1: Vec<CDesignator>) -> EnvMonad<s, CurrentObject> {
     match (__0, __1) {
         (_, []) => {
-            pure(None)
+            __pure(None)
         },
         (ty, desigs) => {
             (Some < $>((), go(ty, desigs, (Base(ty)))))
@@ -2062,7 +2062,7 @@ pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad<s, Initializer>
         let objectsAndInitializers = forM(list)(|(desigs, initial)| { /* do */ {
                     let currObj = objectFromDesignators(ty, desigs);
 
-                    pure((currObj, initial))
+                    __pure((currObj, initial))
                 } });
 
         let base = match ty {

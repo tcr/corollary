@@ -41,7 +41,8 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "use" => "__use".to_string(),
         "mod" => "__mod".to_string(),
         "final" => "__final".to_string(),
-        "__fn" => "__fn".to_string(),
+        "fn" => "__fn".to_string(),
+        "pure" => "__pure".to_string(),
         _ => {
             let mut expr = expr.to_string();
 
@@ -397,7 +398,7 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
                 print_type_ident(state, &id.0))
         }
         Pat::Arrow(ast::Ident(ref s), ref p) => {
-            format!("({} -> {})", s, print_pattern(state.tab(), &**p))
+            format!("(Fn({}) -> {})", s, print_pattern(state.tab(), &**p))
         }
         Pat::Not(ref s) => print_pattern(state, &**s),
         Pat::EmptyParen => format!("()"),

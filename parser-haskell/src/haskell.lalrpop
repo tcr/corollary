@@ -110,7 +110,7 @@ Case: CaseCond = {
     <d:PatList>
       <v:("|" <CommaOnce<(<ExprSpan> ("<-" ExprSpan)?)>>  "->" <ExprSpan>)*>
       => CaseCond::Matching(d, v),
-    <d:PatList> "->" <v:CommaOnce<ExprSpan>> <w:Where>
+    <d:CommaOnce<PatSpan>> "->" <v:CommaOnce<ExprSpan>> <w:Where>
       => CaseCond::Direct(d, v),
 };
 
