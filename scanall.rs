@@ -5,8 +5,8 @@ extern crate walkdir;
 use std::process::Command;
 use walkdir::WalkDir;
 
-fn main() {
-    for entry in WalkDir::new("./out/language_c") {
+fn walk(input: &str) {
+    for entry in WalkDir::new(input) {
         let entry = entry.unwrap();
         if !entry.file_type().is_file() {
             continue;
@@ -24,4 +24,9 @@ fn main() {
             print!("{}", String::from_utf8_lossy(&output.stderr));
         }
     }
+}
+
+fn main() {
+    walk("./rust-language-c");
+    walk("./rust-corrode");
 }
