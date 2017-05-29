@@ -185,25 +185,25 @@ pub fn exportTypeSpec(tyname: TypeName) -> Vec<CTypeSpec> {
         TyVoid => {
             vec![CVoidType(ni)]
         },
-        TyIntegral | ity => {
+        TyIntegral(ity) => {
             exportIntType(ity)
         },
-        TyFloating | fty => {
+        TyFloating(fty) => {
             exportFloatType(fty)
         },
-        TyComplex | fty => {
+        TyComplex(fty) => {
             exportComplexType(fty)
         },
-        TyComp | comp => {
+        TyComp(comp) => {
             exportCompTypeDecl(comp)
         },
-        TyEnum | __enum => {
+        TyEnum(__enum) => {
             exportEnumTypeDecl(__enum)
         },
-        TyBuiltin | TyVaList => {
+        TyBuiltin(TyVaList) => {
             vec![CTypeDef((internalIdent("va_list".to_string())), ni)]
         },
-        TyBuiltin | TyAny => {
+        TyBuiltin(TyAny) => {
             vec![CTypeDef((internalIdent("__ty_any".to_string())), ni)]
         },
     }

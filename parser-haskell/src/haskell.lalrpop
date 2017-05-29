@@ -1,8 +1,7 @@
 use std::str::FromStr;
 use ast::*;
 use lalrpop_util::ErrorRecovery;
-use decode_literal;
-use conv::expr_to_pat;
+use trans::{decode_literal, expr_to_pat, rearrange_infix_pat};
 
 grammar<'err>(errors: &'err mut Vec<ErrorRecovery<usize, (usize, &'input str), ()>>);
 

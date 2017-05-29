@@ -44,7 +44,7 @@ pub fn binopType(op: CBinaryOp, t1: Type, t2: Type) -> Either<String, Type> {
         (_, t1_q, t2_q) if isCmpOp(op) => { match (t1_q, t2_q) {
             (DirectType(tn1, _, _), DirectType(tn2, _, _)) => {
                 match arithmeticConversion(tn1, tn2) {
-                    Some | _ => {
+                    Some(_) => {
                         boolType
                     },
                     None => {
@@ -83,7 +83,7 @@ pub fn binopType(op: CBinaryOp, t1: Type, t2: Type) -> Either<String, Type> {
             /* do */ {
                 when((isBitOp(op)), (__op_rshift(checkIntegral(t1), checkIntegral(t2))));
                 match arithmeticConversion(tn1, tn2) {
-                    Some | tn => {
+                    Some(tn) => {
                         return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
                     },
                     None => {
@@ -123,13 +123,13 @@ pub fn checkIntegral_q(ni: NodeInfo) -> m<()> {
 
 pub fn checkScalar(t: Type) -> Either<String, ()> {
     match canonicalType(t) {
-        DirectType | _ | _ | _ => {
+        DirectType(_, _, _) => {
             ()
         },
-        PtrType | _ | _ | _ => {
+        PtrType(_, _, _) => {
             ()
         },
-        ArrayType | _ | _ | _ | _ => {
+        ArrayType(_, _, _, _) => {
             ()
         },
         t_q => {
@@ -343,7 +343,7 @@ pub fn conditionalType(t1: Type, t2: Type) -> Either<String, Type> {
         },
         (t1_q(__OP__, DirectType(tn1, q1, a1)), t2_q(__OP__, DirectType(tn2, q2, a2))) => {
             match arithmeticConversion(tn1, tn2) {
-                Some | tn => {
+                Some(tn) => {
                     return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
                 },
                 None => {
@@ -433,10 +433,10 @@ pub fn derefType(__0: Type) -> Either<String, Type> {
         },
         t => {
             match canonicalType(t) {
-                PtrType | t_q | _ | _ => {
+                PtrType(t_q, _, _) => {
                     t_q
                 },
-                ArrayType | t_q | _ | _ | _ => {
+                ArrayType(t_q, _, _, _) => {
                     t_q
                 },
                 _ => {
@@ -463,14 +463,14 @@ pub fn expandAnonymous(__0: NodeInfo, __1: (VarName, Type)) -> m<Vec<(Ident, Typ
 
 pub fn fieldType(ni: NodeInfo, m: Ident, t: Type) -> m<Type> {
     match canonicalType(t) {
-        DirectType | TyComp(ctr) | _ | _ => {
+        DirectType(TyComp(ctr), _, _) => {
             /* do */ {
                 let td = lookupSUE(ni, (sueRef(ctr)));
 
                 let ms = tagMembers(ni, td);
 
                 match lookup(m, ms) {
-                    Some | ft => {
+                    Some(ft) => {
                         ft
                     },
                     None => {
@@ -490,7 +490,7 @@ pub fn lookupSUE(ni: NodeInfo, sue: SUERef) -> m<TagDef> {
         let dt = getDefTable;
 
         match lookupTag(sue, dt) {
-            Some | Right(td) => {
+            Some(Right(td)) => {
                 td
             },
             _ => {
@@ -531,13 +531,13 @@ pub fn sueAttrs(ni: NodeInfo, sue: SUERef) -> m<Attributes> {
             None => {
                 astError(ni)(__op_addadd("SUE not found: ".to_string(), render((pretty(sue)))))
             },
-            Some | Left(_) => {
+            Some(Left(_)) => {
                 vec![]
             },
-            Some | Right(CompDef(CompType(_, _, _, attrs, _))) => {
+            Some(Right(CompDef(CompType(_, _, _, attrs, _)))) => {
                 attrs
             },
-            Some | Right(EnumDef(EnumType(_, _, attrs, _))) => {
+            Some(Right(EnumDef(EnumType(_, _, attrs, _)))) => {
                 attrs
             },
         }
@@ -546,10 +546,10 @@ pub fn sueAttrs(ni: NodeInfo, sue: SUERef) -> m<Attributes> {
 
 pub fn tagMembers(ni: NodeInfo, td: TagDef) -> m<Vec<(Ident, Type)>> {
     match td {
-        CompDef | CompType(_, _, ms, _, _) => {
+        CompDef(CompType(_, _, ms, _, _)) => {
             getMembers(ms)
         },
-        EnumDef | EnumType(_, es, _, _) => {
+        EnumDef(EnumType(_, es, _, _)) => {
             getMembers(es)
         },
     }
@@ -563,10 +563,10 @@ pub fn typeDefAttrs(ni: NodeInfo, i: Ident) -> m<Attributes> {
             None => {
                 astError(ni)(__op_addadd("can\'t find typedef name: ".to_string(), identToString(i)))
             },
-            Some | Left(TypeDef(_, t, attrs, _)) => {
+            Some(Left(TypeDef(_, t, attrs, _))) => {
                 liftM((attrs(__op_addadd)), deepTypeAttrs(t))
             },
-            Some | Right(_) => {
+            Some(Right(_)) => {
                 astError(ni)(__op_addadd("not a typedef name: ".to_string(), identToString(i)))
             },
         }
@@ -591,7 +591,7 @@ pub fn typeErrorOnLeft(__0: NodeInfo, __1: Either<String, a>) -> m<a> {
 pub fn varAddrType(d: IdentDecl) -> Either<String, Type> {
     /* do */ {
         match declStorage(d) {
-            Auto | true => {
+            Auto(true) => {
                 fail("address of register variable".to_string())
             },
             _ => {
@@ -599,7 +599,7 @@ pub fn varAddrType(d: IdentDecl) -> Either<String, Type> {
             },
         };
         match t {
-            ArrayType | _ | _ | q | a => {
+            ArrayType(_, _, q, a) => {
                 return(PtrType(t, q, a))
             },
             _ => {

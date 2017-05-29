@@ -147,7 +147,7 @@ pub fn complexBaseType(ni: NodeInfo, c: Vec<StmtCtx>, side: ExprSide, e: CExpr) 
         let t = tExpr(c, side, e);
 
         match canonicalType(t) {
-            DirectType | TyComplex(ft) | quals | attrs => {
+            DirectType(TyComplex(ft), quals, attrs) => {
                 return(DirectType((TyFloating(ft)), quals, attrs))
             },
             _ => {
@@ -312,7 +312,7 @@ pub fn defineParams(ni: NodeInfo, decl: VarDecl) -> m<()> {
         None => {
             astError(ni, "expecting complete function type in function definition".to_string())
         },
-        Some | params => {
+        Some(params) => {
             mapM_(handleParamDecl, params)
         },
     }
@@ -460,12 +460,12 @@ pub fn tDesignator(__0: Type, __1: Vec<CDesignator>) -> m<Type> {
 
 pub fn tExpr(c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m<Type> {
     match nameOfNode((nodeInfo(e))) {
-        Some | n => {
+        Some(n) => {
             /* do */ {
                 let dt = getDefTable;
 
                 match lookupType(dt, n) {
-                    Some | t => {
+                    Some(t) => {
                         t
                     },
                     None => {
@@ -500,10 +500,10 @@ pub fn tExpr_q(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m<Type> {
             /* do */ {
                 when(((side == LValue)))(typeError(ni, "address-of operator as lvalue".to_string()));
                 match e {
-                    CCompoundLit | _ | _ | _ => {
+                    CCompoundLit(_, _, _) => {
                         liftM(simplePtr, tExpr(c, RValue, e))
                     },
-                    CVar | i | _ => {
+                    CVar(i, _) => {
                         __op_bind(lookupObject(i), typeErrorOnLeft(ni, maybe((notFound(i)), varAddrType)))
                     },
                     _ => {
@@ -552,7 +552,7 @@ pub fn tExpr_q(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m<Type> {
                 let t3 = tExpr(c, side, e3);
 
                 match me2 {
-                    Some | e2 => {
+                    Some(e2) => {
                         /* do */ {
                             let t2 = tExpr(c, side, e2);
 
@@ -658,7 +658,7 @@ pub fn tExpr_q(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m<Type> {
                 };
 
                 let t = match fe {
-                        CVar | i | _ => {
+                        CVar(i, _) => {
                             __op_bind(lookupObject(i), maybe((fallback(i)), (__TODO_const(tExpr(c, RValue, fe)))))
                         },
                         _ => {
@@ -669,7 +669,7 @@ pub fn tExpr_q(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m<Type> {
                 let atys = mapM((tExpr(c, RValue)), args);
 
                 match canonicalType(t) {
-                    PtrType | FunctionType(FunType(rt, pdecls, varargs), _) | _ | _ => {
+                    PtrType(FunctionType(FunType(rt, pdecls, varargs), _), _, _) => {
                         /* do */ {
                             let ptys = map(declType, pdecls);
 
@@ -678,7 +678,7 @@ pub fn tExpr_q(__0: Vec<StmtCtx>, __1: ExprSide, __2: CExpr) -> m<Type> {
                             return(canonicalType(rt))
                         }
                     },
-                    PtrType | FunctionType(FunTypeIncomplete(rt), _) | _ | _ => {
+                    PtrType(FunctionType(FunTypeIncomplete(rt), _), _, _) => {
                         /* do */ {
                             return(canonicalType(rt))
                         }
@@ -801,7 +801,7 @@ pub fn tStmt(__0: Vec<StmtCtx>, __1: CStat) -> m<Type> {
                 let dt = getDefTable;
 
                 match lookupLabel(l, dt) {
-                    Some | _ => {
+                    Some(_) => {
                         voidType
                     },
                     None => {
@@ -827,13 +827,13 @@ pub fn tStmt(__0: Vec<StmtCtx>, __1: CStat) -> m<Type> {
                 let t = tExpr(c, RValue, e);
 
                 let rt = match enclosingFunctionType(c) {
-                        Some | FunctionType(FunType(rt, _, _), _) => {
+                        Some(FunctionType(FunType(rt, _, _), _)) => {
                             rt
                         },
-                        Some | FunctionType(FunTypeIncomplete(rt), _) => {
+                        Some(FunctionType(FunTypeIncomplete(rt), _)) => {
                             rt
                         },
-                        Some | ft => {
+                        Some(ft) => {
                             astError(ni)(__op_addadd("bad function type: ".to_string(), pType(ft)))
                         },
                         None => {

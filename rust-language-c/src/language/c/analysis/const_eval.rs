@@ -62,10 +62,10 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
         let dt = getDefTable;
 
         match lookupTag((sueRef(ctr)), dt) {
-            Some | Left(_) => {
+            Some(Left(_)) => {
                 astError((nodeInfo(ctr)), "composite declared but not defined".to_string())
             },
-            Some | Right(CompDef(CompType(_, tag, ms, _, ni))) => {
+            Some(Right(CompDef(CompType(_, tag, ms, _, ni)))) => {
                 /* do */ {
                     let ts = map(declType, ms);
 
@@ -81,7 +81,7 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
                     }
                 }
             },
-            Some | Right(EnumDef(_)) => {
+            Some(Right(EnumDef(_))) => {
                 return(iSize(md, TyInt))
             },
             None => {
@@ -102,10 +102,10 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
                 let e3_q = constEval(md, env, e3);
 
                 match boolValue(e1_q) {
-                    Some | true => {
+                    Some(true) => {
                         return(fromMaybe(e1_q, me2_q))
                     },
-                    Some | false => {
+                    Some(false) => {
                         e3_q
                     },
                     None => {
@@ -143,9 +143,9 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
                 let bytes = liftM(fromIntegral, sizeofType(md, e, t));
 
                 match intValue(e_q) {
-                    Some | i => {
+                    Some(i) => {
                         match intUnOp(op, i) {
-                            Some | i_q => {
+                            Some(i_q) => {
                                 intExpr(ni, (withWordBytes(bytes, i_q)))
                             },
                             None => {
@@ -168,7 +168,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
                 let bytes = liftM(fromIntegral, sizeofType(md, d, t));
 
                 match intValue(e_q) {
-                    Some | i => {
+                    Some(i) => {
                         intExpr(ni, (withWordBytes(bytes, i)))
                     },
                     None => {
@@ -221,12 +221,12 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
                 let t = tExpr(vec![], RValue, e);
 
                 match derefTypeDef(t) {
-                    DirectType | TyEnum(etr) | _ | _ => {
+                    DirectType(TyEnum(etr), _, _) => {
                         /* do */ {
                             let dt = getDefTable;
 
                             match lookupTag((sueRef(etr)), dt) {
-                                Some | Right(EnumDef(EnumType(_, es, _, _))) => {
+                                Some(Right(EnumDef(EnumType(_, es, _, _)))) => {
                                     /* do */ {
                                         let env_q = foldM(enumConst, env, es);
 
@@ -382,7 +382,7 @@ pub fn sizeofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
                 let sz_q = constEval(md, Map::empty, sz);
 
                 match sz_q {
-                    CConst | CIntConst(i, _) => {
+                    CConst(CIntConst(i, _)) => {
                         /* do */ {
                             let s = sizeofType(md, n, bt);
 

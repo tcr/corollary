@@ -49,7 +49,7 @@ pub fn unsnoc(__0: Vec<a>) -> Option<(Vec<a>, a)> {
         },
         [x, xs] => {
             match unsnoc(xs) {
-                Some | (a, b) => {
+                Some((a, b)) => {
                     Some((__op_concat(x, a), b))
                 },
                 None => {

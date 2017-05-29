@@ -103,7 +103,7 @@ pub fn alexScanUser(user: bool) -> bool {
                 None => {
                     AlexEOF
                 },
-                Some | _ => {
+                Some(_) => {
                     AlexError(input_q)
                 },
             }
@@ -10773,7 +10773,7 @@ pub fn alex_scan_tkn(user: bool) -> bool {
             None => {
                 (new_acc, input)
             },
-            Some | (c, new_input) => {
+            Some((c, new_input)) => {
                 match fromIntegral(c) {
                     ord_c => {
                         {
@@ -20583,17 +20583,17 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                     CTokEof
                 }
             },
-            AlexError | inp_q => {
+            AlexError(inp_q) => {
                 lexicalError
             },
-            AlexSkip | (pos_q, inp_q) | len => {
+            AlexSkip((pos_q, inp_q), len) => {
                 /* do */ {
                     setPos(pos_q);
                     setInput(inp_q);
                     lexToken_q(modifyCache)
                 }
             },
-            AlexToken | (pos_q, inp_q) | len | action => {
+            AlexToken((pos_q, inp_q), len, action) => {
                 /* do */ {
                     setPos(pos_q);
                     setInput(inp_q);
@@ -20662,10 +20662,10 @@ pub fn token_fail(errmsg: String, pos: Position, _: isize, _: InputStream) -> P<
 
 pub fn token_plus(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> Either<String, a>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
     match read((takeChars(len, __str))) {
-        Left | err => {
+        Left(err) => {
             failP(pos, vec!["Lexical error ! ".to_string(), err])
         },
-        Right | ok => {
+        Right(ok) => {
             __op_TODO_dollarnot(return, tok((pos, len), ok))
         },
     }

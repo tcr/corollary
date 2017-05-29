@@ -32745,7 +32745,7 @@ pub fn happyFail(__0: bool) -> bool {
         (1, tk, old_st, _, stk, __OP__, HappyStk(x, _)) => {
             {
                 let i = (match x {
-                        HappyErrorToken | i => {
+                        HappyErrorToken(i) => {
                             i
                         },
                     });
@@ -32769,7 +32769,7 @@ pub fn happyMonad2Reduce(__0: bool) -> bool {
         },
         (k, nt, __fn, j, tk, st, sts, stk) => {
             match happyDrop(k, (__op_concat((st), (sts)))) {
-                sts1 | __OP__ | [st1(__OP__, HappyState(action)), _] => {
+                sts1(__OP__, [st1(__OP__, HappyState(action)), _]) => {
                     {
                         let drop_stk = happyDropStk(k, stk);
 
@@ -32789,7 +32789,7 @@ pub fn happyMonadReduce(__0: bool) -> bool {
         },
         (k, nt, __fn, j, tk, st, sts, stk) => {
             match happyDrop(k, (__op_concat((st), (sts)))) {
-                sts1 | __OP__ | [st1(__OP__, HappyState(action)), _] => {
+                sts1(__OP__, [st1(__OP__, HappyState(action)), _]) => {
                     {
                         let drop_stk = happyDropStk(k, stk);
 
@@ -32810,304 +32810,304 @@ pub fn happyNewToken(action: bool) -> bool {
                     CTokEof => {
                         action(232, 232, tk, (HappyState(action)), sts, stk)
                     },
-                    CTokLParen | _ => {
+                    CTokLParen(_) => {
                         cont(132)
                     },
-                    CTokRParen | _ => {
+                    CTokRParen(_) => {
                         cont(133)
                     },
-                    CTokLBracket | _ => {
+                    CTokLBracket(_) => {
                         cont(134)
                     },
-                    CTokRBracket | _ => {
+                    CTokRBracket(_) => {
                         cont(135)
                     },
-                    CTokArrow | _ => {
+                    CTokArrow(_) => {
                         cont(136)
                     },
-                    CTokDot | _ => {
+                    CTokDot(_) => {
                         cont(137)
                     },
-                    CTokExclam | _ => {
+                    CTokExclam(_) => {
                         cont(138)
                     },
-                    CTokTilde | _ => {
+                    CTokTilde(_) => {
                         cont(139)
                     },
-                    CTokInc | _ => {
+                    CTokInc(_) => {
                         cont(140)
                     },
-                    CTokDec | _ => {
+                    CTokDec(_) => {
                         cont(141)
                     },
-                    CTokPlus | _ => {
+                    CTokPlus(_) => {
                         cont(142)
                     },
-                    CTokMinus | _ => {
+                    CTokMinus(_) => {
                         cont(143)
                     },
-                    CTokStar | _ => {
+                    CTokStar(_) => {
                         cont(144)
                     },
-                    CTokSlash | _ => {
+                    CTokSlash(_) => {
                         cont(145)
                     },
-                    CTokPercent | _ => {
+                    CTokPercent(_) => {
                         cont(146)
                     },
-                    CTokAmper | _ => {
+                    CTokAmper(_) => {
                         cont(147)
                     },
-                    CTokShiftL | _ => {
+                    CTokShiftL(_) => {
                         cont(148)
                     },
-                    CTokShiftR | _ => {
+                    CTokShiftR(_) => {
                         cont(149)
                     },
-                    CTokLess | _ => {
+                    CTokLess(_) => {
                         cont(150)
                     },
-                    CTokLessEq | _ => {
+                    CTokLessEq(_) => {
                         cont(151)
                     },
-                    CTokHigh | _ => {
+                    CTokHigh(_) => {
                         cont(152)
                     },
-                    CTokHighEq | _ => {
+                    CTokHighEq(_) => {
                         cont(153)
                     },
-                    CTokEqual | _ => {
+                    CTokEqual(_) => {
                         cont(154)
                     },
-                    CTokUnequal | _ => {
+                    CTokUnequal(_) => {
                         cont(155)
                     },
-                    CTokHat | _ => {
+                    CTokHat(_) => {
                         cont(156)
                     },
-                    CTokBar | _ => {
+                    CTokBar(_) => {
                         cont(157)
                     },
-                    CTokAnd | _ => {
+                    CTokAnd(_) => {
                         cont(158)
                     },
-                    CTokOr | _ => {
+                    CTokOr(_) => {
                         cont(159)
                     },
-                    CTokQuest | _ => {
+                    CTokQuest(_) => {
                         cont(160)
                     },
-                    CTokColon | _ => {
+                    CTokColon(_) => {
                         cont(161)
                     },
-                    CTokAssign | _ => {
+                    CTokAssign(_) => {
                         cont(162)
                     },
-                    CTokPlusAss | _ => {
+                    CTokPlusAss(_) => {
                         cont(163)
                     },
-                    CTokMinusAss | _ => {
+                    CTokMinusAss(_) => {
                         cont(164)
                     },
-                    CTokStarAss | _ => {
+                    CTokStarAss(_) => {
                         cont(165)
                     },
-                    CTokSlashAss | _ => {
+                    CTokSlashAss(_) => {
                         cont(166)
                     },
-                    CTokPercAss | _ => {
+                    CTokPercAss(_) => {
                         cont(167)
                     },
-                    CTokAmpAss | _ => {
+                    CTokAmpAss(_) => {
                         cont(168)
                     },
-                    CTokHatAss | _ => {
+                    CTokHatAss(_) => {
                         cont(169)
                     },
-                    CTokBarAss | _ => {
+                    CTokBarAss(_) => {
                         cont(170)
                     },
-                    CTokSLAss | _ => {
+                    CTokSLAss(_) => {
                         cont(171)
                     },
-                    CTokSRAss | _ => {
+                    CTokSRAss(_) => {
                         cont(172)
                     },
-                    CTokComma | _ => {
+                    CTokComma(_) => {
                         cont(173)
                     },
-                    CTokSemic | _ => {
+                    CTokSemic(_) => {
                         cont(174)
                     },
-                    CTokLBrace | _ => {
+                    CTokLBrace(_) => {
                         cont(175)
                     },
-                    CTokRBrace | _ => {
+                    CTokRBrace(_) => {
                         cont(176)
                     },
-                    CTokEllipsis | _ => {
+                    CTokEllipsis(_) => {
                         cont(177)
                     },
-                    CTokAlignof | _ => {
+                    CTokAlignof(_) => {
                         cont(178)
                     },
-                    CTokAsm | _ => {
+                    CTokAsm(_) => {
                         cont(179)
                     },
-                    CTokAuto | _ => {
+                    CTokAuto(_) => {
                         cont(180)
                     },
-                    CTokBreak | _ => {
+                    CTokBreak(_) => {
                         cont(181)
                     },
-                    CTokBool | _ => {
+                    CTokBool(_) => {
                         cont(182)
                     },
-                    CTokCase | _ => {
+                    CTokCase(_) => {
                         cont(183)
                     },
-                    CTokChar | _ => {
+                    CTokChar(_) => {
                         cont(184)
                     },
-                    CTokConst | _ => {
+                    CTokConst(_) => {
                         cont(185)
                     },
-                    CTokContinue | _ => {
+                    CTokContinue(_) => {
                         cont(186)
                     },
-                    CTokComplex | _ => {
+                    CTokComplex(_) => {
                         cont(187)
                     },
-                    CTokDefault | _ => {
+                    CTokDefault(_) => {
                         cont(188)
                     },
-                    CTokDo | _ => {
+                    CTokDo(_) => {
                         cont(189)
                     },
-                    CTokDouble | _ => {
+                    CTokDouble(_) => {
                         cont(190)
                     },
-                    CTokElse | _ => {
+                    CTokElse(_) => {
                         cont(191)
                     },
-                    CTokEnum | _ => {
+                    CTokEnum(_) => {
                         cont(192)
                     },
-                    CTokExtern | _ => {
+                    CTokExtern(_) => {
                         cont(193)
                     },
-                    CTokFloat | _ => {
+                    CTokFloat(_) => {
                         cont(194)
                     },
-                    CTokFor | _ => {
+                    CTokFor(_) => {
                         cont(195)
                     },
-                    CTokGoto | _ => {
+                    CTokGoto(_) => {
                         cont(196)
                     },
-                    CTokIf | _ => {
+                    CTokIf(_) => {
                         cont(197)
                     },
-                    CTokInline | _ => {
+                    CTokInline(_) => {
                         cont(198)
                     },
-                    CTokInt | _ => {
+                    CTokInt(_) => {
                         cont(199)
                     },
-                    CTokLong | _ => {
+                    CTokLong(_) => {
                         cont(200)
                     },
-                    CTokLabel | _ => {
+                    CTokLabel(_) => {
                         cont(201)
                     },
-                    CTokRegister | _ => {
+                    CTokRegister(_) => {
                         cont(202)
                     },
-                    CTokRestrict | _ => {
+                    CTokRestrict(_) => {
                         cont(203)
                     },
-                    CTokReturn | _ => {
+                    CTokReturn(_) => {
                         cont(204)
                     },
-                    CTokShort | _ => {
+                    CTokShort(_) => {
                         cont(205)
                     },
-                    CTokSigned | _ => {
+                    CTokSigned(_) => {
                         cont(206)
                     },
-                    CTokSizeof | _ => {
+                    CTokSizeof(_) => {
                         cont(207)
                     },
-                    CTokStatic | _ => {
+                    CTokStatic(_) => {
                         cont(208)
                     },
-                    CTokStruct | _ => {
+                    CTokStruct(_) => {
                         cont(209)
                     },
-                    CTokSwitch | _ => {
+                    CTokSwitch(_) => {
                         cont(210)
                     },
-                    CTokTypedef | _ => {
+                    CTokTypedef(_) => {
                         cont(211)
                     },
-                    CTokTypeof | _ => {
+                    CTokTypeof(_) => {
                         cont(212)
                     },
-                    CTokThread | _ => {
+                    CTokThread(_) => {
                         cont(213)
                     },
-                    CTokUnion | _ => {
+                    CTokUnion(_) => {
                         cont(214)
                     },
-                    CTokUnsigned | _ => {
+                    CTokUnsigned(_) => {
                         cont(215)
                     },
-                    CTokVoid | _ => {
+                    CTokVoid(_) => {
                         cont(216)
                     },
-                    CTokVolatile | _ => {
+                    CTokVolatile(_) => {
                         cont(217)
                     },
-                    CTokWhile | _ => {
+                    CTokWhile(_) => {
                         cont(218)
                     },
-                    CTokCLit | _ | _ => {
+                    CTokCLit(_, _) => {
                         cont(219)
                     },
-                    CTokILit | _ | _ => {
+                    CTokILit(_, _) => {
                         cont(220)
                     },
-                    CTokFLit | _ | _ => {
+                    CTokFLit(_, _) => {
                         cont(221)
                     },
-                    CTokSLit | _ | _ => {
+                    CTokSLit(_, _) => {
                         cont(222)
                     },
-                    CTokIdent | _ | happy_dollar_dollar => {
+                    CTokIdent(_, happy_dollar_dollar) => {
                         cont(223)
                     },
-                    CTokTyIdent | _ | happy_dollar_dollar => {
+                    CTokTyIdent(_, happy_dollar_dollar) => {
                         cont(224)
                     },
-                    CTokGnuC | GnuCAttrTok | _ => {
+                    CTokGnuC(GnuCAttrTok, _) => {
                         cont(225)
                     },
-                    CTokGnuC | GnuCExtTok | _ => {
+                    CTokGnuC(GnuCExtTok, _) => {
                         cont(226)
                     },
-                    CTokGnuC | GnuCComplexReal | _ => {
+                    CTokGnuC(GnuCComplexReal, _) => {
                         cont(227)
                     },
-                    CTokGnuC | GnuCComplexImag | _ => {
+                    CTokGnuC(GnuCComplexImag, _) => {
                         cont(228)
                     },
-                    CTokGnuC | GnuCVaArg | _ => {
+                    CTokGnuC(GnuCVaArg, _) => {
                         cont(229)
                     },
-                    CTokGnuC | GnuCOffsetof | _ => {
+                    CTokGnuC(GnuCOffsetof, _) => {
                         cont(230)
                     },
-                    CTokGnuC | GnuCTyCompat | _ => {
+                    CTokGnuC(GnuCTyCompat, _) => {
                         cont(231)
                     },
                     _ => {
@@ -33127,7 +33127,7 @@ pub fn happyReduce(__0: bool) -> bool {
         },
         (k, nt, __fn, j, tk, st, sts, stk) => {
             match happyDrop(((k - ((1)))), sts) {
-                sts1 | __OP__ | [st1(__OP__, HappyState(action)), _] => {
+                sts1(__OP__, [st1(__OP__, HappyState(action)), _]) => {
                     {
                         let r = __fn(stk);
 
@@ -35688,7 +35688,7 @@ pub fn happyReduction_183(__0: bool) -> bool {
     match (__0, __1) {
         (_, HappyAbsSyn32(happy_var_1)) => {
             HappyAbsSyn32((match happy_var_1 {
-                    CDecl | declspecs | dies | at => {
+                    CDecl(declspecs, dies, at) => {
                         CDecl(declspecs, (List::reverse(dies)), at)
                     },
                 }))
@@ -35703,7 +35703,7 @@ pub fn happyReduction_184(__0: bool) -> bool {
     match (__0, __1) {
         (_, HappyAbsSyn32(happy_var_1)) => {
             HappyAbsSyn32((match happy_var_1 {
-                    CDecl | declspecs | dies | at => {
+                    CDecl(declspecs, dies, at) => {
                         CDecl(declspecs, (List::reverse(dies)), at)
                     },
                 }))
@@ -35743,7 +35743,7 @@ pub fn happyReduction_187(HappyStk(HappyAbsSyn56(happy_var_2), /* TODO(INFIX) */
 
 pub fn happyReduction_188(HappyStk(HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn32((match happy_var_1 {
-            CDecl | declspecs | dies | at => {
+            CDecl(declspecs, dies, at) => {
                 match happy_var_4 {
                     (Some(d), s) => {
                         CDecl(declspecs, (__op_concat((Some(appendObjAttrs(happy_var_3, d)), None, s), dies)), at)
@@ -35773,7 +35773,7 @@ pub fn happyReduction_19(HappyStk(HappyAbsSyn12(happy_var_3), /* TODO(INFIX) */,
 
 pub fn happyReduction_190(HappyStk(HappyAbsSyn126(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn56(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     HappyStk(HappyAbsSyn32((match happy_var_1 {
-            CDecl | declspecs | dies | attr => {
+            CDecl(declspecs, dies, attr) => {
                 match happy_var_4 {
                     (Some(d), s) => {
                         CDecl(declspecs, (__op_concat((Some(appendObjAttrs((__op_addadd(happy_var_3, happy_var_5)), d)), None, s), dies)), attr)
@@ -37720,7 +37720,7 @@ pub fn happyReduction_442(__0: bool) -> bool {
 
 pub fn happyReduction_443(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
-            CTokILit | _ | i => {
+            CTokILit(_, i) => {
                 CIntConst(i)
             },
         }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
@@ -37728,7 +37728,7 @@ pub fn happyReduction_443(HappyStk(HappyTerminal(happy_var_1), happyRest): bool)
 
 pub fn happyReduction_444(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
-            CTokCLit | _ | c => {
+            CTokCLit(_, c) => {
                 CCharConst(c)
             },
         }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
@@ -37736,7 +37736,7 @@ pub fn happyReduction_444(HappyStk(HappyTerminal(happy_var_1), happyRest): bool)
 
 pub fn happyReduction_445(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
-            CTokFLit | _ | f => {
+            CTokFLit(_, f) => {
                 CFloatConst(f)
             },
         }))), (|r| { happyReturn((HappyAbsSyn122(r))) }))
@@ -37744,7 +37744,7 @@ pub fn happyReduction_445(HappyStk(HappyTerminal(happy_var_1), happyRest): bool)
 
 pub fn happyReduction_446(HappyStk(HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
-            CTokSLit | _ | s => {
+            CTokSLit(_, s) => {
                 CStrLit(s)
             },
         }))), (|r| { happyReturn((HappyAbsSyn123(r))) }))
@@ -37752,7 +37752,7 @@ pub fn happyReduction_446(HappyStk(HappyTerminal(happy_var_1), happyRest): bool)
 
 pub fn happyReduction_447(HappyStk(HappyAbsSyn124(happy_var_2), /* TODO(INFIX) */, HappyTerminal(happy_var_1), happyRest): bool) -> bool {
     happyThen(((withNodeInfo(happy_var_1)(match happy_var_1 {
-            CTokSLit | _ | s => {
+            CTokSLit(_, s) => {
                 CStrLit((concatCStrings((__op_concat(s, reverse(happy_var_2))))))
             },
         }))), (|r| { happyReturn((HappyAbsSyn123(r))) }))
@@ -37762,7 +37762,7 @@ pub fn happyReduction_448(__0: bool) -> bool {
     match (__0) {
         HappyTerminal(happy_var_1) => {
             HappyAbsSyn124((match happy_var_1 {
-                    CTokSLit | _ | s => {
+                    CTokSLit(_, s) => {
                         singleton(s)
                     },
                 }))
@@ -37777,7 +37777,7 @@ pub fn happyReduction_449(__0: bool) -> bool {
     match (__0, __1) {
         (HappyTerminal(happy_var_2), HappyAbsSyn124(happy_var_1)) => {
             HappyAbsSyn124((match happy_var_2 {
-                    CTokSLit | _ | s => {
+                    CTokSLit(_, s) => {
                         snoc(happy_var_1, s)
                     },
                 }))
@@ -37869,7 +37869,7 @@ pub fn happyReduction_457(__0: bool) -> bool {
                     None => {
                         empty
                     },
-                    Some | attr => {
+                    Some(attr) => {
                         singleton(attr)
                     },
                 }))
@@ -38214,7 +38214,7 @@ pub fn happyReduction_86(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn38(happy_var_
 
 pub fn happyReduction_87(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     happyThen(((match happy_var_1 {
-            CDecl | declspecs | dies | at => {
+            CDecl(declspecs, dies, at) => {
                 withLength(at, (CDecl(declspecs, (List::reverse(dies)))))
             },
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
@@ -38222,7 +38222,7 @@ pub fn happyReduction_87(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_
 
 pub fn happyReduction_88(HappyStk(_, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     happyThen(((match happy_var_1 {
-            CDecl | declspecs | dies | at => {
+            CDecl(declspecs, dies, at) => {
                 withLength(at, (CDecl(declspecs, (List::reverse(dies)))))
             },
         })), (|r| { happyReturn((HappyAbsSyn32(r))) }))
@@ -38304,7 +38304,7 @@ pub fn happyReduction_94(HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */,
 
 pub fn happyReduction_95(HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     happyThen(((match happy_var_1 {
-            CDecl | declspecs | dies | at => {
+            CDecl(declspecs, dies, at) => {
                 /* do */ {
                     let declr = withAsmNameAttrs((fst(happy_var_5), __op_addadd(snd(happy_var_5), happy_var_3)), happy_var_4);
 
@@ -38346,7 +38346,7 @@ pub fn happyReduction_98(HappyStk(HappyAbsSyn91(happy_var_4), /* TODO(INFIX) */,
 
 pub fn happyReduction_99(HappyStk(HappyAbsSyn91(happy_var_6), /* TODO(INFIX) */, HappyAbsSyn35(happy_var_5), /* TODO(INFIX) */, HappyAbsSyn63(happy_var_4), /* TODO(INFIX) */, HappyAbsSyn126(happy_var_3), /* TODO(INFIX) */, _, /* TODO(INFIX) */, HappyAbsSyn32(happy_var_1), happyRest): bool) -> bool {
     happyThen(((match happy_var_1 {
-            CDecl | declspecs | dies | at => {
+            CDecl(declspecs, dies, at) => {
                 /* do */ {
                     let declr = withAsmNameAttrs((fst(happy_var_5), __op_addadd(snd(happy_var_5), happy_var_3)), happy_var_4);
 
@@ -38374,7 +38374,7 @@ pub fn happyShift(__0: bool) -> bool {
         (new_state, 1, tk, st, sts, stk, __OP__, HappyStk(x, _)) => {
             {
                 let i = (match x {
-                        HappyErrorToken | i => {
+                        HappyErrorToken(i) => {
                             i
                         },
                     });
@@ -38482,10 +38482,10 @@ pub fn reverseList() -> Reversed<Vec<a>> {
 
 pub fn setAsmName(mAsmName: Option<CStrLit>, CDeclrR(ident, indirections, oldName, cattrs, at): CDeclrR) -> P<CDeclrR> {
     match combineName(mAsmName, oldName) {
-        Left | (n1, n2) => {
+        Left((n1, n2)) => {
             failP((posOf(n2)), vec!["Duplicate assembler name: ".to_string(), showName(n1), showName(n2)])
         },
-        Right | newName => {
+        Right(newName) => {
             return(CDeclrR(ident, indirections, newName, cattrs, at))
         },
     }

@@ -99,7 +99,7 @@ pub fn defRedeclStatusLocal(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, 
     match defRedeclStatus(sameKind, def, oldDecl) {
         NewDecl => {
             match lookupName(nsm, ident) {
-                Some | shadowed => {
+                Some(shadowed) => {
                     Shadowed(shadowed)
                 },
                 None => {

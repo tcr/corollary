@@ -155,7 +155,7 @@ pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) ->
         },
         (node, oldstyle_params, [CFunDeclr(params, attrs, fdnode), dds]) => {
             match params {
-                Left | list => {
+                Left(list) => {
                     /* do */ {
                         let oldstyle_params_q = liftM(concat)(mapM(splitCDecl, oldstyle_params));
 
@@ -167,7 +167,7 @@ pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) ->
                         return((__op_concat(CFunDeclr((Right((newstyle_params, false))), attrs, fdnode), dds)))
                     }
                 },
-                Right | _newstyle => {
+                Right(_newstyle) => {
                     astError(node, "oldstyle parameter list, but newstyle function declaration".to_string())
                 },
             }
@@ -180,19 +180,19 @@ pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) ->
 
 pub fn mergeTypeAttributes(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Attr>, typ: Type) -> m<Type> {
     match typ {
-        DirectType | ty_name | quals_q | attrs_q => {
+        DirectType(ty_name, quals_q, attrs_q) => {
             merge(quals_q, attrs_q)(mkDirect(ty_name))
         },
-        PtrType | ty | quals_q | attrs_q => {
+        PtrType(ty, quals_q, attrs_q) => {
             merge(quals_q, attrs_q)(PtrType(ty))
         },
-        ArrayType | ty | array_sz | quals_q | attrs_q => {
+        ArrayType(ty, array_sz, quals_q, attrs_q) => {
             merge(quals_q, attrs_q)(ArrayType(ty, array_sz))
         },
-        FunctionType | FunType(return_ty, params, inline) | attrs_q => {
+        FunctionType(FunType(return_ty, params, inline), attrs_q) => {
             return(FunctionType((FunType(return_ty, params, inline)), (__op_addadd(attrs_q, attrs))))
         },
-        TypeDefType | tdr | quals_q | attrs_q => {
+        TypeDefType(tdr, quals_q, attrs_q) => {
             merge(quals_q, attrs_q)(TypeDefType(tdr))
         },
     }
@@ -295,32 +295,32 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
             TSBool => {
                 return(baseType((TyIntegral(TyBool))))
             },
-            TSNum | tsnum => {
+            TSNum(tsnum) => {
                 /* do */ {
                     let numType = tNumType(tsnum);
 
                     baseType(match numType {
                         Left((floatType, iscomplex)) if iscomplex => { TyComplex(floatType) }
                         Left((floatType, iscomplex)) => { TyFloating(floatType) }
-                        Right | intType => {
+                        Right(intType) => {
                             TyIntegral(intType)
                         },
                     })
                 }
             },
-            TSTypeDef | tdr => {
+            TSTypeDef(tdr) => {
                 return(TypeDefType(tdr, quals, attrs))
             },
-            TSNonBasic | CSUType(su, _tnode) => {
+            TSNonBasic(CSUType(su, _tnode)) => {
                 liftM((baseType(TyComp)))(tCompTypeDecl(handle_sue_def, su))
             },
-            TSNonBasic | CEnumType(__enum, _tnode) => {
+            TSNonBasic(CEnumType(__enum, _tnode)) => {
                 liftM((baseType(TyEnum)))(tEnumTypeDecl(handle_sue_def, __enum))
             },
-            TSType | t => {
+            TSType(t) => {
                 mergeTypeAttributes(node, quals, attrs, t)
             },
-            TSNonBasic | _ => {
+            TSNonBasic(_) => {
                 astError(node, "Unexpected typespec".to_string())
             },
         }
@@ -350,7 +350,7 @@ pub fn tMemberDecls(__0: CDecl) -> m<Vec<MemberDecl>> {
                 let ty = tType(true, node, typequals, canonTySpecs, vec![], vec![]);
 
                 match ty {
-                    DirectType | TyComp(_) | _ | _ => {
+                    DirectType(TyComp(_), _, _) => {
                         return(vec![
                             MemberDecl((VarDecl(NoName, (DeclAttrs(false, NoStorage, vec![])), ty)), None, node),
                         ])

@@ -196,13 +196,13 @@ pub fn declLinkage(decl: d) -> Linkage {
         NoStorage => {
             undefined
         },
-        Auto | _ => {
+        Auto(_) => {
             NoLinkage
         },
-        Static | linkage | _ => {
+        Static(linkage, _) => {
             linkage
         },
-        FunLinkage | linkage => {
+        FunLinkage(linkage) => {
             linkage
         },
     }

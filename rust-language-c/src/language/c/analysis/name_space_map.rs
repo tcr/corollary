@@ -64,7 +64,7 @@ pub fn lookupName(ns: NameSpaceMap<k, a>, __OP__: k, NsMap(_, localDefs): Option
         None => {
             lookupGlobal(ns, ident)
         },
-        Some | def => {
+        Some(def) => {
             Some(def)
         },
     }

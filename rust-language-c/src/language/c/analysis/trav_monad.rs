@@ -55,16 +55,16 @@ pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus
         NewDecl => {
             ()
         },
-        Redeclared | old_def => {
+        Redeclared(old_def) => {
             throwTravError(redefinition(LevelError, subject, DuplicateDef, (nodeInfo(new_decl)), (nodeInfo(old_def))))
         },
-        KindMismatch | old_def => {
+        KindMismatch(old_def) => {
             throwTravError(redefinition(LevelError, subject, DiffKindRedecl, (nodeInfo(new_decl)), (nodeInfo(old_def))))
         },
-        Shadowed | _old_def => {
+        Shadowed(_old_def) => {
             ()
         },
-        KeepDef | _old_def => {
+        KeepDef(_old_def) => {
             ()
         },
     }
@@ -72,7 +72,7 @@ pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus
 
 pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m<()> {
     match redecl {
-        KindMismatch | old_def => {
+        KindMismatch(old_def) => {
             redefVarErr(old_def, DiffKindRedecl)
         },
         KeepDef(Right(old_def)) if not((agreeOnLinkage(def, old_def))) => { linkageErr(def, old_def) }
@@ -286,10 +286,10 @@ pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
         let old_decl = liftM((lookupIdent(ident)), getDefTable);
 
         mapMaybeM(old_decl)(|obj| { match obj {
-                Right | objdef => {
+                Right(objdef) => {
                     __op_rshift(addRef(ident, objdef), objdef)
                 },
-                Left | _tydef => {
+                Left(_tydef) => {
                     astError((nodeInfo(ident)), (mismatchErr("lookupObject".to_string(), "an object".to_string(), "a typeDef".to_string())))
                 },
             } })
@@ -301,10 +301,10 @@ pub fn lookupTypeDef(ident: Ident) -> m<Type> {
             None => {
                 astError((nodeInfo(ident)))(__op_addadd("unbound typeDef: ".to_string(), identToString(ident)))
             },
-            Some | Left(TypeDef(def_ident, ty, _, _)) => {
+            Some(Left(TypeDef(def_ident, ty, _, _))) => {
                 __op_rshift(addRef(ident, def_ident), ty)
             },
-            Some | Right(d) => {
+            Some(Right(d)) => {
                 astError((nodeInfo(ident)), (wrongKindErrMsg(d)))
             },
         } })
@@ -352,7 +352,7 @@ pub fn redefErr(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKin
 
 pub fn runTrav(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravState<s>)> {
     match unTrav(action, (initTravState(state))) {
-        Left | trav_err => {
+        Left(trav_err) => {
             Left(vec![trav_err])
         },
         Right((v, ts)) if hadHardErrors((travErrors(ts))) => { Left((travErrors(ts))) }

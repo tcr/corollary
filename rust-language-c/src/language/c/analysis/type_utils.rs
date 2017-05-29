@@ -20,7 +20,7 @@ pub fn boolType() -> Type {
 
 pub fn canonicalType(t: Type) -> Type {
     match deepDerefTypeDef(t) {
-        FunctionType | ft | attrs => {
+        FunctionType(ft, attrs) => {
             simplePtr((FunctionType(ft, attrs)))
         },
         t_q => {
@@ -108,13 +108,13 @@ pub fn isFloatingType(__0: Type) -> bool {
 
 pub fn isFunctionType(ty: Type) -> bool {
     match ty {
-        TypeDefType | TypeDefRef(_, Some(actual_ty), _) | _ | _ => {
+        TypeDefType(TypeDefRef(_, Some(actual_ty), _), _, _) => {
             isFunctionType(actual_ty)
         },
-        TypeDefType | _ | _ | _ => {
+        TypeDefType(_, _, _) => {
             __error!("isFunctionType: unresolved typeDef".to_string())
         },
-        FunctionType | _ | _ => {
+        FunctionType(_, _) => {
             true
         },
         _ => {
@@ -200,19 +200,19 @@ pub fn typeAttrs(__0: Type) -> Attributes {
 
 pub fn typeAttrsUpd(f: fn(Attributes) -> Attributes, ty: Type) -> Type {
     match ty {
-        DirectType | ty_name | ty_quals | ty_attrs => {
+        DirectType(ty_name, ty_quals, ty_attrs) => {
             DirectType(ty_name, ty_quals, (f(ty_attrs)))
         },
-        PtrType | ty_inner | ty_quals | ty_attrs => {
+        PtrType(ty_inner, ty_quals, ty_attrs) => {
             PtrType(ty_inner, ty_quals, (f(ty_attrs)))
         },
-        ArrayType | ty_inner | sz | ty_quals | ty_attrs => {
+        ArrayType(ty_inner, sz, ty_quals, ty_attrs) => {
             ArrayType(ty_inner, sz, ty_quals, (f(ty_attrs)))
         },
-        FunctionType | ty_inner | ty_attrs => {
+        FunctionType(ty_inner, ty_attrs) => {
             FunctionType(ty_inner, (f(ty_attrs)))
         },
-        TypeDefType | ty_ref | ty_quals | ty_attrs => {
+        TypeDefType(ty_ref, ty_quals, ty_attrs) => {
             TypeDefType(ty_ref, ty_quals, (f(ty_attrs)))
         },
     }
@@ -243,19 +243,19 @@ pub fn typeQuals(__0: Type) -> TypeQuals {
 
 pub fn typeQualsUpd(f: fn(TypeQuals) -> TypeQuals, ty: Type) -> Type {
     match ty {
-        DirectType | ty_name | ty_quals | ty_attrs => {
+        DirectType(ty_name, ty_quals, ty_attrs) => {
             DirectType(ty_name, (f(ty_quals)), ty_attrs)
         },
-        PtrType | ty_inner | ty_quals | ty_attrs => {
+        PtrType(ty_inner, ty_quals, ty_attrs) => {
             PtrType(ty_inner, (f(ty_quals)), ty_attrs)
         },
-        ArrayType | ty_inner | sz | ty_quals | ty_attrs => {
+        ArrayType(ty_inner, sz, ty_quals, ty_attrs) => {
             ArrayType(ty_inner, sz, (f(ty_quals)), ty_attrs)
         },
-        FunctionType | ty_inner | ty_attrs => {
+        FunctionType(ty_inner, ty_attrs) => {
             FunctionType(ty_inner, ty_attrs)
         },
-        TypeDefType | ty_ref | ty_quals | ty_attrs => {
+        TypeDefType(ty_ref, ty_quals, ty_attrs) => {
             TypeDefType(ty_ref, (f(ty_quals)), ty_attrs)
         },
     }

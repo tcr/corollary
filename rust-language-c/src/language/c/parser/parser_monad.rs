@@ -22,10 +22,10 @@ pub fn enterScope() -> P<()> {
 
 pub fn execParser(P(parser): P<a>, input: InputStream, pos: Position, builtins: Vec<Ident>, names: Vec<Name>) -> Either<ParseError, (a, Vec<Name>)> {
     match parser(initialState) {
-        PFailed | message | errpos => {
+        PFailed(message, errpos) => {
             Left((ParseError((message, errpos))))
         },
-        POk | st | result => {
+        POk(st, result) => {
             Right((result, namesupply(st)))
         },
     }
@@ -125,10 +125,10 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
 
 pub fn thenP(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
     P(|s| { match m(s) {
-            POk | s_q | a => {
+            POk(s_q, a) => {
                 (unP((k(a))))(s_q)
             },
-            PFailed | err | pos => {
+            PFailed(err, pos) => {
                 PFailed(err, pos)
             },
         } })
