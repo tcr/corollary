@@ -415,7 +415,6 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
             errln!("Infix pattern `{}` was not rearranged", ident.0);
             format!("/* TODO(INFIX) */")
         }
-        Pat::Dummy => format!("<todo>"),
     }
 }
 
