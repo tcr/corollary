@@ -105,7 +105,6 @@ pub enum Pat {
     Num(isize),
     Concat(Box<Pat>, Box<Pat>),
     EmptyParen,
-    Dummy,
 }
 
 #[derive(Clone, Debug)]
