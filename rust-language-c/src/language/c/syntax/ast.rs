@@ -1,5 +1,13 @@
 use haskell_support::*;
 
+use data::list;
+use language_.c._syntax::constants;
+use language_.c._syntax::ops;
+use language_.c._data::ident;
+use language_.c._data::node;
+use language_.c._data::position;
+use data::generics;
+
 #[derive(Clone, Debug)]
 struct CTranslationUnit<a>(CTranslUnit<Vec<CExternalDeclaration<a>>, a>);
 

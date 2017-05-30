@@ -1,5 +1,11 @@
 use haskell_support::*;
 
+use language_.c._data::ident;
+use language_.c._data::node;
+use language_.c._syntax_.ast;
+use language_.c._analysis::sem_rep;
+use data::maybe;
+
 pub fn exportArraySize(__0: ArraySize) -> CArrSize {
     match (__0) {
         ArraySize(__static, e) => {

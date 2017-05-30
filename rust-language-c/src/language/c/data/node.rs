@@ -1,5 +1,10 @@
 use haskell_support::*;
 
+use language_.c._data::position;
+use language_.c._data::name;
+use name;
+use data::generics;
+
 #[derive(Clone, Debug)]
 pub enum NodeInfo {
     OnlyPos(Position, PosLength),

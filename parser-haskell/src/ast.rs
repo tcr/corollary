@@ -43,7 +43,7 @@ pub enum Opcode {
 
 #[derive(Clone, Debug)]
 pub enum Item {
-    Import,
+    Import(Vec<Vec<Ident>>),
 
     Type,
     // Name, Inner Types, Deriving IDs, Type Parameters

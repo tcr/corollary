@@ -1,5 +1,17 @@
 use haskell_support::*;
 
+use language_.c._data;
+use language_.c._syntax;
+use language_.c._syntax::constants;
+use data::map;
+use map;
+use qualified;
+use data::map;
+use as;
+use map;
+use data::generics;
+use text::pretty_print::hughes_pj;
+
 #[derive(Clone, Debug)]
 pub enum TagDef {
     CompDef(CompType),

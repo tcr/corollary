@@ -1,5 +1,8 @@
 use haskell_support::*;
 
+use language_.c._analysis::sem_rep;
+use language_.c._syntax::constants;
+
 pub fn baseType(__0: Type) -> Type {
     match (__0) {
         PtrType(t, _, _) => {

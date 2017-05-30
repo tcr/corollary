@@ -1,5 +1,11 @@
 use haskell_support::*;
 
+use language_.c._data;
+use language_.c._syntax;
+use language_.c._pretty;
+use language_.c._parser;
+use language_.c._system::preprocess;
+
 pub fn parseCFile(cpp: cpp, tmp_dir_opt: Option<FilePath>, args: Vec<String>, input_file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
     /* do */ {
         let input_stream = __TODO_if(not, (isPreprocessed(input_file)), then, {

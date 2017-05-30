@@ -1,5 +1,24 @@
 use haskell_support::*;
 
+use control::monad;
+use lift_m;
+use data::char;
+use chr;
+use data::word;
+use word_8;
+use language_.c._data::input_stream;
+use input_stream;
+use language_.c._data::ident;
+use mk_ident;
+use language_.c._data::position;
+use language_.c._syntax::constants;
+use language_.c._parser::parser_monad;
+use language_.c._parser::tokens;
+use data::array;
+use data::array::base;
+use unsafe_at;
+use array;
+
 pub enum AlexReturn<a> {
     AlexEOF,
     AlexError(AlexInput),

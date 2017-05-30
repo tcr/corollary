@@ -1,5 +1,7 @@
 use haskell_support::*;
 
+use data::generics;
+
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum Position {
     Position(TypeRecord /* todo */),

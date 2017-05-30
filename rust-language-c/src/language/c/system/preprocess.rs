@@ -1,5 +1,15 @@
 use haskell_support::*;
 
+use language_.c._data::input_stream;
+use system::exit;
+use system::directory;
+use system::file_path;
+use system::environment;
+use system_.io;
+use control::exception;
+use control::monad;
+use data::list;
+
 pub enum CppOption {
     IncludeDir(FilePath),
     Define(String, String),

@@ -1,5 +1,23 @@
 use haskell_support::*;
 
+use language_.c._data;
+use language_.c._analysis::name_space_map;
+use language_.c._analysis::sem_rep;
+use control::applicative;
+use data::map;
+use map;
+use qualified;
+use data::map;
+use as;
+use map;
+use data::int_map;
+use int_map;
+use qualified;
+use data::int_map;
+use as;
+use int_map;
+use data::generics;
+
 pub enum TagFwdDecl {
     CompDecl(CompTypeRef),
     EnumDecl(EnumTypeRef)

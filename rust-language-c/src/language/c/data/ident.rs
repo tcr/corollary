@@ -1,5 +1,12 @@
 use haskell_support::*;
 
+use data::char;
+use language_.c._data::position;
+use language_.c._data::node;
+use language_.c._data::name;
+use name;
+use data::generics;
+
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum SUERef {
     AnonymousRef(Name),

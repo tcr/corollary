@@ -1,5 +1,21 @@
 use haskell_support::*;
 
+use data::word;
+use data::byte_string;
+use byte_string;
+use qualified;
+use data::byte_string;
+use as;
+use bsw;
+use qualified;
+use data::byte_string::char_8;
+use as;
+use bsc;
+use qualified;
+use data::char;
+use as;
+use char;
+
 pub fn countLines() -> isize {
     match () {
         () => {

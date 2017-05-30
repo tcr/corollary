@@ -1,5 +1,10 @@
 use haskell_support::*;
 
+use data::typeable;
+use data::generics;
+use language_.c._data::node;
+use language_.c._data::position;
+
 #[derive(Eq, Ord)]
 pub enum ErrorLevel {
     LevelWarn,

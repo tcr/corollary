@@ -1,5 +1,26 @@
 use haskell_support::*;
 
+use control::monad;
+use data::bits;
+use data::maybe;
+use qualified;
+use data::map;
+use as;
+use map;
+use language_.c._syntax_.ast;
+use language_.c._syntax::constants;
+use language_.c._analysis::ast_analysis;
+use t_expr;
+use language_.c._analysis::debug;
+use language_.c._analysis::decl_analysis;
+use language_.c._analysis::def_table;
+use language_.c._data;
+use language_.c._pretty;
+use language_.c._analysis::sem_rep;
+use language_.c._analysis::trav_monad;
+use language_.c._analysis::type_utils;
+use text::pretty_print::hughes_pj;
+
 struct MachineDesc(MachineDesc<TypeRecord /* todo */>);
 
 pub fn alignofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {

@@ -1,5 +1,24 @@
 use haskell_support::*;
 
+use language_.c._data::error;
+use internal_err;
+use language_.c._data::position;
+use position;
+use language_.c._data::input_stream;
+use language_.c._data::name;
+use name;
+use language_.c._data::ident;
+use ident;
+use language_.c._parser::tokens;
+use c_token;
+use data::set;
+use set;
+use qualified;
+use data::set;
+use as;
+use set;
+use from_list;
+
 pub enum ParseResult<a> {
     POk(PState, a),
     PFailed(Vec<String>, Position)

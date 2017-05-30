@@ -1,5 +1,10 @@
 use haskell_support::*;
 
+use data::typeable;
+use language_.c._analysis::sem_rep;
+use language_.c._data::error;
+use language_.c._data::node;
+
 #[derive(Debug)]
 struct RedefError(RedefError<ErrorLevel, RedefInfo>);
 

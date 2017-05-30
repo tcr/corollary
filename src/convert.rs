@@ -1,6 +1,7 @@
 use parser_haskell::ast;
 use parser_haskell::ast::{Expr, Pat, Ty};
 
+use inflector::Inflector;
 use hex::*;
 use std::borrow::Borrow;
 use std::collections::{BTreeMap, BTreeSet};
@@ -499,6 +500,18 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
 
     // Output
     let mut out = vec![];
+
+    // Print out imports.
+    for item in stats {
+        if let ast::Item::Import(ref imports) = *item {
+            for import in imports {
+                if import.len() > 0 {
+                    out.push(format!("use {};", import[0].0.to_snake_case().replace("_._", "::")));
+                }
+            }
+        }
+    }
+    out.push(format!(""));
 
     // Print out data structures.
     for item in stats {

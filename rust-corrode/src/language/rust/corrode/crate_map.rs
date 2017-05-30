@@ -1,5 +1,13 @@
 use haskell_support::*;
 
+use data::foldable;
+use data::list;
+use qualified;
+use data::map;
+use as;
+use map;
+use data::maybe;
+
 #[derive(Debug, Eq, Ord)]
 pub enum ItemKind {
     Enum,

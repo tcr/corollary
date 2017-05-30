@@ -1,5 +1,38 @@
 use haskell_support::*;
 
+use language_.c._data::error;
+use language_.c._data::node;
+use language_.c._data::ident;
+use language_.c._pretty;
+use language_.c._syntax;
+use language_.c._analysis::ast_analysis;
+use t_expr;
+use language_.c._analysis::def_table;
+use tag_fwd_decl;
+use language_.c._analysis::export;
+use language_.c._analysis::sem_error;
+use language_.c._analysis::sem_rep;
+use language_.c._analysis::trav_monad;
+use data::foldable;
+use as;
+use f;
+use foldr_m;
+use qualified;
+use data::traversable;
+use as;
+use t;
+use control::monad;
+use lift_m;
+use data::list;
+use intersperse;
+use data::map;
+use map;
+use qualified;
+use data::map;
+use as;
+use map;
+use text::pretty_print::hughes_pj;
+
 #[derive(Debug, Eq, Ord, Read)]
 pub enum StorageSpec {
     NoStorageSpec,

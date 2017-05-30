@@ -1,5 +1,38 @@
 use haskell_support::*;
 
+use control::monad;
+use control::monad_.st;
+use control::monad::trans::class;
+use control::monad::trans::except;
+use control::monad::trans_.rws._strict;
+use data::foldable;
+use qualified;
+use data::map::lazy;
+use as;
+use map;
+use qualified;
+use data::int_map::strict;
+use as;
+use int_map;
+use data::maybe;
+use data::list;
+use data_.st_ref;
+use qualified;
+use data::set;
+use as;
+use set;
+use language_.c;
+use language_.c._data::ident;
+use qualified;
+use language::rust_.ast;
+use as;
+use rust;
+use language::rust::corrode_.cfg;
+use language::rust::corrode::crate_map;
+use text::pretty_print::hughes_pj_class;
+use hiding;
+use pretty;
+
 struct FunctionContext(FunctionContext<TypeRecord /* todo */>);
 
 struct Output(Output<TypeRecord /* todo */>);

@@ -1,5 +1,9 @@
 use haskell_support::*;
 
+use data::char;
+use numeric;
+use text::pretty_print::hughes_pj_class;
+
 #[derive(Debug, Eq)]
 pub enum LitIntRepr {
     DecRepr,

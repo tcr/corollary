@@ -211,7 +211,7 @@ SContext: () = {
 };
 
 Item: Item = {
-    "import" ImportList+ => Item::Import,
+    "import" <ImportList+> => Item::Import(<>),
 
     "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
       Where
@@ -340,9 +340,9 @@ PatList: Vec<Pat> = {
     <PatSub+> => rearrange_infix_pat(<>),
 };
 
-ImportName: () = {
-    Ident => (),
-    ".." => (),
+ImportName: Ident = {
+    Ident => <>,
+    ".." => Ident("..".to_string()),
 };
 
 ImportList: Vec<Ident> = {

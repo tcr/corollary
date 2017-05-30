@@ -1,5 +1,10 @@
 use haskell_support::*;
 
+use qualified;
+use language::rust_.ast;
+use as;
+use rust;
+
 pub fn itemIdioms(__0: Rust::Item) -> Rust::Item {
     match (__0) {
         Rust::Item(attrs, vis, Rust::Function(fattrs, name, formals, ret, b)) => {

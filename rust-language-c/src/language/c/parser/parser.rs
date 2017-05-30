@@ -1,5 +1,34 @@
 use haskell_support::*;
 
+use control::monad;
+use mplus;
+use qualified;
+use data::list;
+use as;
+use list;
+use language_.c._parser::builtin;
+use builtin_type_names;
+use language_.c._parser::lexer;
+use lex_c;
+use language_.c._parser::parser_monad;
+use p;
+use language_.c._parser::tokens;
+use c_token;
+use prelude;
+use hiding;
+use reverse;
+use control::applicative;
+use applicative;
+use control::monad;
+use ap;
+use language_.c._data::ident;
+use language_.c._data::input_stream;
+use language_.c._data::name;
+use language_.c._data::node;
+use language_.c._data::position;
+use language_.c._data_.r_list;
+use language_.c._syntax;
+
 pub enum HappyAbsSyn {
     HappyTerminal(CToken),
     HappyErrorToken(isize),

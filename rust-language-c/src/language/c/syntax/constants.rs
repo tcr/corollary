@@ -1,5 +1,13 @@
 use haskell_support::*;
 
+use data::bits;
+use data::char;
+use numeric;
+use show_oct;
+use language_.c._data::node;
+use language_.c._data::position;
+use data::generics;
+
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CChar {
     CChar(Char, bool),

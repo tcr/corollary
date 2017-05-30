@@ -1,5 +1,40 @@
 use haskell_support::*;
 
+use language_.c._analysis::sem_error;
+use language_.c._analysis::sem_rep;
+use language_.c._analysis::trav_monad;
+use language_.c._analysis::const_eval;
+use language_.c._analysis::debug;
+use language_.c._analysis::def_table;
+use def_table;
+use language_.c._analysis::decl_analysis;
+use language_.c._analysis::type_utils;
+use language_.c._analysis::type_check;
+use language_.c._analysis::type_conversions;
+use language_.c._data;
+use language_.c._pretty;
+use language_.c._syntax_.ast;
+use language_.c._syntax::constants;
+use language_.c._syntax::ops;
+use language_.c._syntax::utils;
+use text::pretty_print::hughes_pj;
+use control::monad;
+use prelude;
+use hiding;
+use reverse;
+use data::either;
+use rights;
+use data::foldable;
+use foldr_m;
+use data::list;
+use hiding;
+use reverse;
+use qualified;
+use data::map;
+use as;
+use map;
+use data::maybe;
+
 pub enum StmtCtx {
     FunCtx(VarDecl),
     LoopCtx,

@@ -1,5 +1,30 @@
 use haskell_support::*;
 
+use language_.c._data;
+use language_.c._data::ident;
+use language_.c._data_.r_list;
+use as;
+use r_list;
+use language_.c._syntax;
+use language_.c._analysis::builtins;
+use language_.c._analysis::sem_error;
+use language_.c._analysis::sem_rep;
+use language_.c._analysis::def_table;
+use hiding;
+use enter_block_scope;
+use qualified;
+use language_.c._analysis::def_table;
+use as;
+use st;
+use data::int_map;
+use insert;
+use data::maybe;
+use control::monad;
+use lift_m;
+use prelude;
+use hiding;
+use lookup;
+
 pub enum CLanguage {
     C89,
     C99,

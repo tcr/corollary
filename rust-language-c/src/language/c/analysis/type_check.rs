@@ -1,5 +1,23 @@
 use haskell_support::*;
 
+use control::monad;
+use data::either;
+use data::maybe;
+use language_.c._data::ident;
+use language_.c._data::node;
+use language_.c._data::position;
+use language_.c._pretty;
+use language_.c._syntax_.ast;
+use language_.c._syntax::constants;
+use language_.c._syntax::ops;
+use language_.c._analysis::debug;
+use language_.c._analysis::def_table;
+use language_.c._analysis::sem_rep;
+use language_.c._analysis::trav_monad;
+use language_.c._analysis::type_conversions;
+use language_.c._analysis::type_utils;
+use text::pretty_print::hughes_pj;
+
 pub fn assignCompatible(__0: CAssignOp, __1: Type, __2: Type) -> Either<String, ()> {
     match (__0, __1, __2) {
         (CAssignOp, t1, t2) => {

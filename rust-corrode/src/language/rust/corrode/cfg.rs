@@ -1,5 +1,22 @@
 use haskell_support::*;
 
+use control::monad;
+use control::monad::trans::state;
+use data::foldable;
+use qualified;
+use data::int_map::lazy;
+use as;
+use int_map;
+use qualified;
+use data::int_set;
+use as;
+use int_set;
+use data::maybe;
+use data::traversable;
+use text::pretty_print::hughes_pj_class;
+use hiding;
+use empty;
+
 struct BasicBlock<s, c>(BasicBlock<s, Terminator<c>>);
 
 #[derive(Debug)]

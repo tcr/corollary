@@ -1,5 +1,12 @@
 use haskell_support::*;
 
+use language_.c._data::position;
+use position;
+use language_.c._data::ident;
+use ident;
+use language_.c._syntax::constants;
+use c_char;
+
 pub enum CToken {
     CTokLParen(PosLength),
     CTokRParen(PosLength),

@@ -1,5 +1,7 @@
 use haskell_support::*;
 
+use language_.c._analysis::sem_rep;
+
 pub fn arithmeticConversion(__0: TypeName, __1: TypeName) -> Option<TypeName> {
     match (__0, __1) {
         (TyComplex(t1), TyComplex(t2)) => {

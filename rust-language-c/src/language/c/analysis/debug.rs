@@ -1,5 +1,20 @@
 use haskell_support::*;
 
+use language_.c._analysis::sem_rep;
+use language_.c._analysis::export;
+use language_.c._analysis::def_table;
+use language_.c._analysis::name_space_map;
+use language_.c._data;
+use language_.c._pretty;
+use language_.c._syntax;
+use text::pretty_print::hughes_pj;
+use data::map;
+use map;
+use qualified;
+use data::map;
+use as;
+use map;
+
 pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
     vec![
         ("Enumeration Constants".to_string(), Map::size(enumerators)),
