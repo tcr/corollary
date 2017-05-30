@@ -506,7 +506,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
         if let ast::Item::Import(ref imports) = *item {
             for import in imports {
                 if import.len() > 0 {
-                    out.push(format!("use {};", import[0].0.to_snake_case().replace("_._", "::")));
+                    out.push(format!("use {};", import[0].0.replace(".", "::")));
                 }
             }
         }
