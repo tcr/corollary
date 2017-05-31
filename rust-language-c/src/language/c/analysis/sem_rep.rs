@@ -1,16 +1,13 @@
 use haskell_support::*;
 
-use language_.c._data;
-use language_.c._syntax;
-use language_.c._syntax::constants;
-use data::map;
-use map;
-use qualified;
-use data::map;
-use as;
-use map;
-use data::generics;
-use text::pretty_print::hughes_pj;
+use Language::C::Data;
+use Language::C::Syntax;
+use Language::C::Syntax::Constants;
+use Data::Map;
+use Map;
+use Data::Map;
+use Data::Generics;
+use Text::PrettyPrint::HughesPJ;
 
 #[derive(Clone, Debug)]
 pub enum TagDef {
@@ -28,7 +25,11 @@ pub enum IdentDecl {
 }
 pub use self::IdentDecl::*;
 
-struct GlobalDecls(GlobalDecls<TypeRecord /* todo */>);
+struct GlobalDecls{
+    gObjs: Map<Ident, IdentDecl>,
+    gTags: Map<SUERef, TagDef>,
+    gTypeDefs: Map<Ident, TypeDef>
+}
 
 pub enum DeclEvent {
     TagEvent(TagDef),
@@ -41,13 +42,13 @@ pub enum DeclEvent {
 pub use self::DeclEvent::*;
 
 #[derive(Clone, Debug)]
-struct Decl(Decl<VarDecl, NodeInfo>);
+struct Decl(VarDecl, NodeInfo);
 
 #[derive(Clone, Debug)]
-struct ObjDef(ObjDef<VarDecl, Option<Initializer>, NodeInfo>);
+struct ObjDef(VarDecl, Option<Initializer>, NodeInfo);
 
 #[derive(Clone, Debug)]
-struct FunDef(FunDef<VarDecl, Stmt, NodeInfo>);
+struct FunDef(VarDecl, Stmt, NodeInfo);
 
 #[derive(Clone, Debug)]
 pub enum ParamDecl {
@@ -64,13 +65,13 @@ pub enum MemberDecl {
 pub use self::MemberDecl::*;
 
 #[derive(Clone, Debug)]
-struct TypeDef(TypeDef<Ident, Type, Attributes, NodeInfo>);
+struct TypeDef(Ident, Type, Attributes, NodeInfo);
 
 #[derive(Clone, Debug)]
-struct VarDecl(VarDecl<VarName, DeclAttrs, Type>);
+struct VarDecl(VarName, DeclAttrs, Type);
 
 #[derive(Clone, Debug)]
-struct DeclAttrs(DeclAttrs<bool, Storage, Attributes>);
+struct DeclAttrs(bool, Storage, Attributes);
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum Storage {
@@ -133,7 +134,7 @@ pub enum BuiltinType {
 pub use self::BuiltinType::*;
 
 #[derive(Clone, Debug)]
-struct TypeDefRef(TypeDefRef<Ident, Option<Type>, NodeInfo>);
+struct TypeDefRef(Ident, Option<Type>, NodeInfo);
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum IntType {
@@ -161,13 +162,13 @@ pub enum FloatType {
 pub use self::FloatType::*;
 
 #[derive(Clone, Debug)]
-struct CompTypeRef(CompTypeRef<SUERef, CompTyKind, NodeInfo>);
+struct CompTypeRef(SUERef, CompTyKind, NodeInfo);
 
 #[derive(Clone, Debug)]
-struct EnumTypeRef(EnumTypeRef<SUERef, NodeInfo>);
+struct EnumTypeRef(SUERef, NodeInfo);
 
 #[derive(Clone, Debug)]
-struct CompType(CompType<SUERef, CompTyKind, Vec<MemberDecl>, Attributes, NodeInfo>);
+struct CompType(SUERef, CompTyKind, Vec<MemberDecl>, Attributes, NodeInfo);
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CompTyKind {
@@ -177,13 +178,17 @@ pub enum CompTyKind {
 pub use self::CompTyKind::*;
 
 #[derive(Clone, Debug)]
-struct EnumType(EnumType<SUERef, Vec<Enumerator>, Attributes, NodeInfo>);
+struct EnumType(SUERef, Vec<Enumerator>, Attributes, NodeInfo);
 
 #[derive(Clone, Debug)]
-struct Enumerator(Enumerator<Ident, Expr, EnumType, NodeInfo>);
+struct Enumerator(Ident, Expr, EnumType, NodeInfo);
 
 #[derive(Clone, Debug)]
-struct TypeQuals(TypeQuals<TypeRecord /* todo */>);
+struct TypeQuals{
+    constant: bool,
+    volatile: bool,
+    restrict: bool
+}
 
 #[derive(Clone, Debug)]
 pub enum VarName {
@@ -193,7 +198,7 @@ pub enum VarName {
 pub use self::VarName::*;
 
 #[derive(Clone, Debug)]
-struct Attr(Attr<Ident, Vec<Expr>, NodeInfo>);
+struct Attr(Ident, Vec<Expr>, NodeInfo);
 
 pub fn declAttrs() -> DeclAttrs {
     (|VarDecl(_, specs, _)| { specs }(getVarDecl))

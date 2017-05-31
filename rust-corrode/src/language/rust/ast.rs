@@ -1,8 +1,8 @@
 use haskell_support::*;
 
-use data::char;
-use numeric;
-use text::pretty_print::hughes_pj_class;
+use Data::Char;
+use Numeric;
+use Text::PrettyPrint::HughesPJClass;
 
 #[derive(Debug, Eq)]
 pub enum LitIntRepr {
@@ -45,13 +45,13 @@ pub enum Stmt {
 pub use self::Stmt::*;
 
 #[derive(Debug)]
-struct Block(Block<Vec<Stmt>, Option<Expr>>);
+struct Block(Vec<Stmt>, Option<Expr>);
 
 #[derive(Debug)]
-struct Attribute(Attribute<String>);
+struct Attribute(String);
 
 #[derive(Debug)]
-struct Item(Item<Vec<Attribute>, Visibility, ItemKind>);
+struct Item(Vec<Attribute>, Visibility, ItemKind);
 
 #[derive(Debug)]
 pub enum FunctionAttribute {

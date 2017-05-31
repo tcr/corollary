@@ -1,6 +1,6 @@
 use haskell_support::*;
 
-use language_.c._analysis::sem_rep;
+use Language::C::Analysis::SemRep;
 
 pub fn arithmeticConversion(__0: TypeName, __1: TypeName) -> Option<TypeName> {
     match (__0, __1) {

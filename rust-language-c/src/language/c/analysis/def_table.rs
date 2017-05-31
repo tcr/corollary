@@ -1,22 +1,16 @@
 use haskell_support::*;
 
-use language_.c._data;
-use language_.c._analysis::name_space_map;
-use language_.c._analysis::sem_rep;
-use control::applicative;
-use data::map;
-use map;
-use qualified;
-use data::map;
-use as;
-use map;
-use data::int_map;
-use int_map;
-use qualified;
-use data::int_map;
-use as;
-use int_map;
-use data::generics;
+use Language::C::Data;
+use Language::C::Analysis::NameSpaceMap;
+use Language::C::Analysis::SemRep;
+use Control::Applicative;
+use Data::Map;
+use Map;
+use Data::Map;
+use Data::IntMap;
+use IntMap;
+use Data::IntMap;
+use Data::Generics;
 
 pub enum TagFwdDecl {
     CompDecl(CompTypeRef),
@@ -24,7 +18,14 @@ pub enum TagFwdDecl {
 }
 pub use self::TagFwdDecl::*;
 
-struct DefTable(DefTable<TypeRecord /* todo */>);
+struct DefTable{
+    identDecls: NameSpaceMap<Ident, IdentEntry>,
+    tagDecls: NameSpaceMap<SUERef, TagEntry>,
+    labelDefs: NameSpaceMap<Ident, Ident>,
+    memberDecls: NameSpaceMap<Ident, MemberDecl>,
+    refTable: IntMap<Name>,
+    typeTable: IntMap<Type>
+}
 
 #[derive(Clone, Debug)]
 pub enum DeclarationStatus<t> {

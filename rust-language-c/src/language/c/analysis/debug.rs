@@ -1,19 +1,16 @@
 use haskell_support::*;
 
-use language_.c._analysis::sem_rep;
-use language_.c._analysis::export;
-use language_.c._analysis::def_table;
-use language_.c._analysis::name_space_map;
-use language_.c._data;
-use language_.c._pretty;
-use language_.c._syntax;
-use text::pretty_print::hughes_pj;
-use data::map;
-use map;
-use qualified;
-use data::map;
-use as;
-use map;
+use Language::C::Analysis::SemRep;
+use Language::C::Analysis::Export;
+use Language::C::Analysis::DefTable;
+use Language::C::Analysis::NameSpaceMap;
+use Language::C::Data;
+use Language::C::Pretty;
+use Language::C::Syntax;
+use Text::PrettyPrint::HughesPJ;
+use Data::Map;
+use Map;
+use Data::Map;
 
 pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
     vec![

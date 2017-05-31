@@ -1,12 +1,7 @@
 use haskell_support::*;
 
-use prelude;
-use hiding;
-use reverse;
-use qualified;
-use data::list;
-use as;
-use list;
+use Prelude;
+use Data::List;
 
 pub fn appendr(xs: Vec<a>, Reversed(ys): Reversed<Vec<a>>) -> Reversed<Vec<a>> {
     Reversed((__op_addadd(ys, List::reverse(xs))))

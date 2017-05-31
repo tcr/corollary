@@ -1,15 +1,15 @@
 use haskell_support::*;
 
-use data::list;
-use language_.c._syntax::constants;
-use language_.c._syntax::ops;
-use language_.c._data::ident;
-use language_.c._data::node;
-use language_.c._data::position;
-use data::generics;
+use Data::List;
+use Language::C::Syntax::Constants;
+use Language::C::Syntax::Ops;
+use Language::C::Data::Ident;
+use Language::C::Data::Node;
+use Language::C::Data::Position;
+use Data::Generics;
 
 #[derive(Clone, Debug)]
-struct CTranslationUnit<a>(CTranslUnit<Vec<CExternalDeclaration<a>>, a>);
+struct CTranslationUnit<a>(Vec<CExternalDeclaration<a>>, a);
 
 #[derive(Clone, Debug)]
 pub enum CExternalDeclaration<a> {
@@ -20,13 +20,13 @@ pub enum CExternalDeclaration<a> {
 pub use self::CExternalDeclaration::*;
 
 #[derive(Clone, Debug)]
-struct CFunctionDef<a>(CFunDef<Vec<CDeclarationSpecifier<a>>, CDeclarator<a>, Vec<CDeclaration<a>>, CStatement<a>, a>);
+struct CFunctionDef<a>(Vec<CDeclarationSpecifier<a>>, CDeclarator<a>, Vec<CDeclaration<a>>, CStatement<a>, a);
 
 #[derive(Clone, Debug)]
-struct CDeclaration<a>(CDecl<Vec<CDeclarationSpecifier<a>>, Vec<(Option<CDeclarator<a>>, Option<CInitializer<a>>, Option<CExpression<a>>)>, a>);
+struct CDeclaration<a>(Vec<CDeclarationSpecifier<a>>, Vec<(Option<CDeclarator<a>>, Option<CInitializer<a>>, Option<CExpression<a>>)>, a);
 
 #[derive(Clone, Debug)]
-struct CDeclarator<a>(CDeclr<Option<Ident>, Vec<CDerivedDeclarator<a>>, Option<CStringLiteral<a>>, Vec<CAttribute<a>>, a>);
+struct CDeclarator<a>(Option<Ident>, Vec<CDerivedDeclarator<a>>, Option<CStringLiteral<a>>, Vec<CAttribute<a>>, a);
 
 #[derive(Clone, Debug)]
 pub enum CDerivedDeclarator<a> {
@@ -65,10 +65,10 @@ pub enum CStatement<a> {
 pub use self::CStatement::*;
 
 #[derive(Clone, Debug)]
-struct CAssemblyStatement<a>(CAsmStmt<Option<CTypeQualifier<a>>, CStringLiteral<a>, Vec<CAssemblyOperand<a>>, Vec<CAssemblyOperand<a>>, Vec<CStringLiteral<a>>, a>);
+struct CAssemblyStatement<a>(Option<CTypeQualifier<a>>, CStringLiteral<a>, Vec<CAssemblyOperand<a>>, Vec<CAssemblyOperand<a>>, Vec<CStringLiteral<a>>, a);
 
 #[derive(Clone, Debug)]
-struct CAssemblyOperand<a>(CAsmOperand<Option<Ident>, CStringLiteral<a>, CExpression<a>, a>);
+struct CAssemblyOperand<a>(Option<Ident>, CStringLiteral<a>, CExpression<a>, a);
 
 #[derive(Clone, Debug)]
 pub enum CCompoundBlockItem<a> {
@@ -129,7 +129,7 @@ pub enum CTypeQualifier<a> {
 pub use self::CTypeQualifier::*;
 
 #[derive(Clone, Debug)]
-struct CStructureUnion<a>(CStruct<CStructTag, Option<Ident>, Option<Vec<CDeclaration<a>>>, Vec<CAttribute<a>>, a>);
+struct CStructureUnion<a>(CStructTag, Option<Ident>, Option<Vec<CDeclaration<a>>>, Vec<CAttribute<a>>, a);
 
 #[derive(Clone, Debug, Eq)]
 pub enum CStructTag {
@@ -139,7 +139,7 @@ pub enum CStructTag {
 pub use self::CStructTag::*;
 
 #[derive(Clone, Debug)]
-struct CEnumeration<a>(CEnum<Option<Ident>, Option<Vec<(Ident, Option<CExpression<a>>)>>, Vec<CAttribute<a>>, a>);
+struct CEnumeration<a>(Option<Ident>, Option<Vec<(Ident, Option<CExpression<a>>)>>, Vec<CAttribute<a>>, a);
 
 #[derive(Clone, Debug)]
 pub enum CInitializer<a> {
@@ -157,7 +157,7 @@ pub enum CPartDesignator<a> {
 pub use self::CPartDesignator::*;
 
 #[derive(Clone, Debug)]
-struct CAttribute<a>(CAttr<Ident, Vec<CExpression<a>>, a>);
+struct CAttribute<a>(Ident, Vec<CExpression<a>>, a);
 
 #[derive(Clone, Debug)]
 pub enum CExpression<a> {
@@ -203,7 +203,7 @@ pub enum CConstant<a> {
 pub use self::CConstant::*;
 
 #[derive(Clone, Debug)]
-struct CStringLiteral<a>(CStrLit<CString, a>);
+struct CStringLiteral<a>(CString, a);
 
 pub fn cstringOfLit(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
     cstr

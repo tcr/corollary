@@ -1,13 +1,11 @@
 use haskell_support::*;
 
-use language_.c._data_.r_list;
-use as;
-use r_list;
-use language_.c._system::preprocess;
-use data::maybe;
-use system::cmd;
-use system::directory;
-use data::list;
+use Language::C::Data::RList;
+use Language::C::System::Preprocess;
+use Data::Maybe;
+use System::Cmd;
+use System::Directory;
+use Data::List;
 
 pub fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
     __op_addadd(/* do */ {

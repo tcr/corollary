@@ -1,10 +1,10 @@
 use haskell_support::*;
 
-use language_.c._data::ident;
-use language_.c._data::node;
-use language_.c._analysis::def_table;
-use language_.c._analysis::sem_rep;
-use language_.c._analysis::type_utils;
+use Language::C::Data::Ident;
+use Language::C::Data::Node;
+use Language::C::Analysis::DefTable;
+use Language::C::Analysis::SemRep;
+use Language::C::Analysis::TypeUtils;
 
 pub fn builtins() -> DefTable {
     foldr(doIdent, (foldr(doTypeDef, emptyDefTable, typedefs)), idents)

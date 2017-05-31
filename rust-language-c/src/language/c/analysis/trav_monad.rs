@@ -1,29 +1,20 @@
 use haskell_support::*;
 
-use language_.c._data;
-use language_.c._data::ident;
-use language_.c._data_.r_list;
-use as;
-use r_list;
-use language_.c._syntax;
-use language_.c._analysis::builtins;
-use language_.c._analysis::sem_error;
-use language_.c._analysis::sem_rep;
-use language_.c._analysis::def_table;
-use hiding;
-use enter_block_scope;
-use qualified;
-use language_.c._analysis::def_table;
-use as;
-use st;
-use data::int_map;
+use Language::C::Data;
+use Language::C::Data::Ident;
+use Language::C::Data::RList;
+use Language::C::Syntax;
+use Language::C::Analysis::Builtins;
+use Language::C::Analysis::SemError;
+use Language::C::Analysis::SemRep;
+use Language::C::Analysis::DefTable;
+use Language::C::Analysis::DefTable;
+use Data::IntMap;
 use insert;
-use data::maybe;
-use control::monad;
-use lift_m;
-use prelude;
-use hiding;
-use lookup;
+use Data::Maybe;
+use Control::Monad;
+use liftM;
+use Prelude;
 
 pub enum CLanguage {
     C89,
@@ -33,9 +24,18 @@ pub enum CLanguage {
 }
 pub use self::CLanguage::*;
 
-struct TravOptions(TravOptions<TypeRecord /* todo */>);
+struct TravOptions{
+    language: CLanguage
+}
 
-struct TravState<s>(TravState<TypeRecord /* todo */>);
+struct TravState<s>{
+    symbolTable: DefTable,
+    rerrors: RList<CError>,
+    nameGenerator: Vec<Name>,
+    doHandleExtDecl: fn(DeclEvent) -> Trav<s, ()>,
+    userState: s,
+    options: TravOptions
+}
 
 pub fn addRef(__use: u, def: d) -> m<()> {
     match (nodeInfo(__use), nodeInfo(def)) {

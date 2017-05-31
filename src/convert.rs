@@ -396,9 +396,17 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
         Pat::Brackets(ref pats) => {
             format!("[{}]", print_patterns(state.tab(), pats))
         }
-        Pat::Record(ref id, ..) => {
-            format!("{} {{ /* TODO pat record */ }}",
-                print_type_ident(state, &id.0))
+        Pat::Record(ref id, ref items) => {
+            let mut out = vec![];
+            for &(ast::Ident(ref i), ref v) in items {
+                out.push(format!("{}{}: {}",
+                    state.tab().indent(),
+                    i,
+                    print_pattern(state.tab().tab(), v)));
+            }
+            format!("{} {{\n{}\n{}}}",
+                print_type_ident(state, &id.0),
+                out.join(",\n"), state.indent())
         }
         Pat::ViewPattern(ast::Ident(ref s), ref p) => {
             format!("/* TODO ViewPattern */ {}", s) // print_pattern(state.tab(), &**p))
@@ -451,7 +459,17 @@ pub fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Pair(ref a, ref b) => {
             format!("fn({}) -> {}", print_type(state, &**a), print_type(state, &**b))
         }
-        Ty::Record(..) => "TypeRecord /* todo */".to_string(),
+        Ty::Record(ref items) => {
+            let mut out = vec![];
+            for &(ast::Ident(ref i), ref v) in items {
+                out.push(format!("{}{}: {}",
+                    state.tab().indent(),
+                    i,
+                    print_type(state.tab().tab(), v)));
+            }
+            format!("{{\n{}\n{}}}",
+                out.join(",\n"), state.indent())
+        }
         Ty::EmptyParen => "()".to_string(),
         Ty::RangeOp => ".. /* todo range */".to_string(),
         Ty::Dummy => "()".to_string(),
@@ -531,6 +549,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                 .into_iter()
                 .collect::<Vec<_>>();
 
+            // Enum
             if data.len() > 1 {
                 out.push(format!("{}{}pub enum {} {{\n{}{}\n{}}}\n{}{}",
                     state.indent(),
@@ -555,12 +574,14 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                         format!("{}{}",
                             print_type(state.tab(), tyset[0].clone()),
                             if tyset.len() > 2 {
-                                format!("{}", print_type(state.tab(), Ty::Tuple(tyset.clone()[1..].to_vec())))
+                                format!("{}", print_type(state, Ty::Tuple(tyset.clone()[1..].to_vec())))
+                            } else if tyset.len() == 2 && matches!(&tyset[1], &Ty::Record(..)) {
+                                format!("{}", print_type(state, Ty::Tuple(tyset.clone()[1..].to_vec())))
                             } else if tyset.len() > 1 {
-                                format!("({})", print_type(state.tab(), Ty::Tuple(tyset.clone()[1..].to_vec())))
+                                format!("({})", print_type(state, Ty::Tuple(tyset.clone()[1..].to_vec())))
                             } else {
                                 "".to_string()
-                            }
+                            },
                         )
                     }).collect::<Vec<_>>().join(&format!(",\n{}", state.tab().indent())),
                     state.indent(),
@@ -568,10 +589,23 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                     format!("pub use self::{}::*;", print_ident(state, name.0)),
                     ));
             } else {
-                let props = data.iter().map(|tyset| {
-                    print_types(state, tyset)
-                }).collect::<Vec<_>>().join(", ");
-                out.push(format!("{}{}struct {}{};",
+                let props = if data.len() == 0 {
+                    format!(";")
+                } else {
+                    let tyset = data[0].clone(); // 0th in pipe sequence
+                    if let &Ty::Span(ref inner) = &tyset[0] {
+                        if let &Ty::Record(..) = &inner[1] {
+                            assert!(inner.len() == 2);
+                            print_type(state, &inner[1])
+                        } else {
+                            format!("({});", print_types(state, &inner[1..]))
+                        }
+                    } else {
+                        unreachable!();
+                    }
+                };
+
+                out.push(format!("{}{}struct {}{}",
                     state.indent(),
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n{}", derive_rust.join(", "), state.indent())
@@ -583,7 +617,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                         v.extend(args);
                         v
                     })),
-                    if data.len() > 0 { format!("({})", props) } else { "".to_string() }
+                    props
                 ));
             }
             out.push("".to_string())

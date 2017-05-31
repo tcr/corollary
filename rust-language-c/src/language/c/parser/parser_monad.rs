@@ -1,23 +1,19 @@
 use haskell_support::*;
 
-use language_.c._data::error;
-use internal_err;
-use language_.c._data::position;
-use position;
-use language_.c._data::input_stream;
-use language_.c._data::name;
-use name;
-use language_.c._data::ident;
-use ident;
-use language_.c._parser::tokens;
-use c_token;
-use data::set;
-use set;
-use qualified;
-use data::set;
-use as;
-use set;
-use from_list;
+use Language::C::Data::Error;
+use internalErr;
+use Language::C::Data::Position;
+use Position;
+use Language::C::Data::InputStream;
+use Language::C::Data::Name;
+use Name;
+use Language::C::Data::Ident;
+use Ident;
+use Language::C::Parser::Tokens;
+use CToken;
+use Data::Set;
+use Set;
+use Data::Set;
 
 pub enum ParseResult<a> {
     POk(PState, a),
@@ -25,16 +21,28 @@ pub enum ParseResult<a> {
 }
 pub use self::ParseResult::*;
 
-struct PState(PState<TypeRecord /* todo */>);
+struct PState{
+    curPos: Position,
+    curInput: InputStream,
+    prevToken: CToken,
+    savedToken: CToken,
+    namesupply: Vec<Name>,
+    tyidents: Set<Ident>,
+    scopes: Vec<Set<Ident>>
+}
 
 pub fn addTypedef(ident: Ident) -> P<()> {
-    (P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s {
+    (P(|s, __OP__, PState {
+
+        }| { POk(s {
                 tyidents: Set::insert(ident, tyids)
             }, ()) }))
 }
 
 pub fn enterScope() -> P<()> {
-    P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s {
+    P(|s, __OP__, PState {
+
+        }| { POk(s {
                 scopes: __op_concat(tyids, ss)
             }, ()) })
 }
@@ -55,29 +63,41 @@ pub fn failP(pos: Position, msg: Vec<String>) -> P<a> {
 }
 
 pub fn getCurrentPosition() -> P<Position> {
-    P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s, pos) })
+    P(|s, __OP__, PState {
+
+        }| { POk(s, pos) })
 }
 
 pub fn getInput() -> P<InputStream> {
-    P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s, i) })
+    P(|s, __OP__, PState {
+
+        }| { POk(s, i) })
 }
 
 pub fn getLastToken() -> P<CToken> {
-    P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s, tok) })
+    P(|s, __OP__, PState {
+
+        }| { POk(s, tok) })
 }
 
 pub fn getNewName() -> P<Name> {
-    P(|s, __OP__, PState { /* TODO pat record */ }| { seq(n, POk(s {
+    P(|s, __OP__, PState {
+
+        }| { seq(n, POk(s {
                 namesupply: ns
             }, n)) })
 }
 
 pub fn getPos() -> P<Position> {
-    P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s, pos) })
+    P(|s, __OP__, PState {
+
+        }| { POk(s, pos) })
 }
 
 pub fn getSavedToken() -> P<CToken> {
-    P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s, tok) })
+    P(|s, __OP__, PState {
+
+        }| { POk(s, tok) })
 }
 
 pub fn handleEofToken() -> P<()> {
@@ -87,11 +107,15 @@ pub fn handleEofToken() -> P<()> {
 }
 
 pub fn isTypeIdent(ident: Ident) -> P<bool> {
-    P(|s, __OP__, PState { /* TODO pat record */ }| { __op_TODO_dollarnot(POk(s), Set::member(ident, tyids)) })
+    P(|s, __OP__, PState {
+
+        }| { __op_TODO_dollarnot(POk(s), Set::member(ident, tyids)) })
 }
 
 pub fn leaveScope() -> P<()> {
-    P(|s, __OP__, PState { /* TODO pat record */ }| { match ss {
+    P(|s, __OP__, PState {
+
+        }| { match ss {
             [] => {
                 __error!("leaveScope: already in global scope".to_string())
             },
@@ -137,7 +161,9 @@ pub fn setPos(pos: Position) -> P<()> {
 }
 
 pub fn shadowTypedef(ident: Ident) -> P<()> {
-    (P(|s, __OP__, PState { /* TODO pat record */ }| { POk(s {
+    (P(|s, __OP__, PState {
+
+        }| { POk(s {
                 tyidents: Set::member(__TODO_if(ident), Set::delete(tyids(then, ident), tyids(__TODO_else, tyids)))
             }, ()) }))
 }

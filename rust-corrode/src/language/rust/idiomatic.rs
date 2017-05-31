@@ -1,9 +1,6 @@
 use haskell_support::*;
 
-use qualified;
-use language::rust_.ast;
-use as;
-use rust;
+use Language::Rust::AST;
 
 pub fn itemIdioms(__0: Rust::Item) -> Rust::Item {
     match (__0) {

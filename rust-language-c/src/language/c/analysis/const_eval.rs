@@ -1,27 +1,35 @@
 use haskell_support::*;
 
-use control::monad;
-use data::bits;
-use data::maybe;
-use qualified;
-use data::map;
-use as;
-use map;
-use language_.c._syntax_.ast;
-use language_.c._syntax::constants;
-use language_.c._analysis::ast_analysis;
-use t_expr;
-use language_.c._analysis::debug;
-use language_.c._analysis::decl_analysis;
-use language_.c._analysis::def_table;
-use language_.c._data;
-use language_.c._pretty;
-use language_.c._analysis::sem_rep;
-use language_.c._analysis::trav_monad;
-use language_.c._analysis::type_utils;
-use text::pretty_print::hughes_pj;
+use Control::Monad;
+use Data::Bits;
+use Data::Maybe;
+use Data::Map;
+use Language::C::Syntax::AST;
+use Language::C::Syntax::Constants;
+use Language::C::Analysis::AstAnalysis;
+use tExpr;
+use Language::C::Analysis::Debug;
+use Language::C::Analysis::DeclAnalysis;
+use Language::C::Analysis::DefTable;
+use Language::C::Data;
+use Language::C::Pretty;
+use Language::C::Analysis::SemRep;
+use Language::C::Analysis::TravMonad;
+use Language::C::Analysis::TypeUtils;
+use Text::PrettyPrint::HughesPJ;
 
-struct MachineDesc(MachineDesc<TypeRecord /* todo */>);
+struct MachineDesc{
+    iSize: fn(IntType) -> Integer,
+    fSize: fn(FloatType) -> Integer,
+    builtinSize: fn(BuiltinType) -> Integer,
+    ptrSize: Integer,
+    voidSize: Integer,
+    iAlign: fn(IntType) -> Integer,
+    fAlign: fn(FloatType) -> Integer,
+    builtinAlign: fn(BuiltinType) -> Integer,
+    ptrAlign: Integer,
+    voidAlign: Integer
+}
 
 pub fn alignofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
     match (__0, __1, __2) {

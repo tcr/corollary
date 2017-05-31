@@ -1,6 +1,6 @@
 use haskell_support::*;
 
-use data::generics;
+use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CAssignOp {

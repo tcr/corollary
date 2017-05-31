@@ -1,47 +1,49 @@
 use haskell_support::*;
 
-use control::monad;
-use control::monad_.st;
-use control::monad::trans::class;
-use control::monad::trans::except;
-use control::monad::trans_.rws._strict;
-use data::foldable;
-use qualified;
-use data::map::lazy;
-use as;
-use map;
-use qualified;
-use data::int_map::strict;
-use as;
-use int_map;
-use data::maybe;
-use data::list;
-use data_.st_ref;
-use qualified;
-use data::set;
-use as;
-use set;
-use language_.c;
-use language_.c._data::ident;
-use qualified;
-use language::rust_.ast;
-use as;
-use rust;
-use language::rust::corrode_.cfg;
-use language::rust::corrode::crate_map;
-use text::pretty_print::hughes_pj_class;
-use hiding;
-use pretty;
+use Control::Monad;
+use Control::Monad::ST;
+use Control::Monad::Trans::Class;
+use Control::Monad::Trans::Except;
+use Control::Monad::Trans::RWS::Strict;
+use Data::Foldable;
+use Data::Map::Lazy;
+use Data::IntMap::Strict;
+use Data::Maybe;
+use Data::List;
+use Data::STRef;
+use Data::Set;
+use Language::C;
+use Language::C::Data::Ident;
+use Language::Rust::AST;
+use Language::Rust::Corrode::CFG;
+use Language::Rust::Corrode::CrateMap;
+use Text::PrettyPrint::HughesPJClass;
 
-struct FunctionContext(FunctionContext<TypeRecord /* todo */>);
+struct FunctionContext{
+    functionReturnType: Option<CType>,
+    functionName: Option<String>,
+    itemRewrites: ItemRewrites
+}
 
-struct Output(Output<TypeRecord /* todo */>);
+struct Output{
+    outputItems: Vec<Rust::Item>,
+    outputExterns: Map::Map<String, Rust::ExternItem>,
+    outputIncomplete: Set::Set<String>
+}
 
-struct GlobalState(GlobalState<TypeRecord /* todo */>);
+struct GlobalState{
+    unique: isize,
+    usedForwardRefs: Set::Set<Ident>
+}
 
-struct EnvState<s>(EnvState<TypeRecord /* todo */>);
+struct EnvState<s>{
+    symbolEnvironment: Vec<(Ident, EnvMonad<s, Result>)>,
+    typedefEnvironment: Vec<(Ident, EnvMonad<s, IntermediateType>)>,
+    tagEnvironment: Vec<(Ident, EnvMonad<s, CType>)>,
+    globalState: GlobalState
+}
 
-struct Initializer(Initializer<Option<Rust::Expr>, IntMap::IntMap<Initializer>>);
+struct Initializer(Option<Rust::Expr>, IntMap::IntMap<Initializer>);
 
 #[derive(Debug)]
 pub enum Designator {
@@ -50,9 +52,17 @@ pub enum Designator {
 }
 pub use self::Designator::*;
 
-struct OuterLabels(OuterLabels<TypeRecord /* todo */>);
+struct OuterLabels{
+    onBreak: Option<Label>,
+    onContinue: Option<Label>,
+    switchExpression: Option<CExpr>
+}
 
-struct Result(Result<TypeRecord /* todo */>);
+struct Result{
+    resultType: CType,
+    resultMutable: Rust::Mutable,
+    result: Rust::Expr
+}
 
 #[derive(Debug, Eq)]
 pub enum Signed {
@@ -83,7 +93,11 @@ pub enum CType {
 }
 pub use self::CType::*;
 
-struct IntermediateType(IntermediateType<TypeRecord /* todo */>);
+struct IntermediateType{
+    typeMutable: Rust::Mutable,
+    typeIsFunc: bool,
+    typeRep: CType
+}
 
 pub fn addExternIdent(ident: Ident, deferred: EnvMonad<s, IntermediateType>, mkItem: fn(String) -> fn((Rust::Mutable, CType)) -> Rust::ExternItem) -> EnvMonad<s, ()> {
     /* do */ {
@@ -378,7 +392,9 @@ pub fn castTo(__0: CType, __1: Result) -> Rust::Expr {
         (target, source) => {
             /* Expr::Error */ Error
         },
-        (target, Result { /* TODO pat record */ }) => {
+        (target, Result {
+
+            }) => {
             castTo(target, Result {
                     resultType: IsPtr(__mut, el),
                     resultMutable: Rust::Immutable,
@@ -388,10 +404,16 @@ pub fn castTo(__0: CType, __1: Result) -> Rust::Expr {
         (IsBool, source) => {
             toBool(source)
         },
-        (target, __OP__, IsInt { /* TODO pat record */ }, Result { /* TODO pat record */ }) => {
+        (target, __OP__, IsInt {
+
+            }, Result {
+
+            }) => {
             Rust::Lit((Rust::LitInt(n, repr, (toRustType(target)))))
         },
-        (IsInt(Signed, w), Result { /* TODO pat record */ }) => {
+        (IsInt(Signed, w), Result {
+
+            }) => {
             Rust::Neg((Rust::Lit((Rust::LitInt(n, repr, (toRustType((IsInt(Signed, w)))))))))
         },
         (target, source) => {
@@ -430,10 +452,14 @@ pub fn compatibleInitializer(__0: CType, __1: CType) -> bool {
         (IsStruct(name1, _), IsStruct(name2, _)) => {
             (name1 == name2)
         },
-        (IsStruct { /* TODO pat record */ }, _) => {
+        (IsStruct {
+
+        }, _) => {
             false
         },
-        (_, IsStruct { /* TODO pat record */ }) => {
+        (_, IsStruct {
+
+        }) => {
             false
         },
         (_, _) => {
@@ -828,7 +854,9 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                         None
                                     }
                                 },
-                                (Some(CStatic(_)), [CFunDeclr { /* TODO pat record */ }, _]) => {
+                                (Some(CStatic(_)), [CFunDeclr {
+
+                                                }, _]) => {
                                     /* do */ {
                                         addSymbolIdentAction(ident)(/* do */ {
                                             let itype = deferred;
@@ -839,7 +867,9 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                         None
                                     }
                                 },
-                                (_, [CFunDeclr { /* TODO pat record */ }, _]) => {
+                                (_, [CFunDeclr {
+
+                                                }, _]) => {
                                     /* do */ {
                                         addExternIdent(ident, deferred)(|name, (_mut, ty)| { match ty {
                                                 IsFunc(retTy, args, variadic) => {
@@ -863,7 +893,10 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                 },
                                 (Some(CStatic(_)), _) => {
                                     /* do */ {
-                                        let _TODO_RECORD_ { /* TODO pat record */ } = deferred;
+                                        let _TODO_RECORD_ {
+                                            typeMutable: __mut,
+                                            typeRep: ty
+                                        } = deferred;
 
                                         let name = addSymbolIdent(ident, (__mut, ty));
 
@@ -874,7 +907,10 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                                 },
                                 _ => {
                                     /* do */ {
-                                        let _TODO_RECORD_ { /* TODO pat record */ } = deferred;
+                                        let _TODO_RECORD_ {
+                                            typeMutable: __mut,
+                                            typeRep: ty
+                                        } = deferred;
 
                                         let name = addSymbolIdent(ident, (__mut, ty));
 
@@ -889,7 +925,9 @@ pub fn interpretDeclarations(__0: MakeBinding<s, b>, __1: CDecl, __2: EnvMonad<s
                 (catMaybes(mbinds))
             }
         },
-        (_, node, __OP__, CStaticAssert { /* TODO pat record */ }) => {
+        (_, node, __OP__, CStaticAssert {
+
+            }) => {
             unimplemented(node)
         },
     }
@@ -997,7 +1035,9 @@ pub fn interpretExpr(__0: bool, __1: CExpr) -> EnvMonad<s, Result> {
                                     result: Rust::Deref((result(expr_q)))
                                 }
                             },
-                            IsFunc { /* TODO pat record */ } => {
+                            IsFunc {
+
+                            } => {
                                 expr_q
                             },
                             _ => {
@@ -1472,7 +1512,9 @@ pub fn interpretStatement(__0: CStat, __1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>,
         (stmt, __OP__, CSwitch(expr, body, node), next) => {
             /* do */ {
                 let (bindings, expr_q) = match expr {
-                        CVar { /* TODO pat record */ } => {
+                        CVar {
+
+                        } => {
                             (vec![], expr)
                         },
                         _ => {
@@ -1745,7 +1787,9 @@ pub fn nestedObject(ty: CType, desig: Designator) -> Option<Designator> {
 
 pub fn nextObject(__0: Designator) -> CurrentObject {
     match (__0) {
-        Base { /* TODO pat record */ } => {
+        Base {
+
+        } => {
             None
         },
         From(_, i, [ty, remaining], base) => {
@@ -1854,7 +1898,9 @@ pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, 
                     };
 
                 let indices = unfoldr((|o| { match o {
-                                Base { /* TODO pat record */ } => {
+                                Base {
+
+                                } => {
                                     None
                                 },
                                 From(_, j, _, p) => {
@@ -1957,13 +2003,19 @@ pub fn statementsToBlock(__0: Vec<Rust::Stmt>) -> Rust::Block {
 
 pub fn toBool(__0: Result) -> Rust::Expr {
     match (__0) {
-        Result { /* TODO pat record */ } => {
+        Result {
+
+            } => {
             Rust::Lit((Rust::LitBool(false)))
         },
-        Result { /* TODO pat record */ } => {
+        Result {
+
+            } => {
             Rust::Lit((Rust::LitBool(true)))
         },
-        Result { /* TODO pat record */ } => {
+        Result {
+
+            } => {
             match t {
                 IsBool => {
                     v
@@ -1981,13 +2033,19 @@ pub fn toBool(__0: Result) -> Rust::Expr {
 
 pub fn toNotBool(__0: Result) -> Rust::Expr {
     match (__0) {
-        Result { /* TODO pat record */ } => {
+        Result {
+
+            } => {
             Rust::Lit((Rust::LitBool(true)))
         },
-        Result { /* TODO pat record */ } => {
+        Result {
+
+            } => {
             Rust::Lit((Rust::LitBool(false)))
         },
-        Result { /* TODO pat record */ } => {
+        Result {
+
+            } => {
             match t {
                 IsBool => {
                     Rust::Not(v)
@@ -2005,13 +2063,17 @@ pub fn toNotBool(__0: Result) -> Rust::Expr {
 
 pub fn toPtr(__0: Result, __1: Option<Result>) -> Option<Result> {
     match (__0, __1, __2) {
-        (ptr, __OP__, Result { /* TODO pat record */ }) => {
+        (ptr, __OP__, Result {
+
+            }) => {
             Some(ptr {
                     resultType: IsPtr(__mut, el),
                     result: castTo((IsPtr(__mut, el)), ptr)
                 })
         },
-        (ptr, __OP__, Result { /* TODO pat record */ }) => {
+        (ptr, __OP__, Result {
+
+            }) => {
             Some(ptr)
         },
         _ => {
@@ -2118,7 +2180,9 @@ pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad<s, Initializer>
 
 pub fn typeName(__0: CDecl, __1: EnvMonad<s, (Rust::Mutable, CType)>) -> EnvMonad<s, (Rust::Mutable, CType)> {
     match (__0, __1, __2) {
-        (decl, __OP__, CStaticAssert { /* TODO pat record */ }) => {
+        (decl, __OP__, CStaticAssert {
+
+            }) => {
             badSource(decl, "static assert in type name ".to_string())
         },
         (decl, __OP__, CDecl(spec, declarators, _)) => {
@@ -2227,7 +2291,9 @@ pub fn wrapMain(declr: CDeclr, realName: String, argTypes: Vec<CType>) -> EnvMon
 
 pub fn wrapping(__0: Result, __1: Result) -> Result {
     match (__0, __1, __2) {
-        (r, __OP__, Result { /* TODO pat record */ }) => {
+        (r, __OP__, Result {
+
+            }) => {
             match result(r) {
                 Rust::Add(lhs, rhs) => {
                     r {

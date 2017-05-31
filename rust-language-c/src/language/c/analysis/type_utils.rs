@@ -1,7 +1,7 @@
 use haskell_support::*;
 
-use language_.c._analysis::sem_rep;
-use language_.c._syntax::constants;
+use Language::C::Analysis::SemRep;
+use Language::C::Syntax::Constants;
 
 pub fn baseType(__0: Type) -> Type {
     match (__0) {

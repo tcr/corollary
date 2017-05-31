@@ -1,14 +1,14 @@
 use haskell_support::*;
 
-use language_.c._data::input_stream;
-use system::exit;
-use system::directory;
-use system::file_path;
-use system::environment;
-use system_.io;
-use control::exception;
-use control::monad;
-use data::list;
+use Language::C::Data::InputStream;
+use System::Exit;
+use System::Directory;
+use System::FilePath;
+use System::Environment;
+use System::IO;
+use Control::Exception;
+use Control::Monad;
+use Data::List;
 
 pub enum CppOption {
     IncludeDir(FilePath),
@@ -18,7 +18,13 @@ pub enum CppOption {
 }
 pub use self::CppOption::*;
 
-struct CppArgs(CppArgs<TypeRecord /* todo */>);
+struct CppArgs{
+    cppOptions: Vec<CppOption>,
+    extraOptions: Vec<String>,
+    cppTmpDir: Option<FilePath>,
+    inputFile: FilePath,
+    outputFile: Option<FilePath>
+}
 
 pub fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
     cpp_args {

@@ -1,9 +1,9 @@
 use haskell_support::*;
 
-use data::typeable;
-use data::generics;
-use language_.c._data::node;
-use language_.c._data::position;
+use Data::Typeable;
+use Data::Generics;
+use Language::C::Data::Node;
+use Language::C::Data::Position;
 
 #[derive(Eq, Ord)]
 pub enum ErrorLevel {
@@ -14,13 +14,13 @@ pub enum ErrorLevel {
 pub use self::ErrorLevel::*;
 
 #[derive(Debug)]
-struct ErrorInfo(ErrorInfo<ErrorLevel, Position, Vec<String>>);
+struct ErrorInfo(ErrorLevel, Position, Vec<String>);
 
 #[derive(Debug)]
-struct CError(CError<err>);
+struct CError(err);
 
 #[derive(Debug)]
-struct UnsupportedFeature(UnsupportedFeature<String, Position>);
+struct UnsupportedFeature(String, Position);
 
 pub fn errorLevel() -> ErrorLevel {
     (|ErrorInfo(lvl, _, _)| { lvl }(errorInfo))

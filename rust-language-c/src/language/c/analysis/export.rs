@@ -1,10 +1,10 @@
 use haskell_support::*;
 
-use language_.c._data::ident;
-use language_.c._data::node;
-use language_.c._syntax_.ast;
-use language_.c._analysis::sem_rep;
-use data::maybe;
+use Language::C::Data::Ident;
+use Language::C::Data::Node;
+use Language::C::Syntax::AST;
+use Language::C::Analysis::SemRep;
+use Data::Maybe;
 
 pub fn exportArraySize(__0: ArraySize) -> CArrSize {
     match (__0) {

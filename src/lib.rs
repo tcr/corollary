@@ -8,6 +8,7 @@ extern crate parser_haskell;
 extern crate regex;
 extern crate tempdir;
 extern crate walkdir;
+#[macro_use] extern crate matches;
 
 pub mod ir;
 pub mod convert;

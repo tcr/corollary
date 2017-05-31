@@ -21,6 +21,7 @@ regex = "0.2.1"
 tempdir = "0.3"
 walkdir = "1"
 Inflector = "0.10.0"
+matches = "0.1.4"
 
 [dependencies.parser-haskell]
 path = "./parser-haskell"

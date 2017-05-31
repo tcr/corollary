@@ -1,12 +1,12 @@
 use haskell_support::*;
 
-use data::bits;
-use data::char;
-use numeric;
-use show_oct;
-use language_.c._data::node;
-use language_.c._data::position;
-use data::generics;
+use Data::Bits;
+use Data::Char;
+use Numeric;
+use showOct;
+use Language::C::Data::Node;
+use Language::C::Data::Position;
+use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CChar {
@@ -33,13 +33,13 @@ pub enum CIntFlag {
 pub use self::CIntFlag::*;
 
 #[derive(Clone, Debug, Eq, Ord)]
-struct CInteger(CInteger<Integer, CIntRepr, Flags<CIntFlag>>);
+struct CInteger(Integer, CIntRepr, Flags<CIntFlag>);
 
 #[derive(Clone, Debug, Eq, Ord)]
-struct CFloat(CFloat<String>);
+struct CFloat(String);
 
 #[derive(Clone, Debug, Eq, Ord)]
-struct CString(CString<Vec<Char>, bool>);
+struct CString(Vec<Char>, bool);
 
 pub fn _showWideFlag(flag: bool) -> ShowS {
     __TODO_if(flag, then, showString, "L".to_string(), __TODO_else, id)

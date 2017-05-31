@@ -1,5 +1,5 @@
 use haskell_support::*;
 
-use language_.c._syntax_.ast;
-use language_.c._syntax::constants;
+use Language::C::Syntax::AST;
+use Language::C::Syntax::Constants;
 

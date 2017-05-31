@@ -1,26 +1,15 @@
 use haskell_support::*;
 
-use prelude;
-use hiding;
-use lookup;
-use qualified;
-use prelude;
-use qualified;
-use data::map;
-use as;
-use map;
-use empty;
-use qualified;
-use data::list;
-use as;
-use list;
-use union_by;
-use data::map;
-use map;
-use language_.c._data::ident;
-use ident;
+use Prelude;
+use Prelude;
+use Data::Map;
+use Data::List;
+use Data::Map;
+use Map;
+use Language::C::Data::Ident;
+use Ident;
 
-struct NameSpaceMap<k, v>(NsMap<Map<k, v>, Vec<Vec<(k, v)>>>);
+struct NameSpaceMap<k, v>(Map<k, v>, Vec<Vec<(k, v)>>);
 
 pub fn defGlobal(NsMap(gs, lss): NameSpaceMap<k, a>, ident: k, def: a) -> (NameSpaceMap<k, a>, Option<a>) {
     (NsMap((Map::insert(ident, def, gs)), lss), Map::lookup(ident, gs))

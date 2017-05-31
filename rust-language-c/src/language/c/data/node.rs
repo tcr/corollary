@@ -1,9 +1,9 @@
 use haskell_support::*;
 
-use language_.c._data::position;
-use language_.c._data::name;
-use name;
-use data::generics;
+use Language::C::Data::Position;
+use Language::C::Data::Name;
+use Name;
+use Data::Generics;
 
 #[derive(Clone, Debug)]
 pub enum NodeInfo {

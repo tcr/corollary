@@ -1,11 +1,11 @@
 use haskell_support::*;
 
-use data::char;
-use language_.c._data::position;
-use language_.c._data::node;
-use language_.c._data::name;
-use name;
-use data::generics;
+use Data::Char;
+use Language::C::Data::Position;
+use Language::C::Data::Node;
+use Language::C::Data::Name;
+use Name;
+use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum SUERef {
@@ -15,7 +15,7 @@ pub enum SUERef {
 pub use self::SUERef::*;
 
 #[derive(Clone, Debug)]
-struct Ident(Ident<String, isize, NodeInfo>);
+struct Ident(String, isize, NodeInfo);
 
 pub fn bits14() -> isize {
     __op_power(2, (14))

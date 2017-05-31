@@ -1,8 +1,8 @@
 use haskell_support::*;
 
-use data::list;
-use language_.c._data::ident;
-use language_.c._syntax_.ast;
+use Data::List;
+use Language::C::Data::Ident;
+use Language::C::Syntax::AST;
 
 pub fn compoundSubStmts(__0: CBlockItem) -> Vec<CStat> {
     match (__0) {

@@ -1,23 +1,15 @@
 use haskell_support::*;
 
-use control::monad;
-use control::monad::trans::state;
-use data::foldable;
-use qualified;
-use data::int_map::lazy;
-use as;
-use int_map;
-use qualified;
-use data::int_set;
-use as;
-use int_set;
-use data::maybe;
-use data::traversable;
-use text::pretty_print::hughes_pj_class;
-use hiding;
-use empty;
+use Control::Monad;
+use Control::Monad::Trans::State;
+use Data::Foldable;
+use Data::IntMap::Lazy;
+use Data::IntSet;
+use Data::Maybe;
+use Data::Traversable;
+use Text::PrettyPrint::HughesPJClass;
 
-struct BasicBlock<s, c>(BasicBlock<s, Terminator<c>>);
+struct BasicBlock<s, c>(s, Terminator<c>);
 
 #[derive(Debug)]
 pub enum Terminator_q<c, l> {
@@ -31,14 +23,21 @@ struct Unordered;
 
 struct DepthFirst;
 
-struct CFG<k, s, c>(CFG<Label, IntMap::IntMap<BasicBlock<s, c>>>);
+struct CFG<k, s, c>(Label, IntMap::IntMap<BasicBlock<s, c>>);
 
-struct BuildState<s, c>(BuildState<TypeRecord /* todo */>);
+struct BuildState<s, c>{
+    buildLabel: Label,
+    buildBlocks: IntMap::IntMap<BasicBlock<s, c>>
+}
 
 #[derive(Debug)]
 pub enum StructureLabel<s, c> {
-    GoTo(TypeRecord /* todo */),
-    ExitTo(TypeRecord /* todo */),
+    GoTo{
+        structureLabel: Label
+    },
+    ExitTo{
+        structureLabel: Label
+    },
     Nested(Vec<Structure<s, c>>)
 }
 pub use self::StructureLabel::*;
@@ -52,7 +51,10 @@ pub enum Structure_q<s, c, a> {
 pub use self::Structure_q::*;
 
 #[derive(Debug)]
-struct Structure<s, c>(Structure<TypeRecord /* todo */>);
+struct Structure<s, c>{
+    structureEntries: IntSet::IntSet,
+    structureBody: Structure_q<s, c, Vec<Structure<s, c>>>
+}
 
 pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
     /* do */ {

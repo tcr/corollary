@@ -71,8 +71,15 @@ Num: isize = {
     r"[0-9]+" => isize::from_str(<>).unwrap()
 };
 
-Ident: Ident = {
+ImportIdent: Ident = {
     r"[a-zA-Z_.][.a-zA-Z_0-9']*(\.:[.+/*=-]+)?" => Ident((<>).to_string()),
+};
+
+Ident: Ident = {
+    <ImportIdent> => <>,
+    "as" => Ident((<>).to_string()),
+    "qualified" => Ident((<>).to_string()),
+    "hiding" => Ident((<>).to_string()),
 };
 
 Ctor: Ident = {
@@ -211,7 +218,7 @@ SContext: () = {
 };
 
 Item: Item = {
-    "import" <ImportList+> => Item::Import(<>),
+    "import" "qualified"? <ImportList+> ("as" ImportList+)? ("hiding" ImportList+)? => Item::Import(<>),
 
     "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
       Where
@@ -341,12 +348,12 @@ PatList: Vec<Pat> = {
 };
 
 ImportName: Ident = {
-    Ident => <>,
+    ImportIdent => <>,
     ".." => Ident("..".to_string()),
 };
 
 ImportList: Vec<Ident> = {
-    <Ident> => vec![<>],
+    <ImportIdent> => vec![<>],
 
     "(" ")" => vec![],
     "(" <a:CommaOnce<(<Ident> ("(" ImportName ")")?)>> ")" => a,

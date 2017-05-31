@@ -1,15 +1,12 @@
 use haskell_support::*;
 
-use data::list;
+use Data::List;
 use partition;
-use qualified;
-use data::set;
-use as;
-use set;
-use text::pretty_print::hughes_pj;
-use debug::trace;
-use language_.c._data;
-use language_.c._syntax;
+use Data::Set;
+use Text::PrettyPrint::HughesPJ;
+use Debug::Trace;
+use Language::C::Data;
+use Language::C::Syntax;
 
 pub fn attrlistP(__0: Vec<CAttr>) -> Doc {
     match (__0) {

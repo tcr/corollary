@@ -1,14 +1,14 @@
 use haskell_support::*;
 
-use data::typeable;
-use language_.c._analysis::sem_rep;
-use language_.c._data::error;
-use language_.c._data::node;
+use Data::Typeable;
+use Language::C::Analysis::SemRep;
+use Language::C::Data::Error;
+use Language::C::Data::Node;
 
 #[derive(Debug)]
-struct RedefError(RedefError<ErrorLevel, RedefInfo>);
+struct RedefError(ErrorLevel, RedefInfo);
 
-struct RedefInfo(RedefInfo<String, RedefKind, NodeInfo, NodeInfo>);
+struct RedefInfo(String, RedefKind, NodeInfo, NodeInfo);
 
 pub enum RedefKind {
     DuplicateDef,
@@ -20,7 +20,7 @@ pub enum RedefKind {
 pub use self::RedefKind::*;
 
 #[derive(Debug)]
-struct TypeMismatch(TypeMismatch<String, (NodeInfo, Type), (NodeInfo, Type)>);
+struct TypeMismatch(String, (NodeInfo, Type), (NodeInfo, Type));
 
 pub fn badSpecifierError(node_info: NodeInfo, msg: String) -> BadSpecifierError {
     BadSpecifierError((mkErrorInfo(LevelError, msg, node_info)))

@@ -1,37 +1,28 @@
 use haskell_support::*;
 
-use language_.c._data::error;
-use language_.c._data::node;
-use language_.c._data::ident;
-use language_.c._pretty;
-use language_.c._syntax;
-use language_.c._analysis::ast_analysis;
-use t_expr;
-use language_.c._analysis::def_table;
-use tag_fwd_decl;
-use language_.c._analysis::export;
-use language_.c._analysis::sem_error;
-use language_.c._analysis::sem_rep;
-use language_.c._analysis::trav_monad;
-use data::foldable;
-use as;
-use f;
-use foldr_m;
-use qualified;
-use data::traversable;
-use as;
-use t;
-use control::monad;
-use lift_m;
-use data::list;
+use Language::C::Data::Error;
+use Language::C::Data::Node;
+use Language::C::Data::Ident;
+use Language::C::Pretty;
+use Language::C::Syntax;
+use Language::C::Analysis::AstAnalysis;
+use tExpr;
+use Language::C::Analysis::DefTable;
+use TagFwdDecl;
+use Language::C::Analysis::Export;
+use Language::C::Analysis::SemError;
+use Language::C::Analysis::SemRep;
+use Language::C::Analysis::TravMonad;
+use Data::Foldable;
+use Data::Traversable;
+use Control::Monad;
+use liftM;
+use Data::List;
 use intersperse;
-use data::map;
-use map;
-use qualified;
-use data::map;
-use as;
-use map;
-use text::pretty_print::hughes_pj;
+use Data::Map;
+use Map;
+use Data::Map;
+use Text::PrettyPrint::HughesPJ;
 
 #[derive(Debug, Eq, Ord, Read)]
 pub enum StorageSpec {
@@ -44,7 +35,7 @@ pub enum StorageSpec {
 }
 pub use self::StorageSpec::*;
 
-struct VarDeclInfo(VarDeclInfo<VarName, bool, StorageSpec, Attributes, Type, NodeInfo>);
+struct VarDeclInfo(VarName, bool, StorageSpec, Attributes, Type, NodeInfo);
 
 #[derive(Eq, Ord)]
 pub enum NumBaseType {
@@ -73,7 +64,12 @@ pub enum SizeMod {
 }
 pub use self::SizeMod::*;
 
-struct NumTypeSpec(NumTypeSpec<TypeRecord /* todo */>);
+struct NumTypeSpec{
+    base: NumBaseType,
+    signSpec: SignSpec,
+    sizeMod: SizeMod,
+    isComplex: bool
+}
 
 pub enum TypeSpecAnalysis {
     TSNone,

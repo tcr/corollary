@@ -1,10 +1,15 @@
 use haskell_support::*;
 
-use data::generics;
+use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum Position {
-    Position(TypeRecord /* todo */),
+    Position{
+        posOffset: isize,
+        posFile: String,
+        posRow: isize,
+        posColumn: isize
+    },
     NoPosition,
     BuiltinPosition,
     InternalPosition
