@@ -1,22 +1,4 @@
-mod haskell_support {
-    pub trait Addable {
-        fn add(self, right: Self) -> Self;
-    }
-
-    impl Addable for String {
-        fn add(self, right: Self) -> Self {
-            format!("{}{}", self, right)
-        }
-    }
-
-    pub fn __op_addadd<A: Addable>(left: A, right: A) -> A {
-        Addable::add(left, right)
-    }
-}
-
-
-pub mod Language_C_Analysis_Debug {
-    use haskell_support::*;
+use corollary_support::*;
 
 use Language::C::Analysis::SemRep;
 use Language::C::Analysis::Export;
@@ -30,39 +12,36 @@ use Data::Map;
 use Map;
 use Data::Map;
 
-    pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
-        vec![
-            ("Enumeration Constants".to_string(), Map::size(enumerators)),
-            ("Total Object/Function Declarations".to_string(), Map::size(all_decls)),
-            ("Object definitions".to_string(), Map::size(objDefs)),
-            ("Function Definitions".to_string(), Map::size(funDefs)),
-            ("Tag definitions".to_string(), Map::size(tagDefs)),
-            ("TypeDefs".to_string(), Map::size(typeDefs)),
-        ]
-    }
-
-    pub fn joinComma() -> Doc {
-        hsep(punctuate(comma, map(pretty)))
-    }
-
-    pub fn prettyAssocs(label: String) -> Doc {
-        prettyAssocsWith(label, pretty, pretty)
-    }
-
-    pub fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
-        __op_line_something(text(label), (nest(8))((vcat(map(prettyEntry, theMap)))))
-    }
-
-    pub fn terminateSemi() -> Doc {
-        terminateSemi_(map(pretty))
-    }
-
-    pub fn terminateSemi_() -> Doc {
-        hsep(map((__op_ne(semi))))
-    }
-
+pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
+    vec![
+        ("Enumeration Constants".to_string(), Map::size(enumerators)),
+        ("Total Object/Function Declarations".to_string(), Map::size(all_decls)),
+        ("Object definitions".to_string(), Map::size(objDefs)),
+        ("Function Definitions".to_string(), Map::size(funDefs)),
+        ("Tag definitions".to_string(), Map::size(tagDefs)),
+        ("TypeDefs".to_string(), Map::size(typeDefs)),
+    ]
 }
 
+pub fn joinComma() -> Doc {
+    hsep(punctuate(comma, map(pretty)))
+}
+
+pub fn prettyAssocs(label: String) -> Doc {
+    prettyAssocsWith(label, pretty, pretty)
+}
+
+pub fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
+    __op_line_something(text(label), (nest(8))((vcat(map(prettyEntry, theMap)))))
+}
+
+pub fn terminateSemi() -> Doc {
+    terminateSemi_(map(pretty))
+}
+
+pub fn terminateSemi_() -> Doc {
+    hsep(map((__op_ne(semi))))
+}
 
 
 

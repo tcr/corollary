@@ -9,8 +9,8 @@ falsy = false
 
 {-RUST
 fn main() {
-    assert_eq!(true, Test_Hello::truthy());
-    assert_eq!(false, Test_Hello::falsy());
+    assert_eq!(true, truthy());
+    assert_eq!(false, falsy());
     println!("success.");
 }
 /RUST-}

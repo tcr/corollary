@@ -1,71 +1,50 @@
-mod haskell_support {
-    pub trait Addable {
-        fn add(self, right: Self) -> Self;
-    }
-
-    impl Addable for String {
-        fn add(self, right: Self) -> Self {
-            format!("{}{}", self, right)
-        }
-    }
-
-    pub fn __op_addadd<A: Addable>(left: A, right: A) -> A {
-        Addable::add(left, right)
-    }
-}
-
-
-pub mod Language_C_Data_RList {
-    use haskell_support::*;
+use corollary_support::*;
 
 use Prelude;
 use Data::List;
 
-    pub fn appendr(xs: Vec<a>, Reversed(ys): Reversed<Vec<a>>) -> Reversed<Vec<a>> {
-        Reversed((__op_addadd(ys, List::reverse(xs))))
-    }
-
-    pub fn empty() -> Reversed<Vec<a>> {
-        Reversed(vec![])
-    }
-
-    pub fn rappend(Reversed(xs): Reversed<Vec<a>>, ys: Vec<a>) -> Reversed<Vec<a>> {
-        Reversed((__op_addadd(List::reverse(ys), xs)))
-    }
-
-    pub fn rappendr(Reversed(xs): Reversed<Vec<a>>, Reversed(ys): Reversed<Vec<a>>) -> Reversed<Vec<a>> {
-        Reversed((__op_addadd(ys, xs)))
-    }
-
-    pub fn reverse(Reversed(xs): Reversed<Vec<a>>) -> Vec<a> {
-        List::reverse(xs)
-    }
-
-    pub fn rmap(f: fn(a) -> b, Reversed(xs): Reversed<Vec<a>>) -> Reversed<Vec<b>> {
-        Reversed((map(f, xs)))
-    }
-
-    pub fn singleton(x: a) -> Reversed<Vec<a>> {
-        Reversed(vec![x])
-    }
-
-    pub fn snoc(Reversed(xs): Reversed<Vec<a>>, x: a) -> Reversed<Vec<a>> {
-        Reversed((__op_concat(x, xs)))
-    }
-
-    pub fn viewr(__0: Reversed<Vec<a>>) -> (Reversed<Vec<a>>, a) {
-        match (__0) {
-            Reversed([]) => {
-                __error!("viewr: empty RList".to_string())
-            },
-            Reversed([x, xs]) => {
-                (Reversed(xs), x)
-            },
-        }
-    }
-
+pub fn appendr(xs: Vec<a>, Reversed(ys): Reversed<Vec<a>>) -> Reversed<Vec<a>> {
+    Reversed((__op_addadd(ys, List::reverse(xs))))
 }
 
+pub fn empty() -> Reversed<Vec<a>> {
+    Reversed(vec![])
+}
+
+pub fn rappend(Reversed(xs): Reversed<Vec<a>>, ys: Vec<a>) -> Reversed<Vec<a>> {
+    Reversed((__op_addadd(List::reverse(ys), xs)))
+}
+
+pub fn rappendr(Reversed(xs): Reversed<Vec<a>>, Reversed(ys): Reversed<Vec<a>>) -> Reversed<Vec<a>> {
+    Reversed((__op_addadd(ys, xs)))
+}
+
+pub fn reverse(Reversed(xs): Reversed<Vec<a>>) -> Vec<a> {
+    List::reverse(xs)
+}
+
+pub fn rmap(f: fn(a) -> b, Reversed(xs): Reversed<Vec<a>>) -> Reversed<Vec<b>> {
+    Reversed((map(f, xs)))
+}
+
+pub fn singleton(x: a) -> Reversed<Vec<a>> {
+    Reversed(vec![x])
+}
+
+pub fn snoc(Reversed(xs): Reversed<Vec<a>>, x: a) -> Reversed<Vec<a>> {
+    Reversed((__op_concat(x, xs)))
+}
+
+pub fn viewr(__0: Reversed<Vec<a>>) -> (Reversed<Vec<a>>, a) {
+    match (__0) {
+        Reversed([]) => {
+            __error!("viewr: empty RList".to_string())
+        },
+        Reversed([x, xs]) => {
+            (Reversed(xs), x)
+        },
+    }
+}
 
 
 

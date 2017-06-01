@@ -12,16 +12,14 @@ extern crate inflector;
 
 use parser_haskell::util::{print_parse_error, simplify_parse_error};
 
-use inflector::Inflector;
 use clap::{Arg, App};
-use regex::{Regex, Captures};
+use regex::Regex;
 use std::fmt::Write;
 use std::fs::{File, create_dir_all};
 use std::io::prelude::*;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 use tempdir::TempDir;
-use walkdir::WalkDir;
 
 use corollary::print_item_list;
 use corollary::ir::PrintState;
@@ -70,51 +68,51 @@ fn test_single_file() {
 #[test]
 fn test_no_regressions() {
     let a = vec![
-        "./src-corrode/src/Language/Rust/AST.hs",
-        "./src-corrode/src/Language/Rust/Corrode/C.lhs",
-        "./src-corrode/src/Language/Rust/Corrode/CFG.lhs",
-        "./src-corrode/src/Language/Rust/Corrode/CrateMap.hs",
-        "./src-corrode/src/Language/Rust/Idiomatic.hs",
-        "./src-corrode/src/Language/Rust.hs",
+        "../deps/corrode/src/Language/Rust/AST.hs",
+        "../deps/corrode/src/Language/Rust/Corrode/C.lhs",
+        "../deps/corrode/src/Language/Rust/Corrode/CFG.lhs",
+        "../deps/corrode/src/Language/Rust/Corrode/CrateMap.hs",
+        "../deps/corrode/src/Language/Rust/Idiomatic.hs",
+        "../deps/corrode/src/Language/Rust.hs",
 
-        "./src-language-c/src/Language/C/Analysis/AstAnalysis.hs",
-        "./src-language-c/src/Language/C/Analysis/Builtins.hs",
-        "./src-language-c/src/Language/C/Analysis/ConstEval.hs",
-        "./src-language-c/src/Language/C/Analysis/Debug.hs",
-        "./src-language-c/src/Language/C/Analysis/DeclAnalysis.hs",
-        "./src-language-c/src/Language/C/Analysis/DefTable.hs",
-        "./src-language-c/src/Language/C/Analysis/Export.hs",
-        "./src-language-c/src/Language/C/Analysis/NameSpaceMap.hs",
-        "./src-language-c/src/Language/C/Analysis/SemError.hs",
-        "./src-language-c/src/Language/C/Analysis/SemRep.hs",
-        "./src-language-c/src/Language/C/Analysis/TravMonad.hs",
-        "./src-language-c/src/Language/C/Analysis/TypeCheck.hs",
-        "./src-language-c/src/Language/C/Analysis/TypeConversions.hs",
-        "./src-language-c/src/Language/C/Analysis/TypeUtils.hs",
-        "./src-language-c/src/Language/C/Analysis.hs",
-        "./src-language-c/src/Language/C/Data/Error.hs",
-        "./src-language-c/src/Language/C/Data/Ident.hs",
-        "./src-language-c/src/Language/C/Data/InputStream.hs",
-        "./src-language-c/src/Language/C/Data/Name.hs",
-        "./src-language-c/src/Language/C/Data/Node.hs",
-        "./src-language-c/src/Language/C/Data/Position.hs",
-        "./src-language-c/src/Language/C/Data/RList.hs",
-        "./src-language-c/src/Language/C/Data.hs",
-        "./src-language-c/src/Language/C/Parser/Builtin.hs",
-        "./src-language-c/src/Language/C/Parser/ParserMonad.hs",
-        "./src-language-c/src/Language/C/Parser/Tokens.hs",
-        "./src-language-c/src/Language/C/Parser.hs",
-        "./src-language-c/src/Language/C/Pretty.hs",
-        "./src-language-c/src/Language/C/Syntax/AST.hs",
-        "./src-language-c/src/Language/C/Syntax/Constants.hs",
-        "./src-language-c/src/Language/C/Syntax/Ops.hs",
-        "./src-language-c/src/Language/C/Syntax/Utils.hs",
-        "./src-language-c/src/Language/C/Syntax.hs",
-        "./src-language-c/src/Language/C/System/GCC.hs",
-        "./src-language-c/src/Language/C/System/Preprocess.hs",
+        "../deps/language-c/src/Language/C/Analysis/AstAnalysis.hs",
+        "../deps/language-c/src/Language/C/Analysis/Builtins.hs",
+        "../deps/language-c/src/Language/C/Analysis/ConstEval.hs",
+        "../deps/language-c/src/Language/C/Analysis/Debug.hs",
+        "../deps/language-c/src/Language/C/Analysis/DeclAnalysis.hs",
+        "../deps/language-c/src/Language/C/Analysis/DefTable.hs",
+        "../deps/language-c/src/Language/C/Analysis/Export.hs",
+        "../deps/language-c/src/Language/C/Analysis/NameSpaceMap.hs",
+        "../deps/language-c/src/Language/C/Analysis/SemError.hs",
+        "../deps/language-c/src/Language/C/Analysis/SemRep.hs",
+        "../deps/language-c/src/Language/C/Analysis/TravMonad.hs",
+        "../deps/language-c/src/Language/C/Analysis/TypeCheck.hs",
+        "../deps/language-c/src/Language/C/Analysis/TypeConversions.hs",
+        "../deps/language-c/src/Language/C/Analysis/TypeUtils.hs",
+        "../deps/language-c/src/Language/C/Analysis.hs",
+        "../deps/language-c/src/Language/C/Data/Error.hs",
+        "../deps/language-c/src/Language/C/Data/Ident.hs",
+        "../deps/language-c/src/Language/C/Data/InputStream.hs",
+        "../deps/language-c/src/Language/C/Data/Name.hs",
+        "../deps/language-c/src/Language/C/Data/Node.hs",
+        "../deps/language-c/src/Language/C/Data/Position.hs",
+        "../deps/language-c/src/Language/C/Data/RList.hs",
+        "../deps/language-c/src/Language/C/Data.hs",
+        "../deps/language-c/src/Language/C/Parser/Builtin.hs",
+        "../deps/language-c/src/Language/C/Parser/ParserMonad.hs",
+        "../deps/language-c/src/Language/C/Parser/Tokens.hs",
+        "../deps/language-c/src/Language/C/Parser.hs",
+        "../deps/language-c/src/Language/C/Pretty.hs",
+        "../deps/language-c/src/Language/C/Syntax/AST.hs",
+        "../deps/language-c/src/Language/C/Syntax/Constants.hs",
+        "../deps/language-c/src/Language/C/Syntax/Ops.hs",
+        "../deps/language-c/src/Language/C/Syntax/Utils.hs",
+        "../deps/language-c/src/Language/C/Syntax.hs",
+        "../deps/language-c/src/Language/C/System/GCC.hs",
+        "../deps/language-c/src/Language/C/System/Preprocess.hs",
 
-        "./gen/Lexer.hs",
-        "./gen/Parser.hs",
+        "../parser-c/gen/Lexer.hs",
+        "../parser-c/gen/Parser.hs",
     ];
 
     for path in a {
@@ -128,7 +126,7 @@ fn test_no_regressions() {
         let contents = parser_haskell::preprocess(&contents);
 
         // Do not output preprocessed data temp.txt
-        //println!("{:?}", path);
+        println!("{:?}", path);
         // use ::std::io::Write;
         // let mut a = ::std::fs::File::create("temp.txt").unwrap();
         // a.write_all(contents.as_bytes());
@@ -197,7 +195,7 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool) -> Result<(String, Stri
                 writeln!(file_out, "{}", print_item_list(state.tab(), &v.items))?;
                 writeln!(file_out, "}}\n")?;
             } else {
-                writeln!(file_out, "use haskell_support::*;")?;
+                writeln!(file_out, "use corollary_support::*;")?;
                 writeln!(file_out, "")?;
                 let state = PrintState::new();
                 writeln!(file_out, "{}", print_item_list(state, &v.items))?;
@@ -232,35 +230,18 @@ fn run() -> Result<()> {
             .long("out")
             .help("Output path")
             .takes_value(true))
-        .arg(Arg::with_name("recursive")
-            .short("R")
-            .long("recursive")
-            .help("Recursively recreate folder structure, not a single file"))
         .arg(Arg::with_name("INPUT")
             .help("Sets the input file to use")
             .required(true)
             .index(1))
-        .arg(Arg::with_name("alias")
-            .long("alias")
-            .help("Alias a file for a recursive output (virtual=actual)")
-            .multiple(true)
-            .takes_value(true))
         .get_matches();
 
     let arg_input = matches.value_of("INPUT").unwrap();
     let arg_run = matches.is_present("run");
-    let arg_recursive = matches.is_present("recursive");
     let arg_out: Option<_> = matches.value_of("out");
-    let arg_alias = matches.values_of("alias");
 
-    if arg_run && arg_recursive {
-        bail!("Cannot use --run and --recursive at the same time.");
-    }
-    if arg_alias.is_some() && !arg_recursive {
-        bail!("Cannot use --alias without --recursive.")
-    }
-    if arg_recursive && arg_out.is_none() {
-        bail!("Please specify an --out path to use --recursive.");
+    if arg_run && arg_out.is_some() {
+        bail!("Cannot use --out and --run at the same time.");
     }
 
     // Starting message.
@@ -270,140 +251,57 @@ fn run() -> Result<()> {
         errln!("cross-compiling {:?}...", arg_input);
     }
 
-    let mut rust_section = "".to_string();
-    let mut file_section = "".to_string();
+    // Read file contents.
+    let mut file = File::open(arg_input)
+        .chain_err(|| format!("Could not open {:?}", arg_input))?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
 
-    let _ = writeln!(file_section, "{}", include_str!("haskell_support.txt"));
+    // Preprocess the file. Translate .lhs.
+    if arg_input.ends_with(".lhs") {
+        contents = strip_lhs(&contents);
+    }
+    let (mut file_section, rust_section) = convert_file(&contents, &PathBuf::from(arg_input), false)?;
+
+    // Add Rust segments RUST ... /RUST and Haskell support code.
     let _ = writeln!(file_section, "");
-
-    let mut inputs: Vec<(PathBuf, PathBuf)> = WalkDir::new(arg_input).into_iter()
-        .map(|entry| {
-            let path_buf = entry.unwrap().path().to_owned();
-            (path_buf.clone(), path_buf.clone())
-        })
-        .collect();
-
-    if let Some(aliases) = arg_alias {
-        for item in aliases {
-            let mut item_parts = item.split("=");
-            let value = item_parts.next().unwrap().to_owned();
-            let key = item_parts.next().unwrap().to_owned();
-            inputs.push((PathBuf::from(key), PathBuf::from(value)));
-        }
+    let _ = writeln!(file_section, "");
+    if rust_section.len() > 0 {
+        let _ = writeln!(file_section, "/* RUST ... /RUST */");
+        let _ = writeln!(file_section, "{}", rust_section);
     }
 
-    // Write out a cargo.toml
-    if arg_recursive {
-        let mut f = File::create(format!("{}/Cargo.toml", arg_out.unwrap()))?;
-        f.write_all(b"[package]\n")?;
-    }
+    if let Some(out_path) = arg_out {
+        // Create directory.
+        let _ = create_dir_all(&Path::new(&arg_out.unwrap()).parent().unwrap());
 
-    for (source_path, virtual_path) in inputs {
-        // Check filetype. Allow .lhs and .hs, ignore all else.
-        let mut do_strip_lhs = false;
-        if virtual_path.display().to_string().ends_with(".lhs") {
-            do_strip_lhs = true;
-        } else if !virtual_path.display().to_string().ends_with(".hs") {
-            continue;
+        // Write file to path.
+        errln!("... outputting to {:?}", out_path);
+        let mut f = File::create(&out_path)?;
+        let _ = f.write_all(file_section.as_bytes());
+    } else if !arg_run {
+        // Print file to stdout.
+        print!("{}", file_section);
+    } else if arg_run {
+        // Run the file.
+        let dir = TempDir::new("corollary")?;
+        let file_path = dir.path().join("script.rs");
+
+        let mut f = File::create(&file_path)?;
+        let _ = f.write_all(b"// cargo-deps: corollary-support=\"*\"\n\nextern crate corollary_support;\n\n");
+        let _ = f.write_all(file_section.as_bytes());
+        drop(f);
+
+        let output = Command::new("cargo")
+                    .args(&["script", &file_path.display().to_string()])
+                    .output()
+                    .expect("failed to execute process");
+
+        if !output.status.success() {
+            err!("{}", String::from_utf8_lossy(&output.stderr));
         }
-
-        // Read file contents.
-        let mut file = File::open(source_path.as_path())
-            .chain_err(|| format!("Could not open {:?}", source_path))?;
-        let mut contents = String::new();
-        match file.read_to_string(&mut contents) {
-            Ok(..) => (),
-            _ => continue,
-        };
-
-        // Preprocess the file.
-        if do_strip_lhs {
-            contents = strip_lhs(&contents);
-        }
-        let (file_out, rust_out) = convert_file(&contents, source_path.as_path(), !arg_recursive)?;
-
-        // Switch on recursive switch.
-        if arg_recursive {
-            // Trim initial components.
-            //TODO why three segments?
-            let mut a = virtual_path.components();
-            a.next();
-            a.next();
-            a.next();
-
-            // Generate output path.
-            let output_path = a.as_path().display().to_string();
-            let re = Regex::new(r"[^/]+").unwrap();
-            let output_path = re.replace_all(&output_path, |cap: &Captures| {
-                cap[0].to_string().to_snake_case().replace("_.", ".")
-            });
-
-            // Write out file.
-            let t = format!("{}/src/{}", arg_out.unwrap(), output_path);
-            let t = t.replace(".lhs", ".rs");
-            let t = t.replace(".hs", ".rs");
-            
-            errln!("...writing out {}", t);
-
-            // Create directory.
-            let _ = create_dir_all(&Path::new(&t).parent().unwrap());
-
-            // Write out file.
-            let mut f = File::create(&t)?;
-            let _ = f.write_all(file_out.as_bytes());
-            let _ = f.write_all(rust_out.as_bytes());
-            drop(f);
-        } else {
-            // Accumulate file output.
-            let _ = writeln!(file_section, "{}", file_out);
-            rust_section.push_str(&rust_out);
-        }
-    }
-
-    // If we have an output directory, we've already finished writing it.
-    if !arg_recursive {
-        // Add Rust segments RUST ... /RUST and Haskell support code.
-        let _ = writeln!(file_section, "");
-        let _ = writeln!(file_section, "");
-        if rust_section.len() > 0 {
-            let _ = writeln!(file_section, "{}", include_str!("haskell_support.txt"));
-            let _ = writeln!(file_section, "/* RUST ... /RUST */");
-            let _ = writeln!(file_section, "{}", rust_section);
-        }
-
-        if let Some(out_path) = arg_out {
-            // Create directory.
-            let _ = create_dir_all(&Path::new(&arg_out.unwrap()).parent().unwrap());
-
-            errln!("... outputting to {:?}", out_path);
-            let mut f = File::create(&out_path)?;
-            let _ = f.write_all(file_section.as_bytes());
-        } else if !arg_run {
-            // Print file to stdout.
-            print!("{}", file_section);
-        }
-
-        // Evaluate --run
-        if arg_run {
-            // Run the file.
-            let dir = TempDir::new("corollary")?;
-            let file_path = dir.path().join("script.rs");
-
-            let mut f = File::create(&file_path)?;
-            let _ = f.write_all(file_section.as_bytes());
-            drop(f);
-
-            let output = Command::new("cargo")
-                        .args(&["script", &file_path.display().to_string()])
-                        .output()
-                        .expect("failed to execute process");
-
-            if !output.status.success() {
-                err!("{}", String::from_utf8_lossy(&output.stderr));
-            }
-            err!("{}", String::from_utf8_lossy(&output.stdout));
-            ::std::process::exit(output.status.code().unwrap());
-        }
+        err!("{}", String::from_utf8_lossy(&output.stdout));
+        ::std::process::exit(output.status.code().unwrap());
     }
 
     Ok(())

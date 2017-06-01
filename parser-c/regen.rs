@@ -1,5 +1,7 @@
 // cargo-deps: command-macros="0.1.10" error-chain="*"
 
+//! Regenerates source Lexer.hs and Parser.hs files from their .x and .y sources.
+//!
 //! ```
 //! stack install alex hindent happy
 //! ```
@@ -24,9 +26,9 @@ quick_main!(run);
 
 fn run() -> Result<()> {
     println!("Lexer...");
-    cmd!( alex ("../src-language-c/src/Language/C/Parser/Lexer.x") ("-o") ("../gen/Lexer.hs") ).status();
+    cmd!( alex ("../deps/language-c/src/Language/C/Parser/Lexer.x") ("-o") ("./gen/Lexer.hs") ).status();
     println!("...hindent..."); 
-    cmd!( hindent ("../gen/Lexer.hs") ).status();
+    cmd!( hindent ("./gen/Lexer.hs") ).status();
 
     let mut contents = String::new();
     {
@@ -39,9 +41,9 @@ fn run() -> Result<()> {
     }
 
     println!("Parser...");
-    cmd!( happy ("../src-language-c/src/Language/C/Parser/Parser.y") ("-o") ("../gen/Parser.hs") ).status();
+    cmd!( happy ("../deps/language-c/src/Language/C/Parser/Parser.y") ("-o") ("./gen/Parser.hs") ).status();
     println!("...hindent...");
-    cmd!( hindent ("../gen/Parser.hs") ).status();
+    cmd!( hindent (".gen/Parser.hs") ).status();
 
     let mut contents = String::new();
     {

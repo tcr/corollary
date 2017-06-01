@@ -1,6 +1,6 @@
 [root]
 name = "corollary"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "Inflector 0.10.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "clap 2.24.2 (registry+https://github.com/rust-lang/crates.io-index)",

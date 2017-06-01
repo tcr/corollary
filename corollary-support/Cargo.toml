@@ -1,0 +1,9 @@
+[package]
+name = "corollary-support"
+version = "0.1.0"
+authors = ["Tim Ryan <tim@timryan.org>"]
+description = "Corollary support library for Haskell runtime emulation."
+repository = "http://github.com/tcr/corrode-but-in-rust"
+license = "MIT/Apache-2.0"
+
+[dependencies]
