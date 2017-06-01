@@ -1,10 +1,10 @@
 # Porting Corrode to Rust
 
-The goal of this project is to make [Corrode, the C to Rust translator written in Haskell](https://github.com/jameysharp/corrode), and Language-C, the Haskell library and C AST it depends on, extensible by a more applicable audience: Rust developers. It aims to broaden development access to a critical piece of Rust's tooling and compelling draw: its C to Rust conversion tool.
+The goal of this project is to partially automate the translation of [Corrode, the C to Rust translator written in Haskell](https://github.com/jameysharp/corrode), and Language-C, the Haskell library and C AST it depends on, into Rust. It aims to broaden development to a larger and more relevant audience, and bolster the ecosystem around a critical piece of Rust's tooling: its C to Rust conversion tool.
 
-To accomplish this goal, this project has developed a compiler (Corollary) than can partially convert these libraries into Rust, letting contributors help by manually completing the conversion into idiomatic Rust code. Much like conversion process for Corrode itself!
+To accomplish this goal, this project has developed a Haskell to Rust compiler, Corollary, than can convert most of these libraries into Rust, letting contributors manually finish the conversion into idiomatic Rust code. Much like the usecase of Corrode itself!
 
-This project has incomplete, but very extensive, automated ports of Language-C and Corrode. Read on for how we can get to 100% working crates.
+This project has non-functional, but nearly complete, ports of [Language-C](https://github.com/tcr/corrode-but-in-rust/tree/master/parser-c) and [Corrode](https://github.com/tcr/corrode-but-in-rust/tree/master/rust-corrode) into Rust. Read on for how we can get to 100% working crates.
 
 ```
 git clone http://github.com/tcr/corrode-but-in-rust --recursive
