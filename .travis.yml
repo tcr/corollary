@@ -1,3 +1,6 @@
 language: rust
 rust:
   - nightly
+
+script:
+    - cargo test -v --manifest-path corollary/Cargo.toml
