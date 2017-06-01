@@ -1,11 +1,23 @@
-module Test.Hello ()
+module Hello()
 where
 
+import Test.HUnit.Base (assertEqual)
+
 truthy :: Bool
-truthy = true
+truthy = True
 
 falsy :: Bool
-falsy = false
+falsy = False
+
+{-HASKELL-}
+
+main :: IO ()
+main = do
+    assertEqual "" True truthy
+    assertEqual "" False falsy
+    putStrLn "success."
+
+{-/HASKELL-}
 
 {-RUST
 fn main() {

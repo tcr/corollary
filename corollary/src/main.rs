@@ -164,7 +164,7 @@ fn strip_lhs(s: &str) -> String {
 }
 
 /// Converts a Haskell file by its path into a Rust module.
-fn convert_file(input: &str, p: &Path, inline_mod: bool) -> Result<(String, String)> {
+fn convert_file(input: &str, p: &Path, inline_mod: bool, strip_imports: bool) -> Result<(String, String)> {
     let mut contents = input.to_string();
     let mut file_out = String::new();
     let mut rust_out = String::new();
@@ -184,8 +184,14 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool) -> Result<(String, Stri
     // Parse the file.
     let mut errors = Vec::new();
     match parser_haskell::parse(&mut errors, &contents) {
-        Ok(v) => {
+        Ok(mut v) => {
             // errln!("{:?}", v);
+
+            if strip_imports {
+                v.items = v.items.into_iter()
+                    .filter(|x| if let &parser_haskell::ast::Item::Import(..) = x { false } else { true })
+                    .collect();
+            }
 
             if inline_mod {
                 writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"))?;
@@ -261,7 +267,7 @@ fn run() -> Result<()> {
     if arg_input.ends_with(".lhs") {
         contents = strip_lhs(&contents);
     }
-    let (mut file_section, rust_section) = convert_file(&contents, &PathBuf::from(arg_input), false)?;
+    let (mut file_section, rust_section) = convert_file(&contents, &PathBuf::from(arg_input), false, arg_run)?;
 
     // Add Rust segments RUST ... /RUST and Haskell support code.
     let _ = writeln!(file_section, "");

@@ -13,13 +13,11 @@ These are the crates contained in this repo:
 * **`parser-c/`**, a largely automatically cross-compiled version of the `language-c` Haskell module for parsing C code.
 * **`rust-corrode/`**, an experimental Rust port of the Corrode program for converting C into Rust code.
 
-Sound nutty? Here is the plan:
+Sound wild? Here is the plan:
 
-This project contains a proof-of-concept cross-compiler from Haskell to Rust which is not designed to be either correct or generalizable. Instead, it's tailored for these two libraries.
-
-**The current result is in the `rust-corrode/` and `rust-language-c/` folders.**. These are crates generated using automated source conversion, generated using these commands:
-
-You'll note that the converted source code doesn't compile yet; fixes to the compiler are very appreciated! **[Or follow along in the tracking issue.](https://github.com/tcr/corrode-but-in-rust/issues/1)**
+- This project contains a proof-of-concept cross-compiler from Haskell to Rust which is not designed to be either correct or generalizable. Instead, it's tailored for these two libraries.
+- The crates `rust-corrode/` and `rust-language-c/` both contain a `compile-haskell.sh` script which semi-compiles files. As files are ported over, they can be finalized (fully ported) and removed from `compile-haskell.sh` until no files remain.
+- If a problem can be fixed in the conversion instead of manually, edit **corollary** to add more support for the Haskell into Rust conversion. [Follow along in this tracking issue!](https://github.com/tcr/corrode-but-in-rust/issues/1)
 
 ## References
 
