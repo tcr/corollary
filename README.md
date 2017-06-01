@@ -26,6 +26,22 @@ Sound wild? Here is the plan:
 
 One big caveat: Parser.x and Lexer.y, two files for lexing and parsing used by Language-C, are written using Haskell tools and in Haskell. Because their converted files are very regularly generated, we for now just opt to have these conversions done as a separate build pipeline for the Language-c port (`parser-c/`). A unique requirement for Corollary: modifications to these Haskell files should convert to Rust without issues, unlike other files (which can be manually edited to cross the cap to correctness.)
 
+### Using Corollary
+
+Corrode can be used as an independent binary (and is used in our build pipelines here). For example:
+
+```
+cargo run --bin corrode -- input/file/path.hs -o target/output.rs
+```
+
+Thsi converts a file from Haskell into Rust. You can omit the `-o` parameter to write the file to stdout.
+
+Additionally, you can run a file using the `--run` parameter, which will strip any code in a `{-HASKELL-} ... {-/HASKELL-}` block and run any code in a `{-RUST ... /RUST-}` block embedded in a file. This is how tests for Corollary are written; to run more than one file you'll want to convert a Haskell source tree into a Cargo crate.
+
+### Patching or Modifying Corollary
+
+In general, most changes to Corollary should maintain the broadest compatibility possible, with the exception of avoid regressions in able to translate the precompiled `Parser.x` and `Lexer.y` files. New tests for new functionality and not breaking old tests is the easiest way to do this.
+
 ## References
 
 * [Ten Things You Should Know About Haskell Syntax](https://www.fpcomplete.com/blog/2012/09/ten-things-you-should-know-about-haskell-syntax)
@@ -33,7 +49,7 @@ One big caveat: Parser.x and Lexer.y, two files for lexing and parsing used by L
 
 ## License
 
-This project licensed as MIT or Apache-2, at your option.
+Corollary is licensed as MIT or Apache-2, at your option.
 
 Language-C licensed as BSD-3.
 
