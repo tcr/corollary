@@ -1,12 +1,11 @@
 [package]
-name = "corrode"
+name = "parser-c"
 version = "0.1.0"
 authors = [
-  "Jamey Sharp <jamey@minilop.net>",
   "Tim Ryan <tim@timryan.org>",
   "Paul Collier <paul@paulcollier.ca>"
 ]
-description = "C to Rust Translator (ported from Haskell)."
+description = "Parses C into an AST."
 repository = "http://github.com/tcr/corrode-but-in-rust"
 homepage = "http://github.com/tcr/corrode-but-in-rust"
-license = "LGPLv3"
+license = "BSD-3"
