@@ -1,20 +1,24 @@
+//! Original file: "TravMonad.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data;
-use Language::C::Data::Ident;
-use Language::C::Data::RList;
-use Language::C::Syntax;
-use Language::C::Analysis::Builtins;
-use Language::C::Analysis::SemError;
-use Language::C::Analysis::SemRep;
-use Language::C::Analysis::DefTable;
-use Language::C::Analysis::DefTable;
-use Data::IntMap;
-use insert;
-use Data::Maybe;
-use Control::Monad;
-use liftM;
-use Prelude;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data;
+// use Language::C::Data::Ident;
+// use Language::C::Data::RList;
+// use Language::C::Syntax;
+// use Language::C::Analysis::Builtins;
+// use Language::C::Analysis::SemError;
+// use Language::C::Analysis::SemRep;
+// use Language::C::Analysis::DefTable;
+// use Language::C::Analysis::DefTable;
+// use Data::IntMap;
+// use insert;
+// use Data::Maybe;
+// use Control::Monad;
+// use liftM;
+// use Prelude;
 
 pub enum CLanguage {
     C89,
@@ -27,6 +31,7 @@ pub use self::CLanguage::*;
 struct TravOptions{
     language: CLanguage
 }
+fn language(a: TravOptions) -> CLanguage { a.language }
 
 struct TravState<s>{
     symbolTable: DefTable,
@@ -36,6 +41,12 @@ struct TravState<s>{
     userState: s,
     options: TravOptions
 }
+fn symbolTable(a: TravState) -> DefTable { a.symbolTable }
+fn rerrors(a: TravState) -> RList<CError> { a.rerrors }
+fn nameGenerator(a: TravState) -> Vec<Name> { a.nameGenerator }
+fn doHandleExtDecl(a: TravState) -> fn(DeclEvent) -> Trav<s, ()> { a.doHandleExtDecl }
+fn userState(a: TravState) -> s { a.userState }
+fn options(a: TravState) -> TravOptions { a.options }
 
 pub fn addRef(__use: u, def: d) -> m<()> {
     match (nodeInfo(__use), nodeInfo(def)) {
@@ -58,8 +69,8 @@ pub fn checkCompatibleTypes(_: Type, _: Type) -> Either<TypeMismatch, ()> {
     Right(())
 }
 
-pub fn checkIdentTyRedef(__0: IdentEntry, __1: DeclarationStatus<IdentEntry>) -> m<()> {
-    match (__0, __1) {
+pub fn checkIdentTyRedef(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m<()> {
+    match (_0, _1) {
         (Right(decl), status) => {
             checkVarRedef(decl, status)
         },
@@ -115,8 +126,8 @@ pub fn concatMapM(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
     liftM(concat, mapM(f))
 }
 
-pub fn createSUERef(__0: NodeInfo, __1: Option<Ident>) -> m<SUERef> {
-    match (__0, __1) {
+pub fn createSUERef(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
+    match (_0, _1) {
         (_node_info, Some(ident)) => {
             return(NamedRef(ident))
         },
@@ -127,11 +138,11 @@ pub fn createSUERef(__0: NodeInfo, __1: Option<Ident>) -> m<SUERef> {
 }
 
 pub fn enterBlockScope() -> m<()> {
-    updDefTable((ST::enterBlockScope))
+    updDefTable(ST::enterBlockScope())
 }
 
 pub fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> bool) -> m<IdentDecl> {
-    /* do */ {
+    /*do*/ {
         let def = Declaration(decl);
 
         let redecl = withDefTable(defineScopedIdentWhen(cond, (declIdent(def)), def));
@@ -142,15 +153,15 @@ pub fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> bool) -> m<IdentDecl> {
 }
 
 pub fn enterFunctionScope() -> m<()> {
-    updDefTable((ST::enterFunctionScope))
+    updDefTable(ST::enterFunctionScope())
 }
 
 pub fn enterPrototypeScope() -> m<()> {
-    updDefTable((ST::enterBlockScope))
+    updDefTable(ST::enterBlockScope())
 }
 
 pub fn generateName() -> Trav<s, Name> {
-    __op_bind(get, |ts| { /* do */ {
+    __op_bind(get, |ts| { /*do*/ {
             let [new_name, gen_q] = nameGenerator(ts);
 
             put(ts {
@@ -181,7 +192,7 @@ pub fn handleAsmBlock(asm: AsmBlock) -> m<()> {
 }
 
 pub fn handleEnumeratorDef(enumerator: Enumerator) -> m<()> {
-    /* do */ {
+    /*do*/ {
         let ident = declIdent(enumerator);
 
         let redecl = withDefTable(defineScopedIdent(ident, (EnumeratorDef(enumerator))));
@@ -192,7 +203,7 @@ pub fn handleEnumeratorDef(enumerator: Enumerator) -> m<()> {
 }
 
 pub fn handleFunDef(ident: Ident, fun_def: FunDef) -> m<()> {
-    /* do */ {
+    /*do*/ {
         let def = FunctionDef(fun_def);
 
         let redecl = withDefTable(defineScopedIdentWhen(isDeclaration, ident, def));
@@ -203,23 +214,26 @@ pub fn handleFunDef(ident: Ident, fun_def: FunDef) -> m<()> {
 }
 
 pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
-    /* do */ {
+    /*do*/ {
         let def = ObjectDef(obj_def);
 
         let redecl = withDefTable(defineScopedIdentWhen((|old| { shouldOverride(def, old) }), ident, def));
 
         checkVarRedef(def, redecl);
-        handleDecl(((__TODO_if(local, then, LocalEvent, __TODO_else, DeclEvent))(def)))
+        handleDecl(((if local {             
+LocalEvent} else {
+DeclEvent
+            })(def)))
     }
 }
 
-pub fn handleParamDecl(__0: ParamDecl, __1: m<()>) -> m<()> {
-    match (__0, __1, __2) {
+pub fn handleParamDecl(_0: ParamDecl, _1: m<()>) -> m<()> {
+    match (_0, _1, _2) {
         (pd, __OP__, AbstractParamDecl(_, _)) => {
             handleDecl((ParamEvent(pd)))
         },
         (pd, __OP__, ParamDecl(vardecl, node)) => {
-            /* do */ {
+            /*do*/ {
                 let def = ObjectDef((ObjDef(vardecl, None, node)));
 
                 let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
@@ -232,7 +246,7 @@ pub fn handleParamDecl(__0: ParamDecl, __1: m<()>) -> m<()> {
 }
 
 pub fn handleTagDecl(decl: TagFwdDecl) -> m<()> {
-    /* do */ {
+    /*do*/ {
         let redecl = withDefTable(declareTag((sueRef(decl)), decl));
 
         checkRedef((show(sueRef(decl))), decl, redecl)
@@ -240,7 +254,7 @@ pub fn handleTagDecl(decl: TagFwdDecl) -> m<()> {
 }
 
 pub fn handleTagDef(def: TagDef) -> m<()> {
-    /* do */ {
+    /*do*/ {
         let redecl = withDefTable(defineTag((sueRef(def)), def));
 
         checkRedef((show(sueRef(def))), def, redecl);
@@ -253,7 +267,7 @@ pub fn handleTravError(a: m<a>) -> m<Option<a>> {
 }
 
 pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
-    /* do */ {
+    /*do*/ {
         let redecl = withDefTable(defineTypeDef(ident, typeDef));
 
         checkRedef((show(ident)), typeDef, redecl);
@@ -263,10 +277,13 @@ pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
 }
 
 pub fn handleVarDecl(is_local: bool, decl: Decl) -> m<()> {
-    /* do */ {
+    /*do*/ {
         let def = enterDecl(decl, (__TODO_const(false)));
 
-        handleDecl(((__TODO_if(is_local, then, LocalEvent, __TODO_else, DeclEvent))(def)))
+        handleDecl(((if is_local {             
+LocalEvent} else {
+DeclEvent
+            })(def)))
     }
 }
 
@@ -283,8 +300,8 @@ pub fn initTravState(userst: s) -> TravState<s> {
     }
 }
 
-pub fn isDeclaration(__0: IdentDecl) -> bool {
-    match (__0) {
+pub fn isDeclaration(_0: IdentDecl) -> bool {
+    match (_0) {
         Declaration(_) => {
             true
         },
@@ -295,19 +312,19 @@ pub fn isDeclaration(__0: IdentDecl) -> bool {
 }
 
 pub fn leaveBlockScope() -> m<()> {
-    updDefTable((ST::leaveBlockScope))
+    updDefTable(ST::leaveBlockScope())
 }
 
 pub fn leaveFunctionScope() -> m<()> {
-    updDefTable((ST::leaveFunctionScope))
+    updDefTable(ST::leaveFunctionScope())
 }
 
 pub fn leavePrototypeScope() -> m<()> {
-    updDefTable((ST::leaveBlockScope))
+    updDefTable(ST::leaveBlockScope())
 }
 
 pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
-    /* do */ {
+    /*do*/ {
         let old_decl = liftM((lookupIdent(ident)), getDefTable);
 
         mapMaybeM(old_decl)(|obj| { match obj {
@@ -386,7 +403,7 @@ pub fn runTrav(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravS
 }
 
 pub fn runTrav_(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
-    fmap(fst, runTrav(())(/* do */ {
+    fmap(fst, runTrav(())(/*do*/ {
             let r = t;
 
             let es = getErrors;
@@ -395,8 +412,8 @@ pub fn runTrav_(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
         }))
 }
 
-pub fn throwOnLeft(__0: Either<e, a>) -> m<a> {
-    match (__0) {
+pub fn throwOnLeft(_0: Either<e, a>) -> m<a> {
+    match (_0) {
         Left(err) => {
             throwTravError(err)
         },
@@ -419,7 +436,7 @@ pub fn warn(err: e) -> m<()> {
 }
 
 pub fn withExtDeclHandler(action: Trav<s, a>, handler: fn(DeclEvent) -> Trav<s, ()>) -> Trav<s, a> {
-    /* do */ {
+    /*do*/ {
         modify(|st| { st {
                 doHandleExtDecl: handler
             } });

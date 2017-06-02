@@ -1,9 +1,13 @@
+//! Original file: "CrateMap.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::Foldable;
-use Data::List;
-use Data::Map;
-use Data::Maybe;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::Foldable;
+// use Data::List;
+// use Data::Map;
+// use Data::Maybe;
 
 #[derive(Debug, Eq, Ord)]
 pub enum ItemKind {
@@ -28,7 +32,7 @@ pub fn rewritesFromCratesMap(crates: CratesMap) -> ItemRewrites {
 }
 
 pub fn splitModuleMap(modName: String, crates: CratesMap) -> (ModuleMap, CratesMap) {
-    fromMaybe((vec![], crates))(/* do */ {
+    fromMaybe((vec![], crates))(/*do*/ {
         let thisCrate = Map::lookup("".to_string(), crates);
 
         let thisModule = Map::lookup(modName, thisCrate);

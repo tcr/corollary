@@ -1,10 +1,14 @@
+//! Original file: "TypeUtils.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Analysis::SemRep;
-use Language::C::Syntax::Constants;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Analysis::SemRep;
+// use Language::C::Syntax::Constants;
 
-pub fn baseType(__0: Type) -> Type {
-    match (__0) {
+pub fn baseType(_0: Type) -> Type {
+    match (_0) {
         PtrType(t, _, _) => {
             t
         },
@@ -48,8 +52,8 @@ pub fn constVoidPtr() -> Type {
     constPtr(voidType)
 }
 
-pub fn deepDerefTypeDef(__0: Type) -> Type {
-    match (__0) {
+pub fn deepDerefTypeDef(_0: Type) -> Type {
+    match (_0) {
         PtrType(t, quals, attrs) => {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
@@ -71,8 +75,8 @@ pub fn deepDerefTypeDef(__0: Type) -> Type {
     }
 }
 
-pub fn derefTypeDef(__0: Type) -> Type {
-    match (__0) {
+pub fn derefTypeDef(_0: Type) -> Type {
+    match (_0) {
         TypeDefType(TypeDefRef(_, Some(t), _), q, a) => {
             (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
         },
@@ -98,8 +102,8 @@ pub fn integral(ty: IntType) -> Type {
     DirectType((TyIntegral(ty)), noTypeQuals, noAttributes)
 }
 
-pub fn isFloatingType(__0: Type) -> bool {
-    match (__0) {
+pub fn isFloatingType(_0: Type) -> bool {
+    match (_0) {
         DirectType(TyFloating(_), _, _) => {
             true
         },
@@ -126,8 +130,8 @@ pub fn isFunctionType(ty: Type) -> bool {
     }
 }
 
-pub fn isIntegralType(__0: Type) -> bool {
-    match (__0) {
+pub fn isIntegralType(_0: Type) -> bool {
+    match (_0) {
         DirectType(TyIntegral(_), _, _) => {
             true
         },
@@ -140,8 +144,8 @@ pub fn isIntegralType(__0: Type) -> bool {
     }
 }
 
-pub fn isPointerType(__0: Type) -> bool {
-    match (__0) {
+pub fn isPointerType(_0: Type) -> bool {
+    match (_0) {
         PtrType(_, _, _) => {
             true
         },
@@ -178,8 +182,8 @@ pub fn testFlags(flags: Vec<f>, fi: Flags<f>) -> bool {
     and(map(((flip(testFlag))(fi)), flags))
 }
 
-pub fn typeAttrs(__0: Type) -> Attributes {
-    match (__0) {
+pub fn typeAttrs(_0: Type) -> Attributes {
+    match (_0) {
         DirectType(_, _, a) => {
             a
         },
@@ -221,8 +225,8 @@ pub fn typeAttrsUpd(f: fn(Attributes) -> Attributes, ty: Type) -> Type {
     }
 }
 
-pub fn typeQuals(__0: Type) -> TypeQuals {
-    match (__0) {
+pub fn typeQuals(_0: Type) -> TypeQuals {
+    match (_0) {
         DirectType(_, q, _) => {
             q
         },

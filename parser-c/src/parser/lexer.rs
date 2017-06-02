@@ -1,23 +1,27 @@
+//! Original file: "Lexer.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Control::Monad;
-use liftM;
-use Data::Char;
-use chr;
-use Data::Word;
-use Word8;
-use Language::C::Data::InputStream;
-use InputStream;
-use Language::C::Data::Ident;
-use mkIdent;
-use Language::C::Data::Position;
-use Language::C::Syntax::Constants;
-use Language::C::Parser::ParserMonad;
-use Language::C::Parser::Tokens;
-use Data::Array;
-use Data::Array::Base;
-use unsafeAt;
-use Array;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Control::Monad;
+// use liftM;
+// use Data::Char;
+// use chr;
+// use Data::Word;
+// use Word8;
+// use Language::C::Data::InputStream;
+// use InputStream;
+// use Language::C::Data::Ident;
+// use mkIdent;
+// use Language::C::Data::Position;
+// use Language::C::Syntax::Constants;
+// use Language::C::Parser::ParserMonad;
+// use Language::C::Parser::Tokens;
+// use Data::Array;
+// use Data::Array::Base;
+// use unsafeAt;
+// use Array;
 
 pub enum AlexReturn<a> {
     AlexEOF,
@@ -71,8 +75,8 @@ pub fn alexInputPrevChar(_: AlexInput) -> Char {
     __error!("alexInputPrevChar not used".to_string())
 }
 
-pub fn alexMove(__0: Position, __1: Char) -> Position {
-    match (__0, __1) {
+pub fn alexMove(_0: Position, _1: Char) -> Position {
+    match (_0, _1) {
         (pos, ' ') => {
             incPos(pos, 1)
         },
@@ -112,7 +116,7 @@ pub fn alexRightContext(sc: bool) -> bool {
 }
 
 pub fn alexScan(input: bool) -> bool {
-    alexScanUser(undefined, input, (sc))
+    alexScanUser(undefined, input, sc())
 }
 
 pub fn alexScanUser(user: bool) -> bool {
@@ -10786,7 +10790,7 @@ pub fn alex_deflt() -> Array<isize, isize> {
 
 pub fn alex_scan_tkn(user: bool) -> bool {
     seq(input, {
-        let new_acc = (check_accs((quickIndex(alex_accept, (s)))));
+        let new_acc = (check_accs((quickIndex(alex_accept, s()))));
 
     seq(new_acc, match alexGetByte(input) {
             None => {
@@ -10802,14 +10806,14 @@ pub fn alex_scan_tkn(user: bool) -> bool {
 
                             let check = alexIndexInt16OffAddr(alex_check, offset);
 
-                            let new_s = (__TODO_if(((offset >= (0)))) && ((check == ord_c))(then, alexIndexInt16OffAddr, alex_table, offset, __TODO_else, alexIndexInt16OffAddr, alex_deflt, s));
+                            let new_s = (if ((offset >= (0))) { () } && ((check == ord_c))(then, alexIndexInt16OffAddr, alex_table, offset, else, alexIndexInt16OffAddr, alex_deflt, s));
 
                         match new_s {
                                 __OP__(1) => {
                                     (new_acc, input)
                                 },
                                 _ => {
-                                    alex_scan_tkn(user, orig_input, ((__TODO_if(c) < (0(x80) || (c >= 0(xC0, then, ((len + (1))), __TODO_else, len))))), new_input, new_s, new_acc)
+                                    alex_scan_tkn(user, orig_input, ((if c { () } < (0(x80) || (c >= 0(xC0, then, ((len + (1))), else, len))))), new_input, new_s, new_acc)
                                 },
                             }                        }
                     },
@@ -20347,8 +20351,8 @@ pub fn alex_table() -> Array<isize, isize> {
         ])
 }
 
-pub fn idkwtok(__0: bool) -> bool {
-    match (__0) {
+pub fn idkwtok(_0: bool) -> bool {
+    match (_0) {
         ['_', ['B', ['o', ['o', ['l', []]]]]] => {
             tok(5, CTokBool)
         },
@@ -20554,7 +20558,7 @@ pub fn idkwtok(__0: bool) -> bool {
             tok(5, CTokWhile)
         },
         cs => {
-            |pos| { /* do */ {
+            |pos| { /*do*/ {
                     let name = getNewName;
 
                     let len = match length(cs) {
@@ -20567,7 +20571,10 @@ pub fn idkwtok(__0: bool) -> bool {
 
                     let tyident = isTypeIdent(ident);
 
-                    __TODO_if(tyident, then, return, (CTokTyIdent((pos, len), ident)), __TODO_else, return, (CTokIdent((pos, len), ident)))
+                    if tyident {                     
+(CTokTyIdent((pos, len), ident))} else {
+(CTokIdent((pos, len), ident))
+                    }
                 } }
         },
     }
@@ -20578,7 +20585,7 @@ pub fn ignoreAttribute() -> P<()> {
 }
 
 pub fn lexC(cont: fn(CToken) -> P<a>) -> P<a> {
-    /* do */ {
+    /*do*/ {
         let tok = lexToken;
 
         cont(tok)
@@ -20590,14 +20597,14 @@ pub fn lexToken() -> P<CToken> {
 }
 
 pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
-    /* do */ {
+    /*do*/ {
         let pos = getPos;
 
         let inp = getInput;
 
         match alexScan((pos, inp), 0) {
             AlexEOF => {
-                /* do */ {
+                /*do*/ {
                     handleEofToken;
                     CTokEof
                 }
@@ -20606,14 +20613,14 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                 lexicalError
             },
             AlexSkip((pos_q, inp_q), len) => {
-                /* do */ {
+                /*do*/ {
                     setPos(pos_q);
                     setInput(inp_q);
                     lexToken_q(modifyCache)
                 }
             },
             AlexToken((pos_q, inp_q), len, action) => {
-                /* do */ {
+                /*do*/ {
                     setPos(pos_q);
                     setInput(inp_q);
                     let tok = action(pos, len, inp);
@@ -20627,7 +20634,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
 }
 
 pub fn lexicalError() -> P<a> {
-    /* do */ {
+    /*do*/ {
         let pos = getPos;
 
         let (c, cs) = liftM(takeChar, getInput);
@@ -20640,7 +20647,7 @@ pub fn lexicalError() -> P<a> {
 }
 
 pub fn parseError() -> P<a> {
-    /* do */ {
+    /*do*/ {
         let tok = getLastToken;
 
         failP((posOf(tok)), vec![
@@ -20690,8 +20697,8 @@ pub fn token_plus(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> Eit
     }
 }
 
-pub fn unescapeMultiChars(__0: String, __1: Vec<Char>) -> Vec<Char> {
-    match (__0, __1, __2) {
+pub fn unescapeMultiChars(_0: String, _1: Vec<Char>) -> Vec<Char> {
+    match (_0, _1, _2) {
         (cs, __OP__, [_, [_, _]]) => {
             match unescapeChar(cs) {
                 (c, cs_q) => {

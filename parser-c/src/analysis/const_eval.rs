@@ -1,22 +1,26 @@
+//! Original file: "ConstEval.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Control::Monad;
-use Data::Bits;
-use Data::Maybe;
-use Data::Map;
-use Language::C::Syntax::AST;
-use Language::C::Syntax::Constants;
-use Language::C::Analysis::AstAnalysis;
-use tExpr;
-use Language::C::Analysis::Debug;
-use Language::C::Analysis::DeclAnalysis;
-use Language::C::Analysis::DefTable;
-use Language::C::Data;
-use Language::C::Pretty;
-use Language::C::Analysis::SemRep;
-use Language::C::Analysis::TravMonad;
-use Language::C::Analysis::TypeUtils;
-use Text::PrettyPrint::HughesPJ;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Control::Monad;
+// use Data::Bits;
+// use Data::Maybe;
+// use Data::Map;
+// use Language::C::Syntax::AST;
+// use Language::C::Syntax::Constants;
+// use Language::C::Analysis::AstAnalysis;
+// use tExpr;
+// use Language::C::Analysis::Debug;
+// use Language::C::Analysis::DeclAnalysis;
+// use Language::C::Analysis::DefTable;
+// use Language::C::Data;
+// use Language::C::Pretty;
+// use Language::C::Analysis::SemRep;
+// use Language::C::Analysis::TravMonad;
+// use Language::C::Analysis::TypeUtils;
+// use Text::PrettyPrint::HughesPJ;
 
 struct MachineDesc{
     iSize: fn(IntType) -> Integer,
@@ -30,9 +34,19 @@ struct MachineDesc{
     ptrAlign: Integer,
     voidAlign: Integer
 }
+fn iSize(a: MachineDesc) -> fn(IntType) -> Integer { a.iSize }
+fn fSize(a: MachineDesc) -> fn(FloatType) -> Integer { a.fSize }
+fn builtinSize(a: MachineDesc) -> fn(BuiltinType) -> Integer { a.builtinSize }
+fn ptrSize(a: MachineDesc) -> Integer { a.ptrSize }
+fn voidSize(a: MachineDesc) -> Integer { a.voidSize }
+fn iAlign(a: MachineDesc) -> fn(IntType) -> Integer { a.iAlign }
+fn fAlign(a: MachineDesc) -> fn(FloatType) -> Integer { a.fAlign }
+fn builtinAlign(a: MachineDesc) -> fn(BuiltinType) -> Integer { a.builtinAlign }
+fn ptrAlign(a: MachineDesc) -> Integer { a.ptrAlign }
+fn voidAlign(a: MachineDesc) -> Integer { a.voidAlign }
 
-pub fn alignofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
-    match (__0, __1, __2) {
+pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
+    match (_0, _1, _2) {
         (md, _, DirectType(TyVoid, _, _)) => {
             return(voidAlign(md))
         },
@@ -69,8 +83,8 @@ pub fn alignofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
     }
 }
 
-pub fn boolValue(__0: CExpr) -> Option<bool> {
-    match (__0) {
+pub fn boolValue(_0: CExpr) -> Option<bool> {
+    match (_0) {
         CConst(CIntConst(i, _)) => {
             Some(__op_assign_div(getCInteger(i), 0))
         },
@@ -87,7 +101,7 @@ pub fn boolValue(__0: CExpr) -> Option<bool> {
 }
 
 pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
-    /* do */ {
+    /*do*/ {
         let dt = getDefTable;
 
         match lookupTag((sueRef(ctr)), dt) {
@@ -95,7 +109,7 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
                 astError((nodeInfo(ctr)), "composite declared but not defined".to_string())
             },
             Some(Right(CompDef(CompType(_, tag, ms, _, ni)))) => {
-                /* do */ {
+                /*do*/ {
                     let ts = map(declType, ms);
 
                     let sizes = mapM((sizeofType(md, ni)), ts);
@@ -120,10 +134,10 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
     }
 }
 
-pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m<CExpr> {
-    match (__0, __1, __2) {
+pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CExpr> {
+    match (_0, _1, _2) {
         (md, env, CCond(e1, me2, e3, ni)) => {
-            /* do */ {
+            /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
                 let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
@@ -144,7 +158,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, env, e, __OP__, CBinary(op, e1, e2, ni)) => {
-            /* do */ {
+            /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
                 let e2_q = constEval(md, env, e2);
@@ -164,7 +178,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, env, CUnary(op, e, ni)) => {
-            /* do */ {
+            /*do*/ {
                 let e_q = constEval(md, env, e);
 
                 let t = tExpr(vec![], RValue, e);
@@ -189,7 +203,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, env, CCast(d, e, ni)) => {
-            /* do */ {
+            /*do*/ {
                 let e_q = constEval(md, env, e);
 
                 let t = analyseTypeDecl(d);
@@ -207,7 +221,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, _, CSizeofExpr(e, ni)) => {
-            /* do */ {
+            /*do*/ {
                 let t = tExpr(vec![], RValue, e);
 
                 let sz = sizeofType(md, e, t);
@@ -216,7 +230,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, _, CSizeofType(d, ni)) => {
-            /* do */ {
+            /*do*/ {
                 let t = analyseTypeDecl(d);
 
                 let sz = sizeofType(md, d, t);
@@ -225,7 +239,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, _, CAlignofExpr(e, ni)) => {
-            /* do */ {
+            /*do*/ {
                 let t = tExpr(vec![], RValue, e);
 
                 let sz = alignofType(md, e, t);
@@ -234,7 +248,7 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             }
         },
         (md, _, CAlignofType(d, ni)) => {
-            /* do */ {
+            /*do*/ {
                 let t = analyseTypeDecl(d);
 
                 let sz = alignofType(md, d, t);
@@ -246,17 +260,17 @@ pub fn constEval(__0: MachineDesc, __1: Map::Map<Ident, CExpr>, __2: CExpr) -> m
             /* Expr::Error */ Error
         },
         (md, env, e, __OP__, CVar(i, _)) => {
-            /* do */ {
+            /*do*/ {
                 let t = tExpr(vec![], RValue, e);
 
                 match derefTypeDef(t) {
                     DirectType(TyEnum(etr), _, _) => {
-                        /* do */ {
+                        /*do*/ {
                             let dt = getDefTable;
 
                             match lookupTag((sueRef(etr)), dt) {
                                 Some(Right(EnumDef(EnumType(_, es, _, _)))) => {
-                                    /* do */ {
+                                    /*do*/ {
                                         let env_q = foldM(enumConst, env, es);
 
                                         return(fromMaybe(e)(Map::lookup(i, env_q)))
@@ -284,8 +298,8 @@ pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
     __op_bind(genName, |name| { return(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))) })
 }
 
-pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
-    match (__0, __1, __2) {
+pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
+    match (_0, _1, _2) {
         (CAddOp, i1, i2) => {
             (i1 + i2)
         },
@@ -343,8 +357,8 @@ pub fn intOp(__0: CBinaryOp, __1: Integer, __2: Integer) -> Integer {
     }
 }
 
-pub fn intUnOp(__0: CUnaryOp, __1: Integer) -> Option<Integer> {
-    match (__0, __1) {
+pub fn intUnOp(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
+    match (_0, _1) {
         (CPlusOp, i) => {
             Some(i)
         },
@@ -363,8 +377,8 @@ pub fn intUnOp(__0: CUnaryOp, __1: Integer) -> Option<Integer> {
     }
 }
 
-pub fn intValue(__0: CExpr) -> Option<Integer> {
-    match (__0) {
+pub fn intValue(_0: CExpr) -> Option<Integer> {
+    match (_0) {
         CConst(CIntConst(i, _)) => {
             Some(getCInteger(i))
         },
@@ -377,8 +391,8 @@ pub fn intValue(__0: CExpr) -> Option<Integer> {
     }
 }
 
-pub fn sizeofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
-    match (__0, __1, __2) {
+pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
+    match (_0, _1, _2) {
         (md, _, DirectType(TyVoid, _, _)) => {
             return(voidSize(md))
         },
@@ -407,12 +421,12 @@ pub fn sizeofType(__0: MachineDesc, __1: n, __2: Type) -> m<Integer> {
             return(ptrSize(md))
         },
         (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
-            /* do */ {
+            /*do*/ {
                 let sz_q = constEval(md, Map::empty, sz);
 
                 match sz_q {
                     CConst(CIntConst(i, _)) => {
-                        /* do */ {
+                        /*do*/ {
                             let s = sizeofType(md, n, bt);
 
                             return((getCInteger(i) * s))

@@ -1,9 +1,13 @@
+//! Original file: "Node.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data::Position;
-use Language::C::Data::Name;
-use Name;
-use Data::Generics;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data::Position;
+// use Language::C::Data::Name;
+// use Name;
+// use Data::Generics;
 
 #[derive(Clone, Debug)]
 pub enum NodeInfo {
@@ -20,8 +24,8 @@ pub fn fileOfNode() -> Option<FilePath> {
     fmap(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
 }
 
-pub fn getLastTokenPos(__0: NodeInfo) -> PosLength {
-    match (__0) {
+pub fn getLastTokenPos(_0: NodeInfo) -> PosLength {
+    match (_0) {
         NodeInfo(_, lastTok, _) => {
             lastTok
         },
@@ -35,8 +39,8 @@ pub fn internalNode() -> NodeInfo {
     undefNode
 }
 
-pub fn isUndefNode(__0: NodeInfo) -> bool {
-    match (__0) {
+pub fn isUndefNode(_0: NodeInfo) -> bool {
+    match (_0) {
         OnlyPos(p, _) => {
             /* Expr::Error */ Error
         },
@@ -66,8 +70,8 @@ pub fn mkNodeInfoPosLen() -> NodeInfo {
     OnlyPos
 }
 
-pub fn nameOfNode(__0: NodeInfo) -> Option<Name> {
-    match (__0) {
+pub fn nameOfNode(_0: NodeInfo) -> Option<Name> {
+    match (_0) {
         OnlyPos(_, _) => {
             None
         },

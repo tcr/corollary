@@ -1,14 +1,18 @@
+//! Original file: "GCC.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data::RList;
-use Language::C::System::Preprocess;
-use Data::Maybe;
-use System::Cmd;
-use System::Directory;
-use Data::List;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data::RList;
+// use Language::C::System::Preprocess;
+// use Data::Maybe;
+// use System::Cmd;
+// use System::Directory;
+// use Data::List;
 
 pub fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
-    __op_addadd(/* do */ {
+    __op_addadd(/*do*/ {
         (concatMap(tOption, options))
     }, __op_addadd(outputFileOpt, __op_addadd(vec!["-E".to_string(), input_file], extra_args)))
 }

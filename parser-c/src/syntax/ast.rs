@@ -1,15 +1,20 @@
+//! Original file: "AST.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::List;
-use Language::C::Syntax::Constants;
-use Language::C::Syntax::Ops;
-use Language::C::Data::Ident;
-use Language::C::Data::Node;
-use Language::C::Data::Position;
-use Data::Generics;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::List;
+// use Language::C::Syntax::Constants;
+// use Language::C::Syntax::Ops;
+// use Language::C::Data::Ident;
+// use Language::C::Data::Node;
+// use Language::C::Data::Position;
+// use Data::Generics;
 
 #[derive(Clone, Debug)]
 struct CTranslationUnit<a>(Vec<CExternalDeclaration<a>>, a);
+
 
 #[derive(Clone, Debug)]
 pub enum CExternalDeclaration<a> {
@@ -22,11 +27,14 @@ pub use self::CExternalDeclaration::*;
 #[derive(Clone, Debug)]
 struct CFunctionDef<a>(Vec<CDeclarationSpecifier<a>>, CDeclarator<a>, Vec<CDeclaration<a>>, CStatement<a>, a);
 
+
 #[derive(Clone, Debug)]
 struct CDeclaration<a>(Vec<CDeclarationSpecifier<a>>, Vec<(Option<CDeclarator<a>>, Option<CInitializer<a>>, Option<CExpression<a>>)>, a);
 
+
 #[derive(Clone, Debug)]
 struct CDeclarator<a>(Option<Ident>, Vec<CDerivedDeclarator<a>>, Option<CStringLiteral<a>>, Vec<CAttribute<a>>, a);
+
 
 #[derive(Clone, Debug)]
 pub enum CDerivedDeclarator<a> {
@@ -67,8 +75,10 @@ pub use self::CStatement::*;
 #[derive(Clone, Debug)]
 struct CAssemblyStatement<a>(Option<CTypeQualifier<a>>, CStringLiteral<a>, Vec<CAssemblyOperand<a>>, Vec<CAssemblyOperand<a>>, Vec<CStringLiteral<a>>, a);
 
+
 #[derive(Clone, Debug)]
 struct CAssemblyOperand<a>(Option<Ident>, CStringLiteral<a>, CExpression<a>, a);
+
 
 #[derive(Clone, Debug)]
 pub enum CCompoundBlockItem<a> {
@@ -131,6 +141,7 @@ pub use self::CTypeQualifier::*;
 #[derive(Clone, Debug)]
 struct CStructureUnion<a>(CStructTag, Option<Ident>, Option<Vec<CDeclaration<a>>>, Vec<CAttribute<a>>, a);
 
+
 #[derive(Clone, Debug, Eq)]
 pub enum CStructTag {
     CStructTag,
@@ -140,6 +151,7 @@ pub use self::CStructTag::*;
 
 #[derive(Clone, Debug)]
 struct CEnumeration<a>(Option<Ident>, Option<Vec<(Ident, Option<CExpression<a>>)>>, Vec<CAttribute<a>>, a);
+
 
 #[derive(Clone, Debug)]
 pub enum CInitializer<a> {
@@ -158,6 +170,7 @@ pub use self::CPartDesignator::*;
 
 #[derive(Clone, Debug)]
 struct CAttribute<a>(Ident, Vec<CExpression<a>>, a);
+
 
 #[derive(Clone, Debug)]
 pub enum CExpression<a> {
@@ -205,6 +218,7 @@ pub use self::CConstant::*;
 #[derive(Clone, Debug)]
 struct CStringLiteral<a>(CString, a);
 
+
 pub fn cstringOfLit(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
     cstr
 }
@@ -213,8 +227,8 @@ pub fn fmapInitList(_f: fn(a) -> b) -> CInitializerList<b> {
     map((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
 }
 
-pub fn isSUEDef(__0: CTypeSpecifier<a>) -> bool {
-    match (__0) {
+pub fn isSUEDef(_0: CTypeSpecifier<a>) -> bool {
+    match (_0) {
         CSUType(CStruct(_, _, Some(_), _, _), _) => {
             true
         },

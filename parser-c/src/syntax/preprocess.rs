@@ -1,14 +1,18 @@
+//! Original file: "Preprocess.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data::InputStream;
-use System::Exit;
-use System::Directory;
-use System::FilePath;
-use System::Environment;
-use System::IO;
-use Control::Exception;
-use Control::Monad;
-use Data::List;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data::InputStream;
+// use System::Exit;
+// use System::Directory;
+// use System::FilePath;
+// use System::Environment;
+// use System::IO;
+// use Control::Exception;
+// use Control::Monad;
+// use Data::List;
 
 pub enum CppOption {
     IncludeDir(FilePath),
@@ -25,6 +29,11 @@ struct CppArgs{
     inputFile: FilePath,
     outputFile: Option<FilePath>
 }
+fn cppOptions(a: CppArgs) -> Vec<CppOption> { a.cppOptions }
+fn extraOptions(a: CppArgs) -> Vec<String> { a.extraOptions }
+fn cppTmpDir(a: CppArgs) -> Option<FilePath> { a.cppTmpDir }
+fn inputFile(a: CppArgs) -> FilePath { a.inputFile }
+fn outputFile(a: CppArgs) -> Option<FilePath> { a.outputFile }
 
 pub fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
     cpp_args {
@@ -57,7 +66,7 @@ pub fn isPreprocessed() -> bool {
 }
 
 pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> IO<FilePath> {
-    /* do */ {
+    /*do*/ {
         let tmpDir = getTempDir(tmp_dir_opt);
 
         mkTmpFile(tmpDir, (getOutputFileName(input_file)))
@@ -65,7 +74,7 @@ pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> IO<F
 }
 
 pub fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> IO<FilePath> {
-    /* do */ {
+    /*do*/ {
         let (path, file_handle) = openTempFile(tmp_dir, file_templ);
 
         hClose(file_handle);
@@ -88,7 +97,7 @@ pub fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
 }
 
 pub fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO<Either<ExitCode, InputStream>> {
-    /* do */ {
+    /*do*/ {
         bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
     }
 }

@@ -1,13 +1,17 @@
+//! Original file: "Export.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data::Ident;
-use Language::C::Data::Node;
-use Language::C::Syntax::AST;
-use Language::C::Analysis::SemRep;
-use Data::Maybe;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data::Ident;
+// use Language::C::Data::Node;
+// use Language::C::Syntax::AST;
+// use Language::C::Analysis::SemRep;
+// use Data::Maybe;
 
-pub fn exportArraySize(__0: ArraySize) -> CArrSize {
-    match (__0) {
+pub fn exportArraySize(_0: ArraySize) -> CArrSize {
+    match (_0) {
         ArraySize(__static, e) => {
             CArrSize(__static, e)
         },
@@ -38,7 +42,10 @@ pub fn exportComplexType(ty: FloatType) -> Vec<CTypeSpec> {
 }
 
 pub fn exportDeclAttrs(DeclAttrs(inline, storage, attrs): DeclAttrs) -> Vec<CDeclSpec> {
-    __op_addadd((__TODO_if(inline, then, vec![CTypeQual((CInlineQual(ni)))], __TODO_else, vec![])), __op_addadd(map((CStorageSpec), (exportStorage(storage))), map((CTypeQual(CAttrQual)), (exportAttrs(attrs)))))
+    __op_addadd((if inline {     
+vec![CTypeQual((CInlineQual(ni)))]} else {
+vec![]
+    }), __op_addadd(map(CStorageSpec(), (exportStorage(storage))), map((CTypeQual(CAttrQual)), (exportAttrs(attrs)))))
 }
 
 pub fn exportDeclr(other_specs: Vec<CDeclSpec>, ty: Type, attrs: Attributes, name: VarName) -> (Vec<CDeclSpec>, CDeclr) {
@@ -112,8 +119,8 @@ pub fn exportIntType(ty: IntType) -> Vec<CTypeSpec> {
     }
 }
 
-pub fn exportMemberDecl(__0: MemberDecl) -> CDecl {
-    match (__0) {
+pub fn exportMemberDecl(_0: MemberDecl) -> CDecl {
+    match (_0) {
         AnonBitField(ty, expr, node_info) => {
             CDecl((map(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
         },
@@ -137,13 +144,16 @@ pub fn exportSUERef() -> Option<Ident> {
     Some(internalIdent(show))
 }
 
-pub fn exportStorage(__0: Storage) -> Vec<CStorageSpec> {
-    match (__0) {
+pub fn exportStorage(_0: Storage) -> Vec<CStorageSpec> {
+    match (_0) {
         NoStorage => {
             vec![]
         },
         Auto(reg) => {
-            __TODO_if(reg, then, vec![CRegister(ni)], __TODO_else, vec![])
+            if reg {             
+vec![CRegister(ni)]} else {
+vec![]
+            }
         },
         Static(InternalLinkage, thread_local) => {
             threadLocal(thread_local, vec![CStatic(ni)])
@@ -219,8 +229,8 @@ pub fn exportVarDecl(VarDecl(name, attrs, ty): VarDecl) -> (Vec<CDeclSpec>, CDec
     exportDeclr((exportDeclAttrs(attrs)), ty, vec![], name)
 }
 
-pub fn fromDirectType(__0: Type) -> TypeName {
-    match (__0) {
+pub fn fromDirectType(_0: Type) -> TypeName {
+    match (_0) {
         DirectType(ty, _, _) => {
             ty
         },
@@ -237,8 +247,8 @@ pub fn ni() -> NodeInfo {
     undefNode
 }
 
-pub fn threadLocal(__0: bool) -> Vec<CStorageSpec> {
-    match (__0) {
+pub fn threadLocal(_0: bool) -> Vec<CStorageSpec> {
+    match (_0) {
         false => {
             id
         },

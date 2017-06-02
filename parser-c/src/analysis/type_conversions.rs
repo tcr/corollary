@@ -1,9 +1,13 @@
+//! Original file: "TypeConversions.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Analysis::SemRep;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Analysis::SemRep;
 
-pub fn arithmeticConversion(__0: TypeName, __1: TypeName) -> Option<TypeName> {
-    match (__0, __1) {
+pub fn arithmeticConversion(_0: TypeName, _1: TypeName) -> Option<TypeName> {
+    match (_0, _1) {
         (TyComplex(t1), TyComplex(t2)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },

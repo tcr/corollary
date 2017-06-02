@@ -1,12 +1,16 @@
+//! Original file: "Constants.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::Bits;
-use Data::Char;
-use Numeric;
-use showOct;
-use Language::C::Data::Node;
-use Language::C::Data::Position;
-use Data::Generics;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::Bits;
+// use Data::Char;
+// use Numeric;
+// use showOct;
+// use Language::C::Data::Node;
+// use Language::C::Data::Position;
+// use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CChar {
@@ -35,14 +39,20 @@ pub use self::CIntFlag::*;
 #[derive(Clone, Debug, Eq, Ord)]
 struct CInteger(Integer, CIntRepr, Flags<CIntFlag>);
 
+
 #[derive(Clone, Debug, Eq, Ord)]
 struct CFloat(String);
+
 
 #[derive(Clone, Debug, Eq, Ord)]
 struct CString(Vec<Char>, bool);
 
+
 pub fn _showWideFlag(flag: bool) -> ShowS {
-    __TODO_if(flag, then, showString, "L".to_string(), __TODO_else, id)
+    if flag {     
+showString("L".to_string())} else {
+id
+    }
 }
 
 pub fn cChar(c: Char) -> CChar {
@@ -85,8 +95,8 @@ pub fn dQuote(s: String, t: ShowS) -> ShowS {
     __op_addadd((__op_concat('\"', s)), __op_addadd("\"".to_string(), t))
 }
 
-pub fn escapeCChar(__0: Char) -> String {
-    match (__0) {
+pub fn escapeCChar(_0: Char) -> String {
+    match (_0) {
         '\'' => {
             "\\\'".to_string()
         },
@@ -96,8 +106,8 @@ pub fn escapeCChar(__0: Char) -> String {
     }
 }
 
-pub fn escapeChar(__0: Char) -> String {
-    match (__0) {
+pub fn escapeChar(_0: Char) -> String {
+    match (_0) {
         '\\' => {
             "\\\\".to_string()
         },
@@ -131,8 +141,8 @@ pub fn escapeChar(__0: Char) -> String {
     }
 }
 
-pub fn getCChar(__0: CChar) -> Vec<Char> {
-    match (__0) {
+pub fn getCChar(_0: CChar) -> Vec<Char> {
+    match (_0) {
         CChar(c, _) => {
             vec![c]
         },
@@ -142,8 +152,8 @@ pub fn getCChar(__0: CChar) -> Vec<Char> {
     }
 }
 
-pub fn getCCharAsInt(__0: CChar) -> Integer {
-    match (__0) {
+pub fn getCCharAsInt(_0: CChar) -> Integer {
+    match (_0) {
         CChar(c, _) => {
             fromIntegral((fromEnum(c)))
         },
@@ -161,8 +171,8 @@ pub fn getCString(CString(__str, _): CString) -> String {
     __str
 }
 
-pub fn head_q(__0: String, __1: Vec<a>) -> a {
-    match (__0, __1) {
+pub fn head_q(_0: String, _1: Vec<a>) -> a {
+    match (_0, _1) {
         (err, []) => {
             __error!(err)
         },
@@ -176,8 +186,8 @@ pub fn isAsciiSourceChar(c: Char) -> bool {
     (isAscii(c) && isPrint(c))
 }
 
-pub fn isCChar(__0: Char) -> bool {
-    match (__0) {
+pub fn isCChar(_0: Char) -> bool {
+    match (_0) {
         '\\' => {
             false
         },
@@ -193,8 +203,8 @@ pub fn isCChar(__0: Char) -> bool {
     }
 }
 
-pub fn isSChar(__0: Char) -> bool {
-    match (__0) {
+pub fn isSChar(_0: Char) -> bool {
+    match (_0) {
         '\\' => {
             false
         },
@@ -210,8 +220,8 @@ pub fn isSChar(__0: Char) -> bool {
     }
 }
 
-pub fn isWideChar(__0: CChar) -> bool {
-    match (__0) {
+pub fn isWideChar(_0: CChar) -> bool {
+    match (_0) {
         CChar(_, wideFlag) => {
             wideFlag
         },
@@ -264,8 +274,8 @@ pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
     testBit(k, fromEnum(flag))
 }
 
-pub fn unescapeChar(__0: String) -> (Char, String) {
-    match (__0) {
+pub fn unescapeChar(_0: String) -> (Char, String) {
+    match (_0) {
         ['\\', [c, cs]] => {
             match c {
                 'n' => {
@@ -332,8 +342,8 @@ pub fn unescapeChar(__0: String) -> (Char, String) {
     }
 }
 
-pub fn unescapeString(__0: String) -> String {
-    match (__0) {
+pub fn unescapeString(_0: String) -> String {
+    match (_0) {
         [] => {
             vec![]
         },

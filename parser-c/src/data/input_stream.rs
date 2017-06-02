@@ -1,11 +1,15 @@
+//! Original file: "InputStream.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::Word;
-use Data::ByteString;
-use ByteString;
-use Data::ByteString;
-use Data::ByteString::Char8;
-use Data::Char;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::Word;
+// use Data::ByteString;
+// use ByteString;
+// use Data::ByteString;
+// use Data::ByteString::Char8;
+// use Data::Char;
 
 pub fn countLines() -> isize {
     match () {
@@ -62,8 +66,8 @@ pub fn readInputStream() -> IO<InputStream> {
     }
 }
 
-pub fn takeByte(__0: InputStream) -> (Word8, InputStream) {
-    match (__0) {
+pub fn takeByte(_0: InputStream) -> (Word8, InputStream) {
+    match (_0) {
         bs => {
             seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
         },
@@ -73,8 +77,8 @@ pub fn takeByte(__0: InputStream) -> (Word8, InputStream) {
     }
 }
 
-pub fn takeChar(__0: InputStream) -> (Char, InputStream) {
-    match (__0) {
+pub fn takeChar(_0: InputStream) -> (Char, InputStream) {
+    match (_0) {
         bs => {
             seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
         },
@@ -84,8 +88,8 @@ pub fn takeChar(__0: InputStream) -> (Char, InputStream) {
     }
 }
 
-pub fn takeChars(__0: isize, __1: InputStream) -> Vec<Char> {
-    match (__0, __1) {
+pub fn takeChars(_0: isize, _1: InputStream) -> Vec<Char> {
+    match (_0, _1) {
         (n, bstr) => {
             BSC::unpack(BSC::take(n, bstr))
         },

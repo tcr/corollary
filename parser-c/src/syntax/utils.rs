@@ -1,11 +1,15 @@
+//! Original file: "Utils.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::List;
-use Language::C::Data::Ident;
-use Language::C::Syntax::AST;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::List;
+// use Language::C::Data::Ident;
+// use Language::C::Syntax::AST;
 
-pub fn compoundSubStmts(__0: CBlockItem) -> Vec<CStat> {
-    match (__0) {
+pub fn compoundSubStmts(_0: CBlockItem) -> Vec<CStat> {
+    match (_0) {
         CBlockStmt(s) => {
             vec![s]
         },
@@ -18,8 +22,8 @@ pub fn compoundSubStmts(__0: CBlockItem) -> Vec<CStat> {
     }
 }
 
-pub fn getLabels(__0: CStat) -> Vec<Ident> {
-    match (__0) {
+pub fn getLabels(_0: CStat) -> Vec<Ident> {
+    match (_0) {
         CLabel(l, s, _, _) => {
             __op_concat(l, getLabels(s))
         },
@@ -32,8 +36,8 @@ pub fn getLabels(__0: CStat) -> Vec<Ident> {
     }
 }
 
-pub fn getSubStmts(__0: CStat) -> Vec<CStat> {
-    match (__0) {
+pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
+    match (_0) {
         CLabel(_, s, _, _) => {
             vec![s]
         },
@@ -85,8 +89,8 @@ pub fn getSubStmts(__0: CStat) -> Vec<CStat> {
     }
 }
 
-pub fn mapBlockItemStmts(__0: fn(CStat) -> bool, __1: fn(CStat) -> CStat, __2: CBlockItem) -> CBlockItem {
-    match (__0, __1, __2) {
+pub fn mapBlockItemStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CBlockItem) -> CBlockItem {
+    match (_0, _1, _2) {
         (stop, f, CBlockStmt(s)) => {
             CBlockStmt((mapSubStmts(stop, f, s)))
         },
@@ -96,8 +100,8 @@ pub fn mapBlockItemStmts(__0: fn(CStat) -> bool, __1: fn(CStat) -> CStat, __2: C
     }
 }
 
-pub fn mapSubStmts(__0: fn(CStat) -> bool, __1: fn(CStat) -> CStat, __2: CStat) -> CStat {
-    match (__0, __1, __2) {
+pub fn mapSubStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> CStat {
+    match (_0, _1, _2) {
         (stop, _, s) => {
             /* Expr::Error */ Error
         },

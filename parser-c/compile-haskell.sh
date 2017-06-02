@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # When a given file is fully ported, you can remove it from this list for recompilation.
 
 COROLLARY="../corollary/target/debug/corollary"

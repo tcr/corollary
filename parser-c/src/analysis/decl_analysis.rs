@@ -1,28 +1,32 @@
+//! Original file: "DeclAnalysis.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data::Error;
-use Language::C::Data::Node;
-use Language::C::Data::Ident;
-use Language::C::Pretty;
-use Language::C::Syntax;
-use Language::C::Analysis::AstAnalysis;
-use tExpr;
-use Language::C::Analysis::DefTable;
-use TagFwdDecl;
-use Language::C::Analysis::Export;
-use Language::C::Analysis::SemError;
-use Language::C::Analysis::SemRep;
-use Language::C::Analysis::TravMonad;
-use Data::Foldable;
-use Data::Traversable;
-use Control::Monad;
-use liftM;
-use Data::List;
-use intersperse;
-use Data::Map;
-use Map;
-use Data::Map;
-use Text::PrettyPrint::HughesPJ;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data::Error;
+// use Language::C::Data::Node;
+// use Language::C::Data::Ident;
+// use Language::C::Pretty;
+// use Language::C::Syntax;
+// use Language::C::Analysis::AstAnalysis;
+// use tExpr;
+// use Language::C::Analysis::DefTable;
+// use TagFwdDecl;
+// use Language::C::Analysis::Export;
+// use Language::C::Analysis::SemError;
+// use Language::C::Analysis::SemRep;
+// use Language::C::Analysis::TravMonad;
+// use Data::Foldable;
+// use Data::Traversable;
+// use Control::Monad;
+// use liftM;
+// use Data::List;
+// use intersperse;
+// use Data::Map;
+// use Map;
+// use Data::Map;
+// use Text::PrettyPrint::HughesPJ;
 
 #[derive(Debug, Eq, Ord, Read)]
 pub enum StorageSpec {
@@ -36,6 +40,7 @@ pub enum StorageSpec {
 pub use self::StorageSpec::*;
 
 struct VarDeclInfo(VarName, bool, StorageSpec, Attributes, Type, NodeInfo);
+
 
 #[derive(Eq, Ord)]
 pub enum NumBaseType {
@@ -70,6 +75,10 @@ struct NumTypeSpec{
     sizeMod: SizeMod,
     isComplex: bool
 }
+fn base(a: NumTypeSpec) -> NumBaseType { a.base }
+fn signSpec(a: NumTypeSpec) -> SignSpec { a.signSpec }
+fn sizeMod(a: NumTypeSpec) -> SizeMod { a.sizeMod }
+fn isComplex(a: NumTypeSpec) -> bool { a.isComplex }
 
 pub enum TypeSpecAnalysis {
     TSNone,
@@ -87,7 +96,7 @@ pub fn analyseTypeDecl(CDecl(declspecs, declrs, node): CDecl) -> m<Type> {
 }
 
 pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: bool, CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node): CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
-    /* do */ {
+    /*do*/ {
         let storage_spec = canonicalStorageSpec(storage_specs);
 
         let typ = tType(handle_sue_def, node, typequals, canonTySpecs, derived_declrs, oldstyle_params);
@@ -101,7 +110,7 @@ pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, de
 }
 
 pub fn analyseVarDecl_q(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
-    /* do */ {
+    /*do*/ {
         let (storage_specs, attrs, type_quals, type_specs, inline) = partitionDeclSpecs(declspecs);
 
         let canonTySpecs = canonicalTypeSpec(type_specs);
@@ -118,8 +127,8 @@ pub fn canonicalTypeSpec() -> m<TypeSpecAnalysis> {
     foldrM(go, TSNone)
 }
 
-pub fn computeParamStorage(__0: NodeInfo, __1: StorageSpec) -> Either<BadSpecifierError, Storage> {
-    match (__0, __1) {
+pub fn computeParamStorage(_0: NodeInfo, _1: StorageSpec) -> Either<BadSpecifierError, Storage> {
+    match (_0, _1) {
         (_, NoStorageSpec) => {
             Right((Auto(false)))
         },
@@ -145,8 +154,8 @@ pub fn emptyNumTypeSpec() -> NumTypeSpec {
     }
 }
 
-pub fn getOnlyDeclr(__0: CDecl) -> m<CDeclr> {
-    match (__0) {
+pub fn getOnlyDeclr(_0: CDecl) -> m<CDeclr> {
+    match (_0) {
         CDecl(_, [(Some(declr), _, _)], _) => {
             declr
         },
@@ -156,8 +165,8 @@ pub fn getOnlyDeclr(__0: CDecl) -> m<CDeclr> {
     }
 }
 
-pub fn hasThreadLocalSpec(__0: StorageSpec) -> bool {
-    match (__0) {
+pub fn hasThreadLocalSpec(_0: StorageSpec) -> bool {
+    match (_0) {
         ThreadSpec => {
             true
         },
@@ -177,15 +186,15 @@ pub fn isTypeDef(declspecs: Vec<CDeclSpec>) -> bool {
     not(null(/* Expr::Generator */ Generator))
 }
 
-pub fn mergeOldStyle(__0: NodeInfo, __1: Vec<CDecl>, __2: Vec<CDerivedDeclr>) -> m<Vec<CDerivedDeclr>> {
-    match (__0, __1, __2) {
+pub fn mergeOldStyle(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) -> m<Vec<CDerivedDeclr>> {
+    match (_0, _1, _2) {
         (_node, [], declrs) => {
             declrs
         },
         (node, oldstyle_params, [CFunDeclr(params, attrs, fdnode), dds]) => {
             match params {
                 Left(list) => {
-                    /* do */ {
+                    /*do*/ {
                         let oldstyle_params_q = liftM(concat)(mapM(splitCDecl, oldstyle_params));
 
                         let param_map = liftM(Map::fromList)(mapM(attachNameOfDecl, oldstyle_params_q));
@@ -227,8 +236,8 @@ pub fn mergeTypeAttributes(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Att
     }
 }
 
-pub fn mkVarName(__0: NodeInfo, __1: Option<Ident>, __2: Option<AsmName>) -> m<VarName> {
-    match (__0, __1, __2) {
+pub fn mkVarName(_0: NodeInfo, _1: Option<Ident>, _2: Option<AsmName>) -> m<VarName> {
+    match (_0, _1, _2) {
         (node, None, _) => {
             NoName
         },
@@ -266,8 +275,8 @@ pub fn splitCDecl(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
     }
 }
 
-pub fn tArraySize(__0: CArrSize) -> m<ArraySize> {
-    match (__0) {
+pub fn tArraySize(_0: CArrSize) -> m<ArraySize> {
+    match (_0) {
         CNoArrSize(false) => {
             (UnknownArraySize(false))
         },
@@ -289,7 +298,7 @@ pub fn tCompType(tag: SUERef, sue_ref: CompTyKind, member_decls: Vec<CDecl>, att
 }
 
 pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt, attrs, node_info): CStructUnion) -> m<CompTypeRef> {
-    /* do */ {
+    /*do*/ {
         let sue_ref = createSUERef(node_info, ident_opt);
 
         let tag_q = tTag(tag);
@@ -299,15 +308,15 @@ pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt,
         let decl = CompTypeRef(sue_ref, tag_q, node_info);
 
         handleTagDecl((CompDecl(decl)));
-        when((handle_def))(/* do */ {
-            maybeM(member_decls_opt)(|decls| { __op_bind(tCompType(sue_ref, tag_q, decls, (attrs_q), node_info), (handleTagDef::CompDef)) })
+        when(handle_def())(/*do*/ {
+            maybeM(member_decls_opt)(|decls| { __op_bind(tCompType(sue_ref, tag_q, decls, attrs_q(), node_info), handleTagDef::CompDef()) })
         });
         decl
     }
 }
 
 pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual>, canonTySpec: TypeSpecAnalysis) -> m<Type> {
-    /* do */ {
+    /*do*/ {
         let (quals, attrs) = tTypeQuals(ty_quals);
 
         let baseType = |ty_name| {
@@ -325,7 +334,7 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
                 return(baseType((TyIntegral(TyBool))))
             },
             TSNum(tsnum) => {
-                /* do */ {
+                /*do*/ {
                     let numType = tNumType(tsnum);
 
                     baseType(match numType {
@@ -357,7 +366,7 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
 }
 
 pub fn tEnumType(sue_ref: SUERef, enumerators: Vec<(Ident, Option<CExpr>)>, attrs: Attributes, node: NodeInfo) -> m<EnumType> {
-    /* do */ {
+    /*do*/ {
         mapM_(handleEnumeratorDef, enumerators_q);
         ty
     }
@@ -367,10 +376,10 @@ pub fn tEnumTypeDecl(handle_def: bool, CEnum(ident_opt, enumerators_opt, attrs, 
     /* Expr::Error */ Error
 }
 
-pub fn tMemberDecls(__0: CDecl) -> m<Vec<MemberDecl>> {
-    match (__0) {
+pub fn tMemberDecls(_0: CDecl) -> m<Vec<MemberDecl>> {
+    match (_0) {
         CDecl(declspecs, [], node) => {
-            /* do */ {
+            /*do*/ {
                 let (storage_specs, _attrs, typequals, typespecs, is_inline) = partitionDeclSpecs(declspecs);
 
                 when(is_inline)(astError(node, "member declaration with inline specifier".to_string()));
@@ -453,12 +462,12 @@ pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Eit
 }
 
 pub fn tParamDecl(CDecl(declspecs, declrs, node): CDecl) -> m<ParamDecl> {
-    /* do */ {
+    /*do*/ {
         let declr = getParamDeclr;
 
         let VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node) = analyseVarDecl_q(true, declspecs, declr, vec![], None);
 
-        when((is_inline))(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
+        when(is_inline())(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
         let storage = throwOnLeft(computeParamStorage(node, storage_spec));
 
         let paramDecl = mkParamDecl(name, storage, attrs, ty, declr_node);
@@ -467,8 +476,8 @@ pub fn tParamDecl(CDecl(declspecs, declrs, node): CDecl) -> m<ParamDecl> {
     }
 }
 
-pub fn tTag(__0: CStructTag) -> CompTyKind {
-    match (__0) {
+pub fn tTag(_0: CStructTag) -> CompTyKind {
+    match (_0) {
         CStructTag => {
             StructTag
         },

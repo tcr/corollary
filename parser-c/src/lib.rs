@@ -1,26 +1,30 @@
+//! Original file: "C.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data;
-use Language::C::Syntax;
-use Language::C::Pretty;
-use Language::C::Parser;
-use Language::C::System::Preprocess;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data;
+// use Language::C::Syntax;
+// use Language::C::Pretty;
+// use Language::C::Parser;
+// use Language::C::System::Preprocess;
 
 pub fn parseCFile(cpp: cpp, tmp_dir_opt: Option<FilePath>, args: Vec<String>, input_file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
-    /* do */ {
-        let input_stream = __TODO_if(not, (isPreprocessed(input_file)), then, {
-                    let cpp_args = __assign!((rawCppArgs(args, input_file)), {
-                            cppTmpDir: tmp_dir_opt
-                        });
+    /*do*/ {
+        let input_stream = if not((isPreprocessed(input_file))) { {
+                let cpp_args = __assign!((rawCppArgs(args, input_file)), {
+                        cppTmpDir: tmp_dir_opt
+                    });
 
-                __op_bind(runPreprocessor(cpp, cpp_args), handleCppError(__TODO_else, readInputStream, input_file))                });
+            __op_bind(runPreprocessor(cpp, cpp_args), handleCppError(else, readInputStream, input_file))            } };
 
         return(parseC(input_stream, (initPos(input_file))))
     }
 }
 
 pub fn parseCFilePre(file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
-    /* do */ {
+    /*do*/ {
         let input_stream = readInputStream(file);
 
         return(parseC(input_stream, (initPos(file))))

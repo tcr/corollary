@@ -1,14 +1,20 @@
+//! Original file: "SemError.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::Typeable;
-use Language::C::Analysis::SemRep;
-use Language::C::Data::Error;
-use Language::C::Data::Node;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::Typeable;
+// use Language::C::Analysis::SemRep;
+// use Language::C::Data::Error;
+// use Language::C::Data::Node;
 
 #[derive(Debug)]
 struct RedefError(ErrorLevel, RedefInfo);
 
+
 struct RedefInfo(String, RedefKind, NodeInfo, NodeInfo);
+
 
 pub enum RedefKind {
     DuplicateDef,
@@ -21,6 +27,7 @@ pub use self::RedefKind::*;
 
 #[derive(Debug)]
 struct TypeMismatch(String, (NodeInfo, Type), (NodeInfo, Type));
+
 
 pub fn badSpecifierError(node_info: NodeInfo, msg: String) -> BadSpecifierError {
     BadSpecifierError((mkErrorInfo(LevelError, msg, node_info)))
@@ -38,8 +45,8 @@ pub fn redefErrLabel(RedefInfo(ident, _, _, _): RedefInfo) -> String {
     __op_addadd(ident, " redefined".to_string())
 }
 
-pub fn redefErrReason(__0: RedefInfo) -> String {
-    match (__0) {
+pub fn redefErrReason(_0: RedefInfo) -> String {
+    match (_0) {
         RedefInfo(ident, DuplicateDef, _, _) => {
             __op_addadd("duplicate definition of ".to_string(), ident)
         },

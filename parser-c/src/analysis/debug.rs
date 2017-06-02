@@ -1,16 +1,20 @@
+//! Original file: "Debug.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Analysis::SemRep;
-use Language::C::Analysis::Export;
-use Language::C::Analysis::DefTable;
-use Language::C::Analysis::NameSpaceMap;
-use Language::C::Data;
-use Language::C::Pretty;
-use Language::C::Syntax;
-use Text::PrettyPrint::HughesPJ;
-use Data::Map;
-use Map;
-use Data::Map;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Analysis::SemRep;
+// use Language::C::Analysis::Export;
+// use Language::C::Analysis::DefTable;
+// use Language::C::Analysis::NameSpaceMap;
+// use Language::C::Data;
+// use Language::C::Pretty;
+// use Language::C::Syntax;
+// use Text::PrettyPrint::HughesPJ;
+// use Data::Map;
+// use Map;
+// use Data::Map;
 
 pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
     vec![

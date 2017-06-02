@@ -1,6 +1,10 @@
+//! Original file: "Ops.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::Generics;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CAssignOp {
@@ -56,8 +60,8 @@ pub enum CUnaryOp {
 }
 pub use self::CUnaryOp::*;
 
-pub fn assignBinop(__0: CAssignOp) -> CBinaryOp {
-    match (__0) {
+pub fn assignBinop(_0: CAssignOp) -> CBinaryOp {
+    match (_0) {
         CAssignOp => {
             __error!("direct assignment has no binary operator".to_string())
         },

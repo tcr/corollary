@@ -1,8 +1,12 @@
+//! Original file: "AST.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::Char;
-use Numeric;
-use Text::PrettyPrint::HughesPJClass;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::Char;
+// use Numeric;
+// use Text::PrettyPrint::HughesPJClass;
 
 #[derive(Debug, Eq)]
 pub enum LitIntRepr {
@@ -47,11 +51,14 @@ pub use self::Stmt::*;
 #[derive(Debug)]
 struct Block(Vec<Stmt>, Option<Expr>);
 
+
 #[derive(Debug)]
 struct Attribute(String);
 
+
 #[derive(Debug)]
 struct Item(Vec<Attribute>, Visibility, ItemKind);
+
 
 #[derive(Debug)]
 pub enum FunctionAttribute {
@@ -160,8 +167,8 @@ pub enum ExprPosition {
 }
 pub use self::ExprPosition::*;
 
-pub fn pPrintBlock(__0: Doc, __1: Block) -> Doc {
-    match (__0, __1) {
+pub fn pPrintBlock(_0: Doc, _1: Block) -> Doc {
+    match (_0, _1) {
         (pre, Block([], e)) => {
             sep(vec![
                     __op_doc_conat(pre, text("{".to_string())),

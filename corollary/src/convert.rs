@@ -33,8 +33,6 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "error" => "__error!".to_string(),
         "str" => "__str".to_string(),
         "const" => "__TODO_const".to_string(),
-        "else" => "__TODO_else".to_string(),
-        "if" => "__TODO_if".to_string(),
         "@" => "__TODO_at".to_string(),
         "ref" => "__ref".to_string(),
         "static" => "__static".to_string(),
@@ -259,15 +257,47 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                     print_expr(state, &span[1].clone()))
             } else if span.len() == 1 {
                 print_expr(state, &span[0])
+            } else if span.len() == 0 {
+                format!("()") //TODO not sure what this would be?
             } else {
-                if span.len() == 0 {
-                    format!("()") //TODO not sure what this would be?
+                // Check for return() here, for now
+                if print_expr(state, &span[0]) == "return" {
+                    //TODO handle return more intelligently
+                    print_expr(state, &Expr::Span(span[1..].to_vec()))
                 } else {
-                    // Check for return() here, for now
-                    if print_expr(state, &span[0]) == "return" {
-                        //TODO handle return more intelligently
-                        print_expr(state, &Expr::Span(span[1..].to_vec()))
+                    // Check for `if` statements
+                    if print_expr(PrintState::new(), &span[0]) == "if" {
+                        let mut span = span.clone();
+                        span.remove(0);
+                        let mut then = vec![];
+                        let mut els = vec![]; // TODO
+                        if let Some(pos) = span.iter()
+                            .position(|x| print_expr(PrintState::new(), x) == "else") {
+                            els = span.split_off(pos + 1);
+                            span.split_off(pos);
+                        }
+                        if let Some(pos) = span.iter()
+                            .position(|x| print_expr(PrintState::new(), x) == "then") {
+                            then = span.split_off(pos + 1);
+                            span.split_off(pos);
+                        }
+
+                        // Condition
+                        let cond = print_expr(state, &Expr::Span(span));
+                        if els.len() > 0 {
+                            format!("if {} {{ {}\n{}}} else {{\n{}\n{}}}",
+                                cond,
+                                state.indent(),
+                                print_expr(state, &Expr::Span(then)),
+                                print_expr(state, &Expr::Span(els)),
+                                state.indent())
+                        } else {
+                            format!("if {} {{ {} }}",
+                                cond,
+                                print_expr(state, &Expr::Span(then)))
+                        }
                     } else {
+                        // Print normal function invocation a(...)
                         let mut span = span.clone();
                         let start = print_expr(state, &span.remove(0));
                         let mut end = "".to_string();
@@ -607,7 +637,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                     state.indent(),
                     state.indent(),
                     format!("pub use self::{}::*;", print_ident(state, name.0)),
-                    ));
+                ));
             } else {
                 let props = if data.len() == 0 {
                     format!(";")
@@ -626,22 +656,24 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                 };
 
                 let mut accessors = vec![];
-                let tyset = data[0].clone(); // 0th in pipe sequence
-                if let &Ty::Span(ref inner) = &tyset[0] {
-                    if let &Ty::Record(ref args) = &inner[1] {
-                        for arg in args {
-                            accessors.push(format!("{}fn {}(a: {}) -> {} {{ a.{} }}",
-                                state.indent(),
-                                print_type_ident(state, &(arg.0).0),
-                                print_type_ident(state, &name.0),
-                                print_type(state, &arg.1),
-                                print_type_ident(state, &(arg.0).0),
-                            ));
+                if data.len() > 0 {
+                    let tyset = data[0].clone(); // 0th in pipe sequence
+                    if let &Ty::Span(ref inner) = &tyset[0] {
+                        if let &Ty::Record(ref args) = &inner[1] {
+                            for arg in args {
+                                accessors.push(format!("{}fn {}(a: {}) -> {} {{ a.{} }}",
+                                    state.indent(),
+                                    print_type_ident(state, &(arg.0).0),
+                                    print_type_ident(state, &name.0),
+                                    print_type(state, &arg.1),
+                                    print_type_ident(state, &(arg.0).0),
+                                ));
+                            }
+                        } else {
                         }
                     } else {
+                        unreachable!();
                     }
-                } else {
-                    unreachable!();
                 }
 
                 out.push(format!("{}{}struct {}{}\n{}",
@@ -696,7 +728,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
             // There are multiple impls of this function, so expand this into a
             // case statement.
             let args = (0..fnset[0].pats.len())
-                .map(|x| format!("__{}", x))
+                .map(|x| format!("_{}", x))
                 .collect::<Vec<_>>();
 
             // Convert args into case options.
@@ -816,5 +848,5 @@ pub fn print_do(state: PrintState, stmts: &[ast::DoItem], items: &[ast::Item]) -
             }
         }
     }
-    format!("/* do */ {{\n{}{}\n{}}}", whence, body.join("\n"), state.untab().indent())
+    format!("/*do*/ {{\n{}{}\n{}}}", whence, body.join("\n"), state.untab().indent())
 }

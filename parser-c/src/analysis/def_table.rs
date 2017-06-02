@@ -1,16 +1,20 @@
+//! Original file: "DefTable.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data;
-use Language::C::Analysis::NameSpaceMap;
-use Language::C::Analysis::SemRep;
-use Control::Applicative;
-use Data::Map;
-use Map;
-use Data::Map;
-use Data::IntMap;
-use IntMap;
-use Data::IntMap;
-use Data::Generics;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data;
+// use Language::C::Analysis::NameSpaceMap;
+// use Language::C::Analysis::SemRep;
+// use Control::Applicative;
+// use Data::Map;
+// use Map;
+// use Data::Map;
+// use Data::IntMap;
+// use IntMap;
+// use Data::IntMap;
+// use Data::Generics;
 
 pub enum TagFwdDecl {
     CompDecl(CompTypeRef),
@@ -26,6 +30,12 @@ struct DefTable{
     refTable: IntMap<Name>,
     typeTable: IntMap<Type>
 }
+fn identDecls(a: DefTable) -> NameSpaceMap<Ident, IdentEntry> { a.identDecls }
+fn tagDecls(a: DefTable) -> NameSpaceMap<SUERef, TagEntry> { a.tagDecls }
+fn labelDefs(a: DefTable) -> NameSpaceMap<Ident, Ident> { a.labelDefs }
+fn memberDecls(a: DefTable) -> NameSpaceMap<Ident, MemberDecl> { a.memberDecls }
+fn refTable(a: DefTable) -> IntMap<Name> { a.refTable }
+fn typeTable(a: DefTable) -> IntMap<Type> { a.typeTable }
 
 #[derive(Clone, Debug)]
 pub enum DeclarationStatus<t> {
@@ -44,8 +54,8 @@ pub enum TagEntryKind {
 }
 pub use self::TagEntryKind::*;
 
-pub fn compatIdentEntry(__0: IdentEntry) -> bool {
-    match (__0) {
+pub fn compatIdentEntry(_0: IdentEntry) -> bool {
+    match (_0) {
         Left(_tydef) => {
             either((__TODO_const(true)), (__TODO_const(false)))
         },
@@ -72,8 +82,8 @@ pub fn compatTagEntry(te1: TagEntry, te2: TagEntry) -> bool {
     (tagKind(te1) == tagKind(te2))
 }
 
-pub fn declStatusDescr(__0: DeclarationStatus<t>) -> String {
-    match (__0) {
+pub fn declStatusDescr(_0: DeclarationStatus<t>) -> String {
+    match (_0) {
         NewDecl => {
             "new".to_string()
         },
@@ -276,8 +286,8 @@ pub fn mergeDefTable(DefTable(i1, t1, l1, m1, r1, tt1): DefTable, DefTable(i2, t
     DefTable((mergeNameSpace(i1, i2)), (mergeNameSpace(t1, t2)), (mergeNameSpace(l1, l2)), (mergeNameSpace(m1, m2)), (union(r1, r2)), (union(tt1, tt2)))
 }
 
-pub fn tagKind(__0: TagEntry) -> TagEntryKind {
-    match (__0) {
+pub fn tagKind(_0: TagEntry) -> TagEntryKind {
+    match (_0) {
         Left(CompDecl(cd)) => {
             CompKind((compTag(cd)))
         },

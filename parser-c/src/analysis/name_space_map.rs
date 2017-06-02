@@ -1,22 +1,27 @@
+//! Original file: "NameSpaceMap.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Prelude;
-use Prelude;
-use Data::Map;
-use Data::List;
-use Data::Map;
-use Map;
-use Language::C::Data::Ident;
-use Ident;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Prelude;
+// use Prelude;
+// use Data::Map;
+// use Data::List;
+// use Data::Map;
+// use Map;
+// use Language::C::Data::Ident;
+// use Ident;
 
 struct NameSpaceMap<k, v>(Map<k, v>, Vec<Vec<(k, v)>>);
+
 
 pub fn defGlobal(NsMap(gs, lss): NameSpaceMap<k, a>, ident: k, def: a) -> (NameSpaceMap<k, a>, Option<a>) {
     (NsMap((Map::insert(ident, def, gs)), lss), Map::lookup(ident, gs))
 }
 
-pub fn defLocal(__0: NameSpaceMap<k, a>, __1: k, __2: a, __3: (NameSpaceMap<k, a>, Option<a>)) -> (NameSpaceMap<k, a>, Option<a>) {
-    match (__0, __1, __2, __3, __4) {
+pub fn defLocal(_0: NameSpaceMap<k, a>, _1: k, _2: a, _3: (NameSpaceMap<k, a>, Option<a>)) -> (NameSpaceMap<k, a>, Option<a>) {
+    match (_0, _1, _2, _3, _4) {
         (ns, __OP__, NsMap(_, []), ident, def) => {
             defGlobal(ns, ident, def)
         },
@@ -38,8 +43,8 @@ pub fn hasLocalNames(NsMap(_, l): NameSpaceMap<k, v>) -> bool {
     not((null(l)))
 }
 
-pub fn leaveScope(__0: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>) {
-    match (__0) {
+pub fn leaveScope(_0: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>) {
+    match (_0) {
         NsMap(_, []) => {
             __error!("NsMaps.leaveScope: No local scope!".to_string())
         },

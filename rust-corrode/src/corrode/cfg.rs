@@ -1,15 +1,20 @@
+//! Original file: "CFG.lhs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Control::Monad;
-use Control::Monad::Trans::State;
-use Data::Foldable;
-use Data::IntMap::Lazy;
-use Data::IntSet;
-use Data::Maybe;
-use Data::Traversable;
-use Text::PrettyPrint::HughesPJClass;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Control::Monad;
+// use Control::Monad::Trans::State;
+// use Data::Foldable;
+// use Data::IntMap::Lazy;
+// use Data::IntSet;
+// use Data::Maybe;
+// use Data::Traversable;
+// use Text::PrettyPrint::HughesPJClass;
 
 struct BasicBlock<s, c>(s, Terminator<c>);
+
 
 #[derive(Debug)]
 pub enum Terminator_q<c, l> {
@@ -21,14 +26,19 @@ pub use self::Terminator_q::*;
 
 struct Unordered;
 
+
 struct DepthFirst;
 
+
 struct CFG<k, s, c>(Label, IntMap::IntMap<BasicBlock<s, c>>);
+
 
 struct BuildState<s, c>{
     buildLabel: Label,
     buildBlocks: IntMap::IntMap<BasicBlock<s, c>>
 }
+fn buildLabel(a: BuildState) -> Label { a.buildLabel }
+fn buildBlocks(a: BuildState) -> IntMap::IntMap<BasicBlock<s, c>> { a.buildBlocks }
 
 #[derive(Debug)]
 pub enum StructureLabel<s, c> {
@@ -55,9 +65,11 @@ struct Structure<s, c>{
     structureEntries: IntSet::IntSet,
     structureBody: Structure_q<s, c, Vec<Structure<s, c>>>
 }
+fn structureEntries(a: Structure) -> IntSet::IntSet { a.structureEntries }
+fn structureBody(a: Structure) -> Structure_q<s, c, Vec<Structure<s, c>>> { a.structureBody }
 
 pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
-    /* do */ {
+    /*do*/ {
         modify(|st| { st {
                 buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
             } })
@@ -65,7 +77,7 @@ pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m
 }
 
 pub fn buildCFG(root: BuildCFGT<m, s, c, Label>) -> m<CFG<Unordered, s, c>> {
-    /* do */ {
+    /*do*/ {
         let (label, __final) = runStateT(root, (BuildState(0, IntMap::empty)));
 
         (CFG(label, (buildBlocks(__final))))
@@ -89,7 +101,7 @@ pub fn mapBuildCFGT() -> BuildCFGT<n, s, c, b> {
 }
 
 pub fn newLabel() -> BuildCFGT<m, s, c, Label> {
-    /* do */ {
+    /*do*/ {
         let old = get;
 
         put(old {
@@ -141,10 +153,13 @@ pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s
                     },
                 }
             },
-            _ if not((IntSet::null(absent))) => { __op_concat(__TODO_if(IntSet::null, present, then, vec![], __TODO_else, Structure {
-                    structureEntries: entries,
-                    structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
-                }), vec![]) }
+            _ if not((IntSet::null(absent))) => { __op_concat(if IntSet::null(present) {             
+vec![]} else {
+Structure {
+                structureEntries: entries,
+                structureBody: Multiple((IntMap::fromSet((__TODO_const(vec![])), absent)), (relooper(present, blocks)))
+            }
+            }, vec![]) }
             ([], _) => {
                 __op_concat(Structure {
                     structureEntries: entries,

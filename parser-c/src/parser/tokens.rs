@@ -1,11 +1,15 @@
+//! Original file: "Tokens.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data::Position;
-use Position;
-use Language::C::Data::Ident;
-use Ident;
-use Language::C::Syntax::Constants;
-use CChar;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data::Position;
+// use Position;
+// use Language::C::Data::Ident;
+// use Ident;
+// use Language::C::Syntax::Constants;
+// use CChar;
 
 pub enum CToken {
     CTokLParen(PosLength),
@@ -117,8 +121,8 @@ pub enum GnuCTok {
 }
 pub use self::GnuCTok::*;
 
-pub fn posLenOfTok(__0: CToken) -> (Position, isize) {
-    match (__0) {
+pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
+    match (_0) {
         CTokLParen(pos) => {
             pos
         },

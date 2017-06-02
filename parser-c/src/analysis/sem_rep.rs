@@ -1,13 +1,17 @@
+//! Original file: "SemRep.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data;
-use Language::C::Syntax;
-use Language::C::Syntax::Constants;
-use Data::Map;
-use Map;
-use Data::Map;
-use Data::Generics;
-use Text::PrettyPrint::HughesPJ;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data;
+// use Language::C::Syntax;
+// use Language::C::Syntax::Constants;
+// use Data::Map;
+// use Map;
+// use Data::Map;
+// use Data::Generics;
+// use Text::PrettyPrint::HughesPJ;
 
 #[derive(Clone, Debug)]
 pub enum TagDef {
@@ -30,6 +34,9 @@ struct GlobalDecls{
     gTags: Map<SUERef, TagDef>,
     gTypeDefs: Map<Ident, TypeDef>
 }
+fn gObjs(a: GlobalDecls) -> Map<Ident, IdentDecl> { a.gObjs }
+fn gTags(a: GlobalDecls) -> Map<SUERef, TagDef> { a.gTags }
+fn gTypeDefs(a: GlobalDecls) -> Map<Ident, TypeDef> { a.gTypeDefs }
 
 pub enum DeclEvent {
     TagEvent(TagDef),
@@ -44,11 +51,14 @@ pub use self::DeclEvent::*;
 #[derive(Clone, Debug)]
 struct Decl(VarDecl, NodeInfo);
 
+
 #[derive(Clone, Debug)]
 struct ObjDef(VarDecl, Option<Initializer>, NodeInfo);
 
+
 #[derive(Clone, Debug)]
 struct FunDef(VarDecl, Stmt, NodeInfo);
+
 
 #[derive(Clone, Debug)]
 pub enum ParamDecl {
@@ -67,11 +77,14 @@ pub use self::MemberDecl::*;
 #[derive(Clone, Debug)]
 struct TypeDef(Ident, Type, Attributes, NodeInfo);
 
+
 #[derive(Clone, Debug)]
 struct VarDecl(VarName, DeclAttrs, Type);
 
+
 #[derive(Clone, Debug)]
 struct DeclAttrs(bool, Storage, Attributes);
+
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum Storage {
@@ -136,6 +149,7 @@ pub use self::BuiltinType::*;
 #[derive(Clone, Debug)]
 struct TypeDefRef(Ident, Option<Type>, NodeInfo);
 
+
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum IntType {
     TyBool,
@@ -164,11 +178,14 @@ pub use self::FloatType::*;
 #[derive(Clone, Debug)]
 struct CompTypeRef(SUERef, CompTyKind, NodeInfo);
 
+
 #[derive(Clone, Debug)]
 struct EnumTypeRef(SUERef, NodeInfo);
 
+
 #[derive(Clone, Debug)]
 struct CompType(SUERef, CompTyKind, Vec<MemberDecl>, Attributes, NodeInfo);
+
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CompTyKind {
@@ -180,8 +197,10 @@ pub use self::CompTyKind::*;
 #[derive(Clone, Debug)]
 struct EnumType(SUERef, Vec<Enumerator>, Attributes, NodeInfo);
 
+
 #[derive(Clone, Debug)]
 struct Enumerator(Ident, Expr, EnumType, NodeInfo);
+
 
 #[derive(Clone, Debug)]
 struct TypeQuals{
@@ -189,6 +208,9 @@ struct TypeQuals{
     volatile: bool,
     restrict: bool
 }
+fn constant(a: TypeQuals) -> bool { a.constant }
+fn volatile(a: TypeQuals) -> bool { a.volatile }
+fn restrict(a: TypeQuals) -> bool { a.restrict }
 
 #[derive(Clone, Debug)]
 pub enum VarName {
@@ -199,6 +221,7 @@ pub use self::VarName::*;
 
 #[derive(Clone, Debug)]
 struct Attr(Ident, Vec<Expr>, NodeInfo);
+
 
 pub fn declAttrs() -> DeclAttrs {
     (|VarDecl(_, specs, _)| { specs }(getVarDecl))
@@ -260,8 +283,8 @@ pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) 
     }
 }
 
-pub fn hasLinkage(__0: Storage) -> bool {
-    match (__0) {
+pub fn hasLinkage(_0: Storage) -> bool {
+    match (_0) {
         Auto(_) => {
             false
         },
@@ -278,8 +301,8 @@ pub fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
     ide
 }
 
-pub fn identOfVarName(__0: VarName) -> Ident {
-    match (__0) {
+pub fn identOfVarName(_0: VarName) -> Ident {
+    match (_0) {
         NoName => {
             __error!("identOfVarName: NoName".to_string())
         },
@@ -293,8 +316,8 @@ pub fn isExtDecl() -> bool {
     hasLinkage(declStorage)
 }
 
-pub fn isNoName(__0: VarName) -> bool {
-    match (__0) {
+pub fn isNoName(_0: VarName) -> bool {
+    match (_0) {
         NoName => {
             true
         },
@@ -332,8 +355,8 @@ pub fn noTypeQuals() -> TypeQuals {
     TypeQuals(false, false, false)
 }
 
-pub fn objKindDescr(__0: IdentDecl) -> String {
-    match (__0) {
+pub fn objKindDescr(_0: IdentDecl) -> String {
+    match (_0) {
         Declaration(_) => {
             "declaration".to_string()
         },
@@ -350,7 +373,10 @@ pub fn objKindDescr(__0: IdentDecl) -> String {
 }
 
 pub fn splitIdentDecls(include_all: bool) -> (Map<Ident, Decl>, (Map<Ident, Enumerator>, Map<Ident, ObjDef>, Map<Ident, FunDef>)) {
-    Map::foldWithKey((__TODO_if(include_all, then, deal, __TODO_else, deal_q)), (Map::empty, (Map::empty, Map::empty, Map::empty)))
+    Map::foldWithKey((if include_all {         
+deal} else {
+deal_q
+        }), (Map::empty, (Map::empty, Map::empty, Map::empty)))
 }
 
 pub fn typeOfCompDef(CompType(__ref, tag, _, _, _): CompType) -> TypeName {
@@ -361,8 +387,8 @@ pub fn typeOfEnumDef(EnumType(__ref, _, _, _): EnumType) -> TypeName {
     TyEnum((EnumTypeRef(__ref, undefNode)))
 }
 
-pub fn typeOfTagDef(__0: TagDef) -> TypeName {
-    match (__0) {
+pub fn typeOfTagDef(_0: TagDef) -> TypeName {
+    match (_0) {
         CompDef(comptype) => {
             typeOfCompDef(comptype)
         },

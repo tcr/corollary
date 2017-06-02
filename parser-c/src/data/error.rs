@@ -1,9 +1,13 @@
+//! Original file: "Error.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::Typeable;
-use Data::Generics;
-use Language::C::Data::Node;
-use Language::C::Data::Position;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::Typeable;
+// use Data::Generics;
+// use Language::C::Data::Node;
+// use Language::C::Data::Position;
 
 #[derive(Eq, Ord)]
 pub enum ErrorLevel {
@@ -16,11 +20,14 @@ pub use self::ErrorLevel::*;
 #[derive(Debug)]
 struct ErrorInfo(ErrorLevel, Position, Vec<String>);
 
+
 #[derive(Debug)]
 struct CError(err);
 
+
 #[derive(Debug)]
 struct UnsupportedFeature(String, Position);
+
 
 pub fn errorLevel() -> ErrorLevel {
     (|ErrorInfo(lvl, _, _)| { lvl }(errorInfo))
@@ -66,7 +73,10 @@ pub fn showError(short_msg: String) -> String {
 }
 
 pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) -> String {
-    __op_addadd(header, showMsgLines((__op_concat(__TODO_if(null, short_msg, then, msgs, __TODO_else, short_msg), msgs))))
+    __op_addadd(header, showMsgLines((__op_concat(if null(short_msg) {         
+msgs} else {
+short_msg
+        }, msgs))))
 }
 
 pub fn unsupportedFeature(msg: String, a: a) -> UnsupportedFeature {

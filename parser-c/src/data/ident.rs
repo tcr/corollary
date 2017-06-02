@@ -1,11 +1,15 @@
+//! Original file: "Ident.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Data::Char;
-use Language::C::Data::Position;
-use Language::C::Data::Node;
-use Language::C::Data::Name;
-use Name;
-use Data::Generics;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Data::Char;
+// use Language::C::Data::Position;
+// use Language::C::Data::Node;
+// use Language::C::Data::Name;
+// use Name;
+// use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum SUERef {
@@ -16,6 +20,7 @@ pub use self::SUERef::*;
 
 #[derive(Clone, Debug)]
 struct Ident(String, isize, NodeInfo);
+
 
 pub fn bits14() -> isize {
     __op_power(2, (14))
@@ -53,8 +58,8 @@ pub fn internalIdentAt(pos: Position, s: String) -> Ident {
     Ident(s, (quad(s)), (mkNodeInfoPosLen(pos, (pos, length(s)))))
 }
 
-pub fn isAnonymousRef(__0: SUERef) -> bool {
-    match (__0) {
+pub fn isAnonymousRef(_0: SUERef) -> bool {
+    match (_0) {
         AnonymousRef(_) => {
             true
         },
@@ -72,8 +77,8 @@ pub fn mkIdent(pos: Position, s: String, name: Name) -> Ident {
     Ident(s, (quad(s)), (mkNodeInfo_q(pos, (pos, length(s)), name)))
 }
 
-pub fn quad(__0: String) -> isize {
-    match (__0) {
+pub fn quad(_0: String) -> isize {
+    match (_0) {
         [c1, [c2, [c3, [c4, s]]]] => {
             ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },

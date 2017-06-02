@@ -1,19 +1,23 @@
+//! Original file: "ParserMonad.hs"
+//! File auto-generated using Corollary.
+
 use corollary_support::*;
 
-use Language::C::Data::Error;
-use internalErr;
-use Language::C::Data::Position;
-use Position;
-use Language::C::Data::InputStream;
-use Language::C::Data::Name;
-use Name;
-use Language::C::Data::Ident;
-use Ident;
-use Language::C::Parser::Tokens;
-use CToken;
-use Data::Set;
-use Set;
-use Data::Set;
+// NOTE: These imports are advisory. You probably need to change them to support Rust.
+// use Language::C::Data::Error;
+// use internalErr;
+// use Language::C::Data::Position;
+// use Position;
+// use Language::C::Data::InputStream;
+// use Language::C::Data::Name;
+// use Name;
+// use Language::C::Data::Ident;
+// use Ident;
+// use Language::C::Parser::Tokens;
+// use CToken;
+// use Data::Set;
+// use Set;
+// use Data::Set;
 
 pub enum ParseResult<a> {
     POk(PState, a),
@@ -30,6 +34,13 @@ struct PState{
     tyidents: Set<Ident>,
     scopes: Vec<Set<Ident>>
 }
+fn curPos(a: PState) -> Position { a.curPos }
+fn curInput(a: PState) -> InputStream { a.curInput }
+fn prevToken(a: PState) -> CToken { a.prevToken }
+fn savedToken(a: PState) -> CToken { a.savedToken }
+fn namesupply(a: PState) -> Vec<Name> { a.namesupply }
+fn tyidents(a: PState) -> Set<Ident> { a.tyidents }
+fn scopes(a: PState) -> Vec<Set<Ident>> { a.scopes }
 
 pub fn addTypedef(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState {
@@ -138,8 +149,8 @@ pub fn setInput(i: InputStream) -> P<()> {
             }, ()) })
 }
 
-pub fn setLastToken(__0: CToken) -> P<()> {
-    match (__0) {
+pub fn setLastToken(_0: CToken) -> P<()> {
+    match (_0) {
         CTokEof => {
             P(|s| { POk(s {
                         savedToken: (prevToken(s))
@@ -164,7 +175,7 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState {
 
         }| { POk(s {
-                tyidents: Set::member(__TODO_if(ident), Set::delete(tyids(then, ident), tyids(__TODO_else, tyids)))
+                tyidents: Set::member(if ident { () }, Set::delete(tyids(then, ident), tyids(else, tyids)))
             }, ()) }))
 }
 
