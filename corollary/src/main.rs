@@ -164,7 +164,7 @@ fn strip_lhs(s: &str) -> String {
 }
 
 /// Converts a Haskell file by its path into a Rust module.
-fn convert_file(input: &str, p: &Path, inline_mod: bool, strip_imports: bool) -> Result<(String, String)> {
+fn convert_file(input: &str, p: &Path, inline_mod: bool) -> Result<(String, String)> {
     let mut contents = input.to_string();
     let mut file_out = String::new();
     let mut rust_out = String::new();
@@ -184,14 +184,8 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool, strip_imports: bool) ->
     // Parse the file.
     let mut errors = Vec::new();
     match parser_haskell::parse(&mut errors, &contents) {
-        Ok(mut v) => {
+        Ok(v) => {
             // errln!("{:?}", v);
-
-            if strip_imports {
-                v.items = v.items.into_iter()
-                    .filter(|x| if let &parser_haskell::ast::Item::Import(..) = x { false } else { true })
-                    .collect();
-            }
 
             if inline_mod {
                 writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"))?;
@@ -267,7 +261,7 @@ fn run() -> Result<()> {
     if arg_input.ends_with(".lhs") {
         contents = strip_lhs(&contents);
     }
-    let (mut file_section, rust_section) = convert_file(&contents, &PathBuf::from(arg_input), false, arg_run)?;
+    let (mut file_section, rust_section) = convert_file(&contents, &PathBuf::from(arg_input), false)?;
 
     // Add Rust segments RUST ... /RUST and Haskell support code.
     let _ = writeln!(file_section, "");
@@ -294,8 +288,11 @@ fn run() -> Result<()> {
         let file_path = dir.path().join("script.rs");
 
         let mut f = File::create(&file_path)?;
-        let _ = f.write_all(b"// cargo-deps: corollary-support=\"*\"\n\nextern crate corollary_support;\n\n");
+        let _ = f.write_all(b"// cargo-deps: corollary-support={path=\"/Users/trim/Desktop/corrode-but-in-rust/corollary-support\"}\n\nextern crate corollary_support;\n\n");
         let _ = f.write_all(file_section.as_bytes());
+        if rust_section.len() == 0 {
+            let _ = f.write_all(b"\n\nfn main() { let _ = __main(); }\n");
+        }
         drop(f);
 
         let output = Command::new("cargo")

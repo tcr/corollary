@@ -45,6 +45,7 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "fn" => "__fn".to_string(),
         "pure" => "__pure".to_string(),
         "as" => "__as".to_string(),
+        "main" => "__main".to_string(),
         _ => {
             let mut expr = expr.to_string();
 
@@ -123,11 +124,25 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
 
     let freeform = match *expr {
         Parens(ref r) => {
-            let mut out = vec![];
-            for item in r {
-                out.push(print_expr(state, item));
+            let mut res = None;
+            if r.len() == 1 {
+                if let &Expr::Span(ref inner) = &r[0] {
+                    if inner.len() == 1 && matches!(&inner[0], &Expr::Ref(..)) {
+                        // HACK: Print singly-wrapped idents as functions
+                        res = Some(format!("{}()", print_expr(state, &inner[0])))
+                    }
+                }
             }
-            format!("({})", out.join(", "))
+
+            if res.is_none() {
+                let mut out = vec![];
+                for item in r {
+                    out.push(print_expr(state, item));
+                }
+                res = Some(format!("({})", out.join(", ")))
+            }
+
+            res.unwrap()
         }
         Vector(ref r) => {
             let exprs = convert_exprs(state, r);
@@ -242,8 +257,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 format!("{} {}",
                     print_expr(state, &span[0].clone()),
                     print_expr(state, &span[1].clone()))
-            }
-            else if span.len() == 1 {
+            } else if span.len() == 1 {
                 print_expr(state, &span[0])
             } else {
                 if span.len() == 0 {
@@ -520,11 +534,17 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
     let mut out = vec![];
 
     // Print out imports.
+    let mut first = true;
     for item in stats {
         if let ast::Item::Import(ref imports) = *item {
+            if first {
+                out.push(format!("// NOTE: These imports are advisory. You probably need to change them to support Rust."))
+            }
+            first = false;
+
             for import in imports {
                 if import.len() > 0 {
-                    out.push(format!("use {};", import[0].0.replace(".", "::")));
+                    out.push(format!("// use {};", import[0].0.replace(".", "::")));
                 }
             }
         }
@@ -605,7 +625,26 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                     }
                 };
 
-                out.push(format!("{}{}struct {}{}",
+                let mut accessors = vec![];
+                let tyset = data[0].clone(); // 0th in pipe sequence
+                if let &Ty::Span(ref inner) = &tyset[0] {
+                    if let &Ty::Record(ref args) = &inner[1] {
+                        for arg in args {
+                            accessors.push(format!("{}fn {}(a: {}) -> {} {{ a.{} }}",
+                                state.indent(),
+                                print_type_ident(state, &(arg.0).0),
+                                print_type_ident(state, &name.0),
+                                print_type(state, &arg.1),
+                                print_type_ident(state, &(arg.0).0),
+                            ));
+                        }
+                    } else {
+                    }
+                } else {
+                    unreachable!();
+                }
+
+                out.push(format!("{}{}struct {}{}\n{}",
                     state.indent(),
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n{}", derive_rust.join(", "), state.indent())
@@ -617,7 +656,8 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                         v.extend(args);
                         v
                     })),
-                    props
+                    props,
+                    accessors.join("\n"),
                 ));
             }
             out.push("".to_string())
