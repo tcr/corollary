@@ -100,6 +100,7 @@ pub fn print_op_fn(value: &str) -> String {
         "*=" => "__op_assign_mul".to_string(),
         "^" => "__op_power".to_string(),
         "<>" => "__op_ne".to_string(),
+        "!" => "__op_array_index".to_string(), // Returns the element of an immutable array at the specified index, Data.Array.Base
         "," => "__op_tuple2".to_string(),
         "\\\\" => "__op_forwardslash".to_string(), // TODO what does this do
         "$" => "__op_dollar".to_string(), // TODO what does this do

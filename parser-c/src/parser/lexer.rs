@@ -68,11 +68,11 @@ pub fn alexGetChar((p, is): AlexInput) -> Option<(Char, AlexInput)> {
 }
 
 pub fn alexIndexInt16OffAddr(arr: bool) -> bool {
-    !(arr, off)
+    __op_array_index(arr, off)
 }
 
 pub fn alexIndexInt32OffAddr(arr: bool) -> bool {
-    !(arr, off)
+    __op_array_index(arr, off)
 }
 
 pub fn alexInputPrevChar(_: AlexInput) -> Char {
@@ -101,7 +101,7 @@ pub fn alexPrevCharIs(c: bool) -> bool {
 }
 
 pub fn alexPrevCharIsOneOf(arr: bool) -> bool {
-    !(arr, alexInputPrevChar(input))
+    __op_array_index(arr, alexInputPrevChar(input))
 }
 
 pub fn alexPrevCharMatches(f: bool) -> bool {
@@ -139,7 +139,7 @@ pub fn alexScanUser(user: bool) -> bool {
             AlexSkip(input_q_q, len)
         },
         (AlexLastAcc(k, input_q_q_q, len), _) => {
-            AlexToken(input_q_q_q, len, (!(alex_actions, k)))
+            AlexToken(input_q_q_q, len, (__op_array_index(alex_actions, k)))
         },
     }
 }
@@ -20662,7 +20662,7 @@ pub fn parseError<a>() -> P<a> {
 }
 
 pub fn quickIndex(arr: bool) -> bool {
-    !(arr, i)
+    __op_array_index(arr, i)
 }
 
 pub fn readCOctal(s: String, __OP__: Either<String, CInteger>) -> Either<String, CInteger> {

@@ -275,7 +275,7 @@ pub fn cstringOfLit<a>(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
     cstr
 }
 
-pub fn fmapInitList<b, a>(_f: fn(a) -> b) -> CInitializerList<b> {
+pub fn fmapInitList<a, b>(_f: fn(a) -> b) -> CInitializerList<b> {
     __map!((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
 }
 

@@ -187,7 +187,7 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
             }, ()) }))
 }
 
-pub fn thenP<a, b>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
+pub fn thenP<b, a>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
     P(|s| { match m(s) {
             POk(s_q, a) => {
                 (unP((k(a))))(s_q)

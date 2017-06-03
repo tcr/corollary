@@ -32725,11 +32725,11 @@ pub fn happyAccept(_0: bool) -> bool {
     }
 }
 
-pub fn happyDoSeq<a, b>(a: a, b: b) -> b {
+pub fn happyDoSeq<b, a>(a: a, b: b) -> b {
     seq(a, b)
 }
 
-pub fn happyDontSeq<a, b>(a: a, b: b) -> b {
+pub fn happyDontSeq<b, a>(a: a, b: b) -> b {
     b
 }
 
