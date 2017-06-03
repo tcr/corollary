@@ -1,3 +1,6 @@
+// Original file: "AST.hs"
+// File auto-generated using Corollary.
+
 #[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
@@ -272,7 +275,7 @@ pub fn cstringOfLit<a>(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
     cstr
 }
 
-pub fn fmapInitList<a, b>(_f: fn(a) -> b) -> CInitializerList<b> {
+pub fn fmapInitList<b, a>(_f: fn(a) -> b) -> CInitializerList<b> {
     __map!((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
 }
 

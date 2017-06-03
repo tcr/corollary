@@ -1,3 +1,6 @@
+// Original file: "CFG.lhs"
+// File auto-generated using Corollary.
+
 #[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
@@ -122,7 +125,7 @@ pub fn outEdges(blocks: IntMap::IntMap<StructureBlock<s, c>>) -> IntSet::IntSet 
     IntSet::difference(IntSet::unions((__map!(successors)(IntMap::elems(blocks)))), IntMap::keysSet(blocks))
 }
 
-pub fn partitionMembers<a, b>(a: IntSet::IntSet, b: IntSet::IntSet) -> (IntSet::IntSet, IntSet::IntSet) {
+pub fn partitionMembers<b, a>(a: IntSet::IntSet, b: IntSet::IntSet) -> (IntSet::IntSet, IntSet::IntSet) {
     (IntSet::intersection(a, b), IntSet::difference(a, b))
 }
 

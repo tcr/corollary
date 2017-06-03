@@ -1,3 +1,6 @@
+// Original file: "Parser.hs"
+// File auto-generated using Corollary.
+
 #[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
@@ -32722,11 +32725,11 @@ pub fn happyAccept(_0: bool) -> bool {
     }
 }
 
-pub fn happyDoSeq<b, a>(a: a, b: b) -> b {
+pub fn happyDoSeq<a, b>(a: a, b: b) -> b {
     seq(a, b)
 }
 
-pub fn happyDontSeq<b, a>(a: a, b: b) -> b {
+pub fn happyDontSeq<a, b>(a: a, b: b) -> b {
     b
 }
 

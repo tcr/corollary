@@ -1,3 +1,6 @@
+// Original file: "ParserMonad.hs"
+// File auto-generated using Corollary.
+
 #[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
@@ -184,7 +187,7 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
             }, ()) }))
 }
 
-pub fn thenP<b, a>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
+pub fn thenP<a, b>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
     P(|s| { match m(s) {
             POk(s_q, a) => {
                 (unP((k(a))))(s_q)

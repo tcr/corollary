@@ -181,9 +181,9 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool) -> Result<(String, Stri
     // Preprocess the file.
     let contents = parser_haskell::preprocess(&contents);
 
-    // writeln!(file_out, "//! Original file: {:?}", p.file_name().unwrap())?;
-    // writeln!(file_out, "//! File auto-generated using Corollary.")?;
-    // writeln!(file_out, "")?;
+    writeln!(file_out, "// Original file: {:?}", p.file_name().unwrap())?;
+    writeln!(file_out, "// File auto-generated using Corollary.")?;
+    writeln!(file_out, "")?;
 
     // Parse the file.
     let mut errors = Vec::new();

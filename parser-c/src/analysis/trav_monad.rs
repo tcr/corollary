@@ -1,3 +1,6 @@
+// Original file: "TravMonad.hs"
+// File auto-generated using Corollary.
+
 #[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
@@ -124,7 +127,7 @@ pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m
     }
 }
 
-pub fn concatMapM<a, b>(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
+pub fn concatMapM<b, a>(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
     liftM(concat, mapM(f))
 }
 
