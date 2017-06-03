@@ -238,6 +238,8 @@ Item: Item = {
       => Item::Instance,
     "infixr" <n:Num> "`" <i:Ident> "`"
       => Item::Infixr(n, i),
+    "infixl" <n:Num> "`" <i:Ident> "`"
+      => Item::Infixl(n, i),
 
     <ids:CommaOnce<Ident>> <t:("::" <TypeGroup>)>
       => Item::Prototype(ids, t),

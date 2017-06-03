@@ -68,13 +68,13 @@ pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
         (md, _, PtrType(_, _, _)) => {
             return(ptrAlign(md))
         },
-        (md, n, ArrayType(bt, UnknownArraySize(_), _, _)) => {
+        (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
             return(ptrAlign(md))
         },
-        (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
+        (md, n, ArrayType(bt, ArraySize(_, _), _, _)) => {
             alignofType(md, n, bt)
         },
-        (md, n, TypeDefType(TypeDefRef(_, Some(t), _), _, _)) => {
+        (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
             alignofType(md, n, t)
         },
         (_, n, t) => {
@@ -256,7 +256,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 intExpr(ni, sz)
             }
         },
-        (md, env, e, __OP__, CVar(i, _)) => {
+        (_, env, e, __OP__, CVar(i, _)) => {
             /* Expr::Error */ Error
         },
         (md, env, e, __OP__, CVar(i, _)) => {
@@ -417,7 +417,7 @@ pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
         (md, _, PtrType(_, _, _)) => {
             return(ptrSize(md))
         },
-        (md, n, ArrayType(bt, UnknownArraySize(_), _, _)) => {
+        (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
             return(ptrSize(md))
         },
         (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
@@ -438,14 +438,11 @@ pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
                 }
             }
         },
-        (md, n, TypeDefType(TypeDefRef(_, Some(t), _), _, _)) => {
+        (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
             sizeofType(md, n, t)
         },
         (md, _, FunctionType(_, _)) => {
             return(ptrSize(md))
-        },
-        (_, n, t) => {
-            astError((nodeInfo(n)))(__op_addadd("can\'t find size of type: ".to_string(), (render(pretty))(t)))
         },
     }
 }

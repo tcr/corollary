@@ -9,7 +9,7 @@
 // use Name;
 // use Data::Generics;
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Eq, Ord)]
 pub enum NodeInfo {
     OnlyPos(Position, PosLength),
     NodeInfo(Position, PosLength, Name)

@@ -4,7 +4,6 @@
 #[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
-// use Data::List;
 // use Language::C::Syntax::Constants;
 // use Language::C::Syntax::Ops;
 // use Language::C::Data::Ident;
@@ -37,8 +36,11 @@ pub struct CFunctionDef<a>(Vec<CDeclarationSpecifier<a>>, CDeclarator<a>, Vec<CD
 pub type CDecl = CDeclaration<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CDeclaration<a>(Vec<CDeclarationSpecifier<a>>, Vec<(Option<CDeclarator<a>>, Option<CInitializer<a>>, Option<CExpression<a>>)>, a);
-
+pub enum CDeclaration<a> {
+    CDecl(Vec<CDeclarationSpecifier<a>>, Vec<(Option<CDeclarator<a>>, Option<CInitializer<a>>, Option<CExpression<a>>)>, a),
+    CStaticAssert(CExpression<a>, CStringLiteral<a>, a)
+}
+pub use self::CDeclaration::*;
 
 pub type CDeclr = CDeclarator<NodeInfo>;
 
@@ -116,7 +118,9 @@ pub type CDeclSpec = CDeclarationSpecifier<NodeInfo>;
 pub enum CDeclarationSpecifier<a> {
     CStorageSpec(CStorageSpecifier<a>),
     CTypeSpec(CTypeSpecifier<a>),
-    CTypeQual(CTypeQualifier<a>)
+    CTypeQual(CTypeQualifier<a>),
+    CFunSpec(CFunctionSpecifier<a>),
+    CAlignSpec(CAlignmentSpecifier<a>)
 }
 pub use self::CDeclarationSpecifier::*;
 
@@ -148,11 +152,13 @@ pub enum CTypeSpecifier<a> {
     CUnsigType(a),
     CBoolType(a),
     CComplexType(a),
+    CInt128Type(a),
     CSUType(CStructureUnion<a>, a),
     CEnumType(CEnumeration<a>, a),
     CTypeDef(Ident, a),
     CTypeOfExpr(CExpression<a>, a),
-    CTypeOfType(CDeclaration<a>, a)
+    CTypeOfType(CDeclaration<a>, a),
+    CAtomicType(CDeclaration<a>, a)
 }
 pub use self::CTypeSpecifier::*;
 
@@ -163,10 +169,30 @@ pub enum CTypeQualifier<a> {
     CConstQual(a),
     CVolatQual(a),
     CRestrQual(a),
-    CInlineQual(a),
-    CAttrQual(CAttribute<a>)
+    CAtomicQual(a),
+    CAttrQual(CAttribute<a>),
+    CNullableQual(a),
+    CNonnullQual(a)
 }
 pub use self::CTypeQualifier::*;
+
+pub type CFunSpec = CFunctionSpecifier<NodeInfo>;
+
+#[derive(Clone, Debug)]
+pub enum CFunctionSpecifier<a> {
+    CInlineQual(a),
+    CNoreturnQual(a)
+}
+pub use self::CFunctionSpecifier::*;
+
+pub type CAlignSpec = CAlignmentSpecifier<NodeInfo>;
+
+#[derive(Clone, Debug)]
+pub enum CAlignmentSpecifier<a> {
+    CAlignAsType(CDeclaration<a>, a),
+    CAlignAsExpr(CExpression<a>, a)
+}
+pub use self::CAlignmentSpecifier::*;
 
 pub type CStructUnion = CStructureUnion<NodeInfo>;
 
@@ -238,6 +264,7 @@ pub enum CExpression<a> {
     CVar(Ident, a),
     CConst(CConstant<a>),
     CCompoundLit(CDeclaration<a>, CInitializerList<a>, a),
+    CGenericSelection(CExpression<a>, Vec<(Option<CDeclaration<a>>, CExpression<a>)>, a),
     CStatExpr(CStatement<a>, a),
     CLabAddrExpr(Ident, a),
     CBuiltinExpr(CBuiltinThing<a>)
@@ -275,7 +302,7 @@ pub fn cstringOfLit<a>(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
     cstr
 }
 
-pub fn fmapInitList<a, b>(_f: fn(a) -> b) -> CInitializerList<b> {
+pub fn fmapInitList<b, a>(_f: fn(a) -> b) -> CInitializerList<b> {
     __map!((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
 }
 
@@ -297,8 +324,8 @@ pub fn liftStrLit<a>(CStrLit(__str, at): CStringLiteral<a>) -> CConstant<a> {
     CStrConst(__str, at)
 }
 
-pub fn partitionDeclSpecs<a>() -> (Vec<CStorageSpecifier<a>>, Vec<CAttribute<a>>, Vec<CTypeQualifier<a>>, Vec<CTypeSpecifier<a>>, bool) {
-    foldr(deals, (vec![], vec![], vec![], vec![], false))
+pub fn partitionDeclSpecs<a>() -> (Vec<CStorageSpecifier<a>>, Vec<CAttribute<a>>, Vec<CTypeQualifier<a>>, Vec<CTypeSpecifier<a>>, Vec<CFunctionSpecifier<a>>, Vec<CAlignmentSpecifier<a>>) {
+    foldr(deals, (vec![], vec![], vec![], vec![], vec![], vec![]))
 }
 
 

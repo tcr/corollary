@@ -10,8 +10,6 @@
 // use Data::List;
 // use Data::Map;
 // use Map;
-// use Language::C::Data::Ident;
-// use Ident;
 
 pub struct NameSpaceMap<k, v>(Map<k, v>, Vec<Vec<(k, v)>>);
 
@@ -74,7 +72,7 @@ pub fn lookupInnermostScope<a>(nsm: NameSpaceMap<k, a>, __OP__: k, NsMap(_gs, lo
 }
 
 pub fn lookupName<a>(ns: NameSpaceMap<k, a>, __OP__: k, NsMap(_, localDefs): Option<a>) -> Option<a> {
-    match (lookupLocal(localDefs)) {
+    match lookupLocal(localDefs) {
         None => {
             lookupGlobal(ns, ident)
         },

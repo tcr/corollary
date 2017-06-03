@@ -1,3 +1,6 @@
 [submodule "corrode"]
 	path = deps/corrode
 	url = https://github.com/jameysharp/corrode.git
+[submodule "deps/language-c"]
+	path = deps/language-c
+	url = https://github.com/visq/language-c.git

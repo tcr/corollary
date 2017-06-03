@@ -42,7 +42,7 @@ pub fn incOffset(_0: Position, _1: isize) -> Position {
         (Position(o, f, r, c), n) => {
             Position(((o + n)), f, r, c)
         },
-        (p, n) => {
+        (p, _) => {
             p
         },
     }

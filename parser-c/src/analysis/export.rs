@@ -5,6 +5,8 @@
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data::Ident;
+// use Language::C::Data::Name;
+// use nameId;
 // use Language::C::Data::Node;
 // use Language::C::Syntax::AST;
 // use Language::C::Analysis::SemRep;
@@ -41,11 +43,8 @@ pub fn exportComplexType(ty: FloatType) -> Vec<CTypeSpec> {
     __op_concat((CComplexType(ni)), exportFloatType(ty))
 }
 
-pub fn exportDeclAttrs(DeclAttrs(inline, storage, attrs): DeclAttrs) -> Vec<CDeclSpec> {
-    __op_addadd((if inline {     
-vec![CTypeQual((CInlineQual(ni)))]} else {
-vec![]
-    }), __op_addadd(__map!(CStorageSpec(), (exportStorage(storage))), __map!((CTypeQual(CAttrQual)), (exportAttrs(attrs)))))
+pub fn exportDeclAttrs(DeclAttrs(fun_attrs, storage, attrs): DeclAttrs) -> Vec<CDeclSpec> {
+    __op_addadd(__map!(CFunSpec, (exportFunAttrs(fun_attrs))), __op_addadd(__map!(CStorageSpec, (exportStorage(storage))), __map!((CTypeQual(CAttrQual)), (exportAttrs(attrs)))))
 }
 
 pub fn exportDeclr(other_specs: Vec<CDeclSpec>, ty: Type, attrs: Attributes, name: VarName) -> (Vec<CDeclSpec>, CDeclr) {
@@ -78,6 +77,10 @@ pub fn exportFloatType(ty: FloatType) -> Vec<CTypeSpec> {
     }
 }
 
+pub fn exportFunAttrs(fattrs: FunctionAttrs) -> Vec<CFunSpec> {
+    catMaybes(vec![inlQual, noretQual])
+}
+
 pub fn exportIntType(ty: IntType) -> Vec<CTypeSpec> {
     match ty {
         TyBool => {
@@ -103,6 +106,12 @@ pub fn exportIntType(ty: IntType) -> Vec<CTypeSpec> {
         },
         TyUInt => {
             vec![CUnsigType(ni), CIntType(ni)]
+        },
+        TyInt128 => {
+            vec![CInt128Type(ni)]
+        },
+        TyUInt128 => {
+            vec![CUnsigType(ni), CInt128Type(ni)]
         },
         TyLong => {
             vec![CLongType(ni)]
@@ -140,8 +149,15 @@ pub fn exportParamDecl(paramdecl: ParamDecl) -> CDecl {
     CDecl(specs, vec![(Some(declr), None, None)], (nodeInfo(paramdecl)))    }
 }
 
-pub fn exportSUERef() -> Option<Ident> {
-    Some(internalIdent(show))
+pub fn exportSUERef(_0: SUERef) -> Option<Ident> {
+    match (_0) {
+        AnonymousRef(name) => {
+            Some((internalIdent(__op_addadd("$".to_string(), show((nameId(name)))))))
+        },
+        NamedRef(ident) => {
+            Some(ident)
+        },
+    }
 }
 
 pub fn exportStorage(_0: Storage) -> Vec<CStorageSpec> {
@@ -234,8 +250,8 @@ pub fn fromDirectType(_0: Type) -> TypeName {
         DirectType(ty, _, _) => {
             ty
         },
-        TypeDefType(TypeDefRef(_, __ref, _), _, _) => {
-            maybe((__error!("undefined typeDef".to_string())), fromDirectType, __ref)
+        TypeDefType(TypeDefRef(_, ty, _), _, _) => {
+            fromDirectType(ty)
         },
         _ => {
             __error!("fromDirectType".to_string())

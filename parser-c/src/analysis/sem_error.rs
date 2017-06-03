@@ -9,11 +9,11 @@
 // use Language::C::Data::Error;
 // use Language::C::Data::Node;
 
-#[derive(Debug, Error)]
+#[derive(Debug)]
 pub struct InvalidASTError(ErrorInfo);
 
 
-#[derive(Debug, Error)]
+#[derive(Debug)]
 pub struct BadSpecifierError(ErrorInfo);
 
 

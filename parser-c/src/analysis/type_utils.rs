@@ -5,6 +5,10 @@
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Analysis::SemRep;
+// use Language::C::Data::Node;
+// use CNode;
+// use Language::C::Syntax::AST;
+// use CExpression;
 // use Language::C::Syntax::Constants;
 
 pub fn baseType(_0: Type) -> Type {
@@ -45,7 +49,9 @@ pub fn constCharPtr() -> Type {
 }
 
 pub fn constPtr(t: Type) -> Type {
-    PtrType(t, (TypeQuals(true, false, false)), vec![])
+    PtrType(t, (noTypeQuals {
+            constant: true
+        }), vec![])
 }
 
 pub fn constVoidPtr() -> Type {
@@ -66,7 +72,7 @@ pub fn deepDerefTypeDef(_0: Type) -> Type {
         FunctionType(FunTypeIncomplete(rt), attrs) => {
             FunctionType((FunTypeIncomplete((deepDerefTypeDef(rt)))), attrs)
         },
-        TypeDefType(TypeDefRef(_, Some(t), _), q, a) => {
+        TypeDefType(TypeDefRef(_, t, _), q, a) => {
             (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((deepDerefTypeDef(t)))
         },
         t => {
@@ -77,7 +83,7 @@ pub fn deepDerefTypeDef(_0: Type) -> Type {
 
 pub fn derefTypeDef(_0: Type) -> Type {
     match (_0) {
-        TypeDefType(TypeDefRef(_, Some(t), _), q, a) => {
+        TypeDefType(TypeDefRef(_, t, _), q, a) => {
             (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
         },
         ty => {
@@ -115,11 +121,8 @@ pub fn isFloatingType(_0: Type) -> bool {
 
 pub fn isFunctionType(ty: Type) -> bool {
     match ty {
-        TypeDefType(TypeDefRef(_, Some(actual_ty), _), _, _) => {
+        TypeDefType(TypeDefRef(_, actual_ty, _), _, _) => {
             isFunctionType(actual_ty)
-        },
-        TypeDefType(_, _, _) => {
-            __error!("isFunctionType: unresolved typeDef".to_string())
         },
         FunctionType(_, _) => {
             true
@@ -162,8 +165,125 @@ pub fn isScalarType(t: Type) -> bool {
     (isIntegralType(t) || (isPointerType(t) || isFloatingType(t)))
 }
 
+pub fn isVariablyModifiedType(t: Type) -> bool {
+    match derefTypeDef(t) {
+        TypeDefType {
+
+        } => {
+            __error!("impossible: derefTypeDef t returned a TypeDefType".to_string())
+        },
+        DirectType {
+
+        } => {
+            false
+        },
+        PtrType(ptr_ty, _, _) => {
+            isVariablyModifiedType(ptr_ty)
+        },
+        ArrayType(_, sz, _, _) => {
+            isVariableArraySize(sz)
+        },
+        FunctionType {
+
+        } => {
+            false
+        },
+    }
+}
+
 pub fn ptrDiffType() -> Type {
     integral(TyInt)
+}
+
+pub fn sameArraySize(_0: ArraySize, _1: ArraySize) -> bool {
+    match (_0, _1) {
+        (UnknownArraySize(isStar1), UnknownArraySize(isStar2)) => {
+            (isStar1 == isStar2)
+        },
+        (ArraySize(s1, e1), ArraySize(s2, e2)) => {
+            (s1 == (s2 && sizeEqual(e1, e2)))
+        },
+        (_, _) => {
+            false
+        },
+    }
+}
+
+pub fn sameBuiltinType(_0: BuiltinType, _1: BuiltinType) -> bool {
+    match (_0, _1) {
+        (TyVaList, TyVaList) => {
+            true
+        },
+        (TyAny, TyAny) => {
+            false
+        },
+        (_, _) => {
+            false
+        },
+    }
+}
+
+pub fn sameCompTypeRef(CompTypeRef(sue1, kind1, _): CompTypeRef, CompTypeRef(sue2, kind2, _): CompTypeRef) -> bool {
+    (sue1 == (sue2 && (kind1 == kind2)))
+}
+
+pub fn sameEnumTypeRef(EnumTypeRef(sue1, _): EnumTypeRef, EnumTypeRef(sue2, _): EnumTypeRef) -> bool {
+    (sue1 == sue2)
+}
+
+pub fn sameFunType(_0: FunType, _1: FunType) -> bool {
+    match (_0, _1) {
+        (FunType(rt1, params1, isVar1), FunType(rt2, params2, isVar2)) => {
+            (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
+        },
+        (FunTypeIncomplete(rt1), FunTypeIncomplete(rt2)) => {
+            sameType(rt1, rt2)
+        },
+        (_, _) => {
+            false
+        },
+    }
+}
+
+pub fn sameQuals(TypeQuals {
+
+    }: TypeQuals, TypeQuals {
+
+    }: TypeQuals) -> bool {
+    (c1 == (c2 && (v1 == (v2 && (r1 == r2)))))
+}
+
+pub fn sameType(t1: Type, t2: Type) -> bool {
+    (not(((isVariablyModifiedType(t1) || isVariablyModifiedType(t2)))) && sameType_q)
+}
+
+pub fn sameTypeName(t1: TypeName, t2: TypeName) -> bool {
+    match (t1, t2) {
+        (TyVoid, TyVoid) => {
+            true
+        },
+        (TyIntegral(i1), TyIntegral(i2)) => {
+            (i1 == i2)
+        },
+        (TyFloating(f1), TyFloating(f2)) => {
+            (f1 == f2)
+        },
+        (TyComplex(f1), TyComplex(f2)) => {
+            (f1 == f2)
+        },
+        (TyComp(ctr1), TyComp(ctr2)) => {
+            sameCompTypeRef(ctr1, ctr2)
+        },
+        (TyEnum(etr1), TyEnum(etr2)) => {
+            sameEnumTypeRef(etr1, etr2)
+        },
+        (TyBuiltin(b1), TyBuiltin(b2)) => {
+            sameBuiltinType(b1, b2)
+        },
+        _ => {
+            false
+        },
+    }
 }
 
 pub fn simplePtr(t: Type) -> Type {
@@ -175,11 +295,13 @@ pub fn size_tType() -> Type {
 }
 
 pub fn stringType() -> Type {
-    ArrayType((DirectType((TyIntegral(TyChar)), (TypeQuals(true, false, false)), noAttributes)), (UnknownArraySize(false)), noTypeQuals, vec![])
+    ArrayType((DirectType((TyIntegral(TyChar)), (noTypeQuals {
+                constant: true
+            }), noAttributes)), (UnknownArraySize(false)), noTypeQuals, vec![])
 }
 
 pub fn testFlags(flags: Vec<f>, fi: Flags<f>) -> bool {
-    and(__map!(((flip(testFlag))(fi)), flags))
+    all((testFlag(fi)), flags)
 }
 
 pub fn typeAttrs(_0: Type) -> Attributes {
@@ -196,10 +318,7 @@ pub fn typeAttrs(_0: Type) -> Attributes {
         FunctionType(_, a) => {
             a
         },
-        TypeDefType(TypeDefRef(_, None, _), _, a) => {
-            a
-        },
-        TypeDefType(TypeDefRef(_, Some(t), _), _, a) => {
+        TypeDefType(TypeDefRef(_, t, _), _, a) => {
             mergeAttributes(a, (typeAttrs(t)))
         },
     }
@@ -239,10 +358,7 @@ pub fn typeQuals(_0: Type) -> TypeQuals {
         FunctionType(_, _) => {
             noTypeQuals
         },
-        TypeDefType(TypeDefRef(_, None, _), q, _) => {
-            q
-        },
-        TypeDefType(TypeDefRef(_, Some(t), _), q, _) => {
+        TypeDefType(TypeDefRef(_, t, _), q, _) => {
             mergeTypeQuals(q, (typeQuals(t)))
         },
     }
@@ -266,6 +382,18 @@ pub fn typeQualsUpd(f: fn(TypeQuals) -> TypeQuals, ty: Type) -> Type {
             TypeDefType(ty_ref, (f(ty_quals)), ty_attrs)
         },
     }
+}
+
+pub fn uint16_tType() -> Type {
+    integral(TyUShort)
+}
+
+pub fn uint32_tType() -> Type {
+    integral(TyUInt)
+}
+
+pub fn uint64_tType() -> Type {
+    integral(TyULLong)
 }
 
 pub fn valistType() -> Type {

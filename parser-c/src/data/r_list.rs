@@ -32,7 +32,7 @@ pub fn reverse<a>(Reversed(xs): Reversed<Vec<a>>) -> Vec<a> {
     List::reverse(xs)
 }
 
-pub fn rmap<a, b>(f: fn(a) -> b, Reversed(xs): Reversed<Vec<a>>) -> Reversed<Vec<b>> {
+pub fn rmap<b, a>(f: fn(a) -> b, Reversed(xs): Reversed<Vec<a>>) -> Reversed<Vec<b>> {
     Reversed((__map!(f, xs)))
 }
 

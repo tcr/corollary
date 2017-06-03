@@ -13,18 +13,14 @@
 // use tExpr;
 // use Language::C::Analysis::DefTable;
 // use TagFwdDecl;
-// use Language::C::Analysis::Export;
 // use Language::C::Analysis::SemError;
 // use Language::C::Analysis::SemRep;
 // use Language::C::Analysis::TravMonad;
 // use Data::Foldable;
-// use Data::Traversable;
 // use Control::Monad;
 // use liftM;
 // use Data::List;
-// use intersperse;
-// use Data::Map;
-// use Map;
+// use intercalate;
 // use Data::Map;
 // use Text::PrettyPrint::HughesPJ;
 
@@ -39,7 +35,7 @@ pub enum StorageSpec {
 }
 pub use self::StorageSpec::*;
 
-pub struct VarDeclInfo(VarName, bool, StorageSpec, Attributes, Type, NodeInfo);
+pub struct VarDeclInfo(VarName, FunctionAttrs, StorageSpec, Attributes, Type, NodeInfo);
 
 
 #[derive(Eq, Ord)]
@@ -47,6 +43,7 @@ pub enum NumBaseType {
     NoBaseType,
     BaseChar,
     BaseInt,
+    BaseInt128,
     BaseFloat,
     BaseDouble
 }
@@ -91,11 +88,18 @@ pub enum TypeSpecAnalysis {
 }
 pub use self::TypeSpecAnalysis::*;
 
-pub fn analyseTypeDecl(CDecl(declspecs, declrs, node): CDecl) -> m<Type> {
-    /* Expr::Error */ Error
+pub fn analyseTypeDecl(_0: CDecl) -> m<Type> {
+    match (_0) {
+        CStaticAssert(_, _, node) => {
+            astError(node, "Expected type declaration, found static assert".to_string())
+        },
+        CDecl(declspecs, declrs, node) => {
+            /* Expr::Error */ Error
+        },
+    }
 }
 
-pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: bool, CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node): CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
+pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, fun_specs: Vec<CFunSpec>, CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node): CDeclr, oldstyle_params: Vec<CDecl>, _init_opt: Option<CInit>) -> m<VarDeclInfo> {
     /*do*/ {
         let storage_spec = canonicalStorageSpec(storage_specs);
 
@@ -105,17 +109,17 @@ pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, de
 
         let name = mkVarName(node, name_opt, asmname_opt);
 
-        return(VarDeclInfo(name, inline, storage_spec, attrs_q, typ, node))
+        return(VarDeclInfo(name, function_spec, storage_spec, attrs_q, typ, node))
     }
 }
 
 pub fn analyseVarDecl_q(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
     /*do*/ {
-        let (storage_specs, attrs, type_quals, type_specs, inline) = partitionDeclSpecs(declspecs);
+        let (storage_specs, attrs, type_quals, type_specs, funspecs, _alignspecs) = partitionDeclSpecs(declspecs);
 
         let canonTySpecs = canonicalTypeSpec(type_specs);
 
-        analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, inline, declr, oldstyle, init_opt)
+        analyseVarDecl(handle_sue_def, storage_specs, attrs, type_quals, canonTySpecs, funspecs, declr, oldstyle, init_opt)
     }
 }
 
@@ -159,8 +163,11 @@ pub fn getOnlyDeclr(_0: CDecl) -> m<CDeclr> {
         CDecl(_, [(Some(declr), _, _)], _) => {
             declr
         },
-        CDecl(_, _, node) => {
+        CDecl(_, _, _node) => {
             internalErr("getOnlyDeclr: declaration doesn\'t have a unique declarator".to_string())
+        },
+        CStaticAssert(_, _, _) => {
+            internalErr("getOnlyDeclr: static assertion doesn\'t have a unique declarator".to_string())
         },
     }
 }
@@ -201,8 +208,8 @@ pub fn mergeOldStyle(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) -> m<
 
                         let (newstyle_params, param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
 
-                        when((not(Map::null(param_map_q))))(astError(node)(__op_addadd("declarations for parameter(s) ".to_string(), __op_addadd(showParamMap(param_map_q), " but no such parameter".to_string()))));
-                        return((__op_concat(CFunDeclr((Right((newstyle_params, false))), attrs, fdnode), dds)))
+                        unless((Map::null(param_map_q)))(astError(node)(__op_addadd("declarations for parameter(s) ".to_string(), __op_addadd(showParamMap(param_map_q), " but no such parameter".to_string()))));
+                        (__op_concat(CFunDeclr((Right((newstyle_params, false))), attrs, fdnode), dds))
                     }
                 },
                 Right(_newstyle) => {
@@ -219,7 +226,7 @@ pub fn mergeOldStyle(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) -> m<
 pub fn mergeTypeAttributes(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Attr>, typ: Type) -> m<Type> {
     match typ {
         DirectType(ty_name, quals_q, attrs_q) => {
-            merge(quals_q, attrs_q)(mkDirect(ty_name))
+            merge(quals_q, attrs_q)(DirectType(ty_name))
         },
         PtrType(ty, quals_q, attrs_q) => {
             merge(quals_q, attrs_q)(PtrType(ty))
@@ -227,9 +234,8 @@ pub fn mergeTypeAttributes(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Att
         ArrayType(ty, array_sz, quals_q, attrs_q) => {
             merge(quals_q, attrs_q)(ArrayType(ty, array_sz))
         },
-        FunctionType(FunType(return_ty, params, inline), attrs_q) => {
-            return(FunctionType((FunType(return_ty, params, inline)), (__op_addadd(attrs_q, attrs))))
-        },
+        FunctionType(fty, attrs_q) if __op_assign_div(quals, noTypeQuals) => { astError(node_info, "type qualifiers for function type".to_string()) }
+        FunctionType(fty, attrs_q) => { return(FunctionType(fty, (__op_addadd(attrs_q, attrs)))) }
         TypeDefType(tdr, quals_q, attrs_q) => {
             merge(quals_q, attrs_q)(TypeDefType(tdr))
         },
@@ -238,10 +244,10 @@ pub fn mergeTypeAttributes(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Att
 
 pub fn mkVarName(_0: NodeInfo, _1: Option<Ident>, _2: Option<AsmName>) -> m<VarName> {
     match (_0, _1, _2) {
-        (node, None, _) => {
+        (_node, None, _) => {
             NoName
         },
-        (node, Some(n), asm) => {
+        (_node, Some(n), asm) => {
             return(VarName(n, asm))
         },
     }
@@ -249,28 +255,35 @@ pub fn mkVarName(_0: NodeInfo, _1: Option<Ident>, _2: Option<AsmName>) -> m<VarN
 
 pub fn nameOfDecl(d: CDecl) -> m<Ident> {
     __op_bind(getOnlyDeclr(d), |declr| { match declr {
-            CDeclr(Some(name), _, _, _, _) => {
+            CDeclr(Some(name), _, _, _, _node) => {
                 name
             },
-            CDeclr(None, _, _, _, node) => {
+            CDeclr(None, _, _, _, _node) => {
                 internalErr("nameOfDecl: abstract declarator".to_string())
             },
         } })
 }
 
-pub fn splitCDecl(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
-    match declrs {
-        [] => {
-            internalErr("splitCDecl applied to empty declaration".to_string())
-        },
-        [declr] => {
+pub fn splitCDecl(_0: CDecl, _1: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
+    match (_0, _1, _2) {
+        (decl, __OP__, CStaticAssert(_, _, _)) => {
             vec![decl]
         },
-        [d1, ds] => {
-            {
-                let declspecs_q = __map!(elideSUEDef, declspecs);
+        (decl, __OP__, CDecl(declspecs, declrs, node)) => {
+            match declrs {
+                [] => {
+                    internalErr("splitCDecl applied to empty declaration".to_string())
+                },
+                [_declr] => {
+                    vec![decl]
+                },
+                [d1, ds] => {
+                    {
+                        let declspecs_q = __map!(elideSUEDef, declspecs);
 
-            return(__op_concat((CDecl(declspecs, vec![d1], node)), /* Expr::Generator */ Generator))            }
+                    return(__op_concat((CDecl(declspecs, vec![d1], node)), /* Expr::Generator */ Generator))                    }
+                },
+            }
         },
     }
 }
@@ -308,9 +321,7 @@ pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt,
         let decl = CompTypeRef(sue_ref, tag_q, node_info);
 
         handleTagDecl((CompDecl(decl)));
-        when(handle_def())(/*do*/ {
-            maybeM(member_decls_opt)(|decls| { __op_bind(tCompType(sue_ref, tag_q, decls, attrs_q(), node_info), handleTagDef::CompDef()) })
-        });
+        when(handle_def)(maybeM(member_decls_opt)(|decls| { __op_bind(tCompType(sue_ref, tag_q, decls, attrs_q, node_info), handleTagDef::CompDef()) }));
         decl
     }
 }
@@ -358,8 +369,8 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
             TSType(t) => {
                 mergeTypeAttributes(node, quals, attrs, t)
             },
-            TSNonBasic(_) => {
-                astError(node, "Unexpected typespec".to_string())
+            TSNonBasic(t) => {
+                astError(node, (__op_addadd("Unexpected typespec: ".to_string(), show(t))))
             },
         }
     }
@@ -378,11 +389,14 @@ pub fn tEnumTypeDecl(handle_def: bool, CEnum(ident_opt, enumerators_opt, attrs, 
 
 pub fn tMemberDecls(_0: CDecl) -> m<Vec<MemberDecl>> {
     match (_0) {
+        CStaticAssert(_, _, node) => {
+            astError(node, "expected struct or union member, found static assertion".to_string())
+        },
         CDecl(declspecs, [], node) => {
             /*do*/ {
-                let (storage_specs, _attrs, typequals, typespecs, is_inline) = partitionDeclSpecs(declspecs);
+                let (_storage_specs, _attrs, typequals, typespecs, funspecs, _alignspecs) = partitionDeclSpecs(declspecs);
 
-                when(is_inline)(astError(node, "member declaration with inline specifier".to_string()));
+                unless((null(funspecs)))(astError(node, "member declaration with function specifier".to_string()));
                 let canonTySpecs = canonicalTypeSpec(typespecs);
 
                 let ty = tType(true, node, typequals, canonTySpecs, vec![], vec![]);
@@ -390,7 +404,7 @@ pub fn tMemberDecls(_0: CDecl) -> m<Vec<MemberDecl>> {
                 match ty {
                     DirectType(TyComp(_), _, _) => {
                         return(vec![
-                            MemberDecl((VarDecl(NoName, (DeclAttrs(false, NoStorage, vec![])), ty)), None, node),
+                            MemberDecl((VarDecl(NoName, (DeclAttrs(noFunctionAttrs, NoStorage, vec![])), ty)), None, node),
                         ])
                     },
                     _ => {
@@ -400,7 +414,7 @@ pub fn tMemberDecls(_0: CDecl) -> m<Vec<MemberDecl>> {
             }
         },
         CDecl(declspecs, declrs, node) => {
-            mapM((uncurry(tMemberDecl)), (zip((__op_concat(true, repeat(false))), declrs)))
+            zipWithM(tMemberDecl, (__op_concat(true, repeat(false))), declrs)
         },
     }
 }
@@ -416,6 +430,14 @@ pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Eit
             },
             _ => {
                 TyInt
+            },
+        }) }
+        (intbase, _, NoSizeMod) if optBase(BaseInt128, intbase) => { intType(match sgn {
+            Unsigned => {
+                TyUInt128
+            },
+            _ => {
+                TyInt128
             },
         }) }
         (intbase, signed, sizemod) if optBase(BaseInt, intbase) && optSign(Signed, signed) => { intType(match sizemod {
@@ -461,18 +483,25 @@ pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Eit
     }
 }
 
-pub fn tParamDecl(CDecl(declspecs, declrs, node): CDecl) -> m<ParamDecl> {
-    /*do*/ {
-        let declr = getParamDeclr;
+pub fn tParamDecl(_0: CDecl) -> m<ParamDecl> {
+    match (_0) {
+        CStaticAssert(_, _, node) => {
+            astError(node, "expected parameter, not static assertion".to_string())
+        },
+        CDecl(declspecs, declrs, node) => {
+            /*do*/ {
+                let declr = getParamDeclr;
 
-        let VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node) = analyseVarDecl_q(true, declspecs, declr, vec![], None);
+                let VarDeclInfo(name, fun_spec, storage_spec, attrs, ty, declr_node) = analyseVarDecl_q(true, declspecs, declr, vec![], None);
 
-        when(is_inline())(throwTravError((badSpecifierError(node, "parameter declaration with inline specifier".to_string()))));
-        let storage = throwOnLeft(computeParamStorage(node, storage_spec));
+                when(((isInline(fun_spec) || isNoreturn(fun_spec))))(throwTravError((badSpecifierError(node, "parameter declaration with function specifier".to_string()))));
+                let storage = throwOnLeft(computeParamStorage(node, storage_spec));
 
-        let paramDecl = mkParamDecl(name, storage, attrs, ty, declr_node);
+                let paramDecl = mkParamDecl(name, storage, attrs, ty, declr_node);
 
-        return(paramDecl)
+                paramDecl
+            }
+        },
     }
 }
 
@@ -496,7 +525,7 @@ pub fn tTypeQuals() -> m<(TypeQuals, Attributes)> {
 }
 
 pub fn typeDefRef(t_node: NodeInfo, name: Ident) -> m<TypeDefRef> {
-    __op_bind(lookupTypeDef(name), |ty| { (TypeDefRef(name, (Some(ty)), t_node)) })
+    __op_bind(lookupTypeDef(name), |ty| { (TypeDefRef(name, ty, t_node)) })
 }
 
 

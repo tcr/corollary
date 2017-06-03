@@ -59,6 +59,7 @@ pub enum Item {
     GuardAssign,
 
     Infixr(isize, Ident),
+    Infixl(isize, Ident),
 }
 
 pub type Where = Vec<Item>;

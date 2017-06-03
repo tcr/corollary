@@ -5,17 +5,19 @@
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data;
-// use Language::C::Data::Ident;
 // use Language::C::Data::RList;
-// use Language::C::Syntax;
 // use Language::C::Analysis::Builtins;
 // use Language::C::Analysis::SemError;
 // use Language::C::Analysis::SemRep;
+// use Language::C::Analysis::TypeUtils;
+// use sameType;
 // use Language::C::Analysis::DefTable;
 // use Language::C::Analysis::DefTable;
 // use Data::IntMap;
 // use insert;
 // use Data::Maybe;
+// use Control::Applicative;
+// use Applicative;
 // use Control::Monad;
 // use liftM;
 // use Prelude;
@@ -53,6 +55,23 @@ fn doHandleExtDecl(a: TravState) -> fn(DeclEvent) -> Trav<s, ()> { a.doHandleExt
 fn userState(a: TravState) -> s { a.userState }
 fn options(a: TravState) -> TravOptions { a.options }
 
+pub fn _checkIdentTyRedef(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m<()> {
+    match (_0, _1) {
+        (Right(decl), status) => {
+            checkVarRedef(decl, status)
+        },
+        (Left(tydef), KindMismatch(old_def)) => {
+            redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DiffKindRedecl)
+        },
+        (Left(tydef), Redeclared(old_def)) => {
+            redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DuplicateDef)
+        },
+        (Left(_tydef), _) => {
+            ()
+        },
+    }
+}
+
 pub fn addRef(__use: u, def: d) -> m<()> {
     match (nodeInfo(__use), nodeInfo(def)) {
         (NodeInfo(_, _, useName), NodeInfo(_, _, defName)) => {
@@ -72,23 +91,6 @@ pub fn astError<a>(node: NodeInfo, msg: String) -> m<a> {
 
 pub fn checkCompatibleTypes(_: Type, _: Type) -> Either<TypeMismatch, ()> {
     Right(())
-}
-
-pub fn checkIdentTyRedef(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m<()> {
-    match (_0, _1) {
-        (Right(decl), status) => {
-            checkVarRedef(decl, status)
-        },
-        (Left(tydef), KindMismatch(old_def)) => {
-            redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DiffKindRedecl)
-        },
-        (Left(tydef), Redeclared(old_def)) => {
-            redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DuplicateDef)
-        },
-        (Left(_tydef), _) => {
-            ()
-        },
-    }
 }
 
 pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus<t1>) -> m<()> {
@@ -189,7 +191,7 @@ pub fn gets<a>(f: fn(TravState<s>) -> a) -> Trav<s, a> {
 }
 
 pub fn hadHardErrors() -> bool {
-    (not(null(filter(isHardError))))
+    any(isHardError)
 }
 
 pub fn handleAsmBlock(asm: AsmBlock) -> m<()> {
@@ -202,7 +204,7 @@ pub fn handleEnumeratorDef(enumerator: Enumerator) -> m<()> {
 
         let redecl = withDefTable(defineScopedIdent(ident, (EnumeratorDef(enumerator))));
 
-        checkRedef((show(ident)), ident, redecl);
+        checkRedef((identToString(ident)), ident, redecl);
         ()
     }
 }
@@ -222,7 +224,7 @@ pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
     /*do*/ {
         let def = ObjectDef(obj_def);
 
-        let redecl = withDefTable(defineScopedIdentWhen((|old| { shouldOverride(def, old) }), ident, def));
+        let redecl = withDefTable(defineScopedIdentWhen((shouldOverride(def)), ident, def));
 
         checkVarRedef(def, redecl);
         handleDecl(((if local {             
@@ -254,7 +256,7 @@ pub fn handleTagDecl(decl: TagFwdDecl) -> m<()> {
     /*do*/ {
         let redecl = withDefTable(declareTag((sueRef(decl)), decl));
 
-        checkRedef((show(sueRef(decl))), decl, redecl)
+        checkRedef((sueRefToString(sueRef(decl))), decl, redecl)
     }
 }
 
@@ -262,7 +264,7 @@ pub fn handleTagDef(def: TagDef) -> m<()> {
     /*do*/ {
         let redecl = withDefTable(defineTag((sueRef(def)), def));
 
-        checkRedef((show(sueRef(def))), def, redecl);
+        checkRedef((sueRefToString(sueRef(def))), def, redecl);
         handleDecl((TagEvent(def)))
     }
 }
@@ -275,7 +277,12 @@ pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
     /*do*/ {
         let redecl = withDefTable(defineTypeDef(ident, typeDef));
 
-        checkRedef((show(ident)), typeDef, redecl);
+        match redecl {
+            Redeclared(Left(TypeDef(_, t2, _, _))) if sameType(t1, t2) => { () }
+            _ => {
+                checkRedef((identToString(ident)), typeDef, redecl)
+            },
+        };
         handleDecl((TypeDefEvent(typeDef)));
         ()
     }
@@ -357,11 +364,11 @@ pub fn lookupTypeDef(ident: Ident) -> m<Type> {
         } })
 }
 
-pub fn mapMaybeM<a, b>(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
+pub fn mapMaybeM<b, a>(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
     maybe((None), (liftM(Some, f)), m)
 }
 
-pub fn mapSndM<b, a>(f: fn(b) -> m<c>, (a, b): (a, b)) -> m<(a, c)> {
+pub fn mapSndM<a, b>(f: fn(b) -> m<c>, (a, b): (a, b)) -> m<(a, c)> {
     liftM((__op_tuple2(a)), (f(b)))
 }
 
@@ -394,7 +401,7 @@ pub fn put(s: TravState<s>) -> Trav<s, ()> {
 }
 
 pub fn redefErr(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKind) -> m<()> {
-    throwTravError(redefinition(lvl, (show(name)), kind, (nodeInfo(new)), (nodeInfo(old))))
+    throwTravError(redefinition(lvl, (identToString(name)), kind, (nodeInfo(new)), (nodeInfo(old))))
 }
 
 pub fn runTrav<a>(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravState<s>)> {

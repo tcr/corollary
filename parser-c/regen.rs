@@ -32,27 +32,27 @@ fn run() -> Result<()> {
 
     let mut contents = String::new();
     {
-        File::open("../gen/Lexer.hs")?.read_to_string(&mut contents)?;
+        File::open("./gen/Lexer.hs")?.read_to_string(&mut contents)?;
     }
 
     let contents = contents.replacen("where", &format!("where\n\n{}", lexer_heading), 1);
     {
-        File::create("../gen/Lexer.hs")?.write_all(contents.as_bytes())?;
+        File::create("./gen/Lexer.hs")?.write_all(contents.as_bytes())?;
     }
 
     println!("Parser...");
     cmd!( happy ("../deps/language-c/src/Language/C/Parser/Parser.y") ("-o") ("./gen/Parser.hs") ).status();
     println!("...hindent...");
-    cmd!( hindent (".gen/Parser.hs") ).status();
+    cmd!( hindent ("./gen/Parser.hs") ).status();
 
     let mut contents = String::new();
     {
-        File::open("../gen/Parser.hs")?.read_to_string(&mut contents)?;
+        File::open("./gen/Parser.hs")?.read_to_string(&mut contents)?;
     }
 
     let contents = contents.replacen("where", &format!("where\n\n{}", parser_heading), 1);
     {
-        File::create("../gen/Parser.hs")?.write_all(contents.as_bytes())?;
+        File::create("./gen/Parser.hs")?.write_all(contents.as_bytes())?;
     }
 
     Ok(())

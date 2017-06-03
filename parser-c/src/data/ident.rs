@@ -97,5 +97,16 @@ pub fn quad(_0: String) -> isize {
     }
 }
 
+pub fn sueRefToString(_0: SUERef) -> String {
+    match (_0) {
+        AnonymousRef(_) => {
+            "".to_string()
+        },
+        NamedRef(ident) => {
+            identToString(ident)
+        },
+    }
+}
+
 
 

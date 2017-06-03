@@ -8,7 +8,6 @@
 // use System::Exit;
 // use System::Directory;
 // use System::FilePath;
-// use System::Environment;
 // use System::IO;
 // use Control::Exception;
 // use Control::Monad;
@@ -37,13 +36,13 @@ fn outputFile(a: CppArgs) -> Option<FilePath> { a.outputFile }
 
 pub fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
     cpp_args {
-        cppOptions: __op_concat(opt, (cppOptions(cpp_args)))
+        cppOptions: __op_concat(opt, cppOptions(cpp_args))
     }
 }
 
 pub fn addExtraOption(cpp_args: CppArgs, extra: String) -> CppArgs {
     cpp_args {
-        extraOptions: __op_concat(extra, (extraOptions(cpp_args)))
+        extraOptions: __op_concat(extra, extraOptions(cpp_args))
     }
 }
 
@@ -97,9 +96,7 @@ pub fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
 }
 
 pub fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO<Either<ExitCode, InputStream>> {
-    /*do*/ {
-        bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
-    }
+    bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
 }
 
 

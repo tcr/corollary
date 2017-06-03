@@ -15,6 +15,10 @@
 // use Ident;
 // use Language::C::Parser::Tokens;
 // use CToken;
+// use Control::Applicative;
+// use Applicative;
+// use Control::Monad;
+// use liftM;
 // use Data::Set;
 // use Set;
 // use Data::Set;
@@ -187,7 +191,7 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
             }, ()) }))
 }
 
-pub fn thenP<b, a>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
+pub fn thenP<a, b>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
     P(|s| { match m(s) {
             POk(s_q, a) => {
                 (unP((k(a))))(s_q)

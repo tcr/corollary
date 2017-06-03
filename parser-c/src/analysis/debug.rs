@@ -10,7 +10,6 @@
 // use Language::C::Analysis::NameSpaceMap;
 // use Language::C::Data;
 // use Language::C::Pretty;
-// use Language::C::Syntax;
 // use Text::PrettyPrint::HughesPJ;
 // use Data::Map;
 // use Map;
@@ -36,7 +35,7 @@ pub fn prettyAssocs(label: String) -> Doc {
 }
 
 pub fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
-    __op_line_something(text(label), (nest(8))((vcat(__map!(prettyEntry, theMap)))))
+    __op_line_something(text(label), nest(8, (vcat(__map!(prettyEntry, theMap)))))
 }
 
 pub fn terminateSemi() -> Doc {

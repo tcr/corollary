@@ -121,7 +121,7 @@ pub fn mapSubStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> 
             f((CCompound(ls, (__map!((mapBlockItemStmts(stop, f)), body)), ni)))
         },
         (stop, f, CIf(e, sthen, selse, ni)) => {
-            f((CIf(e, (mapSubStmts(stop, f, sthen)), (maybe(None, (Some(mapSubStmts(stop, f))), selse)), ni)))
+            f((CIf(e, (mapSubStmts(stop, f, sthen)), (fmap((mapSubStmts(stop, f)), selse)), ni)))
         },
         (stop, f, CSwitch(e, s, ni)) => {
             f((CSwitch(e, (mapSubStmts(stop, f, s)), ni)))

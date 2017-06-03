@@ -8,13 +8,11 @@
 // use Language::C::Analysis::SemRep;
 // use Language::C::Analysis::TravMonad;
 // use Language::C::Analysis::ConstEval;
-// use Language::C::Analysis::Debug;
 // use Language::C::Analysis::DefTable;
-// use DefTable;
+// use globalDefs;
 // use Language::C::Analysis::DeclAnalysis;
 // use Language::C::Analysis::TypeUtils;
 // use Language::C::Analysis::TypeCheck;
-// use Language::C::Analysis::TypeConversions;
 // use Language::C::Data;
 // use Language::C::Pretty;
 // use Language::C::Syntax::AST;
@@ -22,15 +20,14 @@
 // use Language::C::Syntax::Ops;
 // use Language::C::Syntax::Utils;
 // use Text::PrettyPrint::HughesPJ;
-// use Control::Monad;
 // use Prelude;
-// use Data::Either;
-// use rights;
-// use Data::Foldable;
-// use foldrM;
-// use Data::List;
+// use Control::Monad;
 // use Data::Map;
 // use Data::Maybe;
+// use Data::Traversable;
+// use mapM;
+// use Data::Foldable;
+// use mapM_;
 
 pub enum StmtCtx {
     FunCtx(VarDecl),
@@ -53,13 +50,20 @@ pub fn advanceDesigList(ds: Vec<CDesignator>, d: CDesignator) -> Vec<CDesignator
 pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls> {
     /*do*/ {
         mapRecoverM_(analyseExt, decls);
-        __op_bind(getDefTable, |dt| { when((not((inFileScope(dt)))))(__error!("Internal Error: Not in filescope after analysis".to_string())) });
+        __op_bind(getDefTable, |dt| { unless((inFileScope(dt)))(__error!("Internal Error: Not in filescope after analysis".to_string())) });
         liftM(globalDefs, getDefTable)
     }
 }
 
-pub fn analyseDecl(is_local: bool, decl: CDecl, __OP__: m<()>) -> m<()> {
-    /* Expr::Error */ Error
+pub fn analyseDecl(_0: bool, _1: CDecl) -> m<()> {
+    match (_0, _1) {
+        (_is_local, CStaticAssert(_expr, _strlit, _annot)) => {
+            ()
+        },
+        (is_local, decl, __OP__, CDecl(declspecs, declrs, node)) => {
+            /* Expr::Error */ Error
+        },
+    }
 }
 
 pub fn analyseExt(_0: CExtDecl) -> m<()> {
@@ -80,7 +84,7 @@ pub fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info):
     /*do*/ {
         let var_decl_info = analyseVarDecl_q(true, declspecs, declr, oldstyle_decls, None);
 
-        let VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node) = var_decl_info;
+        let VarDeclInfo(name, fun_spec, storage_spec, attrs, ty, _declr_node) = var_decl_info;
 
         when((isNoName(name)))(astError(node_info, "NoName in analyseFunDef".to_string()));
         let ident = identOfVarName(name);
@@ -89,7 +93,7 @@ pub fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info):
 
         let fun_storage = computeFunDefStorage(ident, storage_spec);
 
-        let var_decl = VarDecl(name, (DeclAttrs(is_inline, fun_storage, attrs)), ty_q);
+        let var_decl = VarDecl(name, (DeclAttrs(fun_spec, fun_storage, attrs)), ty_q);
 
         handleVarDecl(false, (Decl(var_decl, node_info)));
         let stmt_q = analyseFunctionBody(node_info, var_decl, stmt);
@@ -118,9 +122,9 @@ pub fn analyseFunctionBody(_0: NodeInfo, _1: VarDecl, _2: CStat, _3: m<Stmt>) ->
 
 pub fn analyseTypeDef(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, node_info: NodeInfo) -> m<()> {
     /*do*/ {
-        let VarDeclInfo(name, is_inline, storage_spec, attrs, ty, declr_node) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], None);
+        let VarDeclInfo(name, fun_attrs, storage_spec, attrs, ty, _node) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], None);
 
-        checkValidTypeDef(is_inline, storage_spec, attrs);
+        checkValidTypeDef(fun_attrs, storage_spec, attrs);
         when((isNoName(name)))(astError(node_info, "NoName in analyseTypeDef".to_string()));
         let ident = identOfVarName(name);
 
@@ -167,7 +171,8 @@ pub fn checkInits(_0: Type, _1: Vec<CDesignator>, _2: CInitList) -> m<()> {
 
                 let t_q = tDesignator(t, ds_q);
 
-                tInit(t_q, i);
+                let _ = tInit(t_q, i);
+
                 checkInits(t, dds_q, is)
             }
         },
@@ -191,7 +196,7 @@ pub fn complexBaseType(ni: NodeInfo, c: Vec<StmtCtx>, side: ExprSide, e: CExpr) 
 
 pub fn computeFunDefStorage(_0: Ident, _1: StorageSpec) -> m<Storage> {
     match (_0, _1) {
-        (_, StaticSpec(b)) => {
+        (_, StaticSpec(_)) => {
             return(FunLinkage(InternalLinkage))
         },
         (ident, other_spec) => {
@@ -255,6 +260,12 @@ pub fn defaultMD() -> MachineDesc {
                     TyULLong => {
                         8
                     },
+                    TyInt128 => {
+                        16
+                    },
+                    TyUInt128 => {
+                        16
+                    },
                 } },
         fSize: |ft| { match ft {
                     TyFloat => {
@@ -314,6 +325,12 @@ pub fn defaultMD() -> MachineDesc {
                     TyULLong => {
                         8
                     },
+                    TyInt128 => {
+                        16
+                    },
+                    TyUInt128 => {
+                        16
+                    },
                 } },
         fAlign: |ft| { match ft {
                     TyFloat => {
@@ -340,7 +357,7 @@ pub fn defaultMD() -> MachineDesc {
 }
 
 pub fn defineParams(ni: NodeInfo, decl: VarDecl) -> m<()> {
-    match (getParams(declType(decl))) {
+    match getParams((declType(decl))) {
         None => {
             astError(ni, "expecting complete function type in function definition".to_string())
         },
@@ -364,13 +381,13 @@ pub fn enclosingFunctionType(_0: Vec<StmtCtx>) -> Option<Type> {
     }
 }
 
-pub fn extFunProto(VarDeclInfo(var_name, is_inline, storage_spec, attrs, ty, node_info): VarDeclInfo) -> m<()> {
+pub fn extFunProto(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, ty, node_info): VarDeclInfo) -> m<()> {
     /*do*/ {
         when((isNoName(var_name)))(astError(node_info, "NoName in extFunProto".to_string()));
         let old_fun = lookupObject((identOfVarName(var_name)));
 
         checkValidSpecs;
-        let decl = VarDecl(var_name, (DeclAttrs(is_inline, (funDeclLinkage(old_fun)), attrs)), ty);
+        let decl = VarDecl(var_name, (DeclAttrs(fun_spec, (funDeclLinkage(old_fun)), attrs)), ty);
 
         handleVarDecl(false, (Decl(decl, node_info)));
         enterPrototypeScope;
@@ -379,12 +396,12 @@ pub fn extFunProto(VarDeclInfo(var_name, is_inline, storage_spec, attrs, ty, nod
     }
 }
 
-pub fn extVarDecl(VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
+pub fn extVarDecl(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
     /*do*/ {
         when((isNoName(var_name)))(astError(node_info, "NoName in extVarDecl".to_string()));
         let (storage, is_def) = globalStorage(storage_spec);
 
-        let vardecl = VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ);
+        let vardecl = VarDecl(var_name, (DeclAttrs(fun_spec, storage, attrs)), typ);
 
         if is_def { handleObjectDef(false, ident) }(ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, false)(Decl(vardecl, node_info)))
     }
@@ -420,12 +437,12 @@ pub fn inSwitch(c: Vec<StmtCtx>) -> bool {
     any(isSwitch, c)
 }
 
-pub fn localVarDecl(VarDeclInfo(var_name, is_inline, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
+pub fn localVarDecl(VarDeclInfo(var_name, fun_attrs, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
     /*do*/ {
         when((isNoName(var_name)))(astError(node_info, "NoName in localVarDecl".to_string()));
         let (storage, is_def) = localStorage(storage_spec);
 
-        let vardecl = VarDecl(var_name, (DeclAttrs(is_inline, storage, attrs)), typ);
+        let vardecl = VarDecl(var_name, (DeclAttrs(fun_attrs, storage, attrs)), typ);
 
         if is_def {         
 handleObjectDef(true, ident, (ObjDef(vardecl, init_opt, node_info)))} else {
@@ -474,7 +491,7 @@ pub fn tDesignator(_0: Type, _1: Vec<CDesignator>) -> m<Type> {
                 tDesignator(bt, ds)
             }
         },
-        (ArrayType(_, _, _, _), [d, ds]) => {
+        (ArrayType(_, _, _, _), [d, _]) => {
             typeError((nodeInfo(d)), "member designator in array initializer".to_string())
         },
         (t, __OP__, DirectType(TyComp(_), _, _), [CMemberDesig(m, ni), ds]) => {
@@ -484,11 +501,14 @@ pub fn tDesignator(_0: Type, _1: Vec<CDesignator>) -> m<Type> {
                 tDesignator((canonicalType(mt)), ds)
             }
         },
-        (t, __OP__, DirectType(TyComp(_), _, _), [d, _]) => {
+        (DirectType(TyComp(_), _, _), [d, _]) => {
             typeError((nodeInfo(d)), "array designator in compound initializer".to_string())
         },
         (t, []) => {
             t
+        },
+        (_t, _) => {
+            __error!("unepxected type with designator".to_string())
         },
     }
 }
@@ -507,7 +527,7 @@ pub fn tExpr(c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m<Type> {
                         /*do*/ {
                             let t = tExpr_q(c, side, e);
 
-                            withDefTable((|dt| { (t, insertType(dt, n, t)) }))
+                            withDefTable((|dt_q| { (t, insertType(dt_q, n, t)) }))
                         }
                     },
                 }
@@ -603,7 +623,7 @@ side
                 }
             }
         },
-        (c, side, CMember(e, m, deref, ni)) => {
+        (c, _, CMember(e, m, deref, ni)) => {
             /*do*/ {
                 let t = tExpr(c, RValue, e);
 
@@ -631,14 +651,16 @@ t
         (c, side, CSizeofExpr(e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "sizeof as lvalue".to_string()));
-                tExpr(c, RValue, e);
+                let _ = tExpr(c, RValue, e);
+
                 size_tType
             }
         },
         (c, side, CAlignofExpr(e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "alignof as lvalue".to_string()));
-                tExpr(c, RValue, e);
+                let _ = tExpr(c, RValue, e);
+
                 size_tType
             }
         },
@@ -675,7 +697,42 @@ t
         (_, LValue, CSizeofType(_, ni)) => {
             typeError(ni, "sizeoftype as lvalue".to_string())
         },
-        (_, side, CVar(i, ni)) => {
+        (ctx, side, CGenericSelection(expr, list, ni)) => {
+            /*do*/ {
+                let ty_sel = tExpr(ctx, side, expr);
+
+                let ty_list = mapM(analyseAssoc, list);
+
+                let def_expr_ty = match dropWhile((isJust(fst)), ty_list) {
+                        [(None, tExpr_q_q)] => {
+                            (Some(tExpr_q_q))
+                        },
+                        [] => {
+                            None
+                        },
+                        _ => {
+                            astError(ni, "more than one default clause in generic selection".to_string())
+                        },
+                    };
+
+                match dropWhile((maybe(true, (not(typesMatch(ty_sel))), fst)), ty_list) {
+                    [(_, expr_ty), _] => {
+                        expr_ty
+                    },
+                    [] => {
+                        match def_expr_ty {
+                            Some(expr_ty) => {
+                                expr_ty
+                            },
+                            None => {
+                                astError(ni, (__op_addadd("no clause matches for generic selection (not fully supported) - selector type is ".to_string(), __op_addadd(show((pretty(ty_sel))), __op_addadd(", available types are ".to_string(), show((__map!(pretty::fromJust::fst(), (filter(isJust::fst(), ty_list))))))))))
+                            },
+                        }
+                    },
+                }
+            }
+        },
+        (_, _, CVar(i, ni)) => {
             __op_bind(lookupObject(i), maybe((typeErrorOnLeft(ni)(notFound(i))), (declType)))
         },
         (_, _, CConst(c)) => {
@@ -775,9 +832,9 @@ pub fn tInit(_0: Type, _1: CInit, _2: m<Initializer>) -> m<Initializer> {
     }
 }
 
-pub fn tInitList(_0: NodeInfo, _1: Type, _2: CInitList, _3: m<()>) -> m<()> {
-    match (_0, _1, _2, _3, _4) {
-        (ni, t, __OP__, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [([], CInitExpr(e, __OP__, CConst(CStrConst(_, _)), _))]) => {
+pub fn tInitList(_0: NodeInfo, _1: Type, _2: CInitList) -> m<()> {
+    match (_0, _1, _2) {
+        (_, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [([], CInitExpr(e, __OP__, CConst(CStrConst(_, _)), _))]) => {
             __op_rshift(tExpr(vec![], RValue, e), ())
         },
         (ni, t, __OP__, ArrayType(_, _, _, _), initList) => {
@@ -798,11 +855,11 @@ pub fn tInitList(_0: NodeInfo, _1: Type, _2: CInitList, _3: m<()>) -> m<()> {
                 checkInits(t, default_ds, initList)
             }
         },
-        (ni, PtrType(DirectType(TyVoid, _, _), _, _), _) => {
+        (_, PtrType(DirectType(TyVoid, _, _), _, _), _) => {
             ()
         },
         (_, t, [([], i)]) => {
-            __op_rshift(tInit(t, i), ())
+            voidM(tInit(t, i))
         },
         (ni, t, _) => {
             typeError(ni)(__op_addadd("initializer list for type: ".to_string(), pType(t)))
@@ -829,7 +886,7 @@ pub fn tStmt(_0: Vec<StmtCtx>, _1: CStat) -> m<Type> {
             }
         },
         (c, CIf(e, sthen, selse, _)) => {
-            __op_rshift(checkGuard(c, e), __op_rshift(tStmt(c, sthen), __op_rshift(maybe((()), (|s| { __op_rshift(tStmt(c, s), ()) }), selse), voidType)))
+            __op_rshift(checkGuard(c, e), __op_rshift(tStmt(c, sthen), __op_rshift(maybe((()), (voidM(tStmt(c))), selse), voidType)))
         },
         (c, CSwitch(e, s, ni)) => {
             __op_bind(tExpr(c, RValue, e), __op_rshift(checkIntegral_q(ni), tStmt((__op_concat(SwitchCtx, c)), s)))
@@ -926,7 +983,8 @@ pub fn tStmt(_0: Vec<StmtCtx>, _1: CStat) -> m<Type> {
                 either((maybe((()), checkExpr)), (analyseDecl(true)), i);
                 maybe((()), (checkGuard(c)), g);
                 maybe((()), checkExpr, inc);
-                tStmt((__op_concat(LoopCtx, c)), s);
+                let _ = tStmt((__op_concat(LoopCtx, c)), s);
+
                 leaveBlockScope;
                 voidType
             }
@@ -946,6 +1004,10 @@ pub fn tStmt(_0: Vec<StmtCtx>, _1: CStat) -> m<Type> {
             }
         },
     }
+}
+
+pub fn voidM<a>(m: m<a>) -> m<()> {
+    __op_rshift(m, ())
 }
 
 

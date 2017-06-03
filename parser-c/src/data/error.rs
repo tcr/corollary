@@ -5,7 +5,6 @@
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Typeable;
-// use Data::Generics;
 // use Language::C::Data::Node;
 // use Language::C::Data::Position;
 

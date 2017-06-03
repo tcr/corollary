@@ -7,9 +7,6 @@
 // use Language::C::Data;
 // use Language::C::Analysis::NameSpaceMap;
 // use Language::C::Analysis::SemRep;
-// use Control::Applicative;
-// use Data::Map;
-// use Map;
 // use Data::Map;
 // use Data::IntMap;
 // use IntMap;

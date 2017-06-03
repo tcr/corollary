@@ -5,7 +5,6 @@
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Control::Monad;
-// use Data::Either;
 // use Data::Maybe;
 // use Language::C::Data::Ident;
 // use Language::C::Data::Node;
@@ -14,12 +13,12 @@
 // use Language::C::Syntax::AST;
 // use Language::C::Syntax::Constants;
 // use Language::C::Syntax::Ops;
-// use Language::C::Analysis::Debug;
 // use Language::C::Analysis::DefTable;
 // use Language::C::Analysis::SemRep;
 // use Language::C::Analysis::TravMonad;
 // use Language::C::Analysis::TypeConversions;
 // use Language::C::Analysis::TypeUtils;
+// use Language::C::Analysis::Debug;
 // use Text::PrettyPrint::HughesPJ;
 
 pub fn assignCompatible(_0: CAssignOp, _1: Type, _2: Type) -> Either<String, ()> {
@@ -35,9 +34,7 @@ pub fn assignCompatible(_0: CAssignOp, _1: Type, _2: Type) -> Either<String, ()>
                 (PtrType(DirectType(TyVoid, _, _), _, _), t2_q) if isPointerType(t2_q) => { () }
                 (t1_q, PtrType(DirectType(TyVoid, _, _), _, _)) if isPointerType(t1_q) => { () }
                 (PtrType(_, _, _), t2_q) if isIntegralType(t2_q) => { () }
-                (t1_q, t2_q) if (isPointerType(t1_q) && isPointerType(t2_q)) => { /*do*/ {
-                    compatible((baseType(t1_q)), (baseType(t2_q)))
-                } }
+                (t1_q, t2_q) if (isPointerType(t1_q) && isPointerType(t2_q)) => { compatible((baseType(t1_q)), (baseType(t2_q))) }
                 (DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) if (sueRef(c1) == sueRef(c2)) => { () }
                 (DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) => { fail(__op_addadd("incompatible compound types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) }
                 (DirectType(TyBuiltin(TyVaList), _, _), DirectType(TyBuiltin(TyVaList), _, _)) => {
@@ -51,7 +48,7 @@ pub fn assignCompatible(_0: CAssignOp, _1: Type, _2: Type) -> Either<String, ()>
             }
         },
         (op, t1, t2) => {
-            __op_rshift(binopType((assignBinop(op)), t1, t2), ())
+            void(binopType((assignBinop(op)), t1, t2))
         },
     }
 }
@@ -70,7 +67,7 @@ pub fn binopType(op: CBinaryOp, t1: Type, t2: Type) -> Either<String, Type> {
                         boolType
                     },
                     None => {
-                        fail("incompatible arithmetic types in comparison".to_string())
+                        fail(render(__op_doc_conat(text("incompatible arithmetic types in comparison: ".to_string()), __op_doc_conat(pretty(t1), __op_doc_conat(text("and".to_string()), pretty(t2))))))
                     },
                 }
             },
@@ -165,7 +162,7 @@ pub fn checkScalar_q(ni: NodeInfo) -> m<()> {
 }
 
 pub fn compatible(t1: Type, t2: Type) -> Either<String, ()> {
-    __op_rshift(compositeType(t1, t2), ())
+    void(compositeType(t1, t2))
 }
 
 pub fn compositeDeclAttrs(DeclAttrs(inl, stor, attrs1): DeclAttrs, DeclAttrs(_, _, attrs2): DeclAttrs) -> DeclAttrs {
@@ -278,10 +275,10 @@ pub fn compositeType(_0: Type, _1: Type) -> Either<String, Type> {
         (t1, PtrType(t2, q2, a2)) => {
             /* Expr::Error */ Error
         },
-        (ArrayType(t1, sz1, q1, a1), t2) => {
+        (ArrayType(t1, _sz1, q1, a1), t2) => {
             /* Expr::Error */ Error
         },
-        (t1, ArrayType(t2, sz2, q2, a2)) => {
+        (t1, ArrayType(t2, _sz2, q2, a2)) => {
             /* Expr::Error */ Error
         },
         (ArrayType(t1, s1, q1, a1), ArrayType(t2, s2, q2, a2)) => {
@@ -300,15 +297,9 @@ pub fn compositeType(_0: Type, _1: Type) -> Either<String, Type> {
         (t1, t2) => {
             /* Expr::Error */ Error
         },
-        (TypeDefType(tdr1, q1, a1), TypeDefType(tdr2, q2, a2)) => {
+        (TypeDefType(tdr1, _q1, _a1), TypeDefType(tdr2, _q2, _a2)) => {
             match (tdr1, tdr2) {
-                (TypeDefRef(i1, None, _), TypeDefRef(i2, _, _)) => {
-                    doTypeDef(i1, i2, tdr1)
-                },
-                (TypeDefRef(i1, _, _), TypeDefRef(i2, None, _)) => {
-                    doTypeDef(i1, i2, tdr2)
-                },
-                (TypeDefRef(_, Some(t1), _), TypeDefRef(_, Some(t2), _)) => {
+                (TypeDefRef(_, t1, _), TypeDefRef(_, t2, _)) => {
                     compositeType(t1, t2)
                 },
             }
@@ -317,7 +308,7 @@ pub fn compositeType(_0: Type, _1: Type) -> Either<String, Type> {
             match (ft1, ft2) {
                 (FunType(rt1, args1, varargs1), FunType(rt2, args2, varargs2)) => {
                     /*do*/ {
-                        let args = mapM((uncurry(compositeParamDecl)), (zip(args1, args2)));
+                        let args = zipWithM(compositeParamDecl, args1, args2);
 
                         when((__op_assign_div(varargs1, varargs2)))(fail("incompatible varargs declarations".to_string()));
                         doFunType(rt1, rt2, args, varargs1)
@@ -527,7 +518,7 @@ pub fn mergeAttrs() -> Attributes {
 }
 
 pub fn notFound<a>(i: Ident) -> Either<String, a> {
-    fail(__op_addadd("not found: ".to_string(), identToString(i)))
+    Left(__op_addadd("not found: ".to_string(), identToString(i)))
 }
 
 pub fn pType() -> String {

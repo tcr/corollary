@@ -591,7 +591,6 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
     for item in stats {
         let mut item = item.clone();
 
-        let mut force_enum = false;
         if let ast::Item::Newtype(name, ty, derives, args) = item.clone() {
             item = ast::Item::Data(name, vec![vec![ty]], derives, args);
         }

@@ -8,8 +8,6 @@
 // use Data::Char;
 // use Numeric;
 // use showOct;
-// use Language::C::Data::Node;
-// use Language::C::Data::Position;
 // use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
@@ -45,7 +43,11 @@ pub struct CFloat(String);
 
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct CString(Vec<Char>, bool);
+pub struct ClangCVersion(String);
+
+
+#[derive(Clone, Debug, Eq, Ord)]
+pub struct CString(String, bool);
 
 
 #[derive(Clone, Debug, Eq, Ord)]
@@ -145,7 +147,7 @@ pub fn escapeChar(_0: Char) -> String {
     }
 }
 
-pub fn getCChar(_0: CChar) -> Vec<Char> {
+pub fn getCChar(_0: CChar) -> String {
     match (_0) {
         CChar(c, _) => {
             vec![c]
@@ -258,6 +260,14 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
     }
 }
 
+pub fn readClangCVersion() -> ClangCVersion {
+    ClangCVersion
+}
+
+pub fn readOct_q(s: ReadS<isize>) -> ReadS<isize> {
+    __map!((|(i, cs)| { (i, __op_addadd(cs, rest)) }), (readOct(octStr)))
+}
+
 pub fn sQuote(s: String, t: ShowS) -> ShowS {
     __op_addadd("\'".to_string(), __op_addadd(s, __op_addadd("\'".to_string(), t)))
 }
@@ -268,6 +278,10 @@ pub fn setFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
 
 pub fn showCharConst(c: Char) -> ShowS {
     sQuote(escapeCChar(c))
+}
+
+pub fn showOct_q(i: isize) -> String {
+    __op_addadd(replicate(((3 - length(s))), '0'), s)
 }
 
 pub fn showStringLit() -> ShowS {
@@ -329,7 +343,7 @@ pub fn unescapeChar(_0: String) -> (Char, String) {
                     }
                 },
                 _ => {
-                    match head_q("bad escape sequence".to_string(), (readOct((__op_concat(c, cs))))) {
+                    match head_q("bad escape sequence".to_string(), (readOct_q((__op_concat(c, cs))))) {
                         (i, cs_q) => {
                             (toEnum(i), cs_q)
                         },

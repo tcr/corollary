@@ -6,12 +6,11 @@
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data;
 // use Language::C::Syntax;
-// use Language::C::Syntax::Constants;
 // use Data::Map;
 // use Map;
 // use Data::Map;
+// use Data::Maybe;
 // use Data::Generics;
-// use Text::PrettyPrint::HughesPJ;
 
 #[derive(Clone, Debug)]
 pub enum TagDef {
@@ -83,8 +82,16 @@ pub struct VarDecl(VarName, DeclAttrs, Type);
 
 
 #[derive(Clone, Debug)]
-pub struct DeclAttrs(bool, Storage, Attributes);
+pub struct DeclAttrs(FunctionAttrs, Storage, Attributes);
 
+
+#[derive(Clone, Debug, Eq, Ord)]
+pub struct FunctionAttrs{
+    isInline: bool,
+    isNoreturn: bool
+}
+fn isInline(a: FunctionAttrs) -> bool { a.isInline }
+fn isNoreturn(a: FunctionAttrs) -> bool { a.isNoreturn }
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum Storage {
@@ -151,7 +158,7 @@ pub enum BuiltinType {
 pub use self::BuiltinType::*;
 
 #[derive(Clone, Debug)]
-pub struct TypeDefRef(Ident, Option<Type>, NodeInfo);
+pub struct TypeDefRef(Ident, Type, NodeInfo);
 
 
 #[derive(Clone, Debug, Eq, Ord)]
@@ -164,6 +171,8 @@ pub enum IntType {
     TyUShort,
     TyInt,
     TyUInt,
+    TyInt128,
+    TyUInt128,
     TyLong,
     TyULong,
     TyLLong,
@@ -210,11 +219,17 @@ pub struct Enumerator(Ident, Expr, EnumType, NodeInfo);
 pub struct TypeQuals{
     constant: bool,
     volatile: bool,
-    restrict: bool
+    restrict: bool,
+    atomic: bool,
+    nullable: bool,
+    nonnull: bool
 }
 fn constant(a: TypeQuals) -> bool { a.constant }
 fn volatile(a: TypeQuals) -> bool { a.volatile }
 fn restrict(a: TypeQuals) -> bool { a.restrict }
+fn atomic(a: TypeQuals) -> bool { a.atomic }
+fn nullable(a: TypeQuals) -> bool { a.nullable }
+fn nonnull(a: TypeQuals) -> bool { a.nonnull }
 
 pub type Initializer = CInit;
 
@@ -299,6 +314,14 @@ pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) 
     }
 }
 
+pub fn functionAttrs(d: d) -> FunctionAttrs {
+    match declAttrs(d) {
+        DeclAttrs(fa, _, _) => {
+            fa
+        },
+    }
+}
+
 pub fn hasLinkage(_0: Storage) -> bool {
     match (_0) {
         Auto(_) => {
@@ -359,16 +382,23 @@ pub fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
     }
 }
 
-pub fn mergeTypeQuals(TypeQuals(c1, v1, r1): TypeQuals, TypeQuals(c2, v2, r2): TypeQuals) -> TypeQuals {
-    TypeQuals(((c1 && c2)), ((v1 && v2)), ((r1 && r2)))
+pub fn mergeTypeQuals(TypeQuals(c1, v1, r1, a1, n1, nn1): TypeQuals, TypeQuals(c2, v2, r2, a2, n2, nn2): TypeQuals) -> TypeQuals {
+    TypeQuals(((c1 && c2)), ((v1 && v2)), ((r1 && r2)), ((a1 && a2)), ((n1 && n2)), ((nn1 && nn2)))
 }
 
 pub fn noAttributes() -> Attributes {
     vec![]
 }
 
+pub fn noFunctionAttrs() -> FunctionAttrs {
+    FunctionAttrs {
+        isInline: false,
+        isNoreturn: false
+    }
+}
+
 pub fn noTypeQuals() -> TypeQuals {
-    TypeQuals(false, false, false)
+    TypeQuals(false, false, false, false, false, false)
 }
 
 pub fn objKindDescr(_0: IdentDecl) -> String {

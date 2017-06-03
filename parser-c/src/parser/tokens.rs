@@ -59,7 +59,9 @@ pub enum CToken {
     CTokRBrace(PosLength),
     CTokEllipsis(PosLength),
     CTokAlignof(PosLength),
+    CTokAlignas(PosLength),
     CTokAsm(PosLength),
+    CTokAtomic(PosLength),
     CTokAuto(PosLength),
     CTokBreak(PosLength),
     CTokBool(PosLength),
@@ -76,12 +78,17 @@ pub enum CToken {
     CTokExtern(PosLength),
     CTokFloat(PosLength),
     CTokFor(PosLength),
+    CTokGeneric(PosLength),
     CTokGoto(PosLength),
     CTokIf(PosLength),
     CTokInline(PosLength),
     CTokInt(PosLength),
+    CTokInt128(PosLength),
     CTokLong(PosLength),
     CTokLabel(PosLength),
+    CTokNoreturn(PosLength),
+    CTokNullable(PosLength),
+    CTokNonnull(PosLength),
     CTokRegister(PosLength),
     CTokRestrict(PosLength),
     CTokReturn(PosLength),
@@ -89,6 +96,7 @@ pub enum CToken {
     CTokSigned(PosLength),
     CTokSizeof(PosLength),
     CTokStatic(PosLength),
+    CTokStaticAssert(PosLength),
     CTokStruct(PosLength),
     CTokSwitch(PosLength),
     CTokTypedef(PosLength),
@@ -106,6 +114,7 @@ pub enum CToken {
     CTokIdent(PosLength, Ident),
     CTokTyIdent(PosLength, Ident),
     CTokGnuC(GnuCTok, PosLength),
+    CTokClangC(PosLength, ClangCTok),
     CTokEof
 }
 pub use self::CToken::*;
@@ -120,6 +129,9 @@ pub enum GnuCTok {
     GnuCComplexImag
 }
 pub use self::GnuCTok::*;
+
+pub struct ClangCTok(ClangCVersion);
+
 
 pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
     match (_0) {
@@ -264,7 +276,13 @@ pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
         CTokAlignof(pos) => {
             pos
         },
+        CTokAlignas(pos) => {
+            pos
+        },
         CTokAsm(pos) => {
+            pos
+        },
+        CTokAtomic(pos) => {
             pos
         },
         CTokAuto(pos) => {
@@ -315,10 +333,16 @@ pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
         CTokFor(pos) => {
             pos
         },
+        CTokGeneric(pos) => {
+            pos
+        },
         CTokGoto(pos) => {
             pos
         },
         CTokInt(pos) => {
+            pos
+        },
+        CTokInt128(pos) => {
             pos
         },
         CTokInline(pos) => {
@@ -331,6 +355,15 @@ pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
             pos
         },
         CTokLabel(pos) => {
+            pos
+        },
+        CTokNoreturn(pos) => {
+            pos
+        },
+        CTokNullable(pos) => {
+            pos
+        },
+        CTokNonnull(pos) => {
             pos
         },
         CTokRegister(pos) => {
@@ -352,6 +385,9 @@ pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
             pos
         },
         CTokStatic(pos) => {
+            pos
+        },
+        CTokStaticAssert(pos) => {
             pos
         },
         CTokStruct(pos) => {
@@ -403,6 +439,9 @@ pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
             pos
         },
         CTokGnuC(_, pos) => {
+            pos
+        },
+        CTokClangC(pos, _) => {
             pos
         },
         CTokEof => {
