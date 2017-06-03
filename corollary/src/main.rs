@@ -164,7 +164,7 @@ fn strip_lhs(s: &str) -> String {
 }
 
 /// Converts a Haskell file by its path into a Rust module.
-fn convert_file(input: &str, p: &Path, inline_mod: bool) -> Result<(String, String)> {
+fn convert_file(input: &str, p: &Path, inline_mod: bool, dump_ast: bool) -> Result<(String, String)> {
     let mut contents = input.to_string();
     let mut file_out = String::new();
     let mut rust_out = String::new();
@@ -181,28 +181,32 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool) -> Result<(String, Stri
     // Preprocess the file.
     let contents = parser_haskell::preprocess(&contents);
 
-    writeln!(file_out, "// Original file: {:?}", p.file_name().unwrap())?;
-    writeln!(file_out, "// File auto-generated using Corollary.")?;
-    writeln!(file_out, "")?;
-
     // Parse the file.
     let mut errors = Vec::new();
     match parser_haskell::parse(&mut errors, &contents) {
         Ok(v) => {
             // errln!("{:?}", v);
 
-            if inline_mod {
-                writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"))?;
-                writeln!(file_out, "    use haskell_support::*;")?;
-                writeln!(file_out, "")?;
-                let state = PrintState::new();
-                writeln!(file_out, "{}", print_item_list(state.tab(), &v.items))?;
-                writeln!(file_out, "}}\n")?;
+            if dump_ast {
+                println!("{}", format!("{:#?}", v).replace("    ", "  "));
             } else {
-                writeln!(file_out, "#[macro_use] use corollary_support::*;")?;
+                writeln!(file_out, "// Original file: {:?}", p.file_name().unwrap())?;
+                writeln!(file_out, "// File auto-generated using Corollary.")?;
                 writeln!(file_out, "")?;
-                let state = PrintState::new();
-                writeln!(file_out, "{}", print_item_list(state, &v.items))?;
+
+                if inline_mod {
+                    writeln!(file_out, "pub mod {} {{", v.name.0.replace(".", "_"))?;
+                    writeln!(file_out, "    use haskell_support::*;")?;
+                    writeln!(file_out, "")?;
+                    let state = PrintState::new();
+                    writeln!(file_out, "{}", print_item_list(state.tab(), &v.items))?;
+                    writeln!(file_out, "}}\n")?;
+                } else {
+                    writeln!(file_out, "#[macro_use] use corollary_support::*;")?;
+                    writeln!(file_out, "")?;
+                    let state = PrintState::new();
+                    writeln!(file_out, "{}", print_item_list(state, &v.items))?;
+                }
             }
         }
         Err(e) => {
@@ -234,6 +238,10 @@ fn run() -> Result<()> {
             .long("out")
             .help("Output path")
             .takes_value(true))
+        .arg(Arg::with_name("ast")
+            .short("a")
+            .long("ast")
+            .help("Dump AST"))
         .arg(Arg::with_name("INPUT")
             .help("Sets the input file to use")
             .required(true)
@@ -243,9 +251,13 @@ fn run() -> Result<()> {
     let arg_input = matches.value_of("INPUT").unwrap();
     let arg_run = matches.is_present("run");
     let arg_out: Option<_> = matches.value_of("out");
+    let arg_ast = matches.is_present("ast");
 
     if arg_run && arg_out.is_some() {
         bail!("Cannot use --out and --run at the same time.");
+    }
+    if (arg_run || arg_out.is_some()) && arg_ast {
+        bail!("Cannot use --ast and (--run or --out) at the same time.");
     }
 
     // Starting message.
@@ -265,7 +277,11 @@ fn run() -> Result<()> {
     if arg_input.ends_with(".lhs") {
         contents = strip_lhs(&contents);
     }
-    let (mut file_section, rust_section) = convert_file(&contents, &PathBuf::from(arg_input), false)?;
+    let (mut file_section, rust_section) = convert_file(&contents, &PathBuf::from(arg_input), false, arg_ast)?;
+
+    if arg_ast {
+        return Ok(());
+    }
 
     // Add Rust segments RUST ... /RUST and Haskell support code.
     let _ = writeln!(file_section, "");
