@@ -1,7 +1,4 @@
-//! Original file: "TravMonad.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data;
@@ -20,6 +17,11 @@ use corollary_support::*;
 // use liftM;
 // use Prelude;
 
+pub struct Trav<s, a>{
+    unTrav: fn(TravState<s>) -> Either<CError, (a, TravState<s>)>
+}
+fn unTrav(a: Trav) -> fn(TravState<s>) -> Either<CError, (a, TravState<s>)> { a.unTrav }
+
 pub enum CLanguage {
     C89,
     C99,
@@ -28,12 +30,12 @@ pub enum CLanguage {
 }
 pub use self::CLanguage::*;
 
-struct TravOptions{
+pub struct TravOptions{
     language: CLanguage
 }
 fn language(a: TravOptions) -> CLanguage { a.language }
 
-struct TravState<s>{
+pub struct TravState<s>{
     symbolTable: DefTable,
     rerrors: RList<CError>,
     nameGenerator: Vec<Name>,
@@ -48,7 +50,7 @@ fn doHandleExtDecl(a: TravState) -> fn(DeclEvent) -> Trav<s, ()> { a.doHandleExt
 fn userState(a: TravState) -> s { a.userState }
 fn options(a: TravState) -> TravOptions { a.options }
 
-pub fn addRef(__use: u, def: d) -> m<()> {
+pub fn addRef<a>(__use: u, def: d) -> m<()> {
     match (nodeInfo(__use), nodeInfo(def)) {
         (NodeInfo(_, _, useName), NodeInfo(_, _, defName)) => {
             withDefTable((|dt| { ((), dt {
@@ -61,15 +63,15 @@ pub fn addRef(__use: u, def: d) -> m<()> {
     }
 }
 
-pub fn astError(node: NodeInfo, msg: String) -> m<a> {
+pub fn astError<a>(node: NodeInfo, msg: String) -> m<a> {
     throwTravError(invalidAST(node, msg))
 }
 
-pub fn checkCompatibleTypes(_: Type, _: Type) -> Either<TypeMismatch, ()> {
+pub fn checkCompatibleTypes<a>(_: Type, _: Type) -> Either<TypeMismatch, ()> {
     Right(())
 }
 
-pub fn checkIdentTyRedef(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m<()> {
+pub fn checkIdentTyRedef<a>(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m<()> {
     match (_0, _1) {
         (Right(decl), status) => {
             checkVarRedef(decl, status)
@@ -86,7 +88,7 @@ pub fn checkIdentTyRedef(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m
     }
 }
 
-pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus<t1>) -> m<()> {
+pub fn checkRedef<a>(subject: String, new_decl: t, redecl_status: DeclarationStatus<t1>) -> m<()> {
     match redecl_status {
         NewDecl => {
             ()
@@ -106,7 +108,7 @@ pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus
     }
 }
 
-pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m<()> {
+pub fn checkVarRedef<a>(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m<()> {
     match redecl {
         KindMismatch(old_def) => {
             redefVarErr(old_def, DiffKindRedecl)
@@ -122,11 +124,11 @@ pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m
     }
 }
 
-pub fn concatMapM(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
+pub fn concatMapM<a>(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
     liftM(concat, mapM(f))
 }
 
-pub fn createSUERef(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
+pub fn createSUERef<a>(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
     match (_0, _1) {
         (_node_info, Some(ident)) => {
             return(NamedRef(ident))
@@ -137,11 +139,11 @@ pub fn createSUERef(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
     }
 }
 
-pub fn enterBlockScope() -> m<()> {
+pub fn enterBlockScope<a>() -> m<()> {
     updDefTable(ST::enterBlockScope())
 }
 
-pub fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> bool) -> m<IdentDecl> {
+pub fn enterDecl<a>(decl: Decl, cond: fn(IdentDecl) -> bool) -> m<IdentDecl> {
     /*do*/ {
         let def = Declaration(decl);
 
@@ -152,15 +154,15 @@ pub fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> bool) -> m<IdentDecl> {
     }
 }
 
-pub fn enterFunctionScope() -> m<()> {
+pub fn enterFunctionScope<a>() -> m<()> {
     updDefTable(ST::enterFunctionScope())
 }
 
-pub fn enterPrototypeScope() -> m<()> {
+pub fn enterPrototypeScope<a>() -> m<()> {
     updDefTable(ST::enterBlockScope())
 }
 
-pub fn generateName() -> Trav<s, Name> {
+pub fn generateName<a>() -> Trav<s, Name> {
     __op_bind(get, |ts| { /*do*/ {
             let [new_name, gen_q] = nameGenerator(ts);
 
@@ -171,27 +173,27 @@ pub fn generateName() -> Trav<s, Name> {
         } })
 }
 
-pub fn get() -> Trav<s, TravState<s>> {
+pub fn get<a>() -> Trav<s, TravState<s>> {
     Trav((|s| { Right((s, s)) }))
 }
 
-pub fn getUserState() -> Trav<s, s> {
+pub fn getUserState<a>() -> Trav<s, s> {
     liftM(userState, get)
 }
 
-pub fn gets(f: fn(TravState<s>) -> a) -> Trav<s, a> {
+pub fn gets<a>(f: fn(TravState<s>) -> a) -> Trav<s, a> {
     Trav((|s| { Right((f(s), s)) }))
 }
 
-pub fn hadHardErrors() -> bool {
+pub fn hadHardErrors<a>() -> bool {
     (not(null(filter(isHardError))))
 }
 
-pub fn handleAsmBlock(asm: AsmBlock) -> m<()> {
+pub fn handleAsmBlock<a>(asm: AsmBlock) -> m<()> {
     handleDecl((AsmEvent(asm)))
 }
 
-pub fn handleEnumeratorDef(enumerator: Enumerator) -> m<()> {
+pub fn handleEnumeratorDef<a>(enumerator: Enumerator) -> m<()> {
     /*do*/ {
         let ident = declIdent(enumerator);
 
@@ -202,7 +204,7 @@ pub fn handleEnumeratorDef(enumerator: Enumerator) -> m<()> {
     }
 }
 
-pub fn handleFunDef(ident: Ident, fun_def: FunDef) -> m<()> {
+pub fn handleFunDef<a>(ident: Ident, fun_def: FunDef) -> m<()> {
     /*do*/ {
         let def = FunctionDef(fun_def);
 
@@ -213,7 +215,7 @@ pub fn handleFunDef(ident: Ident, fun_def: FunDef) -> m<()> {
     }
 }
 
-pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
+pub fn handleObjectDef<a>(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
     /*do*/ {
         let def = ObjectDef(obj_def);
 
@@ -227,7 +229,7 @@ DeclEvent
     }
 }
 
-pub fn handleParamDecl(_0: ParamDecl, _1: m<()>) -> m<()> {
+pub fn handleParamDecl<a>(_0: ParamDecl, _1: m<()>) -> m<()> {
     match (_0, _1, _2) {
         (pd, __OP__, AbstractParamDecl(_, _)) => {
             handleDecl((ParamEvent(pd)))
@@ -245,7 +247,7 @@ pub fn handleParamDecl(_0: ParamDecl, _1: m<()>) -> m<()> {
     }
 }
 
-pub fn handleTagDecl(decl: TagFwdDecl) -> m<()> {
+pub fn handleTagDecl<a>(decl: TagFwdDecl) -> m<()> {
     /*do*/ {
         let redecl = withDefTable(declareTag((sueRef(decl)), decl));
 
@@ -253,7 +255,7 @@ pub fn handleTagDecl(decl: TagFwdDecl) -> m<()> {
     }
 }
 
-pub fn handleTagDef(def: TagDef) -> m<()> {
+pub fn handleTagDef<a>(def: TagDef) -> m<()> {
     /*do*/ {
         let redecl = withDefTable(defineTag((sueRef(def)), def));
 
@@ -262,11 +264,11 @@ pub fn handleTagDef(def: TagDef) -> m<()> {
     }
 }
 
-pub fn handleTravError(a: m<a>) -> m<Option<a>> {
+pub fn handleTravError<a>(a: m<a>) -> m<Option<a>> {
     catchTravError(liftM(Some, a), (|e| { __op_rshift(recordError(e), None) }))
 }
 
-pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
+pub fn handleTypeDef<a>(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
     /*do*/ {
         let redecl = withDefTable(defineTypeDef(ident, typeDef));
 
@@ -276,7 +278,7 @@ pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
     }
 }
 
-pub fn handleVarDecl(is_local: bool, decl: Decl) -> m<()> {
+pub fn handleVarDecl<a>(is_local: bool, decl: Decl) -> m<()> {
     /*do*/ {
         let def = enterDecl(decl, (__TODO_const(false)));
 
@@ -287,7 +289,7 @@ DeclEvent
     }
 }
 
-pub fn initTravState(userst: s) -> TravState<s> {
+pub fn initTravState<a>(userst: s) -> TravState<s> {
     TravState {
         symbolTable: emptyDefTable,
         rerrors: RList::empty,
@@ -300,7 +302,7 @@ pub fn initTravState(userst: s) -> TravState<s> {
     }
 }
 
-pub fn isDeclaration(_0: IdentDecl) -> bool {
+pub fn isDeclaration<a>(_0: IdentDecl) -> bool {
     match (_0) {
         Declaration(_) => {
             true
@@ -311,19 +313,19 @@ pub fn isDeclaration(_0: IdentDecl) -> bool {
     }
 }
 
-pub fn leaveBlockScope() -> m<()> {
+pub fn leaveBlockScope<a>() -> m<()> {
     updDefTable(ST::leaveBlockScope())
 }
 
-pub fn leaveFunctionScope() -> m<()> {
+pub fn leaveFunctionScope<a>() -> m<()> {
     updDefTable(ST::leaveFunctionScope())
 }
 
-pub fn leavePrototypeScope() -> m<()> {
+pub fn leavePrototypeScope<a>() -> m<()> {
     updDefTable(ST::leaveBlockScope())
 }
 
-pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
+pub fn lookupObject<a>(ident: Ident) -> m<Option<IdentDecl>> {
     /*do*/ {
         let old_decl = liftM((lookupIdent(ident)), getDefTable);
 
@@ -338,7 +340,7 @@ pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
     }
 }
 
-pub fn lookupTypeDef(ident: Ident) -> m<Type> {
+pub fn lookupTypeDef<a>(ident: Ident) -> m<Type> {
     __op_bind(getDefTable, |symt| { match lookupIdent(ident, symt) {
             None => {
                 astError((nodeInfo(ident)))(__op_addadd("unbound typeDef: ".to_string(), identToString(ident)))
@@ -352,47 +354,47 @@ pub fn lookupTypeDef(ident: Ident) -> m<Type> {
         } })
 }
 
-pub fn mapMaybeM(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
+pub fn mapMaybeM<a>(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
     maybe((None), (liftM(Some, f)), m)
 }
 
-pub fn mapSndM(f: fn(b) -> m<c>, (a, b): (a, b)) -> m<(a, c)> {
+pub fn mapSndM<a>(f: fn(b) -> m<c>, (a, b): (a, b)) -> m<(a, c)> {
     liftM((__op_tuple2(a)), (f(b)))
 }
 
-pub fn maybeM(m: Option<a>, f: fn(a) -> m<()>) -> m<()> {
+pub fn maybeM<a>(m: Option<a>, f: fn(a) -> m<()>) -> m<()> {
     maybe((()), f, m)
 }
 
-pub fn mismatchErr(ctx: String, expect: String, found: String) -> String {
+pub fn mismatchErr<a>(ctx: String, expect: String, found: String) -> String {
     __op_addadd(ctx, __op_addadd(": Expected ".to_string(), __op_addadd(expect, __op_addadd(", but found: ".to_string(), found))))
 }
 
-pub fn modify(f: fn(TravState<s>) -> TravState<s>) -> Trav<s, ()> {
+pub fn modify<a>(f: fn(TravState<s>) -> TravState<s>) -> Trav<s, ()> {
     Trav((|s| { Right(((), f(s))) }))
 }
 
-pub fn modifyOptions(f: fn(TravOptions) -> TravOptions) -> Trav<s, ()> {
+pub fn modifyOptions<a>(f: fn(TravOptions) -> TravOptions) -> Trav<s, ()> {
     modify(|ts| { ts {
             options: f((options(ts)))
         } })
 }
 
-pub fn modifyUserState(f: fn(s) -> s) -> Trav<s, ()> {
+pub fn modifyUserState<a>(f: fn(s) -> s) -> Trav<s, ()> {
     modify(|ts| { ts {
             userState: f((userState(ts)))
         } })
 }
 
-pub fn put(s: TravState<s>) -> Trav<s, ()> {
+pub fn put<a>(s: TravState<s>) -> Trav<s, ()> {
     Trav((|_| { Right(((), s)) }))
 }
 
-pub fn redefErr(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKind) -> m<()> {
+pub fn redefErr<a>(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKind) -> m<()> {
     throwTravError(redefinition(lvl, (show(name)), kind, (nodeInfo(new)), (nodeInfo(old))))
 }
 
-pub fn runTrav(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravState<s>)> {
+pub fn runTrav<a>(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravState<s>)> {
     match unTrav(action, (initTravState(state))) {
         Left(trav_err) => {
             Left(vec![trav_err])
@@ -402,7 +404,7 @@ pub fn runTrav(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravS
     }
 }
 
-pub fn runTrav_(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
+pub fn runTrav_<a>(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
     fmap(fst, runTrav(())(/*do*/ {
             let r = t;
 
@@ -412,7 +414,7 @@ pub fn runTrav_(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
         }))
 }
 
-pub fn throwOnLeft(_0: Either<e, a>) -> m<a> {
+pub fn throwOnLeft<a>(_0: Either<e, a>) -> m<a> {
     match (_0) {
         Left(err) => {
             throwTravError(err)
@@ -423,19 +425,19 @@ pub fn throwOnLeft(_0: Either<e, a>) -> m<a> {
     }
 }
 
-pub fn travErrors() -> Vec<CError> {
+pub fn travErrors<a>() -> Vec<CError> {
     RList::reverse(rerrors)
 }
 
-pub fn updDefTable(f: fn(DefTable) -> DefTable) -> m<()> {
+pub fn updDefTable<a>(f: fn(DefTable) -> DefTable) -> m<()> {
     withDefTable((|st| { ((), f(st)) }))
 }
 
-pub fn warn(err: e) -> m<()> {
+pub fn warn<a>(err: e) -> m<()> {
     recordError((changeErrorLevel(err, LevelWarn)))
 }
 
-pub fn withExtDeclHandler(action: Trav<s, a>, handler: fn(DeclEvent) -> Trav<s, ()>) -> Trav<s, a> {
+pub fn withExtDeclHandler<a>(action: Trav<s, a>, handler: fn(DeclEvent) -> Trav<s, ()>) -> Trav<s, a> {
     /*do*/ {
         modify(|st| { st {
                 doHandleExtDecl: handler

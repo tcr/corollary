@@ -1,7 +1,4 @@
-//! Original file: "Debug.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Analysis::SemRep;
@@ -16,7 +13,7 @@ use corollary_support::*;
 // use Map;
 // use Data::Map;
 
-pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
+pub fn globalDeclStats<a>(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
     vec![
         ("Enumeration Constants".to_string(), Map::size(enumerators)),
         ("Total Object/Function Declarations".to_string(), Map::size(all_decls)),
@@ -27,24 +24,24 @@ pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> 
     ]
 }
 
-pub fn joinComma() -> Doc {
-    hsep(punctuate(comma, map(pretty)))
+pub fn joinComma<a>() -> Doc {
+    hsep(punctuate(comma, __map!(pretty)))
 }
 
-pub fn prettyAssocs(label: String) -> Doc {
+pub fn prettyAssocs<a>(label: String) -> Doc {
     prettyAssocsWith(label, pretty, pretty)
 }
 
-pub fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
-    __op_line_something(text(label), (nest(8))((vcat(map(prettyEntry, theMap)))))
+pub fn prettyAssocsWith<a>(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
+    __op_line_something(text(label), (nest(8))((vcat(__map!(prettyEntry, theMap)))))
 }
 
-pub fn terminateSemi() -> Doc {
-    terminateSemi_(map(pretty))
+pub fn terminateSemi<a>() -> Doc {
+    terminateSemi_(__map!(pretty))
 }
 
-pub fn terminateSemi_() -> Doc {
-    hsep(map((__op_ne(semi))))
+pub fn terminateSemi_<a>() -> Doc {
+    hsep(__map!((__op_ne(semi))))
 }
 
 

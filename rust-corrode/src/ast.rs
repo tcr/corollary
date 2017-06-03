@@ -1,12 +1,17 @@
-//! Original file: "AST.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Char;
 // use Numeric;
 // use Text::PrettyPrint::HughesPJClass;
+
+#[derive(Debug, Eq)]
+pub struct Lifetime(String);
+
+
+#[derive(Debug, Eq)]
+pub struct Type(String);
+
 
 #[derive(Debug, Eq)]
 pub enum LitIntRepr {
@@ -25,6 +30,14 @@ pub enum Lit {
     LitFloat(String, Type)
 }
 pub use self::Lit::*;
+
+#[derive(Debug, Eq)]
+pub struct Var(String);
+
+
+#[derive(Debug)]
+pub struct Path(Vec<String>);
+
 
 #[derive(Debug, Eq)]
 pub enum Visibility {
@@ -49,15 +62,15 @@ pub enum Stmt {
 pub use self::Stmt::*;
 
 #[derive(Debug)]
-struct Block(Vec<Stmt>, Option<Expr>);
+pub struct Block(Vec<Stmt>, Option<Expr>);
 
 
 #[derive(Debug)]
-struct Attribute(String);
+pub struct Attribute(String);
 
 
 #[derive(Debug)]
-struct Item(Vec<Attribute>, Visibility, ItemKind);
+pub struct Item(Vec<Attribute>, Visibility, ItemKind);
 
 
 #[derive(Debug)]
@@ -167,7 +180,7 @@ pub enum ExprPosition {
 }
 pub use self::ExprPosition::*;
 
-pub fn pPrintBlock(_0: Doc, _1: Block) -> Doc {
+pub fn pPrintBlock<a>(_0: Doc, _1: Block) -> Doc {
     match (_0, _1) {
         (pre, Block([], e)) => {
             sep(vec![
@@ -177,7 +190,7 @@ pub fn pPrintBlock(_0: Doc, _1: Block) -> Doc {
                 ])
         },
         (pre, Block(ss, e)) => {
-            __op_doc_conat(pre, __op_line_concat(text("{".to_string()), __op_line_concat(nest(4, (vcat((__op_addadd(map(pPrint, ss), vec![maybe(empty, pPrint, e)]))))), text("}".to_string()))))
+            __op_doc_conat(pre, __op_line_concat(text("{".to_string()), __op_line_concat(nest(4, (vcat((__op_addadd(__map!(pPrint, ss), vec![maybe(empty, pPrint, e)]))))), text("}".to_string()))))
         },
     }
 }

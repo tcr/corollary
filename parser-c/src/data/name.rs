@@ -1,7 +1,4 @@
-//! Original file: "Name.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Ix;
@@ -10,11 +7,17 @@ use corollary_support::*;
 // use Data::IntMap;
 // use Data::Generics;
 
-pub fn namesStartingFrom(k: isize) -> Vec<Name> {
+#[derive(Clone, Debug, Eq, Ix, Ord, Read)]
+pub struct Name{
+    nameId: isize
+}
+fn nameId(a: Name) -> isize { a.nameId }
+
+pub fn namesStartingFrom<a>(k: isize) -> Vec<Name> {
     vec![Name(k::::)]
 }
 
-pub fn newNameSupply() -> Vec<Name> {
+pub fn newNameSupply<a>() -> Vec<Name> {
     namesStartingFrom(0)
 }
 

@@ -1,7 +1,4 @@
-//! Original file: "Node.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data::Position;
@@ -16,15 +13,15 @@ pub enum NodeInfo {
 }
 pub use self::NodeInfo::*;
 
-pub fn eqByName(obj1: a, obj2: a) -> bool {
+pub fn eqByName<a>(obj1: a, obj2: a) -> bool {
     ((nodeInfo(obj1)) == (nodeInfo(obj2)))
 }
 
-pub fn fileOfNode() -> Option<FilePath> {
+pub fn fileOfNode<a>() -> Option<FilePath> {
     fmap(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
 }
 
-pub fn getLastTokenPos(_0: NodeInfo) -> PosLength {
+pub fn getLastTokenPos<a>(_0: NodeInfo) -> PosLength {
     match (_0) {
         NodeInfo(_, lastTok, _) => {
             lastTok
@@ -35,11 +32,11 @@ pub fn getLastTokenPos(_0: NodeInfo) -> PosLength {
     }
 }
 
-pub fn internalNode() -> NodeInfo {
+pub fn internalNode<a>() -> NodeInfo {
     undefNode
 }
 
-pub fn isUndefNode(_0: NodeInfo) -> bool {
+pub fn isUndefNode<a>(_0: NodeInfo) -> bool {
     match (_0) {
         OnlyPos(p, _) => {
             /* Expr::Error */ Error
@@ -50,27 +47,27 @@ pub fn isUndefNode(_0: NodeInfo) -> bool {
     }
 }
 
-pub fn lengthOfNode(ni: NodeInfo) -> Option<isize> {
+pub fn lengthOfNode<a>(ni: NodeInfo) -> Option<isize> {
     len
 }
 
-pub fn mkNodeInfo(pos: Position, name: Name) -> NodeInfo {
+pub fn mkNodeInfo<a>(pos: Position, name: Name) -> NodeInfo {
     NodeInfo(pos, (nopos, -(1)), name)
 }
 
-pub fn mkNodeInfo_q(pos: Position, lasttok: PosLength, name: Name) -> NodeInfo {
+pub fn mkNodeInfo_q<a>(pos: Position, lasttok: PosLength, name: Name) -> NodeInfo {
     NodeInfo(pos, lasttok, name)
 }
 
-pub fn mkNodeInfoOnlyPos(pos: Position) -> NodeInfo {
+pub fn mkNodeInfoOnlyPos<a>(pos: Position) -> NodeInfo {
     OnlyPos(pos, (nopos, -(1)))
 }
 
-pub fn mkNodeInfoPosLen() -> NodeInfo {
+pub fn mkNodeInfoPosLen<a>() -> NodeInfo {
     OnlyPos
 }
 
-pub fn nameOfNode(_0: NodeInfo) -> Option<Name> {
+pub fn nameOfNode<a>(_0: NodeInfo) -> Option<Name> {
     match (_0) {
         OnlyPos(_, _) => {
             None
@@ -81,7 +78,7 @@ pub fn nameOfNode(_0: NodeInfo) -> Option<Name> {
     }
 }
 
-pub fn posOfNode(ni: NodeInfo) -> Position {
+pub fn posOfNode<a>(ni: NodeInfo) -> Position {
     match ni {
         OnlyPos(pos, _) => {
             pos
@@ -92,7 +89,7 @@ pub fn posOfNode(ni: NodeInfo) -> Position {
     }
 }
 
-pub fn undefNode() -> NodeInfo {
+pub fn undefNode<a>() -> NodeInfo {
     OnlyPos(nopos, (nopos, -(1)))
 }
 

@@ -1,7 +1,4 @@
-//! Original file: "DefTable.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data;
@@ -16,13 +13,17 @@ use corollary_support::*;
 // use Data::IntMap;
 // use Data::Generics;
 
+pub type IdentEntry = Either<TypeDef, IdentDecl>;
+
 pub enum TagFwdDecl {
     CompDecl(CompTypeRef),
     EnumDecl(EnumTypeRef)
 }
 pub use self::TagFwdDecl::*;
 
-struct DefTable{
+pub type TagEntry = Either<TagFwdDecl, TagDef>;
+
+pub struct DefTable{
     identDecls: NameSpaceMap<Ident, IdentEntry>,
     tagDecls: NameSpaceMap<SUERef, TagEntry>,
     labelDefs: NameSpaceMap<Ident, Ident>,
@@ -54,7 +55,7 @@ pub enum TagEntryKind {
 }
 pub use self::TagEntryKind::*;
 
-pub fn compatIdentEntry(_0: IdentEntry) -> bool {
+pub fn compatIdentEntry<a>(_0: IdentEntry) -> bool {
     match (_0) {
         Left(_tydef) => {
             either((__TODO_const(true)), (__TODO_const(false)))
@@ -78,11 +79,11 @@ pub fn compatIdentEntry(_0: IdentEntry) -> bool {
     }
 }
 
-pub fn compatTagEntry(te1: TagEntry, te2: TagEntry) -> bool {
+pub fn compatTagEntry<a>(te1: TagEntry, te2: TagEntry) -> bool {
     (tagKind(te1) == tagKind(te2))
 }
 
-pub fn declStatusDescr(_0: DeclarationStatus<t>) -> String {
+pub fn declStatusDescr<a>(_0: DeclarationStatus<t>) -> String {
     match (_0) {
         NewDecl => {
             "new".to_string()
@@ -102,7 +103,7 @@ pub fn declStatusDescr(_0: DeclarationStatus<t>) -> String {
     }
 }
 
-pub fn declareTag(sueref: SUERef, decl: TagFwdDecl, deftbl: DefTable) -> (DeclarationStatus<TagEntry>, DefTable) {
+pub fn declareTag<a>(sueref: SUERef, decl: TagFwdDecl, deftbl: DefTable) -> (DeclarationStatus<TagEntry>, DefTable) {
     match lookupTag(sueref, deftbl) {
         None => {
             (NewDecl, deftbl {
@@ -114,7 +115,7 @@ pub fn declareTag(sueref: SUERef, decl: TagFwdDecl, deftbl: DefTable) -> (Declar
     }
 }
 
-pub fn defRedeclStatus(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option<t>) -> DeclarationStatus<t> {
+pub fn defRedeclStatus<a>(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option<t>) -> DeclarationStatus<t> {
     match oldDecl {
         Some(def_q) if sameKind(def, def_q) => { Redeclared(def_q) }
         Some(def_q) => { KindMismatch(def_q) }
@@ -124,7 +125,7 @@ pub fn defRedeclStatus(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option
     }
 }
 
-pub fn defRedeclStatusLocal(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, oldDecl: Option<t>, nsm: NameSpaceMap<k, t>) -> DeclarationStatus<t> {
+pub fn defRedeclStatusLocal<a>(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, oldDecl: Option<t>, nsm: NameSpaceMap<k, t>) -> DeclarationStatus<t> {
     match defRedeclStatus(sameKind, def, oldDecl) {
         NewDecl => {
             match lookupName(nsm, ident) {
@@ -142,13 +143,13 @@ pub fn defRedeclStatusLocal(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, 
     }
 }
 
-pub fn defineGlobalIdent(ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
+pub fn defineGlobalIdent<a>(ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
     (defRedeclStatus(compatIdentEntry, (Right(def)), oldDecl), deftbl {
         identDecls: decls_q
     })
 }
 
-pub fn defineLabel(ident: Ident, deftbl: DefTable) -> (DeclarationStatus<Ident>, DefTable) {
+pub fn defineLabel<a>(ident: Ident, deftbl: DefTable) -> (DeclarationStatus<Ident>, DefTable) {
     {
         let (labels_q, old_label) = defLocal((labelDefs(deftbl)), ident, ident);
 
@@ -157,136 +158,136 @@ pub fn defineLabel(ident: Ident, deftbl: DefTable) -> (DeclarationStatus<Ident>,
         })    }
 }
 
-pub fn defineScopedIdent() -> (DeclarationStatus<IdentEntry>, DefTable) {
+pub fn defineScopedIdent<a>() -> (DeclarationStatus<IdentEntry>, DefTable) {
     defineScopedIdentWhen((__TODO_const(true)))
 }
 
-pub fn defineScopedIdentWhen(override_def: fn(IdentDecl) -> bool, ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
+pub fn defineScopedIdentWhen<a>(override_def: fn(IdentDecl) -> bool, ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
     (redecl_status, deftbl {
         identDecls: decls_q
     })
 }
 
-pub fn defineTag(sueref: SUERef, def: TagDef, deftbl: DefTable) -> (DeclarationStatus<TagEntry>, DefTable) {
+pub fn defineTag<a>(sueref: SUERef, def: TagDef, deftbl: DefTable) -> (DeclarationStatus<TagEntry>, DefTable) {
     (redeclStatus, deftbl {
         tagDecls: decls_q
     })
 }
 
-pub fn defineTypeDef(ident: Ident, tydef: TypeDef, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
+pub fn defineTypeDef<a>(ident: Ident, tydef: TypeDef, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
     (defRedeclStatus(compatIdentEntry, (Left(tydef)), oldDecl), deftbl {
         identDecls: decls_q
     })
 }
 
-pub fn emptyDefTable() -> DefTable {
+pub fn emptyDefTable<a>() -> DefTable {
     DefTable(nameSpaceMap, nameSpaceMap, nameSpaceMap, nameSpaceMap, IntMap::empty, IntMap::empty)
 }
 
-pub fn enterBlockScope(deftbl: DefTable) -> DefTable {
+pub fn enterBlockScope<a>(deftbl: DefTable) -> DefTable {
     enterLocalScope(deftbl {
         labelDefs: enterNewScope((labelDefs(deftbl)))
     })
 }
 
-pub fn enterFunctionScope(deftbl: DefTable) -> DefTable {
+pub fn enterFunctionScope<a>(deftbl: DefTable) -> DefTable {
     enterLocalScope(deftbl {
         labelDefs: enterNewScope((labelDefs(deftbl)))
     })
 }
 
-pub fn enterLocalScope(deftbl: DefTable) -> DefTable {
+pub fn enterLocalScope<a>(deftbl: DefTable) -> DefTable {
     deftbl {
         identDecls: enterNewScope((identDecls(deftbl))),
         tagDecls: enterNewScope((tagDecls(deftbl)))
     }
 }
 
-pub fn enterMemberDecl(deftbl: DefTable) -> DefTable {
+pub fn enterMemberDecl<a>(deftbl: DefTable) -> DefTable {
     deftbl {
         memberDecls: enterNewScope((memberDecls(deftbl)))
     }
 }
 
-pub fn globalDefs(deftbl: DefTable) -> GlobalDecls {
+pub fn globalDefs<a>(deftbl: DefTable) -> GlobalDecls {
     Map::foldWithKey(insertDecl, (GlobalDecls(e, gtags, e)), (globalNames(identDecls(deftbl))))
 }
 
-pub fn identOfTyDecl() -> Ident {
+pub fn identOfTyDecl<a>() -> Ident {
     either(identOfTypeDef, declIdent)
 }
 
-pub fn inFileScope(dt: DefTable) -> bool {
+pub fn inFileScope<a>(dt: DefTable) -> bool {
     not(((hasLocalNames((identDecls(dt))) || hasLocalNames((labelDefs(dt))))))
 }
 
-pub fn insertType(dt: DefTable, n: Name, t: Type) -> DefTable {
+pub fn insertType<a>(dt: DefTable, n: Name, t: Type) -> DefTable {
     dt {
         typeTable: IntMap::insert((nameId(n)), t, (typeTable(dt)))
     }
 }
 
-pub fn leaveBlockScope(deftbl: DefTable) -> DefTable {
+pub fn leaveBlockScope<a>(deftbl: DefTable) -> DefTable {
     leaveLocalScope(deftbl {
         labelDefs: leaveScope_((labelDefs(deftbl)))
     })
 }
 
-pub fn leaveFunctionScope(deftbl: DefTable) -> DefTable {
+pub fn leaveFunctionScope<a>(deftbl: DefTable) -> DefTable {
     leaveLocalScope(deftbl {
         labelDefs: leaveScope_((labelDefs(deftbl)))
     })
 }
 
-pub fn leaveLocalScope(deftbl: DefTable) -> DefTable {
+pub fn leaveLocalScope<a>(deftbl: DefTable) -> DefTable {
     deftbl {
         identDecls: leaveScope_((identDecls(deftbl))),
         tagDecls: leaveScope_((tagDecls(deftbl)))
     }
 }
 
-pub fn leaveMemberDecl(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
+pub fn leaveMemberDecl<a>(deftbl: DefTable) -> (Vec<MemberDecl>, DefTable) {
     {
         let (decls_q, members) = leaveScope((memberDecls(deftbl)));
 
-    __op_tuple2((), (map(snd, members))((deftbl {
+    __op_tuple2((), (__map!(snd, members))((deftbl {
                 memberDecls: decls_q
             })))    }
 }
 
-pub fn leaveScope_() -> NameSpaceMap<k, a> {
+pub fn leaveScope_<a>() -> NameSpaceMap<k, a> {
     fst(leaveScope)
 }
 
-pub fn lookupIdent(ident: Ident, deftbl: DefTable) -> Option<IdentEntry> {
+pub fn lookupIdent<a>(ident: Ident, deftbl: DefTable) -> Option<IdentEntry> {
     lookupName((identDecls(deftbl)), ident)
 }
 
-pub fn lookupIdentInner(ident: Ident, deftbl: DefTable) -> Option<IdentEntry> {
+pub fn lookupIdentInner<a>(ident: Ident, deftbl: DefTable) -> Option<IdentEntry> {
     lookupInnermostScope((identDecls(deftbl)), ident)
 }
 
-pub fn lookupLabel(ident: Ident, deftbl: DefTable) -> Option<Ident> {
+pub fn lookupLabel<a>(ident: Ident, deftbl: DefTable) -> Option<Ident> {
     lookupName((labelDefs(deftbl)), ident)
 }
 
-pub fn lookupTag(sue_ref: SUERef, deftbl: DefTable) -> Option<TagEntry> {
+pub fn lookupTag<a>(sue_ref: SUERef, deftbl: DefTable) -> Option<TagEntry> {
     lookupName((tagDecls(deftbl)), sue_ref)
 }
 
-pub fn lookupTagInner(sue_ref: SUERef, deftbl: DefTable) -> Option<TagEntry> {
+pub fn lookupTagInner<a>(sue_ref: SUERef, deftbl: DefTable) -> Option<TagEntry> {
     lookupInnermostScope((tagDecls(deftbl)), sue_ref)
 }
 
-pub fn lookupType(dt: DefTable, n: Name) -> Option<Type> {
+pub fn lookupType<a>(dt: DefTable, n: Name) -> Option<Type> {
     IntMap::lookup((nameId(n)), (typeTable(dt)))
 }
 
-pub fn mergeDefTable(DefTable(i1, t1, l1, m1, r1, tt1): DefTable, DefTable(i2, t2, l2, m2, r2, tt2): DefTable) -> DefTable {
+pub fn mergeDefTable<a>(DefTable(i1, t1, l1, m1, r1, tt1): DefTable, DefTable(i2, t2, l2, m2, r2, tt2): DefTable) -> DefTable {
     DefTable((mergeNameSpace(i1, i2)), (mergeNameSpace(t1, t2)), (mergeNameSpace(l1, l2)), (mergeNameSpace(m1, m2)), (union(r1, r2)), (union(tt1, tt2)))
 }
 
-pub fn tagKind(_0: TagEntry) -> TagEntryKind {
+pub fn tagKind<a>(_0: TagEntry) -> TagEntryKind {
     match (_0) {
         Left(CompDecl(cd)) => {
             CompKind((compTag(cd)))

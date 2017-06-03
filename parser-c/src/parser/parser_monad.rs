@@ -1,7 +1,4 @@
-//! Original file: "ParserMonad.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data::Error;
@@ -19,13 +16,16 @@ use corollary_support::*;
 // use Set;
 // use Data::Set;
 
+pub struct ParseError((Vec<String>, Position));
+
+
 pub enum ParseResult<a> {
     POk(PState, a),
     PFailed(Vec<String>, Position)
 }
 pub use self::ParseResult::*;
 
-struct PState{
+pub struct PState{
     curPos: Position,
     curInput: InputStream,
     prevToken: CToken,
@@ -42,7 +42,12 @@ fn namesupply(a: PState) -> Vec<Name> { a.namesupply }
 fn tyidents(a: PState) -> Set<Ident> { a.tyidents }
 fn scopes(a: PState) -> Vec<Set<Ident>> { a.scopes }
 
-pub fn addTypedef(ident: Ident) -> P<()> {
+pub struct P<a>{
+    unP: fn(PState) -> ParseResult<a>
+}
+fn unP(a: P) -> fn(PState) -> ParseResult<a> { a.unP }
+
+pub fn addTypedef<a>(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState {
 
         }| { POk(s {
@@ -50,7 +55,7 @@ pub fn addTypedef(ident: Ident) -> P<()> {
             }, ()) }))
 }
 
-pub fn enterScope() -> P<()> {
+pub fn enterScope<a>() -> P<()> {
     P(|s, __OP__, PState {
 
         }| { POk(s {
@@ -58,7 +63,7 @@ pub fn enterScope() -> P<()> {
             }, ()) })
 }
 
-pub fn execParser(P(parser): P<a>, input: InputStream, pos: Position, builtins: Vec<Ident>, names: Vec<Name>) -> Either<ParseError, (a, Vec<Name>)> {
+pub fn execParser<a>(P(parser): P<a>, input: InputStream, pos: Position, builtins: Vec<Ident>, names: Vec<Name>) -> Either<ParseError, (a, Vec<Name>)> {
     match parser(initialState) {
         PFailed(message, errpos) => {
             Left((ParseError((message, errpos))))
@@ -69,29 +74,29 @@ pub fn execParser(P(parser): P<a>, input: InputStream, pos: Position, builtins: 
     }
 }
 
-pub fn failP(pos: Position, msg: Vec<String>) -> P<a> {
+pub fn failP<a>(pos: Position, msg: Vec<String>) -> P<a> {
     P(|_| { PFailed(msg, pos) })
 }
 
-pub fn getCurrentPosition() -> P<Position> {
+pub fn getCurrentPosition<a>() -> P<Position> {
     P(|s, __OP__, PState {
 
         }| { POk(s, pos) })
 }
 
-pub fn getInput() -> P<InputStream> {
+pub fn getInput<a>() -> P<InputStream> {
     P(|s, __OP__, PState {
 
         }| { POk(s, i) })
 }
 
-pub fn getLastToken() -> P<CToken> {
+pub fn getLastToken<a>() -> P<CToken> {
     P(|s, __OP__, PState {
 
         }| { POk(s, tok) })
 }
 
-pub fn getNewName() -> P<Name> {
+pub fn getNewName<a>() -> P<Name> {
     P(|s, __OP__, PState {
 
         }| { seq(n, POk(s {
@@ -99,31 +104,31 @@ pub fn getNewName() -> P<Name> {
             }, n)) })
 }
 
-pub fn getPos() -> P<Position> {
+pub fn getPos<a>() -> P<Position> {
     P(|s, __OP__, PState {
 
         }| { POk(s, pos) })
 }
 
-pub fn getSavedToken() -> P<CToken> {
+pub fn getSavedToken<a>() -> P<CToken> {
     P(|s, __OP__, PState {
 
         }| { POk(s, tok) })
 }
 
-pub fn handleEofToken() -> P<()> {
+pub fn handleEofToken<a>() -> P<()> {
     P(|s| { POk(s {
                 savedToken: (prevToken(s))
             }, ()) })
 }
 
-pub fn isTypeIdent(ident: Ident) -> P<bool> {
+pub fn isTypeIdent<a>(ident: Ident) -> P<bool> {
     P(|s, __OP__, PState {
 
         }| { __op_TODO_dollarnot(POk(s), Set::member(ident, tyids)) })
 }
 
-pub fn leaveScope() -> P<()> {
+pub fn leaveScope<a>() -> P<()> {
     P(|s, __OP__, PState {
 
         }| { match ss {
@@ -139,17 +144,17 @@ pub fn leaveScope() -> P<()> {
         } })
 }
 
-pub fn returnP(a: a) -> P<a> {
+pub fn returnP<a>(a: a) -> P<a> {
     P(|s| { POk(s, a) })
 }
 
-pub fn setInput(i: InputStream) -> P<()> {
+pub fn setInput<a>(i: InputStream) -> P<()> {
     P(|s| { POk(s {
                 curInput: i
             }, ()) })
 }
 
-pub fn setLastToken(_0: CToken) -> P<()> {
+pub fn setLastToken<a>(_0: CToken) -> P<()> {
     match (_0) {
         CTokEof => {
             P(|s| { POk(s {
@@ -165,13 +170,13 @@ pub fn setLastToken(_0: CToken) -> P<()> {
     }
 }
 
-pub fn setPos(pos: Position) -> P<()> {
+pub fn setPos<a>(pos: Position) -> P<()> {
     P(|s| { POk(s {
                 curPos: pos
             }, ()) })
 }
 
-pub fn shadowTypedef(ident: Ident) -> P<()> {
+pub fn shadowTypedef<a>(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState {
 
         }| { POk(s {
@@ -179,7 +184,7 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
             }, ()) }))
 }
 
-pub fn thenP(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
+pub fn thenP<a>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
     P(|s| { match m(s) {
             POk(s_q, a) => {
                 (unP((k(a))))(s_q)

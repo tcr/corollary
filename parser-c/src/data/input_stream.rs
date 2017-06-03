@@ -1,7 +1,4 @@
-//! Original file: "InputStream.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Word;
@@ -11,7 +8,11 @@ use corollary_support::*;
 // use Data::ByteString::Char8;
 // use Data::Char;
 
-pub fn countLines() -> isize {
+pub type InputStream = ByteString;
+
+pub type InputStream = String;
+
+pub fn countLines<a>() -> isize {
     match () {
         () => {
             length(BSC::lines)
@@ -22,7 +23,7 @@ pub fn countLines() -> isize {
     }
 }
 
-pub fn inputStreamEmpty() -> bool {
+pub fn inputStreamEmpty<a>() -> bool {
     match () {
         () => {
             BSW::null
@@ -33,7 +34,7 @@ pub fn inputStreamEmpty() -> bool {
     }
 }
 
-pub fn inputStreamFromString() -> InputStream {
+pub fn inputStreamFromString<a>() -> InputStream {
     match () {
         () => {
             BSC::pack
@@ -44,7 +45,7 @@ pub fn inputStreamFromString() -> InputStream {
     }
 }
 
-pub fn inputStreamToString() -> String {
+pub fn inputStreamToString<a>() -> String {
     match () {
         () => {
             BSC::unpack
@@ -55,7 +56,7 @@ pub fn inputStreamToString() -> String {
     }
 }
 
-pub fn readInputStream() -> IO<InputStream> {
+pub fn readInputStream<a>() -> IO<InputStream> {
     match () {
         () => {
             BSW::readFile
@@ -66,7 +67,7 @@ pub fn readInputStream() -> IO<InputStream> {
     }
 }
 
-pub fn takeByte(_0: InputStream) -> (Word8, InputStream) {
+pub fn takeByte<a>(_0: InputStream) -> (Word8, InputStream) {
     match (_0) {
         bs => {
             seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
@@ -77,7 +78,7 @@ pub fn takeByte(_0: InputStream) -> (Word8, InputStream) {
     }
 }
 
-pub fn takeChar(_0: InputStream) -> (Char, InputStream) {
+pub fn takeChar<a>(_0: InputStream) -> (Char, InputStream) {
     match (_0) {
         bs => {
             seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
@@ -88,7 +89,7 @@ pub fn takeChar(_0: InputStream) -> (Char, InputStream) {
     }
 }
 
-pub fn takeChars(_0: isize, _1: InputStream) -> Vec<Char> {
+pub fn takeChars<a>(_0: isize, _1: InputStream) -> Vec<Char> {
     match (_0, _1) {
         (n, bstr) => {
             BSC::unpack(BSC::take(n, bstr))

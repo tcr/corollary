@@ -1,7 +1,4 @@
-//! Original file: "C.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data;
@@ -10,7 +7,7 @@ use corollary_support::*;
 // use Language::C::Parser;
 // use Language::C::System::Preprocess;
 
-pub fn parseCFile(cpp: cpp, tmp_dir_opt: Option<FilePath>, args: Vec<String>, input_file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
+pub fn parseCFile<a>(cpp: cpp, tmp_dir_opt: Option<FilePath>, args: Vec<String>, input_file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
     /*do*/ {
         let input_stream = if not((isPreprocessed(input_file))) { {
                 let cpp_args = __assign!((rawCppArgs(args, input_file)), {
@@ -23,7 +20,7 @@ pub fn parseCFile(cpp: cpp, tmp_dir_opt: Option<FilePath>, args: Vec<String>, in
     }
 }
 
-pub fn parseCFilePre(file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
+pub fn parseCFilePre<a>(file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
     /*do*/ {
         let input_stream = readInputStream(file);
 

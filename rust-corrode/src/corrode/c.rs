@@ -1,7 +1,4 @@
-//! Original file: "C.lhs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Control::Monad;
@@ -23,7 +20,9 @@ use corollary_support::*;
 // use Language::Rust::Corrode::CrateMap;
 // use Text::PrettyPrint::HughesPJClass;
 
-struct FunctionContext{
+pub type EnvMonad<s> = ExceptT<String, RWST<FunctionContext, Output, EnvState<s>, ST<s>>>;
+
+pub struct FunctionContext{
     functionReturnType: Option<CType>,
     functionName: Option<String>,
     itemRewrites: ItemRewrites
@@ -32,7 +31,7 @@ fn functionReturnType(a: FunctionContext) -> Option<CType> { a.functionReturnTyp
 fn functionName(a: FunctionContext) -> Option<String> { a.functionName }
 fn itemRewrites(a: FunctionContext) -> ItemRewrites { a.itemRewrites }
 
-struct Output{
+pub struct Output{
     outputItems: Vec<Rust::Item>,
     outputExterns: Map::Map<String, Rust::ExternItem>,
     outputIncomplete: Set::Set<String>
@@ -41,14 +40,14 @@ fn outputItems(a: Output) -> Vec<Rust::Item> { a.outputItems }
 fn outputExterns(a: Output) -> Map::Map<String, Rust::ExternItem> { a.outputExterns }
 fn outputIncomplete(a: Output) -> Set::Set<String> { a.outputIncomplete }
 
-struct GlobalState{
+pub struct GlobalState{
     unique: isize,
     usedForwardRefs: Set::Set<Ident>
 }
 fn unique(a: GlobalState) -> isize { a.unique }
 fn usedForwardRefs(a: GlobalState) -> Set::Set<Ident> { a.usedForwardRefs }
 
-struct EnvState<s>{
+pub struct EnvState<s>{
     symbolEnvironment: Vec<(Ident, EnvMonad<s, Result>)>,
     typedefEnvironment: Vec<(Ident, EnvMonad<s, IntermediateType>)>,
     tagEnvironment: Vec<(Ident, EnvMonad<s, CType>)>,
@@ -59,8 +58,12 @@ fn typedefEnvironment(a: EnvState) -> Vec<(Ident, EnvMonad<s, IntermediateType>)
 fn tagEnvironment(a: EnvState) -> Vec<(Ident, EnvMonad<s, CType>)> { a.tagEnvironment }
 fn globalState(a: EnvState) -> GlobalState { a.globalState }
 
-struct Initializer(Option<Rust::Expr>, IntMap::IntMap<Initializer>);
+pub type MakeBinding<s, a> = (fn(Rust::ItemKind) -> a, fn(Rust::Mutable) -> fn(Rust::Var) -> fn(CType) -> fn(NodeInfo) -> fn(Option<CInit>) -> EnvMonad<s, a>);
 
+pub struct Initializer(Option<Rust::Expr>, IntMap::IntMap<Initializer>);
+
+
+pub type CurrentObject = Option<Designator>;
 
 #[derive(Debug)]
 pub enum Designator {
@@ -69,7 +72,7 @@ pub enum Designator {
 }
 pub use self::Designator::*;
 
-struct OuterLabels{
+pub struct OuterLabels{
     onBreak: Option<Label>,
     onContinue: Option<Label>,
     switchExpression: Option<CExpr>
@@ -78,7 +81,12 @@ fn onBreak(a: OuterLabels) -> Option<Label> { a.onBreak }
 fn onContinue(a: OuterLabels) -> Option<Label> { a.onContinue }
 fn switchExpression(a: OuterLabels) -> Option<CExpr> { a.switchExpression }
 
-struct Result{
+pub struct SwitchCases(IntMap::IntMap<Option<Result>>);
+
+
+pub type CSourceBuildCFGT<s> = BuildCFGT<RWST<OuterLabels, SwitchCases, Map::Map<Ident, Label>, EnvMonad<s>>, Vec<Rust::Stmt>, Result>;
+
+pub struct Result{
     resultType: CType,
     resultMutable: Rust::Mutable,
     result: Rust::Expr
@@ -116,7 +124,7 @@ pub enum CType {
 }
 pub use self::CType::*;
 
-struct IntermediateType{
+pub struct IntermediateType{
     typeMutable: Rust::Mutable,
     typeIsFunc: bool,
     typeRep: CType
@@ -125,7 +133,7 @@ fn typeMutable(a: IntermediateType) -> Rust::Mutable { a.typeMutable }
 fn typeIsFunc(a: IntermediateType) -> bool { a.typeIsFunc }
 fn typeRep(a: IntermediateType) -> CType { a.typeRep }
 
-pub fn addExternIdent(ident: Ident, deferred: EnvMonad<s, IntermediateType>, mkItem: fn(String) -> fn((Rust::Mutable, CType)) -> Rust::ExternItem) -> EnvMonad<s, ()> {
+pub fn addExternIdent<a>(ident: Ident, deferred: EnvMonad<s, IntermediateType>, mkItem: fn(String) -> fn((Rust::Mutable, CType)) -> Rust::ExternItem) -> EnvMonad<s, ()> {
     /*do*/ {
         let action = runOnce(/*do*/ {
                 let itype = deferred;
@@ -157,7 +165,7 @@ pub fn addExternIdent(ident: Ident, deferred: EnvMonad<s, IntermediateType>, mkI
     }
 }
 
-pub fn addSwitchCase(condition: Option<CExpr>, body: CStat, next: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
+pub fn addSwitchCase<a>(condition: Option<CExpr>, body: CStat, next: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
     /*do*/ {
         let condition_q = lift(lift(mapM((interpretExpr(true)), condition)));
 
@@ -182,7 +190,7 @@ pub fn addSwitchCase(condition: Option<CExpr>, body: CStat, next: CSourceBuildCF
     }
 }
 
-pub fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust::Mutable, CType)) -> EnvMonad<s, String> {
+pub fn addSymbolIdent<a>(ident: Ident, (__mut, ty): (Rust::Mutable, CType)) -> EnvMonad<s, String> {
     /*do*/ {
         let name = applyRenames(ident);
 
@@ -195,7 +203,7 @@ pub fn addSymbolIdent(ident: Ident, (__mut, ty): (Rust::Mutable, CType)) -> EnvM
     }
 }
 
-pub fn addSymbolIdentAction(ident: Ident, action: EnvMonad<s, Result>) -> EnvMonad<s, ()> {
+pub fn addSymbolIdentAction<a>(ident: Ident, action: EnvMonad<s, Result>) -> EnvMonad<s, ()> {
     lift(/*do*/ {
         modify(|st| { st {
                 symbolEnvironment: __op_concat((ident, action), symbolEnvironment(st))
@@ -203,7 +211,7 @@ pub fn addSymbolIdentAction(ident: Ident, action: EnvMonad<s, Result>) -> EnvMon
     })
 }
 
-pub fn addTagIdent(ident: Ident, ty: EnvMonad<s, CType>) -> EnvMonad<s, ()> {
+pub fn addTagIdent<a>(ident: Ident, ty: EnvMonad<s, CType>) -> EnvMonad<s, ()> {
     lift(/*do*/ {
         modify(|st| { st {
                 tagEnvironment: __op_concat((ident, ty), tagEnvironment(st))
@@ -211,7 +219,7 @@ pub fn addTagIdent(ident: Ident, ty: EnvMonad<s, CType>) -> EnvMonad<s, ()> {
     })
 }
 
-pub fn addTypedefIdent(ident: Ident, ty: EnvMonad<s, IntermediateType>) -> EnvMonad<s, ()> {
+pub fn addTypedefIdent<a>(ident: Ident, ty: EnvMonad<s, IntermediateType>) -> EnvMonad<s, ()> {
     lift(/*do*/ {
         modify(|st| { st {
                 typedefEnvironment: __op_concat((ident, ty), typedefEnvironment(st))
@@ -219,7 +227,7 @@ pub fn addTypedefIdent(ident: Ident, ty: EnvMonad<s, IntermediateType>) -> EnvMo
     })
 }
 
-pub fn applyRenames(ident: Ident) -> String {
+pub fn applyRenames<a>(ident: Ident) -> String {
     match identToString(ident) {
         "final" => {
             "final_".to_string()
@@ -257,11 +265,11 @@ pub fn applyRenames(ident: Ident) -> String {
     }
 }
 
-pub fn badSource(node: node, msg: String) -> EnvMonad<s, a> {
+pub fn badSource<a>(node: node, msg: String) -> EnvMonad<s, a> {
     noTranslation(node, (__op_addadd("illegal ".to_string(), __op_addadd(msg, "; check whether a real C compiler accepts this".to_string()))))
 }
 
-pub fn baseTypeOf(specs: Vec<CDeclSpec>) -> EnvMonad<s, (Option<CStorageSpec>, EnvMonad<s, IntermediateType>)> {
+pub fn baseTypeOf<a>(specs: Vec<CDeclSpec>) -> EnvMonad<s, (Option<CStorageSpec>, EnvMonad<s, IntermediateType>)> {
     /*do*/ {
         let (storage, _attributes, basequals, basespecs, _inlineNoReturn, _align) = partitionDeclSpecs(specs);
 
@@ -283,7 +291,7 @@ pub fn baseTypeOf(specs: Vec<CDeclSpec>) -> EnvMonad<s, (Option<CStorageSpec>, E
     }
 }
 
-pub fn binop(expr: CExpr, op: CBinaryOp, lhs: Result, rhs: Result) -> EnvMonad<s, Result> {
+pub fn binop<a>(expr: CExpr, op: CBinaryOp, lhs: Result, rhs: Result) -> EnvMonad<s, Result> {
     fmap(wrapping)(match op {
         CMulOp => {
             promote(expr, Rust::Mul, lhs, rhs)
@@ -391,7 +399,7 @@ pub fn binop(expr: CExpr, op: CBinaryOp, lhs: Result, rhs: Result) -> EnvMonad<s
     })
 }
 
-pub fn bitWidth(_0: isize, _1: IntWidth) -> isize {
+pub fn bitWidth<a>(_0: isize, _1: IntWidth) -> isize {
     match (_0, _1) {
         (wordWidth, WordWidth) => {
             wordWidth
@@ -402,7 +410,7 @@ pub fn bitWidth(_0: isize, _1: IntWidth) -> isize {
     }
 }
 
-pub fn blockToStatements(Rust::Block(stmts, mexpr): Rust::Block) -> Vec<Rust::Stmt> {
+pub fn blockToStatements<a>(Rust::Block(stmts, mexpr): Rust::Block) -> Vec<Rust::Stmt> {
     match mexpr {
         Some(expr) => {
             __op_addadd(stmts, exprToStatements(expr))
@@ -413,7 +421,7 @@ pub fn blockToStatements(Rust::Block(stmts, mexpr): Rust::Block) -> Vec<Rust::St
     }
 }
 
-pub fn castTo(_0: CType, _1: Result) -> Rust::Expr {
+pub fn castTo<a>(_0: CType, _1: Result) -> Rust::Expr {
     match (_0, _1) {
         (target, source) => {
             /* Expr::Error */ Error
@@ -448,7 +456,7 @@ pub fn castTo(_0: CType, _1: Result) -> Rust::Expr {
     }
 }
 
-pub fn cfgToRust(_node: node, build: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> EnvMonad<s, Vec<Rust::Stmt>> {
+pub fn cfgToRust<a>(_node: node, build: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> EnvMonad<s, Vec<Rust::Stmt>> {
     /*do*/ {
         let builder = buildCFG(/*do*/ {
                 let (early, term) = build;
@@ -469,11 +477,11 @@ pub fn cfgToRust(_node: node, build: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Termi
     }
 }
 
-pub fn charType() -> CType {
+pub fn charType<a>() -> CType {
     IsInt(Unsigned, (BitWidth(8)))
 }
 
-pub fn compatibleInitializer(_0: CType, _1: CType) -> bool {
+pub fn compatibleInitializer<a>(_0: CType, _1: CType) -> bool {
     match (_0, _1) {
         (IsStruct(name1, _), IsStruct(name2, _)) => {
             (name1 == name2)
@@ -494,7 +502,7 @@ pub fn compatibleInitializer(_0: CType, _1: CType) -> bool {
     }
 }
 
-pub fn compatiblePtr(_0: CType, _1: CType) -> CType {
+pub fn compatiblePtr<a>(_0: CType, _1: CType) -> CType {
     match (_0, _1) {
         (IsPtr(_, IsVoid), b) => {
             b
@@ -520,7 +528,7 @@ pub fn compatiblePtr(_0: CType, _1: CType) -> CType {
     }
 }
 
-pub fn completeType(_0: CType, _1: EnvMonad<s, CType>) -> EnvMonad<s, CType> {
+pub fn completeType<a>(_0: CType, _1: EnvMonad<s, CType>) -> EnvMonad<s, CType> {
     match (_0, _1, _2) {
         (orig, __OP__, IsIncomplete(ident)) => {
             /*do*/ {
@@ -535,7 +543,7 @@ pub fn completeType(_0: CType, _1: EnvMonad<s, CType>) -> EnvMonad<s, CType> {
     }
 }
 
-pub fn compound(expr: CExpr, returnOld: bool, demand: bool, op: CAssignOp, lhs: Result, rhs: Result) -> EnvMonad<s, Result> {
+pub fn compound<a>(expr: CExpr, returnOld: bool, demand: bool, op: CAssignOp, lhs: Result, rhs: Result) -> EnvMonad<s, Result> {
     /*do*/ {
         let op_q = match op {
                 CAssignOp => {
@@ -635,7 +643,7 @@ if not(returnOld) {
     }
 }
 
-pub fn derivedDeferredTypeOf(deferred: EnvMonad<s, IntermediateType>, declr: CDeclr, __OP__: Vec<CDecl>, CDeclr(_, derived, _, _, _): EnvMonad<s, EnvMonad<s, IntermediateType>>) -> EnvMonad<s, EnvMonad<s, IntermediateType>> {
+pub fn derivedDeferredTypeOf<a>(deferred: EnvMonad<s, IntermediateType>, declr: CDeclr, __OP__: Vec<CDecl>, CDeclr(_, derived, _, _, _): EnvMonad<s, EnvMonad<s, IntermediateType>>) -> EnvMonad<s, EnvMonad<s, IntermediateType>> {
     /*do*/ {
         let derived_q = mapM(derive, derived);
 
@@ -647,11 +655,11 @@ pub fn derivedDeferredTypeOf(deferred: EnvMonad<s, IntermediateType>, declr: CDe
     }
 }
 
-pub fn derivedTypeOf(deferred: EnvMonad<s, IntermediateType>, declr: CDeclr) -> EnvMonad<s, IntermediateType> {
+pub fn derivedTypeOf<a>(deferred: EnvMonad<s, IntermediateType>, declr: CDeclr) -> EnvMonad<s, IntermediateType> {
     join((derivedDeferredTypeOf(deferred, declr, vec![])))
 }
 
-pub fn designatorType(_0: Designator) -> CType {
+pub fn designatorType<a>(_0: Designator) -> CType {
     match (_0) {
         Base(ty) => {
             ty
@@ -662,7 +670,7 @@ pub fn designatorType(_0: Designator) -> CType {
     }
 }
 
-pub fn emitIncomplete(kind: ItemKind, ident: Ident) -> EnvMonad<s, CType> {
+pub fn emitIncomplete<a>(kind: ItemKind, ident: Ident) -> EnvMonad<s, CType> {
     /*do*/ {
         let rewrites = lift((asks(itemRewrites)));
 
@@ -673,17 +681,17 @@ pub fn emitIncomplete(kind: ItemKind, ident: Ident) -> EnvMonad<s, CType> {
     }
 }
 
-pub fn emitItems(items: Vec<Rust::Item>) -> EnvMonad<s, ()> {
+pub fn emitItems<a>(items: Vec<Rust::Item>) -> EnvMonad<s, ()> {
     lift(tell(mempty {
             outputItems: items
         }))
 }
 
-pub fn enumReprType() -> CType {
+pub fn enumReprType<a>() -> CType {
     IsInt(Signed, (BitWidth(32)))
 }
 
-pub fn exprToStatements(_0: Rust::Expr) -> Vec<Rust::Stmt> {
+pub fn exprToStatements<a>(_0: Rust::Expr) -> Vec<Rust::Stmt> {
     match (_0) {
         Rust::IfThenElse(c, t, f) => {
             vec![Rust::Stmt((Rust::IfThenElse(c, (extractExpr(t)), (extractExpr(f)))))]
@@ -697,11 +705,11 @@ pub fn exprToStatements(_0: Rust::Expr) -> Vec<Rust::Stmt> {
     }
 }
 
-pub fn getSwitchCases(expr: CExpr) -> CSourceBuildCFGT<s, (a, SwitchCases)> {
+pub fn getSwitchCases<a>(expr: CExpr) -> CSourceBuildCFGT<s, (a, SwitchCases)> {
     mapBuildCFGT(wrap)
 }
 
-pub fn getSwitchExpression(stmt: CStat) -> CSourceBuildCFGT<s, CExpr> {
+pub fn getSwitchExpression<a>(stmt: CStat) -> CSourceBuildCFGT<s, CExpr> {
     /*do*/ {
         let mexpr = lift(asks(switchExpression));
 
@@ -716,7 +724,7 @@ pub fn getSwitchExpression(stmt: CStat) -> CSourceBuildCFGT<s, CExpr> {
     }
 }
 
-pub fn getSymbolIdent(ident: Ident) -> EnvMonad<s, Option<Result>> {
+pub fn getSymbolIdent<a>(ident: Ident) -> EnvMonad<s, Option<Result>> {
     /*do*/ {
         let env = lift(get);
 
@@ -744,7 +752,7 @@ pub fn getSymbolIdent(ident: Ident) -> EnvMonad<s, Option<Result>> {
     }
 }
 
-pub fn getTagIdent(ident: Ident) -> EnvMonad<s, Option<EnvMonad<s, CType>>> {
+pub fn getTagIdent<a>(ident: Ident) -> EnvMonad<s, Option<EnvMonad<s, CType>>> {
     lift(/*do*/ {
         let env = gets(tagEnvironment);
 
@@ -752,7 +760,7 @@ pub fn getTagIdent(ident: Ident) -> EnvMonad<s, Option<EnvMonad<s, CType>>> {
     })
 }
 
-pub fn getTypedefIdent(ident: Ident) -> EnvMonad<s, (String, Option<EnvMonad<s, IntermediateType>>)> {
+pub fn getTypedefIdent<a>(ident: Ident) -> EnvMonad<s, (String, Option<EnvMonad<s, IntermediateType>>)> {
     lift(/*do*/ {
         let env = gets(typedefEnvironment);
 
@@ -760,7 +768,7 @@ pub fn getTypedefIdent(ident: Ident) -> EnvMonad<s, (String, Option<EnvMonad<s, 
     })
 }
 
-pub fn gotoLabel(ident: Ident) -> CSourceBuildCFGT<s, Label> {
+pub fn gotoLabel<a>(ident: Ident) -> CSourceBuildCFGT<s, Label> {
     /*do*/ {
         let labels = lift(get);
 
@@ -780,7 +788,7 @@ pub fn gotoLabel(ident: Ident) -> CSourceBuildCFGT<s, Label> {
     }
 }
 
-pub fn intPromote(_0: CType) -> CType {
+pub fn intPromote<a>(_0: CType) -> CType {
     match (_0) {
         IsBool => {
             IsInt(Signed, (BitWidth(32)))
@@ -797,7 +805,7 @@ pub fn intPromote(_0: CType) -> CType {
     }
 }
 
-pub fn integerConversionRank(_0: IntWidth, _1: IntWidth) -> Option<Ordering> {
+pub fn integerConversionRank<a>(_0: IntWidth, _1: IntWidth) -> Option<Ordering> {
     match (_0, _1) {
         (BitWidth(a), BitWidth(b)) => {
             Some((compare(a, b)))
@@ -817,7 +825,7 @@ pub fn integerConversionRank(_0: IntWidth, _1: IntWidth) -> Option<Ordering> {
     }
 }
 
-pub fn interpretBlockItem(_0: CBlockItem, _1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
+pub fn interpretBlockItem<a>(_0: CBlockItem, _1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
     match (_0, _1) {
         (CBlockStmt(stmt), next) => {
             interpretStatement(stmt, next)
@@ -837,7 +845,7 @@ pub fn interpretBlockItem(_0: CBlockItem, _1: CSourceBuildCFGT<s, (Vec<Rust::Stm
     }
 }
 
-pub fn interpretConstExpr(_0: CExpr) -> EnvMonad<s, Integer> {
+pub fn interpretConstExpr<a>(_0: CExpr) -> EnvMonad<s, Integer> {
     match (_0) {
         CConst(CIntConst(CInteger(v, _, _), _)) => {
             v
@@ -848,7 +856,7 @@ pub fn interpretConstExpr(_0: CExpr) -> EnvMonad<s, Integer> {
     }
 }
 
-pub fn interpretDeclarations(_0: MakeBinding<s, b>, _1: CDecl, _2: EnvMonad<s, Vec<b>>) -> EnvMonad<s, Vec<b>> {
+pub fn interpretDeclarations<a>(_0: MakeBinding<s, b>, _1: CDecl, _2: EnvMonad<s, Vec<b>>) -> EnvMonad<s, Vec<b>> {
     match (_0, _1, _2, _3) {
         ((fromItem, makeBinding), declaration, __OP__, CDecl(specs, decls, _)) => {
             /*do*/ {
@@ -965,7 +973,7 @@ pub fn interpretDeclarations(_0: MakeBinding<s, b>, _1: CDecl, _2: EnvMonad<s, V
     }
 }
 
-pub fn interpretExpr(_0: bool, _1: CExpr) -> EnvMonad<s, Result> {
+pub fn interpretExpr<a>(_0: bool, _1: CExpr) -> EnvMonad<s, Result> {
     match (_0, _1) {
         (demand, CComma(exprs, _)) => {
             /*do*/ {
@@ -1185,7 +1193,7 @@ Result {
                 match resultType(func_q) {
                     IsFunc(retTy, argTys, variadic) => {
                         /*do*/ {
-                            let args_q = castArgs(variadic, (map(snd, argTys)), args);
+                            let args_q = castArgs(variadic, (__map!(snd, argTys)), args);
 
                             Result {
                                 resultType: retTy,
@@ -1353,7 +1361,7 @@ BitWidth(32)
     }
 }
 
-pub fn interpretFunction(CFunDef(specs, declr, __OP__, CDeclr(mident, _, _, _, _), argtypes, body, _): CFunDef) -> EnvMonad<s, ()> {
+pub fn interpretFunction<a>(CFunDef(specs, declr, __OP__, CDeclr(mident, _, _, _, _), argtypes, body, _): CFunDef) -> EnvMonad<s, ()> {
     /*do*/ {
         let (storage, baseTy) = baseTypeOf(specs);
 
@@ -1383,7 +1391,7 @@ pub fn interpretFunction(CFunDef(specs, declr, __OP__, CDeclr(mident, _, _, _, _
                         },
                     };
 
-                when(((name == "_c_main".to_string())), (wrapMain(declr, name, (map(snd, args)))));
+                when(((name == "_c_main".to_string())), (wrapMain(declr, name, (__map!(snd, args)))));
                 let setRetTy = |flow| {
                     flow {
                         functionReturnType: Some(retTy),
@@ -1449,7 +1457,7 @@ pub fn interpretFunction(CFunDef(specs, declr, __OP__, CDeclr(mident, _, _, _, _
     }
 }
 
-pub fn interpretInitializer(ty: CType, initial: CInit) -> EnvMonad<s, Rust::Expr> {
+pub fn interpretInitializer<a>(ty: CType, initial: CInit) -> EnvMonad<s, Rust::Expr> {
     /*do*/ {
         let initial_q = match initial {
                 CInitExpr(expr, _) => {
@@ -1470,7 +1478,7 @@ pub fn interpretInitializer(ty: CType, initial: CInit) -> EnvMonad<s, Rust::Expr
     }
 }
 
-pub fn interpretStatement(_0: CStat, _1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
+pub fn interpretStatement<a>(_0: CStat, _1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
     match (_0, _1) {
         (CLabel(ident, body, _, _), next) => {
             /*do*/ {
@@ -1777,7 +1785,7 @@ headerLabel
     }
 }
 
-pub fn interpretTranslationUnit(_thisModule: ModuleMap, rewrites: ItemRewrites, CTranslUnit(decls, _): CTranslUnit) -> Either<String, Vec<Rust::Item>> {
+pub fn interpretTranslationUnit<a>(_thisModule: ModuleMap, rewrites: ItemRewrites, CTranslUnit(decls, _): CTranslUnit) -> Either<String, Vec<Rust::Item>> {
     match err {
         Left(msg) => {
             Left(msg)
@@ -1788,15 +1796,15 @@ pub fn interpretTranslationUnit(_thisModule: ModuleMap, rewrites: ItemRewrites, 
     }
 }
 
-pub fn makeLetBinding() -> MakeBinding<s, Rust::Stmt> {
+pub fn makeLetBinding<a>() -> MakeBinding<s, Rust::Stmt> {
     (Rust::StmtItem(vec![]), makeBinding)
 }
 
-pub fn makeStaticBinding() -> MakeBinding<s, Rust::Item> {
+pub fn makeStaticBinding<a>() -> MakeBinding<s, Rust::Item> {
     (Rust::Item(vec![], Rust::Private), makeBinding)
 }
 
-pub fn modifyGlobal(f: fn(GlobalState) -> (GlobalState, a)) -> EnvMonad<s, a> {
+pub fn modifyGlobal<a>(f: fn(GlobalState) -> (GlobalState, a)) -> EnvMonad<s, a> {
     lift(/*do*/ {
         let st = get;
 
@@ -1809,7 +1817,7 @@ pub fn modifyGlobal(f: fn(GlobalState) -> (GlobalState, a)) -> EnvMonad<s, a> {
     })
 }
 
-pub fn mutable(quals: Vec<CTypeQualifier<a>>) -> Rust::Mutable {
+pub fn mutable<a>(quals: Vec<CTypeQualifier<a>>) -> Rust::Mutable {
     if any((|q| { match q {
                 CConstQual(_) => {
                     true
@@ -1823,14 +1831,14 @@ Rust::Mutable
     }
 }
 
-pub fn nestedObject(ty: CType, desig: Designator) -> Option<Designator> {
+pub fn nestedObject<a>(ty: CType, desig: Designator) -> Option<Designator> {
     match designatorType(desig) {
         IsArray(_, size, el) => {
             Some((From(el, 0, (replicate(((size - 1)), el)), desig)))
         },
         ty_q if compatibleInitializer(ty, ty_q) => { Some(desig) }
         IsStruct(_, [(_, ty_q), fields]) => {
-            nestedObject(ty, (From(ty_q, 0, (map(snd, fields)), desig)))
+            nestedObject(ty, (From(ty_q, 0, (__map!(snd, fields)), desig)))
         },
         _ => {
             None
@@ -1838,7 +1846,7 @@ pub fn nestedObject(ty: CType, desig: Designator) -> Option<Designator> {
     }
 }
 
-pub fn nextObject(_0: Designator) -> CurrentObject {
+pub fn nextObject<a>(_0: Designator) -> CurrentObject {
     match (_0) {
         Base {
 
@@ -1854,7 +1862,7 @@ pub fn nextObject(_0: Designator) -> CurrentObject {
     }
 }
 
-pub fn noTranslation(node: node, msg: String) -> EnvMonad<s, a> {
+pub fn noTranslation<a>(node: node, msg: String) -> EnvMonad<s, a> {
     throwE(concat(vec![
             show((posOf(node))),
             ": ".to_string(),
@@ -1864,7 +1872,7 @@ pub fn noTranslation(node: node, msg: String) -> EnvMonad<s, a> {
         ]))
 }
 
-pub fn objectFromDesignators(_0: CType, _1: Vec<CDesignator>) -> EnvMonad<s, CurrentObject> {
+pub fn objectFromDesignators<a>(_0: CType, _1: Vec<CDesignator>) -> EnvMonad<s, CurrentObject> {
     match (_0, _1) {
         (_, []) => {
             __pure(None)
@@ -1875,7 +1883,7 @@ pub fn objectFromDesignators(_0: CType, _1: Vec<CDesignator>) -> EnvMonad<s, Cur
     }
 }
 
-pub fn promote(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad<s, Result> {
+pub fn promote<a>(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad<s, Result> {
     match usual((resultType(a)), (resultType(b))) {
         Some(rt) => {
             Result {
@@ -1895,7 +1903,7 @@ pub fn promote(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a
     }
 }
 
-pub fn promotePtr(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad<s, Result> {
+pub fn promotePtr<a>(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad<s, Result> {
     match (resultType(a), resultType(b)) {
         (IsArray(_, _, _), _) => {
             ptrs
@@ -1915,7 +1923,7 @@ pub fn promotePtr(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr
     }
 }
 
-pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, cinitial): (CurrentObject, CInit)) -> EnvMonad<s, (CurrentObject, Initializer)> {
+pub fn resolveCurrentObject<a>((obj0, prior): (CurrentObject, Initializer), (obj1, cinitial): (CurrentObject, CInit)) -> EnvMonad<s, (CurrentObject, Initializer)> {
     match mplus(obj1, obj0) {
         None => {
             (None, prior)
@@ -1969,11 +1977,11 @@ pub fn resolveCurrentObject((obj0, prior): (CurrentObject, Initializer), (obj1, 
     }
 }
 
-pub fn resultToStatements() -> Vec<Rust::Stmt> {
+pub fn resultToStatements<a>() -> Vec<Rust::Stmt> {
     exprToStatements(result)
 }
 
-pub fn runOnce(action: EnvMonad<s, a>) -> EnvMonad<s, EnvMonad<s, a>> {
+pub fn runOnce<a>(action: EnvMonad<s, a>) -> EnvMonad<s, EnvMonad<s, a>> {
     /*do*/ {
         let cacheRef = lift(lift(newSTRef((Left(action)))));
 
@@ -1998,7 +2006,7 @@ pub fn runOnce(action: EnvMonad<s, a>) -> EnvMonad<s, EnvMonad<s, a>> {
     }
 }
 
-pub fn rustAlignOfType(Rust::TypeName(ty): Rust::Type) -> Result {
+pub fn rustAlignOfType<a>(Rust::TypeName(ty): Rust::Type) -> Result {
     Result {
         resultType: IsInt(Unsigned, WordWidth),
         resultMutable: Rust::Immutable,
@@ -2006,7 +2014,7 @@ pub fn rustAlignOfType(Rust::TypeName(ty): Rust::Type) -> Result {
     }
 }
 
-pub fn rustSizeOfType(Rust::TypeName(ty): Rust::Type) -> Result {
+pub fn rustSizeOfType<a>(Rust::TypeName(ty): Rust::Type) -> Result {
     Result {
         resultType: IsInt(Unsigned, WordWidth),
         resultMutable: Rust::Immutable,
@@ -2014,11 +2022,11 @@ pub fn rustSizeOfType(Rust::TypeName(ty): Rust::Type) -> Result {
     }
 }
 
-pub fn scalar(expr: Rust::Expr) -> Initializer {
+pub fn scalar<a>(expr: Rust::Expr) -> Initializer {
     Initializer((Some(expr)), IntMap::empty)
 }
 
-pub fn scope(m: EnvMonad<s, a>) -> EnvMonad<s, a> {
+pub fn scope<a>(m: EnvMonad<s, a>) -> EnvMonad<s, a> {
     /*do*/ {
         let old = lift(get);
 
@@ -2031,19 +2039,19 @@ pub fn scope(m: EnvMonad<s, a>) -> EnvMonad<s, a> {
     }
 }
 
-pub fn setBreak(label: Label) -> CSourceBuildCFGT<s, a> {
+pub fn setBreak<a>(label: Label) -> CSourceBuildCFGT<s, a> {
     mapBuildCFGT((local((|flow| { flow {
                     onBreak: Some(label)
                 } }))))
 }
 
-pub fn setContinue(label: Label) -> CSourceBuildCFGT<s, a> {
+pub fn setContinue<a>(label: Label) -> CSourceBuildCFGT<s, a> {
     mapBuildCFGT((local((|flow| { flow {
                     onContinue: Some(label)
                 } }))))
 }
 
-pub fn statementsToBlock(_0: Vec<Rust::Stmt>) -> Rust::Block {
+pub fn statementsToBlock<a>(_0: Vec<Rust::Stmt>) -> Rust::Block {
     match (_0) {
         [Rust::Stmt(Rust::BlockExpr(stmts))] => {
             stmts
@@ -2054,7 +2062,7 @@ pub fn statementsToBlock(_0: Vec<Rust::Stmt>) -> Rust::Block {
     }
 }
 
-pub fn toBool(_0: Result) -> Rust::Expr {
+pub fn toBool<a>(_0: Result) -> Rust::Expr {
     match (_0) {
         Result {
 
@@ -2084,7 +2092,7 @@ pub fn toBool(_0: Result) -> Rust::Expr {
     }
 }
 
-pub fn toNotBool(_0: Result) -> Rust::Expr {
+pub fn toNotBool<a>(_0: Result) -> Rust::Expr {
     match (_0) {
         Result {
 
@@ -2114,7 +2122,7 @@ pub fn toNotBool(_0: Result) -> Rust::Expr {
     }
 }
 
-pub fn toPtr(_0: Result, _1: Option<Result>) -> Option<Result> {
+pub fn toPtr<a>(_0: Result, _1: Option<Result>) -> Option<Result> {
     match (_0, _1, _2) {
         (ptr, __OP__, Result {
 
@@ -2135,7 +2143,7 @@ pub fn toPtr(_0: Result, _1: Option<Result>) -> Option<Result> {
     }
 }
 
-pub fn toRustRetType(_0: CType) -> Rust::Type {
+pub fn toRustRetType<a>(_0: CType) -> Rust::Type {
     match (_0) {
         IsVoid => {
             Rust::TypeName("()".to_string())
@@ -2146,7 +2154,7 @@ pub fn toRustRetType(_0: CType) -> Rust::Type {
     }
 }
 
-pub fn toRustType(_0: CType) -> Rust::Type {
+pub fn toRustType<a>(_0: CType) -> Rust::Type {
     match (_0) {
         IsBool => {
             Rust::TypeName("bool".to_string())
@@ -2205,7 +2213,7 @@ pub fn toRustType(_0: CType) -> Rust::Type {
     }
 }
 
-pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad<s, Initializer> {
+pub fn translateInitList<a>(ty: CType, list: CInitList) -> EnvMonad<s, Initializer> {
     /*do*/ {
         let objectsAndInitializers = forM(list)(|(desigs, initial)| { /*do*/ {
                     let currObj = objectFromDesignators(ty, desigs);
@@ -2218,7 +2226,7 @@ pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad<s, Initializer>
                     From(el, 0, (replicate(((size - 1)), el)), (Base(ty)))
                 },
                 IsStruct(_, [(_, ty_q), fields]) => {
-                    From(ty_q, 0, (map(snd, fields)), (Base(ty)))
+                    From(ty_q, 0, (__map!(snd, fields)), (Base(ty)))
                 },
                 _ => {
                     Base(ty)
@@ -2231,7 +2239,7 @@ pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad<s, Initializer>
     }
 }
 
-pub fn typeName(_0: CDecl, _1: EnvMonad<s, (Rust::Mutable, CType)>) -> EnvMonad<s, (Rust::Mutable, CType)> {
+pub fn typeName<a>(_0: CDecl, _1: EnvMonad<s, (Rust::Mutable, CType)>) -> EnvMonad<s, (Rust::Mutable, CType)> {
     match (_0, _1, _2) {
         (decl, __OP__, CStaticAssert {
 
@@ -2269,7 +2277,7 @@ pub fn typeName(_0: CDecl, _1: EnvMonad<s, (Rust::Mutable, CType)>) -> EnvMonad<
     }
 }
 
-pub fn typeToResult(itype: IntermediateType, expr: Rust::Expr) -> Result {
+pub fn typeToResult<a>(itype: IntermediateType, expr: Rust::Expr) -> Result {
     Result {
         resultType: typeRep(itype),
         resultMutable: typeMutable(itype),
@@ -2277,23 +2285,23 @@ pub fn typeToResult(itype: IntermediateType, expr: Rust::Expr) -> Result {
     }
 }
 
-pub fn unimplemented(node: node) -> EnvMonad<s, a> {
+pub fn unimplemented<a>(node: node) -> EnvMonad<s, a> {
     noTranslation(node, "Corrode doesn\'t handle this yet".to_string())
 }
 
-pub fn uniqueName(base: String) -> EnvMonad<s, String> {
+pub fn uniqueName<a>(base: String) -> EnvMonad<s, String> {
     modifyGlobal(|st| { (st {
             unique: (unique(st) + 1)
         }, __op_addadd(base, show((unique(st))))) })
 }
 
-pub fn useForwardRef(ident: Ident) -> EnvMonad<s, ()> {
+pub fn useForwardRef<a>(ident: Ident) -> EnvMonad<s, ()> {
     modifyGlobal(|st| { (st {
             usedForwardRefs: Set::insert(ident, (usedForwardRefs(st)))
         }, ()) })
 }
 
-pub fn usual(_0: CType, _1: CType) -> Option<CType> {
+pub fn usual<a>(_0: CType, _1: CType) -> Option<CType> {
     match (_0, _1) {
         (IsFloat(aw), IsFloat(bw)) => {
             Some((IsFloat((max(aw, bw)))))
@@ -2328,7 +2336,7 @@ pub fn usual(_0: CType, _1: CType) -> Option<CType> {
     }
 }
 
-pub fn wrapMain(declr: CDeclr, realName: String, argTypes: Vec<CType>) -> EnvMonad<s, ()> {
+pub fn wrapMain<a>(declr: CDeclr, realName: String, argTypes: Vec<CType>) -> EnvMonad<s, ()> {
     /*do*/ {
         let (setup, args) = wrapArgv(argTypes);
 
@@ -2342,7 +2350,7 @@ pub fn wrapMain(declr: CDeclr, realName: String, argTypes: Vec<CType>) -> EnvMon
     }
 }
 
-pub fn wrapping(_0: Result, _1: Result) -> Result {
+pub fn wrapping<a>(_0: Result, _1: Result) -> Result {
     match (_0, _1, _2) {
         (r, __OP__, Result {
 

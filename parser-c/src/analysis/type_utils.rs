@@ -1,13 +1,10 @@
-//! Original file: "TypeUtils.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Analysis::SemRep;
 // use Language::C::Syntax::Constants;
 
-pub fn baseType(_0: Type) -> Type {
+pub fn baseType<a>(_0: Type) -> Type {
     match (_0) {
         PtrType(t, _, _) => {
             t
@@ -21,11 +18,11 @@ pub fn baseType(_0: Type) -> Type {
     }
 }
 
-pub fn boolType() -> Type {
+pub fn boolType<a>() -> Type {
     integral(TyInt)
 }
 
-pub fn canonicalType(t: Type) -> Type {
+pub fn canonicalType<a>(t: Type) -> Type {
     match deepDerefTypeDef(t) {
         FunctionType(ft, attrs) => {
             simplePtr((FunctionType(ft, attrs)))
@@ -36,23 +33,23 @@ pub fn canonicalType(t: Type) -> Type {
     }
 }
 
-pub fn charPtr() -> Type {
+pub fn charPtr<a>() -> Type {
     simplePtr((integral(TyChar)))
 }
 
-pub fn constCharPtr() -> Type {
+pub fn constCharPtr<a>() -> Type {
     constPtr((integral(TyChar)))
 }
 
-pub fn constPtr(t: Type) -> Type {
+pub fn constPtr<a>(t: Type) -> Type {
     PtrType(t, (TypeQuals(true, false, false)), vec![])
 }
 
-pub fn constVoidPtr() -> Type {
+pub fn constVoidPtr<a>() -> Type {
     constPtr(voidType)
 }
 
-pub fn deepDerefTypeDef(_0: Type) -> Type {
+pub fn deepDerefTypeDef<a>(_0: Type) -> Type {
     match (_0) {
         PtrType(t, quals, attrs) => {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
@@ -75,7 +72,7 @@ pub fn deepDerefTypeDef(_0: Type) -> Type {
     }
 }
 
-pub fn derefTypeDef(_0: Type) -> Type {
+pub fn derefTypeDef<a>(_0: Type) -> Type {
     match (_0) {
         TypeDefType(TypeDefRef(_, Some(t), _), q, a) => {
             (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
@@ -86,23 +83,23 @@ pub fn derefTypeDef(_0: Type) -> Type {
     }
 }
 
-pub fn floating(ty: FloatType) -> Type {
+pub fn floating<a>(ty: FloatType) -> Type {
     DirectType((TyFloating(ty)), noTypeQuals, noAttributes)
 }
 
-pub fn getFloatType(fs: String) -> FloatType {
+pub fn getFloatType<a>(fs: String) -> FloatType {
     /* Expr::Error */ Error
 }
 
-pub fn getIntType(flags: Flags<CIntFlag>) -> IntType {
+pub fn getIntType<a>(flags: Flags<CIntFlag>) -> IntType {
     /* Expr::Error */ Error
 }
 
-pub fn integral(ty: IntType) -> Type {
+pub fn integral<a>(ty: IntType) -> Type {
     DirectType((TyIntegral(ty)), noTypeQuals, noAttributes)
 }
 
-pub fn isFloatingType(_0: Type) -> bool {
+pub fn isFloatingType<a>(_0: Type) -> bool {
     match (_0) {
         DirectType(TyFloating(_), _, _) => {
             true
@@ -113,7 +110,7 @@ pub fn isFloatingType(_0: Type) -> bool {
     }
 }
 
-pub fn isFunctionType(ty: Type) -> bool {
+pub fn isFunctionType<a>(ty: Type) -> bool {
     match ty {
         TypeDefType(TypeDefRef(_, Some(actual_ty), _), _, _) => {
             isFunctionType(actual_ty)
@@ -130,7 +127,7 @@ pub fn isFunctionType(ty: Type) -> bool {
     }
 }
 
-pub fn isIntegralType(_0: Type) -> bool {
+pub fn isIntegralType<a>(_0: Type) -> bool {
     match (_0) {
         DirectType(TyIntegral(_), _, _) => {
             true
@@ -144,7 +141,7 @@ pub fn isIntegralType(_0: Type) -> bool {
     }
 }
 
-pub fn isPointerType(_0: Type) -> bool {
+pub fn isPointerType<a>(_0: Type) -> bool {
     match (_0) {
         PtrType(_, _, _) => {
             true
@@ -158,31 +155,31 @@ pub fn isPointerType(_0: Type) -> bool {
     }
 }
 
-pub fn isScalarType(t: Type) -> bool {
+pub fn isScalarType<a>(t: Type) -> bool {
     (isIntegralType(t) || (isPointerType(t) || isFloatingType(t)))
 }
 
-pub fn ptrDiffType() -> Type {
+pub fn ptrDiffType<a>() -> Type {
     integral(TyInt)
 }
 
-pub fn simplePtr(t: Type) -> Type {
+pub fn simplePtr<a>(t: Type) -> Type {
     PtrType(t, noTypeQuals, vec![])
 }
 
-pub fn size_tType() -> Type {
+pub fn size_tType<a>() -> Type {
     integral(TyInt)
 }
 
-pub fn stringType() -> Type {
+pub fn stringType<a>() -> Type {
     ArrayType((DirectType((TyIntegral(TyChar)), (TypeQuals(true, false, false)), noAttributes)), (UnknownArraySize(false)), noTypeQuals, vec![])
 }
 
-pub fn testFlags(flags: Vec<f>, fi: Flags<f>) -> bool {
-    and(map(((flip(testFlag))(fi)), flags))
+pub fn testFlags<a>(flags: Vec<f>, fi: Flags<f>) -> bool {
+    and(__map!(((flip(testFlag))(fi)), flags))
 }
 
-pub fn typeAttrs(_0: Type) -> Attributes {
+pub fn typeAttrs<a>(_0: Type) -> Attributes {
     match (_0) {
         DirectType(_, _, a) => {
             a
@@ -205,7 +202,7 @@ pub fn typeAttrs(_0: Type) -> Attributes {
     }
 }
 
-pub fn typeAttrsUpd(f: fn(Attributes) -> Attributes, ty: Type) -> Type {
+pub fn typeAttrsUpd<a>(f: fn(Attributes) -> Attributes, ty: Type) -> Type {
     match ty {
         DirectType(ty_name, ty_quals, ty_attrs) => {
             DirectType(ty_name, ty_quals, (f(ty_attrs)))
@@ -225,7 +222,7 @@ pub fn typeAttrsUpd(f: fn(Attributes) -> Attributes, ty: Type) -> Type {
     }
 }
 
-pub fn typeQuals(_0: Type) -> TypeQuals {
+pub fn typeQuals<a>(_0: Type) -> TypeQuals {
     match (_0) {
         DirectType(_, q, _) => {
             q
@@ -248,7 +245,7 @@ pub fn typeQuals(_0: Type) -> TypeQuals {
     }
 }
 
-pub fn typeQualsUpd(f: fn(TypeQuals) -> TypeQuals, ty: Type) -> Type {
+pub fn typeQualsUpd<a>(f: fn(TypeQuals) -> TypeQuals, ty: Type) -> Type {
     match ty {
         DirectType(ty_name, ty_quals, ty_attrs) => {
             DirectType(ty_name, (f(ty_quals)), ty_attrs)
@@ -268,15 +265,15 @@ pub fn typeQualsUpd(f: fn(TypeQuals) -> TypeQuals, ty: Type) -> Type {
     }
 }
 
-pub fn valistType() -> Type {
+pub fn valistType<a>() -> Type {
     DirectType((TyBuiltin(TyVaList)), noTypeQuals, noAttributes)
 }
 
-pub fn voidPtr() -> Type {
+pub fn voidPtr<a>() -> Type {
     simplePtr(voidType)
 }
 
-pub fn voidType() -> Type {
+pub fn voidType<a>() -> Type {
     DirectType(TyVoid, noTypeQuals, noAttributes)
 }
 

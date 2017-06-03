@@ -1,7 +1,4 @@
-//! Original file: "Builtins.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data::Ident;
@@ -10,7 +7,7 @@ use corollary_support::*;
 // use Language::C::Analysis::SemRep;
 // use Language::C::Analysis::TypeUtils;
 
-pub fn builtins() -> DefTable {
+pub fn builtins<a>() -> DefTable {
     foldr(doIdent, (foldr(doTypeDef, emptyDefTable, typedefs)), idents)
 }
 

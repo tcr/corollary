@@ -1,7 +1,4 @@
-//! Original file: "Parser.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Parser::Parser;
@@ -12,7 +9,7 @@ use corollary_support::*;
 // use builtinTypeNames;
 // use Language::C::Data;
 
-pub fn execParser_(parser: P<a>, input: InputStream, pos: Position) -> Either<ParseError, a> {
+pub fn execParser_<a>(parser: P<a>, input: InputStream, pos: Position) -> Either<ParseError, a> {
     fmap(fst)(execParser(parser, input, pos, builtinTypeNames, newNameSupply))
 }
 

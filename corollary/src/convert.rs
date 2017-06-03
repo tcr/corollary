@@ -809,10 +809,10 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
             let mut type_args = vec![];
             let trans_name = print_type_ident(state, &key);
             if trans_name != "__main" {
-                type_args.push("a");
-                if trans_name == "rmap" {
-                    type_args.push("b");
-                }
+                // type_args.push("a");
+                // if trans_name == "rmap" {
+                //     type_args.push("b");
+                // }
             }
             out.push(
                 format!("{}pub fn {}{}({}) -> {} {{\n{}{}\n{}}}\n",

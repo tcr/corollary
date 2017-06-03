@@ -1,7 +1,4 @@
-//! Original file: "GCC.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data::RList;
@@ -11,13 +8,20 @@ use corollary_support::*;
 // use System::Directory;
 // use Data::List;
 
-pub fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
+pub struct GCC{
+    gccPath: FilePath
+}
+fn gccPath(a: GCC) -> FilePath { a.gccPath }
+
+pub type ParseArgsState = ((Option<FilePath>, Option<FilePath>, RList<CppOption>), (RList<String>, RList<String>));
+
+pub fn buildCppArgs<a>(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
     __op_addadd(/*do*/ {
         (concatMap(tOption, options))
     }, __op_addadd(outputFileOpt, __op_addadd(vec!["-E".to_string(), input_file], extra_args)))
 }
 
-pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String>)> {
+pub fn gccParseCPPArgs<a>(args: Vec<String>) -> Either<String, (CppArgs, Vec<String>)> {
     match mungeArgs(((None, None, RList::empty), (RList::empty, RList::empty)), args) {
         Left(err) => {
             Left(err)
@@ -34,7 +38,7 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
     }
 }
 
-pub fn newGCC() -> GCC {
+pub fn newGCC<a>() -> GCC {
     GCC
 }
 

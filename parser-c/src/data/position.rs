@@ -1,7 +1,4 @@
-//! Original file: "Position.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Generics;
@@ -20,7 +17,9 @@ pub enum Position {
 }
 pub use self::Position::*;
 
-pub fn adjustPos(_0: FilePath, _1: isize, _2: Position) -> Position {
+pub type PosLength = (Position, isize);
+
+pub fn adjustPos<a>(_0: FilePath, _1: isize, _2: Position) -> Position {
     match (_0, _1, _2) {
         (fname, row, Position(offs, _, _, _)) => {
             Position(offs, fname, row, 1)
@@ -31,11 +30,11 @@ pub fn adjustPos(_0: FilePath, _1: isize, _2: Position) -> Position {
     }
 }
 
-pub fn builtinPos() -> Position {
+pub fn builtinPos<a>() -> Position {
     BuiltinPosition
 }
 
-pub fn incOffset(_0: Position, _1: isize) -> Position {
+pub fn incOffset<a>(_0: Position, _1: isize) -> Position {
     match (_0, _1) {
         (Position(o, f, r, c), n) => {
             Position(((o + n)), f, r, c)
@@ -46,7 +45,7 @@ pub fn incOffset(_0: Position, _1: isize) -> Position {
     }
 }
 
-pub fn incPos(_0: Position, _1: isize) -> Position {
+pub fn incPos<a>(_0: Position, _1: isize) -> Position {
     match (_0, _1) {
         (Position(offs, fname, row, col), n) => {
             Position(((offs + n)), fname, row, ((col + n)))
@@ -57,15 +56,15 @@ pub fn incPos(_0: Position, _1: isize) -> Position {
     }
 }
 
-pub fn initPos(file: FilePath) -> Position {
+pub fn initPos<a>(file: FilePath) -> Position {
     Position(0, file, 1, 1)
 }
 
-pub fn internalPos() -> Position {
+pub fn internalPos<a>() -> Position {
     InternalPosition
 }
 
-pub fn isBuiltinPos(_0: Position) -> bool {
+pub fn isBuiltinPos<a>(_0: Position) -> bool {
     match (_0) {
         BuiltinPosition => {
             true
@@ -76,7 +75,7 @@ pub fn isBuiltinPos(_0: Position) -> bool {
     }
 }
 
-pub fn isInternalPos(_0: Position) -> bool {
+pub fn isInternalPos<a>(_0: Position) -> bool {
     match (_0) {
         InternalPosition => {
             true
@@ -87,7 +86,7 @@ pub fn isInternalPos(_0: Position) -> bool {
     }
 }
 
-pub fn isNoPos(_0: Position) -> bool {
+pub fn isNoPos<a>(_0: Position) -> bool {
     match (_0) {
         NoPosition => {
             true
@@ -98,7 +97,7 @@ pub fn isNoPos(_0: Position) -> bool {
     }
 }
 
-pub fn isSourcePos(_0: Position) -> bool {
+pub fn isSourcePos<a>(_0: Position) -> bool {
     match (_0) {
         Position(_, _, _, _) => {
             true
@@ -109,15 +108,15 @@ pub fn isSourcePos(_0: Position) -> bool {
     }
 }
 
-pub fn nopos() -> Position {
+pub fn nopos<a>() -> Position {
     NoPosition
 }
 
-pub fn position() -> Position {
+pub fn position<a>() -> Position {
     Position
 }
 
-pub fn retPos(_0: Position) -> Position {
+pub fn retPos<a>(_0: Position) -> Position {
     match (_0) {
         Position(offs, fname, row, _) => {
             Position(((offs + 1)), fname, ((row + 1)), 1)

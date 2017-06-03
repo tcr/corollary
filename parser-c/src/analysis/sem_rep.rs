@@ -1,7 +1,4 @@
-//! Original file: "SemRep.hs"
-//! File auto-generated using Corollary.
-
-use corollary_support::*;
+#[macro_use] use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data;
@@ -29,7 +26,7 @@ pub enum IdentDecl {
 }
 pub use self::IdentDecl::*;
 
-struct GlobalDecls{
+pub struct GlobalDecls{
     gObjs: Map<Ident, IdentDecl>,
     gTags: Map<SUERef, TagDef>,
     gTypeDefs: Map<Ident, TypeDef>
@@ -49,15 +46,15 @@ pub enum DeclEvent {
 pub use self::DeclEvent::*;
 
 #[derive(Clone, Debug)]
-struct Decl(VarDecl, NodeInfo);
+pub struct Decl(VarDecl, NodeInfo);
 
 
 #[derive(Clone, Debug)]
-struct ObjDef(VarDecl, Option<Initializer>, NodeInfo);
+pub struct ObjDef(VarDecl, Option<Initializer>, NodeInfo);
 
 
 #[derive(Clone, Debug)]
-struct FunDef(VarDecl, Stmt, NodeInfo);
+pub struct FunDef(VarDecl, Stmt, NodeInfo);
 
 
 #[derive(Clone, Debug)]
@@ -75,15 +72,15 @@ pub enum MemberDecl {
 pub use self::MemberDecl::*;
 
 #[derive(Clone, Debug)]
-struct TypeDef(Ident, Type, Attributes, NodeInfo);
+pub struct TypeDef(Ident, Type, Attributes, NodeInfo);
 
 
 #[derive(Clone, Debug)]
-struct VarDecl(VarName, DeclAttrs, Type);
+pub struct VarDecl(VarName, DeclAttrs, Type);
 
 
 #[derive(Clone, Debug)]
-struct DeclAttrs(bool, Storage, Attributes);
+pub struct DeclAttrs(bool, Storage, Attributes);
 
 
 #[derive(Clone, Debug, Eq, Ord)]
@@ -94,6 +91,10 @@ pub enum Storage {
     FunLinkage(Linkage)
 }
 pub use self::Storage::*;
+
+pub type ThreadLocal = bool;
+
+pub type Register = bool;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum Linkage {
@@ -147,7 +148,7 @@ pub enum BuiltinType {
 pub use self::BuiltinType::*;
 
 #[derive(Clone, Debug)]
-struct TypeDefRef(Ident, Option<Type>, NodeInfo);
+pub struct TypeDefRef(Ident, Option<Type>, NodeInfo);
 
 
 #[derive(Clone, Debug, Eq, Ord)]
@@ -176,15 +177,15 @@ pub enum FloatType {
 pub use self::FloatType::*;
 
 #[derive(Clone, Debug)]
-struct CompTypeRef(SUERef, CompTyKind, NodeInfo);
+pub struct CompTypeRef(SUERef, CompTyKind, NodeInfo);
 
 
 #[derive(Clone, Debug)]
-struct EnumTypeRef(SUERef, NodeInfo);
+pub struct EnumTypeRef(SUERef, NodeInfo);
 
 
 #[derive(Clone, Debug)]
-struct CompType(SUERef, CompTyKind, Vec<MemberDecl>, Attributes, NodeInfo);
+pub struct CompType(SUERef, CompTyKind, Vec<MemberDecl>, Attributes, NodeInfo);
 
 
 #[derive(Clone, Debug, Eq, Ord)]
@@ -195,15 +196,15 @@ pub enum CompTyKind {
 pub use self::CompTyKind::*;
 
 #[derive(Clone, Debug)]
-struct EnumType(SUERef, Vec<Enumerator>, Attributes, NodeInfo);
+pub struct EnumType(SUERef, Vec<Enumerator>, Attributes, NodeInfo);
 
 
 #[derive(Clone, Debug)]
-struct Enumerator(Ident, Expr, EnumType, NodeInfo);
+pub struct Enumerator(Ident, Expr, EnumType, NodeInfo);
 
 
 #[derive(Clone, Debug)]
-struct TypeQuals{
+pub struct TypeQuals{
     constant: bool,
     volatile: bool,
     restrict: bool
@@ -212,6 +213,8 @@ fn constant(a: TypeQuals) -> bool { a.constant }
 fn volatile(a: TypeQuals) -> bool { a.volatile }
 fn restrict(a: TypeQuals) -> bool { a.restrict }
 
+pub type Initializer = CInit;
+
 #[derive(Clone, Debug)]
 pub enum VarName {
     VarName(Ident, Option<AsmName>),
@@ -219,19 +222,29 @@ pub enum VarName {
 }
 pub use self::VarName::*;
 
+pub type AsmBlock = CStrLit;
+
+pub type AsmName = CStrLit;
+
 #[derive(Clone, Debug)]
-struct Attr(Ident, Vec<Expr>, NodeInfo);
+pub struct Attr(Ident, Vec<Expr>, NodeInfo);
 
 
-pub fn declAttrs() -> DeclAttrs {
+pub type Attributes = Vec<Attr>;
+
+pub type Stmt = CStat;
+
+pub type Expr = CExpr;
+
+pub fn declAttrs<a>() -> DeclAttrs {
     (|VarDecl(_, specs, _)| { specs }(getVarDecl))
 }
 
-pub fn declIdent() -> Ident {
+pub fn declIdent<a>() -> Ident {
     identOfVarName(declName)
 }
 
-pub fn declLinkage(decl: d) -> Linkage {
+pub fn declLinkage<a>(decl: d) -> Linkage {
     match declStorage(decl) {
         NoStorage => {
             undefined
@@ -248,18 +261,18 @@ pub fn declLinkage(decl: d) -> Linkage {
     }
 }
 
-pub fn declName() -> VarName {
+pub fn declName<a>() -> VarName {
     (|VarDecl(n, _, _)| { n }(getVarDecl))
 }
 
-pub fn declOfDef(def: n) -> Decl {
+pub fn declOfDef<a>(def: n) -> Decl {
     {
         let vd = getVarDecl(def);
 
     Decl(vd, (nodeInfo(def)))    }
 }
 
-pub fn declStorage(d: d) -> Storage {
+pub fn declStorage<a>(d: d) -> Storage {
     match declAttrs(d) {
         DeclAttrs(_, st, _) => {
             st
@@ -267,15 +280,15 @@ pub fn declStorage(d: d) -> Storage {
     }
 }
 
-pub fn declType() -> Type {
+pub fn declType<a>() -> Type {
     (|VarDecl(_, _, ty)| { ty }(getVarDecl))
 }
 
-pub fn emptyGlobalDecls() -> GlobalDecls {
+pub fn emptyGlobalDecls<a>() -> GlobalDecls {
     GlobalDecls(Map::empty, Map::empty, Map::empty)
 }
 
-pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) -> GlobalDecls {
+pub fn filterGlobalDecls<a>(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) -> GlobalDecls {
     GlobalDecls {
         gObjs: Map::filter((decl_filter(DeclEvent)), (gObjs(gmap))),
         gTags: Map::filter((decl_filter(TagEvent)), (gTags(gmap))),
@@ -283,7 +296,7 @@ pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) 
     }
 }
 
-pub fn hasLinkage(_0: Storage) -> bool {
+pub fn hasLinkage<a>(_0: Storage) -> bool {
     match (_0) {
         Auto(_) => {
             false
@@ -297,11 +310,11 @@ pub fn hasLinkage(_0: Storage) -> bool {
     }
 }
 
-pub fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
+pub fn identOfTypeDef<a>(TypeDef(ide, _, _, _): TypeDef) -> Ident {
     ide
 }
 
-pub fn identOfVarName(_0: VarName) -> Ident {
+pub fn identOfVarName<a>(_0: VarName) -> Ident {
     match (_0) {
         NoName => {
             __error!("identOfVarName: NoName".to_string())
@@ -312,11 +325,11 @@ pub fn identOfVarName(_0: VarName) -> Ident {
     }
 }
 
-pub fn isExtDecl() -> bool {
+pub fn isExtDecl<a>() -> bool {
     hasLinkage(declStorage)
 }
 
-pub fn isNoName(_0: VarName) -> bool {
+pub fn isNoName<a>(_0: VarName) -> bool {
     match (_0) {
         NoName => {
             true
@@ -327,15 +340,15 @@ pub fn isNoName(_0: VarName) -> bool {
     }
 }
 
-pub fn isTentative(ObjDef(decl, init_opt, _): ObjDef) -> bool {
+pub fn isTentative<a>(ObjDef(decl, init_opt, _): ObjDef) -> bool {
     /* Expr::Error */ Error
 }
 
-pub fn mergeAttributes() -> Attributes {
+pub fn mergeAttributes<a>() -> Attributes {
     (__op_addadd)
 }
 
-pub fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
+pub fn mergeGlobalDecls<a>(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
     GlobalDecls {
         gObjs: Map::union((gObjs(gmap1)), (gObjs(gmap2))),
         gTags: Map::union((gTags(gmap1)), (gTags(gmap2))),
@@ -343,19 +356,19 @@ pub fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
     }
 }
 
-pub fn mergeTypeQuals(TypeQuals(c1, v1, r1): TypeQuals, TypeQuals(c2, v2, r2): TypeQuals) -> TypeQuals {
+pub fn mergeTypeQuals<a>(TypeQuals(c1, v1, r1): TypeQuals, TypeQuals(c2, v2, r2): TypeQuals) -> TypeQuals {
     TypeQuals(((c1 && c2)), ((v1 && v2)), ((r1 && r2)))
 }
 
-pub fn noAttributes() -> Attributes {
+pub fn noAttributes<a>() -> Attributes {
     vec![]
 }
 
-pub fn noTypeQuals() -> TypeQuals {
+pub fn noTypeQuals<a>() -> TypeQuals {
     TypeQuals(false, false, false)
 }
 
-pub fn objKindDescr(_0: IdentDecl) -> String {
+pub fn objKindDescr<a>(_0: IdentDecl) -> String {
     match (_0) {
         Declaration(_) => {
             "declaration".to_string()
@@ -372,22 +385,22 @@ pub fn objKindDescr(_0: IdentDecl) -> String {
     }
 }
 
-pub fn splitIdentDecls(include_all: bool) -> (Map<Ident, Decl>, (Map<Ident, Enumerator>, Map<Ident, ObjDef>, Map<Ident, FunDef>)) {
+pub fn splitIdentDecls<a>(include_all: bool) -> (Map<Ident, Decl>, (Map<Ident, Enumerator>, Map<Ident, ObjDef>, Map<Ident, FunDef>)) {
     Map::foldWithKey((if include_all {         
 deal} else {
 deal_q
         }), (Map::empty, (Map::empty, Map::empty, Map::empty)))
 }
 
-pub fn typeOfCompDef(CompType(__ref, tag, _, _, _): CompType) -> TypeName {
+pub fn typeOfCompDef<a>(CompType(__ref, tag, _, _, _): CompType) -> TypeName {
     TyComp((CompTypeRef(__ref, tag, undefNode)))
 }
 
-pub fn typeOfEnumDef(EnumType(__ref, _, _, _): EnumType) -> TypeName {
+pub fn typeOfEnumDef<a>(EnumType(__ref, _, _, _): EnumType) -> TypeName {
     TyEnum((EnumTypeRef(__ref, undefNode)))
 }
 
-pub fn typeOfTagDef(_0: TagDef) -> TypeName {
+pub fn typeOfTagDef<a>(_0: TagDef) -> TypeName {
     match (_0) {
         CompDef(comptype) => {
             typeOfCompDef(comptype)
