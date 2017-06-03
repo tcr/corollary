@@ -15,13 +15,13 @@ fn gccPath(a: GCC) -> FilePath { a.gccPath }
 
 pub type ParseArgsState = ((Option<FilePath>, Option<FilePath>, RList<CppOption>), (RList<String>, RList<String>));
 
-pub fn buildCppArgs<a>(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
+pub fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
     __op_addadd(/*do*/ {
         (concatMap(tOption, options))
     }, __op_addadd(outputFileOpt, __op_addadd(vec!["-E".to_string(), input_file], extra_args)))
 }
 
-pub fn gccParseCPPArgs<a>(args: Vec<String>) -> Either<String, (CppArgs, Vec<String>)> {
+pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String>)> {
     match mungeArgs(((None, None, RList::empty), (RList::empty, RList::empty)), args) {
         Left(err) => {
             Left(err)
@@ -38,7 +38,7 @@ pub fn gccParseCPPArgs<a>(args: Vec<String>) -> Either<String, (CppArgs, Vec<Str
     }
 }
 
-pub fn newGCC<a>() -> GCC {
+pub fn newGCC() -> GCC {
     GCC
 }
 

@@ -3,7 +3,7 @@
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Analysis::SemRep;
 
-pub fn arithmeticConversion<a>(_0: TypeName, _1: TypeName) -> Option<TypeName> {
+pub fn arithmeticConversion(_0: TypeName, _1: TypeName) -> Option<TypeName> {
     match (_0, _1) {
         (TyComplex(t1), TyComplex(t2)) => {
             Some(TyComplex(floatConversion(t1, t2)))
@@ -47,11 +47,11 @@ pub fn arithmeticConversion<a>(_0: TypeName, _1: TypeName) -> Option<TypeName> {
     }
 }
 
-pub fn floatConversion<a>() -> FloatType {
+pub fn floatConversion() -> FloatType {
     max
 }
 
-pub fn intConversion<a>(t1: IntType, t2: IntType) -> IntType {
+pub fn intConversion(t1: IntType, t2: IntType) -> IntType {
     max(TyInt, (max(t1, t2)))
 }
 

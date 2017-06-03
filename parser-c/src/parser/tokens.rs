@@ -118,7 +118,7 @@ pub enum GnuCTok {
 }
 pub use self::GnuCTok::*;
 
-pub fn posLenOfTok<a>(_0: CToken) -> (Position, isize) {
+pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
     match (_0) {
         CTokLParen(pos) => {
             pos

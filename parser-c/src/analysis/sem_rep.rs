@@ -236,15 +236,15 @@ pub type Stmt = CStat;
 
 pub type Expr = CExpr;
 
-pub fn declAttrs<a>() -> DeclAttrs {
+pub fn declAttrs() -> DeclAttrs {
     (|VarDecl(_, specs, _)| { specs }(getVarDecl))
 }
 
-pub fn declIdent<a>() -> Ident {
+pub fn declIdent() -> Ident {
     identOfVarName(declName)
 }
 
-pub fn declLinkage<a>(decl: d) -> Linkage {
+pub fn declLinkage(decl: d) -> Linkage {
     match declStorage(decl) {
         NoStorage => {
             undefined
@@ -261,18 +261,18 @@ pub fn declLinkage<a>(decl: d) -> Linkage {
     }
 }
 
-pub fn declName<a>() -> VarName {
+pub fn declName() -> VarName {
     (|VarDecl(n, _, _)| { n }(getVarDecl))
 }
 
-pub fn declOfDef<a>(def: n) -> Decl {
+pub fn declOfDef(def: n) -> Decl {
     {
         let vd = getVarDecl(def);
 
     Decl(vd, (nodeInfo(def)))    }
 }
 
-pub fn declStorage<a>(d: d) -> Storage {
+pub fn declStorage(d: d) -> Storage {
     match declAttrs(d) {
         DeclAttrs(_, st, _) => {
             st
@@ -280,15 +280,15 @@ pub fn declStorage<a>(d: d) -> Storage {
     }
 }
 
-pub fn declType<a>() -> Type {
+pub fn declType() -> Type {
     (|VarDecl(_, _, ty)| { ty }(getVarDecl))
 }
 
-pub fn emptyGlobalDecls<a>() -> GlobalDecls {
+pub fn emptyGlobalDecls() -> GlobalDecls {
     GlobalDecls(Map::empty, Map::empty, Map::empty)
 }
 
-pub fn filterGlobalDecls<a>(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) -> GlobalDecls {
+pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) -> GlobalDecls {
     GlobalDecls {
         gObjs: Map::filter((decl_filter(DeclEvent)), (gObjs(gmap))),
         gTags: Map::filter((decl_filter(TagEvent)), (gTags(gmap))),
@@ -296,7 +296,7 @@ pub fn filterGlobalDecls<a>(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecl
     }
 }
 
-pub fn hasLinkage<a>(_0: Storage) -> bool {
+pub fn hasLinkage(_0: Storage) -> bool {
     match (_0) {
         Auto(_) => {
             false
@@ -310,11 +310,11 @@ pub fn hasLinkage<a>(_0: Storage) -> bool {
     }
 }
 
-pub fn identOfTypeDef<a>(TypeDef(ide, _, _, _): TypeDef) -> Ident {
+pub fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
     ide
 }
 
-pub fn identOfVarName<a>(_0: VarName) -> Ident {
+pub fn identOfVarName(_0: VarName) -> Ident {
     match (_0) {
         NoName => {
             __error!("identOfVarName: NoName".to_string())
@@ -325,11 +325,11 @@ pub fn identOfVarName<a>(_0: VarName) -> Ident {
     }
 }
 
-pub fn isExtDecl<a>() -> bool {
+pub fn isExtDecl() -> bool {
     hasLinkage(declStorage)
 }
 
-pub fn isNoName<a>(_0: VarName) -> bool {
+pub fn isNoName(_0: VarName) -> bool {
     match (_0) {
         NoName => {
             true
@@ -340,15 +340,15 @@ pub fn isNoName<a>(_0: VarName) -> bool {
     }
 }
 
-pub fn isTentative<a>(ObjDef(decl, init_opt, _): ObjDef) -> bool {
+pub fn isTentative(ObjDef(decl, init_opt, _): ObjDef) -> bool {
     /* Expr::Error */ Error
 }
 
-pub fn mergeAttributes<a>() -> Attributes {
+pub fn mergeAttributes() -> Attributes {
     (__op_addadd)
 }
 
-pub fn mergeGlobalDecls<a>(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
+pub fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
     GlobalDecls {
         gObjs: Map::union((gObjs(gmap1)), (gObjs(gmap2))),
         gTags: Map::union((gTags(gmap1)), (gTags(gmap2))),
@@ -356,19 +356,19 @@ pub fn mergeGlobalDecls<a>(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecl
     }
 }
 
-pub fn mergeTypeQuals<a>(TypeQuals(c1, v1, r1): TypeQuals, TypeQuals(c2, v2, r2): TypeQuals) -> TypeQuals {
+pub fn mergeTypeQuals(TypeQuals(c1, v1, r1): TypeQuals, TypeQuals(c2, v2, r2): TypeQuals) -> TypeQuals {
     TypeQuals(((c1 && c2)), ((v1 && v2)), ((r1 && r2)))
 }
 
-pub fn noAttributes<a>() -> Attributes {
+pub fn noAttributes() -> Attributes {
     vec![]
 }
 
-pub fn noTypeQuals<a>() -> TypeQuals {
+pub fn noTypeQuals() -> TypeQuals {
     TypeQuals(false, false, false)
 }
 
-pub fn objKindDescr<a>(_0: IdentDecl) -> String {
+pub fn objKindDescr(_0: IdentDecl) -> String {
     match (_0) {
         Declaration(_) => {
             "declaration".to_string()
@@ -385,22 +385,22 @@ pub fn objKindDescr<a>(_0: IdentDecl) -> String {
     }
 }
 
-pub fn splitIdentDecls<a>(include_all: bool) -> (Map<Ident, Decl>, (Map<Ident, Enumerator>, Map<Ident, ObjDef>, Map<Ident, FunDef>)) {
+pub fn splitIdentDecls(include_all: bool) -> (Map<Ident, Decl>, (Map<Ident, Enumerator>, Map<Ident, ObjDef>, Map<Ident, FunDef>)) {
     Map::foldWithKey((if include_all {         
 deal} else {
 deal_q
         }), (Map::empty, (Map::empty, Map::empty, Map::empty)))
 }
 
-pub fn typeOfCompDef<a>(CompType(__ref, tag, _, _, _): CompType) -> TypeName {
+pub fn typeOfCompDef(CompType(__ref, tag, _, _, _): CompType) -> TypeName {
     TyComp((CompTypeRef(__ref, tag, undefNode)))
 }
 
-pub fn typeOfEnumDef<a>(EnumType(__ref, _, _, _): EnumType) -> TypeName {
+pub fn typeOfEnumDef(EnumType(__ref, _, _, _): EnumType) -> TypeName {
     TyEnum((EnumTypeRef(__ref, undefNode)))
 }
 
-pub fn typeOfTagDef<a>(_0: TagDef) -> TypeName {
+pub fn typeOfTagDef(_0: TagDef) -> TypeName {
     match (_0) {
         CompDef(comptype) => {
             typeOfCompDef(comptype)

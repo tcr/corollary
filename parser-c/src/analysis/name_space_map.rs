@@ -32,11 +32,11 @@ pub fn enterNewScope<a>(NsMap(gs, lss): NameSpaceMap<k, a>) -> NameSpaceMap<k, a
     NsMap(gs, (__op_concat(vec![], lss)))
 }
 
-pub fn globalNames<a>(NsMap(g, _): NameSpaceMap<k, v>) -> Map<k, v> {
+pub fn globalNames(NsMap(g, _): NameSpaceMap<k, v>) -> Map<k, v> {
     g
 }
 
-pub fn hasLocalNames<a>(NsMap(_, l): NameSpaceMap<k, v>) -> bool {
+pub fn hasLocalNames(NsMap(_, l): NameSpaceMap<k, v>) -> bool {
     not((null(l)))
 }
 
@@ -51,7 +51,7 @@ pub fn leaveScope<a>(_0: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>
     }
 }
 
-pub fn localNames<a>(NsMap(_, l): NameSpaceMap<k, v>) -> Vec<Vec<(k, v)>> {
+pub fn localNames(NsMap(_, l): NameSpaceMap<k, v>) -> Vec<Vec<(k, v)>> {
     l
 }
 
@@ -85,7 +85,7 @@ pub fn mergeNameSpace<a>(NsMap(global1, local1): NameSpaceMap<k, a>, NsMap(globa
     NsMap((Map::union(global1, global2)), (localUnion(local1, local2)))
 }
 
-pub fn nameSpaceMap<a>() -> NameSpaceMap<k, v> {
+pub fn nameSpaceMap() -> NameSpaceMap<k, v> {
     NsMap(Map::empty, vec![])
 }
 

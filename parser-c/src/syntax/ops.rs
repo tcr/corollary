@@ -57,7 +57,7 @@ pub enum CUnaryOp {
 }
 pub use self::CUnaryOp::*;
 
-pub fn assignBinop<a>(_0: CAssignOp) -> CBinaryOp {
+pub fn assignBinop(_0: CAssignOp) -> CBinaryOp {
     match (_0) {
         CAssignOp => {
             __error!("direct assignment has no binary operator".to_string())
@@ -95,23 +95,23 @@ pub fn assignBinop<a>(_0: CAssignOp) -> CBinaryOp {
     }
 }
 
-pub fn isBitOp<a>(op: CBinaryOp) -> bool {
+pub fn isBitOp(op: CBinaryOp) -> bool {
     elem(op, vec![CShlOp, CShrOp, CAndOp, COrOp, CXorOp])
 }
 
-pub fn isCmpOp<a>(op: CBinaryOp) -> bool {
+pub fn isCmpOp(op: CBinaryOp) -> bool {
     elem(op, vec![CLeqOp, CGeqOp, CLeOp, CGrOp, CEqOp, CNeqOp])
 }
 
-pub fn isEffectfulOp<a>(op: CUnaryOp) -> bool {
+pub fn isEffectfulOp(op: CUnaryOp) -> bool {
     elem(op, vec![CPreIncOp, CPreDecOp, CPostIncOp, CPostDecOp])
 }
 
-pub fn isLogicOp<a>(op: CBinaryOp) -> bool {
+pub fn isLogicOp(op: CBinaryOp) -> bool {
     elem(op, vec![CLndOp, CLorOp])
 }
 
-pub fn isPtrOp<a>(op: CBinaryOp) -> bool {
+pub fn isPtrOp(op: CBinaryOp) -> bool {
     elem(op, vec![CAddOp, CSubOp])
 }
 

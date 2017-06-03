@@ -50,7 +50,7 @@ fn doHandleExtDecl(a: TravState) -> fn(DeclEvent) -> Trav<s, ()> { a.doHandleExt
 fn userState(a: TravState) -> s { a.userState }
 fn options(a: TravState) -> TravOptions { a.options }
 
-pub fn addRef<a>(__use: u, def: d) -> m<()> {
+pub fn addRef(__use: u, def: d) -> m<()> {
     match (nodeInfo(__use), nodeInfo(def)) {
         (NodeInfo(_, _, useName), NodeInfo(_, _, defName)) => {
             withDefTable((|dt| { ((), dt {
@@ -67,11 +67,11 @@ pub fn astError<a>(node: NodeInfo, msg: String) -> m<a> {
     throwTravError(invalidAST(node, msg))
 }
 
-pub fn checkCompatibleTypes<a>(_: Type, _: Type) -> Either<TypeMismatch, ()> {
+pub fn checkCompatibleTypes(_: Type, _: Type) -> Either<TypeMismatch, ()> {
     Right(())
 }
 
-pub fn checkIdentTyRedef<a>(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m<()> {
+pub fn checkIdentTyRedef(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m<()> {
     match (_0, _1) {
         (Right(decl), status) => {
             checkVarRedef(decl, status)
@@ -88,7 +88,7 @@ pub fn checkIdentTyRedef<a>(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -
     }
 }
 
-pub fn checkRedef<a>(subject: String, new_decl: t, redecl_status: DeclarationStatus<t1>) -> m<()> {
+pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus<t1>) -> m<()> {
     match redecl_status {
         NewDecl => {
             ()
@@ -108,7 +108,7 @@ pub fn checkRedef<a>(subject: String, new_decl: t, redecl_status: DeclarationSta
     }
 }
 
-pub fn checkVarRedef<a>(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m<()> {
+pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m<()> {
     match redecl {
         KindMismatch(old_def) => {
             redefVarErr(old_def, DiffKindRedecl)
@@ -124,11 +124,11 @@ pub fn checkVarRedef<a>(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -
     }
 }
 
-pub fn concatMapM<a>(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
+pub fn concatMapM<a, b>(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
     liftM(concat, mapM(f))
 }
 
-pub fn createSUERef<a>(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
+pub fn createSUERef(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
     match (_0, _1) {
         (_node_info, Some(ident)) => {
             return(NamedRef(ident))
@@ -139,11 +139,11 @@ pub fn createSUERef<a>(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
     }
 }
 
-pub fn enterBlockScope<a>() -> m<()> {
+pub fn enterBlockScope() -> m<()> {
     updDefTable(ST::enterBlockScope())
 }
 
-pub fn enterDecl<a>(decl: Decl, cond: fn(IdentDecl) -> bool) -> m<IdentDecl> {
+pub fn enterDecl(decl: Decl, cond: fn(IdentDecl) -> bool) -> m<IdentDecl> {
     /*do*/ {
         let def = Declaration(decl);
 
@@ -154,15 +154,15 @@ pub fn enterDecl<a>(decl: Decl, cond: fn(IdentDecl) -> bool) -> m<IdentDecl> {
     }
 }
 
-pub fn enterFunctionScope<a>() -> m<()> {
+pub fn enterFunctionScope() -> m<()> {
     updDefTable(ST::enterFunctionScope())
 }
 
-pub fn enterPrototypeScope<a>() -> m<()> {
+pub fn enterPrototypeScope() -> m<()> {
     updDefTable(ST::enterBlockScope())
 }
 
-pub fn generateName<a>() -> Trav<s, Name> {
+pub fn generateName() -> Trav<s, Name> {
     __op_bind(get, |ts| { /*do*/ {
             let [new_name, gen_q] = nameGenerator(ts);
 
@@ -173,11 +173,11 @@ pub fn generateName<a>() -> Trav<s, Name> {
         } })
 }
 
-pub fn get<a>() -> Trav<s, TravState<s>> {
+pub fn get() -> Trav<s, TravState<s>> {
     Trav((|s| { Right((s, s)) }))
 }
 
-pub fn getUserState<a>() -> Trav<s, s> {
+pub fn getUserState() -> Trav<s, s> {
     liftM(userState, get)
 }
 
@@ -185,15 +185,15 @@ pub fn gets<a>(f: fn(TravState<s>) -> a) -> Trav<s, a> {
     Trav((|s| { Right((f(s), s)) }))
 }
 
-pub fn hadHardErrors<a>() -> bool {
+pub fn hadHardErrors() -> bool {
     (not(null(filter(isHardError))))
 }
 
-pub fn handleAsmBlock<a>(asm: AsmBlock) -> m<()> {
+pub fn handleAsmBlock(asm: AsmBlock) -> m<()> {
     handleDecl((AsmEvent(asm)))
 }
 
-pub fn handleEnumeratorDef<a>(enumerator: Enumerator) -> m<()> {
+pub fn handleEnumeratorDef(enumerator: Enumerator) -> m<()> {
     /*do*/ {
         let ident = declIdent(enumerator);
 
@@ -204,7 +204,7 @@ pub fn handleEnumeratorDef<a>(enumerator: Enumerator) -> m<()> {
     }
 }
 
-pub fn handleFunDef<a>(ident: Ident, fun_def: FunDef) -> m<()> {
+pub fn handleFunDef(ident: Ident, fun_def: FunDef) -> m<()> {
     /*do*/ {
         let def = FunctionDef(fun_def);
 
@@ -215,7 +215,7 @@ pub fn handleFunDef<a>(ident: Ident, fun_def: FunDef) -> m<()> {
     }
 }
 
-pub fn handleObjectDef<a>(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
+pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
     /*do*/ {
         let def = ObjectDef(obj_def);
 
@@ -229,7 +229,7 @@ DeclEvent
     }
 }
 
-pub fn handleParamDecl<a>(_0: ParamDecl, _1: m<()>) -> m<()> {
+pub fn handleParamDecl(_0: ParamDecl, _1: m<()>) -> m<()> {
     match (_0, _1, _2) {
         (pd, __OP__, AbstractParamDecl(_, _)) => {
             handleDecl((ParamEvent(pd)))
@@ -247,7 +247,7 @@ pub fn handleParamDecl<a>(_0: ParamDecl, _1: m<()>) -> m<()> {
     }
 }
 
-pub fn handleTagDecl<a>(decl: TagFwdDecl) -> m<()> {
+pub fn handleTagDecl(decl: TagFwdDecl) -> m<()> {
     /*do*/ {
         let redecl = withDefTable(declareTag((sueRef(decl)), decl));
 
@@ -255,7 +255,7 @@ pub fn handleTagDecl<a>(decl: TagFwdDecl) -> m<()> {
     }
 }
 
-pub fn handleTagDef<a>(def: TagDef) -> m<()> {
+pub fn handleTagDef(def: TagDef) -> m<()> {
     /*do*/ {
         let redecl = withDefTable(defineTag((sueRef(def)), def));
 
@@ -268,7 +268,7 @@ pub fn handleTravError<a>(a: m<a>) -> m<Option<a>> {
     catchTravError(liftM(Some, a), (|e| { __op_rshift(recordError(e), None) }))
 }
 
-pub fn handleTypeDef<a>(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
+pub fn handleTypeDef(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
     /*do*/ {
         let redecl = withDefTable(defineTypeDef(ident, typeDef));
 
@@ -278,7 +278,7 @@ pub fn handleTypeDef<a>(typeDef: TypeDef, __OP__: m<()>) -> m<()> {
     }
 }
 
-pub fn handleVarDecl<a>(is_local: bool, decl: Decl) -> m<()> {
+pub fn handleVarDecl(is_local: bool, decl: Decl) -> m<()> {
     /*do*/ {
         let def = enterDecl(decl, (__TODO_const(false)));
 
@@ -289,7 +289,7 @@ DeclEvent
     }
 }
 
-pub fn initTravState<a>(userst: s) -> TravState<s> {
+pub fn initTravState(userst: s) -> TravState<s> {
     TravState {
         symbolTable: emptyDefTable,
         rerrors: RList::empty,
@@ -302,7 +302,7 @@ pub fn initTravState<a>(userst: s) -> TravState<s> {
     }
 }
 
-pub fn isDeclaration<a>(_0: IdentDecl) -> bool {
+pub fn isDeclaration(_0: IdentDecl) -> bool {
     match (_0) {
         Declaration(_) => {
             true
@@ -313,19 +313,19 @@ pub fn isDeclaration<a>(_0: IdentDecl) -> bool {
     }
 }
 
-pub fn leaveBlockScope<a>() -> m<()> {
+pub fn leaveBlockScope() -> m<()> {
     updDefTable(ST::leaveBlockScope())
 }
 
-pub fn leaveFunctionScope<a>() -> m<()> {
+pub fn leaveFunctionScope() -> m<()> {
     updDefTable(ST::leaveFunctionScope())
 }
 
-pub fn leavePrototypeScope<a>() -> m<()> {
+pub fn leavePrototypeScope() -> m<()> {
     updDefTable(ST::leaveBlockScope())
 }
 
-pub fn lookupObject<a>(ident: Ident) -> m<Option<IdentDecl>> {
+pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
     /*do*/ {
         let old_decl = liftM((lookupIdent(ident)), getDefTable);
 
@@ -340,7 +340,7 @@ pub fn lookupObject<a>(ident: Ident) -> m<Option<IdentDecl>> {
     }
 }
 
-pub fn lookupTypeDef<a>(ident: Ident) -> m<Type> {
+pub fn lookupTypeDef(ident: Ident) -> m<Type> {
     __op_bind(getDefTable, |symt| { match lookupIdent(ident, symt) {
             None => {
                 astError((nodeInfo(ident)))(__op_addadd("unbound typeDef: ".to_string(), identToString(ident)))
@@ -354,11 +354,11 @@ pub fn lookupTypeDef<a>(ident: Ident) -> m<Type> {
         } })
 }
 
-pub fn mapMaybeM<a>(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
+pub fn mapMaybeM<a, b>(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
     maybe((None), (liftM(Some, f)), m)
 }
 
-pub fn mapSndM<a>(f: fn(b) -> m<c>, (a, b): (a, b)) -> m<(a, c)> {
+pub fn mapSndM<a, b>(f: fn(b) -> m<c>, (a, b): (a, b)) -> m<(a, c)> {
     liftM((__op_tuple2(a)), (f(b)))
 }
 
@@ -366,31 +366,31 @@ pub fn maybeM<a>(m: Option<a>, f: fn(a) -> m<()>) -> m<()> {
     maybe((()), f, m)
 }
 
-pub fn mismatchErr<a>(ctx: String, expect: String, found: String) -> String {
+pub fn mismatchErr(ctx: String, expect: String, found: String) -> String {
     __op_addadd(ctx, __op_addadd(": Expected ".to_string(), __op_addadd(expect, __op_addadd(", but found: ".to_string(), found))))
 }
 
-pub fn modify<a>(f: fn(TravState<s>) -> TravState<s>) -> Trav<s, ()> {
+pub fn modify(f: fn(TravState<s>) -> TravState<s>) -> Trav<s, ()> {
     Trav((|s| { Right(((), f(s))) }))
 }
 
-pub fn modifyOptions<a>(f: fn(TravOptions) -> TravOptions) -> Trav<s, ()> {
+pub fn modifyOptions(f: fn(TravOptions) -> TravOptions) -> Trav<s, ()> {
     modify(|ts| { ts {
             options: f((options(ts)))
         } })
 }
 
-pub fn modifyUserState<a>(f: fn(s) -> s) -> Trav<s, ()> {
+pub fn modifyUserState(f: fn(s) -> s) -> Trav<s, ()> {
     modify(|ts| { ts {
             userState: f((userState(ts)))
         } })
 }
 
-pub fn put<a>(s: TravState<s>) -> Trav<s, ()> {
+pub fn put(s: TravState<s>) -> Trav<s, ()> {
     Trav((|_| { Right(((), s)) }))
 }
 
-pub fn redefErr<a>(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKind) -> m<()> {
+pub fn redefErr(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKind) -> m<()> {
     throwTravError(redefinition(lvl, (show(name)), kind, (nodeInfo(new)), (nodeInfo(old))))
 }
 
@@ -425,15 +425,15 @@ pub fn throwOnLeft<a>(_0: Either<e, a>) -> m<a> {
     }
 }
 
-pub fn travErrors<a>() -> Vec<CError> {
+pub fn travErrors() -> Vec<CError> {
     RList::reverse(rerrors)
 }
 
-pub fn updDefTable<a>(f: fn(DefTable) -> DefTable) -> m<()> {
+pub fn updDefTable(f: fn(DefTable) -> DefTable) -> m<()> {
     withDefTable((|st| { ((), f(st)) }))
 }
 
-pub fn warn<a>(err: e) -> m<()> {
+pub fn warn(err: e) -> m<()> {
     recordError((changeErrorLevel(err, LevelWarn)))
 }
 

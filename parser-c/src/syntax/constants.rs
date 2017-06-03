@@ -49,54 +49,54 @@ pub struct CString(Vec<Char>, bool);
 pub struct Flags<f>(Integer);
 
 
-pub fn _showWideFlag<a>(flag: bool) -> ShowS {
+pub fn _showWideFlag(flag: bool) -> ShowS {
     if flag {     
 showString("L".to_string())} else {
 id
     }
 }
 
-pub fn cChar<a>(c: Char) -> CChar {
+pub fn cChar(c: Char) -> CChar {
     CChar(c, false)
 }
 
-pub fn cChar_w<a>(c: Char) -> CChar {
+pub fn cChar_w(c: Char) -> CChar {
     CChar(c, true)
 }
 
-pub fn cChars<a>() -> CChar {
+pub fn cChars() -> CChar {
     CChars
 }
 
-pub fn cFloat<a>() -> CFloat {
+pub fn cFloat() -> CFloat {
     CFloat(show)
 }
 
-pub fn cInteger<a>(i: Integer) -> CInteger {
+pub fn cInteger(i: Integer) -> CInteger {
     CInteger(i, DecRepr, noFlags)
 }
 
-pub fn cString<a>(__str: String) -> CString {
+pub fn cString(__str: String) -> CString {
     CString(__str, false)
 }
 
-pub fn cString_w<a>(__str: String) -> CString {
+pub fn cString_w(__str: String) -> CString {
     CString(__str, true)
 }
 
-pub fn clearFlag<a>(flag: f, Flags(k): Flags<f>) -> Flags<f> {
+pub fn clearFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
     Flags(clearBit(k, fromEnum(flag)))
 }
 
-pub fn concatCStrings<a>(cs: Vec<CString>) -> CString {
+pub fn concatCStrings(cs: Vec<CString>) -> CString {
     CString((concatMap(getCString, cs)), (any(isWideString, cs)))
 }
 
-pub fn dQuote<a>(s: String, t: ShowS) -> ShowS {
+pub fn dQuote(s: String, t: ShowS) -> ShowS {
     __op_addadd((__op_concat('\"', s)), __op_addadd("\"".to_string(), t))
 }
 
-pub fn escapeCChar<a>(_0: Char) -> String {
+pub fn escapeCChar(_0: Char) -> String {
     match (_0) {
         '\'' => {
             "\\\'".to_string()
@@ -107,7 +107,7 @@ pub fn escapeCChar<a>(_0: Char) -> String {
     }
 }
 
-pub fn escapeChar<a>(_0: Char) -> String {
+pub fn escapeChar(_0: Char) -> String {
     match (_0) {
         '\\' => {
             "\\\\".to_string()
@@ -142,7 +142,7 @@ pub fn escapeChar<a>(_0: Char) -> String {
     }
 }
 
-pub fn getCChar<a>(_0: CChar) -> Vec<Char> {
+pub fn getCChar(_0: CChar) -> Vec<Char> {
     match (_0) {
         CChar(c, _) => {
             vec![c]
@@ -153,7 +153,7 @@ pub fn getCChar<a>(_0: CChar) -> Vec<Char> {
     }
 }
 
-pub fn getCCharAsInt<a>(_0: CChar) -> Integer {
+pub fn getCCharAsInt(_0: CChar) -> Integer {
     match (_0) {
         CChar(c, _) => {
             fromIntegral((fromEnum(c)))
@@ -164,11 +164,11 @@ pub fn getCCharAsInt<a>(_0: CChar) -> Integer {
     }
 }
 
-pub fn getCInteger<a>(CInteger(i, _, _): CInteger) -> Integer {
+pub fn getCInteger(CInteger(i, _, _): CInteger) -> Integer {
     i
 }
 
-pub fn getCString<a>(CString(__str, _): CString) -> String {
+pub fn getCString(CString(__str, _): CString) -> String {
     __str
 }
 
@@ -183,11 +183,11 @@ pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
     }
 }
 
-pub fn isAsciiSourceChar<a>(c: Char) -> bool {
+pub fn isAsciiSourceChar(c: Char) -> bool {
     (isAscii(c) && isPrint(c))
 }
 
-pub fn isCChar<a>(_0: Char) -> bool {
+pub fn isCChar(_0: Char) -> bool {
     match (_0) {
         '\\' => {
             false
@@ -204,7 +204,7 @@ pub fn isCChar<a>(_0: Char) -> bool {
     }
 }
 
-pub fn isSChar<a>(_0: Char) -> bool {
+pub fn isSChar(_0: Char) -> bool {
     match (_0) {
         '\\' => {
             false
@@ -221,7 +221,7 @@ pub fn isSChar<a>(_0: Char) -> bool {
     }
 }
 
-pub fn isWideChar<a>(_0: CChar) -> bool {
+pub fn isWideChar(_0: CChar) -> bool {
     match (_0) {
         CChar(_, wideFlag) => {
             wideFlag
@@ -232,19 +232,19 @@ pub fn isWideChar<a>(_0: CChar) -> bool {
     }
 }
 
-pub fn isWideString<a>(CString(_, wideflag): CString) -> bool {
+pub fn isWideString(CString(_, wideflag): CString) -> bool {
     wideflag
 }
 
-pub fn noFlags<a>() -> Flags<f> {
+pub fn noFlags() -> Flags<f> {
     Flags(0)
 }
 
-pub fn readCFloat<a>() -> CFloat {
+pub fn readCFloat() -> CFloat {
     CFloat
 }
 
-pub fn readCInteger<a>(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
+pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
     match readNum(__str) {
         [(n, suffix)] => {
             mkCInt(n, suffix)
@@ -255,27 +255,27 @@ pub fn readCInteger<a>(repr: CIntRepr, __str: String) -> Either<String, CInteger
     }
 }
 
-pub fn sQuote<a>(s: String, t: ShowS) -> ShowS {
+pub fn sQuote(s: String, t: ShowS) -> ShowS {
     __op_addadd("\'".to_string(), __op_addadd(s, __op_addadd("\'".to_string(), t)))
 }
 
-pub fn setFlag<a>(flag: f, Flags(k): Flags<f>) -> Flags<f> {
+pub fn setFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
     Flags(setBit(k, fromEnum(flag)))
 }
 
-pub fn showCharConst<a>(c: Char) -> ShowS {
+pub fn showCharConst(c: Char) -> ShowS {
     sQuote(escapeCChar(c))
 }
 
-pub fn showStringLit<a>() -> ShowS {
+pub fn showStringLit() -> ShowS {
     dQuote(concatMap(showStringChar))
 }
 
-pub fn testFlag<a>(flag: f, Flags(k): Flags<f>) -> bool {
+pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
     testBit(k, fromEnum(flag))
 }
 
-pub fn unescapeChar<a>(_0: String) -> (Char, String) {
+pub fn unescapeChar(_0: String) -> (Char, String) {
     match (_0) {
         ['\\', [c, cs]] => {
             match c {
@@ -343,7 +343,7 @@ pub fn unescapeChar<a>(_0: String) -> (Char, String) {
     }
 }
 
-pub fn unescapeString<a>(_0: String) -> String {
+pub fn unescapeString(_0: String) -> String {
     match (_0) {
         [] => {
             vec![]

@@ -3,7 +3,7 @@
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::Rust::AST;
 
-pub fn itemIdioms<a>(_0: Rust::Item) -> Rust::Item {
+pub fn itemIdioms(_0: Rust::Item) -> Rust::Item {
     match (_0) {
         Rust::Item(attrs, vis, Rust::Function(fattrs, name, formals, ret, b)) => {
             Rust::Item(attrs, vis, (Rust::Function(fattrs, name, formals, ret, (tailBlock(b)))))
@@ -14,7 +14,7 @@ pub fn itemIdioms<a>(_0: Rust::Item) -> Rust::Item {
     }
 }
 
-pub fn tailBlock<a>(_0: Rust::Block) -> Rust::Block {
+pub fn tailBlock(_0: Rust::Block) -> Rust::Block {
     match (_0) {
         Rust::Block(b, Some(/* TODO ViewPattern */ tailExpr)) => {
             Rust::Block(b, e)
@@ -28,7 +28,7 @@ pub fn tailBlock<a>(_0: Rust::Block) -> Rust::Block {
     }
 }
 
-pub fn tailExpr<a>(_0: Rust::Expr) -> Option<Option<Rust::Expr>> {
+pub fn tailExpr(_0: Rust::Expr) -> Option<Option<Rust::Expr>> {
     match (_0) {
         Rust::Return(e) => {
             Some(e)

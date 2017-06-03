@@ -48,35 +48,35 @@ pub use self::AlexAcc::*;
 
 pub type AlexAccPred<user> = fn(user) -> fn(AlexInput) -> fn(isize) -> fn(AlexInput) -> bool;
 
-pub fn adjustLineDirective<a>(pragmaLen: isize, __str: String, pos: Position) -> Position {
+pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Position {
     seq(offs_q, seq(fname_q, seq(row_q, (position(offs_q, fname_q, row_q, 1)))))
 }
 
-pub fn alexAndPred<a>(p1: bool) -> bool {
+pub fn alexAndPred(p1: bool) -> bool {
     (p1(user, in1, len, in2) && p2(user, in1, len, in2))
 }
 
-pub fn alexGetByte<a>((p, is): AlexInput) -> Option<(Word8, AlexInput)> {
+pub fn alexGetByte((p, is): AlexInput) -> Option<(Word8, AlexInput)> {
     /* Expr::Error */ Error
 }
 
-pub fn alexGetChar<a>((p, is): AlexInput) -> Option<(Char, AlexInput)> {
+pub fn alexGetChar((p, is): AlexInput) -> Option<(Char, AlexInput)> {
     /* Expr::Error */ Error
 }
 
-pub fn alexIndexInt16OffAddr<a>(arr: bool) -> bool {
+pub fn alexIndexInt16OffAddr(arr: bool) -> bool {
     !(arr, off)
 }
 
-pub fn alexIndexInt32OffAddr<a>(arr: bool) -> bool {
+pub fn alexIndexInt32OffAddr(arr: bool) -> bool {
     !(arr, off)
 }
 
-pub fn alexInputPrevChar<a>(_: AlexInput) -> Char {
+pub fn alexInputPrevChar(_: AlexInput) -> Char {
     __error!("alexInputPrevChar not used".to_string())
 }
 
-pub fn alexMove<a>(_0: Position, _1: Char) -> Position {
+pub fn alexMove(_0: Position, _1: Char) -> Position {
     match (_0, _1) {
         (pos, ' ') => {
             incPos(pos, 1)
@@ -93,19 +93,19 @@ pub fn alexMove<a>(_0: Position, _1: Char) -> Position {
     }
 }
 
-pub fn alexPrevCharIs<a>(c: bool) -> bool {
+pub fn alexPrevCharIs(c: bool) -> bool {
     (c == alexInputPrevChar(input))
 }
 
-pub fn alexPrevCharIsOneOf<a>(arr: bool) -> bool {
+pub fn alexPrevCharIsOneOf(arr: bool) -> bool {
     !(arr, alexInputPrevChar(input))
 }
 
-pub fn alexPrevCharMatches<a>(f: bool) -> bool {
+pub fn alexPrevCharMatches(f: bool) -> bool {
     f((alexInputPrevChar(input)))
 }
 
-pub fn alexRightContext<a>(sc: bool) -> bool {
+pub fn alexRightContext(sc: bool) -> bool {
     match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
         (AlexNone, _) => {
             false
@@ -116,11 +116,11 @@ pub fn alexRightContext<a>(sc: bool) -> bool {
     }
 }
 
-pub fn alexScan<a>(input: bool) -> bool {
+pub fn alexScan(input: bool) -> bool {
     alexScanUser(undefined, input, sc())
 }
 
-pub fn alexScanUser<a>(user: bool) -> bool {
+pub fn alexScanUser(user: bool) -> bool {
     match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
         (AlexNone, input_q) => {
             match alexGetByte(input) {
@@ -141,7 +141,7 @@ pub fn alexScanUser<a>(user: bool) -> bool {
     }
 }
 
-pub fn alex_accept<a>() -> bool {
+pub fn alex_accept() -> bool {
     listArray((0, 241), vec![
             AlexAccNone,
             AlexAccNone,
@@ -388,263 +388,263 @@ pub fn alex_accept<a>() -> bool {
         ])
 }
 
-pub fn alex_action_1<a>() -> isize {
+pub fn alex_action_1() -> isize {
     |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) }
 }
 
-pub fn alex_action_10<a>() -> isize {
+pub fn alex_action_10() -> isize {
     token(CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))))
 }
 
-pub fn alex_action_11<a>() -> isize {
+pub fn alex_action_11() -> isize {
     token(CTokCLit, (flip(cChars, false, unescapeMultiChars(tail))))
 }
 
-pub fn alex_action_12<a>() -> isize {
+pub fn alex_action_12() -> isize {
     token(CTokCLit, (flip(cChars, true, unescapeMultiChars(tail(tail)))))
 }
 
-pub fn alex_action_13<a>() -> isize {
+pub fn alex_action_13() -> isize {
     token(CTokFLit, readCFloat)
 }
 
-pub fn alex_action_14<a>() -> isize {
+pub fn alex_action_14() -> isize {
     token(CTokFLit, readCFloat)
 }
 
-pub fn alex_action_15<a>() -> isize {
+pub fn alex_action_15() -> isize {
     token_fail("Hexadecimal floating constant requires an exponent".to_string())
 }
 
-pub fn alex_action_16<a>() -> isize {
+pub fn alex_action_16() -> isize {
     token(CTokSLit, (cString(unescapeString(init(tail)))))
 }
 
-pub fn alex_action_17<a>() -> isize {
+pub fn alex_action_17() -> isize {
     token(CTokSLit, (cString_w(unescapeString(init(tail(tail))))))
 }
 
-pub fn alex_action_18<a>() -> isize {
+pub fn alex_action_18() -> isize {
     token_fail("Universal character names are unsupported".to_string())
 }
 
-pub fn alex_action_19<a>() -> isize {
+pub fn alex_action_19() -> isize {
     token_fail("Invalid escape sequence".to_string())
 }
 
-pub fn alex_action_20<a>() -> isize {
+pub fn alex_action_20() -> isize {
     token_fail("Universal character names in string literals are unsupported".to_string())
 }
 
-pub fn alex_action_21<a>() -> isize {
+pub fn alex_action_21() -> isize {
     token_(1, CTokLParen)
 }
 
-pub fn alex_action_22<a>() -> isize {
+pub fn alex_action_22() -> isize {
     token_(1, CTokRParen)
 }
 
-pub fn alex_action_23<a>() -> isize {
+pub fn alex_action_23() -> isize {
     token_(1, CTokLBracket)
 }
 
-pub fn alex_action_24<a>() -> isize {
+pub fn alex_action_24() -> isize {
     token_(1, CTokRBracket)
 }
 
-pub fn alex_action_25<a>() -> isize {
+pub fn alex_action_25() -> isize {
     token_(2, CTokArrow)
 }
 
-pub fn alex_action_26<a>() -> isize {
+pub fn alex_action_26() -> isize {
     token_(1, CTokDot)
 }
 
-pub fn alex_action_27<a>() -> isize {
+pub fn alex_action_27() -> isize {
     token_(1, CTokExclam)
 }
 
-pub fn alex_action_28<a>() -> isize {
+pub fn alex_action_28() -> isize {
     token_(1, CTokTilde)
 }
 
-pub fn alex_action_29<a>() -> isize {
+pub fn alex_action_29() -> isize {
     token_(2, CTokInc)
 }
 
-pub fn alex_action_30<a>() -> isize {
+pub fn alex_action_30() -> isize {
     token_(2, CTokDec)
 }
 
-pub fn alex_action_31<a>() -> isize {
+pub fn alex_action_31() -> isize {
     token_(1, CTokPlus)
 }
 
-pub fn alex_action_32<a>() -> isize {
+pub fn alex_action_32() -> isize {
     token_(1, CTokMinus)
 }
 
-pub fn alex_action_33<a>() -> isize {
+pub fn alex_action_33() -> isize {
     token_(1, CTokStar)
 }
 
-pub fn alex_action_34<a>() -> isize {
+pub fn alex_action_34() -> isize {
     token_(1, CTokSlash)
 }
 
-pub fn alex_action_35<a>() -> isize {
+pub fn alex_action_35() -> isize {
     token_(1, CTokPercent)
 }
 
-pub fn alex_action_36<a>() -> isize {
+pub fn alex_action_36() -> isize {
     token_(1, CTokAmper)
 }
 
-pub fn alex_action_37<a>() -> isize {
+pub fn alex_action_37() -> isize {
     token_(2, CTokShiftL)
 }
 
-pub fn alex_action_38<a>() -> isize {
+pub fn alex_action_38() -> isize {
     token_(2, CTokShiftR)
 }
 
-pub fn alex_action_39<a>() -> isize {
+pub fn alex_action_39() -> isize {
     token_(1, CTokLess)
 }
 
-pub fn alex_action_4<a>() -> isize {
+pub fn alex_action_4() -> isize {
     |pos, len, __str| { idkwtok((takeChars(len, __str)), pos) }
 }
 
-pub fn alex_action_40<a>() -> isize {
+pub fn alex_action_40() -> isize {
     token_(2, CTokLessEq)
 }
 
-pub fn alex_action_41<a>() -> isize {
+pub fn alex_action_41() -> isize {
     token_(1, CTokHigh)
 }
 
-pub fn alex_action_42<a>() -> isize {
+pub fn alex_action_42() -> isize {
     token_(2, CTokHighEq)
 }
 
-pub fn alex_action_43<a>() -> isize {
+pub fn alex_action_43() -> isize {
     token_(2, CTokEqual)
 }
 
-pub fn alex_action_44<a>() -> isize {
+pub fn alex_action_44() -> isize {
     token_(2, CTokUnequal)
 }
 
-pub fn alex_action_45<a>() -> isize {
+pub fn alex_action_45() -> isize {
     token_(1, CTokHat)
 }
 
-pub fn alex_action_46<a>() -> isize {
+pub fn alex_action_46() -> isize {
     token_(1, CTokBar)
 }
 
-pub fn alex_action_47<a>() -> isize {
+pub fn alex_action_47() -> isize {
     token_(2, CTokAnd)
 }
 
-pub fn alex_action_48<a>() -> isize {
+pub fn alex_action_48() -> isize {
     token_(2, CTokOr)
 }
 
-pub fn alex_action_49<a>() -> isize {
+pub fn alex_action_49() -> isize {
     token_(1, CTokQuest)
 }
 
-pub fn alex_action_5<a>() -> isize {
+pub fn alex_action_5() -> isize {
     token_plus(CTokILit, readCOctal)
 }
 
-pub fn alex_action_50<a>() -> isize {
+pub fn alex_action_50() -> isize {
     token_(1, CTokColon)
 }
 
-pub fn alex_action_51<a>() -> isize {
+pub fn alex_action_51() -> isize {
     token_(1, CTokAssign)
 }
 
-pub fn alex_action_52<a>() -> isize {
+pub fn alex_action_52() -> isize {
     token_(2, CTokPlusAss)
 }
 
-pub fn alex_action_53<a>() -> isize {
+pub fn alex_action_53() -> isize {
     token_(2, CTokMinusAss)
 }
 
-pub fn alex_action_54<a>() -> isize {
+pub fn alex_action_54() -> isize {
     token_(2, CTokStarAss)
 }
 
-pub fn alex_action_55<a>() -> isize {
+pub fn alex_action_55() -> isize {
     token_(2, CTokSlashAss)
 }
 
-pub fn alex_action_56<a>() -> isize {
+pub fn alex_action_56() -> isize {
     token_(2, CTokPercAss)
 }
 
-pub fn alex_action_57<a>() -> isize {
+pub fn alex_action_57() -> isize {
     token_(2, CTokAmpAss)
 }
 
-pub fn alex_action_58<a>() -> isize {
+pub fn alex_action_58() -> isize {
     token_(2, CTokHatAss)
 }
 
-pub fn alex_action_59<a>() -> isize {
+pub fn alex_action_59() -> isize {
     token_(2, CTokBarAss)
 }
 
-pub fn alex_action_6<a>() -> isize {
+pub fn alex_action_6() -> isize {
     token_plus(CTokILit, (readCInteger(DecRepr)))
 }
 
-pub fn alex_action_60<a>() -> isize {
+pub fn alex_action_60() -> isize {
     token_(3, CTokSLAss)
 }
 
-pub fn alex_action_61<a>() -> isize {
+pub fn alex_action_61() -> isize {
     token_(3, CTokSRAss)
 }
 
-pub fn alex_action_62<a>() -> isize {
+pub fn alex_action_62() -> isize {
     token_(1, CTokComma)
 }
 
-pub fn alex_action_63<a>() -> isize {
+pub fn alex_action_63() -> isize {
     token_(1, CTokSemic)
 }
 
-pub fn alex_action_64<a>() -> isize {
+pub fn alex_action_64() -> isize {
     token_(1, CTokLBrace)
 }
 
-pub fn alex_action_65<a>() -> isize {
+pub fn alex_action_65() -> isize {
     token_(1, CTokRBrace)
 }
 
-pub fn alex_action_66<a>() -> isize {
+pub fn alex_action_66() -> isize {
     token_(3, CTokEllipsis)
 }
 
-pub fn alex_action_7<a>() -> isize {
+pub fn alex_action_7() -> isize {
     token_plus(CTokILit, (readCInteger(HexRepr, drop(2))))
 }
 
-pub fn alex_action_8<a>() -> isize {
+pub fn alex_action_8() -> isize {
     token_fail("Invalid integer constant suffix".to_string())
 }
 
-pub fn alex_action_9<a>() -> isize {
+pub fn alex_action_9() -> isize {
     token(CTokCLit, (cChar(fst(unescapeChar(tail)))))
 }
 
-pub fn alex_actions<a>() -> bool {
+pub fn alex_actions() -> bool {
     array((0, 121), vec![
             (120, alex_action_1),
             (119, alex_action_4),
@@ -770,7 +770,7 @@ pub fn alex_actions<a>() -> bool {
         ])
 }
 
-pub fn alex_base<a>() -> Array<isize, isize> {
+pub fn alex_base() -> Array<isize, isize> {
     listArray((0, 241), vec![
             -(8),
             119,
@@ -1017,7 +1017,7 @@ pub fn alex_base<a>() -> Array<isize, isize> {
         ])
 }
 
-pub fn alex_check<a>() -> Array<isize, isize> {
+pub fn alex_check() -> Array<isize, isize> {
     listArray((0, 9519), vec![
             -(1),
             9,
@@ -10542,7 +10542,7 @@ pub fn alex_check<a>() -> Array<isize, isize> {
         ])
 }
 
-pub fn alex_deflt<a>() -> Array<isize, isize> {
+pub fn alex_deflt() -> Array<isize, isize> {
     listArray((0, 241), vec![
             -(1),
             -(1),
@@ -10789,7 +10789,7 @@ pub fn alex_deflt<a>() -> Array<isize, isize> {
         ])
 }
 
-pub fn alex_scan_tkn<a>(user: bool) -> bool {
+pub fn alex_scan_tkn(user: bool) -> bool {
     seq(input, {
         let new_acc = (check_accs((quickIndex(alex_accept, s()))));
 
@@ -10823,11 +10823,11 @@ pub fn alex_scan_tkn<a>(user: bool) -> bool {
         })    })
 }
 
-pub fn alex_tab_size<a>() -> isize {
+pub fn alex_tab_size() -> isize {
     8
 }
 
-pub fn alex_table<a>() -> Array<isize, isize> {
+pub fn alex_table() -> Array<isize, isize> {
     listArray((0, 9519), vec![
             0,
             118,
@@ -20352,7 +20352,7 @@ pub fn alex_table<a>() -> Array<isize, isize> {
         ])
 }
 
-pub fn idkwtok<a>(_0: bool) -> bool {
+pub fn idkwtok(_0: bool) -> bool {
     match (_0) {
         ['_', ['B', ['o', ['o', ['l', []]]]]] => {
             tok(5, CTokBool)
@@ -20581,7 +20581,7 @@ pub fn idkwtok<a>(_0: bool) -> bool {
     }
 }
 
-pub fn ignoreAttribute<a>() -> P<()> {
+pub fn ignoreAttribute() -> P<()> {
     skipTokens((0))
 }
 
@@ -20593,11 +20593,11 @@ pub fn lexC<a>(cont: fn(CToken) -> P<a>) -> P<a> {
     }
 }
 
-pub fn lexToken<a>() -> P<CToken> {
+pub fn lexToken() -> P<CToken> {
     lexToken_q(true)
 }
 
-pub fn lexToken_q<a>(modifyCache: bool) -> P<CToken> {
+pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
     /*do*/ {
         let pos = getPos;
 
@@ -20658,11 +20658,11 @@ pub fn parseError<a>() -> P<a> {
     }
 }
 
-pub fn quickIndex<a>(arr: bool) -> bool {
+pub fn quickIndex(arr: bool) -> bool {
     !(arr, i)
 }
 
-pub fn readCOctal<a>(s: String, __OP__: Either<String, CInteger>) -> Either<String, CInteger> {
+pub fn readCOctal(s: String, __OP__: Either<String, CInteger>) -> Either<String, CInteger> {
     match r {
         [c, _] if isDigit(c) => { readCInteger(OctalRepr, r) }
         _ => {
@@ -20671,7 +20671,7 @@ pub fn readCOctal<a>(s: String, __OP__: Either<String, CInteger>) -> Either<Stri
     }
 }
 
-pub fn tok<a>(len: isize, tc: fn(PosLength) -> CToken, pos: Position) -> P<CToken> {
+pub fn tok(len: isize, tc: fn(PosLength) -> CToken, pos: Position) -> P<CToken> {
     (tc((pos, len)))
 }
 
@@ -20679,11 +20679,11 @@ pub fn token<a>(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> a, po
     (tok((pos, len), (read(takeChars(len, __str)))))
 }
 
-pub fn token_<a>(len: isize, tok: fn(PosLength) -> CToken, pos: Position, _: isize, _: InputStream) -> P<CToken> {
+pub fn token_(len: isize, tok: fn(PosLength) -> CToken, pos: Position, _: isize, _: InputStream) -> P<CToken> {
     (tok((pos, len)))
 }
 
-pub fn token_fail<a>(errmsg: String, pos: Position, _: isize, _: InputStream) -> P<CToken> {
+pub fn token_fail(errmsg: String, pos: Position, _: isize, _: InputStream) -> P<CToken> {
     failP(pos, vec!["Lexical Error !".to_string(), errmsg])
 }
 
@@ -20698,7 +20698,7 @@ pub fn token_plus<a>(tok: fn(PosLength) -> fn(a) -> CToken, read: fn(String) -> 
     }
 }
 
-pub fn unescapeMultiChars<a>(_0: String, _1: Vec<Char>) -> Vec<Char> {
+pub fn unescapeMultiChars(_0: String, _1: Vec<Char>) -> Vec<Char> {
     match (_0, _1, _2) {
         (cs, __OP__, [_, [_, _]]) => {
             match unescapeChar(cs) {

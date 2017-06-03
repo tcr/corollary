@@ -180,7 +180,7 @@ pub enum ExprPosition {
 }
 pub use self::ExprPosition::*;
 
-pub fn pPrintBlock<a>(_0: Doc, _1: Block) -> Doc {
+pub fn pPrintBlock(_0: Doc, _1: Block) -> Doc {
     match (_0, _1) {
         (pre, Block([], e)) => {
             sep(vec![

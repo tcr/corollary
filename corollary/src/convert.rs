@@ -5,6 +5,7 @@ use inflector::Inflector;
 use hex::*;
 use std::borrow::Borrow;
 use std::collections::{BTreeMap, BTreeSet};
+use regex::Regex;
 
 use ir::{self, PrintState};
 
@@ -800,27 +801,37 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
             let t = unpack_fndef(d[0].clone());
             assert!(t.len() >= 1);
 
-            //println!("hm {:?}", types[&key]);
-            //println!("hm {:?}", t);
             let mut args_span = vec![];
             for (arg, ty) in args.iter().zip(t.iter()) {
                 args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
             }
-            let mut type_args = vec![];
-            let trans_name = print_type_ident(state, &key);
-            if trans_name != "__main" {
-                // type_args.push("a");
-                // if trans_name == "rmap" {
-                //     type_args.push("b");
-                // }
+            let args_str = args_span.join(", ");
+
+            let ret_str = print_type(state.tab(), t.last().unwrap());
+
+            let re = Regex::new(r"\b(a|b)\b").unwrap();
+            let mut type_args = re.captures_iter(&args_str)
+                .map(|x| x[1].to_string())
+                .collect::<::std::collections::HashSet<_>>();
+            
+            for item in re.captures_iter(&ret_str) {
+                type_args.insert(item[1].to_string());
             }
+
+            let type_args = type_args.into_iter().collect::<Vec<_>>();
+
+            let trans_name = print_type_ident(state, &key);
             out.push(
                 format!("{}pub fn {}{}({}) -> {} {{\n{}{}\n{}}}\n",
                     state.indent(),
                     trans_name,
-                    format!("<{}>", type_args.join(", ")),
-                    args_span.join(", "),
-                    print_type(state.tab(), t.last().unwrap()),
+                    if type_args.len() > 0 {
+                        format!("<{}>", type_args.join(", "))
+                    } else {
+                        format!("")
+                    },
+                    args_str,
+                    ret_str,
                     state.tab().indent(),
                     print_expr(state.tab(), &expr),
                     state.indent()));

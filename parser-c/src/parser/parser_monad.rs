@@ -47,7 +47,7 @@ pub struct P<a>{
 }
 fn unP(a: P) -> fn(PState) -> ParseResult<a> { a.unP }
 
-pub fn addTypedef<a>(ident: Ident) -> P<()> {
+pub fn addTypedef(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState {
 
         }| { POk(s {
@@ -55,7 +55,7 @@ pub fn addTypedef<a>(ident: Ident) -> P<()> {
             }, ()) }))
 }
 
-pub fn enterScope<a>() -> P<()> {
+pub fn enterScope() -> P<()> {
     P(|s, __OP__, PState {
 
         }| { POk(s {
@@ -78,25 +78,25 @@ pub fn failP<a>(pos: Position, msg: Vec<String>) -> P<a> {
     P(|_| { PFailed(msg, pos) })
 }
 
-pub fn getCurrentPosition<a>() -> P<Position> {
+pub fn getCurrentPosition() -> P<Position> {
     P(|s, __OP__, PState {
 
         }| { POk(s, pos) })
 }
 
-pub fn getInput<a>() -> P<InputStream> {
+pub fn getInput() -> P<InputStream> {
     P(|s, __OP__, PState {
 
         }| { POk(s, i) })
 }
 
-pub fn getLastToken<a>() -> P<CToken> {
+pub fn getLastToken() -> P<CToken> {
     P(|s, __OP__, PState {
 
         }| { POk(s, tok) })
 }
 
-pub fn getNewName<a>() -> P<Name> {
+pub fn getNewName() -> P<Name> {
     P(|s, __OP__, PState {
 
         }| { seq(n, POk(s {
@@ -104,31 +104,31 @@ pub fn getNewName<a>() -> P<Name> {
             }, n)) })
 }
 
-pub fn getPos<a>() -> P<Position> {
+pub fn getPos() -> P<Position> {
     P(|s, __OP__, PState {
 
         }| { POk(s, pos) })
 }
 
-pub fn getSavedToken<a>() -> P<CToken> {
+pub fn getSavedToken() -> P<CToken> {
     P(|s, __OP__, PState {
 
         }| { POk(s, tok) })
 }
 
-pub fn handleEofToken<a>() -> P<()> {
+pub fn handleEofToken() -> P<()> {
     P(|s| { POk(s {
                 savedToken: (prevToken(s))
             }, ()) })
 }
 
-pub fn isTypeIdent<a>(ident: Ident) -> P<bool> {
+pub fn isTypeIdent(ident: Ident) -> P<bool> {
     P(|s, __OP__, PState {
 
         }| { __op_TODO_dollarnot(POk(s), Set::member(ident, tyids)) })
 }
 
-pub fn leaveScope<a>() -> P<()> {
+pub fn leaveScope() -> P<()> {
     P(|s, __OP__, PState {
 
         }| { match ss {
@@ -148,13 +148,13 @@ pub fn returnP<a>(a: a) -> P<a> {
     P(|s| { POk(s, a) })
 }
 
-pub fn setInput<a>(i: InputStream) -> P<()> {
+pub fn setInput(i: InputStream) -> P<()> {
     P(|s| { POk(s {
                 curInput: i
             }, ()) })
 }
 
-pub fn setLastToken<a>(_0: CToken) -> P<()> {
+pub fn setLastToken(_0: CToken) -> P<()> {
     match (_0) {
         CTokEof => {
             P(|s| { POk(s {
@@ -170,13 +170,13 @@ pub fn setLastToken<a>(_0: CToken) -> P<()> {
     }
 }
 
-pub fn setPos<a>(pos: Position) -> P<()> {
+pub fn setPos(pos: Position) -> P<()> {
     P(|s| { POk(s {
                 curPos: pos
             }, ()) })
 }
 
-pub fn shadowTypedef<a>(ident: Ident) -> P<()> {
+pub fn shadowTypedef(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState {
 
         }| { POk(s {
@@ -184,7 +184,7 @@ pub fn shadowTypedef<a>(ident: Ident) -> P<()> {
             }, ()) }))
 }
 
-pub fn thenP<a>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
+pub fn thenP<b, a>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
     P(|s| { match m(s) {
             POk(s_q, a) => {
                 (unP((k(a))))(s_q)

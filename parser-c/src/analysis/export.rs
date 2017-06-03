@@ -7,7 +7,7 @@
 // use Language::C::Analysis::SemRep;
 // use Data::Maybe;
 
-pub fn exportArraySize<a>(_0: ArraySize) -> CArrSize {
+pub fn exportArraySize(_0: ArraySize) -> CArrSize {
     match (_0) {
         ArraySize(__static, e) => {
             CArrSize(__static, e)
@@ -18,50 +18,50 @@ pub fn exportArraySize<a>(_0: ArraySize) -> CArrSize {
     }
 }
 
-pub fn exportAttrs<a>() -> Vec<CAttr> {
+pub fn exportAttrs() -> Vec<CAttr> {
     __map!(exportAttr)
 }
 
-pub fn exportCompType<a>(CompType(sue_ref, comp_tag, members, attrs, node_info): CompType) -> Vec<CTypeSpec> {
+pub fn exportCompType(CompType(sue_ref, comp_tag, members, attrs, node_info): CompType) -> Vec<CTypeSpec> {
     vec![CSUType(comp, ni)]
 }
 
-pub fn exportCompTypeDecl<a>(ty: CompTypeRef) -> Vec<CTypeSpec> {
+pub fn exportCompTypeDecl(ty: CompTypeRef) -> Vec<CTypeSpec> {
     vec![CSUType((exportComp(ty)), ni)]
 }
 
-pub fn exportCompTypeRef<a>(CompType(sue_ref, com_tag, _, _, node_info): CompType) -> Vec<CTypeSpec> {
+pub fn exportCompTypeRef(CompType(sue_ref, com_tag, _, _, node_info): CompType) -> Vec<CTypeSpec> {
     exportCompTypeDecl((CompTypeRef(sue_ref, com_tag, node_info)))
 }
 
-pub fn exportComplexType<a>(ty: FloatType) -> Vec<CTypeSpec> {
+pub fn exportComplexType(ty: FloatType) -> Vec<CTypeSpec> {
     __op_concat((CComplexType(ni)), exportFloatType(ty))
 }
 
-pub fn exportDeclAttrs<a>(DeclAttrs(inline, storage, attrs): DeclAttrs) -> Vec<CDeclSpec> {
+pub fn exportDeclAttrs(DeclAttrs(inline, storage, attrs): DeclAttrs) -> Vec<CDeclSpec> {
     __op_addadd((if inline {     
 vec![CTypeQual((CInlineQual(ni)))]} else {
 vec![]
     }), __op_addadd(__map!(CStorageSpec(), (exportStorage(storage))), __map!((CTypeQual(CAttrQual)), (exportAttrs(attrs)))))
 }
 
-pub fn exportDeclr<a>(other_specs: Vec<CDeclSpec>, ty: Type, attrs: Attributes, name: VarName) -> (Vec<CDeclSpec>, CDeclr) {
+pub fn exportDeclr(other_specs: Vec<CDeclSpec>, ty: Type, attrs: Attributes, name: VarName) -> (Vec<CDeclSpec>, CDeclr) {
     (__op_addadd(other_specs, specs), CDeclr(ident, derived, asmname, (exportAttrs(attrs)), ni))
 }
 
-pub fn exportEnumType<a>(EnumType(sue_ref, enumerators, attrs, node_info): EnumType) -> Vec<CTypeSpec> {
+pub fn exportEnumType(EnumType(sue_ref, enumerators, attrs, node_info): EnumType) -> Vec<CTypeSpec> {
     vec![CEnumType(__enum, ni)]
 }
 
-pub fn exportEnumTypeDecl<a>(ty: EnumTypeRef) -> Vec<CTypeSpec> {
+pub fn exportEnumTypeDecl(ty: EnumTypeRef) -> Vec<CTypeSpec> {
     vec![CEnumType((exportEnum(ty)), ni)]
 }
 
-pub fn exportEnumTypeRef<a>(EnumType(sue_ref, _, _, node_info): EnumType) -> Vec<CTypeSpec> {
+pub fn exportEnumTypeRef(EnumType(sue_ref, _, _, node_info): EnumType) -> Vec<CTypeSpec> {
     exportEnumTypeDecl((EnumTypeRef(sue_ref, node_info)))
 }
 
-pub fn exportFloatType<a>(ty: FloatType) -> Vec<CTypeSpec> {
+pub fn exportFloatType(ty: FloatType) -> Vec<CTypeSpec> {
     match ty {
         TyFloat => {
             vec![CFloatType(ni)]
@@ -75,7 +75,7 @@ pub fn exportFloatType<a>(ty: FloatType) -> Vec<CTypeSpec> {
     }
 }
 
-pub fn exportIntType<a>(ty: IntType) -> Vec<CTypeSpec> {
+pub fn exportIntType(ty: IntType) -> Vec<CTypeSpec> {
     match ty {
         TyBool => {
             vec![CBoolType(ni)]
@@ -116,7 +116,7 @@ pub fn exportIntType<a>(ty: IntType) -> Vec<CTypeSpec> {
     }
 }
 
-pub fn exportMemberDecl<a>(_0: MemberDecl) -> CDecl {
+pub fn exportMemberDecl(_0: MemberDecl) -> CDecl {
     match (_0) {
         AnonBitField(ty, expr, node_info) => {
             CDecl((__map!(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
@@ -130,18 +130,18 @@ pub fn exportMemberDecl<a>(_0: MemberDecl) -> CDecl {
     }
 }
 
-pub fn exportParamDecl<a>(paramdecl: ParamDecl) -> CDecl {
+pub fn exportParamDecl(paramdecl: ParamDecl) -> CDecl {
     {
         let (specs, declr) = exportVarDecl((getVarDecl(paramdecl)));
 
     CDecl(specs, vec![(Some(declr), None, None)], (nodeInfo(paramdecl)))    }
 }
 
-pub fn exportSUERef<a>() -> Option<Ident> {
+pub fn exportSUERef() -> Option<Ident> {
     Some(internalIdent(show))
 }
 
-pub fn exportStorage<a>(_0: Storage) -> Vec<CStorageSpec> {
+pub fn exportStorage(_0: Storage) -> Vec<CStorageSpec> {
     match (_0) {
         NoStorage => {
             vec![]
@@ -173,27 +173,27 @@ vec![]
     }
 }
 
-pub fn exportType<a>(ty: Type) -> (Vec<CDeclSpec>, Vec<CDerivedDeclr>) {
+pub fn exportType(ty: Type) -> (Vec<CDeclSpec>, Vec<CDerivedDeclr>) {
     exportTy(vec![], ty)
 }
 
-pub fn exportTypeDecl<a>(ty: Type) -> CDecl {
+pub fn exportTypeDecl(ty: Type) -> CDecl {
     CDecl(declspecs, declrs, ni)
 }
 
-pub fn exportTypeDef<a>(TypeDef(ident, ty, attrs, node_info): TypeDef) -> CDecl {
+pub fn exportTypeDef(TypeDef(ident, ty, attrs, node_info): TypeDef) -> CDecl {
     CDecl((__op_concat(CStorageSpec((CTypedef(ni))), declspecs)), vec![declr], node_info)
 }
 
-pub fn exportTypeQuals<a>(quals: TypeQuals) -> Vec<CTypeQual> {
+pub fn exportTypeQuals(quals: TypeQuals) -> Vec<CTypeQual> {
     mapMaybe(select, vec![(constant, CConstQual(ni)), (volatile, CVolatQual(ni)), (restrict, CRestrQual(ni))])
 }
 
-pub fn exportTypeQualsAttrs<a>(tyqs: TypeQuals, attrs: Attributes) -> Vec<CTypeQual> {
+pub fn exportTypeQualsAttrs(tyqs: TypeQuals, attrs: Attributes) -> Vec<CTypeQual> {
     (__op_addadd(exportTypeQuals(tyqs), __map!(CAttrQual, (exportAttrs(attrs)))))
 }
 
-pub fn exportTypeSpec<a>(tyname: TypeName) -> Vec<CTypeSpec> {
+pub fn exportTypeSpec(tyname: TypeName) -> Vec<CTypeSpec> {
     match tyname {
         TyVoid => {
             vec![CVoidType(ni)]
@@ -222,11 +222,11 @@ pub fn exportTypeSpec<a>(tyname: TypeName) -> Vec<CTypeSpec> {
     }
 }
 
-pub fn exportVarDecl<a>(VarDecl(name, attrs, ty): VarDecl) -> (Vec<CDeclSpec>, CDeclr) {
+pub fn exportVarDecl(VarDecl(name, attrs, ty): VarDecl) -> (Vec<CDeclSpec>, CDeclr) {
     exportDeclr((exportDeclAttrs(attrs)), ty, vec![], name)
 }
 
-pub fn fromDirectType<a>(_0: Type) -> TypeName {
+pub fn fromDirectType(_0: Type) -> TypeName {
     match (_0) {
         DirectType(ty, _, _) => {
             ty
@@ -240,11 +240,11 @@ pub fn fromDirectType<a>(_0: Type) -> TypeName {
     }
 }
 
-pub fn ni<a>() -> NodeInfo {
+pub fn ni() -> NodeInfo {
     undefNode
 }
 
-pub fn threadLocal<a>(_0: bool) -> Vec<CStorageSpec> {
+pub fn threadLocal(_0: bool) -> Vec<CStorageSpec> {
     match (_0) {
         false => {
             id

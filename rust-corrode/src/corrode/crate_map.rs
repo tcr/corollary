@@ -24,19 +24,19 @@ pub type CratesMap = Map::Map<String, CrateMap>;
 
 pub type ItemRewrites = Map::Map<(ItemKind, String), Vec<String>>;
 
-pub fn mergeCrateMaps<a>() -> Map::Map<String, CrateMap> {
+pub fn mergeCrateMaps() -> Map::Map<String, CrateMap> {
     Map::fromListWith((Map::unionWith((__op_addadd))))
 }
 
-pub fn parseCrateMap<a>() -> Either<String, CrateMap> {
+pub fn parseCrateMap() -> Either<String, CrateMap> {
     fmap(root, foldrM(parseLine, (Map::empty, vec![]), filter((not(null)), __map!(cleanLine, lines))))
 }
 
-pub fn rewritesFromCratesMap<a>(crates: CratesMap) -> ItemRewrites {
+pub fn rewritesFromCratesMap(crates: CratesMap) -> ItemRewrites {
     Map::fromList(/* Expr::Generator */ Generator)
 }
 
-pub fn splitModuleMap<a>(modName: String, crates: CratesMap) -> (ModuleMap, CratesMap) {
+pub fn splitModuleMap(modName: String, crates: CratesMap) -> (ModuleMap, CratesMap) {
     fromMaybe((vec![], crates))(/*do*/ {
         let thisCrate = Map::lookup("".to_string(), crates);
 

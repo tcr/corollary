@@ -17,11 +17,11 @@ pub fn eqByName<a>(obj1: a, obj2: a) -> bool {
     ((nodeInfo(obj1)) == (nodeInfo(obj2)))
 }
 
-pub fn fileOfNode<a>() -> Option<FilePath> {
+pub fn fileOfNode() -> Option<FilePath> {
     fmap(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
 }
 
-pub fn getLastTokenPos<a>(_0: NodeInfo) -> PosLength {
+pub fn getLastTokenPos(_0: NodeInfo) -> PosLength {
     match (_0) {
         NodeInfo(_, lastTok, _) => {
             lastTok
@@ -32,11 +32,11 @@ pub fn getLastTokenPos<a>(_0: NodeInfo) -> PosLength {
     }
 }
 
-pub fn internalNode<a>() -> NodeInfo {
+pub fn internalNode() -> NodeInfo {
     undefNode
 }
 
-pub fn isUndefNode<a>(_0: NodeInfo) -> bool {
+pub fn isUndefNode(_0: NodeInfo) -> bool {
     match (_0) {
         OnlyPos(p, _) => {
             /* Expr::Error */ Error
@@ -47,27 +47,27 @@ pub fn isUndefNode<a>(_0: NodeInfo) -> bool {
     }
 }
 
-pub fn lengthOfNode<a>(ni: NodeInfo) -> Option<isize> {
+pub fn lengthOfNode(ni: NodeInfo) -> Option<isize> {
     len
 }
 
-pub fn mkNodeInfo<a>(pos: Position, name: Name) -> NodeInfo {
+pub fn mkNodeInfo(pos: Position, name: Name) -> NodeInfo {
     NodeInfo(pos, (nopos, -(1)), name)
 }
 
-pub fn mkNodeInfo_q<a>(pos: Position, lasttok: PosLength, name: Name) -> NodeInfo {
+pub fn mkNodeInfo_q(pos: Position, lasttok: PosLength, name: Name) -> NodeInfo {
     NodeInfo(pos, lasttok, name)
 }
 
-pub fn mkNodeInfoOnlyPos<a>(pos: Position) -> NodeInfo {
+pub fn mkNodeInfoOnlyPos(pos: Position) -> NodeInfo {
     OnlyPos(pos, (nopos, -(1)))
 }
 
-pub fn mkNodeInfoPosLen<a>() -> NodeInfo {
+pub fn mkNodeInfoPosLen() -> NodeInfo {
     OnlyPos
 }
 
-pub fn nameOfNode<a>(_0: NodeInfo) -> Option<Name> {
+pub fn nameOfNode(_0: NodeInfo) -> Option<Name> {
     match (_0) {
         OnlyPos(_, _) => {
             None
@@ -78,7 +78,7 @@ pub fn nameOfNode<a>(_0: NodeInfo) -> Option<Name> {
     }
 }
 
-pub fn posOfNode<a>(ni: NodeInfo) -> Position {
+pub fn posOfNode(ni: NodeInfo) -> Position {
     match ni {
         OnlyPos(pos, _) => {
             pos
@@ -89,7 +89,7 @@ pub fn posOfNode<a>(ni: NodeInfo) -> Position {
     }
 }
 
-pub fn undefNode<a>() -> NodeInfo {
+pub fn undefNode() -> NodeInfo {
     OnlyPos(nopos, (nopos, -(1)))
 }
 

@@ -12,7 +12,7 @@ pub type InputStream = ByteString;
 
 pub type InputStream = String;
 
-pub fn countLines<a>() -> isize {
+pub fn countLines() -> isize {
     match () {
         () => {
             length(BSC::lines)
@@ -23,7 +23,7 @@ pub fn countLines<a>() -> isize {
     }
 }
 
-pub fn inputStreamEmpty<a>() -> bool {
+pub fn inputStreamEmpty() -> bool {
     match () {
         () => {
             BSW::null
@@ -34,7 +34,7 @@ pub fn inputStreamEmpty<a>() -> bool {
     }
 }
 
-pub fn inputStreamFromString<a>() -> InputStream {
+pub fn inputStreamFromString() -> InputStream {
     match () {
         () => {
             BSC::pack
@@ -45,7 +45,7 @@ pub fn inputStreamFromString<a>() -> InputStream {
     }
 }
 
-pub fn inputStreamToString<a>() -> String {
+pub fn inputStreamToString() -> String {
     match () {
         () => {
             BSC::unpack
@@ -56,7 +56,7 @@ pub fn inputStreamToString<a>() -> String {
     }
 }
 
-pub fn readInputStream<a>() -> IO<InputStream> {
+pub fn readInputStream() -> IO<InputStream> {
     match () {
         () => {
             BSW::readFile
@@ -67,7 +67,7 @@ pub fn readInputStream<a>() -> IO<InputStream> {
     }
 }
 
-pub fn takeByte<a>(_0: InputStream) -> (Word8, InputStream) {
+pub fn takeByte(_0: InputStream) -> (Word8, InputStream) {
     match (_0) {
         bs => {
             seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
@@ -78,7 +78,7 @@ pub fn takeByte<a>(_0: InputStream) -> (Word8, InputStream) {
     }
 }
 
-pub fn takeChar<a>(_0: InputStream) -> (Char, InputStream) {
+pub fn takeChar(_0: InputStream) -> (Char, InputStream) {
     match (_0) {
         bs => {
             seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
@@ -89,7 +89,7 @@ pub fn takeChar<a>(_0: InputStream) -> (Char, InputStream) {
     }
 }
 
-pub fn takeChars<a>(_0: isize, _1: InputStream) -> Vec<Char> {
+pub fn takeChars(_0: isize, _1: InputStream) -> Vec<Char> {
     match (_0, _1) {
         (n, bstr) => {
             BSC::unpack(BSC::take(n, bstr))

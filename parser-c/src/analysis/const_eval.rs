@@ -42,7 +42,7 @@ fn builtinAlign(a: MachineDesc) -> fn(BuiltinType) -> Integer { a.builtinAlign }
 fn ptrAlign(a: MachineDesc) -> Integer { a.ptrAlign }
 fn voidAlign(a: MachineDesc) -> Integer { a.voidAlign }
 
-pub fn alignofType<a>(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
+pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     match (_0, _1, _2) {
         (md, _, DirectType(TyVoid, _, _)) => {
             return(voidAlign(md))
@@ -80,7 +80,7 @@ pub fn alignofType<a>(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     }
 }
 
-pub fn boolValue<a>(_0: CExpr) -> Option<bool> {
+pub fn boolValue(_0: CExpr) -> Option<bool> {
     match (_0) {
         CConst(CIntConst(i, _)) => {
             Some(__op_assign_div(getCInteger(i), 0))
@@ -97,7 +97,7 @@ pub fn boolValue<a>(_0: CExpr) -> Option<bool> {
     }
 }
 
-pub fn compSize<a>(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
+pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
     /*do*/ {
         let dt = getDefTable;
 
@@ -131,7 +131,7 @@ pub fn compSize<a>(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
     }
 }
 
-pub fn constEval<a>(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CExpr> {
+pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CExpr> {
     match (_0, _1, _2) {
         (md, env, CCond(e1, me2, e3, ni)) => {
             /*do*/ {
@@ -291,11 +291,11 @@ pub fn constEval<a>(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m
     }
 }
 
-pub fn intExpr<a>(n: n, i: Integer) -> m<CExpr> {
+pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
     __op_bind(genName, |name| { return(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))) })
 }
 
-pub fn intOp<a>(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
+pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
     match (_0, _1, _2) {
         (CAddOp, i1, i2) => {
             (i1 + i2)
@@ -354,7 +354,7 @@ pub fn intOp<a>(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
     }
 }
 
-pub fn intUnOp<a>(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
+pub fn intUnOp(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
     match (_0, _1) {
         (CPlusOp, i) => {
             Some(i)
@@ -374,7 +374,7 @@ pub fn intUnOp<a>(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
     }
 }
 
-pub fn intValue<a>(_0: CExpr) -> Option<Integer> {
+pub fn intValue(_0: CExpr) -> Option<Integer> {
     match (_0) {
         CConst(CIntConst(i, _)) => {
             Some(getCInteger(i))
@@ -388,7 +388,7 @@ pub fn intValue<a>(_0: CExpr) -> Option<Integer> {
     }
 }
 
-pub fn sizeofType<a>(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
+pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     match (_0, _1, _2) {
         (md, _, DirectType(TyVoid, _, _)) => {
             return(voidSize(md))
@@ -447,7 +447,7 @@ pub fn sizeofType<a>(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     }
 }
 
-pub fn withWordBytes<a>(bytes: isize, n: Integer) -> Integer {
+pub fn withWordBytes(bytes: isize, n: Integer) -> Integer {
     rem(n, (shiftL(1, (shiftL(bytes, 3)))))
 }
 

@@ -13,7 +13,7 @@
 // use Map;
 // use Data::Map;
 
-pub fn globalDeclStats<a>(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
+pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
     vec![
         ("Enumeration Constants".to_string(), Map::size(enumerators)),
         ("Total Object/Function Declarations".to_string(), Map::size(all_decls)),
@@ -24,23 +24,23 @@ pub fn globalDeclStats<a>(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) 
     ]
 }
 
-pub fn joinComma<a>() -> Doc {
+pub fn joinComma() -> Doc {
     hsep(punctuate(comma, __map!(pretty)))
 }
 
-pub fn prettyAssocs<a>(label: String) -> Doc {
+pub fn prettyAssocs(label: String) -> Doc {
     prettyAssocsWith(label, pretty, pretty)
 }
 
-pub fn prettyAssocsWith<a>(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
+pub fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
     __op_line_something(text(label), (nest(8))((vcat(__map!(prettyEntry, theMap)))))
 }
 
-pub fn terminateSemi<a>() -> Doc {
+pub fn terminateSemi() -> Doc {
     terminateSemi_(__map!(pretty))
 }
 
-pub fn terminateSemi_<a>() -> Doc {
+pub fn terminateSemi_() -> Doc {
     hsep(__map!((__op_ne(semi))))
 }
 

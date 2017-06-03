@@ -7,7 +7,7 @@
 // use Language::C::Analysis::SemRep;
 // use Language::C::Analysis::TypeUtils;
 
-pub fn builtins<a>() -> DefTable {
+pub fn builtins() -> DefTable {
     foldr(doIdent, (foldr(doTypeDef, emptyDefTable, typedefs)), idents)
 }
 

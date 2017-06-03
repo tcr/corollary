@@ -88,11 +88,11 @@ pub enum TypeSpecAnalysis {
 }
 pub use self::TypeSpecAnalysis::*;
 
-pub fn analyseTypeDecl<a>(CDecl(declspecs, declrs, node): CDecl) -> m<Type> {
+pub fn analyseTypeDecl(CDecl(declspecs, declrs, node): CDecl) -> m<Type> {
     /* Expr::Error */ Error
 }
 
-pub fn analyseVarDecl<a>(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: bool, CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node): CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
+pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, inline: bool, CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node): CDeclr, oldstyle_params: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
     /*do*/ {
         let storage_spec = canonicalStorageSpec(storage_specs);
 
@@ -106,7 +106,7 @@ pub fn analyseVarDecl<a>(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>,
     }
 }
 
-pub fn analyseVarDecl_q<a>(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
+pub fn analyseVarDecl_q(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {
     /*do*/ {
         let (storage_specs, attrs, type_quals, type_specs, inline) = partitionDeclSpecs(declspecs);
 
@@ -116,15 +116,15 @@ pub fn analyseVarDecl_q<a>(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, decl
     }
 }
 
-pub fn canonicalStorageSpec<a>(storagespecs: Vec<CStorageSpec>) -> m<StorageSpec> {
+pub fn canonicalStorageSpec(storagespecs: Vec<CStorageSpec>) -> m<StorageSpec> {
     liftM(elideAuto)(foldrM(updStorage, NoStorageSpec, storagespecs))
 }
 
-pub fn canonicalTypeSpec<a>() -> m<TypeSpecAnalysis> {
+pub fn canonicalTypeSpec() -> m<TypeSpecAnalysis> {
     foldrM(go, TSNone)
 }
 
-pub fn computeParamStorage<a>(_0: NodeInfo, _1: StorageSpec) -> Either<BadSpecifierError, Storage> {
+pub fn computeParamStorage(_0: NodeInfo, _1: StorageSpec) -> Either<BadSpecifierError, Storage> {
     match (_0, _1) {
         (_, NoStorageSpec) => {
             Right((Auto(false)))
@@ -138,11 +138,11 @@ pub fn computeParamStorage<a>(_0: NodeInfo, _1: StorageSpec) -> Either<BadSpecif
     }
 }
 
-pub fn emptyDeclr<a>(node: NodeInfo) -> CDeclr {
+pub fn emptyDeclr(node: NodeInfo) -> CDeclr {
     CDeclr(None, vec![], None, vec![], node)
 }
 
-pub fn emptyNumTypeSpec<a>() -> NumTypeSpec {
+pub fn emptyNumTypeSpec() -> NumTypeSpec {
     NumTypeSpec {
         base: NoBaseType,
         signSpec: NoSignSpec,
@@ -151,7 +151,7 @@ pub fn emptyNumTypeSpec<a>() -> NumTypeSpec {
     }
 }
 
-pub fn getOnlyDeclr<a>(_0: CDecl) -> m<CDeclr> {
+pub fn getOnlyDeclr(_0: CDecl) -> m<CDeclr> {
     match (_0) {
         CDecl(_, [(Some(declr), _, _)], _) => {
             declr
@@ -162,7 +162,7 @@ pub fn getOnlyDeclr<a>(_0: CDecl) -> m<CDeclr> {
     }
 }
 
-pub fn hasThreadLocalSpec<a>(_0: StorageSpec) -> bool {
+pub fn hasThreadLocalSpec(_0: StorageSpec) -> bool {
     match (_0) {
         ThreadSpec => {
             true
@@ -179,11 +179,11 @@ pub fn hasThreadLocalSpec<a>(_0: StorageSpec) -> bool {
     }
 }
 
-pub fn isTypeDef<a>(declspecs: Vec<CDeclSpec>) -> bool {
+pub fn isTypeDef(declspecs: Vec<CDeclSpec>) -> bool {
     not(null(/* Expr::Generator */ Generator))
 }
 
-pub fn mergeOldStyle<a>(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) -> m<Vec<CDerivedDeclr>> {
+pub fn mergeOldStyle(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) -> m<Vec<CDerivedDeclr>> {
     match (_0, _1, _2) {
         (_node, [], declrs) => {
             declrs
@@ -213,7 +213,7 @@ pub fn mergeOldStyle<a>(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) ->
     }
 }
 
-pub fn mergeTypeAttributes<a>(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Attr>, typ: Type) -> m<Type> {
+pub fn mergeTypeAttributes(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Attr>, typ: Type) -> m<Type> {
     match typ {
         DirectType(ty_name, quals_q, attrs_q) => {
             merge(quals_q, attrs_q)(mkDirect(ty_name))
@@ -233,7 +233,7 @@ pub fn mergeTypeAttributes<a>(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<
     }
 }
 
-pub fn mkVarName<a>(_0: NodeInfo, _1: Option<Ident>, _2: Option<AsmName>) -> m<VarName> {
+pub fn mkVarName(_0: NodeInfo, _1: Option<Ident>, _2: Option<AsmName>) -> m<VarName> {
     match (_0, _1, _2) {
         (node, None, _) => {
             NoName
@@ -244,7 +244,7 @@ pub fn mkVarName<a>(_0: NodeInfo, _1: Option<Ident>, _2: Option<AsmName>) -> m<V
     }
 }
 
-pub fn nameOfDecl<a>(d: CDecl) -> m<Ident> {
+pub fn nameOfDecl(d: CDecl) -> m<Ident> {
     __op_bind(getOnlyDeclr(d), |declr| { match declr {
             CDeclr(Some(name), _, _, _, _) => {
                 name
@@ -255,7 +255,7 @@ pub fn nameOfDecl<a>(d: CDecl) -> m<Ident> {
         } })
 }
 
-pub fn splitCDecl<a>(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
+pub fn splitCDecl(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
     match declrs {
         [] => {
             internalErr("splitCDecl applied to empty declaration".to_string())
@@ -272,7 +272,7 @@ pub fn splitCDecl<a>(decl: CDecl, __OP__: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
     }
 }
 
-pub fn tArraySize<a>(_0: CArrSize) -> m<ArraySize> {
+pub fn tArraySize(_0: CArrSize) -> m<ArraySize> {
     match (_0) {
         CNoArrSize(false) => {
             (UnknownArraySize(false))
@@ -286,15 +286,15 @@ pub fn tArraySize<a>(_0: CArrSize) -> m<ArraySize> {
     }
 }
 
-pub fn tAttr<a>(CAttr(name, cexpr, node): CAttr) -> m<Attr> {
+pub fn tAttr(CAttr(name, cexpr, node): CAttr) -> m<Attr> {
     return(Attr(name, cexpr, node))
 }
 
-pub fn tCompType<a>(tag: SUERef, sue_ref: CompTyKind, member_decls: Vec<CDecl>, attrs: Attributes, node: NodeInfo) -> m<CompType> {
+pub fn tCompType(tag: SUERef, sue_ref: CompTyKind, member_decls: Vec<CDecl>, attrs: Attributes, node: NodeInfo) -> m<CompType> {
     ap((CompType(tag, sue_ref)), ap((concatMapM(tMemberDecls, member_decls)), ap((attrs), (node))))
 }
 
-pub fn tCompTypeDecl<a>(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt, attrs, node_info): CStructUnion) -> m<CompTypeRef> {
+pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt, attrs, node_info): CStructUnion) -> m<CompTypeRef> {
     /*do*/ {
         let sue_ref = createSUERef(node_info, ident_opt);
 
@@ -312,7 +312,7 @@ pub fn tCompTypeDecl<a>(handle_def: bool, CStruct(tag, ident_opt, member_decls_o
     }
 }
 
-pub fn tDirectType<a>(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual>, canonTySpec: TypeSpecAnalysis) -> m<Type> {
+pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual>, canonTySpec: TypeSpecAnalysis) -> m<Type> {
     /*do*/ {
         let (quals, attrs) = tTypeQuals(ty_quals);
 
@@ -362,18 +362,18 @@ pub fn tDirectType<a>(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQ
     }
 }
 
-pub fn tEnumType<a>(sue_ref: SUERef, enumerators: Vec<(Ident, Option<CExpr>)>, attrs: Attributes, node: NodeInfo) -> m<EnumType> {
+pub fn tEnumType(sue_ref: SUERef, enumerators: Vec<(Ident, Option<CExpr>)>, attrs: Attributes, node: NodeInfo) -> m<EnumType> {
     /*do*/ {
         mapM_(handleEnumeratorDef, enumerators_q);
         ty
     }
 }
 
-pub fn tEnumTypeDecl<a>(handle_def: bool, CEnum(ident_opt, enumerators_opt, attrs, node_info): CEnum) -> m<EnumTypeRef> {
+pub fn tEnumTypeDecl(handle_def: bool, CEnum(ident_opt, enumerators_opt, attrs, node_info): CEnum) -> m<EnumTypeRef> {
     /* Expr::Error */ Error
 }
 
-pub fn tMemberDecls<a>(_0: CDecl) -> m<Vec<MemberDecl>> {
+pub fn tMemberDecls(_0: CDecl) -> m<Vec<MemberDecl>> {
     match (_0) {
         CDecl(declspecs, [], node) => {
             /*do*/ {
@@ -402,7 +402,7 @@ pub fn tMemberDecls<a>(_0: CDecl) -> m<Vec<MemberDecl>> {
     }
 }
 
-pub fn tNumType<a>(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Either<(FloatType, bool), IntType>> {
+pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Either<(FloatType, bool), IntType>> {
     match (basetype, sgn, sz) {
         (BaseChar, _, NoSizeMod) if Signed => { intType(TySChar) }
         (BaseChar, _, NoSizeMod) if Unsigned => { intType(TyUChar) }
@@ -458,7 +458,7 @@ pub fn tNumType<a>(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<
     }
 }
 
-pub fn tParamDecl<a>(CDecl(declspecs, declrs, node): CDecl) -> m<ParamDecl> {
+pub fn tParamDecl(CDecl(declspecs, declrs, node): CDecl) -> m<ParamDecl> {
     /*do*/ {
         let declr = getParamDeclr;
 
@@ -473,7 +473,7 @@ pub fn tParamDecl<a>(CDecl(declspecs, declrs, node): CDecl) -> m<ParamDecl> {
     }
 }
 
-pub fn tTag<a>(_0: CStructTag) -> CompTyKind {
+pub fn tTag(_0: CStructTag) -> CompTyKind {
     match (_0) {
         CStructTag => {
             StructTag
@@ -484,15 +484,15 @@ pub fn tTag<a>(_0: CStructTag) -> CompTyKind {
     }
 }
 
-pub fn tType<a>(handle_sue_def: bool, top_node: NodeInfo, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, derived_declrs: Vec<CDerivedDeclr>, oldstyle_params: Vec<CDecl>) -> m<Type> {
+pub fn tType(handle_sue_def: bool, top_node: NodeInfo, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, derived_declrs: Vec<CDerivedDeclr>, oldstyle_params: Vec<CDecl>) -> m<Type> {
     __op_bind(mergeOldStyle(top_node, oldstyle_params, derived_declrs), buildType)
 }
 
-pub fn tTypeQuals<a>() -> m<(TypeQuals, Attributes)> {
+pub fn tTypeQuals() -> m<(TypeQuals, Attributes)> {
     foldrM(go, (noTypeQuals, vec![]))
 }
 
-pub fn typeDefRef<a>(t_node: NodeInfo, name: Ident) -> m<TypeDefRef> {
+pub fn typeDefRef(t_node: NodeInfo, name: Ident) -> m<TypeDefRef> {
     __op_bind(lookupTypeDef(name), |ty| { (TypeDefRef(name, (Some(ty)), t_node)) })
 }
 

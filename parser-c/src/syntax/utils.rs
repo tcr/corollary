@@ -5,7 +5,7 @@
 // use Language::C::Data::Ident;
 // use Language::C::Syntax::AST;
 
-pub fn compoundSubStmts<a>(_0: CBlockItem) -> Vec<CStat> {
+pub fn compoundSubStmts(_0: CBlockItem) -> Vec<CStat> {
     match (_0) {
         CBlockStmt(s) => {
             vec![s]
@@ -19,7 +19,7 @@ pub fn compoundSubStmts<a>(_0: CBlockItem) -> Vec<CStat> {
     }
 }
 
-pub fn getLabels<a>(_0: CStat) -> Vec<Ident> {
+pub fn getLabels(_0: CStat) -> Vec<Ident> {
     match (_0) {
         CLabel(l, s, _, _) => {
             __op_concat(l, getLabels(s))
@@ -33,7 +33,7 @@ pub fn getLabels<a>(_0: CStat) -> Vec<Ident> {
     }
 }
 
-pub fn getSubStmts<a>(_0: CStat) -> Vec<CStat> {
+pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
     match (_0) {
         CLabel(_, s, _, _) => {
             vec![s]
@@ -86,7 +86,7 @@ pub fn getSubStmts<a>(_0: CStat) -> Vec<CStat> {
     }
 }
 
-pub fn mapBlockItemStmts<a>(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CBlockItem) -> CBlockItem {
+pub fn mapBlockItemStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CBlockItem) -> CBlockItem {
     match (_0, _1, _2) {
         (stop, f, CBlockStmt(s)) => {
             CBlockStmt((mapSubStmts(stop, f, s)))
@@ -97,7 +97,7 @@ pub fn mapBlockItemStmts<a>(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: C
     }
 }
 
-pub fn mapSubStmts<a>(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> CStat {
+pub fn mapSubStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> CStat {
     match (_0, _1, _2) {
         (stop, _, s) => {
             /* Expr::Error */ Error
