@@ -220,17 +220,16 @@ SContext: () = {
 Item: Item = {
     "import" "qualified"? <ImportList+> ("as" ImportList+)? ("hiding" ImportList+)? => Item::Import(<>),
 
-    "type" <d:Ident> <args:TypeGroup?> "=" TypeGroup
-      Where
-      => Item::Type, //TODO populate
+    "type" <id:Ident> <args:TypeSub*> "=" <p:TypeGroup>
+      => Item::Type(id, p, args),
     "data" <id:Ident>
       => Item::Data(id, vec![], vec![], vec![]),
     "data" <id:Ident> <args:TypeSub*> "=" <p:Pipe<TypeGroup>>
       <derives:("deriving" <ImportList>)?>
       => Item::Data(id, p, derives.unwrap_or(vec![]), args),
-    "newtype" SContext? <id:Ident+> "=" <p:Type>
+    "newtype" <id:Ident> <args:TypeSub*> "=" <p:Type>
       <derives:("deriving" <ImportList>)?>
-      => Item::Newtype(id[0].clone(), p, derives.unwrap_or(vec![])),
+      => Item::Newtype(id, p, derives.unwrap_or(vec![]), args),
     "class" SContext? Ident+
       Where
       => Item::Class,

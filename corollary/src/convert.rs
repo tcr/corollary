@@ -44,6 +44,9 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "pure" => "__pure".to_string(),
         "as" => "__as".to_string(),
         "main" => "__main".to_string(),
+
+        "map" => "__map!".to_string(),
+
         _ => {
             let mut expr = expr.to_string();
 
@@ -89,6 +92,7 @@ pub fn print_op_fn(value: &str) -> String {
         "$!" => "__op_TODO_dollarnot".to_string(),
         ".&." => "__op_dotted_and".to_string(),
         ".|." => "__op_dotted_or".to_string(),
+        "!!" => "__op_index".to_string(),
         "/=" => "__op_assign_div".to_string(),
         "+=" => "__op_assign_add".to_string(),
         "-=" => "__op_assign_sub".to_string(),
@@ -581,9 +585,16 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
     }
     out.push(format!(""));
 
-    // Print out data structures.
+    // Print out data structures & type aliases.
     for item in stats {
-        if let ast::Item::Data(name, data, derives, args) = item.clone() {
+        let mut item = item.clone();
+
+        let mut force_enum = false;
+        if let ast::Item::Newtype(name, ty, derives, args) = item.clone() {
+            item = ast::Item::Data(name, vec![vec![ty]], derives, args);
+        }
+
+        if let ast::Item::Data(name, data, derives, args) = item {
             let derive_rust = derives.iter()
                 .map(|x| {
                     // Convert common Haskell "derive" terms into Rust's
@@ -676,7 +687,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                     }
                 }
 
-                out.push(format!("{}{}struct {}{}\n{}",
+                out.push(format!("{}{}pub struct {}{}\n{}",
                     state.indent(),
                     if derive_rust.len() > 0 {
                         format!("#[derive({})]\n{}", derive_rust.join(", "), state.indent())
@@ -693,6 +704,19 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                 ));
             }
             out.push("".to_string())
+        } else if let ast::Item::Type(name, data, args) = item.clone() {
+            assert!(data.len() > 0);
+            let tyset = data[0].clone(); // 0th in pipe sequence
+            let props = format!(" = {};", print_type(state, &tyset));
+            out.push(format!("{}pub type {}{}\n",
+                state.indent(),
+                print_type(state, Ty::Span({
+                    let mut v = vec![Ty::Ref(name)];
+                    v.extend(args);
+                    v
+                })),
+                props,
+            ));
         }
     }
 
@@ -782,10 +806,19 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
             for (arg, ty) in args.iter().zip(t.iter()) {
                 args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
             }
+            let mut type_args = vec![];
+            let trans_name = print_type_ident(state, &key);
+            if trans_name != "__main" {
+                type_args.push("a");
+                if trans_name == "rmap" {
+                    type_args.push("b");
+                }
+            }
             out.push(
-                format!("{}pub fn {}({}) -> {} {{\n{}{}\n{}}}\n",
+                format!("{}pub fn {}{}({}) -> {} {{\n{}{}\n{}}}\n",
                     state.indent(),
-                    print_type_ident(state, &key),
+                    trans_name,
+                    format!("<{}>", type_args.join(", ")),
                     args_span.join(", "),
                     print_type(state.tab(), t.last().unwrap()),
                     state.tab().indent(),

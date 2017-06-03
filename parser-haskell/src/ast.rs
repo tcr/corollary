@@ -45,10 +45,12 @@ pub enum Opcode {
 pub enum Item {
     Import(Vec<Vec<Ident>>),
 
-    Type,
     // Name, Inner Types, Deriving IDs, Type Parameters
     Data(Ident, Vec<Vec<Ty>>, Vec<Ident>, Vec<Ty>),
-    Newtype(Ident, Ty, Vec<Ident>),
+    // Name, Wrapped Type, Deriving IDs, Type Parameters
+    Newtype(Ident, Ty, Vec<Ident>, Vec<Ty>),
+    // Name, Wrapped Type, Type Parameters
+    Type(Ident, Vec<Ty>, Vec<Ty>),
     Class,
     Instance,
 
