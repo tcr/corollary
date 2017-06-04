@@ -763,7 +763,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                     .collect::<Vec<_>>();
 
                 // Convert args into case options.
-                let pats = args
+                let src_pats = args
                     .iter()
                     .map(|x| Pat::Ref(ast::Ident(x.to_string())))
                     .collect::<Vec<_>>();
@@ -774,12 +774,21 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                         .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
                         .collect::<Vec<_>>())),
                     fnset2.iter().map(|x| {
-                        ast::CaseCond::Direct(
-                            vec![Pat::Tuple(pats.clone())],
-                            vec![expr.clone()])
+                        match x {
+                            &ast::Assignment::Assign { ref pats, .. } => {
+                                ast::CaseCond::Direct(
+                                    vec![Pat::Tuple(pats.clone())],
+                                    vec![expr.clone()])
+                            }
+                            &ast::Assignment::Case { ref pats, .. } => {
+                                ast::CaseCond::Direct(
+                                    vec![Pat::Tuple(pats.clone())],
+                                    vec![expr.clone()])
+                            }
+                        }
                     }).collect::<Vec<_>>(),
                 );
-                let res = vec![ast::Assignment::Assign { pats, expr }];
+                let res = vec![ast::Assignment::Assign { pats: src_pats, expr }];
                 new_cache.insert(key, res);
             } else {
                 // unreachable!();
@@ -828,7 +837,8 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
                     type_args.insert(item[1].to_string());
                 }
 
-                let type_args = type_args.into_iter().collect::<Vec<_>>();
+                let mut type_args = type_args.into_iter().collect::<Vec<_>>();
+                type_args.sort();
 
                 let trans_name = print_type_ident(state, &key);
                 out.push(

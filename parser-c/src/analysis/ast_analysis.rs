@@ -57,10 +57,10 @@ pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls>
 
 pub fn analyseDecl(_0: bool, _1: CDecl) -> m<()> {
     match (_0, _1) {
-        (_0, _1) => {
+        (_is_local, CStaticAssert(_expr, _strlit, _annot)) => {
             ()
         },
-        (_0, _1) => {
+        (is_local, decl, __OP__, CDecl(declspecs, declrs, node)) => {
             ()
         },
     }
@@ -68,13 +68,13 @@ pub fn analyseDecl(_0: bool, _1: CDecl) -> m<()> {
 
 pub fn analyseExt(_0: CExtDecl) -> m<()> {
     match (_0) {
-        _0 => {
+        CAsmExt(asm, _) => {
             handleAsmBlock(asm)
         },
-        _0 => {
+        CFDefExt(fundef) => {
             handleAsmBlock(asm)
         },
-        _0 => {
+        CDeclExt(decl) => {
             handleAsmBlock(asm)
         },
     }
@@ -104,7 +104,7 @@ pub fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info):
 
 pub fn analyseFunctionBody(_0: NodeInfo, _1: VarDecl, _2: CStat, _3: m<Stmt>) -> m<Stmt> {
     match (_0, _1, _2, _3, _4) {
-        (_0, _1, _2, _3, _4) => {
+        (node_info, decl, s, __OP__, CCompound(localLabels, items, _)) => {
             /*do*/ {
                 enterFunctionScope;
                 mapM_((withDefTable(defineLabel)), (__op_addadd(localLabels, getLabels(s))));
@@ -114,7 +114,7 @@ pub fn analyseFunctionBody(_0: NodeInfo, _1: VarDecl, _2: CStat, _3: m<Stmt>) ->
                 s
             }
         },
-        (_0, _1, _2, _3, _4) => {
+        (_, _, s) => {
             /*do*/ {
                 enterFunctionScope;
                 mapM_((withDefTable(defineLabel)), (__op_addadd(localLabels, getLabels(s))));
@@ -141,13 +141,13 @@ pub fn analyseTypeDef(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CD
 
 pub fn builtinType(_0: CBuiltin) -> m<Type> {
     match (_0) {
-        _0 => {
+        CBuiltinVaArg(_, d, _) => {
             analyseTypeDecl(d)
         },
-        _0 => {
+        CBuiltinOffsetOf(_, _, _) => {
             analyseTypeDecl(d)
         },
-        _0 => {
+        CBuiltinTypesCompatible(_, _, _) => {
             analyseTypeDecl(d)
         },
     }
@@ -159,10 +159,10 @@ pub fn checkGuard(c: Vec<StmtCtx>, e: CExpr) -> m<()> {
 
 pub fn checkInits(_0: Type, _1: Vec<CDesignator>, _2: CInitList) -> m<()> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (_, _, []) => {
             ()
         },
-        (_0, _1, _2) => {
+        (t, dds, [(ds, i), is]) => {
             ()
         },
     }
@@ -185,10 +185,10 @@ pub fn complexBaseType(ni: NodeInfo, c: Vec<StmtCtx>, side: ExprSide, e: CExpr) 
 
 pub fn computeFunDefStorage(_0: Ident, _1: StorageSpec) -> m<Storage> {
     match (_0, _1) {
-        (_0, _1) => {
+        (_, StaticSpec(_)) => {
             return(FunLinkage(InternalLinkage))
         },
-        (_0, _1) => {
+        (ident, other_spec) => {
             return(FunLinkage(InternalLinkage))
         },
     }
@@ -342,13 +342,13 @@ pub fn defineParams(ni: NodeInfo, decl: VarDecl) -> m<()> {
 
 pub fn enclosingFunctionType(_0: Vec<StmtCtx>) -> Option<Type> {
     match (_0) {
-        _0 => {
+        [] => {
             None
         },
-        _0 => {
+        [FunCtx(vd), _] => {
             None
         },
-        _0 => {
+        [_, cs] => {
             None
         },
     }
@@ -382,10 +382,10 @@ pub fn extVarDecl(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, typ, node
 
 pub fn getParams(_0: Type) -> Option<Vec<ParamDecl>> {
     match (_0) {
-        _0 => {
+        FunctionType(FunType(_, params, _), _) => {
             Some(params)
         },
-        _0 => {
+        _ => {
             Some(params)
         },
     }
@@ -426,10 +426,10 @@ handleVarDecl(true, (Decl(vardecl, node_info)))
 
 pub fn matchDesignator(_0: CDesignator, _1: CDesignator) -> bool {
     match (_0, _1) {
-        (_0, _1) => {
+        (CMemberDesig(m1, _), CMemberDesig(m2, _)) => {
             (m1 == m2)
         },
-        (_0, _1) => {
+        (_, _) => {
             (m1 == m2)
         },
     }
@@ -437,13 +437,13 @@ pub fn matchDesignator(_0: CDesignator, _1: CDesignator) -> bool {
 
 pub fn tBlockItem(_0: Vec<StmtCtx>, _1: CBlockItem) -> m<Type> {
     match (_0, _1) {
-        (_0, _1) => {
+        (c, CBlockStmt(s)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (_, CBlockDecl(d)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (_, CNestedFunDef(fd)) => {
             tStmt(c, s)
         },
     }
@@ -451,43 +451,43 @@ pub fn tBlockItem(_0: Vec<StmtCtx>, _1: CBlockItem) -> m<Type> {
 
 pub fn tDesignator(_0: Type, _1: Vec<CDesignator>) -> m<Type> {
     match (_0, _1) {
-        (_0, _1) => {
+        (ArrayType(bt, _, _, _), [CArrDesig(e, ni), ds]) => {
             /*do*/ {
                 __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                 tDesignator(bt, ds)
             }
         },
-        (_0, _1) => {
+        (ArrayType(bt, _, _, _), [CRangeDesig(e1, e2, ni), ds]) => {
             /*do*/ {
                 __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                 tDesignator(bt, ds)
             }
         },
-        (_0, _1) => {
+        (ArrayType(_, _, _, _), [d, _]) => {
             /*do*/ {
                 __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                 tDesignator(bt, ds)
             }
         },
-        (_0, _1) => {
+        (t, __OP__, DirectType(TyComp(_), _, _), [CMemberDesig(m, ni), ds]) => {
             /*do*/ {
                 __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                 tDesignator(bt, ds)
             }
         },
-        (_0, _1) => {
+        (DirectType(TyComp(_), _, _), [d, _]) => {
             /*do*/ {
                 __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                 tDesignator(bt, ds)
             }
         },
-        (_0, _1) => {
+        (t, []) => {
             /*do*/ {
                 __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                 tDesignator(bt, ds)
             }
         },
-        (_0, _1) => {
+        (_t, _) => {
             /*do*/ {
                 __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
                 tDesignator(bt, ds)
@@ -524,7 +524,7 @@ pub fn tExpr(c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m<Type> {
 
 pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (c, side, CBinary(op, le, re, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -534,7 +534,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CUnary(CAdrOp, e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -544,7 +544,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, _, CUnary(CIndOp, e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -554,7 +554,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, _, CUnary(CCompOp, e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -564,7 +564,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CUnary(CNegOp, e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -574,7 +574,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CUnary(op, e, _)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -584,7 +584,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, _, CIndex(b, i, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -594,7 +594,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CCond(e1, me2, e3, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -604,7 +604,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, _, CMember(e, m, deref, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -614,7 +614,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CComma(es, _)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -624,7 +624,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CCast(d, e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -634,7 +634,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CSizeofExpr(e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -644,7 +644,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CAlignofExpr(e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -654,7 +654,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CComplexReal(e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -664,7 +664,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CComplexImag(e, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -674,7 +674,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (_, side, CLabAddrExpr(_, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -684,7 +684,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (_, side, CCompoundLit(d, initList, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -694,7 +694,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (_, RValue, CAlignofType(_, _)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -704,7 +704,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (_, RValue, CSizeofType(_, _)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -714,7 +714,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (_, LValue, CAlignofType(_, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -724,7 +724,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (_, LValue, CSizeofType(_, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -734,7 +734,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (ctx, side, CGenericSelection(expr, list, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -744,7 +744,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (_, _, CVar(i, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -754,7 +754,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (_, _, CConst(c)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -764,7 +764,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (_, _, CBuiltinExpr(b)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -774,7 +774,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, side, CCall(CVar(i, _), args, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -784,7 +784,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, _, CCall(fe, args, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -794,7 +794,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, _, CAssign(op, le, re, ni)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -804,7 +804,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
                 binopType_q(ni, op, lt, rt)
             }
         },
-        (_0, _1, _2) => {
+        (c, _, CStatExpr(s, _)) => {
             /*do*/ {
                 when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
                 let lt = tExpr(c, RValue, le);
@@ -819,7 +819,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
 
 pub fn tInit(_0: Type, _1: CInit, _2: m<Initializer>) -> m<Initializer> {
     match (_0, _1, _2, _3) {
-        (_0, _1, _2, _3) => {
+        (t, i, __OP__, CInitExpr(e, ni)) => {
             /*do*/ {
                 let it = tExpr(vec![], RValue, e);
 
@@ -827,7 +827,7 @@ pub fn tInit(_0: Type, _1: CInit, _2: m<Initializer>) -> m<Initializer> {
                 i
             }
         },
-        (_0, _1, _2, _3) => {
+        (t, i, __OP__, CInitList(initList, ni)) => {
             /*do*/ {
                 let it = tExpr(vec![], RValue, e);
 
@@ -840,22 +840,22 @@ pub fn tInit(_0: Type, _1: CInit, _2: m<Initializer>) -> m<Initializer> {
 
 pub fn tInitList(_0: NodeInfo, _1: Type, _2: CInitList) -> m<()> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (_, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [([], CInitExpr(e, __OP__, CConst(CStrConst(_, _)), _))]) => {
             __op_rshift(tExpr(vec![], RValue, e), ())
         },
-        (_0, _1, _2) => {
+        (ni, t, __OP__, ArrayType(_, _, _, _), initList) => {
             __op_rshift(tExpr(vec![], RValue, e), ())
         },
-        (_0, _1, _2) => {
+        (ni, t, __OP__, DirectType(TyComp(ctr), _, _), initList) => {
             __op_rshift(tExpr(vec![], RValue, e), ())
         },
-        (_0, _1, _2) => {
+        (_, PtrType(DirectType(TyVoid, _, _), _, _), _) => {
             __op_rshift(tExpr(vec![], RValue, e), ())
         },
-        (_0, _1, _2) => {
+        (_, t, [([], i)]) => {
             __op_rshift(tExpr(vec![], RValue, e), ())
         },
-        (_0, _1, _2) => {
+        (ni, t, _) => {
             __op_rshift(tExpr(vec![], RValue, e), ())
         },
     }
@@ -863,55 +863,55 @@ pub fn tInitList(_0: NodeInfo, _1: Type, _2: CInitList) -> m<()> {
 
 pub fn tStmt(_0: Vec<StmtCtx>, _1: CStat) -> m<Type> {
     match (_0, _1) {
-        (_0, _1) => {
+        (c, CLabel(_, s, _, _)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CExpr(e, _)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CCompound(ls, body, _)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CIf(e, sthen, selse, _)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CSwitch(e, s, ni)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CWhile(e, s, _, _)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (_, CGoto(l, ni)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CCont(ni)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CBreak(ni)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CReturn(Some(e), ni)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (_, CReturn(None, _)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (_, CAsm(_, _)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CCase(e, s, ni)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CCases(e1, e2, s, ni)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CDefault(s, ni)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CFor(i, g, inc, s, _)) => {
             tStmt(c, s)
         },
-        (_0, _1) => {
+        (c, CGotoPtr(e, ni)) => {
             tStmt(c, s)
         },
     }

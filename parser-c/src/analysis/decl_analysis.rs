@@ -90,10 +90,10 @@ pub use self::TypeSpecAnalysis::*;
 
 pub fn analyseTypeDecl(_0: CDecl) -> m<Type> {
     match (_0) {
-        _0 => {
+        CStaticAssert(_, _, node) => {
             astError(node, "Expected type declaration, found static assert".to_string())
         },
-        _0 => {
+        CDecl(declspecs, declrs, node) => {
             astError(node, "Expected type declaration, found static assert".to_string())
         },
     }
@@ -133,13 +133,13 @@ pub fn canonicalTypeSpec() -> m<TypeSpecAnalysis> {
 
 pub fn computeParamStorage(_0: NodeInfo, _1: StorageSpec) -> Either<BadSpecifierError, Storage> {
     match (_0, _1) {
-        (_0, _1) => {
+        (_, NoStorageSpec) => {
             Right((Auto(false)))
         },
-        (_0, _1) => {
+        (_, RegSpec) => {
             Right((Auto(false)))
         },
-        (_0, _1) => {
+        (node, spec) => {
             Right((Auto(false)))
         },
     }
@@ -160,13 +160,13 @@ pub fn emptyNumTypeSpec() -> NumTypeSpec {
 
 pub fn getOnlyDeclr(_0: CDecl) -> m<CDeclr> {
     match (_0) {
-        _0 => {
+        CDecl(_, [(Some(declr), _, _)], _) => {
             declr
         },
-        _0 => {
+        CDecl(_, _, _node) => {
             declr
         },
-        _0 => {
+        CStaticAssert(_, _, _) => {
             declr
         },
     }
@@ -174,16 +174,16 @@ pub fn getOnlyDeclr(_0: CDecl) -> m<CDeclr> {
 
 pub fn hasThreadLocalSpec(_0: StorageSpec) -> bool {
     match (_0) {
-        _0 => {
+        ThreadSpec => {
             true
         },
-        _0 => {
+        StaticSpec(b) => {
             true
         },
-        _0 => {
+        ExternSpec(b) => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -195,13 +195,13 @@ pub fn isTypeDef(declspecs: Vec<CDeclSpec>) -> bool {
 
 pub fn mergeOldStyle(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) -> m<Vec<CDerivedDeclr>> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (_node, [], declrs) => {
             declrs
         },
-        (_0, _1, _2) => {
+        (node, oldstyle_params, [CFunDeclr(params, attrs, fdnode), dds]) => {
             declrs
         },
-        (_0, _1, _2) => {
+        (node, _, _) => {
             declrs
         },
     }
@@ -228,10 +228,10 @@ pub fn mergeTypeAttributes(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Att
 
 pub fn mkVarName(_0: NodeInfo, _1: Option<Ident>, _2: Option<AsmName>) -> m<VarName> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (_node, None, _) => {
             NoName
         },
-        (_0, _1, _2) => {
+        (_node, Some(n), asm) => {
             NoName
         },
     }
@@ -250,10 +250,10 @@ pub fn nameOfDecl(d: CDecl) -> m<Ident> {
 
 pub fn splitCDecl(_0: CDecl, _1: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (decl, __OP__, CStaticAssert(_, _, _)) => {
             vec![decl]
         },
-        (_0, _1, _2) => {
+        (decl, __OP__, CDecl(declspecs, declrs, node)) => {
             vec![decl]
         },
     }
@@ -261,13 +261,13 @@ pub fn splitCDecl(_0: CDecl, _1: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
 
 pub fn tArraySize(_0: CArrSize) -> m<ArraySize> {
     match (_0) {
-        _0 => {
+        CNoArrSize(false) => {
             (UnknownArraySize(false))
         },
-        _0 => {
+        CNoArrSize(true) => {
             (UnknownArraySize(false))
         },
-        _0 => {
+        CArrSize(__static, szexpr) => {
             (UnknownArraySize(false))
         },
     }
@@ -356,13 +356,13 @@ pub fn tEnumType(sue_ref: SUERef, enumerators: Vec<(Ident, Option<CExpr>)>, attr
 
 pub fn tMemberDecls(_0: CDecl) -> m<Vec<MemberDecl>> {
     match (_0) {
-        _0 => {
+        CStaticAssert(_, _, node) => {
             astError(node, "expected struct or union member, found static assertion".to_string())
         },
-        _0 => {
+        CDecl(declspecs, [], node) => {
             astError(node, "expected struct or union member, found static assertion".to_string())
         },
-        _0 => {
+        CDecl(declspecs, declrs, node) => {
             astError(node, "expected struct or union member, found static assertion".to_string())
         },
     }
@@ -434,10 +434,10 @@ pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Eit
 
 pub fn tParamDecl(_0: CDecl) -> m<ParamDecl> {
     match (_0) {
-        _0 => {
+        CStaticAssert(_, _, node) => {
             astError(node, "expected parameter, not static assertion".to_string())
         },
-        _0 => {
+        CDecl(declspecs, declrs, node) => {
             astError(node, "expected parameter, not static assertion".to_string())
         },
     }
@@ -445,10 +445,10 @@ pub fn tParamDecl(_0: CDecl) -> m<ParamDecl> {
 
 pub fn tTag(_0: CStructTag) -> CompTyKind {
     match (_0) {
-        _0 => {
+        CStructTag => {
             StructTag
         },
-        _0 => {
+        CUnionTag => {
             StructTag
         },
     }

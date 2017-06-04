@@ -24,10 +24,10 @@ pub type PosLength = (Position, isize);
 
 pub fn adjustPos(_0: FilePath, _1: isize, _2: Position) -> Position {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (fname, row, Position(offs, _, _, _)) => {
             Position(offs, fname, row, 1)
         },
-        (_0, _1, _2) => {
+        (_, _, p) => {
             Position(offs, fname, row, 1)
         },
     }
@@ -39,10 +39,10 @@ pub fn builtinPos() -> Position {
 
 pub fn incOffset(_0: Position, _1: isize) -> Position {
     match (_0, _1) {
-        (_0, _1) => {
+        (Position(o, f, r, c), n) => {
             Position(((o + n)), f, r, c)
         },
-        (_0, _1) => {
+        (p, _) => {
             Position(((o + n)), f, r, c)
         },
     }
@@ -50,10 +50,10 @@ pub fn incOffset(_0: Position, _1: isize) -> Position {
 
 pub fn incPos(_0: Position, _1: isize) -> Position {
     match (_0, _1) {
-        (_0, _1) => {
+        (Position(offs, fname, row, col), n) => {
             Position(((offs + n)), fname, row, ((col + n)))
         },
-        (_0, _1) => {
+        (p, _) => {
             Position(((offs + n)), fname, row, ((col + n)))
         },
     }
@@ -69,10 +69,10 @@ pub fn internalPos() -> Position {
 
 pub fn isBuiltinPos(_0: Position) -> bool {
     match (_0) {
-        _0 => {
+        BuiltinPosition => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -80,10 +80,10 @@ pub fn isBuiltinPos(_0: Position) -> bool {
 
 pub fn isInternalPos(_0: Position) -> bool {
     match (_0) {
-        _0 => {
+        InternalPosition => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -91,10 +91,10 @@ pub fn isInternalPos(_0: Position) -> bool {
 
 pub fn isNoPos(_0: Position) -> bool {
     match (_0) {
-        _0 => {
+        NoPosition => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -102,10 +102,10 @@ pub fn isNoPos(_0: Position) -> bool {
 
 pub fn isSourcePos(_0: Position) -> bool {
     match (_0) {
-        _0 => {
+        Position(_, _, _, _) => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -121,10 +121,10 @@ pub fn position() -> Position {
 
 pub fn retPos(_0: Position) -> Position {
     match (_0) {
-        _0 => {
+        Position(offs, fname, row, _) => {
             Position(((offs + 1)), fname, ((row + 1)), 1)
         },
-        _0 => {
+        p => {
             Position(((offs + 1)), fname, ((row + 1)), 1)
         },
     }

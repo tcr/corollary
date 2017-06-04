@@ -26,10 +26,10 @@ pub fn fileOfNode() -> Option<FilePath> {
 
 pub fn getLastTokenPos(_0: NodeInfo) -> PosLength {
     match (_0) {
-        _0 => {
+        NodeInfo(_, lastTok, _) => {
             lastTok
         },
-        _0 => {
+        OnlyPos(_, lastTok) => {
             lastTok
         },
     }
@@ -61,10 +61,10 @@ pub fn mkNodeInfoPosLen() -> NodeInfo {
 
 pub fn nameOfNode(_0: NodeInfo) -> Option<Name> {
     match (_0) {
-        _0 => {
+        OnlyPos(_, _) => {
             None
         },
-        _0 => {
+        NodeInfo(_, _, name) => {
             None
         },
     }

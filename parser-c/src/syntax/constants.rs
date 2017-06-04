@@ -103,10 +103,10 @@ pub fn dQuote(s: String, t: ShowS) -> ShowS {
 
 pub fn escapeCChar(_0: Char) -> String {
     match (_0) {
-        _0 => {
+        '\'' => {
             "\\\'".to_string()
         },
-        _0 => {
+        c => {
             "\\\'".to_string()
         },
     }
@@ -114,34 +114,34 @@ pub fn escapeCChar(_0: Char) -> String {
 
 pub fn escapeChar(_0: Char) -> String {
     match (_0) {
-        _0 => {
+        '\\' => {
             "\\\\".to_string()
         },
-        _0 => {
+        '\u{7}' => {
             "\\\\".to_string()
         },
-        _0 => {
+        '\u{8}' => {
             "\\\\".to_string()
         },
-        _0 => {
+        '\u{1b}' => {
             "\\\\".to_string()
         },
-        _0 => {
+        '\u{c}' => {
             "\\\\".to_string()
         },
-        _0 => {
+        '\n' => {
             "\\\\".to_string()
         },
-        _0 => {
+        '\r' => {
             "\\\\".to_string()
         },
-        _0 => {
+        '\t' => {
             "\\\\".to_string()
         },
-        _0 => {
+        '\u{b}' => {
             "\\\\".to_string()
         },
-        _0 => {
+        c => {
             "\\\\".to_string()
         },
     }
@@ -149,10 +149,10 @@ pub fn escapeChar(_0: Char) -> String {
 
 pub fn getCChar(_0: CChar) -> String {
     match (_0) {
-        _0 => {
+        CChar(c, _) => {
             vec![c]
         },
-        _0 => {
+        CChars(cs, _) => {
             vec![c]
         },
     }
@@ -160,10 +160,10 @@ pub fn getCChar(_0: CChar) -> String {
 
 pub fn getCCharAsInt(_0: CChar) -> Integer {
     match (_0) {
-        _0 => {
+        CChar(c, _) => {
             fromIntegral((fromEnum(c)))
         },
-        _0 => {
+        CChars(_cs, _) => {
             fromIntegral((fromEnum(c)))
         },
     }
@@ -179,10 +179,10 @@ pub fn getCString(CString(__str, _): CString) -> String {
 
 pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
     match (_0, _1) {
-        (_0, _1) => {
+        (err, []) => {
             __error!(err)
         },
-        (_0, _1) => {
+        (_, [x, _]) => {
             __error!(err)
         },
     }
@@ -194,16 +194,16 @@ pub fn isAsciiSourceChar(c: Char) -> bool {
 
 pub fn isCChar(_0: Char) -> bool {
     match (_0) {
-        _0 => {
+        '\\' => {
             false
         },
-        _0 => {
+        '\'' => {
             false
         },
-        _0 => {
+        '\n' => {
             false
         },
-        _0 => {
+        c => {
             false
         },
     }
@@ -211,16 +211,16 @@ pub fn isCChar(_0: Char) -> bool {
 
 pub fn isSChar(_0: Char) -> bool {
     match (_0) {
-        _0 => {
+        '\\' => {
             false
         },
-        _0 => {
+        '\"' => {
             false
         },
-        _0 => {
+        '\n' => {
             false
         },
-        _0 => {
+        c => {
             false
         },
     }
@@ -228,10 +228,10 @@ pub fn isSChar(_0: Char) -> bool {
 
 pub fn isWideChar(_0: CChar) -> bool {
     match (_0) {
-        _0 => {
+        CChar(_, wideFlag) => {
             wideFlag
         },
-        _0 => {
+        CChars(_, wideFlag) => {
             wideFlag
         },
     }
@@ -294,7 +294,7 @@ pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
 
 pub fn unescapeChar(_0: String) -> (Char, String) {
     match (_0) {
-        _0 => {
+        ['\\', [c, cs]] => {
             match c {
                 'n' => {
                     ('\n', cs)
@@ -351,7 +351,7 @@ pub fn unescapeChar(_0: String) -> (Char, String) {
                 },
             }
         },
-        _0 => {
+        [c, cs] => {
             match c {
                 'n' => {
                     ('\n', cs)
@@ -408,7 +408,7 @@ pub fn unescapeChar(_0: String) -> (Char, String) {
                 },
             }
         },
-        _0 => {
+        [] => {
             match c {
                 'n' => {
                     ('\n', cs)
@@ -470,10 +470,10 @@ pub fn unescapeChar(_0: String) -> (Char, String) {
 
 pub fn unescapeString(_0: String) -> String {
     match (_0) {
-        _0 => {
+        [] => {
             vec![]
         },
-        _0 => {
+        cs => {
             vec![]
         },
     }

@@ -8,43 +8,43 @@
 
 pub fn arithmeticConversion(_0: TypeName, _1: TypeName) -> Option<TypeName> {
     match (_0, _1) {
-        (_0, _1) => {
+        (TyComplex(t1), TyComplex(t2)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (TyComplex(t1), TyFloating(t2)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (TyFloating(t1), TyComplex(t2)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (t1, __OP__, TyComplex(_), TyIntegral(_)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (TyIntegral(_), t2, __OP__, TyComplex(_)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (TyFloating(t1), TyFloating(t2)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (t1, __OP__, TyFloating(_), TyIntegral(_)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (TyIntegral(_), t2, __OP__, TyFloating(_)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (TyIntegral(t1), TyIntegral(t2)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (TyEnum(_), TyEnum(_)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (TyEnum(_), t2) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (t1, TyEnum(_)) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_0, _1) => {
+        (_, _) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
     }

@@ -10,13 +10,13 @@
 
 pub fn compoundSubStmts(_0: CBlockItem) -> Vec<CStat> {
     match (_0) {
-        _0 => {
+        CBlockStmt(s) => {
             vec![s]
         },
-        _0 => {
+        CBlockDecl(_) => {
             vec![s]
         },
-        _0 => {
+        CNestedFunDef(_) => {
             vec![s]
         },
     }
@@ -24,13 +24,13 @@ pub fn compoundSubStmts(_0: CBlockItem) -> Vec<CStat> {
 
 pub fn getLabels(_0: CStat) -> Vec<Ident> {
     match (_0) {
-        _0 => {
+        CLabel(l, s, _, _) => {
             __op_concat(l, getLabels(s))
         },
-        _0 => {
+        CCompound(ls, body, _) => {
             __op_concat(l, getLabels(s))
         },
-        _0 => {
+        stmt => {
             __op_concat(l, getLabels(s))
         },
     }
@@ -38,52 +38,52 @@ pub fn getLabels(_0: CStat) -> Vec<Ident> {
 
 pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
     match (_0) {
-        _0 => {
+        CLabel(_, s, _, _) => {
             vec![s]
         },
-        _0 => {
+        CCase(_, s, _) => {
             vec![s]
         },
-        _0 => {
+        CCases(_, _, s, _) => {
             vec![s]
         },
-        _0 => {
+        CDefault(s, _) => {
             vec![s]
         },
-        _0 => {
+        CExpr(_, _) => {
             vec![s]
         },
-        _0 => {
+        CCompound(_, body, _) => {
             vec![s]
         },
-        _0 => {
+        CIf(_, sthen, selse, _) => {
             vec![s]
         },
-        _0 => {
+        CSwitch(_, s, _) => {
             vec![s]
         },
-        _0 => {
+        CWhile(_, s, _, _) => {
             vec![s]
         },
-        _0 => {
+        CFor(_, _, _, s, _) => {
             vec![s]
         },
-        _0 => {
+        CGoto(_, _) => {
             vec![s]
         },
-        _0 => {
+        CGotoPtr(_, _) => {
             vec![s]
         },
-        _0 => {
+        CCont(_) => {
             vec![s]
         },
-        _0 => {
+        CBreak(_) => {
             vec![s]
         },
-        _0 => {
+        CReturn(_, _) => {
             vec![s]
         },
-        _0 => {
+        CAsm(_, _) => {
             vec![s]
         },
     }
@@ -91,10 +91,10 @@ pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
 
 pub fn mapBlockItemStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CBlockItem) -> CBlockItem {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (stop, f, CBlockStmt(s)) => {
             CBlockStmt((mapSubStmts(stop, f, s)))
         },
-        (_0, _1, _2) => {
+        (_, _, bi) => {
             CBlockStmt((mapSubStmts(stop, f, s)))
         },
     }

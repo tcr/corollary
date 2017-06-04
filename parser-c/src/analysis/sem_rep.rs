@@ -324,13 +324,13 @@ pub fn functionAttrs(d: d) -> FunctionAttrs {
 
 pub fn hasLinkage(_0: Storage) -> bool {
     match (_0) {
-        _0 => {
+        Auto(_) => {
             false
         },
-        _0 => {
+        Static(NoLinkage, _) => {
             false
         },
-        _0 => {
+        _ => {
             false
         },
     }
@@ -342,10 +342,10 @@ pub fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
 
 pub fn identOfVarName(_0: VarName) -> Ident {
     match (_0) {
-        _0 => {
+        NoName => {
             __error!("identOfVarName: NoName".to_string())
         },
-        _0 => {
+        VarName(ident, _) => {
             __error!("identOfVarName: NoName".to_string())
         },
     }
@@ -357,10 +357,10 @@ pub fn isExtDecl() -> bool {
 
 pub fn isNoName(_0: VarName) -> bool {
     match (_0) {
-        _0 => {
+        NoName => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -399,16 +399,16 @@ pub fn noTypeQuals() -> TypeQuals {
 
 pub fn objKindDescr(_0: IdentDecl) -> String {
     match (_0) {
-        _0 => {
+        Declaration(_) => {
             "declaration".to_string()
         },
-        _0 => {
+        ObjectDef(_) => {
             "declaration".to_string()
         },
-        _0 => {
+        FunctionDef(_) => {
             "declaration".to_string()
         },
-        _0 => {
+        EnumeratorDef(_) => {
             "declaration".to_string()
         },
     }
@@ -431,10 +431,10 @@ pub fn typeOfEnumDef(EnumType(__ref, _, _, _): EnumType) -> TypeName {
 
 pub fn typeOfTagDef(_0: TagDef) -> TypeName {
     match (_0) {
-        _0 => {
+        CompDef(comptype) => {
             typeOfCompDef(comptype)
         },
-        _0 => {
+        EnumDef(enumtype) => {
             typeOfCompDef(comptype)
         },
     }

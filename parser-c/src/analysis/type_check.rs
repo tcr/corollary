@@ -23,7 +23,7 @@
 
 pub fn assignCompatible(_0: CAssignOp, _1: Type, _2: Type) -> Either<String, ()> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (CAssignOp, t1, t2) => {
             match (canonicalType(t1), canonicalType(t2)) {
                 (DirectType(TyBuiltin(TyAny), _, _), _) => {
                     ()
@@ -47,7 +47,7 @@ pub fn assignCompatible(_0: CAssignOp, _1: Type, _2: Type) -> Either<String, ()>
                 },
             }
         },
-        (_0, _1, _2) => {
+        (op, t1, t2) => {
             match (canonicalType(t1), canonicalType(t2)) {
                 (DirectType(TyBuiltin(TyAny), _, _), _) => {
                     ()
@@ -188,16 +188,16 @@ pub fn compositeDeclAttrs(DeclAttrs(inl, stor, attrs1): DeclAttrs, DeclAttrs(_, 
 
 pub fn compositeParamDecl(_0: ParamDecl, _1: ParamDecl) -> Either<String, ParamDecl> {
     match (_0, _1) {
-        (_0, _1) => {
+        (ParamDecl(vd1, ni1), ParamDecl(vd2, _)) => {
             compositeParamDecl_q(ParamDecl, vd1, vd2, ni1)
         },
-        (_0, _1) => {
+        (AbstractParamDecl(vd1, _), ParamDecl(vd2, ni2)) => {
             compositeParamDecl_q(ParamDecl, vd1, vd2, ni1)
         },
-        (_0, _1) => {
+        (ParamDecl(vd1, ni1), AbstractParamDecl(vd2, _)) => {
             compositeParamDecl_q(ParamDecl, vd1, vd2, ni1)
         },
-        (_0, _1) => {
+        (AbstractParamDecl(vd1, ni1), AbstractParamDecl(vd2, _)) => {
             compositeParamDecl_q(ParamDecl, vd1, vd2, ni1)
         },
     }
@@ -213,13 +213,13 @@ pub fn compositeParamDecl_q(f: fn(VarDecl) -> fn(NodeInfo) -> ParamDecl, VarDecl
 
 pub fn compositeSize(_0: ArraySize, _1: ArraySize) -> Either<String, ArraySize> {
     match (_0, _1) {
-        (_0, _1) => {
+        (UnknownArraySize(_), s2) => {
             s2
         },
-        (_0, _1) => {
+        (s1, UnknownArraySize(_)) => {
             s2
         },
-        (_0, _1) => {
+        (ArraySize(s1, e1), ArraySize(s2, e2)) => {
             s2
         },
     }
@@ -227,46 +227,46 @@ pub fn compositeSize(_0: ArraySize, _1: ArraySize) -> Either<String, ArraySize> 
 
 pub fn compositeType(_0: Type, _1: Type) -> Either<String, Type> {
     match (_0, _1) {
-        (_0, _1) => {
+        (t1, DirectType(TyBuiltin(TyAny), _, _)) => {
             t1
         },
-        (_0, _1) => {
+        (DirectType(TyBuiltin(TyAny), _, _), t2) => {
             t1
         },
-        (_0, _1) => {
+        (t1, __OP__, DirectType(tn1, q1, a1), t2, __OP__, DirectType(tn2, q2, a2)) => {
             t1
         },
-        (_0, _1) => {
+        (PtrType(t1, q1, a1), PtrType(DirectType(TyVoid, _, _), q2, _)) => {
             t1
         },
-        (_0, _1) => {
+        (PtrType(DirectType(TyVoid, _, _), q1, _), PtrType(t2, q2, a2)) => {
             t1
         },
-        (_0, _1) => {
+        (PtrType(t1, q1, a1), t2) => {
             t1
         },
-        (_0, _1) => {
+        (t1, PtrType(t2, q2, a2)) => {
             t1
         },
-        (_0, _1) => {
+        (ArrayType(t1, _sz1, q1, a1), t2) => {
             t1
         },
-        (_0, _1) => {
+        (t1, ArrayType(t2, _sz2, q2, a2)) => {
             t1
         },
-        (_0, _1) => {
+        (ArrayType(t1, s1, q1, a1), ArrayType(t2, s2, q2, a2)) => {
             t1
         },
-        (_0, _1) => {
+        (t1, t2) => {
             t1
         },
-        (_0, _1) => {
+        (TypeDefType(tdr1, _q1, _a1), TypeDefType(tdr2, _q2, _a2)) => {
             t1
         },
-        (_0, _1) => {
+        (FunctionType(ft1, attrs1), FunctionType(ft2, attrs2)) => {
             t1
         },
-        (_0, _1) => {
+        (t1, t2) => {
             t1
         },
     }
@@ -313,22 +313,22 @@ pub fn conditionalType_q(ni: NodeInfo, t1: Type, t2: Type) -> m<Type> {
 
 pub fn constType(_0: CConst) -> m<Type> {
     match (_0) {
-        _0 => {
+        CIntConst(CInteger(_, _, flags), _) => {
             return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
         },
-        _0 => {
+        CCharConst(CChar(_, true), _) => {
             return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
         },
-        _0 => {
+        CCharConst(CChar(_, false), _) => {
             return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
         },
-        _0 => {
+        CCharConst(CChars(_, _), _) => {
             return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
         },
-        _0 => {
+        CFloatConst(CFloat(fs), _) => {
             return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
         },
-        _0 => {
+        CStrConst(CString(chars, wide), ni) => {
             return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
         },
     }
@@ -336,28 +336,28 @@ pub fn constType(_0: CConst) -> m<Type> {
 
 pub fn deepTypeAttrs(_0: Type) -> m<Attributes> {
     match (_0) {
-        _0 => {
+        DirectType(TyComp(CompTypeRef(sue, _, ni)), _, attrs) => {
             liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
         },
-        _0 => {
+        DirectType(TyEnum(EnumTypeRef(sue, ni)), _, attrs) => {
             liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
         },
-        _0 => {
+        DirectType(_, _, attrs) => {
             liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
         },
-        _0 => {
+        PtrType(t, _, attrs) => {
             liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
         },
-        _0 => {
+        ArrayType(t, _, _, attrs) => {
             liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
         },
-        _0 => {
+        FunctionType(FunType(t, _, _), attrs) => {
             liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
         },
-        _0 => {
+        FunctionType(FunTypeIncomplete(t), attrs) => {
             liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
         },
-        _0 => {
+        TypeDefType(TypeDefRef(i, _, ni), _, attrs) => {
             liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
         },
     }
@@ -365,13 +365,13 @@ pub fn deepTypeAttrs(_0: Type) -> m<Attributes> {
 
 pub fn derefType(_0: Type) -> Either<String, Type> {
     match (_0) {
-        _0 => {
+        PtrType(t, _, _) => {
             t
         },
-        _0 => {
+        ArrayType(t, _, _, _) => {
             t
         },
-        _0 => {
+        t => {
             t
         },
     }
@@ -379,13 +379,13 @@ pub fn derefType(_0: Type) -> Either<String, Type> {
 
 pub fn expandAnonymous(_0: NodeInfo, _1: (VarName, Type)) -> m<Vec<(Ident, Type)>> {
     match (_0, _1) {
-        (_0, _1) => {
+        (ni, (NoName, DirectType(TyComp(ctr), _, _))) => {
             __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni))
         },
-        (_0, _1) => {
+        (_, (NoName, _)) => {
             __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni))
         },
-        (_0, _1) => {
+        (_, (VarName(n, _), t)) => {
             __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni))
         },
     }
@@ -444,10 +444,10 @@ pub fn pType() -> String {
 
 pub fn sizeEqual(_0: CExpr, _1: CExpr) -> bool {
     match (_0, _1) {
-        (_0, _1) => {
+        (CConst(CIntConst(i1, _)), CConst(CIntConst(i2, _))) => {
             (i1 == i2)
         },
-        (_0, _1) => {
+        (e1, e2) => {
             (i1 == i2)
         },
     }
@@ -509,10 +509,10 @@ pub fn typeError<a>() -> m<a> {
 
 pub fn typeErrorOnLeft<a>(_0: NodeInfo, _1: Either<String, a>) -> m<a> {
     match (_0, _1) {
-        (_0, _1) => {
+        (ni, Left(err)) => {
             typeError(ni, err)
         },
-        (_0, _1) => {
+        (_, Right(v)) => {
             typeError(ni, err)
         },
     }

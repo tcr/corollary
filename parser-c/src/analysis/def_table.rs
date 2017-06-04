@@ -57,10 +57,10 @@ pub use self::TagEntryKind::*;
 
 pub fn compatIdentEntry(_0: IdentEntry) -> bool {
     match (_0) {
-        _0 => {
+        Left(_tydef) => {
             either((__TODO_const(true)), (__TODO_const(false)))
         },
-        _0 => {
+        Right(def) => {
             either((__TODO_const(true)), (__TODO_const(false)))
         },
     }
@@ -72,19 +72,19 @@ pub fn compatTagEntry(te1: TagEntry, te2: TagEntry) -> bool {
 
 pub fn declStatusDescr(_0: DeclarationStatus<t>) -> String {
     match (_0) {
-        _0 => {
+        NewDecl => {
             "new".to_string()
         },
-        _0 => {
+        Redeclared(_) => {
             "new".to_string()
         },
-        _0 => {
+        KeepDef(_) => {
             "new".to_string()
         },
-        _0 => {
+        Shadowed(_) => {
             "new".to_string()
         },
-        _0 => {
+        KindMismatch(_) => {
             "new".to_string()
         },
     }
@@ -276,16 +276,16 @@ pub fn mergeDefTable(DefTable(i1, t1, l1, m1, r1, tt1): DefTable, DefTable(i2, t
 
 pub fn tagKind(_0: TagEntry) -> TagEntryKind {
     match (_0) {
-        _0 => {
+        Left(CompDecl(cd)) => {
             CompKind((compTag(cd)))
         },
-        _0 => {
+        Left(EnumDecl(_)) => {
             CompKind((compTag(cd)))
         },
-        _0 => {
+        Right(CompDef(cd)) => {
             CompKind((compTag(cd)))
         },
-        _0 => {
+        Right(EnumDef(_)) => {
             CompKind((compTag(cd)))
         },
     }

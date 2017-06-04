@@ -308,13 +308,13 @@ pub fn fmapInitList<a, b>(_f: fn(a) -> b) -> CInitializerList<b> {
 
 pub fn isSUEDef<a>(_0: CTypeSpecifier<a>) -> bool {
     match (_0) {
-        _0 => {
+        CSUType(CStruct(_, _, Some(_), _, _), _) => {
             true
         },
-        _0 => {
+        CEnumType(CEnum(_, Some(_), _, _), _) => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }

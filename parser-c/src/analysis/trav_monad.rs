@@ -57,16 +57,16 @@ fn options(a: TravState) -> TravOptions { a.options }
 
 pub fn _checkIdentTyRedef(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m<()> {
     match (_0, _1) {
-        (_0, _1) => {
+        (Right(decl), status) => {
             checkVarRedef(decl, status)
         },
-        (_0, _1) => {
+        (Left(tydef), KindMismatch(old_def)) => {
             checkVarRedef(decl, status)
         },
-        (_0, _1) => {
+        (Left(tydef), Redeclared(old_def)) => {
             checkVarRedef(decl, status)
         },
-        (_0, _1) => {
+        (Left(_tydef), _) => {
             checkVarRedef(decl, status)
         },
     }
@@ -129,16 +129,16 @@ pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m
     }
 }
 
-pub fn concatMapM<b, a>(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
+pub fn concatMapM<a, b>(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
     liftM(concat, mapM(f))
 }
 
 pub fn createSUERef(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
     match (_0, _1) {
-        (_0, _1) => {
+        (_node_info, Some(ident)) => {
             return(NamedRef(ident))
         },
-        (_0, _1) => {
+        (node_info, None) => {
             return(NamedRef(ident))
         },
     }
@@ -236,10 +236,10 @@ DeclEvent
 
 pub fn handleParamDecl(_0: ParamDecl, _1: m<()>) -> m<()> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (pd, __OP__, AbstractParamDecl(_, _)) => {
             handleDecl((ParamEvent(pd)))
         },
-        (_0, _1, _2) => {
+        (pd, __OP__, ParamDecl(vardecl, node)) => {
             handleDecl((ParamEvent(pd)))
         },
     }
@@ -307,10 +307,10 @@ pub fn initTravState(userst: s) -> TravState<s> {
 
 pub fn isDeclaration(_0: IdentDecl) -> bool {
     match (_0) {
-        _0 => {
+        Declaration(_) => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -357,7 +357,7 @@ pub fn lookupTypeDef(ident: Ident) -> m<Type> {
         } })
 }
 
-pub fn mapMaybeM<b, a>(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
+pub fn mapMaybeM<a, b>(m: Option<a>, f: fn(a) -> m<b>) -> m<Option<b>> {
     maybe((None), (liftM(Some, f)), m)
 }
 
@@ -419,10 +419,10 @@ pub fn runTrav_<a>(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
 
 pub fn throwOnLeft<a>(_0: Either<e, a>) -> m<a> {
     match (_0) {
-        _0 => {
+        Left(err) => {
             throwTravError(err)
         },
-        _0 => {
+        Right(v) => {
             throwTravError(err)
         },
     }

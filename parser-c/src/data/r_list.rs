@@ -46,10 +46,10 @@ pub fn snoc<a>(Reversed(xs): Reversed<Vec<a>>, x: a) -> Reversed<Vec<a>> {
 
 pub fn viewr<a>(_0: Reversed<Vec<a>>) -> (Reversed<Vec<a>>, a) {
     match (_0) {
-        _0 => {
+        Reversed([]) => {
             __error!("viewr: empty RList".to_string())
         },
-        _0 => {
+        Reversed([x, xs]) => {
             __error!("viewr: empty RList".to_string())
         },
     }

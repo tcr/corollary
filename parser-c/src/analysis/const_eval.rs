@@ -47,37 +47,37 @@ fn voidAlign(a: MachineDesc) -> Integer { a.voidAlign }
 
 pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyVoid, _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyIntegral(it), _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyFloating(ft), _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyComplex(ft), _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyEnum(_), _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyBuiltin(b), _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (md, _, PtrType(_, _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (md, n, ArrayType(bt, ArraySize(_, _), _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
             return(voidAlign(md))
         },
-        (_0, _1, _2) => {
+        (_, n, t) => {
             return(voidAlign(md))
         },
     }
@@ -85,16 +85,16 @@ pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
 
 pub fn boolValue(_0: CExpr) -> Option<bool> {
     match (_0) {
-        _0 => {
+        CConst(CIntConst(i, _)) => {
             Some(__op_assign_div(getCInteger(i), 0))
         },
-        _0 => {
+        CConst(CCharConst(c, _)) => {
             Some(__op_assign_div(getCInteger(i), 0))
         },
-        _0 => {
+        CConst(CStrConst(_, _)) => {
             Some(__op_assign_div(getCInteger(i), 0))
         },
-        _0 => {
+        _ => {
             Some(__op_assign_div(getCInteger(i), 0))
         },
     }
@@ -136,7 +136,7 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
 
 pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CExpr> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (md, env, CCond(e1, me2, e3, ni)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -157,7 +157,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (md, env, e, __OP__, CBinary(op, e1, e2, ni)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -178,7 +178,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (md, env, CUnary(op, e, ni)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -199,7 +199,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (md, env, CCast(d, e, ni)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -220,7 +220,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (md, _, CSizeofExpr(e, ni)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -241,7 +241,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (md, _, CSizeofType(d, ni)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -262,7 +262,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (md, _, CAlignofExpr(e, ni)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -283,7 +283,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (md, _, CAlignofType(d, ni)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -304,7 +304,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (_, env, e, __OP__, CVar(i, _)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -325,7 +325,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (md, env, e, __OP__, CVar(i, _)) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -346,7 +346,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
                 }
             }
         },
-        (_0, _1, _2) => {
+        (_, _, e) => {
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
@@ -376,58 +376,58 @@ pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
 
 pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (CAddOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CSubOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CMulOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CDivOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CRmdOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CShlOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CShrOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CLeOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CGrOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CLeqOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CGeqOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CEqOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CNeqOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CAndOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CXorOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (COrOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CLndOp, i1, i2) => {
             (i1 + i2)
         },
-        (_0, _1, _2) => {
+        (CLorOp, i1, i2) => {
             (i1 + i2)
         },
     }
@@ -435,19 +435,19 @@ pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
 
 pub fn intUnOp(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
     match (_0, _1) {
-        (_0, _1) => {
+        (CPlusOp, i) => {
             Some(i)
         },
-        (_0, _1) => {
+        (CMinOp, i) => {
             Some(i)
         },
-        (_0, _1) => {
+        (CCompOp, i) => {
             Some(i)
         },
-        (_0, _1) => {
+        (CNegOp, i) => {
             Some(i)
         },
-        (_0, _1) => {
+        (_, _) => {
             Some(i)
         },
     }
@@ -455,13 +455,13 @@ pub fn intUnOp(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
 
 pub fn intValue(_0: CExpr) -> Option<Integer> {
     match (_0) {
-        _0 => {
+        CConst(CIntConst(i, _)) => {
             Some(getCInteger(i))
         },
-        _0 => {
+        CConst(CCharConst(c, _)) => {
             Some(getCInteger(i))
         },
-        _0 => {
+        _ => {
             Some(getCInteger(i))
         },
     }
@@ -469,40 +469,40 @@ pub fn intValue(_0: CExpr) -> Option<Integer> {
 
 pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyVoid, _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyIntegral(it), _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyFloating(ft), _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyComplex(ft), _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyComp(ctr), _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyEnum(_), _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, _, DirectType(TyBuiltin(b), _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, _, PtrType(_, _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
             return(voidSize(md))
         },
-        (_0, _1, _2) => {
+        (md, _, FunctionType(_, _)) => {
             return(voidSize(md))
         },
     }

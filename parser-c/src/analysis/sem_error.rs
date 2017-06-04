@@ -55,19 +55,19 @@ pub fn redefErrLabel(RedefInfo(ident, _, _, _): RedefInfo) -> String {
 
 pub fn redefErrReason(_0: RedefInfo) -> String {
     match (_0) {
-        _0 => {
+        RedefInfo(ident, DuplicateDef, _, _) => {
             __op_addadd("duplicate definition of ".to_string(), ident)
         },
-        _0 => {
+        RedefInfo(ident, ShadowedDef, _, _) => {
             __op_addadd("duplicate definition of ".to_string(), ident)
         },
-        _0 => {
+        RedefInfo(ident, DiffKindRedecl, _, _) => {
             __op_addadd("duplicate definition of ".to_string(), ident)
         },
-        _0 => {
+        RedefInfo(ident, DisagreeLinkage, _, _) => {
             __op_addadd("duplicate definition of ".to_string(), ident)
         },
-        _0 => {
+        RedefInfo(ident, NoLinkageOld, _, _) => {
             __op_addadd("duplicate definition of ".to_string(), ident)
         },
     }

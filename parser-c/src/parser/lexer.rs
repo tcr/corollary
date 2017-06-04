@@ -73,16 +73,16 @@ pub fn alexInputPrevChar(_: AlexInput) -> Char {
 
 pub fn alexMove(_0: Position, _1: Char) -> Position {
     match (_0, _1) {
-        (_0, _1) => {
+        (pos, ' ') => {
             incPos(pos, 1)
         },
-        (_0, _1) => {
+        (pos, '\n') => {
             incPos(pos, 1)
         },
-        (_0, _1) => {
+        (pos, '\r') => {
             incPos(pos, 1)
         },
-        (_0, _1) => {
+        (pos, _) => {
             incPos(pos, 1)
         },
     }
@@ -33631,247 +33631,247 @@ pub fn alex_table() -> Array<isize, isize> {
 
 pub fn idkwtok(_0: bool) -> bool {
     match (_0) {
-        _0 => {
+        ['_', ['A', ['l', ['i', ['g', ['n', ['a', ['s', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['A', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['A', ['t', ['o', ['m', ['i', ['c', []]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['B', ['o', ['o', ['l', []]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['C', ['o', ['m', ['p', ['l', ['e', ['x', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['N', ['o', ['n', ['n', ['u', ['l', ['l', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['G', ['e', ['n', ['e', ['r', ['i', ['c', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['N', ['o', ['r', ['e', ['t', ['u', ['r', ['n', []]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['N', ['u', ['l', ['l', ['a', ['b', ['l', ['e', []]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['S', ['t', ['a', ['t', ['i', ['c', ['_', ['a', ['s', ['s', ['e', ['r', ['t', []]]]]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['T', ['h', ['r', ['e', ['a', ['d', ['_', ['l', ['o', ['c', ['a', ['l', []]]]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['a', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['a', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['a', ['l', ['i', ['g', ['n', ['o', ['f', ['_', ['_', []]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['a', ['s', ['m', []]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['a', ['s', ['m', []]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['a', ['s', ['m', ['_', ['_', []]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['a', ['t', ['t', ['r', ['i', ['b', ['u', ['t', ['e', []]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['a', ['t', ['t', ['r', ['i', ['b', ['u', ['t', ['e', ['_', ['_', []]]]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['a', ['u', ['t', ['o', []]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['b', ['r', ['e', ['a', ['k', []]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['o', ['f', ['f', ['s', ['e', ['t', ['o', ['f', []]]]]]]]]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['t', ['y', ['p', ['e', ['s', ['_', ['c', ['o', ['m', ['p', ['a', ['t', ['i', ['b', ['l', ['e', ['_', ['p', []]]]]]]]]]]]]]]]]]]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['v', ['a', ['_', ['a', ['r', ['g', []]]]]]]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['c', ['a', ['s', ['e', []]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['c', ['h', ['a', ['r', []]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['c', ['o', ['m', ['p', ['l', ['e', ['x', ['_', ['_', []]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['c', ['o', ['n', ['s', ['t', []]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['c', ['o', ['n', ['s', ['t', []]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['c', ['o', ['n', ['s', ['t', ['_', ['_', []]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['c', ['o', ['n', ['t', ['i', ['n', ['u', ['e', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['d', ['e', ['f', ['a', ['u', ['l', ['t', []]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['d', ['o', []]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['d', ['o', ['u', ['b', ['l', ['e', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['e', ['l', ['s', ['e', []]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['e', ['n', ['u', ['m', []]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['e', ['x', ['t', ['e', ['n', ['s', ['i', ['o', ['n', ['_', ['_', []]]]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['e', ['x', ['t', ['e', ['r', ['n', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['f', ['l', ['o', ['a', ['t', []]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['f', ['o', ['r', []]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['g', ['o', ['t', ['o', []]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['i', ['f', []]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['i', ['m', ['a', ['g', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['i', ['m', ['a', ['g', ['_', ['_', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['i', ['n', ['l', ['i', ['n', ['e', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['i', ['n', ['l', ['i', ['n', ['e', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['i', ['n', ['l', ['i', ['n', ['e', ['_', ['_', []]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['i', ['n', ['t', []]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['i', ['n', ['t', ['1', ['2', ['8', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['l', ['a', ['b', ['e', ['l', ['_', ['_', []]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['l', ['o', ['n', ['g', []]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['n', ['o', ['n', ['n', ['u', ['l', ['l', []]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['n', ['u', ['l', ['l', ['a', ['b', ['l', ['e', []]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['r', ['e', ['a', ['l', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['r', ['e', ['a', ['l', ['_', ['_', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['r', ['e', ['g', ['i', ['s', ['t', ['e', ['r', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', []]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', ['_', ['_', []]]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['r', ['e', ['t', ['u', ['r', ['n', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['s', ['h', ['o', ['r', ['t', []]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['s', ['i', ['g', ['n', ['e', ['d', ['_', ['_', []]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['s', ['i', ['z', ['e', ['o', ['f', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['s', ['t', ['a', ['t', ['i', ['c', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['s', ['t', ['r', ['u', ['c', ['t', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['s', ['w', ['i', ['t', ['c', ['h', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['t', ['h', ['r', ['e', ['a', ['d', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['t', ['y', ['p', ['e', ['d', ['e', ['f', []]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['t', ['y', ['p', ['e', ['o', ['f', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['t', ['y', ['p', ['e', ['o', ['f', []]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['t', ['y', ['p', ['e', ['o', ['f', ['_', ['_', []]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['u', ['n', ['i', ['o', ['n', []]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['u', ['n', ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['v', ['o', ['i', ['d', []]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', []]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', []]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['_', ['_', ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', ['_', ['_', []]]]]]]]]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        ['w', ['h', ['i', ['l', ['e', []]]]]] => {
             tok(8, CTokAlignas)
         },
-        _0 => {
+        cs => {
             tok(8, CTokAlignas)
         },
     }
@@ -33960,7 +33960,7 @@ pub fn quickIndex(arr: bool) -> bool {
 
 pub fn readCOctal(_0: String, _1: Either<String, CInteger>) -> Either<String, CInteger> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (s, __OP__, ['0', r]) => {
             match r {
                 [c, _] if isDigit(c) => { readCInteger(OctalRepr, r) }
                 _ => {
@@ -33968,7 +33968,7 @@ pub fn readCOctal(_0: String, _1: Either<String, CInteger>) -> Either<String, CI
                 },
             }
         },
-        (_0, _1, _2) => {
+        _ => {
             match r {
                 [c, _] if isDigit(c) => { readCInteger(OctalRepr, r) }
                 _ => {
@@ -34008,21 +34008,21 @@ pub fn token_plus<a>(mkTok: fn(PosLength) -> fn(a) -> CToken, fromStr: fn(String
 
 pub fn unescapeMultiChars(_0: String, _1: Vec<Char>) -> Vec<Char> {
     match (_0, _1, _2) {
-        (_0, _1, _2) => {
+        (cs, __OP__, [_, [_, _]]) => {
             match unescapeChar(cs) {
                 (c, cs_q) => {
                     __op_concat(c, unescapeMultiChars(cs_q))
                 },
             }
         },
-        (_0, _1, _2) => {
+        ['\'', []] => {
             match unescapeChar(cs) {
                 (c, cs_q) => {
                     __op_concat(c, unescapeMultiChars(cs_q))
                 },
             }
         },
-        (_0, _1, _2) => {
+        _ => {
             match unescapeChar(cs) {
                 (c, cs_q) => {
                     __op_concat(c, unescapeMultiChars(cs_q))

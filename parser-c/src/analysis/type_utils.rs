@@ -13,13 +13,13 @@
 
 pub fn baseType(_0: Type) -> Type {
     match (_0) {
-        _0 => {
+        PtrType(t, _, _) => {
             t
         },
-        _0 => {
+        ArrayType(t, _, _, _) => {
             t
         },
-        _0 => {
+        _ => {
             t
         },
     }
@@ -60,22 +60,22 @@ pub fn constVoidPtr() -> Type {
 
 pub fn deepDerefTypeDef(_0: Type) -> Type {
     match (_0) {
-        _0 => {
+        PtrType(t, quals, attrs) => {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        _0 => {
+        ArrayType(t, size, quals, attrs) => {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        _0 => {
+        FunctionType(FunType(rt, params, varargs), attrs) => {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        _0 => {
+        FunctionType(FunTypeIncomplete(rt), attrs) => {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        _0 => {
+        TypeDefType(TypeDefRef(_, t, _), q, a) => {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        _0 => {
+        t => {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
     }
@@ -83,10 +83,10 @@ pub fn deepDerefTypeDef(_0: Type) -> Type {
 
 pub fn derefTypeDef(_0: Type) -> Type {
     match (_0) {
-        _0 => {
+        TypeDefType(TypeDefRef(_, t, _), q, a) => {
             (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
         },
-        _0 => {
+        ty => {
             (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
         },
     }
@@ -102,10 +102,10 @@ pub fn integral(ty: IntType) -> Type {
 
 pub fn isFloatingType(_0: Type) -> bool {
     match (_0) {
-        _0 => {
+        DirectType(TyFloating(_), _, _) => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -127,13 +127,13 @@ pub fn isFunctionType(ty: Type) -> bool {
 
 pub fn isIntegralType(_0: Type) -> bool {
     match (_0) {
-        _0 => {
+        DirectType(TyIntegral(_), _, _) => {
             true
         },
-        _0 => {
+        DirectType(TyEnum(_), _, _) => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -141,13 +141,13 @@ pub fn isIntegralType(_0: Type) -> bool {
 
 pub fn isPointerType(_0: Type) -> bool {
     match (_0) {
-        _0 => {
+        PtrType(_, _, _) => {
             true
         },
-        _0 => {
+        ArrayType(_, _, _, _) => {
             true
         },
-        _0 => {
+        _ => {
             true
         },
     }
@@ -189,13 +189,13 @@ pub fn ptrDiffType() -> Type {
 
 pub fn sameArraySize(_0: ArraySize, _1: ArraySize) -> bool {
     match (_0, _1) {
-        (_0, _1) => {
+        (UnknownArraySize(isStar1), UnknownArraySize(isStar2)) => {
             (isStar1 == isStar2)
         },
-        (_0, _1) => {
+        (ArraySize(s1, e1), ArraySize(s2, e2)) => {
             (isStar1 == isStar2)
         },
-        (_0, _1) => {
+        (_, _) => {
             (isStar1 == isStar2)
         },
     }
@@ -203,13 +203,13 @@ pub fn sameArraySize(_0: ArraySize, _1: ArraySize) -> bool {
 
 pub fn sameBuiltinType(_0: BuiltinType, _1: BuiltinType) -> bool {
     match (_0, _1) {
-        (_0, _1) => {
+        (TyVaList, TyVaList) => {
             true
         },
-        (_0, _1) => {
+        (TyAny, TyAny) => {
             true
         },
-        (_0, _1) => {
+        (_, _) => {
             true
         },
     }
@@ -225,13 +225,13 @@ pub fn sameEnumTypeRef(EnumTypeRef(sue1, _): EnumTypeRef, EnumTypeRef(sue2, _): 
 
 pub fn sameFunType(_0: FunType, _1: FunType) -> bool {
     match (_0, _1) {
-        (_0, _1) => {
+        (FunType(rt1, params1, isVar1), FunType(rt2, params2, isVar2)) => {
             (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
         },
-        (_0, _1) => {
+        (FunTypeIncomplete(rt1), FunTypeIncomplete(rt2)) => {
             (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
         },
-        (_0, _1) => {
+        (_, _) => {
             (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
         },
     }
@@ -298,19 +298,19 @@ pub fn testFlags(flags: Vec<f>, fi: Flags<f>) -> bool {
 
 pub fn typeAttrs(_0: Type) -> Attributes {
     match (_0) {
-        _0 => {
+        DirectType(_, _, a) => {
             a
         },
-        _0 => {
+        PtrType(_, _, a) => {
             a
         },
-        _0 => {
+        ArrayType(_, _, _, a) => {
             a
         },
-        _0 => {
+        FunctionType(_, a) => {
             a
         },
-        _0 => {
+        TypeDefType(TypeDefRef(_, t, _), _, a) => {
             a
         },
     }
@@ -338,19 +338,19 @@ pub fn typeAttrsUpd(f: fn(Attributes) -> Attributes, ty: Type) -> Type {
 
 pub fn typeQuals(_0: Type) -> TypeQuals {
     match (_0) {
-        _0 => {
+        DirectType(_, q, _) => {
             q
         },
-        _0 => {
+        PtrType(_, q, _) => {
             q
         },
-        _0 => {
+        ArrayType(_, _, q, _) => {
             q
         },
-        _0 => {
+        FunctionType(_, _) => {
             q
         },
-        _0 => {
+        TypeDefType(TypeDefRef(_, t, _), q, _) => {
             q
         },
     }

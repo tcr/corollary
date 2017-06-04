@@ -135,316 +135,316 @@ pub struct ClangCTok(ClangCVersion);
 
 pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
     match (_0) {
-        _0 => {
+        CTokLParen(pos) => {
             pos
         },
-        _0 => {
+        CTokRParen(pos) => {
             pos
         },
-        _0 => {
+        CTokLBracket(pos) => {
             pos
         },
-        _0 => {
+        CTokRBracket(pos) => {
             pos
         },
-        _0 => {
+        CTokArrow(pos) => {
             pos
         },
-        _0 => {
+        CTokDot(pos) => {
             pos
         },
-        _0 => {
+        CTokExclam(pos) => {
             pos
         },
-        _0 => {
+        CTokTilde(pos) => {
             pos
         },
-        _0 => {
+        CTokInc(pos) => {
             pos
         },
-        _0 => {
+        CTokDec(pos) => {
             pos
         },
-        _0 => {
+        CTokPlus(pos) => {
             pos
         },
-        _0 => {
+        CTokMinus(pos) => {
             pos
         },
-        _0 => {
+        CTokStar(pos) => {
             pos
         },
-        _0 => {
+        CTokSlash(pos) => {
             pos
         },
-        _0 => {
+        CTokPercent(pos) => {
             pos
         },
-        _0 => {
+        CTokAmper(pos) => {
             pos
         },
-        _0 => {
+        CTokShiftL(pos) => {
             pos
         },
-        _0 => {
+        CTokShiftR(pos) => {
             pos
         },
-        _0 => {
+        CTokLess(pos) => {
             pos
         },
-        _0 => {
+        CTokLessEq(pos) => {
             pos
         },
-        _0 => {
+        CTokHigh(pos) => {
             pos
         },
-        _0 => {
+        CTokHighEq(pos) => {
             pos
         },
-        _0 => {
+        CTokEqual(pos) => {
             pos
         },
-        _0 => {
+        CTokUnequal(pos) => {
             pos
         },
-        _0 => {
+        CTokHat(pos) => {
             pos
         },
-        _0 => {
+        CTokBar(pos) => {
             pos
         },
-        _0 => {
+        CTokAnd(pos) => {
             pos
         },
-        _0 => {
+        CTokOr(pos) => {
             pos
         },
-        _0 => {
+        CTokQuest(pos) => {
             pos
         },
-        _0 => {
+        CTokColon(pos) => {
             pos
         },
-        _0 => {
+        CTokAssign(pos) => {
             pos
         },
-        _0 => {
+        CTokPlusAss(pos) => {
             pos
         },
-        _0 => {
+        CTokMinusAss(pos) => {
             pos
         },
-        _0 => {
+        CTokStarAss(pos) => {
             pos
         },
-        _0 => {
+        CTokSlashAss(pos) => {
             pos
         },
-        _0 => {
+        CTokPercAss(pos) => {
             pos
         },
-        _0 => {
+        CTokAmpAss(pos) => {
             pos
         },
-        _0 => {
+        CTokHatAss(pos) => {
             pos
         },
-        _0 => {
+        CTokBarAss(pos) => {
             pos
         },
-        _0 => {
+        CTokSLAss(pos) => {
             pos
         },
-        _0 => {
+        CTokSRAss(pos) => {
             pos
         },
-        _0 => {
+        CTokComma(pos) => {
             pos
         },
-        _0 => {
+        CTokSemic(pos) => {
             pos
         },
-        _0 => {
+        CTokLBrace(pos) => {
             pos
         },
-        _0 => {
+        CTokRBrace(pos) => {
             pos
         },
-        _0 => {
+        CTokEllipsis(pos) => {
             pos
         },
-        _0 => {
+        CTokAlignof(pos) => {
             pos
         },
-        _0 => {
+        CTokAlignas(pos) => {
             pos
         },
-        _0 => {
+        CTokAsm(pos) => {
             pos
         },
-        _0 => {
+        CTokAtomic(pos) => {
             pos
         },
-        _0 => {
+        CTokAuto(pos) => {
             pos
         },
-        _0 => {
+        CTokBreak(pos) => {
             pos
         },
-        _0 => {
+        CTokBool(pos) => {
             pos
         },
-        _0 => {
+        CTokCase(pos) => {
             pos
         },
-        _0 => {
+        CTokChar(pos) => {
             pos
         },
-        _0 => {
+        CTokConst(pos) => {
             pos
         },
-        _0 => {
+        CTokContinue(pos) => {
             pos
         },
-        _0 => {
+        CTokComplex(pos) => {
             pos
         },
-        _0 => {
+        CTokDefault(pos) => {
             pos
         },
-        _0 => {
+        CTokDo(pos) => {
             pos
         },
-        _0 => {
+        CTokDouble(pos) => {
             pos
         },
-        _0 => {
+        CTokElse(pos) => {
             pos
         },
-        _0 => {
+        CTokEnum(pos) => {
             pos
         },
-        _0 => {
+        CTokExtern(pos) => {
             pos
         },
-        _0 => {
+        CTokFloat(pos) => {
             pos
         },
-        _0 => {
+        CTokFor(pos) => {
             pos
         },
-        _0 => {
+        CTokGeneric(pos) => {
             pos
         },
-        _0 => {
+        CTokGoto(pos) => {
             pos
         },
-        _0 => {
+        CTokInt(pos) => {
             pos
         },
-        _0 => {
+        CTokInt128(pos) => {
             pos
         },
-        _0 => {
+        CTokInline(pos) => {
             pos
         },
-        _0 => {
+        CTokIf(pos) => {
             pos
         },
-        _0 => {
+        CTokLong(pos) => {
             pos
         },
-        _0 => {
+        CTokLabel(pos) => {
             pos
         },
-        _0 => {
+        CTokNoreturn(pos) => {
             pos
         },
-        _0 => {
+        CTokNullable(pos) => {
             pos
         },
-        _0 => {
+        CTokNonnull(pos) => {
             pos
         },
-        _0 => {
+        CTokRegister(pos) => {
             pos
         },
-        _0 => {
+        CTokRestrict(pos) => {
             pos
         },
-        _0 => {
+        CTokReturn(pos) => {
             pos
         },
-        _0 => {
+        CTokShort(pos) => {
             pos
         },
-        _0 => {
+        CTokSigned(pos) => {
             pos
         },
-        _0 => {
+        CTokSizeof(pos) => {
             pos
         },
-        _0 => {
+        CTokStatic(pos) => {
             pos
         },
-        _0 => {
+        CTokStaticAssert(pos) => {
             pos
         },
-        _0 => {
+        CTokStruct(pos) => {
             pos
         },
-        _0 => {
+        CTokSwitch(pos) => {
             pos
         },
-        _0 => {
+        CTokTypedef(pos) => {
             pos
         },
-        _0 => {
+        CTokTypeof(pos) => {
             pos
         },
-        _0 => {
+        CTokThread(pos) => {
             pos
         },
-        _0 => {
+        CTokUnion(pos) => {
             pos
         },
-        _0 => {
+        CTokUnsigned(pos) => {
             pos
         },
-        _0 => {
+        CTokVoid(pos) => {
             pos
         },
-        _0 => {
+        CTokVolatile(pos) => {
             pos
         },
-        _0 => {
+        CTokWhile(pos) => {
             pos
         },
-        _0 => {
+        CTokCLit(pos, _) => {
             pos
         },
-        _0 => {
+        CTokILit(pos, _) => {
             pos
         },
-        _0 => {
+        CTokFLit(pos, _) => {
             pos
         },
-        _0 => {
+        CTokSLit(pos, _) => {
             pos
         },
-        _0 => {
+        CTokIdent(pos, _) => {
             pos
         },
-        _0 => {
+        CTokTyIdent(pos, _) => {
             pos
         },
-        _0 => {
+        CTokGnuC(_, pos) => {
             pos
         },
-        _0 => {
+        CTokClangC(pos, _) => {
             pos
         },
-        _0 => {
+        CTokEof => {
             pos
         },
     }
