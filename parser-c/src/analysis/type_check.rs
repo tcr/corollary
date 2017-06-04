@@ -121,10 +121,10 @@ pub fn binopType(op: CBinaryOp, t1: Type, t2: Type) -> Either<String, Type> {
         (CAddOp, t1_q, ArrayType(_, _, _, _)) if isIntegralType(t1_q) => { t2 }
         (_, DirectType(tn1, q1, a1), DirectType(tn2, q2, a2)) => {
             /*do*/ {
-                when((isBitOp(op)), (__op_rshift(checkIntegral(t1), checkIntegral(t2))));
+                if (isBitOp(op)) { (__op_rshift(checkIntegral(t1), checkIntegral(t2))) };
                 match arithmeticConversion(tn1, tn2) {
                     Some(tn) => {
-                        return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
+                        DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2)))
                     },
                     None => {
                         fail(render(__op_doc_conat(text("invalid binary operation:".to_string()), __op_doc_conat(pretty(t1), __op_doc_conat(pretty(op), pretty(t2))))))
@@ -207,7 +207,7 @@ pub fn compositeParamDecl_q(f: fn(VarDecl) -> fn(NodeInfo) -> ParamDecl, VarDecl
     /*do*/ {
         let vd = compositeVarDecl((VarDecl(n1, attrs1, t1_q)), (VarDecl(n2, attrs2, t2_q)));
 
-        return(f(vd, dni))
+        f(vd, dni)
     }
 }
 
@@ -288,13 +288,13 @@ pub fn conditionalType(t1: Type, t2: Type) -> Either<String, Type> {
             /*do*/ {
                 let t = compositeType(t1_q, t2_q);
 
-                return(ArrayType(t, (UnknownArraySize(false)), (mergeTypeQuals(q1, q2)), (mergeAttrs(a1, a2))))
+                ArrayType(t, (UnknownArraySize(false)), (mergeTypeQuals(q1, q2)), (mergeAttrs(a1, a2)))
             }
         },
         (t1_q(__OP__, DirectType(tn1, q1, a1)), t2_q(__OP__, DirectType(tn2, q2, a2))) => {
             match arithmeticConversion(tn1, tn2) {
                 Some(tn) => {
-                    return(DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2))))
+                    DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2)))
                 },
                 None => {
                     compositeType(t1_q, t2_q)
@@ -308,28 +308,28 @@ pub fn conditionalType(t1: Type, t2: Type) -> Either<String, Type> {
 }
 
 pub fn conditionalType_q(ni: NodeInfo, t1: Type, t2: Type) -> m<Type> {
-    typeErrorOnLeft(ni)(conditionalType(t1, t2))
+    typeErrorOnLeft(ni, conditionalType(t1, t2))
 }
 
 pub fn constType(_0: CConst) -> m<Type> {
     match (_0) {
         CIntConst(CInteger(_, _, flags), _) => {
-            return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
+            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
         },
         CCharConst(CChar(_, true), _) => {
-            return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
+            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
         },
         CCharConst(CChar(_, false), _) => {
-            return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
+            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
         },
         CCharConst(CChars(_, _), _) => {
-            return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
+            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
         },
         CFloatConst(CFloat(fs), _) => {
-            return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
+            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
         },
         CStrConst(CString(chars, wide), ni) => {
-            return(DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes))
+            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
         },
     }
 }
@@ -404,13 +404,13 @@ pub fn fieldType(ni: NodeInfo, m: Ident, t: Type) -> m<Type> {
                         ft
                     },
                     None => {
-                        typeError(ni)(__op_addadd("field not found: ".to_string(), identToString(m)))
+                        typeError(ni, __op_addadd("field not found: ".to_string(), identToString(m)))
                     },
                 }
             }
         },
         _t_q => {
-            astError(ni)(__op_addadd("field of non-composite type: ".to_string(), __op_addadd(identToString(m), __op_addadd(", ".to_string(), pType(t)))))
+            astError(ni, __op_addadd("field of non-composite type: ".to_string(), __op_addadd(identToString(m), __op_addadd(", ".to_string(), pType(t)))))
         },
     }
 }
@@ -424,7 +424,7 @@ pub fn lookupSUE(ni: NodeInfo, sue: SUERef) -> m<TagDef> {
                 td
             },
             _ => {
-                typeError(ni)(__op_addadd("unknown composite type: ".to_string(), (render(pretty))(sue)))
+                typeError(ni, __op_addadd("unknown composite type: ".to_string(), (render(pretty))(sue)))
             },
         }
     }
@@ -459,7 +459,7 @@ pub fn sueAttrs(ni: NodeInfo, sue: SUERef) -> m<Attributes> {
 
         match lookupTag(sue, dt) {
             None => {
-                astError(ni)(__op_addadd("SUE not found: ".to_string(), render((pretty(sue)))))
+                astError(ni, __op_addadd("SUE not found: ".to_string(), render((pretty(sue)))))
             },
             Some(Left(_)) => {
                 vec![]
@@ -491,13 +491,13 @@ pub fn typeDefAttrs(ni: NodeInfo, i: Ident) -> m<Attributes> {
 
         match lookupIdent(i, dt) {
             None => {
-                astError(ni)(__op_addadd("can\'t find typedef name: ".to_string(), identToString(i)))
+                astError(ni, __op_addadd("can\'t find typedef name: ".to_string(), identToString(i)))
             },
             Some(Left(TypeDef(_, t, attrs, _))) => {
                 liftM((attrs(__op_addadd)), deepTypeAttrs(t))
             },
             Some(Right(_)) => {
-                astError(ni)(__op_addadd("not a typedef name: ".to_string(), identToString(i)))
+                astError(ni, __op_addadd("not a typedef name: ".to_string(), identToString(i)))
             },
         }
     }
@@ -530,10 +530,10 @@ pub fn varAddrType(d: IdentDecl) -> Either<String, Type> {
         };
         match t {
             ArrayType(_, _, q, a) => {
-                return(PtrType(t, q, a))
+                PtrType(t, q, a)
             },
             _ => {
-                return(simplePtr(t))
+                simplePtr(t)
             },
         }
     }

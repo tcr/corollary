@@ -182,7 +182,13 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 || op == "<=" {
                 format!("({} {} {})", print_expr(state, l), op, print_expr(state, r))
             } else if op == "$" {
-                format!("{}({})", print_expr(state, l), print_expr(state, r))
+                if let &Expr::Span(ref left) = &**l {
+                    let mut left_inner = left.clone();
+                    left_inner.push((**r).clone());
+                    print_expr(state, &Expr::Span(left_inner))
+                } else {
+                    format!("{}({})", print_expr(state, l), print_expr(state, r))
+                }
             } else if op == "." {
                 let l: Expr = (**l).clone();
                 let r: Expr = (**r).clone();
@@ -251,7 +257,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         Span(ref span) => {
             let span = expr_explode(span.clone());
 
-            // TODO this is a highly specific accident the parser now relies on
+            // TODO this first clause is a highly specific accident the parser now relies on
             // this should be removed asap
             if span.len() == 2 && ({
                 if let ast::Expr::Record(..) = span[1] {
@@ -272,7 +278,8 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                     print_expr(state, &Expr::Span(span[1..].to_vec()))
                 } else {
                     // Check for `if` statements
-                    if print_expr(PrintState::new(), &span[0]) == "if" {
+                    let first_word = print_expr(PrintState::new(), &span[0]);
+                    if first_word == "if" {
                         let mut span = span.clone();
                         span.remove(0);
                         let mut then = vec![];
@@ -302,6 +309,19 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                 cond,
                                 print_expr(state, &Expr::Span(then)))
                         }
+                    } else if first_word == "unless" || first_word == "when" {
+                        let mut span = span.clone();
+                        span.remove(0);
+
+                        // Condition
+                        let cond = if first_word == "unless" {
+                            format!("!({})", print_expr(state, &span.remove(0)))
+                        } else {
+                            format!("{}", print_expr(state, &span.remove(0)))
+                        };
+                        format!("if {} {{ {} }}",
+                            cond,
+                            print_expr(state, &Expr::Span(span)))
                     } else {
                         // Print normal function invocation a(...)
                         let mut span = span.clone();

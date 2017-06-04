@@ -173,14 +173,14 @@ pub fn emptyDefTable() -> DefTable {
 
 pub fn enterBlockScope(deftbl: DefTable) -> DefTable {
     enterLocalScope(deftbl {
-        labelDefs: enterNewScope((labelDefs(deftbl)))
-    })
+            labelDefs: enterNewScope((labelDefs(deftbl)))
+        })
 }
 
 pub fn enterFunctionScope(deftbl: DefTable) -> DefTable {
     enterLocalScope(deftbl {
-        labelDefs: enterNewScope((labelDefs(deftbl)))
-    })
+            labelDefs: enterNewScope((labelDefs(deftbl)))
+        })
 }
 
 pub fn enterLocalScope(deftbl: DefTable) -> DefTable {
@@ -216,14 +216,14 @@ pub fn insertType(dt: DefTable, n: Name, t: Type) -> DefTable {
 
 pub fn leaveBlockScope(deftbl: DefTable) -> DefTable {
     leaveLocalScope(deftbl {
-        labelDefs: leaveScope_((labelDefs(deftbl)))
-    })
+            labelDefs: leaveScope_((labelDefs(deftbl)))
+        })
 }
 
 pub fn leaveFunctionScope(deftbl: DefTable) -> DefTable {
     leaveLocalScope(deftbl {
-        labelDefs: leaveScope_((labelDefs(deftbl)))
-    })
+            labelDefs: leaveScope_((labelDefs(deftbl)))
+        })
 }
 
 pub fn leaveLocalScope(deftbl: DefTable) -> DefTable {

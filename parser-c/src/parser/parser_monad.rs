@@ -57,17 +57,17 @@ fn unP(a: P) -> fn(PState) -> ParseResult<a> { a.unP }
 pub fn addTypedef(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState {
 
-        }| { POk(s {
-                tyidents: Set::insert(ident, tyids)
-            }, ()) }))
+            }| { POk(s {
+                    tyidents: Set::insert(ident, tyids)
+                }, ()) }))
 }
 
 pub fn enterScope() -> P<()> {
     P(|s, __OP__, PState {
 
-        }| { POk(s {
-                scopes: __op_concat(tyids, ss)
-            }, ()) })
+            }| { POk(s {
+                    scopes: __op_concat(tyids, ss)
+                }, ()) })
 }
 
 pub fn execParser<a>(P(parser): P<a>, input: InputStream, pos: Position, builtins: Vec<Ident>, names: Vec<Name>) -> Either<ParseError, (a, Vec<Name>)> {
@@ -88,67 +88,67 @@ pub fn failP<a>(pos: Position, msg: Vec<String>) -> P<a> {
 pub fn getCurrentPosition() -> P<Position> {
     P(|s, __OP__, PState {
 
-        }| { POk(s, pos) })
+            }| { POk(s, pos) })
 }
 
 pub fn getInput() -> P<InputStream> {
     P(|s, __OP__, PState {
 
-        }| { POk(s, i) })
+            }| { POk(s, i) })
 }
 
 pub fn getLastToken() -> P<CToken> {
     P(|s, __OP__, PState {
 
-        }| { POk(s, tok) })
+            }| { POk(s, tok) })
 }
 
 pub fn getNewName() -> P<Name> {
     P(|s, __OP__, PState {
 
-        }| { seq(n, POk(s {
-                namesupply: ns
-            }, n)) })
+            }| { seq(n, POk(s {
+                    namesupply: ns
+                }, n)) })
 }
 
 pub fn getPos() -> P<Position> {
     P(|s, __OP__, PState {
 
-        }| { POk(s, pos) })
+            }| { POk(s, pos) })
 }
 
 pub fn getSavedToken() -> P<CToken> {
     P(|s, __OP__, PState {
 
-        }| { POk(s, tok) })
+            }| { POk(s, tok) })
 }
 
 pub fn handleEofToken() -> P<()> {
     P(|s| { POk(s {
-                savedToken: (prevToken(s))
-            }, ()) })
+                    savedToken: (prevToken(s))
+                }, ()) })
 }
 
 pub fn isTypeIdent(ident: Ident) -> P<bool> {
     P(|s, __OP__, PState {
 
-        }| { __op_TODO_dollarnot(POk(s), Set::member(ident, tyids)) })
+            }| { __op_TODO_dollarnot(POk(s), Set::member(ident, tyids)) })
 }
 
 pub fn leaveScope() -> P<()> {
     P(|s, __OP__, PState {
 
-        }| { match ss {
-            [] => {
-                __error!("leaveScope: already in global scope".to_string())
-            },
-            [tyids, ss_q] => {
-                POk(s {
-                        tyidents: tyids,
-                        scopes: ss_q
-                    }, ())
-            },
-        } })
+            }| { match ss {
+                [] => {
+                    __error!("leaveScope: already in global scope".to_string())
+                },
+                [tyids, ss_q] => {
+                    POk(s {
+                            tyidents: tyids,
+                            scopes: ss_q
+                        }, ())
+                },
+            } })
 }
 
 pub fn returnP<a>(a: a) -> P<a> {
@@ -157,48 +157,48 @@ pub fn returnP<a>(a: a) -> P<a> {
 
 pub fn setInput(i: InputStream) -> P<()> {
     P(|s| { POk(s {
-                curInput: i
-            }, ()) })
+                    curInput: i
+                }, ()) })
 }
 
 pub fn setLastToken(_0: CToken) -> P<()> {
     match (_0) {
         CTokEof => {
             P(|s| { POk(s {
-                        savedToken: (prevToken(s))
-                    }, ()) })
+                            savedToken: (prevToken(s))
+                        }, ()) })
         },
         tok => {
             P(|s| { POk(s {
-                        savedToken: (prevToken(s))
-                    }, ()) })
+                            savedToken: (prevToken(s))
+                        }, ()) })
         },
     }
 }
 
 pub fn setPos(pos: Position) -> P<()> {
     P(|s| { POk(s {
-                curPos: pos
-            }, ()) })
+                    curPos: pos
+                }, ()) })
 }
 
 pub fn shadowTypedef(ident: Ident) -> P<()> {
     (P(|s, __OP__, PState {
 
-        }| { POk(s {
-                tyidents: Set::member(if ident { () }, Set::delete(tyids(then, ident), tyids(else, tyids)))
-            }, ()) }))
+            }| { POk(s {
+                    tyidents: Set::member(if ident { () }, Set::delete(tyids(then, ident), tyids(else, tyids)))
+                }, ()) }))
 }
 
 pub fn thenP<a, b>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
     P(|s| { match m(s) {
-            POk(s_q, a) => {
-                (unP((k(a))))(s_q)
-            },
-            PFailed(err, pos) => {
-                PFailed(err, pos)
-            },
-        } })
+                POk(s_q, a) => {
+                    (unP((k(a))))(s_q)
+                },
+                PFailed(err, pos) => {
+                    PFailed(err, pos)
+                },
+            } })
 }
 
 

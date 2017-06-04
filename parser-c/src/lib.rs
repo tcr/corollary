@@ -19,7 +19,7 @@ pub fn parseCFile(cpp: cpp, tmp_dir_opt: Option<FilePath>, args: Vec<String>, in
 
             __op_bind(runPreprocessor(cpp, cpp_args), handleCppError(else, readInputStream, input_file))            } };
 
-        return(parseC(input_stream, (initPos(input_file))))
+        parseC(input_stream, (initPos(input_file)))
     }
 }
 
@@ -27,7 +27,7 @@ pub fn parseCFilePre(file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
     /*do*/ {
         let input_stream = readInputStream(file);
 
-        return(parseC(input_stream, (initPos(file))))
+        parseC(input_stream, (initPos(file)))
     }
 }
 

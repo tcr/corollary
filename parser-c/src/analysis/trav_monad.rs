@@ -136,10 +136,10 @@ pub fn concatMapM<a, b>(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
 pub fn createSUERef(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
     match (_0, _1) {
         (_node_info, Some(ident)) => {
-            return(NamedRef(ident))
+            NamedRef(ident)
         },
         (node_info, None) => {
-            return(NamedRef(ident))
+            NamedRef(ident)
         },
     }
 }
@@ -172,8 +172,8 @@ pub fn generateName() -> Trav<s, Name> {
             let [new_name, gen_q] = nameGenerator(ts);
 
             put(ts {
-                nameGenerator: gen_q
-            });
+                    nameGenerator: gen_q
+                });
             new_name
         } })
 }
@@ -332,21 +332,21 @@ pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
     /*do*/ {
         let old_decl = liftM((lookupIdent(ident)), getDefTable);
 
-        mapMaybeM(old_decl)(|obj| { match obj {
-                Right(objdef) => {
-                    __op_rshift(addRef(ident, objdef), objdef)
-                },
-                Left(_tydef) => {
-                    astError((nodeInfo(ident)), (mismatchErr("lookupObject".to_string(), "an object".to_string(), "a typeDef".to_string())))
-                },
-            } })
+        mapMaybeM(old_decl, |obj| { match obj {
+                    Right(objdef) => {
+                        __op_rshift(addRef(ident, objdef), objdef)
+                    },
+                    Left(_tydef) => {
+                        astError((nodeInfo(ident)), (mismatchErr("lookupObject".to_string(), "an object".to_string(), "a typeDef".to_string())))
+                    },
+                } })
     }
 }
 
 pub fn lookupTypeDef(ident: Ident) -> m<Type> {
     __op_bind(getDefTable, |symt| { match lookupIdent(ident, symt) {
             None => {
-                astError((nodeInfo(ident)))(__op_addadd("unbound typeDef: ".to_string(), identToString(ident)))
+                astError((nodeInfo(ident)), __op_addadd("unbound typeDef: ".to_string(), identToString(ident)))
             },
             Some(Left(TypeDef(def_ident, ty, _, _))) => {
                 __op_rshift(addRef(ident, def_ident), ty)
@@ -379,14 +379,14 @@ pub fn modify(f: fn(TravState<s>) -> TravState<s>) -> Trav<s, ()> {
 
 pub fn modifyOptions(f: fn(TravOptions) -> TravOptions) -> Trav<s, ()> {
     modify(|ts| { ts {
-            options: f((options(ts)))
-        } })
+                options: f((options(ts)))
+            } })
 }
 
 pub fn modifyUserState(f: fn(s) -> s) -> Trav<s, ()> {
     modify(|ts| { ts {
-            userState: f((userState(ts)))
-        } })
+                userState: f((userState(ts)))
+            } })
 }
 
 pub fn put(s: TravState<s>) -> Trav<s, ()> {
@@ -408,13 +408,13 @@ pub fn runTrav<a>(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, Tr
 }
 
 pub fn runTrav_<a>(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
-    fmap(fst, runTrav(())(/*do*/ {
-            let r = t;
+    fmap(fst, runTrav((), /*do*/ {
+                let r = t;
 
-            let es = getErrors;
+                let es = getErrors;
 
-            (r, es)
-        }))
+                (r, es)
+            }))
 }
 
 pub fn throwOnLeft<a>(_0: Either<e, a>) -> m<a> {
@@ -443,8 +443,8 @@ pub fn warn(err: e) -> m<()> {
 pub fn withExtDeclHandler<a>(action: Trav<s, a>, handler: fn(DeclEvent) -> Trav<s, ()>) -> Trav<s, a> {
     /*do*/ {
         modify(|st| { st {
-                doHandleExtDecl: handler
-            } });
+                    doHandleExtDecl: handler
+                } });
         action
     }
 }

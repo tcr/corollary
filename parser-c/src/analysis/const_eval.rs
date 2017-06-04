@@ -48,37 +48,37 @@ fn voidAlign(a: MachineDesc) -> Integer { a.voidAlign }
 pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     match (_0, _1, _2) {
         (md, _, DirectType(TyVoid, _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (md, _, DirectType(TyIntegral(it), _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (md, _, DirectType(TyFloating(ft), _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (md, _, DirectType(TyComplex(ft), _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (md, _, DirectType(TyEnum(_), _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (md, _, DirectType(TyBuiltin(b), _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (md, _, PtrType(_, _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (md, n, ArrayType(bt, ArraySize(_, _), _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
         (_, n, t) => {
-            return(voidAlign(md))
+            voidAlign(md)
         },
     }
 }
@@ -116,16 +116,16 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
 
                     match tag {
                         StructTag => {
-                            return(sum(sizes))
+                            sum(sizes)
                         },
                         UnionTag => {
-                            return(maximum(sizes))
+                            maximum(sizes)
                         },
                     }
                 }
             },
             Some(Right(EnumDef(_))) => {
-                return(iSize(md, TyInt))
+                iSize(md, TyInt)
             },
             None => {
                 astError((nodeInfo(ctr)), "unknown composite".to_string())
@@ -146,13 +146,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -167,13 +167,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -188,13 +188,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -209,13 +209,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -230,13 +230,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -251,13 +251,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -272,13 +272,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -293,13 +293,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -314,13 +314,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -335,13 +335,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -356,13 +356,13 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 
                 match boolValue(e1_q) {
                     Some(true) => {
-                        return(fromMaybe(e1_q, me2_q))
+                        fromMaybe(e1_q, me2_q)
                     },
                     Some(false) => {
                         e3_q
                     },
                     None => {
-                        return(CCond(e1_q, me2_q, e3_q, ni))
+                        CCond(e1_q, me2_q, e3_q, ni)
                     },
                 }
             }
@@ -371,7 +371,7 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
 }
 
 pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
-    __op_bind(genName, |name| { return(CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name))))) })
+    __op_bind(genName, |name| { CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name)))) })
 }
 
 pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
@@ -470,40 +470,40 @@ pub fn intValue(_0: CExpr) -> Option<Integer> {
 pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     match (_0, _1, _2) {
         (md, _, DirectType(TyVoid, _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, _, DirectType(TyIntegral(it), _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, _, DirectType(TyFloating(ft), _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, _, DirectType(TyComplex(ft), _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, _, DirectType(TyComp(ctr), _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, _, DirectType(TyEnum(_), _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, _, DirectType(TyBuiltin(b), _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, _, PtrType(_, _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
         (md, _, FunctionType(_, _)) => {
-            return(voidSize(md))
+            voidSize(md)
         },
     }
 }

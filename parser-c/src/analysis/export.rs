@@ -131,10 +131,10 @@ pub fn exportIntType(ty: IntType) -> Vec<CTypeSpec> {
 pub fn exportMemberDecl(_0: MemberDecl) -> CDecl {
     match (_0) {
         AnonBitField(ty, expr, node_info) => {
-            CDecl((__map!(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
+            CDecl((__map!(CTypeSpec, exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
         },
         MemberDecl(vardecl, bitfieldsz, node_info) => {
-            CDecl((__map!(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
+            CDecl((__map!(CTypeSpec, exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
         },
     }
 }

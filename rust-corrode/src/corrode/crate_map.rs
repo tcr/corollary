@@ -40,17 +40,17 @@ pub fn rewritesFromCratesMap(crates: CratesMap) -> ItemRewrites {
 }
 
 pub fn splitModuleMap(modName: String, crates: CratesMap) -> (ModuleMap, CratesMap) {
-    fromMaybe((vec![], crates))(/*do*/ {
-        let thisCrate = Map::lookup("".to_string(), crates);
+    fromMaybe((vec![], crates), /*do*/ {
+            let thisCrate = Map::lookup("".to_string(), crates);
 
-        let thisModule = Map::lookup(modName, thisCrate);
+            let thisModule = Map::lookup(modName, thisCrate);
 
-        let thisCrate_q = Map::delete(modName, thisCrate);
+            let thisCrate_q = Map::delete(modName, thisCrate);
 
-        let crates_q = Map::insert("".to_string(), thisCrate_q, crates);
+            let crates_q = Map::insert("".to_string(), thisCrate_q, crates);
 
-        (thisModule, crates_q)
-    })
+            (thisModule, crates_q)
+        })
 }
 
 

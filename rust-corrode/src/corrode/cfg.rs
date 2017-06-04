@@ -81,8 +81,8 @@ fn structureBody(a: Structure) -> Structure_q<s, c, Vec<Structure<s, c>>> { a.st
 pub fn addBlock(label: Label, stmt: s, terminator: Terminator<c>) -> BuildCFGT<m, s, c, ()> {
     /*do*/ {
         modify(|st| { st {
-                buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
-            } })
+                    buildBlocks: IntMap::insert(label, (BasicBlock(stmt, terminator)), (buildBlocks(st)))
+                } })
     }
 }
 
@@ -122,7 +122,7 @@ pub fn newLabel() -> BuildCFGT<m, s, c, Label> {
 }
 
 pub fn outEdges(blocks: IntMap::IntMap<StructureBlock<s, c>>) -> IntSet::IntSet {
-    IntSet::difference(IntSet::unions((__map!(successors)(IntMap::elems(blocks)))), IntMap::keysSet(blocks))
+    IntSet::difference(IntSet::unions((__map!(successors, IntMap::elems(blocks)))), IntMap::keysSet(blocks))
 }
 
 pub fn partitionMembers<a, b>(a: IntSet::IntSet, b: IntSet::IntSet) -> (IntSet::IntSet, IntSet::IntSet) {
@@ -139,7 +139,7 @@ pub fn prettyStructure() -> Doc {
 
 pub fn relooper(entries: IntSet::IntSet, blocks: IntMap::IntMap<StructureBlock<s, c>>) -> Vec<Structure<s, c>> {
     {
-        let (returns, noreturns) = partitionMembers(entries)(IntSet::unions(__map!(successors)(IntMap::elems(blocks))));
+        let (returns, noreturns) = partitionMembers(entries, IntSet::unions(__map!(successors, IntMap::elems(blocks))));
 
         let (present, absent) = partitionMembers(entries, (IntMap::keysSet(blocks)));
 
@@ -186,7 +186,7 @@ Structure {
 }
 
 pub fn relooperRoot(CFG(entry, blocks): CFG<k, s, c>) -> Vec<Structure<s, c>> {
-    relooper((IntSet::singleton(entry)))(IntMap::map((|BasicBlock(s, term)| { (s, fmap(GoTo, term)) }), blocks))
+    relooper((IntSet::singleton(entry)), IntMap::map((|BasicBlock(s, term)| { (s, fmap(GoTo, term)) }), blocks))
 }
 
 pub fn removeEmptyBlocks(CFG(start, blocks): CFG<k, f<s>, c>) -> CFG<Unordered, f<s>, c> {

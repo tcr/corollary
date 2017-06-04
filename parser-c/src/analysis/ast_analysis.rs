@@ -44,13 +44,13 @@ pub enum ExprSide {
 pub use self::ExprSide::*;
 
 pub fn advanceDesigList(ds: Vec<CDesignator>, d: CDesignator) -> Vec<CDesignator> {
-    drop(1)(dropWhile((not(matchDesignator(d))), ds))
+    drop(1, dropWhile((not(matchDesignator(d))), ds))
 }
 
 pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls> {
     /*do*/ {
         mapRecoverM_(analyseExt, decls);
-        __op_bind(getDefTable, |dt| { unless((inFileScope(dt)))(__error!("Internal Error: Not in filescope after analysis".to_string())) });
+        __op_bind(getDefTable, |dt| { if !((inFileScope(dt))) { __error!("Internal Error: Not in filescope after analysis".to_string()) } });
         liftM(globalDefs, getDefTable)
     }
 }
@@ -86,7 +86,7 @@ pub fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info):
 
         let VarDeclInfo(name, fun_spec, storage_spec, attrs, ty, _declr_node) = var_decl_info;
 
-        when((isNoName(name)))(astError(node_info, "NoName in analyseFunDef".to_string()));
+        if (isNoName(name)) { astError(node_info, "NoName in analyseFunDef".to_string()) };
         let ident = identOfVarName(name);
 
         let ty_q = improveFunDefType(ty);
@@ -132,7 +132,7 @@ pub fn analyseTypeDef(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CD
         let VarDeclInfo(name, fun_attrs, storage_spec, attrs, ty, _node) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], None);
 
         checkValidTypeDef(fun_attrs, storage_spec, attrs);
-        when((isNoName(name)))(astError(node_info, "NoName in analyseTypeDef".to_string()));
+        if (isNoName(name)) { astError(node_info, "NoName in analyseTypeDef".to_string()) };
         let ident = identOfVarName(name);
 
         handleTypeDef((TypeDef(ident, ty, attrs, node_info)))
@@ -174,10 +174,10 @@ pub fn complexBaseType(ni: NodeInfo, c: Vec<StmtCtx>, side: ExprSide, e: CExpr) 
 
         match canonicalType(t) {
             DirectType(TyComplex(ft), quals, attrs) => {
-                return(DirectType((TyFloating(ft)), quals, attrs))
+                DirectType((TyFloating(ft)), quals, attrs)
             },
             _ => {
-                typeError(ni)(__op_addadd("expected complex type, got: ".to_string(), pType(t)))
+                typeError(ni, __op_addadd("expected complex type, got: ".to_string(), pType(t)))
             },
         }
     }
@@ -186,10 +186,10 @@ pub fn complexBaseType(ni: NodeInfo, c: Vec<StmtCtx>, side: ExprSide, e: CExpr) 
 pub fn computeFunDefStorage(_0: Ident, _1: StorageSpec) -> m<Storage> {
     match (_0, _1) {
         (_, StaticSpec(_)) => {
-            return(FunLinkage(InternalLinkage))
+            FunLinkage(InternalLinkage)
         },
         (ident, other_spec) => {
-            return(FunLinkage(InternalLinkage))
+            FunLinkage(InternalLinkage)
         },
     }
 }
@@ -356,7 +356,7 @@ pub fn enclosingFunctionType(_0: Vec<StmtCtx>) -> Option<Type> {
 
 pub fn extFunProto(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, ty, node_info): VarDeclInfo) -> m<()> {
     /*do*/ {
-        when((isNoName(var_name)))(astError(node_info, "NoName in extFunProto".to_string()));
+        if (isNoName(var_name)) { astError(node_info, "NoName in extFunProto".to_string()) };
         let old_fun = lookupObject((identOfVarName(var_name)));
 
         checkValidSpecs;
@@ -371,12 +371,12 @@ pub fn extFunProto(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, ty, node
 
 pub fn extVarDecl(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
     /*do*/ {
-        when((isNoName(var_name)))(astError(node_info, "NoName in extVarDecl".to_string()));
+        if (isNoName(var_name)) { astError(node_info, "NoName in extVarDecl".to_string()) };
         let (storage, is_def) = globalStorage(storage_spec);
 
         let vardecl = VarDecl(var_name, (DeclAttrs(fun_spec, storage, attrs)), typ);
 
-        if is_def { handleObjectDef(false, ident) }(ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, false)(Decl(vardecl, node_info)))
+        if is_def { handleObjectDef(false, ident, ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, false, Decl(vardecl, node_info))) }
     }
 }
 
@@ -412,7 +412,7 @@ pub fn inSwitch(c: Vec<StmtCtx>) -> bool {
 
 pub fn localVarDecl(VarDeclInfo(var_name, fun_attrs, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
     /*do*/ {
-        when((isNoName(var_name)))(astError(node_info, "NoName in localVarDecl".to_string()));
+        if (isNoName(var_name)) { astError(node_info, "NoName in localVarDecl".to_string()) };
         let (storage, is_def) = localStorage(storage_spec);
 
         let vardecl = VarDecl(var_name, (DeclAttrs(fun_attrs, storage, attrs)), typ);
@@ -526,7 +526,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
     match (_0, _1, _2) {
         (c, side, CBinary(op, le, re, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -536,7 +536,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CUnary(CAdrOp, e, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -546,7 +546,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, _, CUnary(CIndOp, e, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -556,7 +556,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, _, CUnary(CCompOp, e, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -566,7 +566,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CUnary(CNegOp, e, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -576,7 +576,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CUnary(op, e, _)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -586,7 +586,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, _, CIndex(b, i, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -596,7 +596,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CCond(e1, me2, e3, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -606,7 +606,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, _, CMember(e, m, deref, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -616,7 +616,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CComma(es, _)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -626,7 +626,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CCast(d, e, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -636,7 +636,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CSizeofExpr(e, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -646,7 +646,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CAlignofExpr(e, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -656,7 +656,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CComplexReal(e, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -666,7 +666,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CComplexImag(e, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -676,7 +676,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (_, side, CLabAddrExpr(_, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -686,7 +686,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (_, side, CCompoundLit(d, initList, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -696,7 +696,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (_, RValue, CAlignofType(_, _)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -706,7 +706,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (_, RValue, CSizeofType(_, _)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -716,7 +716,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (_, LValue, CAlignofType(_, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -726,7 +726,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (_, LValue, CSizeofType(_, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -736,7 +736,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (ctx, side, CGenericSelection(expr, list, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -746,7 +746,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (_, _, CVar(i, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -756,7 +756,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (_, _, CConst(c)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -766,7 +766,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (_, _, CBuiltinExpr(b)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -776,7 +776,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CCall(CVar(i, _), args, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -786,7 +786,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, _, CCall(fe, args, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -796,7 +796,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, _, CAssign(op, le, re, ni)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);
@@ -806,7 +806,7 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, _, CStatExpr(s, _)) => {
             /*do*/ {
-                when(((side == LValue)))(typeError(ni, "binary operator as lvalue".to_string()));
+                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
                 let lt = tExpr(c, RValue, le);
 
                 let rt = tExpr(c, RValue, re);

@@ -33922,7 +33922,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                     setInput(inp_q);
                     let nextTok = action(pos, len, inp);
 
-                    when(modifyCache)(setLastToken(nextTok));
+                    if modifyCache { setLastToken(nextTok) };
                     nextTok
                 }
             },

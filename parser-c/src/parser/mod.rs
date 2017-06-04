@@ -13,7 +13,7 @@
 // use Language::C::Data;
 
 pub fn execParser_<a>(parser: P<a>, input: InputStream, pos: Position) -> Either<ParseError, a> {
-    fmap(fst)(execParser(parser, input, pos, builtinTypeNames, newNameSupply))
+    fmap(fst, execParser(parser, input, pos, builtinTypeNames, newNameSupply))
 }
 
 

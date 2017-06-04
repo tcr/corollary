@@ -109,7 +109,7 @@ pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, de
 
         let name = mkVarName(node, name_opt, asmname_opt);
 
-        return(VarDeclInfo(name, function_spec, storage_spec, attrs_q, typ, node))
+        VarDeclInfo(name, function_spec, storage_spec, attrs_q, typ, node)
     }
 }
 
@@ -124,7 +124,7 @@ pub fn analyseVarDecl_q(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: 
 }
 
 pub fn canonicalStorageSpec(storagespecs: Vec<CStorageSpec>) -> m<StorageSpec> {
-    liftM(elideAuto)(foldrM(updStorage, NoStorageSpec, storagespecs))
+    liftM(elideAuto, foldrM(updStorage, NoStorageSpec, storagespecs))
 }
 
 pub fn canonicalTypeSpec() -> m<TypeSpecAnalysis> {
@@ -210,18 +210,18 @@ pub fn mergeOldStyle(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) -> m<
 pub fn mergeTypeAttributes(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Attr>, typ: Type) -> m<Type> {
     match typ {
         DirectType(ty_name, quals_q, attrs_q) => {
-            merge(quals_q, attrs_q)(DirectType(ty_name))
+            merge(quals_q, attrs_q, DirectType(ty_name))
         },
         PtrType(ty, quals_q, attrs_q) => {
-            merge(quals_q, attrs_q)(PtrType(ty))
+            merge(quals_q, attrs_q, PtrType(ty))
         },
         ArrayType(ty, array_sz, quals_q, attrs_q) => {
-            merge(quals_q, attrs_q)(ArrayType(ty, array_sz))
+            merge(quals_q, attrs_q, ArrayType(ty, array_sz))
         },
         FunctionType(fty, attrs_q) if __op_assign_div(quals, noTypeQuals) => { astError(node_info, "type qualifiers for function type".to_string()) }
-        FunctionType(fty, attrs_q) => { return(FunctionType(fty, (__op_addadd(attrs_q, attrs)))) }
+        FunctionType(fty, attrs_q) => { FunctionType(fty, (__op_addadd(attrs_q, attrs))) }
         TypeDefType(tdr, quals_q, attrs_q) => {
-            merge(quals_q, attrs_q)(TypeDefType(tdr))
+            merge(quals_q, attrs_q, TypeDefType(tdr))
         },
     }
 }
@@ -274,7 +274,7 @@ pub fn tArraySize(_0: CArrSize) -> m<ArraySize> {
 }
 
 pub fn tAttr(CAttr(name, cexpr, node): CAttr) -> m<Attr> {
-    return(Attr(name, cexpr, node))
+    Attr(name, cexpr, node)
 }
 
 pub fn tCompType(tag: SUERef, sue_ref: CompTyKind, member_decls: Vec<CDecl>, attrs: Attributes, node: NodeInfo) -> m<CompType> {
@@ -292,7 +292,7 @@ pub fn tCompTypeDecl(handle_def: bool, CStruct(tag, ident_opt, member_decls_opt,
         let decl = CompTypeRef(sue_ref, tag_q, node_info);
 
         handleTagDecl((CompDecl(decl)));
-        when(handle_def)(maybeM(member_decls_opt)(|decls| { __op_bind(tCompType(sue_ref, tag_q, decls, attrs_q, node_info), handleTagDef::CompDef()) }));
+        if handle_def { maybeM(member_decls_opt, |decls| { __op_bind(tCompType(sue_ref, tag_q, decls, attrs_q, node_info), handleTagDef::CompDef()) }) };
         decl
     }
 }
@@ -307,35 +307,35 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
 
         match canonTySpec {
             TSNone => {
-                return(baseType((TyIntegral(TyInt))))
+                baseType((TyIntegral(TyInt)))
             },
             TSVoid => {
-                return(baseType(TyVoid))
+                baseType(TyVoid)
             },
             TSBool => {
-                return(baseType((TyIntegral(TyBool))))
+                baseType((TyIntegral(TyBool)))
             },
             TSNum(tsnum) => {
                 /*do*/ {
                     let numType = tNumType(tsnum);
 
                     baseType(match numType {
-                        Left((floatType, iscomplex)) if iscomplex => { TyComplex(floatType) }
-                        Left((floatType, iscomplex)) => { TyFloating(floatType) }
-                        Right(intType) => {
-                            TyIntegral(intType)
-                        },
-                    })
+                            Left((floatType, iscomplex)) if iscomplex => { TyComplex(floatType) }
+                            Left((floatType, iscomplex)) => { TyFloating(floatType) }
+                            Right(intType) => {
+                                TyIntegral(intType)
+                            },
+                        })
                 }
             },
             TSTypeDef(tdr) => {
-                return(TypeDefType(tdr, quals, attrs))
+                TypeDefType(tdr, quals, attrs)
             },
             TSNonBasic(CSUType(su, _tnode)) => {
-                liftM((baseType(TyComp)))(tCompTypeDecl(handle_sue_def, su))
+                liftM((baseType(TyComp)), tCompTypeDecl(handle_sue_def, su))
             },
             TSNonBasic(CEnumType(__enum, _tnode)) => {
-                liftM((baseType(TyEnum)))(tEnumTypeDecl(handle_sue_def, __enum))
+                liftM((baseType(TyEnum)), tEnumTypeDecl(handle_sue_def, __enum))
             },
             TSType(t) => {
                 mergeTypeAttributes(node, quals, attrs, t)
@@ -374,49 +374,49 @@ pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Eit
         (BaseChar, _, NoSizeMod) if Unsigned => { intType(TyUChar) }
         (BaseChar, _, NoSizeMod) => { intType(TyChar) }
         (intbase, _, NoSizeMod) if optBase(BaseInt, intbase) => { intType(match sgn {
-            Unsigned => {
-                TyUInt
-            },
-            _ => {
-                TyInt
-            },
-        }) }
+                Unsigned => {
+                    TyUInt
+                },
+                _ => {
+                    TyInt
+                },
+            }) }
         (intbase, _, NoSizeMod) if optBase(BaseInt128, intbase) => { intType(match sgn {
-            Unsigned => {
-                TyUInt128
-            },
-            _ => {
-                TyInt128
-            },
-        }) }
+                Unsigned => {
+                    TyUInt128
+                },
+                _ => {
+                    TyInt128
+                },
+            }) }
         (intbase, signed, sizemod) if optBase(BaseInt, intbase) && optSign(Signed, signed) => { intType(match sizemod {
-            ShortMod => {
-                TyShort
-            },
-            LongMod => {
-                TyLong
-            },
-            LongLongMod => {
-                TyLLong
-            },
-            _ => {
-                internalErr("numTypeMapping: unexpected pattern matching error".to_string())
-            },
-        }) }
+                ShortMod => {
+                    TyShort
+                },
+                LongMod => {
+                    TyLong
+                },
+                LongLongMod => {
+                    TyLLong
+                },
+                _ => {
+                    internalErr("numTypeMapping: unexpected pattern matching error".to_string())
+                },
+            }) }
         (intbase, Unsigned, sizemod) if optBase(BaseInt, intbase) => { intType(match sizemod {
-            ShortMod => {
-                TyUShort
-            },
-            LongMod => {
-                TyULong
-            },
-            LongLongMod => {
-                TyULLong
-            },
-            _ => {
-                internalErr("numTypeMapping: unexpected pattern matching error".to_string())
-            },
-        }) }
+                ShortMod => {
+                    TyUShort
+                },
+                LongMod => {
+                    TyULong
+                },
+                LongLongMod => {
+                    TyULLong
+                },
+                _ => {
+                    internalErr("numTypeMapping: unexpected pattern matching error".to_string())
+                },
+            }) }
         (BaseFloat, NoSignSpec, NoSizeMod) => {
             floatType(TyFloat)
         },
