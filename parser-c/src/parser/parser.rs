@@ -35623,10 +35623,32 @@ pub fn appendObjAttrsR(newAttrs: Vec<CAttr>, CDeclrR(ident, indirections, asmnam
 }
 
 pub fn arrDeclr(CDeclrR(ident, derivedDeclrs, asmname, cattrs, dat): CDeclrR, tyquals: Vec<CTypeQual>, var_sized: bool, static_size: bool, size_expr_opt: Option<CExpr>, at: NodeInfo) -> CDeclrR {
+
+    let arr_sz = match size_expr_opt {
+            Some(e) => {
+                CArrSize(static_size, e)
+            },
+            None => {
+                CNoArrSize(var_sized)
+            },
+        };
+
     seq(arr_sz, (CDeclrR(ident, (snoc(derivedDeclrs, CArrDeclr(tyquals, arr_sz, at))), asmname, cattrs, dat)))
 }
 
 pub fn doDeclIdent(declspecs: Vec<CDeclSpec>, CDeclrR(mIdent, _, _, _, _): CDeclrR) -> P<()> {
+
+    let iypedef = |_0| {
+        match (_0) {
+            CStorageSpec(CTypedef(_)) => {
+                true
+            },
+            _ => {
+                true
+            },
+        }
+    };
+
     match mIdent {
         None => {
             ()
@@ -35652,6 +35674,16 @@ pub fn emptyDeclr() -> CDeclrR {
 }
 
 pub fn expression() -> bool {
+
+    let happySomeParser = happyThen((happyParse(action_3)), (|x| { match x {
+                    HappyAbsSyn100(z) => {
+                        happyReturn(z)
+                    },
+                    _other => {
+                        notHappyAtAll
+                    },
+                } }));
+
     happySomeParser
 }
 
@@ -35664,6 +35696,16 @@ pub fn extDeclP() -> P<CExtDecl> {
 }
 
 pub fn external_declaration() -> bool {
+
+    let happySomeParser = happyThen((happyParse(action_1)), (|x| { match x {
+                    HappyAbsSyn9(z) => {
+                        happyReturn(z)
+                    },
+                    _other => {
+                        notHappyAtAll
+                    },
+                } }));
+
     happySomeParser
 }
 
@@ -41753,6 +41795,28 @@ pub fn reverseList<a>() -> Reversed<Vec<a>> {
 }
 
 pub fn setAsmName(mAsmName: Option<CStrLit>, CDeclrR(ident, indirections, oldName, cattrs, at): CDeclrR) -> P<CDeclrR> {
+
+    let combineName = |_0, _1| {
+        match (_0, _1) {
+            (None, None) => {
+                Right(None)
+            },
+            (None, oldname, __OP__, Some(_)) => {
+                Right(None)
+            },
+            (newname, __OP__, Some(_), None) => {
+                Right(None)
+            },
+            (Some(n1), Some(n2)) => {
+                Right(None)
+            },
+        }
+    };
+
+    let showName = |CStrLit(cstr, _)| {
+        show(cstr)
+    };
+
     match combineName(mAsmName, oldName) {
         Left((n1, n2)) => {
             failP((posOf(n2)), vec!["Duplicate assembler name: ".to_string(), showName(n1), showName(n2)])
@@ -41764,6 +41828,16 @@ pub fn setAsmName(mAsmName: Option<CStrLit>, CDeclrR(ident, indirections, oldNam
 }
 
 pub fn statement() -> bool {
+
+    let happySomeParser = happyThen((happyParse(action_2)), (|x| { match x {
+                    HappyAbsSyn12(z) => {
+                        happyReturn(z)
+                    },
+                    _other => {
+                        notHappyAtAll
+                    },
+                } }));
+
     happySomeParser
 }
 
@@ -41776,6 +41850,16 @@ pub fn translUnitP() -> P<CTranslUnit> {
 }
 
 pub fn translation_unit() -> bool {
+
+    let happySomeParser = happyThen((happyParse(action_0)), (|x| { match x {
+                    HappyAbsSyn7(z) => {
+                        happyReturn(z)
+                    },
+                    _other => {
+                        notHappyAtAll
+                    },
+                } }));
+
     happySomeParser
 }
 

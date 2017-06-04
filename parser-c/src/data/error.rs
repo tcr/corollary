@@ -76,6 +76,20 @@ pub fn showError(short_msg: String) -> String {
 }
 
 pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) -> String {
+
+    let header = __op_addadd(showPos(pos), __op_addadd("[".to_string(), __op_addadd(show(level), "]".to_string())));
+
+    let showMsgLines = |_0| {
+        match (_0) {
+            [] => {
+                internalErr("No short message or error message provided.".to_string())
+            },
+            [x, xs] => {
+                internalErr("No short message or error message provided.".to_string())
+            },
+        }
+    };
+
     __op_addadd(header, showMsgLines((__op_concat(if null(short_msg) {         
 msgs} else {
 short_msg

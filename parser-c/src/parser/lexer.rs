@@ -52,6 +52,21 @@ pub use self::AlexAcc::*;
 pub type AlexAccPred<user> = fn(user) -> fn(AlexInput) -> fn(isize) -> fn(AlexInput) -> bool;
 
 pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Position {
+
+    let dropWhite = dropWhile((|c| { (c == (' ' || (c == '\t'))) }));
+
+    let fname = posFile(pos);
+
+    let fnameStr = takeWhile((__op_assign_div('\"')), drop(1, str_q_q_q));
+
+    let offs_q = ((posOffset(pos)) + pragmaLen);
+
+    let row_q = read(rowStr);
+
+    let str_q = dropWhite(drop(1, __str));
+
+    let str_q_q_q = dropWhite(str_q_q);
+
     seq(offs_q, seq(fname_q, seq(row_q, (position(offs_q, fname_q, row_q, 1)))))
 }
 
@@ -17575,6 +17590,27 @@ pub fn alex_deflt() -> Array<isize, isize> {
 }
 
 pub fn alex_scan_tkn(user: bool) -> bool {
+
+    let check_accs = |_0| {
+        match (_0) {
+            AlexAccNone => {
+                last_acc
+            },
+            AlexAcc(a) => {
+                last_acc
+            },
+            AlexAccSkip => {
+                last_acc
+            },
+            AlexAccPred(a, predx, rest) => {
+                last_acc
+            },
+            AlexAccSkipPred(predx, rest) => {
+                last_acc
+            },
+        }
+    };
+
     seq(input, {
         let new_acc = (check_accs((quickIndex(alex_accept, s()))));
 
@@ -33878,6 +33914,24 @@ pub fn idkwtok(_0: bool) -> bool {
 }
 
 pub fn ignoreAttribute() -> P<()> {
+
+    pub fn skipTokens(n: isize) -> P<()> {
+        /*do*/ {
+            let ntok = lexToken_q(false);
+
+            match ntok {
+                CTokRParen(_) if (n == 1) => { () }
+                CTokRParen(_) => { skipTokens(((n - 1))) }
+                CTokLParen(_) => {
+                    skipTokens(((n + 1)))
+                },
+                _ => {
+                    skipTokens(n)
+                },
+            }
+        }
+    }
+
     skipTokens((0))
 }
 

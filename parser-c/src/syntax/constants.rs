@@ -250,6 +250,42 @@ pub fn readCFloat() -> CFloat {
 }
 
 pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
+
+    let mkCInt = |n, suffix| {
+        either(Left, (Right(CInteger(n, repr))), readSuffix(suffix))
+    };
+
+    let parseFlags = |_0, _1| {
+        match (_0, _1) {
+            (flags, []) => {
+                Right(flags)
+            },
+            (flags, ['l', ['l', fs]]) => {
+                Right(flags)
+            },
+            (flags, ['L', ['L', fs]]) => {
+                Right(flags)
+            },
+            (flags, [f, fs]) => {
+                Right(flags)
+            },
+        }
+    };
+
+    let readNum = match repr {
+            DecRepr => {
+                readDec
+            },
+            HexRepr => {
+                readHex
+            },
+            OctalRepr => {
+                readOct
+            },
+        };
+
+    let readSuffix = parseFlags(noFlags);
+
     match readNum(__str) {
         [(n, suffix)] => {
             mkCInt(n, suffix)
@@ -265,6 +301,11 @@ pub fn readClangCVersion() -> ClangCVersion {
 }
 
 pub fn readOct_q(s: ReadS<isize>) -> ReadS<isize> {
+
+    let octStr = takeWhile(isOctDigit, take(3, s));
+
+    let rest = drop((length(octStr)), s);
+
     __map!((|(i, cs)| { (i, __op_addadd(cs, rest)) }), (readOct(octStr)))
 }
 
@@ -281,10 +322,14 @@ pub fn showCharConst(c: Char) -> ShowS {
 }
 
 pub fn showOct_q(i: isize) -> String {
+
+    let s = showOct(i, "".to_string());
+
     __op_addadd(replicate(((3 - length(s))), '0'), s)
 }
 
 pub fn showStringLit() -> ShowS {
+
     dQuote(concatMap(showStringChar))
 }
 

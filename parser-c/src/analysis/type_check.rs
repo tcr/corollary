@@ -204,6 +204,11 @@ pub fn compositeParamDecl(_0: ParamDecl, _1: ParamDecl) -> Either<String, ParamD
 }
 
 pub fn compositeParamDecl_q(f: fn(VarDecl) -> fn(NodeInfo) -> ParamDecl, VarDecl(n1, attrs1, t1): VarDecl, VarDecl(n2, attrs2, t2): VarDecl, dni: NodeInfo) -> Either<String, ParamDecl> {
+
+    let t1_q = canonicalType(t1);
+
+    let t2_q = canonicalType(t2);
+
     /*do*/ {
         let vd = compositeVarDecl((VarDecl(n1, attrs1, t1_q)), (VarDecl(n2, attrs2, t2_q)));
 
@@ -475,6 +480,17 @@ pub fn sueAttrs(ni: NodeInfo, sue: SUERef) -> m<Attributes> {
 }
 
 pub fn tagMembers(ni: NodeInfo, td: TagDef) -> m<Vec<(Ident, Type)>> {
+
+    let getMembers = |ds| {
+        /*do*/ {
+            let ts = __map!(declType, ds);
+
+            let ns = __map!(declName, ds);
+
+            liftM(concat, mapM((expandAnonymous(ni)), (zip(ns, ts))))
+        }
+    };
+
     match td {
         CompDef(CompType(_, _, ms, _, _)) => {
             getMembers(ms)
@@ -519,6 +535,9 @@ pub fn typeErrorOnLeft<a>(_0: NodeInfo, _1: Either<String, a>) -> m<a> {
 }
 
 pub fn varAddrType(d: IdentDecl) -> Either<String, Type> {
+
+    let t = declType(d);
+
     /*do*/ {
         match declStorage(d) {
             Auto(true) => {

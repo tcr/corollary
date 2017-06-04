@@ -158,6 +158,31 @@ pub fn isScalarType(t: Type) -> bool {
 }
 
 pub fn isVariablyModifiedType(t: Type) -> bool {
+
+    pub fn isConstantSize(_0: Expr) -> bool {
+        match (_0) {
+            CConst(CIntConst {
+
+                    }) => {
+                true
+            },
+            _ => {
+                true
+            },
+        }
+    }
+
+    pub fn isVariableArraySize(_0: ArraySize) -> bool {
+        match (_0) {
+            UnknownArraySize(isStarred) => {
+                isStarred
+            },
+            ArraySize(isStatic, e) => {
+                isStarred
+            },
+        }
+    }
+
     match derefTypeDef(t) {
         TypeDefType {
 
@@ -246,6 +271,35 @@ pub fn sameQuals(TypeQuals {
 }
 
 pub fn sameType(t1: Type, t2: Type) -> bool {
+
+    let sameType_q = match (derefTypeDef(t1), derefTypeDef(t2)) {
+            (TypeDefType {
+
+                    }, _) => {
+                __error!("impossible: derefTypeDef t1 returned a TypeDefType".to_string())
+            },
+            (_, TypeDefType {
+
+                    }) => {
+                __error!("impossible: derefTypeDef t2 returned a TypeDefType".to_string())
+            },
+            (DirectType(tn1, q1, _a1), DirectType(tn2, q2, _a2)) => {
+                (sameTypeName(tn1, tn2) && sameQuals(q1, q2))
+            },
+            (PtrType(pt1, q1, _a1), PtrType(pt2, q2, _a2)) => {
+                (sameType(pt1, pt2) && sameQuals(q1, q2))
+            },
+            (ArrayType(at1, sz1, q1, _a1), ArrayType(at2, sz2, q2, _a2)) => {
+                (sameType(at1, at2) && (sameArraySize(sz1, sz2) && sameQuals(q1, q2)))
+            },
+            (FunctionType(ft1, _a1), FunctionType(ft2, _a2)) => {
+                sameFunType(ft1, ft2)
+            },
+            _ => {
+                false
+            },
+        };
+
     (not(((isVariablyModifiedType(t1) || isVariablyModifiedType(t2)))) && sameType_q)
 }
 

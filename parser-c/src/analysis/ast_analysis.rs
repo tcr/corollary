@@ -48,6 +48,11 @@ pub fn advanceDesigList(ds: Vec<CDesignator>, d: CDesignator) -> Vec<CDesignator
 }
 
 pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls> {
+
+    let mapRecoverM_ = |f| {
+        mapM_((handleTravError(f)))
+    };
+
     /*do*/ {
         mapRecoverM_(analyseExt, decls);
         __op_bind(getDefTable, |dt| { if !((inFileScope(dt))) { __error!("Internal Error: Not in filescope after analysis".to_string()) } });
@@ -81,6 +86,18 @@ pub fn analyseExt(_0: CExtDecl) -> m<()> {
 }
 
 pub fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info): CFunDef) -> m<()> {
+
+    let improveFunDefType = |_0| {
+        match (_0) {
+            FunctionType(FunTypeIncomplete(return_ty), attrs) => {
+                FunctionType((FunType(return_ty, vec![], false)), attrs)
+            },
+            ty => {
+                FunctionType((FunType(return_ty, vec![], false)), attrs)
+            },
+        }
+    };
+
     /*do*/ {
         let var_decl_info = analyseVarDecl_q(true, declspecs, declr, oldstyle_decls, None);
 
@@ -128,6 +145,7 @@ pub fn analyseFunctionBody(_0: NodeInfo, _1: VarDecl, _2: CStat, _3: m<Stmt>) ->
 }
 
 pub fn analyseTypeDef(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, node_info: NodeInfo) -> m<()> {
+
     /*do*/ {
         let VarDeclInfo(name, fun_attrs, storage_spec, attrs, ty, _node) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], None);
 
@@ -355,6 +373,31 @@ pub fn enclosingFunctionType(_0: Vec<StmtCtx>) -> Option<Type> {
 }
 
 pub fn extFunProto(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, ty, node_info): VarDeclInfo) -> m<()> {
+
+    let funDeclLinkage = |old_fun| {
+        match storage_spec {
+            NoStorageSpec => {
+                FunLinkage(ExternalLinkage)
+            },
+            StaticSpec(false) => {
+                FunLinkage(InternalLinkage)
+            },
+            ExternSpec(false) => {
+                match old_fun {
+                    None => {
+                        FunLinkage(ExternalLinkage)
+                    },
+                    Some(f) => {
+                        declStorage(f)
+                    },
+                }
+            },
+            _ => {
+                __error!(__op_addadd("funDeclLinkage: ".to_string(), show(storage_spec)))
+            },
+        }
+    };
+
     /*do*/ {
         if (isNoName(var_name)) { astError(node_info, "NoName in extFunProto".to_string()) };
         let old_fun = lookupObject((identOfVarName(var_name)));
@@ -370,6 +413,24 @@ pub fn extFunProto(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, ty, node
 }
 
 pub fn extVarDecl(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
+
+    let hasFunDef = |dt| {
+        any((isFuncDef(snd)), (Map::toList(gObjs(globalDefs(dt)))))
+    };
+
+    let ident = identOfVarName(var_name);
+
+    let isFuncDef = |_0| {
+        match (_0) {
+            FunctionDef(fd) => {
+                not((isInline(functionAttrs))(fd))
+            },
+            _ => {
+                not((isInline(functionAttrs))(fd))
+            },
+        }
+    };
+
     /*do*/ {
         if (isNoName(var_name)) { astError(node_info, "NoName in extVarDecl".to_string()) };
         let (storage, is_def) = globalStorage(storage_spec);
@@ -392,6 +453,18 @@ pub fn getParams(_0: Type) -> Option<Vec<ParamDecl>> {
 }
 
 pub fn hasTypeDef(declspecs: Vec<CDeclSpec>) -> Option<Vec<CDeclSpec>> {
+
+    let hasTypeDefSpec = |_0, _1| {
+        match (_0, _1) {
+            (CStorageSpec(CTypedef(_)), (_, specs)) => {
+                (true, specs)
+            },
+            (spec, (b, specs)) => {
+                (true, specs)
+            },
+        }
+    };
+
     match foldr(hasTypeDefSpec, (false, vec![]), declspecs) {
         (true, specs_q) => {
             Some(specs_q)
@@ -403,14 +476,64 @@ pub fn hasTypeDef(declspecs: Vec<CDeclSpec>) -> Option<Vec<CDeclSpec>> {
 }
 
 pub fn inLoop(c: Vec<StmtCtx>) -> bool {
+
+    let isLoop = |_0| {
+        match (_0) {
+            LoopCtx => {
+                true
+            },
+            _ => {
+                true
+            },
+        }
+    };
+
     any(isLoop, c)
 }
 
 pub fn inSwitch(c: Vec<StmtCtx>) -> bool {
+
+    let isSwitch = |_0| {
+        match (_0) {
+            SwitchCtx => {
+                true
+            },
+            _ => {
+                true
+            },
+        }
+    };
+
     any(isSwitch, c)
 }
 
 pub fn localVarDecl(VarDeclInfo(var_name, fun_attrs, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
+
+    let ident = identOfVarName(var_name);
+
+    let localStorage = |_0| {
+        match (_0) {
+            NoStorageSpec => {
+                (Auto(false), true)
+            },
+            ThreadSpec => {
+                (Auto(false), true)
+            },
+            RegSpec => {
+                (Auto(false), true)
+            },
+            StaticSpec(thread_local) => {
+                (Auto(false), true)
+            },
+            ExternSpec(thread_local) => {
+                (Auto(false), true)
+            },
+            _ => {
+                (Auto(false), true)
+            },
+        }
+    };
+
     /*do*/ {
         if (isNoName(var_name)) { astError(node_info, "NoName in localVarDecl".to_string()) };
         let (storage, is_def) = localStorage(storage_spec);

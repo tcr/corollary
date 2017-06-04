@@ -199,13 +199,13 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool, dump_ast: bool) -> Resu
                     writeln!(file_out, "    use haskell_support::*;")?;
                     writeln!(file_out, "")?;
                     let state = PrintState::new();
-                    writeln!(file_out, "{}", print_item_list(state.tab(), &v.items))?;
+                    writeln!(file_out, "{}", print_item_list(state.tab(), &v.items, true))?;
                     writeln!(file_out, "}}\n")?;
                 } else {
                     writeln!(file_out, "#[macro_use] use corollary_support::*;")?;
                     writeln!(file_out, "")?;
                     let state = PrintState::new();
-                    writeln!(file_out, "{}", print_item_list(state, &v.items))?;
+                    writeln!(file_out, "{}", print_item_list(state, &v.items, true))?;
                 }
             }
         }

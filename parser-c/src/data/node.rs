@@ -21,6 +21,7 @@ pub fn eqByName<a>(obj1: a, obj2: a) -> bool {
 }
 
 pub fn fileOfNode() -> Option<FilePath> {
+
     fmap(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
 }
 
@@ -40,6 +41,16 @@ pub fn internalNode() -> NodeInfo {
 }
 
 pub fn lengthOfNode(ni: NodeInfo) -> Option<isize> {
+
+    let len = match ni {
+            NodeInfo(firstPos, lastTok, _) => {
+                computeLength(firstPos, lastTok)
+            },
+            OnlyPos(firstPos, lastTok) => {
+                computeLength(firstPos, lastTok)
+            },
+        };
+
     len
 }
 

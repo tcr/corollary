@@ -415,6 +415,39 @@ pub fn objKindDescr(_0: IdentDecl) -> String {
 }
 
 pub fn splitIdentDecls(include_all: bool) -> (Map<Ident, Decl>, (Map<Ident, Enumerator>, Map<Ident, ObjDef>, Map<Ident, FunDef>)) {
+
+    let addDef = |ident, entry, (es, os, fs)| {
+        match entry {
+            Declaration(_) => {
+                (es, os, fs)
+            },
+            EnumeratorDef(e) => {
+                (Map::insert(ident, e, es), os, fs)
+            },
+            ObjectDef(o) => {
+                (es, Map::insert(ident, o, os), fs)
+            },
+            FunctionDef(f) => {
+                (es, os, Map::insert(ident, f, fs))
+            },
+        }
+    };
+
+    let deal = |ident, entry, (decls, defs)| {
+        (Map::insert(ident, (declOfDef(entry)), decls), addDef(ident, entry, defs))
+    };
+
+    let deal_q = |_0, _1, _2| {
+        match (_0, _1, _2) {
+            (ident, Declaration(d), (decls, defs)) => {
+                (Map::insert(ident, d, decls), defs)
+            },
+            (ident, def, (decls, defs)) => {
+                (Map::insert(ident, d, decls), defs)
+            },
+        }
+    };
+
     Map::foldWithKey((if include_all {         
 deal} else {
 deal_q

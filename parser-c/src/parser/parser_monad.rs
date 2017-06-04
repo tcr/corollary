@@ -71,6 +71,17 @@ pub fn enterScope() -> P<()> {
 }
 
 pub fn execParser<a>(P(parser): P<a>, input: InputStream, pos: Position, builtins: Vec<Ident>, names: Vec<Name>) -> Either<ParseError, (a, Vec<Name>)> {
+
+    let initialState = PState {
+            curPos: pos,
+            curInput: input,
+            prevToken: internalErr("CLexer.execParser: Touched undefined token!".to_string()),
+            savedToken: internalErr("CLexer.execParser: Touched undefined token (safed token)!".to_string()),
+            namesupply: names,
+            tyidents: Set::fromList(builtins),
+            scopes: vec![]
+        };
+
     match parser(initialState) {
         PFailed(message, errpos) => {
             Left((ParseError((message, errpos))))

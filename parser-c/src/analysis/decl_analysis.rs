@@ -100,6 +100,24 @@ pub fn analyseTypeDecl(_0: CDecl) -> m<Type> {
 }
 
 pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, decl_attrs: Vec<CAttr>, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, fun_specs: Vec<CFunSpec>, CDeclr(name_opt, derived_declrs, asmname_opt, declr_attrs, node): CDeclr, oldstyle_params: Vec<CDecl>, _init_opt: Option<CInit>) -> m<VarDeclInfo> {
+
+    let function_spec = foldr(updateFunSpec, noFunctionAttrs, fun_specs);
+
+    let updateFunSpec = |_0, _1| {
+        match (_0, _1) {
+            (CInlineQual(_), f) => {
+                f {
+                    isInline: true
+                }
+            },
+            (CNoreturnQual(_), f) => {
+                f {
+                    isInline: true
+                }
+            },
+        }
+    };
+
     /*do*/ {
         let storage_spec = canonicalStorageSpec(storage_specs);
 
@@ -124,10 +142,145 @@ pub fn analyseVarDecl_q(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: 
 }
 
 pub fn canonicalStorageSpec(storagespecs: Vec<CStorageSpec>) -> m<StorageSpec> {
+
+    let elideAuto = |_0| {
+        match (_0) {
+            AutoSpec => {
+                NoStorageSpec
+            },
+            spec => {
+                NoStorageSpec
+            },
+        }
+    };
+
+    let updStorage = |_0, _1| {
+        match (_0, _1) {
+            (CAuto(_), NoStorageSpec) => {
+                AutoSpec
+            },
+            (CRegister(_), NoStorageSpec) => {
+                AutoSpec
+            },
+            (CThread(_), NoStorageSpec) => {
+                AutoSpec
+            },
+            (CThread(_), StaticSpec(_)) => {
+                AutoSpec
+            },
+            (CThread(_), ExternSpec(_)) => {
+                AutoSpec
+            },
+            (CStatic(_), NoStorageSpec) => {
+                AutoSpec
+            },
+            (CExtern(_), NoStorageSpec) => {
+                AutoSpec
+            },
+            (CStatic(_), ThreadSpec) => {
+                AutoSpec
+            },
+            (CExtern(_), ThreadSpec) => {
+                AutoSpec
+            },
+            (badSpec, old) => {
+                AutoSpec
+            },
+        }
+    };
+
     liftM(elideAuto, foldrM(updStorage, NoStorageSpec, storagespecs))
 }
 
 pub fn canonicalTypeSpec() -> m<TypeSpecAnalysis> {
+
+    let getNTS = |_0| {
+        match (_0) {
+            TSNone => {
+                Some(emptyNumTypeSpec)
+            },
+            TSNum(nts) => {
+                Some(emptyNumTypeSpec)
+            },
+            _ => {
+                Some(emptyNumTypeSpec)
+            },
+        }
+    };
+
+    pub fn go(_0: CTypeSpec, _1: TypeSpecAnalysis) -> m<TypeSpecAnalysis> {
+        match (_0, _1) {
+            (CVoidType(_), TSNone) => {
+                TSVoid
+            },
+            (CBoolType(_), TSNone) => {
+                TSVoid
+            },
+            (CCharType(_), tsa) => {
+                TSVoid
+            },
+            (CIntType(_), tsa) => {
+                TSVoid
+            },
+            (CInt128Type(_), tsa) => {
+                TSVoid
+            },
+            (CFloatType(_), tsa) => {
+                TSVoid
+            },
+            (CDoubleType(_), tsa) => {
+                TSVoid
+            },
+            (CShortType(_), tsa) => {
+                TSVoid
+            },
+            (CLongType(_), tsa) => {
+                TSVoid
+            },
+            (CSignedType(_), tsa) => {
+                TSVoid
+            },
+            (CUnsigType(_), tsa) => {
+                TSVoid
+            },
+            (CComplexType(_), tsa) => {
+                TSVoid
+            },
+            (CTypeDef(i, ni), TSNone) => {
+                TSVoid
+            },
+            (CTypeOfType(d, _ni), TSNone) => {
+                TSVoid
+            },
+            (CTypeOfExpr(e, _), TSNone) => {
+                TSVoid
+            },
+            (CAtomicType(d, _ni), TSNone) => {
+                TSVoid
+            },
+            (otherType, TSNone) => {
+                TSVoid
+            },
+            (ty, _ts) => {
+                TSVoid
+            },
+        }
+    }
+
+    let updLongMod = |_0| {
+        match (_0) {
+            NoSizeMod => {
+                Some(LongMod)
+            },
+            LongMod => {
+                Some(LongMod)
+            },
+            _ => {
+                Some(LongMod)
+            },
+        }
+    };
+
     foldrM(go, TSNone)
 }
 
@@ -208,6 +361,11 @@ pub fn mergeOldStyle(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) -> m<
 }
 
 pub fn mergeTypeAttributes(node_info: NodeInfo, quals: TypeQuals, attrs: Vec<Attr>, typ: Type) -> m<Type> {
+
+    let merge = |quals_q, attrs_q, tyf| {
+        tyf((mergeTypeQuals(quals, quals_q)), (__op_addadd(attrs_q, attrs)))
+    };
+
     match typ {
         DirectType(ty_name, quals_q, attrs_q) => {
             merge(quals_q, attrs_q, DirectType(ty_name))
@@ -348,6 +506,38 @@ pub fn tDirectType(handle_sue_def: bool, node: NodeInfo, ty_quals: Vec<CTypeQual
 }
 
 pub fn tEnumType(sue_ref: SUERef, enumerators: Vec<(Ident, Option<CExpr>)>, attrs: Attributes, node: NodeInfo) -> m<EnumType> {
+
+    let intExpr = |i| {
+        CConst((CIntConst((cInteger(i)), undefNode)))
+    };
+
+    pub fn nextEnrExpr(_0: Either<Integer, (Expr, Integer)>, _1: Option<CExpr>) -> (Either<Integer, (Expr, Integer)>, CExpr) {
+        match (_0, _1) {
+            (Left(i), None) => {
+                (Left((succ(i))), intExpr(i))
+            },
+            (Right((e, offs)), None) => {
+                (Left((succ(i))), intExpr(i))
+            },
+            (_, Some(e)) => {
+                (Left((succ(i))), intExpr(i))
+            },
+        }
+    }
+
+    let nextEnumerator = |memo, (ident, e)| {
+        {
+            let (memo_q, expr) = nextEnrExpr(memo, e);
+
+        (memo_q, Enumerator(ident, expr, ty, (nodeInfo(ident))))        }
+    };
+
+    let offsExpr = |e, offs| {
+        CBinary(CAddOp, e, (intExpr(offs)), undefNode)
+    };
+
+    let ty = EnumType(sue_ref, enumerators_q, attrs, node);
+
     /*do*/ {
         mapM_(handleEnumeratorDef, enumerators_q);
         ty
@@ -369,6 +559,35 @@ pub fn tMemberDecls(_0: CDecl) -> m<Vec<MemberDecl>> {
 }
 
 pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Either<(FloatType, bool), IntType>> {
+
+    let floatType = |ft| {
+        (Left((ft, iscomplex)))
+    };
+
+    let intType = Right;
+
+    let optBase = |_0, _1| {
+        match (_0, _1) {
+            (_, NoBaseType) => {
+                true
+            },
+            (expect, baseTy) => {
+                true
+            },
+        }
+    };
+
+    let optSign = |_0, _1| {
+        match (_0, _1) {
+            (_, NoSignSpec) => {
+                true
+            },
+            (expect, sign) => {
+                true
+            },
+        }
+    };
+
     match (basetype, sgn, sz) {
         (BaseChar, _, NoSizeMod) if Signed => { intType(TySChar) }
         (BaseChar, _, NoSizeMod) if Unsigned => { intType(TyUChar) }
@@ -455,10 +674,108 @@ pub fn tTag(_0: CStructTag) -> CompTyKind {
 }
 
 pub fn tType(handle_sue_def: bool, top_node: NodeInfo, typequals: Vec<CTypeQual>, canonTySpecs: TypeSpecAnalysis, derived_declrs: Vec<CDerivedDeclr>, oldstyle_params: Vec<CDecl>) -> m<Type> {
+
+    let buildArrayType = |arr_quals, size, _node, inner_ty| {
+        /*do*/ {
+            let (quals, attrs) = tTypeQuals(arr_quals);
+
+            let arr_sz = tArraySize(size);
+
+            ArrayType(inner_ty, arr_sz, quals, attrs)
+        }
+    };
+
+    let buildFunctionType = |params, is_variadic, attrs, _node, return_ty| {
+        /*do*/ {
+            enterPrototypeScope;
+            let params_q = mapM(tParamDecl, params);
+
+            leavePrototypeScope;
+            let attrs_q = mapM(tAttr, attrs);
+
+            (|t| { (t, attrs_q) })(match (__map!(declType, params_q), is_variadic) {
+                    ([], false) => {
+                        FunTypeIncomplete(return_ty)
+                    },
+                    ([DirectType(TyVoid, _, _)], false) => {
+                        FunType(return_ty, vec![], false)
+                    },
+                    _ => {
+                        FunType(return_ty, params_q, is_variadic)
+                    },
+                })
+        }
+    };
+
+    let buildPointerType = |ptrquals, _node, inner_ty| {
+        liftM((|(quals, attrs)| { PtrType }), (tTypeQuals(ptrquals)))
+    };
+
+    let buildType = |_0| {
+        match (_0) {
+            [] => {
+                tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
+            },
+            [CPtrDeclr(ptrquals, node), dds] => {
+                tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
+            },
+            [CArrDeclr(arrquals, size, node), dds] => {
+                tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
+            },
+            [CFunDeclr(Right((params, isVariadic)), attrs, node), dds] => {
+                tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
+            },
+            [CFunDeclr(Left(_), _, _), _] => {
+                tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
+            },
+        }
+    };
+
     __op_bind(mergeOldStyle(top_node, oldstyle_params, derived_declrs), buildType)
 }
 
 pub fn tTypeQuals() -> m<(TypeQuals, Attributes)> {
+
+    let go = |_0, _1| {
+        match (_0, _1) {
+            (CConstQual(_), (tq, attrs)) => {
+                (tq {
+                    constant: true
+                }, attrs)
+            },
+            (CVolatQual(_), (tq, attrs)) => {
+                (tq {
+                    constant: true
+                }, attrs)
+            },
+            (CRestrQual(_), (tq, attrs)) => {
+                (tq {
+                    constant: true
+                }, attrs)
+            },
+            (CAtomicQual(_), (tq, attrs)) => {
+                (tq {
+                    constant: true
+                }, attrs)
+            },
+            (CAttrQual(attr), (tq, attrs)) => {
+                (tq {
+                    constant: true
+                }, attrs)
+            },
+            (CNullableQual(_), (tq, attrs)) => {
+                (tq {
+                    constant: true
+                }, attrs)
+            },
+            (CNonnullQual(_), (tq, attrs)) => {
+                (tq {
+                    constant: true
+                }, attrs)
+            },
+        }
+    };
+
     foldrM(go, (noTypeQuals, vec![]))
 }
 

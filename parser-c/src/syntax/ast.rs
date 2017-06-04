@@ -325,6 +325,30 @@ pub fn liftStrLit<a>(CStrLit(__str, at): CStringLiteral<a>) -> CConstant<a> {
 }
 
 pub fn partitionDeclSpecs<a>() -> (Vec<CStorageSpecifier<a>>, Vec<CAttribute<a>>, Vec<CTypeQualifier<a>>, Vec<CTypeSpecifier<a>>, Vec<CFunctionSpecifier<a>>, Vec<CAlignmentSpecifier<a>>) {
+
+    let deals = |_0, _1| {
+        match (_0, _1) {
+            (CStorageSpec(sp), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CTypeQual(CAttrQual(attr)), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CTypeQual(tq), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CTypeSpec(ts), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CFunSpec(fs), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CAlignSpec(__as), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+        }
+    };
+
     foldr(deals, (vec![], vec![], vec![], vec![], vec![], vec![]))
 }
 

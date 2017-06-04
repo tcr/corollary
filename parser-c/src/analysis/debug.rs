@@ -16,6 +16,13 @@
 // use Data::Map;
 
 pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
+
+    pub fn filterFile() -> bool {
+        maybe(true, file_filter, fileOfNode(nodeInfo))
+    }
+
+    let gmap_q = filterGlobalDecls(filterFile, gmap);
+
     vec![
         ("Enumeration Constants".to_string(), Map::size(enumerators)),
         ("Total Object/Function Declarations".to_string(), Map::size(all_decls)),
@@ -35,6 +42,11 @@ pub fn prettyAssocs(label: String) -> Doc {
 }
 
 pub fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
+
+    let prettyEntry = |(k, v)| {
+        __op_doc_conat(prettyKey(k), __op_doc_conat(text(" ~> ".to_string()), prettyVal(v)))
+    };
+
     __op_line_something(text(label), nest(8, (vcat(__map!(prettyEntry, theMap)))))
 }
 

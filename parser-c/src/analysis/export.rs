@@ -24,14 +24,27 @@ pub fn exportArraySize(_0: ArraySize) -> CArrSize {
 }
 
 pub fn exportAttrs() -> Vec<CAttr> {
+
+    let exportAttr = |Attr(ident, es, n)| {
+        CAttr(ident, es, n)
+    };
+
     __map!(exportAttr)
 }
 
 pub fn exportCompType(CompType(sue_ref, comp_tag, members, attrs, node_info): CompType) -> Vec<CTypeSpec> {
+
+    let comp = CStruct(((if comp_tag { () } == StructTag(then, CStructTag, else, CUnionTag))), (exportSUERef(sue_ref)), (Some((__map!(exportMemberDecl, members)))), (exportAttrs(attrs)), node_info);
+
     vec![CSUType(comp, ni)]
 }
 
 pub fn exportCompTypeDecl(ty: CompTypeRef) -> Vec<CTypeSpec> {
+
+    let exportComp = |CompTypeRef(sue_ref, comp_tag, _n)| {
+        CStruct(((if comp_tag { () } == StructTag(then, CStructTag, else, CUnionTag))), (exportSUERef(sue_ref)), None, vec![], ni)
+    };
+
     vec![CSUType((exportComp(ty)), ni)]
 }
 
@@ -48,14 +61,27 @@ pub fn exportDeclAttrs(DeclAttrs(fun_attrs, storage, attrs): DeclAttrs) -> Vec<C
 }
 
 pub fn exportDeclr(other_specs: Vec<CDeclSpec>, ty: Type, attrs: Attributes, name: VarName) -> (Vec<CDeclSpec>, CDeclr) {
+
     (__op_addadd(other_specs, specs), CDeclr(ident, derived, asmname, (exportAttrs(attrs)), ni))
 }
 
 pub fn exportEnumType(EnumType(sue_ref, enumerators, attrs, node_info): EnumType) -> Vec<CTypeSpec> {
+
+    let __enum = CEnum((exportSUERef(sue_ref)), (Some((__map!(exportEnumerator, enumerators)))), (exportAttrs(attrs)), node_info);
+
+    let exportEnumerator = |Enumerator(ident, val, _ty, _)| {
+        (ident, Some(val))
+    };
+
     vec![CEnumType(__enum, ni)]
 }
 
 pub fn exportEnumTypeDecl(ty: EnumTypeRef) -> Vec<CTypeSpec> {
+
+    let exportEnum = |EnumTypeRef(sue_ref, _n)| {
+        CEnum((exportSUERef(sue_ref)), None, vec![], ni)
+    };
+
     vec![CEnumType((exportEnum(ty)), ni)]
 }
 
@@ -78,6 +104,17 @@ pub fn exportFloatType(ty: FloatType) -> Vec<CTypeSpec> {
 }
 
 pub fn exportFunAttrs(fattrs: FunctionAttrs) -> Vec<CFunSpec> {
+
+    let inlQual = if isInline(fattrs) {         
+Some((CInlineQual(ni)))} else {
+None
+        };
+
+    let noretQual = if isNoreturn(fattrs) {         
+Some((CNoreturnQual(ni)))} else {
+None
+        };
+
     catMaybes(vec![inlQual, noretQual])
 }
 
@@ -187,18 +224,65 @@ pub fn exportStorage(_0: Storage) -> Vec<CStorageSpec> {
 }
 
 pub fn exportType(ty: Type) -> (Vec<CDeclSpec>, Vec<CDerivedDeclr>) {
+
+    let exportTy = |_0, _1| {
+        match (_0, _1) {
+            (dd, PtrType(ity, tyquals, attrs)) => {
+                {
+                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+
+                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+            },
+            (dd, ArrayType(ity, array_sz, tyquals, attrs)) => {
+                {
+                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+
+                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+            },
+            (dd, FunctionType(FunType(ity, params, variadic), attrs)) => {
+                {
+                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+
+                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+            },
+            (dd, FunctionType(FunTypeIncomplete(ity), attrs)) => {
+                {
+                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+
+                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+            },
+            (dd, TypeDefType(TypeDefRef(ty_ident, _, node), quals, attrs)) => {
+                {
+                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+
+                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+            },
+            (dd, DirectType(ity, quals, attrs)) => {
+                {
+                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+
+                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+            },
+        }
+    };
+
     exportTy(vec![], ty)
 }
 
 pub fn exportTypeDecl(ty: Type) -> CDecl {
+
     CDecl(declspecs, declrs, ni)
 }
 
 pub fn exportTypeDef(TypeDef(ident, ty, attrs, node_info): TypeDef) -> CDecl {
+
+    let declr = (Some(CDeclr((Some(ident)), derived, None, (exportAttrs(attrs)), ni)), None, None);
+
     CDecl((__op_concat(CStorageSpec((CTypedef(ni))), declspecs)), vec![declr], node_info)
 }
 
 pub fn exportTypeQuals(quals: TypeQuals) -> Vec<CTypeQual> {
+
     mapMaybe(select, vec![(constant, CConstQual(ni)), (volatile, CVolatQual(ni)), (restrict, CRestrQual(ni))])
 }
 

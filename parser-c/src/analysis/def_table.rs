@@ -131,6 +131,7 @@ pub fn defRedeclStatusLocal(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, 
 }
 
 pub fn defineGlobalIdent(ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
+
     (defRedeclStatus(compatIdentEntry, (Right(def)), oldDecl), deftbl {
         identDecls: decls_q
     })
@@ -150,18 +151,52 @@ pub fn defineScopedIdent() -> (DeclarationStatus<IdentEntry>, DefTable) {
 }
 
 pub fn defineScopedIdentWhen(override_def: fn(IdentDecl) -> bool, ident: Ident, def: IdentDecl, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
+
+    let doOverride = |_0| {
+        match (_0) {
+            Left(_) => {
+                false
+            },
+            Right(old_def) => {
+                false
+            },
+        }
+    };
+
+    let new_decls = fst((defLocal(old_decls, ident, new_def)));
+
+    let new_def = Right(def);
+
+    let old_decl_opt = lookupInnermostScope(old_decls, ident);
+
+    let old_decls = identDecls(deftbl);
+
+    let redeclStatus_q = |overriden_decl| {
+        defRedeclStatusLocal(compatIdentEntry, ident, new_def, overriden_decl, old_decls)
+    };
+
     (redecl_status, deftbl {
         identDecls: decls_q
     })
 }
 
 pub fn defineTag(sueref: SUERef, def: TagDef, deftbl: DefTable) -> (DeclarationStatus<TagEntry>, DefTable) {
+
+    let redeclStatus = match olddecl {
+            Some(fwd_decl, __OP__, Left(_)) if (tagKind(fwd_decl) == tagKind((Right(def)))) => { NewDecl }
+            Some(fwd_decl, __OP__, Left(_)) => { KindMismatch(fwd_decl) }
+            _ => {
+                defRedeclStatusLocal(compatTagEntry, sueref, (Right(def)), olddecl, (tagDecls(deftbl)))
+            },
+        };
+
     (redeclStatus, deftbl {
         tagDecls: decls_q
     })
 }
 
 pub fn defineTypeDef(ident: Ident, tydef: TypeDef, deftbl: DefTable) -> (DeclarationStatus<IdentEntry>, DefTable) {
+
     (defRedeclStatus(compatIdentEntry, (Left(tydef)), oldDecl), deftbl {
         identDecls: decls_q
     })
@@ -197,6 +232,24 @@ pub fn enterMemberDecl(deftbl: DefTable) -> DefTable {
 }
 
 pub fn globalDefs(deftbl: DefTable) -> GlobalDecls {
+
+    let e = Map::empty;
+
+    let insertDecl = |_0, _1, _2| {
+        match (_0, _1, _2) {
+            (ident, Left(tydef), ds) => {
+                ds {
+                    gTypeDefs: Map::insert(ident, tydef, (gTypeDefs(ds)))
+                }
+            },
+            (ident, Right(obj), ds) => {
+                ds {
+                    gTypeDefs: Map::insert(ident, tydef, (gTypeDefs(ds)))
+                }
+            },
+        }
+    };
+
     Map::foldWithKey(insertDecl, (GlobalDecls(e, gtags, e)), (globalNames(identDecls(deftbl))))
 }
 

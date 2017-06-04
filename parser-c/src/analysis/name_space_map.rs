@@ -72,6 +72,18 @@ pub fn lookupInnermostScope<a>(nsm: NameSpaceMap<k, a>, __OP__: k, NsMap(_gs, lo
 }
 
 pub fn lookupName<a>(ns: NameSpaceMap<k, a>, __OP__: k, NsMap(_, localDefs): Option<a>) -> Option<a> {
+
+    let lookupLocal = |_0| {
+        match (_0) {
+            [] => {
+                None
+            },
+            [ls, lss] => {
+                None
+            },
+        }
+    };
+
     match lookupLocal(localDefs) {
         None => {
             lookupGlobal(ns, ident)
@@ -83,6 +95,21 @@ pub fn lookupName<a>(ns: NameSpaceMap<k, a>, __OP__: k, NsMap(_, localDefs): Opt
 }
 
 pub fn mergeNameSpace<a>(NsMap(global1, local1): NameSpaceMap<k, a>, NsMap(global2, local2): NameSpaceMap<k, a>) -> NameSpaceMap<k, a> {
+
+    let localUnion = |_0, _1| {
+        match (_0, _1) {
+            ([l1, ls1], [l2, ls2]) => {
+                __op_concat(List::unionBy((|p1, p2| { (fst(p1) == fst(p2)) }), l1, l2), localUnion(ls1, ls2))
+            },
+            ([], ls2) => {
+                __op_concat(List::unionBy((|p1, p2| { (fst(p1) == fst(p2)) }), l1, l2), localUnion(ls1, ls2))
+            },
+            (ls1, []) => {
+                __op_concat(List::unionBy((|p1, p2| { (fst(p1) == fst(p2)) }), l1, l2), localUnion(ls1, ls2))
+            },
+        }
+    };
+
     NsMap((Map::union(global1, global2)), (localUnion(local1, local2)))
 }
 

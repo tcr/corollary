@@ -61,6 +61,18 @@ pub fn isPreprocessed() -> bool {
 }
 
 pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> IO<FilePath> {
+
+    let getTempDir = |_0| {
+        match (_0) {
+            Some(tmpdir) => {
+                tmpdir
+            },
+            None => {
+                tmpdir
+            },
+        }
+    };
+
     /*do*/ {
         let tmpDir = getTempDir(tmp_dir_opt);
 
@@ -92,6 +104,32 @@ pub fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
 }
 
 pub fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO<Either<ExitCode, InputStream>> {
+
+    pub fn getActualOutFile() -> IO<FilePath> {
+        maybe((mkOutputFile((cppTmpDir(cpp_args)), (inputFile(cpp_args)))), return, (outputFile(cpp_args)))
+    }
+
+    let invokeCpp = |actual_out_file| {
+        /*do*/ {
+            let exit_code = runCPP(cpp, (cpp_args {
+                        outputFile: Some(actual_out_file)
+                    }));
+
+            match exit_code {
+                ExitSuccess => {
+                    liftM(Right, (readInputStream(actual_out_file)))
+                },
+                ExitFailure(_) => {
+                    Left(exit_code)
+                },
+            }
+        }
+    };
+
+    let removeTmpOutFile = |out_file| {
+        maybe((removeFile(out_file)), (|_| { () }), (outputFile(cpp_args)))
+    };
+
     bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
 }
 

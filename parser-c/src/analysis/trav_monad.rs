@@ -114,6 +114,38 @@ pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus
 }
 
 pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m<()> {
+
+    let canBeOverwritten = |_0| {
+        match (_0) {
+            Declaration(_) => {
+                true
+            },
+            ObjectDef(od) => {
+                true
+            },
+            _ => {
+                true
+            },
+        }
+    };
+
+    let linkageErr = |new_def, old_def| {
+        match (declLinkage(new_def), declLinkage(old_def)) {
+            (NoLinkage, _) => {
+                redefErr((declIdent(new_def)), LevelError, new_def, old_def, NoLinkageOld)
+            },
+            _ => {
+                redefErr((declIdent(new_def)), LevelError, new_def, old_def, DisagreeLinkage)
+            },
+        }
+    };
+
+    let new_ty = declType(def);
+
+    let redefVarErr = |old_def, kind| {
+        redefErr((declIdent(def)), LevelError, def, old_def, kind)
+    };
+
     match redecl {
         KindMismatch(old_def) => {
             redefVarErr(old_def, DiffKindRedecl)
@@ -221,6 +253,18 @@ pub fn handleFunDef(ident: Ident, fun_def: FunDef) -> m<()> {
 }
 
 pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
+
+    let isTentativeDef = |_0| {
+        match (_0) {
+            ObjectDef(object_def) => {
+                isTentative(object_def)
+            },
+            _ => {
+                isTentative(object_def)
+            },
+        }
+    };
+
     /*do*/ {
         let def = ObjectDef(obj_def);
 
@@ -344,6 +388,11 @@ pub fn lookupObject(ident: Ident) -> m<Option<IdentDecl>> {
 }
 
 pub fn lookupTypeDef(ident: Ident) -> m<Type> {
+
+    let wrongKindErrMsg = |d| {
+        __op_addadd("wrong kind of object: expected typedef but found ".to_string(), __op_addadd((objKindDescr(d)), __op_addadd(" (for identifier `".to_string(), __op_addadd(identToString(ident), "\')".to_string()))))
+    };
+
     __op_bind(getDefTable, |symt| { match lookupIdent(ident, symt) {
             None => {
                 astError((nodeInfo(ident)), __op_addadd("unbound typeDef: ".to_string(), identToString(ident)))
@@ -398,6 +447,12 @@ pub fn redefErr(name: Ident, lvl: ErrorLevel, new: new, old: old, kind: RedefKin
 }
 
 pub fn runTrav<a>(state: s, traversal: Trav<s, a>) -> Either<Vec<CError>, (a, TravState<s>)> {
+
+    let action = /*do*/ {
+            withDefTable((__TODO_const(((), builtins))));
+            traversal
+        };
+
     match unTrav(action, (initTravState(state))) {
         Left(trav_err) => {
             Left(vec![trav_err])
