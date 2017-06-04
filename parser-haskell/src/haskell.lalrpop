@@ -107,10 +107,10 @@ Operator: String = {
 
 Assignment: Assignment = {
     <pats:PatList>
-      ("|" <CommaOnce<(<ExprSpan> ("<-" ExprSpan)?)>> "=" <ExprSpan>)+
-      => Assignment { pats, expr: Expr::Error }, // TODO this
+      <sets:("|" <CommaOnce<(<ExprSpan> <("<-" <ExprSpan>)?>)>> "=" <ExprSpan>)+>
+      => Assignment::Case { pats, sets }, // TODO this
     <pats:PatList> "=" <expr:ExprSpan>
-      => Assignment { pats, expr },
+      => Assignment::Assign { pats, expr },
 };
 
 Case: CaseCond = {

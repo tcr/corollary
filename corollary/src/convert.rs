@@ -735,9 +735,13 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
 
             // If hte AST is refactored to break out the first Ident
             // for the issigned, this whole check should be deleted
-            let ident = match assign.pats.remove(0) {
-                Pat::Ref(ast::Ident(s)) => s,
-                span => panic!("Expected ident, got {:?}\n\nin: {:?}\n", span, item),
+            let ident = match assign {
+              ast::Assignment::Assign { ref mut pats, .. }
+              | ast::Assignment::Case { ref mut pats, .. } =>
+                    match pats.remove(0) {
+                        Pat::Ref(ast::Ident(s)) => s,
+                        span => panic!("Expected ident, got {:?}\n\nin: {:?}\n", span, item),
+                    }
             };
 
             cache.entry(ident)
@@ -748,93 +752,102 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
 
     // Convert guards into basically case statements
     let mut new_cache: BTreeMap<String, Vec<ast::Assignment>> = btreemap![];
-    for (key, fnset) in cache {
+    for (key, mut fnset) in cache {
+        let fnset2 = fnset.clone();
         if fnset.len() > 1 {
             // There are multiple impls of this function, so expand this into a
             // case statement.
-            let args = (0..fnset[0].pats.len())
-                .map(|x| format!("_{}", x))
-                .collect::<Vec<_>>();
+            if let ast::Assignment::Assign { ref mut pats, ref mut expr } = fnset[0] {
+                let args = (0..pats.len())
+                    .map(|x| format!("_{}", x))
+                    .collect::<Vec<_>>();
 
-            // Convert args into case options.
-            let pats = args
-                .iter()
-                .map(|x| Pat::Ref(ast::Ident(x.to_string())))
-                .collect::<Vec<_>>();
+                // Convert args into case options.
+                let pats = args
+                    .iter()
+                    .map(|x| Pat::Ref(ast::Ident(x.to_string())))
+                    .collect::<Vec<_>>();
 
-            // Generate case statements.
-            let expr = ast::Expr::Case(
-                Box::new(ast::Expr::Parens(args.iter()
-                    .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
-                    .collect::<Vec<_>>())),
-                fnset.iter().map(|x| {
-                    ast::CaseCond::Direct(
-                        vec![Pat::Tuple(x.pats.clone())],
-                        vec![x.expr.clone()])
-                }).collect::<Vec<_>>(),
-            );
-            let res = vec![ast::Assignment { pats, expr }];
-            new_cache.insert(key, res);
+                // Generate case statements.
+                let expr = ast::Expr::Case(
+                    Box::new(ast::Expr::Parens(args.iter()
+                        .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
+                        .collect::<Vec<_>>())),
+                    fnset2.iter().map(|x| {
+                        ast::CaseCond::Direct(
+                            vec![Pat::Tuple(pats.clone())],
+                            vec![expr.clone()])
+                    }).collect::<Vec<_>>(),
+                );
+                let res = vec![ast::Assignment::Assign { pats, expr }];
+                new_cache.insert(key, res);
+            } else {
+                // unreachable!();
+            }
         } else {
             new_cache.insert(key, fnset);
         }
     }
 
     for (key, fnset) in new_cache {
-        for ast::Assignment { pats: args, expr } in fnset {
-            // For type-less functions,
-            if !types.contains_key(&key) {
-                // TODO Unless we can infer top-level types, we just bail.
-                // let let_str = print_let(state, &ast::Assignment { pats: {
-                //     let mut out = vec![ast::Pat::Ref(ast::Ident(key.to_string()))];
-                //     out.extend(args);
-                //     out
-                // }, expr });
-                // out.push(format!("{}", let_str));
-                // continue;
-                panic!("Cannot print untyped fn {:?}", key);
+        for assign in fnset {
+            if let ast::Assignment::Assign { pats: args, expr } = assign {
+                // For type-less functions,
+                if !types.contains_key(&key) {
+                    // TODO Unless we can infer top-level types, we just bail.
+                    // let let_str = print_let(state, &ast::Assignment { pats: {
+                    //     let mut out = vec![ast::Pat::Ref(ast::Ident(key.to_string()))];
+                    //     out.extend(args);
+                    //     out
+                    // }, expr });
+                    // out.push(format!("{}", let_str));
+                    // continue;
+                    panic!("Cannot print untyped fn {:?}", key);
+                }
+
+                let d = types[&key].clone();
+                //assert!(d.len() == 1);
+                //TODO what did this assert do
+                let t = unpack_fndef(d[0].clone());
+                assert!(t.len() >= 1);
+
+                let mut args_span = vec![];
+                for (arg, ty) in args.iter().zip(t.iter()) {
+                    args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
+                }
+                let args_str = args_span.join(", ");
+
+                let ret_str = print_type(state.tab(), t.last().unwrap());
+
+                let re = Regex::new(r"\b(a|b)\b").unwrap();
+                let mut type_args = re.captures_iter(&args_str)
+                    .map(|x| x[1].to_string())
+                    .collect::<::std::collections::HashSet<_>>();
+                
+                for item in re.captures_iter(&ret_str) {
+                    type_args.insert(item[1].to_string());
+                }
+
+                let type_args = type_args.into_iter().collect::<Vec<_>>();
+
+                let trans_name = print_type_ident(state, &key);
+                out.push(
+                    format!("{}pub fn {}{}({}) -> {} {{\n{}{}\n{}}}\n",
+                        state.indent(),
+                        trans_name,
+                        if type_args.len() > 0 {
+                            format!("<{}>", type_args.join(", "))
+                        } else {
+                            format!("")
+                        },
+                        args_str,
+                        ret_str,
+                        state.tab().indent(),
+                        print_expr(state.tab(), &expr),
+                        state.indent()));
+            } else {
+                // TODO
             }
-
-            let d = types[&key].clone();
-            //assert!(d.len() == 1);
-            //TODO what did this assert do
-            let t = unpack_fndef(d[0].clone());
-            assert!(t.len() >= 1);
-
-            let mut args_span = vec![];
-            for (arg, ty) in args.iter().zip(t.iter()) {
-                args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
-            }
-            let args_str = args_span.join(", ");
-
-            let ret_str = print_type(state.tab(), t.last().unwrap());
-
-            let re = Regex::new(r"\b(a|b)\b").unwrap();
-            let mut type_args = re.captures_iter(&args_str)
-                .map(|x| x[1].to_string())
-                .collect::<::std::collections::HashSet<_>>();
-            
-            for item in re.captures_iter(&ret_str) {
-                type_args.insert(item[1].to_string());
-            }
-
-            let type_args = type_args.into_iter().collect::<Vec<_>>();
-
-            let trans_name = print_type_ident(state, &key);
-            out.push(
-                format!("{}pub fn {}{}({}) -> {} {{\n{}{}\n{}}}\n",
-                    state.indent(),
-                    trans_name,
-                    if type_args.len() > 0 {
-                        format!("<{}>", type_args.join(", "))
-                    } else {
-                        format!("")
-                    },
-                    args_str,
-                    ret_str,
-                    state.tab().indent(),
-                    print_expr(state.tab(), &expr),
-                    state.indent()));
         }
     }
 
@@ -844,7 +857,10 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item]) -> String {
 pub fn print_let(state: PrintState, assign: &ast::Assignment) -> String {
     // With no type signature, we print a lambda.
     // If there are no arguments, we compute it now (non-lazily).
-    let &ast::Assignment { ref pats, ref expr } = assign;
+    let (pats, expr) = match assign {
+      &ast::Assignment::Assign { ref pats, ref expr } => (pats, expr),
+      _ => unreachable!(),
+    };
     if pats.len() == 0 {
         // TODO why does this case occur?
         format!("")
@@ -880,7 +896,7 @@ pub fn print_do(state: PrintState, stmts: &[ast::DoItem], items: &[ast::Item]) -
             }
             ast::DoItem::Bind(ref pats, ref expr) => {
                 // good enough for now
-                let assign = ast::Assignment { pats: pats.clone(), expr: *expr.clone() };
+                let assign = ast::Assignment::Assign { pats: pats.clone(), expr: *expr.clone() };
                 body.push(print_let(state, &assign));
             }
             ast::DoItem::Expression(ref e) => {

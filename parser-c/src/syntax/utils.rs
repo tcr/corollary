@@ -10,130 +10,92 @@
 
 pub fn compoundSubStmts(_0: CBlockItem) -> Vec<CStat> {
     match (_0) {
-        CBlockStmt(s) => {
+        _0 => {
             vec![s]
         },
-        CBlockDecl(_) => {
-            vec![]
+        _0 => {
+            vec![s]
         },
-        CNestedFunDef(_) => {
-            vec![]
+        _0 => {
+            vec![s]
         },
     }
 }
 
 pub fn getLabels(_0: CStat) -> Vec<Ident> {
     match (_0) {
-        CLabel(l, s, _, _) => {
+        _0 => {
             __op_concat(l, getLabels(s))
         },
-        CCompound(ls, body, _) => {
-            __op_forwardslash(concatMap((concatMap(getLabels, compoundSubStmts)), body), ls)
+        _0 => {
+            __op_concat(l, getLabels(s))
         },
-        stmt => {
-            concatMap(getLabels, (getSubStmts(stmt)))
+        _0 => {
+            __op_concat(l, getLabels(s))
         },
     }
 }
 
 pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
     match (_0) {
-        CLabel(_, s, _, _) => {
+        _0 => {
             vec![s]
         },
-        CCase(_, s, _) => {
+        _0 => {
             vec![s]
         },
-        CCases(_, _, s, _) => {
+        _0 => {
             vec![s]
         },
-        CDefault(s, _) => {
+        _0 => {
             vec![s]
         },
-        CExpr(_, _) => {
-            vec![]
-        },
-        CCompound(_, body, _) => {
-            concatMap(compoundSubStmts, body)
-        },
-        CIf(_, sthen, selse, _) => {
-            maybe(vec![sthen], (|s| { vec![sthen, s] }), selse)
-        },
-        CSwitch(_, s, _) => {
+        _0 => {
             vec![s]
         },
-        CWhile(_, s, _, _) => {
+        _0 => {
             vec![s]
         },
-        CFor(_, _, _, s, _) => {
+        _0 => {
             vec![s]
         },
-        CGoto(_, _) => {
-            vec![]
+        _0 => {
+            vec![s]
         },
-        CGotoPtr(_, _) => {
-            vec![]
+        _0 => {
+            vec![s]
         },
-        CCont(_) => {
-            vec![]
+        _0 => {
+            vec![s]
         },
-        CBreak(_) => {
-            vec![]
+        _0 => {
+            vec![s]
         },
-        CReturn(_, _) => {
-            vec![]
+        _0 => {
+            vec![s]
         },
-        CAsm(_, _) => {
-            vec![]
+        _0 => {
+            vec![s]
+        },
+        _0 => {
+            vec![s]
+        },
+        _0 => {
+            vec![s]
+        },
+        _0 => {
+            vec![s]
         },
     }
 }
 
 pub fn mapBlockItemStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CBlockItem) -> CBlockItem {
     match (_0, _1, _2) {
-        (stop, f, CBlockStmt(s)) => {
+        (_0, _1, _2) => {
             CBlockStmt((mapSubStmts(stop, f, s)))
         },
-        (_, _, bi) => {
-            bi
-        },
-    }
-}
-
-pub fn mapSubStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> CStat {
-    match (_0, _1, _2) {
-        (stop, _, s) => {
-            /* Expr::Error */ Error
-        },
-        (stop, f, CLabel(i, s, attrs, ni)) => {
-            f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni)))
-        },
-        (stop, f, CCase(e, s, ni)) => {
-            f((CCase(e, (mapSubStmts(stop, f, s)), ni)))
-        },
-        (stop, f, CCases(e1, e2, s, ni)) => {
-            f((CCases(e1, e2, (mapSubStmts(stop, f, s)), ni)))
-        },
-        (stop, f, CDefault(s, ni)) => {
-            f((CDefault((mapSubStmts(stop, f, s)), ni)))
-        },
-        (stop, f, CCompound(ls, body, ni)) => {
-            f((CCompound(ls, (__map!((mapBlockItemStmts(stop, f)), body)), ni)))
-        },
-        (stop, f, CIf(e, sthen, selse, ni)) => {
-            f((CIf(e, (mapSubStmts(stop, f, sthen)), (fmap((mapSubStmts(stop, f)), selse)), ni)))
-        },
-        (stop, f, CSwitch(e, s, ni)) => {
-            f((CSwitch(e, (mapSubStmts(stop, f, s)), ni)))
-        },
-        (stop, f, CWhile(e, s, isdo, ni)) => {
-            f((CWhile(e, (mapSubStmts(stop, f, s)), isdo, ni)))
-        },
-        (stop, f, CFor(i, t, a, s, ni)) => {
-            f((CFor(i, t, a, (mapSubStmts(stop, f, s)), ni)))
-        },
-        (_, f, s) => {
-            f(s)
+        (_0, _1, _2) => {
+            CBlockStmt((mapSubStmts(stop, f, s)))
         },
     }
 }

@@ -13,14 +13,14 @@
 
 pub fn baseType(_0: Type) -> Type {
     match (_0) {
-        PtrType(t, _, _) => {
+        _0 => {
             t
         },
-        ArrayType(t, _, _, _) => {
+        _0 => {
             t
         },
-        _ => {
-            __error!("base of non-pointer type".to_string())
+        _0 => {
+            t
         },
     }
 }
@@ -60,34 +60,34 @@ pub fn constVoidPtr() -> Type {
 
 pub fn deepDerefTypeDef(_0: Type) -> Type {
     match (_0) {
-        PtrType(t, quals, attrs) => {
+        _0 => {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        ArrayType(t, size, quals, attrs) => {
-            ArrayType((deepDerefTypeDef(t)), size, quals, attrs)
+        _0 => {
+            PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        FunctionType(FunType(rt, params, varargs), attrs) => {
-            FunctionType((FunType((deepDerefTypeDef(rt)), params, varargs)), attrs)
+        _0 => {
+            PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        FunctionType(FunTypeIncomplete(rt), attrs) => {
-            FunctionType((FunTypeIncomplete((deepDerefTypeDef(rt)))), attrs)
+        _0 => {
+            PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        TypeDefType(TypeDefRef(_, t, _), q, a) => {
-            (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((deepDerefTypeDef(t)))
+        _0 => {
+            PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
-        t => {
-            t
+        _0 => {
+            PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
     }
 }
 
 pub fn derefTypeDef(_0: Type) -> Type {
     match (_0) {
-        TypeDefType(TypeDefRef(_, t, _), q, a) => {
+        _0 => {
             (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
         },
-        ty => {
-            ty
+        _0 => {
+            (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
         },
     }
 }
@@ -96,25 +96,17 @@ pub fn floating(ty: FloatType) -> Type {
     DirectType((TyFloating(ty)), noTypeQuals, noAttributes)
 }
 
-pub fn getFloatType(fs: String) -> FloatType {
-    /* Expr::Error */ Error
-}
-
-pub fn getIntType(flags: Flags<CIntFlag>) -> IntType {
-    /* Expr::Error */ Error
-}
-
 pub fn integral(ty: IntType) -> Type {
     DirectType((TyIntegral(ty)), noTypeQuals, noAttributes)
 }
 
 pub fn isFloatingType(_0: Type) -> bool {
     match (_0) {
-        DirectType(TyFloating(_), _, _) => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }
@@ -135,28 +127,28 @@ pub fn isFunctionType(ty: Type) -> bool {
 
 pub fn isIntegralType(_0: Type) -> bool {
     match (_0) {
-        DirectType(TyIntegral(_), _, _) => {
+        _0 => {
             true
         },
-        DirectType(TyEnum(_), _, _) => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }
 
 pub fn isPointerType(_0: Type) -> bool {
     match (_0) {
-        PtrType(_, _, _) => {
+        _0 => {
             true
         },
-        ArrayType(_, _, _, _) => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }
@@ -197,28 +189,28 @@ pub fn ptrDiffType() -> Type {
 
 pub fn sameArraySize(_0: ArraySize, _1: ArraySize) -> bool {
     match (_0, _1) {
-        (UnknownArraySize(isStar1), UnknownArraySize(isStar2)) => {
+        (_0, _1) => {
             (isStar1 == isStar2)
         },
-        (ArraySize(s1, e1), ArraySize(s2, e2)) => {
-            (s1 == (s2 && sizeEqual(e1, e2)))
+        (_0, _1) => {
+            (isStar1 == isStar2)
         },
-        (_, _) => {
-            false
+        (_0, _1) => {
+            (isStar1 == isStar2)
         },
     }
 }
 
 pub fn sameBuiltinType(_0: BuiltinType, _1: BuiltinType) -> bool {
     match (_0, _1) {
-        (TyVaList, TyVaList) => {
+        (_0, _1) => {
             true
         },
-        (TyAny, TyAny) => {
-            false
+        (_0, _1) => {
+            true
         },
-        (_, _) => {
-            false
+        (_0, _1) => {
+            true
         },
     }
 }
@@ -233,14 +225,14 @@ pub fn sameEnumTypeRef(EnumTypeRef(sue1, _): EnumTypeRef, EnumTypeRef(sue2, _): 
 
 pub fn sameFunType(_0: FunType, _1: FunType) -> bool {
     match (_0, _1) {
-        (FunType(rt1, params1, isVar1), FunType(rt2, params2, isVar2)) => {
+        (_0, _1) => {
             (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
         },
-        (FunTypeIncomplete(rt1), FunTypeIncomplete(rt2)) => {
-            sameType(rt1, rt2)
+        (_0, _1) => {
+            (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
         },
-        (_, _) => {
-            false
+        (_0, _1) => {
+            (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
         },
     }
 }
@@ -306,20 +298,20 @@ pub fn testFlags(flags: Vec<f>, fi: Flags<f>) -> bool {
 
 pub fn typeAttrs(_0: Type) -> Attributes {
     match (_0) {
-        DirectType(_, _, a) => {
+        _0 => {
             a
         },
-        PtrType(_, _, a) => {
+        _0 => {
             a
         },
-        ArrayType(_, _, _, a) => {
+        _0 => {
             a
         },
-        FunctionType(_, a) => {
+        _0 => {
             a
         },
-        TypeDefType(TypeDefRef(_, t, _), _, a) => {
-            mergeAttributes(a, (typeAttrs(t)))
+        _0 => {
+            a
         },
     }
 }
@@ -346,20 +338,20 @@ pub fn typeAttrsUpd(f: fn(Attributes) -> Attributes, ty: Type) -> Type {
 
 pub fn typeQuals(_0: Type) -> TypeQuals {
     match (_0) {
-        DirectType(_, q, _) => {
+        _0 => {
             q
         },
-        PtrType(_, q, _) => {
+        _0 => {
             q
         },
-        ArrayType(_, _, q, _) => {
+        _0 => {
             q
         },
-        FunctionType(_, _) => {
-            noTypeQuals
+        _0 => {
+            q
         },
-        TypeDefType(TypeDefRef(_, t, _), q, _) => {
-            mergeTypeQuals(q, (typeQuals(t)))
+        _0 => {
+            q
         },
     }
 }

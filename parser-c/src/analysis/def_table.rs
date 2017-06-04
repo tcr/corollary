@@ -57,24 +57,11 @@ pub use self::TagEntryKind::*;
 
 pub fn compatIdentEntry(_0: IdentEntry) -> bool {
     match (_0) {
-        Left(_tydef) => {
+        _0 => {
             either((__TODO_const(true)), (__TODO_const(false)))
         },
-        Right(def) => {
-            either((__TODO_const(false)))(|other_def| { match (def, other_def) {
-                    (EnumeratorDef(_), EnumeratorDef(_)) => {
-                        true
-                    },
-                    (EnumeratorDef(_), _) => {
-                        true
-                    },
-                    (_, EnumeratorDef(_)) => {
-                        true
-                    },
-                    (_, _) => {
-                        true
-                    },
-                } })
+        _0 => {
+            either((__TODO_const(true)), (__TODO_const(false)))
         },
     }
 }
@@ -85,20 +72,20 @@ pub fn compatTagEntry(te1: TagEntry, te2: TagEntry) -> bool {
 
 pub fn declStatusDescr(_0: DeclarationStatus<t>) -> String {
     match (_0) {
-        NewDecl => {
+        _0 => {
             "new".to_string()
         },
-        Redeclared(_) => {
-            "redeclared".to_string()
+        _0 => {
+            "new".to_string()
         },
-        KeepDef(_) => {
-            "keep old".to_string()
+        _0 => {
+            "new".to_string()
         },
-        Shadowed(_) => {
-            "shadowed".to_string()
+        _0 => {
+            "new".to_string()
         },
-        KindMismatch(_) => {
-            "kind mismatch".to_string()
+        _0 => {
+            "new".to_string()
         },
     }
 }
@@ -289,17 +276,17 @@ pub fn mergeDefTable(DefTable(i1, t1, l1, m1, r1, tt1): DefTable, DefTable(i2, t
 
 pub fn tagKind(_0: TagEntry) -> TagEntryKind {
     match (_0) {
-        Left(CompDecl(cd)) => {
+        _0 => {
             CompKind((compTag(cd)))
         },
-        Left(EnumDecl(_)) => {
-            EnumKind
-        },
-        Right(CompDef(cd)) => {
+        _0 => {
             CompKind((compTag(cd)))
         },
-        Right(EnumDef(_)) => {
-            EnumKind
+        _0 => {
+            CompKind((compTag(cd)))
+        },
+        _0 => {
+            CompKind((compTag(cd)))
         },
     }
 }

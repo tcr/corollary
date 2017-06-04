@@ -55,20 +55,20 @@ pub fn redefErrLabel(RedefInfo(ident, _, _, _): RedefInfo) -> String {
 
 pub fn redefErrReason(_0: RedefInfo) -> String {
     match (_0) {
-        RedefInfo(ident, DuplicateDef, _, _) => {
+        _0 => {
             __op_addadd("duplicate definition of ".to_string(), ident)
         },
-        RedefInfo(ident, ShadowedDef, _, _) => {
-            __op_addadd("this declaration of ".to_string(), __op_addadd(ident, " shadows a previous one".to_string()))
+        _0 => {
+            __op_addadd("duplicate definition of ".to_string(), ident)
         },
-        RedefInfo(ident, DiffKindRedecl, _, _) => {
-            __op_addadd(ident, " previously declared as a different kind of symbol".to_string())
+        _0 => {
+            __op_addadd("duplicate definition of ".to_string(), ident)
         },
-        RedefInfo(ident, DisagreeLinkage, _, _) => {
-            __op_addadd(ident, " previously declared with different linkage".to_string())
+        _0 => {
+            __op_addadd("duplicate definition of ".to_string(), ident)
         },
-        RedefInfo(ident, NoLinkageOld, _, _) => {
-            __op_addadd(ident, " previously declared without linkage".to_string())
+        _0 => {
+            __op_addadd("duplicate definition of ".to_string(), ident)
         },
     }
 }

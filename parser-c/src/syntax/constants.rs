@@ -103,68 +103,68 @@ pub fn dQuote(s: String, t: ShowS) -> ShowS {
 
 pub fn escapeCChar(_0: Char) -> String {
     match (_0) {
-        '\'' => {
+        _0 => {
             "\\\'".to_string()
         },
-        c => {
-            /* Expr::Error */ Error
+        _0 => {
+            "\\\'".to_string()
         },
     }
 }
 
 pub fn escapeChar(_0: Char) -> String {
     match (_0) {
-        '\\' => {
+        _0 => {
             "\\\\".to_string()
         },
-        '\u{7}' => {
-            "\\a".to_string()
+        _0 => {
+            "\\\\".to_string()
         },
-        '\u{8}' => {
-            "\\b".to_string()
+        _0 => {
+            "\\\\".to_string()
         },
-        '\u{1b}' => {
-            "\\e".to_string()
+        _0 => {
+            "\\\\".to_string()
         },
-        '\u{c}' => {
-            "\\f".to_string()
+        _0 => {
+            "\\\\".to_string()
         },
-        '\n' => {
-            "\\n".to_string()
+        _0 => {
+            "\\\\".to_string()
         },
-        '\r' => {
-            "\\r".to_string()
+        _0 => {
+            "\\\\".to_string()
         },
-        '\t' => {
-            "\\t".to_string()
+        _0 => {
+            "\\\\".to_string()
         },
-        '\u{b}' => {
-            "\\v".to_string()
+        _0 => {
+            "\\\\".to_string()
         },
-        c => {
-            /* Expr::Error */ Error
+        _0 => {
+            "\\\\".to_string()
         },
     }
 }
 
 pub fn getCChar(_0: CChar) -> String {
     match (_0) {
-        CChar(c, _) => {
+        _0 => {
             vec![c]
         },
-        CChars(cs, _) => {
-            cs
+        _0 => {
+            vec![c]
         },
     }
 }
 
 pub fn getCCharAsInt(_0: CChar) -> Integer {
     match (_0) {
-        CChar(c, _) => {
+        _0 => {
             fromIntegral((fromEnum(c)))
         },
-        CChars(_cs, _) => {
-            __error!("integer value of multi-character character constants is implementation defined".to_string())
+        _0 => {
+            fromIntegral((fromEnum(c)))
         },
     }
 }
@@ -179,11 +179,11 @@ pub fn getCString(CString(__str, _): CString) -> String {
 
 pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
     match (_0, _1) {
-        (err, []) => {
+        (_0, _1) => {
             __error!(err)
         },
-        (_, [x, _]) => {
-            x
+        (_0, _1) => {
+            __error!(err)
         },
     }
 }
@@ -194,44 +194,44 @@ pub fn isAsciiSourceChar(c: Char) -> bool {
 
 pub fn isCChar(_0: Char) -> bool {
     match (_0) {
-        '\\' => {
+        _0 => {
             false
         },
-        '\'' => {
+        _0 => {
             false
         },
-        '\n' => {
+        _0 => {
             false
         },
-        c => {
-            isAsciiSourceChar(c)
+        _0 => {
+            false
         },
     }
 }
 
 pub fn isSChar(_0: Char) -> bool {
     match (_0) {
-        '\\' => {
+        _0 => {
             false
         },
-        '\"' => {
+        _0 => {
             false
         },
-        '\n' => {
+        _0 => {
             false
         },
-        c => {
-            isAsciiSourceChar(c)
+        _0 => {
+            false
         },
     }
 }
 
 pub fn isWideChar(_0: CChar) -> bool {
     match (_0) {
-        CChar(_, wideFlag) => {
+        _0 => {
             wideFlag
         },
-        CChars(_, wideFlag) => {
+        _0 => {
             wideFlag
         },
     }
@@ -294,7 +294,7 @@ pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
 
 pub fn unescapeChar(_0: String) -> (Char, String) {
     match (_0) {
-        ['\\', [c, cs]] => {
+        _0 => {
             match c {
                 'n' => {
                     ('\n', cs)
@@ -351,26 +351,130 @@ pub fn unescapeChar(_0: String) -> (Char, String) {
                 },
             }
         },
-        [c, cs] => {
-            (c, cs)
+        _0 => {
+            match c {
+                'n' => {
+                    ('\n', cs)
+                },
+                't' => {
+                    ('\t', cs)
+                },
+                'v' => {
+                    ('\u{b}', cs)
+                },
+                'b' => {
+                    ('\u{8}', cs)
+                },
+                'r' => {
+                    ('\r', cs)
+                },
+                'f' => {
+                    ('\u{c}', cs)
+                },
+                'a' => {
+                    ('\u{7}', cs)
+                },
+                'e' => {
+                    ('\u{1b}', cs)
+                },
+                'E' => {
+                    ('\u{1b}', cs)
+                },
+                '\\' => {
+                    ('\\', cs)
+                },
+                '?' => {
+                    ('?', cs)
+                },
+                '\'' => {
+                    ('\'', cs)
+                },
+                '\"' => {
+                    ('\"', cs)
+                },
+                'x' => {
+                    match head_q("bad escape sequence".to_string(), (readHex(cs))) {
+                        (i, cs_q) => {
+                            (toEnum(i), cs_q)
+                        },
+                    }
+                },
+                _ => {
+                    match head_q("bad escape sequence".to_string(), (readOct_q((__op_concat(c, cs))))) {
+                        (i, cs_q) => {
+                            (toEnum(i), cs_q)
+                        },
+                    }
+                },
+            }
         },
-        [] => {
-            __error!("unescape char: empty string".to_string())
+        _0 => {
+            match c {
+                'n' => {
+                    ('\n', cs)
+                },
+                't' => {
+                    ('\t', cs)
+                },
+                'v' => {
+                    ('\u{b}', cs)
+                },
+                'b' => {
+                    ('\u{8}', cs)
+                },
+                'r' => {
+                    ('\r', cs)
+                },
+                'f' => {
+                    ('\u{c}', cs)
+                },
+                'a' => {
+                    ('\u{7}', cs)
+                },
+                'e' => {
+                    ('\u{1b}', cs)
+                },
+                'E' => {
+                    ('\u{1b}', cs)
+                },
+                '\\' => {
+                    ('\\', cs)
+                },
+                '?' => {
+                    ('?', cs)
+                },
+                '\'' => {
+                    ('\'', cs)
+                },
+                '\"' => {
+                    ('\"', cs)
+                },
+                'x' => {
+                    match head_q("bad escape sequence".to_string(), (readHex(cs))) {
+                        (i, cs_q) => {
+                            (toEnum(i), cs_q)
+                        },
+                    }
+                },
+                _ => {
+                    match head_q("bad escape sequence".to_string(), (readOct_q((__op_concat(c, cs))))) {
+                        (i, cs_q) => {
+                            (toEnum(i), cs_q)
+                        },
+                    }
+                },
+            }
         },
     }
 }
 
 pub fn unescapeString(_0: String) -> String {
     match (_0) {
-        [] => {
+        _0 => {
             vec![]
         },
-        cs => {
-            match unescapeChar(cs) {
-                (c, cs_q) => {
-                    __op_concat(c, unescapeString(cs_q))
-                },
-            }
+        _0 => {
+            vec![]
         },
     }
 }

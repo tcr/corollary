@@ -8,60 +8,53 @@
 
 pub fn itemIdioms(_0: Rust::Item) -> Rust::Item {
     match (_0) {
-        Rust::Item(attrs, vis, Rust::Function(fattrs, name, formals, ret, b)) => {
+        _0 => {
             Rust::Item(attrs, vis, (Rust::Function(fattrs, name, formals, ret, (tailBlock(b)))))
         },
-        i => {
-            i
+        _0 => {
+            Rust::Item(attrs, vis, (Rust::Function(fattrs, name, formals, ret, (tailBlock(b)))))
         },
     }
 }
 
 pub fn tailBlock(_0: Rust::Block) -> Rust::Block {
     match (_0) {
-        Rust::Block(b, Some(/* TODO ViewPattern */ tailExpr)) => {
+        _0 => {
             Rust::Block(b, e)
         },
-        Rust::Block(/* TODO ViewPattern */ unsnoc, None) => {
+        _0 => {
             Rust::Block(b, e)
         },
-        b => {
-            b
+        _0 => {
+            Rust::Block(b, e)
         },
     }
 }
 
 pub fn tailExpr(_0: Rust::Expr) -> Option<Option<Rust::Expr>> {
     match (_0) {
-        Rust::Return(e) => {
+        _0 => {
             Some(e)
         },
-        Rust::BlockExpr(b) => {
-            Some((Some((Rust::BlockExpr((tailBlock(b)))))))
+        _0 => {
+            Some(e)
         },
-        Rust::IfThenElse(c, t, f) => {
-            Some((Some((Rust::IfThenElse(c, (tailBlock(t)), (tailBlock(f)))))))
+        _0 => {
+            Some(e)
         },
-        _ => {
-            None
+        _0 => {
+            Some(e)
         },
     }
 }
 
 pub fn unsnoc<a>(_0: Vec<a>) -> Option<(Vec<a>, a)> {
     match (_0) {
-        [] => {
+        _0 => {
             None
         },
-        [x, xs] => {
-            match unsnoc(xs) {
-                Some((a, b)) => {
-                    Some((__op_concat(x, a), b))
-                },
-                None => {
-                    Some((vec![], x))
-                },
-            }
+        _0 => {
+            None
         },
     }
 }

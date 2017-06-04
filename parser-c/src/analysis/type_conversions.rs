@@ -8,44 +8,44 @@
 
 pub fn arithmeticConversion(_0: TypeName, _1: TypeName) -> Option<TypeName> {
     match (_0, _1) {
-        (TyComplex(t1), TyComplex(t2)) => {
+        (_0, _1) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (TyComplex(t1), TyFloating(t2)) => {
+        (_0, _1) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (TyFloating(t1), TyComplex(t2)) => {
+        (_0, _1) => {
             Some(TyComplex(floatConversion(t1, t2)))
         },
-        (t1, __OP__, TyComplex(_), TyIntegral(_)) => {
-            Some(t1)
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
-        (TyIntegral(_), t2, __OP__, TyComplex(_)) => {
-            Some(t2)
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
-        (TyFloating(t1), TyFloating(t2)) => {
-            Some(TyFloating(floatConversion(t1, t2)))
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
-        (t1, __OP__, TyFloating(_), TyIntegral(_)) => {
-            Some(t1)
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
-        (TyIntegral(_), t2, __OP__, TyFloating(_)) => {
-            Some(t2)
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
-        (TyIntegral(t1), TyIntegral(t2)) => {
-            Some(TyIntegral(intConversion(t1, t2)))
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
-        (TyEnum(_), TyEnum(_)) => {
-            Some(TyIntegral(TyInt))
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
-        (TyEnum(_), t2) => {
-            Some(t2)
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
-        (t1, TyEnum(_)) => {
-            Some(t1)
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
-        (_, _) => {
-            None
+        (_0, _1) => {
+            Some(TyComplex(floatConversion(t1, t2)))
         },
     }
 }

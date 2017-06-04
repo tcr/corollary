@@ -62,38 +62,38 @@ pub use self::CUnaryOp::*;
 
 pub fn assignBinop(_0: CAssignOp) -> CBinaryOp {
     match (_0) {
-        CAssignOp => {
+        _0 => {
             __error!("direct assignment has no binary operator".to_string())
         },
-        CMulAssOp => {
-            CMulOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
-        CDivAssOp => {
-            CDivOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
-        CRmdAssOp => {
-            CRmdOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
-        CAddAssOp => {
-            CAddOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
-        CSubAssOp => {
-            CSubOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
-        CShlAssOp => {
-            CShlOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
-        CShrAssOp => {
-            CShrOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
-        CAndAssOp => {
-            CAndOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
-        CXorAssOp => {
-            CXorOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
-        COrAssOp => {
-            COrOp
+        _0 => {
+            __error!("direct assignment has no binary operator".to_string())
         },
     }
 }

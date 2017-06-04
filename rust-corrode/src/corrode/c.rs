@@ -404,11 +404,11 @@ pub fn binop(expr: CExpr, op: CBinaryOp, lhs: Result, rhs: Result) -> EnvMonad<s
 
 pub fn bitWidth(_0: isize, _1: IntWidth) -> isize {
     match (_0, _1) {
-        (wordWidth, WordWidth) => {
+        (_0, _1) => {
             wordWidth
         },
-        (_, BitWidth(w)) => {
-            w
+        (_0, _1) => {
+            wordWidth
         },
     }
 }
@@ -420,41 +420,6 @@ pub fn blockToStatements(Rust::Block(stmts, mexpr): Rust::Block) -> Vec<Rust::St
         },
         None => {
             stmts
-        },
-    }
-}
-
-pub fn castTo(_0: CType, _1: Result) -> Rust::Expr {
-    match (_0, _1) {
-        (target, source) => {
-            /* Expr::Error */ Error
-        },
-        (target, Result {
-
-            }) => {
-            castTo(target, Result {
-                    resultType: IsPtr(__mut, el),
-                    resultMutable: Rust::Immutable,
-                    result: Rust::MethodCall(source, (Rust::VarName(method)), vec![])
-                })
-        },
-        (IsBool, source) => {
-            toBool(source)
-        },
-        (target, __OP__, IsInt {
-
-            }, Result {
-
-            }) => {
-            Rust::Lit((Rust::LitInt(n, repr, (toRustType(target)))))
-        },
-        (IsInt(Signed, w), Result {
-
-            }) => {
-            Rust::Neg((Rust::Lit((Rust::LitInt(n, repr, (toRustType((IsInt(Signed, w)))))))))
-        },
-        (target, source) => {
-            Rust::Cast((result(source)), (toRustType(target)))
         },
     }
 }
@@ -486,62 +451,62 @@ pub fn charType() -> CType {
 
 pub fn compatibleInitializer(_0: CType, _1: CType) -> bool {
     match (_0, _1) {
-        (IsStruct(name1, _), IsStruct(name2, _)) => {
+        (_0, _1) => {
             (name1 == name2)
         },
-        (IsStruct {
-
-        }, _) => {
-            false
+        (_0, _1) => {
+            (name1 == name2)
         },
-        (_, IsStruct {
-
-        }) => {
-            false
+        (_0, _1) => {
+            (name1 == name2)
         },
-        (_, _) => {
-            true
+        (_0, _1) => {
+            (name1 == name2)
         },
     }
 }
 
 pub fn compatiblePtr(_0: CType, _1: CType) -> CType {
     match (_0, _1) {
-        (IsPtr(_, IsVoid), b) => {
+        (_0, _1) => {
             b
         },
-        (IsArray(__mut, _, el), b) => {
-            compatiblePtr((IsPtr(__mut, el)), b)
+        (_0, _1) => {
+            b
         },
-        (a, IsPtr(_, IsVoid)) => {
-            a
+        (_0, _1) => {
+            b
         },
-        (a, IsArray(__mut, _, el)) => {
-            compatiblePtr(a, (IsPtr(__mut, el)))
+        (_0, _1) => {
+            b
         },
-        (IsPtr(m1, a), IsPtr(m2, b)) => {
-            IsPtr((leastMutable(m1, m2)), (compatiblePtr(a, b)))
+        (_0, _1) => {
+            b
         },
-        (a, b) => {
-            /* Expr::Error */ Error
+        (_0, _1) => {
+            b
         },
-        (_, _) => {
-            IsVoid
+        (_0, _1) => {
+            b
         },
     }
 }
 
 pub fn completeType(_0: CType, _1: EnvMonad<s, CType>) -> EnvMonad<s, CType> {
     match (_0, _1, _2) {
-        (orig, __OP__, IsIncomplete(ident)) => {
+        (_0, _1, _2) => {
             /*do*/ {
                 let mty = getTagIdent(ident);
 
                 fromMaybe((orig), mty)
             }
         },
-        ty => {
-            ty
+        (_0, _1, _2) => {
+            /*do*/ {
+                let mty = getTagIdent(ident);
+
+                fromMaybe((orig), mty)
+            }
         },
     }
 }
@@ -664,10 +629,10 @@ pub fn derivedTypeOf(deferred: EnvMonad<s, IntermediateType>, declr: CDeclr) -> 
 
 pub fn designatorType(_0: Designator) -> CType {
     match (_0) {
-        Base(ty) => {
+        _0 => {
             ty
         },
-        From(ty, _, _, _) => {
+        _0 => {
             ty
         },
     }
@@ -696,14 +661,14 @@ pub fn enumReprType() -> CType {
 
 pub fn exprToStatements(_0: Rust::Expr) -> Vec<Rust::Stmt> {
     match (_0) {
-        Rust::IfThenElse(c, t, f) => {
+        _0 => {
             vec![Rust::Stmt((Rust::IfThenElse(c, (extractExpr(t)), (extractExpr(f)))))]
         },
-        Rust::BlockExpr(b) => {
-            blockToStatements(b)
+        _0 => {
+            vec![Rust::Stmt((Rust::IfThenElse(c, (extractExpr(t)), (extractExpr(f)))))]
         },
-        e => {
-            vec![Rust::Stmt(e)]
+        _0 => {
+            vec![Rust::Stmt((Rust::IfThenElse(c, (extractExpr(t)), (extractExpr(f)))))]
         },
     }
 }
@@ -793,75 +758,69 @@ pub fn gotoLabel(ident: Ident) -> CSourceBuildCFGT<s, Label> {
 
 pub fn intPromote(_0: CType) -> CType {
     match (_0) {
-        IsBool => {
+        _0 => {
             IsInt(Signed, (BitWidth(32)))
         },
-        IsEnum(_) => {
-            enumReprType
+        _0 => {
+            IsInt(Signed, (BitWidth(32)))
         },
-        IsInt(_, BitWidth(w)) => {
-            /* Expr::Error */ Error
+        _0 => {
+            IsInt(Signed, (BitWidth(32)))
         },
-        x => {
-            x
+        _0 => {
+            IsInt(Signed, (BitWidth(32)))
         },
     }
 }
 
 pub fn integerConversionRank(_0: IntWidth, _1: IntWidth) -> Option<Ordering> {
     match (_0, _1) {
-        (BitWidth(a), BitWidth(b)) => {
+        (_0, _1) => {
             Some((compare(a, b)))
         },
-        (WordWidth, WordWidth) => {
-            Some(EQ)
+        (_0, _1) => {
+            Some((compare(a, b)))
         },
-        (BitWidth(a), WordWidth) => {
-            /* Expr::Error */ Error
+        (_0, _1) => {
+            Some((compare(a, b)))
         },
-        (WordWidth, BitWidth(b)) => {
-            /* Expr::Error */ Error
+        (_0, _1) => {
+            Some((compare(a, b)))
         },
-        (_, _) => {
-            None
+        (_0, _1) => {
+            Some((compare(a, b)))
         },
     }
 }
 
 pub fn interpretBlockItem(_0: CBlockItem, _1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
     match (_0, _1) {
-        (CBlockStmt(stmt), next) => {
+        (_0, _1) => {
             interpretStatement(stmt, next)
         },
-        (CBlockDecl(decl), next) => {
-            /*do*/ {
-                let decl_q = lift(lift((interpretDeclarations(makeLetBinding, decl))));
-
-                let (rest, end) = next;
-
-                (__op_addadd(decl_q, rest), end)
-            }
+        (_0, _1) => {
+            interpretStatement(stmt, next)
         },
-        (item, _) => {
-            lift(lift((unimplemented(item))))
+        (_0, _1) => {
+            interpretStatement(stmt, next)
         },
     }
 }
 
 pub fn interpretConstExpr(_0: CExpr) -> EnvMonad<s, Integer> {
     match (_0) {
-        CConst(CIntConst(CInteger(v, _, _), _)) => {
+        _0 => {
             v
         },
-        expr => {
-            unimplemented(expr)
+        _0 => {
+            v
         },
     }
 }
 
 pub fn interpretDeclarations<b>(_0: MakeBinding<s, b>, _1: CDecl, _2: EnvMonad<s, Vec<b>>) -> EnvMonad<s, Vec<b>> {
     match (_0, _1, _2, _3) {
-        ((fromItem, makeBinding), declaration, __OP__, CDecl(specs, decls, _)) => {
+        (_0, _1, _2, _3) => {
             /*do*/ {
                 let (storagespecs, baseTy) = baseTypeOf(specs);
 
@@ -968,17 +927,119 @@ pub fn interpretDeclarations<b>(_0: MakeBinding<s, b>, _1: CDecl, _2: EnvMonad<s
                 (catMaybes(mbinds))
             }
         },
-        (_, node, __OP__, CStaticAssert {
+        (_0, _1, _2, _3) => {
+            /*do*/ {
+                let (storagespecs, baseTy) = baseTypeOf(specs);
 
-            }) => {
-            unimplemented(node)
+                let mbinds = forM(decls)(|declarator| { /*do*/ {
+                            let (decl, minit) = match declarator {
+                                    (Some(decl), minit, None) => {
+                                        (decl, minit)
+                                    },
+                                    (None, _, _) => {
+                                        badSource(declaration, "absent declarator".to_string())
+                                    },
+                                    (_, _, Some(_)) => {
+                                        badSource(declaration, "bitfield declarator".to_string())
+                                    },
+                                };
+
+                            let (ident, derived) = match decl {
+                                    CDeclr(Some(ident), derived, _, _, _) => {
+                                        (ident, derived)
+                                    },
+                                    _ => {
+                                        badSource(decl, "abstract declarator".to_string())
+                                    },
+                                };
+
+                            let deferred = derivedDeferredTypeOf(baseTy, decl, vec![]);
+
+                            match (storagespecs, derived) {
+                                (Some(CTypedef(_)), _) => {
+                                    /*do*/ {
+                                        when((isJust(minit)), (badSource(decl, "initializer on typedef".to_string())));
+                                        addTypedefIdent(ident, deferred);
+                                        None
+                                    }
+                                },
+                                (Some(CStatic(_)), [CFunDeclr {
+
+                                                }, _]) => {
+                                    /*do*/ {
+                                        addSymbolIdentAction(ident)(/*do*/ {
+                                            let itype = deferred;
+
+                                            useForwardRef(ident);
+                                            (typeToResult(itype, (Rust::Path((Rust::PathSegments(vec![applyRenames(ident)]))))))
+                                        });
+                                        None
+                                    }
+                                },
+                                (_, [CFunDeclr {
+
+                                                }, _]) => {
+                                    /*do*/ {
+                                        addExternIdent(ident, deferred)(|name, (_mut, ty)| { match ty {
+                                                IsFunc(retTy, args, variadic) => {
+                                                    {
+                                                        let formals = /* Expr::Generator */ Generator;
+
+                                                    Rust::ExternFn(name, formals, variadic, (toRustRetType(retTy)))                                                    }
+                                                },
+                                                _ => {
+                                                    __error!((__op_addadd(show(ident), " is both a function and not a function?".to_string())))
+                                                },
+                                            } });
+                                        None
+                                    }
+                                },
+                                (Some(CExtern(_)), _) => {
+                                    /*do*/ {
+                                        addExternIdent(ident, deferred)(|name, (__mut, ty)| { Rust::ExternStatic(__mut, (Rust::VarName(name)), (toRustType(ty))) });
+                                        None
+                                    }
+                                },
+                                (Some(CStatic(_)), _) => {
+                                    /*do*/ {
+                                        let _TODO_RECORD_ {
+                                            typeMutable: __mut,
+                                            typeRep: ty
+                                        } = deferred;
+
+                                        let name = addSymbolIdent(ident, (__mut, ty));
+
+                                        let expr = interpretInitializer(ty, (fromMaybe((CInitList(vec![], (nodeInfo(decl)))), minit)));
+
+                                        (Some((fromItem((Rust::Static(__mut, (Rust::VarName(name)), (toRustType(ty)), expr))))))
+                                    }
+                                },
+                                _ => {
+                                    /*do*/ {
+                                        let _TODO_RECORD_ {
+                                            typeMutable: __mut,
+                                            typeRep: ty
+                                        } = deferred;
+
+                                        let name = addSymbolIdent(ident, (__mut, ty));
+
+                                        let binding = makeBinding(__mut, (Rust::VarName(name)), ty, (nodeInfo(decl)), minit);
+
+                                        (Some(binding))
+                                    }
+                                },
+                            }
+                        } });
+
+                (catMaybes(mbinds))
+            }
         },
     }
 }
 
 pub fn interpretExpr(_0: bool, _1: CExpr) -> EnvMonad<s, Result> {
     match (_0, _1) {
-        (demand, CComma(exprs, _)) => {
+        (_0, _1) => {
             /*do*/ {
                 let (effects, mfinal) = if demand {                     
 (init(exprs), Some((last(exprs))))} else {
@@ -996,370 +1057,311 @@ pub fn interpretExpr(_0: bool, _1: CExpr) -> EnvMonad<s, Result> {
                 }
             }
         },
-        (demand, expr, __OP__, CAssign(op, lhs, rhs, _)) => {
+        (_0, _1) => {
             /*do*/ {
-                let lhs_q = interpretExpr(true, lhs);
-
-                let rhs_q = interpretExpr(true, rhs);
-
-                compound(expr, false, demand, op, lhs_q, rhs_q)
-            }
-        },
-        (demand, expr, __OP__, CCond(c, Some(t), f, _)) => {
-            /*do*/ {
-                let c_q = fmap(toBool, (interpretExpr(true, c)));
-
-                let t_q = interpretExpr(demand, t);
-
-                let f_q = interpretExpr(demand, f);
-
-                if demand {                 
-promotePtr(expr, (mkIf(c_q)), t_q, f_q)} else {
-Result {
-                    resultType: IsVoid,
-                    resultMutable: Rust::Immutable,
-                    result: mkIf(c_q, (result(t_q)), (result(f_q)))
-                }
-                }
-            }
-        },
-        (_, expr, __OP__, CBinary(op, lhs, rhs, _)) => {
-            /*do*/ {
-                let lhs_q = interpretExpr(true, lhs);
-
-                let rhs_q = interpretExpr(true, rhs);
-
-                binop(expr, op, lhs_q, rhs_q)
-            }
-        },
-        (_, CCast(decl, expr, _)) => {
-            /*do*/ {
-                let (_mut, ty) = typeName(decl);
-
-                let expr_q = interpretExpr((__op_assign_div(ty, IsVoid)), expr);
-
-                Result {
-                    resultType: ty,
-                    resultMutable: Rust::Immutable,
-                    result: ((if ty { () } == IsVoid(then, result, else, castTo, ty)))(expr_q)
-                }
-            }
-        },
-        (demand, node, __OP__, CUnary(op, expr, _)) => {
-            match op {
-                CPreIncOp => {
-                    incdec(false, CAddAssOp)
-                },
-                CPreDecOp => {
-                    incdec(false, CSubAssOp)
-                },
-                CPostIncOp => {
-                    incdec(true, CAddAssOp)
-                },
-                CPostDecOp => {
-                    incdec(true, CSubAssOp)
-                },
-                CAdrOp => {
-                    /*do*/ {
-                        let expr_q = interpretExpr(true, expr);
-
-                        let ty_q = IsPtr((resultMutable(expr_q)), (resultType(expr_q)));
-
-                        Result {
-                            resultType: ty_q,
-                            resultMutable: Rust::Immutable,
-                            result: Rust::Cast((Rust::Borrow((resultMutable(expr_q)), (result(expr_q)))), (toRustType(ty_q)))
-                        }
-                    }
-                },
-                CIndOp => {
-                    /*do*/ {
-                        let expr_q = interpretExpr(true, expr);
-
-                        match resultType(expr_q) {
-                            IsPtr(mut_q, ty_q) => {
-                                Result {
-                                    resultType: ty_q,
-                                    resultMutable: mut_q,
-                                    result: Rust::Deref((result(expr_q)))
-                                }
-                            },
-                            IsFunc {
-
-                            } => {
-                                expr_q
-                            },
-                            _ => {
-                                badSource(node, "dereference of non-pointer".to_string())
-                            },
-                        }
-                    }
-                },
-                CPlusOp => {
-                    /*do*/ {
-                        let expr_q = interpretExpr(demand, expr);
-
-                        let ty_q = intPromote((resultType(expr_q)));
-
-                        Result {
-                            resultType: ty_q,
-                            resultMutable: Rust::Immutable,
-                            result: castTo(ty_q, expr_q)
-                        }
-                    }
-                },
-                CMinOp => {
-                    fmap(wrapping)(simple(Rust::Neg))
-                },
-                CCompOp => {
-                    simple(Rust::Not)
-                },
-                CNegOp => {
-                    /*do*/ {
-                        let expr_q = interpretExpr(true, expr);
-
-                        Result {
-                            resultType: IsBool,
-                            resultMutable: Rust::Immutable,
-                            result: toNotBool(expr_q)
-                        }
-                    }
-                },
-            }
-        },
-        (_, CSizeofExpr(e, _)) => {
-            /*do*/ {
-                let e_q = interpretExpr(true, e);
-
-                (rustSizeOfType((toRustType((resultType(e_q))))))
-            }
-        },
-        (_, CSizeofType(decl, _)) => {
-            /*do*/ {
-                let (_mut, ty) = typeName(decl);
-
-                (rustSizeOfType((toRustType(ty))))
-            }
-        },
-        (_, CAlignofExpr(e, _)) => {
-            /*do*/ {
-                let e_q = interpretExpr(true, e);
-
-                (rustAlignOfType((toRustType((resultType(e_q))))))
-            }
-        },
-        (_, CAlignofType(decl, _)) => {
-            /*do*/ {
-                let (_mut, ty) = typeName(decl);
-
-                (rustAlignOfType((toRustType(ty))))
-            }
-        },
-        (_, expr, __OP__, CIndex(lhs, rhs, _)) => {
-            /*do*/ {
-                let lhs_q = interpretExpr(true, lhs);
-
-                let rhs_q = interpretExpr(true, rhs);
-
-                match (resultType(lhs_q), resultType(rhs_q)) {
-                    (IsArray(__mut, _, el), _) => {
-                        (subscript(__mut, el, (result(lhs_q)), rhs_q))
-                    },
-                    (_, IsArray(__mut, _, el)) => {
-                        (subscript(__mut, el, (result(rhs_q)), lhs_q))
-                    },
-                    _ => {
-                        /*do*/ {
-                            let ptr = binop(expr, CAddOp, lhs_q, rhs_q);
-
-                            match resultType(ptr) {
-                                IsPtr(__mut, ty) => {
-                                    Result {
-                                        resultType: ty,
-                                        resultMutable: __mut,
-                                        result: Rust::Deref((result(ptr)))
-                                    }
-                                },
-                                _ => {
-                                    badSource(expr, "array subscript of non-pointer".to_string())
-                                },
-                            }
-                        }
-                    },
-                }
-            }
-        },
-        (_, expr, __OP__, CCall(func, args, _)) => {
-            /*do*/ {
-                let func_q = interpretExpr(true, func);
-
-                match resultType(func_q) {
-                    IsFunc(retTy, argTys, variadic) => {
-                        /*do*/ {
-                            let args_q = castArgs(variadic, (__map!(snd, argTys)), args);
-
-                            Result {
-                                resultType: retTy,
-                                resultMutable: Rust::Immutable,
-                                result: Rust::Call((result(func_q)), args_q)
-                            }
-                        }
-                    },
-                    _ => {
-                        badSource(expr, "function call to non-function".to_string())
-                    },
-                }
-            }
-        },
-        (_, expr, __OP__, CMember(obj, ident, deref, node)) => {
-            /*do*/ {
-                let obj_q = interpretExpr(true)(if deref {                     
-CUnary(CIndOp, obj, node)} else {
-obj
-                    });
-
-                let objTy = completeType((resultType(obj_q)));
-
-                let fields = match objTy {
-                        IsStruct(_, fields) => {
-                            fields
-                        },
-                        _ => {
-                            badSource(expr, "member access of non-struct".to_string())
-                        },
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
                     };
 
-                let field = applyRenames(ident);
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
 
-                let ty = match lookup(field, fields) {
-                        Some(ty) => {
-                            ty
-                        },
-                        None => {
-                            badSource(expr, "request for non-existent field".to_string())
-                        },
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
                     };
 
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
                 Result {
-                    resultType: ty,
-                    resultMutable: resultMutable(obj_q),
-                    result: Rust::Member((result(obj_q)), (Rust::VarName(field)))
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
                 }
             }
         },
-        (_, expr, __OP__, CVar(ident, _)) => {
+        (_0, _1) => {
             /*do*/ {
-                let sym = getSymbolIdent(ident);
-
-                maybe((badSource(expr, "undefined variable".to_string())), return, sym)
-            }
-        },
-        (_, expr, __OP__, CConst(c)) => {
-            match c {
-                CIntConst(CInteger(v, repr, flags), _) => {
-                    {
-                        let allow_signed = not((testFlag(FlagUnsigned, flags)));
-
-                        let allow_unsigned = (not(allow_signed) || __op_assign_div(repr, DecRepr));
-
-                        let widths = vec![
-                                (32, if any((testFlag(flags)), vec![FlagLongLong, FlagLong]) {                             
-WordWidth} else {
-BitWidth(32)
-                            }),
-                                (64, BitWidth(64)),
-                            ];
-
-                        let allowed_types = /* Expr::Generator */ Generator;
-
-                        let repr_q = match repr {
-                                DecRepr => {
-                                    Rust::DecRepr
-                                },
-                                OctalRepr => {
-                                    Rust::OctalRepr
-                                },
-                                HexRepr => {
-                                    Rust::HexRepr
-                                },
-                            };
-
-                    match allowed_types {
-                            [] => {
-                                badSource(expr, "integer (too big)".to_string())
-                            },
-                            [ty, _] => {
-                                (literalNumber(ty, (Rust::LitInt(v, repr_q))))
-                            },
-                        }                    }
-                },
-                CFloatConst(CFloat(__str), _) => {
-                    match span((notElem("fF".to_string())), __str) {
-                        (v, "") => {
-                            (literalNumber((IsFloat(64)), (Rust::LitFloat(v))))
-                        },
-                        (v, [_]) => {
-                            (literalNumber((IsFloat(32)), (Rust::LitFloat(v))))
-                        },
-                        _ => {
-                            badSource(expr, "float".to_string())
-                        },
-                    }
-                },
-                CCharConst(CChar(ch, false), _) => {
-                    Result {
-                        resultType: charType,
-                        resultMutable: Rust::Immutable,
-                        result: Rust::Lit((Rust::LitByteChar(ch)))
-                    }
-                },
-                CStrConst(CString(__str, false), _) => {
-                    Result {
-                        resultType: IsArray(Rust::Immutable, ((length(__str) + 1)), charType),
-                        resultMutable: Rust::Immutable,
-                        result: Rust::Deref((Rust::Lit((Rust::LitByteStr((__op_addadd(__str, "\u{0}".to_string())))))))
-                    }
-                },
-                _ => {
-                    unimplemented(expr)
-                },
-            }
-        },
-        (_, CCompoundLit(decl, initials, info)) => {
-            /*do*/ {
-                let (__mut, ty) = typeName(decl);
-
-                let __final = interpretInitializer(ty, (CInitList(initials, info)));
-
-                Result {
-                    resultType: ty,
-                    resultMutable: __mut,
-                    result: __final
-                }
-            }
-        },
-        (demand, stat, __OP__, CStatExpr(CCompound([], stmts, _), _)) => {
-            scope(/*do*/ {
-                let (effects, __final) = match last(stmts) {
-                        CBlockStmt(CExpr(expr, _)) if demand => { (init(stmts), expr) }
-                        _ => {
-                            (stmts, None)
-                        },
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
                     };
 
-                let effects_q = cfgToRust(stat, (foldr(interpretBlockItem, ((vec![], Unreachable)), effects)));
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
 
-                let final_q = mapM((interpretExpr(true)), __final);
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
 
                 Result {
-                    resultType: maybe(IsVoid, resultType, final_q),
-                    resultMutable: maybe(Rust::Immutable, resultMutable, final_q),
-                    result: Rust::BlockExpr((Rust::Block(effects_q, (fmap(result, final_q)))))
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
                 }
-            })
+            }
         },
-        (_, expr) => {
-            unimplemented(expr)
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let (effects, mfinal) = if demand {                     
+(init(exprs), Some((last(exprs))))} else {
+(exprs, None)
+                    };
+
+                let effects_q = mapM((fmap(resultToStatements, interpretExpr(false))), effects);
+
+                let mfinal_q = mapM((interpretExpr(true)), mfinal);
+
+                Result {
+                    resultType: maybe(IsVoid, resultType, mfinal_q),
+                    resultMutable: maybe(Rust::Immutable, resultMutable, mfinal_q),
+                    result: Rust::BlockExpr((Rust::Block((concat(effects_q)), (fmap(result, mfinal_q)))))
+                }
+            }
         },
     }
 }
@@ -1483,7 +1485,7 @@ pub fn interpretInitializer(ty: CType, initial: CInit) -> EnvMonad<s, Rust::Expr
 
 pub fn interpretStatement(_0: CStat, _1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)>) -> CSourceBuildCFGT<s, (Vec<Rust::Stmt>, Terminator<Result>)> {
     match (_0, _1) {
-        (CLabel(ident, body, _, _), next) => {
+        (_0, _1) => {
             /*do*/ {
                 let label = gotoLabel(ident);
 
@@ -1493,297 +1495,155 @@ pub fn interpretStatement(_0: CStat, _1: CSourceBuildCFGT<s, (Vec<Rust::Stmt>, T
                 (vec![], Branch(label))
             }
         },
-        (stmt, __OP__, CCase(expr, body, node), next) => {
+        (_0, _1) => {
             /*do*/ {
-                let selector = getSwitchExpression(stmt);
-
-                let condition = CBinary(CEqOp, selector, expr, node);
-
-                addSwitchCase((Some(condition)), body, next)
-            }
-        },
-        (stmt, __OP__, CCases(lower, upper, body, node), next) => {
-            /*do*/ {
-                let selector = getSwitchExpression(stmt);
-
-                let condition = CBinary(CLndOp, (CBinary(CGeqOp, selector, lower, node)), (CBinary(CLeqOp, selector, upper, node)), node);
-
-                addSwitchCase((Some(condition)), body, next)
-            }
-        },
-        (CDefault(body, _), next) => {
-            addSwitchCase(None, body, next)
-        },
-        (CExpr(None, _), next) => {
-            next
-        },
-        (CExpr(Some(expr), _), next) => {
-            /*do*/ {
-                let expr_q = lift(lift(interpretExpr(false, expr)));
-
-                let (rest, end) = next;
-
-                (__op_addadd(resultToStatements(expr_q), rest), end)
-            }
-        },
-        (CCompound([], items, _), next) => {
-            mapBuildCFGT((mapRWST(scope)))(/*do*/ {
-                foldr(interpretBlockItem, next, items)
-            })
-        },
-        (CIf(c, t, mf, _), next) => {
-            /*do*/ {
-                let c_q = lift(lift(interpretExpr(true, c)));
-
-                let after = newLabel;
-
-                let falseLabel = match mf {
-                        None => {
-                            after
-                        },
-                        Some(f) => {
-                            /*do*/ {
-                                let (falseEntry, falseTerm) = interpretStatement(f, ((vec![], Branch(after))));
-
-                                let falseLabel = newLabel;
-
-                                addBlock(falseLabel, falseEntry, falseTerm);
-                                falseLabel
-                            }
-                        },
-                    };
-
-                let (trueEntry, trueTerm) = interpretStatement(t, ((vec![], Branch(after))));
-
-                let trueLabel = newLabel;
-
-                addBlock(trueLabel, trueEntry, trueTerm);
-                let (rest, end) = next;
-
-                addBlock(after, rest, end);
-                (vec![], CondBranch(c_q, trueLabel, falseLabel))
-            }
-        },
-        (stmt, __OP__, CSwitch(expr, body, node), next) => {
-            /*do*/ {
-                let (bindings, expr_q) = match expr {
-                        CVar {
-
-                        } => {
-                            (vec![], expr)
-                        },
-                        _ => {
-                            lift(lift(/*do*/ {
-                                let ident = fmap(internalIdent, (uniqueName("switch".to_string())));
-
-                                let rhs = interpretExpr(true, expr);
-
-                                let var = addSymbolIdent(ident, (Rust::Immutable, resultType(rhs)));
-
-                                (vec![
-                                    Rust::Let(Rust::Immutable, (Rust::VarName(var)), None, (Some((result(rhs))))),
-                                ], CVar(ident, node))
-                            }))
-                        },
-                    };
-
-                let after = newLabel;
-
-                let (_, SwitchCases(cases)) = getSwitchCases(expr_q)(setBreak(after)(interpretStatement(body, ((vec![], Branch(after))))));
-
-                let isDefault = |Some(condition)| {
-                    Left(condition)
-                };
-
-                let isDefault = |None| {
-                    Right(())
-                };
-
-                let (conditions, defaults) = IntMap::mapEither(isDefault, cases);
-
-                let defaultCase = match IntMap::keys(defaults) {
-                        [] => {
-                            after
-                        },
-                        [defaultCase] => {
-                            defaultCase
-                        },
-                        _ => {
-                            lift(lift(badSource(stmt, "duplicate default cases".to_string())))
-                        },
-                    };
-
-                let entry = foldrM(conditionBlock, defaultCase, (IntMap::toList(conditions)));
-
-                let (rest, end) = next;
-
-                addBlock(after, rest, end);
-                (bindings, Branch(entry))
-            }
-        },
-        (CWhile(c, body, doWhile, _), next) => {
-            /*do*/ {
-                let c_q = lift(lift(interpretExpr(true, c)));
-
-                let after = newLabel;
-
-                let headerLabel = newLabel;
-
-                let (bodyEntry, bodyTerm) = setBreak(after)(setContinue(headerLabel)(interpretStatement(body, ((vec![], Branch(headerLabel))))));
-
-                let bodyLabel = newLabel;
-
-                addBlock(bodyLabel, bodyEntry, bodyTerm);
-                addBlock(headerLabel, vec![])(match toBool(c_q) {
-                    Rust::Lit(Rust::LitBool(cont)) if __op_assign_div(cont, doWhile) => { Branch((if cont {                         
-bodyLabel} else {
-after
-                        })) }
-                    _ => {
-                        CondBranch(c_q, bodyLabel, after)
-                    },
-                });
-                let (rest, end) = next;
-
-                addBlock(after, rest, end);
-                (vec![], Branch((if doWhile {                     
-bodyLabel} else {
-headerLabel
-                    })))
-            }
-        },
-        (CFor(initial, mcond, mincr, body, _), next) => {
-            /*do*/ {
-                let after = newLabel;
-
-                let ret = mapBuildCFGT((mapRWST(scope)))(/*do*/ {
-                        let prefix = match initial {
-                                Left(None) => {
-                                    vec![]
-                                },
-                                Left(Some(expr)) => {
-                                    /*do*/ {
-                                        let expr_q = lift(lift(interpretExpr(false, expr)));
-
-                                        (resultToStatements(expr_q))
-                                    }
-                                },
-                                Right(decls) => {
-                                    lift(lift(interpretDeclarations(makeLetBinding, decls)))
-                                },
-                            };
-
-                        let headerLabel = newLabel;
-
-                        let incrLabel = match mincr {
-                                None => {
-                                    headerLabel
-                                },
-                                Some(incr) => {
-                                    /*do*/ {
-                                        let incr_q = lift(lift(interpretExpr(false, incr)));
-
-                                        let incrLabel = newLabel;
-
-                                        addBlock(incrLabel, (resultToStatements(incr_q)), (Branch(headerLabel)));
-                                        incrLabel
-                                    }
-                                },
-                            };
-
-                        let (bodyEntry, bodyTerm) = setBreak(after)(setContinue(incrLabel)(interpretStatement(body, ((vec![], Branch(incrLabel))))));
-
-                        let bodyLabel = newLabel;
-
-                        addBlock(bodyLabel, bodyEntry, bodyTerm);
-                        let cond = match mcond {
-                                Some(cond) => {
-                                    /*do*/ {
-                                        let cond_q = lift(lift(interpretExpr(true, cond)));
-
-                                        (CondBranch(cond_q, bodyLabel, after))
-                                    }
-                                },
-                                None => {
-                                    (Branch(bodyLabel))
-                                },
-                            };
-
-                        addBlock(headerLabel, vec![], cond);
-                        (prefix, Branch(headerLabel))
-                    });
-
-                let (rest, end) = next;
-
-                addBlock(after, rest, end);
-                ret
-            }
-        },
-        (CGoto(ident, _), next) => {
-            /*do*/ {
-                let _ = next;
-
                 let label = gotoLabel(ident);
 
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
                 (vec![], Branch(label))
             }
         },
-        (stmt, __OP__, CCont(_), next) => {
+        (_0, _1) => {
             /*do*/ {
-                let _ = next;
+                let label = gotoLabel(ident);
 
-                let val = lift((asks(onContinue)));
+                let (rest, end) = interpretStatement(body, next);
 
-                match val {
-                    Some(label) => {
-                        (vec![], Branch(label))
-                    },
-                    None => {
-                        lift(lift(badSource(stmt, "continue outside loop".to_string())))
-                    },
-                }
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
             }
         },
-        (stmt, __OP__, CBreak(_), next) => {
+        (_0, _1) => {
             /*do*/ {
-                let _ = next;
+                let label = gotoLabel(ident);
 
-                let val = lift((asks(onBreak)));
+                let (rest, end) = interpretStatement(body, next);
 
-                match val {
-                    Some(label) => {
-                        (vec![], Branch(label))
-                    },
-                    None => {
-                        lift(lift(badSource(stmt, "break outside loop".to_string())))
-                    },
-                }
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
             }
         },
-        (stmt, __OP__, CReturn(expr, _), next) => {
+        (_0, _1) => {
             /*do*/ {
-                let _ = next;
+                let label = gotoLabel(ident);
 
-                lift(lift(/*do*/ {
-                    let val = lift((asks(functionReturnType)));
+                let (rest, end) = interpretStatement(body, next);
 
-                    match val {
-                        None => {
-                            badSource(stmt, "return statement outside function".to_string())
-                        },
-                        Some(retTy) => {
-                            /*do*/ {
-                                let expr_q = mapM((fmap((castTo(retTy)), interpretExpr(true))), expr);
-
-                                (exprToStatements((Rust::Return(expr_q))), Unreachable)
-                            }
-                        },
-                    }
-                }))
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
             }
         },
-        (stmt, _) => {
-            lift(lift(unimplemented(stmt)))
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
+        },
+        (_0, _1) => {
+            /*do*/ {
+                let label = gotoLabel(ident);
+
+                let (rest, end) = interpretStatement(body, next);
+
+                addBlock(label, rest, end);
+                (vec![], Branch(label))
+            }
         },
     }
 }
@@ -1851,16 +1711,14 @@ pub fn nestedObject(ty: CType, desig: Designator) -> Option<Designator> {
 
 pub fn nextObject(_0: Designator) -> CurrentObject {
     match (_0) {
-        Base {
-
-        } => {
+        _0 => {
             None
         },
-        From(_, i, [ty, remaining], base) => {
-            Some((From(ty, ((i + 1)), remaining, base)))
+        _0 => {
+            None
         },
-        From(_, _, [], base) => {
-            nextObject(base)
+        _0 => {
+            None
         },
     }
 }
@@ -1877,16 +1735,16 @@ pub fn noTranslation<a>(node: node, msg: String) -> EnvMonad<s, a> {
 
 pub fn objectFromDesignators(_0: CType, _1: Vec<CDesignator>) -> EnvMonad<s, CurrentObject> {
     match (_0, _1) {
-        (_, []) => {
+        (_0, _1) => {
             __pure(None)
         },
-        (ty, desigs) => {
-            __op_dollar_arrow(Some, go(ty, desigs, (Base(ty))))
+        (_0, _1) => {
+            __pure(None)
         },
     }
 }
 
-pub fn promote<a, b>(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad<s, Result> {
+pub fn promote<b, a>(node: node, op: fn(Rust::Expr) -> fn(Rust::Expr) -> Rust::Expr, a: Result, b: Result) -> EnvMonad<s, Result> {
     match usual((resultType(a)), (resultType(b))) {
         Some(rt) => {
             Result {
@@ -2056,162 +1914,108 @@ pub fn setContinue<a>(label: Label) -> CSourceBuildCFGT<s, a> {
 
 pub fn statementsToBlock(_0: Vec<Rust::Stmt>) -> Rust::Block {
     match (_0) {
-        [Rust::Stmt(Rust::BlockExpr(stmts))] => {
+        _0 => {
             stmts
         },
-        stmts => {
-            Rust::Block(stmts, None)
+        _0 => {
+            stmts
         },
     }
 }
 
 pub fn toBool(_0: Result) -> Rust::Expr {
     match (_0) {
-        Result {
-
-            } => {
+        _0 => {
             Rust::Lit((Rust::LitBool(false)))
         },
-        Result {
-
-            } => {
-            Rust::Lit((Rust::LitBool(true)))
+        _0 => {
+            Rust::Lit((Rust::LitBool(false)))
         },
-        Result {
-
-            } => {
-            match t {
-                IsBool => {
-                    v
-                },
-                IsPtr(_, _) => {
-                    Rust::Not((Rust::MethodCall(v, (Rust::VarName("is_null".to_string())), vec![])))
-                },
-                _ => {
-                    Rust::CmpNE(v, 0)
-                },
-            }
+        _0 => {
+            Rust::Lit((Rust::LitBool(false)))
         },
     }
 }
 
 pub fn toNotBool(_0: Result) -> Rust::Expr {
     match (_0) {
-        Result {
-
-            } => {
+        _0 => {
             Rust::Lit((Rust::LitBool(true)))
         },
-        Result {
-
-            } => {
-            Rust::Lit((Rust::LitBool(false)))
+        _0 => {
+            Rust::Lit((Rust::LitBool(true)))
         },
-        Result {
-
-            } => {
-            match t {
-                IsBool => {
-                    Rust::Not(v)
-                },
-                IsPtr(_, _) => {
-                    Rust::MethodCall(v, (Rust::VarName("is_null".to_string())), vec![])
-                },
-                _ => {
-                    Rust::CmpEQ(v, 0)
-                },
-            }
+        _0 => {
+            Rust::Lit((Rust::LitBool(true)))
         },
     }
 }
 
 pub fn toPtr(_0: Result, _1: Option<Result>) -> Option<Result> {
     match (_0, _1, _2) {
-        (ptr, __OP__, Result {
-
-            }) => {
+        (_0, _1, _2) => {
             Some(ptr {
                     resultType: IsPtr(__mut, el),
                     result: castTo((IsPtr(__mut, el)), ptr)
                 })
         },
-        (ptr, __OP__, Result {
-
-            }) => {
-            Some(ptr)
+        (_0, _1, _2) => {
+            Some(ptr {
+                    resultType: IsPtr(__mut, el),
+                    result: castTo((IsPtr(__mut, el)), ptr)
+                })
         },
-        _ => {
-            None
+        (_0, _1, _2) => {
+            Some(ptr {
+                    resultType: IsPtr(__mut, el),
+                    result: castTo((IsPtr(__mut, el)), ptr)
+                })
         },
     }
 }
 
 pub fn toRustRetType(_0: CType) -> Rust::Type {
     match (_0) {
-        IsVoid => {
+        _0 => {
             Rust::TypeName("()".to_string())
         },
-        ty => {
-            toRustType(ty)
+        _0 => {
+            Rust::TypeName("()".to_string())
         },
     }
 }
 
 pub fn toRustType(_0: CType) -> Rust::Type {
     match (_0) {
-        IsBool => {
+        _0 => {
             Rust::TypeName("bool".to_string())
         },
-        IsInt(s, w) => {
-            Rust::TypeName((__op_concat((match s {
-                    Signed => {
-                        'i'
-                    },
-                    Unsigned => {
-                        'u'
-                    },
-                }), (match w {
-                    BitWidth(b) => {
-                        show(b)
-                    },
-                    WordWidth => {
-                        "size".to_string()
-                    },
-                }))))
+        _0 => {
+            Rust::TypeName("bool".to_string())
         },
-        IsFloat(w) => {
-            Rust::TypeName((__op_concat('f', show(w))))
+        _0 => {
+            Rust::TypeName("bool".to_string())
         },
-        IsVoid => {
-            Rust::TypeName("::std::os::raw::c_void".to_string())
+        _0 => {
+            Rust::TypeName("bool".to_string())
         },
-        IsFunc(retTy, args, variadic) => {
-            Rust::TypeName(concat(vec![
-                    "unsafe extern fn(".to_string(),
-                    args_q,
-                    ")".to_string(),
-                    __op_assign_div(if retTy { () }, __op_addadd(IsVoid(then, " -> ".to_string()), typename(retTy, else, "".to_string()))),
-                ]))
+        _0 => {
+            Rust::TypeName("bool".to_string())
         },
-        IsPtr(__mut, to) => {
-            {
-                let Rust::TypeName = |to_q| {
-                    toRustType(to)
-                };
-
-            Rust::TypeName((__op_addadd(rustMut(__mut), to_q)))            }
+        _0 => {
+            Rust::TypeName("bool".to_string())
         },
-        IsArray(_, size, el) => {
-            Rust::TypeName((__op_addadd("[".to_string(), __op_addadd(typename(el), __op_addadd("; ".to_string(), __op_addadd(show(size), "]".to_string()))))))
+        _0 => {
+            Rust::TypeName("bool".to_string())
         },
-        IsStruct(name, _fields) => {
-            Rust::TypeName(name)
+        _0 => {
+            Rust::TypeName("bool".to_string())
         },
-        IsEnum(name) => {
-            Rust::TypeName(name)
+        _0 => {
+            Rust::TypeName("bool".to_string())
         },
-        IsIncomplete(ident) => {
-            Rust::TypeName((identToString(ident)))
+        _0 => {
+            Rust::TypeName("bool".to_string())
         },
     }
 }
@@ -2244,38 +2048,11 @@ pub fn translateInitList(ty: CType, list: CInitList) -> EnvMonad<s, Initializer>
 
 pub fn typeName(_0: CDecl, _1: EnvMonad<s, (Rust::Mutable, CType)>) -> EnvMonad<s, (Rust::Mutable, CType)> {
     match (_0, _1, _2) {
-        (decl, __OP__, CStaticAssert {
-
-            }) => {
+        (_0, _1, _2) => {
             badSource(decl, "static assert in type name ".to_string())
         },
-        (decl, __OP__, CDecl(spec, declarators, _)) => {
-            /*do*/ {
-                let (storage, base) = baseTypeOf(spec);
-
-                match storage {
-                    Some(s) => {
-                        badSource(s, "storage class specifier in type name".to_string())
-                    },
-                    None => {
-                        ()
-                    },
-                };
-                let itype = match declarators {
-                        [] => {
-                            base
-                        },
-                        [(Some(declr, __OP__, CDeclr(None, _, _, _, _)), None, None)] => {
-                            derivedTypeOf(base, declr)
-                        },
-                        _ => {
-                            badSource(decl, "type name".to_string())
-                        },
-                    };
-
-                when((typeIsFunc(itype)), (badSource(decl, "use of function type".to_string())));
-                (typeMutable(itype), typeRep(itype))
-            }
+        (_0, _1, _2) => {
+            badSource(decl, "static assert in type name ".to_string())
         },
     }
 }
@@ -2306,35 +2083,17 @@ pub fn useForwardRef(ident: Ident) -> EnvMonad<s, ()> {
 
 pub fn usual(_0: CType, _1: CType) -> Option<CType> {
     match (_0, _1) {
-        (IsFloat(aw), IsFloat(bw)) => {
+        (_0, _1) => {
             Some((IsFloat((max(aw, bw)))))
         },
-        (a, __OP__, IsFloat(_), _) => {
-            Some(a)
+        (_0, _1) => {
+            Some((IsFloat((max(aw, bw)))))
         },
-        (_, b, __OP__, IsFloat(_)) => {
-            Some(b)
+        (_0, _1) => {
+            Some((IsFloat((max(aw, bw)))))
         },
-        (origA, origB) => {
-            match (intPromote(origA), intPromote(origB)) {
-                (a, b) if (a == b) => { Some(a) }
-                (IsInt(Signed, sw), IsInt(Unsigned, uw)) => {
-                    mixedSign(sw, uw)
-                },
-                (IsInt(Unsigned, uw), IsInt(Signed, sw)) => {
-                    mixedSign(sw, uw)
-                },
-                (IsInt(__as, aw), IsInt(_bs, bw)) => {
-                    /*do*/ {
-                        let rank = integerConversionRank(aw, bw);
-
-                        Some((IsInt(__as, ((if rank { () } == GT(then, aw, else, bw))))))
-                    }
-                },
-                _ => {
-                    None
-                },
-            }
+        (_0, _1) => {
+            Some((IsFloat((max(aw, bw)))))
         },
     }
 }
@@ -2355,9 +2114,7 @@ pub fn wrapMain(declr: CDeclr, realName: String, argTypes: Vec<CType>) -> EnvMon
 
 pub fn wrapping(_0: Result, _1: Result) -> Result {
     match (_0, _1, _2) {
-        (r, __OP__, Result {
-
-            }) => {
+        (_0, _1, _2) => {
             match result(r) {
                 Rust::Add(lhs, rhs) => {
                     r {
@@ -2394,8 +2151,42 @@ pub fn wrapping(_0: Result, _1: Result) -> Result {
                 },
             }
         },
-        r => {
-            r
+        (_0, _1, _2) => {
+            match result(r) {
+                Rust::Add(lhs, rhs) => {
+                    r {
+                        result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_add".to_string())), vec![rhs])
+                    }
+                },
+                Rust::Sub(lhs, rhs) => {
+                    r {
+                        result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_sub".to_string())), vec![rhs])
+                    }
+                },
+                Rust::Mul(lhs, rhs) => {
+                    r {
+                        result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_mul".to_string())), vec![rhs])
+                    }
+                },
+                Rust::Div(lhs, rhs) => {
+                    r {
+                        result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_div".to_string())), vec![rhs])
+                    }
+                },
+                Rust::Mod(lhs, rhs) => {
+                    r {
+                        result: Rust::MethodCall(lhs, (Rust::VarName("wrapping_rem".to_string())), vec![rhs])
+                    }
+                },
+                Rust::Neg(e) => {
+                    r {
+                        result: Rust::MethodCall(e, (Rust::VarName("wrapping_neg".to_string())), vec![])
+                    }
+                },
+                _ => {
+                    r
+                },
+            }
         },
     }
 }

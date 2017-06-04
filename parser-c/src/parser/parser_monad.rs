@@ -163,14 +163,13 @@ pub fn setInput(i: InputStream) -> P<()> {
 
 pub fn setLastToken(_0: CToken) -> P<()> {
     match (_0) {
-        CTokEof => {
+        _0 => {
             P(|s| { POk(s {
                         savedToken: (prevToken(s))
                     }, ()) })
         },
-        tok => {
+        _0 => {
             P(|s| { POk(s {
-                        prevToken: tok,
                         savedToken: (prevToken(s))
                     }, ()) })
         },

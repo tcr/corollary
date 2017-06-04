@@ -60,11 +60,11 @@ pub fn internalIdentAt(pos: Position, s: String) -> Ident {
 
 pub fn isAnonymousRef(_0: SUERef) -> bool {
     match (_0) {
-        AnonymousRef(_) => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }
@@ -79,31 +79,31 @@ pub fn mkIdent(pos: Position, s: String, name: Name) -> Ident {
 
 pub fn quad(_0: String) -> isize {
     match (_0) {
-        [c1, [c2, [c3, [c4, s]]]] => {
+        _0 => {
             ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
-        [c1, [c2, [c3, []]]] => {
-            (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))
+        _0 => {
+            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
-        [c1, [c2, []]] => {
-            (ord(c2) * (bits7 + ord(c1)))
+        _0 => {
+            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
-        [c1, []] => {
-            ord(c1)
+        _0 => {
+            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
-        [] => {
-            0
+        _0 => {
+            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
     }
 }
 
 pub fn sueRefToString(_0: SUERef) -> String {
     match (_0) {
-        AnonymousRef(_) => {
+        _0 => {
             "".to_string()
         },
-        NamedRef(ident) => {
-            identToString(ident)
+        _0 => {
+            "".to_string()
         },
     }
 }

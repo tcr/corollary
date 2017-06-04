@@ -24,11 +24,11 @@ pub type PosLength = (Position, isize);
 
 pub fn adjustPos(_0: FilePath, _1: isize, _2: Position) -> Position {
     match (_0, _1, _2) {
-        (fname, row, Position(offs, _, _, _)) => {
+        (_0, _1, _2) => {
             Position(offs, fname, row, 1)
         },
-        (_, _, p) => {
-            p
+        (_0, _1, _2) => {
+            Position(offs, fname, row, 1)
         },
     }
 }
@@ -39,22 +39,22 @@ pub fn builtinPos() -> Position {
 
 pub fn incOffset(_0: Position, _1: isize) -> Position {
     match (_0, _1) {
-        (Position(o, f, r, c), n) => {
+        (_0, _1) => {
             Position(((o + n)), f, r, c)
         },
-        (p, _) => {
-            p
+        (_0, _1) => {
+            Position(((o + n)), f, r, c)
         },
     }
 }
 
 pub fn incPos(_0: Position, _1: isize) -> Position {
     match (_0, _1) {
-        (Position(offs, fname, row, col), n) => {
+        (_0, _1) => {
             Position(((offs + n)), fname, row, ((col + n)))
         },
-        (p, _) => {
-            p
+        (_0, _1) => {
+            Position(((offs + n)), fname, row, ((col + n)))
         },
     }
 }
@@ -69,44 +69,44 @@ pub fn internalPos() -> Position {
 
 pub fn isBuiltinPos(_0: Position) -> bool {
     match (_0) {
-        BuiltinPosition => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }
 
 pub fn isInternalPos(_0: Position) -> bool {
     match (_0) {
-        InternalPosition => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }
 
 pub fn isNoPos(_0: Position) -> bool {
     match (_0) {
-        NoPosition => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }
 
 pub fn isSourcePos(_0: Position) -> bool {
     match (_0) {
-        Position(_, _, _, _) => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }
@@ -121,11 +121,11 @@ pub fn position() -> Position {
 
 pub fn retPos(_0: Position) -> Position {
     match (_0) {
-        Position(offs, fname, row, _) => {
+        _0 => {
             Position(((offs + 1)), fname, ((row + 1)), 1)
         },
-        p => {
-            p
+        _0 => {
+            Position(((offs + 1)), fname, ((row + 1)), 1)
         },
     }
 }

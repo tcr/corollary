@@ -185,15 +185,19 @@ pub use self::ExprPosition::*;
 
 pub fn pPrintBlock(_0: Doc, _1: Block) -> Doc {
     match (_0, _1) {
-        (pre, Block([], e)) => {
+        (_0, _1) => {
             sep(vec![
                     __op_doc_conat(pre, text("{".to_string())),
                     nest(4, (maybe(empty, pPrint, e))),
                     text("}".to_string()),
                 ])
         },
-        (pre, Block(ss, e)) => {
-            __op_doc_conat(pre, __op_line_concat(text("{".to_string()), __op_line_concat(nest(4, (vcat((__op_addadd(__map!(pPrint, ss), vec![maybe(empty, pPrint, e)]))))), text("}".to_string()))))
+        (_0, _1) => {
+            sep(vec![
+                    __op_doc_conat(pre, text("{".to_string())),
+                    nest(4, (maybe(empty, pPrint, e))),
+                    text("}".to_string()),
+                ])
         },
     }
 }

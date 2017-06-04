@@ -26,10 +26,10 @@ pub fn fileOfNode() -> Option<FilePath> {
 
 pub fn getLastTokenPos(_0: NodeInfo) -> PosLength {
     match (_0) {
-        NodeInfo(_, lastTok, _) => {
+        _0 => {
             lastTok
         },
-        OnlyPos(_, lastTok) => {
+        _0 => {
             lastTok
         },
     }
@@ -37,17 +37,6 @@ pub fn getLastTokenPos(_0: NodeInfo) -> PosLength {
 
 pub fn internalNode() -> NodeInfo {
     undefNode
-}
-
-pub fn isUndefNode(_0: NodeInfo) -> bool {
-    match (_0) {
-        OnlyPos(p, _) => {
-            /* Expr::Error */ Error
-        },
-        _ => {
-            false
-        },
-    }
 }
 
 pub fn lengthOfNode(ni: NodeInfo) -> Option<isize> {
@@ -72,11 +61,11 @@ pub fn mkNodeInfoPosLen() -> NodeInfo {
 
 pub fn nameOfNode(_0: NodeInfo) -> Option<Name> {
     match (_0) {
-        OnlyPos(_, _) => {
+        _0 => {
             None
         },
-        NodeInfo(_, _, name) => {
-            Some(name)
+        _0 => {
+            None
         },
     }
 }

@@ -324,14 +324,14 @@ pub fn functionAttrs(d: d) -> FunctionAttrs {
 
 pub fn hasLinkage(_0: Storage) -> bool {
     match (_0) {
-        Auto(_) => {
+        _0 => {
             false
         },
-        Static(NoLinkage, _) => {
+        _0 => {
             false
         },
-        _ => {
-            true
+        _0 => {
+            false
         },
     }
 }
@@ -342,11 +342,11 @@ pub fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
 
 pub fn identOfVarName(_0: VarName) -> Ident {
     match (_0) {
-        NoName => {
+        _0 => {
             __error!("identOfVarName: NoName".to_string())
         },
-        VarName(ident, _) => {
-            ident
+        _0 => {
+            __error!("identOfVarName: NoName".to_string())
         },
     }
 }
@@ -357,17 +357,13 @@ pub fn isExtDecl() -> bool {
 
 pub fn isNoName(_0: VarName) -> bool {
     match (_0) {
-        NoName => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
-}
-
-pub fn isTentative(ObjDef(decl, init_opt, _): ObjDef) -> bool {
-    /* Expr::Error */ Error
 }
 
 pub fn mergeAttributes() -> Attributes {
@@ -403,17 +399,17 @@ pub fn noTypeQuals() -> TypeQuals {
 
 pub fn objKindDescr(_0: IdentDecl) -> String {
     match (_0) {
-        Declaration(_) => {
+        _0 => {
             "declaration".to_string()
         },
-        ObjectDef(_) => {
-            "object definition".to_string()
+        _0 => {
+            "declaration".to_string()
         },
-        FunctionDef(_) => {
-            "function definition".to_string()
+        _0 => {
+            "declaration".to_string()
         },
-        EnumeratorDef(_) => {
-            "enumerator definition".to_string()
+        _0 => {
+            "declaration".to_string()
         },
     }
 }
@@ -435,11 +431,11 @@ pub fn typeOfEnumDef(EnumType(__ref, _, _, _): EnumType) -> TypeName {
 
 pub fn typeOfTagDef(_0: TagDef) -> TypeName {
     match (_0) {
-        CompDef(comptype) => {
+        _0 => {
             typeOfCompDef(comptype)
         },
-        EnumDef(enumtype) => {
-            typeOfEnumDef(enumtype)
+        _0 => {
+            typeOfCompDef(comptype)
         },
     }
 }

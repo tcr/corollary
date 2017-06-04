@@ -14,11 +14,11 @@
 
 pub fn exportArraySize(_0: ArraySize) -> CArrSize {
     match (_0) {
-        ArraySize(__static, e) => {
+        _0 => {
             CArrSize(__static, e)
         },
-        UnknownArraySize(complete) => {
-            CNoArrSize(complete)
+        _0 => {
+            CArrSize(__static, e)
         },
     }
 }
@@ -130,14 +130,11 @@ pub fn exportIntType(ty: IntType) -> Vec<CTypeSpec> {
 
 pub fn exportMemberDecl(_0: MemberDecl) -> CDecl {
     match (_0) {
-        AnonBitField(ty, expr, node_info) => {
+        _0 => {
             CDecl((__map!(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
         },
-        MemberDecl(vardecl, bitfieldsz, node_info) => {
-            {
-                let (specs, declarator) = exportVarDecl(vardecl);
-
-            CDecl(specs, vec![(Some(declarator), None, bitfieldsz)], node_info)            }
+        _0 => {
+            CDecl((__map!(CTypeSpec)(exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
         },
     }
 }
@@ -151,43 +148,40 @@ pub fn exportParamDecl(paramdecl: ParamDecl) -> CDecl {
 
 pub fn exportSUERef(_0: SUERef) -> Option<Ident> {
     match (_0) {
-        AnonymousRef(name) => {
+        _0 => {
             Some((internalIdent(__op_addadd("$".to_string(), show((nameId(name)))))))
         },
-        NamedRef(ident) => {
-            Some(ident)
+        _0 => {
+            Some((internalIdent(__op_addadd("$".to_string(), show((nameId(name)))))))
         },
     }
 }
 
 pub fn exportStorage(_0: Storage) -> Vec<CStorageSpec> {
     match (_0) {
-        NoStorage => {
+        _0 => {
             vec![]
         },
-        Auto(reg) => {
-            if reg {             
-vec![CRegister(ni)]} else {
-vec![]
-            }
-        },
-        Static(InternalLinkage, thread_local) => {
-            threadLocal(thread_local, vec![CStatic(ni)])
-        },
-        Static(ExternalLinkage, thread_local) => {
-            threadLocal(thread_local, vec![CExtern(ni)])
-        },
-        Static(NoLinkage, _) => {
-            __error!("impossible storage: static without linkage".to_string())
-        },
-        FunLinkage(InternalLinkage) => {
-            vec![CStatic(ni)]
-        },
-        FunLinkage(ExternalLinkage) => {
+        _0 => {
             vec![]
         },
-        FunLinkage(NoLinkage) => {
-            __error!("impossible storage: function without linkage".to_string())
+        _0 => {
+            vec![]
+        },
+        _0 => {
+            vec![]
+        },
+        _0 => {
+            vec![]
+        },
+        _0 => {
+            vec![]
+        },
+        _0 => {
+            vec![]
+        },
+        _0 => {
+            vec![]
         },
     }
 }
@@ -247,14 +241,14 @@ pub fn exportVarDecl(VarDecl(name, attrs, ty): VarDecl) -> (Vec<CDeclSpec>, CDec
 
 pub fn fromDirectType(_0: Type) -> TypeName {
     match (_0) {
-        DirectType(ty, _, _) => {
+        _0 => {
             ty
         },
-        TypeDefType(TypeDefRef(_, ty, _), _, _) => {
-            fromDirectType(ty)
+        _0 => {
+            ty
         },
-        _ => {
-            __error!("fromDirectType".to_string())
+        _0 => {
+            ty
         },
     }
 }
@@ -265,11 +259,11 @@ pub fn ni() -> NodeInfo {
 
 pub fn threadLocal(_0: bool) -> Vec<CStorageSpec> {
     match (_0) {
-        false => {
+        _0 => {
             id
         },
-        true => {
-            ((CThread(ni))(__op_concat))
+        _0 => {
+            id
         },
     }
 }

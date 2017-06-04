@@ -302,20 +302,20 @@ pub fn cstringOfLit<a>(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
     cstr
 }
 
-pub fn fmapInitList<b, a>(_f: fn(a) -> b) -> CInitializerList<b> {
+pub fn fmapInitList<a, b>(_f: fn(a) -> b) -> CInitializerList<b> {
     __map!((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
 }
 
 pub fn isSUEDef<a>(_0: CTypeSpecifier<a>) -> bool {
     match (_0) {
-        CSUType(CStruct(_, _, Some(_), _, _), _) => {
+        _0 => {
             true
         },
-        CEnumType(CEnum(_, Some(_), _, _), _) => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }

@@ -20,11 +20,11 @@ pub fn defGlobal<a>(NsMap(gs, lss): NameSpaceMap<k, a>, ident: k, def: a) -> (Na
 
 pub fn defLocal<a>(_0: NameSpaceMap<k, a>, _1: k, _2: a, _3: (NameSpaceMap<k, a>, Option<a>)) -> (NameSpaceMap<k, a>, Option<a>) {
     match (_0, _1, _2, _3, _4) {
-        (ns, __OP__, NsMap(_, []), ident, def) => {
+        (_0, _1, _2, _3, _4) => {
             defGlobal(ns, ident, def)
         },
-        (NsMap(gs, [ls, lss]), ident, def) => {
-            (NsMap(gs, (__op_concat((__op_concat((ident, def), ls)), lss))), Prelude::lookup(ident, ls))
+        (_0, _1, _2, _3, _4) => {
+            defGlobal(ns, ident, def)
         },
     }
 }
@@ -43,11 +43,11 @@ pub fn hasLocalNames(NsMap(_, l): NameSpaceMap<k, v>) -> bool {
 
 pub fn leaveScope<a>(_0: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>) {
     match (_0) {
-        NsMap(_, []) => {
+        _0 => {
             __error!("NsMaps.leaveScope: No local scope!".to_string())
         },
-        NsMap(gs, [ls, lss]) => {
-            (NsMap(gs, lss), ls)
+        _0 => {
+            __error!("NsMaps.leaveScope: No local scope!".to_string())
         },
     }
 }

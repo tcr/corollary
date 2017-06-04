@@ -57,17 +57,17 @@ fn options(a: TravState) -> TravOptions { a.options }
 
 pub fn _checkIdentTyRedef(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> m<()> {
     match (_0, _1) {
-        (Right(decl), status) => {
+        (_0, _1) => {
             checkVarRedef(decl, status)
         },
-        (Left(tydef), KindMismatch(old_def)) => {
-            redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DiffKindRedecl)
+        (_0, _1) => {
+            checkVarRedef(decl, status)
         },
-        (Left(tydef), Redeclared(old_def)) => {
-            redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DuplicateDef)
+        (_0, _1) => {
+            checkVarRedef(decl, status)
         },
-        (Left(_tydef), _) => {
-            ()
+        (_0, _1) => {
+            checkVarRedef(decl, status)
         },
     }
 }
@@ -135,11 +135,11 @@ pub fn concatMapM<b, a>(f: fn(a) -> m<Vec<b>>) -> m<Vec<b>> {
 
 pub fn createSUERef(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
     match (_0, _1) {
-        (_node_info, Some(ident)) => {
+        (_0, _1) => {
             return(NamedRef(ident))
         },
-        (node_info, None) => {
-            /* Expr::Error */ Error
+        (_0, _1) => {
+            return(NamedRef(ident))
         },
     }
 }
@@ -236,18 +236,11 @@ DeclEvent
 
 pub fn handleParamDecl(_0: ParamDecl, _1: m<()>) -> m<()> {
     match (_0, _1, _2) {
-        (pd, __OP__, AbstractParamDecl(_, _)) => {
+        (_0, _1, _2) => {
             handleDecl((ParamEvent(pd)))
         },
-        (pd, __OP__, ParamDecl(vardecl, node)) => {
-            /*do*/ {
-                let def = ObjectDef((ObjDef(vardecl, None, node)));
-
-                let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
-
-                checkVarRedef(def, redecl);
-                handleDecl((ParamEvent(pd)))
-            }
+        (_0, _1, _2) => {
+            handleDecl((ParamEvent(pd)))
         },
     }
 }
@@ -314,11 +307,11 @@ pub fn initTravState(userst: s) -> TravState<s> {
 
 pub fn isDeclaration(_0: IdentDecl) -> bool {
     match (_0) {
-        Declaration(_) => {
+        _0 => {
             true
         },
-        _ => {
-            false
+        _0 => {
+            true
         },
     }
 }
@@ -426,11 +419,11 @@ pub fn runTrav_<a>(t: Trav<(), a>) -> Either<Vec<CError>, (a, Vec<CError>)> {
 
 pub fn throwOnLeft<a>(_0: Either<e, a>) -> m<a> {
     match (_0) {
-        Left(err) => {
+        _0 => {
             throwTravError(err)
         },
-        Right(v) => {
-            v
+        _0 => {
+            throwTravError(err)
         },
     }
 }

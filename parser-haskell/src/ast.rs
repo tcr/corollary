@@ -22,9 +22,15 @@ pub enum Expr {
 }
 
 #[derive(Clone, Debug)]
-pub struct Assignment {
-    pub pats: Vec<Pat>,
-    pub expr: Expr,
+pub enum Assignment {
+    Assign {
+        pats: Vec<Pat>,
+        expr: Expr,
+    },
+    Case {
+        pats: Vec<Pat>,
+        sets: Vec<(Vec<(Expr, Option<Expr>)>, Expr)>,
+    }
 }
 
 #[derive(Clone, Debug)]

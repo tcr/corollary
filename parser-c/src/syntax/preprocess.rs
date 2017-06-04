@@ -56,10 +56,6 @@ pub fn cppFile(input_file: FilePath) -> CppArgs {
     }
 }
 
-pub fn getOutputFileName(fp: FilePath) -> FilePath {
-    /* Expr::Error */ Error
-}
-
 pub fn isPreprocessed() -> bool {
     (".i".to_string()(isSuffixOf))
 }

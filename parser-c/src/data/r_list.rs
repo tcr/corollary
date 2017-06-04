@@ -32,7 +32,7 @@ pub fn reverse<a>(Reversed(xs): Reversed<Vec<a>>) -> Vec<a> {
     List::reverse(xs)
 }
 
-pub fn rmap<b, a>(f: fn(a) -> b, Reversed(xs): Reversed<Vec<a>>) -> Reversed<Vec<b>> {
+pub fn rmap<a, b>(f: fn(a) -> b, Reversed(xs): Reversed<Vec<a>>) -> Reversed<Vec<b>> {
     Reversed((__map!(f, xs)))
 }
 
@@ -46,11 +46,11 @@ pub fn snoc<a>(Reversed(xs): Reversed<Vec<a>>, x: a) -> Reversed<Vec<a>> {
 
 pub fn viewr<a>(_0: Reversed<Vec<a>>) -> (Reversed<Vec<a>>, a) {
     match (_0) {
-        Reversed([]) => {
+        _0 => {
             __error!("viewr: empty RList".to_string())
         },
-        Reversed([x, xs]) => {
-            (Reversed(xs), x)
+        _0 => {
+            __error!("viewr: empty RList".to_string())
         },
     }
 }
