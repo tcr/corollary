@@ -72,7 +72,7 @@ fn strip_comments(text: &str) -> String {
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-enum BlockWord { Do, Where, Of, Let }
+enum BlockWord { Do, Where, Of, Let, In }
 
 impl BlockWord {
     fn from_str(word: &str) -> Option<Self> {
@@ -82,6 +82,7 @@ impl BlockWord {
             "where" => Where,
             "of" => Of,
             "let" => Let,
+            "in" => In,
             _ => return None,
         })
     }
@@ -103,11 +104,13 @@ pub fn commify(val: &str) -> String {
     // Previous brace nesting levels.
     let mut braces: Vec<isize> = vec![];
     // Previous word was a block starting word.
-    let mut trigger: Option<BlockWord> = None;
+    let mut trigger: Option<(BlockWord, usize)> = None;
     // How many spaces to indent.
     let mut indent = 0;
     // Check if this is the first word in the line.
     let mut first = true;
+    // Check if this is the first word after an in statement.
+    let mut in_active = false;
 
     let mut out = String::new();
     let mut v: &str = &commentless;
@@ -143,7 +146,7 @@ pub fn commify(val: &str) -> String {
 
             if first {
                 while {
-                    if let Some(last_level) = stash.last().map(|&(n, _)| n) {
+                    if let Some(&(last_level, last_word)) = stash.last() {
                         // Check if we decreased our indent level
                         last_level > indent
                             || (last_level == indent && word == "where")
@@ -151,7 +154,7 @@ pub fn commify(val: &str) -> String {
                         false
                     }
                 } {
-                    // out.push_str(&format!("[{:?}{:?}]", last_level, stash.last()));
+                    // out.push_str(&format!("[{:?}]", stash.last()));
                     pop_brace!();
                 }
 
@@ -203,13 +206,17 @@ pub fn commify(val: &str) -> String {
             out.push_str(word);
             v = &v[word.len()..];
 
-            if let Some(block_word) = trigger {
+            if let Some((block_word, trigger_indent)) = trigger {
                 // The next word after a block word is where the whitespace column begins.
-                stash.push((indent, block_word));
+                if first || block_word != BlockWord::In {
+                    stash.push((indent, block_word));
+                } else {
+                    stash.push((trigger_indent, block_word));
+                }
             }
             first = false;
 
-            trigger = BlockWord::from_str(word);
+            trigger = BlockWord::from_str(word).map(|x| (x, indent));
             if trigger.is_some() {
                 out.push_str("{");
 

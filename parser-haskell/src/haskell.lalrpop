@@ -156,9 +156,10 @@ ExprSpanSimple: Vec<Expr> = {
 };
 
 ExprSpan: Expr = {
-    <span:Expr*> "let" "{" <a:Semi<Assignment>> "}" "in" <e:ExprSpan> => {
+    <span:Expr*> "let" "{" <a:Semi<Assignment>> "}" "in" "{" <e:ExprSpan> "}" <span_tail:Expr*> => {
         let mut span = span;
         span.push(Expr::Let(a, Box::new(e)));
+        span.extend(span_tail);
         Expr::Span(span)
     },
     <ExprSpanSimple> => Expr::Span(<>),
