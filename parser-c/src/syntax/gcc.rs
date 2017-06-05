@@ -14,6 +14,7 @@
 use syntax::preprocess::CppArgs;
 use data::r_list::RList;
 use syntax::preprocess::CppOption::*;
+use syntax::preprocess::*;
 
 pub struct GCC{
     gccPath: FilePath
@@ -103,7 +104,7 @@ pub fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_fil
 
     let outputFileOpt = concat(/* Expr::Generator */ Generator);
 
-    __op_addadd((concatMap(tOption, options)), __op_addadd(outputFileOpt, __op_addadd(vec!["-E".to_string(), input_file], extra_args)))
+    __op_addadd((__concatMap!(tOption, options)), __op_addadd(outputFileOpt, __op_addadd(vec!["-E".to_string(), input_file], extra_args)))
 }
 
 

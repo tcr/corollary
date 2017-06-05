@@ -19,7 +19,7 @@ use ::syntax::constants::*;
 pub type CTranslUnit = CTranslationUnit<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CTranslationUnit<a>(Vec<CExternalDeclaration<a>>, a);
+pub struct CTranslationUnit<a>(pub Vec<CExternalDeclaration<a>>, pub a);
 
 
 pub type CExtDecl = CExternalDeclaration<NodeInfo>;

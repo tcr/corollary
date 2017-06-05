@@ -29,7 +29,13 @@
 // use Data::Foldable;
 // use mapM_;
 
-pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls> {
+use syntax::ast::*;
+use analysis::sem_rep::*;
+use analysis::trav_monad::*;
+use analysis::def_table::*;
+use analysis::decl_analysis::*;
+
+pub fn analyseAST(CTranslationUnit(decls, _file_node): CTranslUnit) -> GlobalDecls {
 
     let mapRecoverM_ = |f| {
         mapM_((handleTravError(f)))
@@ -221,7 +227,11 @@ pub fn extVarDecl(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, typ, node
 
         let vardecl = VarDecl(var_name, (DeclAttrs(fun_spec, storage, attrs)), typ);
 
-        if is_def { handleObjectDef(false, ident, ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, false, Decl(vardecl, node_info))) }
+        if is_def {
+            handleObjectDef(false, ident, ObjDef(vardecl, init_opt, node_info))
+        } else {
+            handleVarDecl(false, Decl(vardecl, node_info))
+        }
     }
 }
 
@@ -259,8 +269,9 @@ pub fn localVarDecl(VarDeclInfo(var_name, fun_attrs, storage_spec, attrs, typ, n
         let vardecl = VarDecl(var_name, (DeclAttrs(fun_attrs, storage, attrs)), typ);
 
         if is_def {         
-handleObjectDef(true, ident, (ObjDef(vardecl, init_opt, node_info)))} else {
-handleVarDecl(true, (Decl(vardecl, node_info)))
+            handleObjectDef(true, ident, (ObjDef(vardecl, init_opt, node_info)))
+        } else {
+            handleVarDecl(true, (Decl(vardecl, node_info)))
         }
     }
 }

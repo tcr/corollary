@@ -46,16 +46,16 @@ pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> 
     ]
 }
 
-pub fn joinComma() -> Doc {
-    hsep(punctuate(comma, __map!(pretty)))
+pub fn joinComma<T>(input: Vec<T>) -> Doc {
+    hsep(punctuate(comma, __map!(pretty, input)))
 }
 
-pub fn terminateSemi() -> Doc {
-    terminateSemi_(__map!(pretty))
+pub fn terminateSemi<T>(input: Vec<T>) -> Doc {
+    terminateSemi_(__map!(pretty, input))
 }
 
-pub fn terminateSemi_() -> Doc {
-    hsep(__map!((__op_ne(semi))))
+pub fn terminateSemi_<T>(input: Vec<T>) -> Doc {
+    hsep(__map!(|x| { __op_ne(semi, x) }, input))
 }
 
 

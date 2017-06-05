@@ -193,7 +193,7 @@ pub fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
 }
 
 #[derive(Clone, Debug)]
-pub struct VarDecl(VarName, DeclAttrs, Type);
+pub struct VarDecl(pub VarName, pub DeclAttrs, pub Type);
 
 
 pub fn isExtDecl() -> bool {

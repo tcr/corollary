@@ -64,6 +64,45 @@ pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
     }
 }
 
+pub fn mapSubStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> CStat {
+    match (_0, _1, _2) {
+        (stop, _, s) => {
+            // TODO this should actually be "mapSubStmts stop _ s | stop s = s"
+            stop
+        },
+        (stop, f, CLabel(i, s, attrs, ni)) => {
+            f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni)))
+        },
+        (stop, f, CCase(e, s, ni)) => {
+            f((CCase(e, (mapSubStmts(stop, f, s)), ni)))
+        },
+        (stop, f, CCases(e1, e2, s, ni)) => {
+            f((CCases(e1, e2, (mapSubStmts(stop, f, s)), ni)))
+        },
+        (stop, f, CDefault(s, ni)) => {
+            f((CDefault((mapSubStmts(stop, f, s)), ni)))
+        },
+        (stop, f, CCompound(ls, body, ni)) => {
+            f((CCompound(ls, (__map!((mapBlockItemStmts(stop, f)), body)), ni)))
+        },
+        (stop, f, CIf(e, sthen, selse, ni)) => {
+            f((CIf(e, (mapSubStmts(stop, f, sthen)), (__fmap!((mapSubStmts(stop, f)), selse)), ni)))
+        },
+        (stop, f, CSwitch(e, s, ni)) => {
+            f((CSwitch(e, (mapSubStmts(stop, f, s)), ni)))
+        },
+        (stop, f, CWhile(e, s, isdo, ni)) => {
+            f((CWhile(e, (mapSubStmts(stop, f, s)), isdo, ni)))
+        },
+        (stop, f, CFor(i, t, a, s, ni)) => {
+            f((CFor(i, t, a, (mapSubStmts(stop, f, s)), ni)))
+        },
+        (_, f, s) => {
+            f(s)
+        },
+    }
+}
+
 pub fn mapBlockItemStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CBlockItem) -> CBlockItem {
     match (_0, _1, _2) {
         (stop, f, CBlockStmt(s)) => {

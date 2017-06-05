@@ -119,6 +119,14 @@ impl<T: Display> Bindable<T> for String {
 }
 
 
+pub fn __op_forwardslash<A, B>(left: A, right: B) {
+    ()
+}
+pub fn __op_concat<A, B>(left: A, right: B) {
+    ()
+}
+
+
 
 
 
@@ -127,6 +135,15 @@ impl<T: Display> Bindable<T> for String {
 
 #[macro_export]
 macro_rules! __map {
+    ($fn: expr, $target: expr) => {
+        $target.into_iter()
+            .map($fn)
+            .collect::<Vec<_>>()
+    }
+}
+
+#[macro_export]
+macro_rules! __fmap {
     ($fn: expr, $target: expr) => {
         $target.into_iter()
             .map($fn)

@@ -192,7 +192,7 @@ pub fn exportComplexType(ty: FloatType) -> Vec<CTypeSpec> {
 pub fn exportCompTypeDecl(ty: CompTypeRef) -> Vec<CTypeSpec> {
 
     let exportComp = |CompTypeRef(sue_ref, comp_tag, _n)| {
-        CStruct(((if comp_tag { () } == StructTag(then, CStructTag, else, CUnionTag))), (exportSUERef(sue_ref)), None, vec![], ni)
+        CStruct(((if comp_tag == StructTag { CStructTag } else { CUnionTag })), (exportSUERef(sue_ref)), None, vec![], ni)
     };
 
     vec![CSUType((exportComp(ty)), ni)]
@@ -209,7 +209,7 @@ pub fn exportEnumTypeDecl(ty: EnumTypeRef) -> Vec<CTypeSpec> {
 
 pub fn exportCompType(CompType(sue_ref, comp_tag, members, attrs, node_info): CompType) -> Vec<CTypeSpec> {
 
-    let comp = CStruct(((if comp_tag { () } == StructTag(then, CStructTag, else, CUnionTag))), (exportSUERef(sue_ref)), (Some((__map!(exportMemberDecl, members)))), (exportAttrs(attrs)), node_info);
+    let comp = CStruct(((if comp_tag = StructTag { CStructTag } else { CUnionTag })), (exportSUERef(sue_ref)), (Some((__map!(exportMemberDecl, members)))), (exportAttrs(attrs)), node_info);
 
     vec![CSUType(comp, ni)]
 }
@@ -331,13 +331,13 @@ pub fn threadLocal(_0: bool) -> Vec<CStorageSpec> {
     }
 }
 
-pub fn exportAttrs() -> Vec<CAttr> {
+pub fn exportAttrs(input: Vec<Attr>) -> Vec<CAttr> {
 
     let exportAttr = |Attr(ident, es, n)| {
         CAttr(ident, es, n)
     };
 
-    __map!(exportAttr)
+    __map!(exportAttr, input)
 }
 
 pub fn fromDirectType(_0: Type) -> TypeName {

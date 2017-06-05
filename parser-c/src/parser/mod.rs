@@ -12,8 +12,8 @@
 // use builtinTypeNames;
 // use Language::C::Data;
 
-// pub mod builtin;
-// pub mod lexer;
+pub mod builtin;
+pub mod lexer;
 pub mod parser_monad;
 pub mod parser;
 pub mod tokens;
