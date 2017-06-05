@@ -15,6 +15,7 @@ use corollary_support::*;
 
 use analysis::sem_rep::*;
 use syntax::ast::*;
+use data::ident::*;
 
 pub fn exportDeclr(other_specs: Vec<CDeclSpec>,
                    ty: Type,

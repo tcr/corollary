@@ -14,6 +14,8 @@ use corollary_support::*;
 // use Data::Generics;
 
 use data::ident::*;
+use data::node::*;
+use syntax::ast::*;
 
 #[derive(Clone, Debug)]
 pub enum TagDef {

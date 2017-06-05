@@ -283,3 +283,23 @@ pub fn liftM() {
 pub fn bracket() {
     // TODO
 }
+
+
+
+
+
+
+
+// Map things
+
+pub mod Map {
+    pub fn insert<T>(mut okay: Vec<T>, key: isize, value: T) -> Vec<T> {
+        okay.push(value);
+        okay
+    }
+
+    pub fn lookup<T>(value: T, inside: Vec<T>) -> isize {
+        //TODO
+        0
+    }
+}

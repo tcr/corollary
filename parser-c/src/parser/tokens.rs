@@ -13,6 +13,7 @@ use corollary_support::*;
 // use CChar;
 
 use data::position::*;
+use syntax::constants::*;
 
 pub enum CToken {
     CTokLParen(PosLength),

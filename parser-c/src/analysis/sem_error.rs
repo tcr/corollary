@@ -10,6 +10,10 @@ use corollary_support::*;
 // use Language::C::Data::Error;
 // use Language::C::Data::Node;
 
+use data::node::*;
+use analysis::sem_rep::*;
+use data::error::*;
+
 #[derive(Debug)]
 pub struct InvalidASTError(pub ErrorInfo);
 

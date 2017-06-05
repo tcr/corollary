@@ -26,6 +26,8 @@ use corollary_support::*;
 
 use data::position::Position;
 use parser::tokens::*;
+use data::input_stream::*;
+use parser::parser_monad::*;
 
 pub struct ParseError(pub (Vec<String>, Position));
 

@@ -12,44 +12,46 @@ use corollary_support::*;
 // use Data::Map;
 // use Map;
 
-pub struct NameSpaceMap<k, v>(Map<k, v>, Vec<Vec<(k, v)>>);
+pub struct NsMap<k, v>(Map<k, v>, Vec<Vec<(k, v)>>);
+
+pub type NameSpaceMap<k, v> = NsMap<k, v>;
 
 
-pub fn globalNames(NsMap(g, _): NameSpaceMap<k, v>) -> Map<k, v> {
+pub fn globalNames<k, v>(NsMap(g, _): NameSpaceMap<k, v>) -> Map<k, v> {
     g
 }
 
-pub fn hasLocalNames(NsMap(_, l): NameSpaceMap<k, v>) -> bool {
+pub fn hasLocalNames<k, v>(NsMap(_, l): NameSpaceMap<k, v>) -> bool {
     not((null(l)))
 }
 
-pub fn localNames(NsMap(_, l): NameSpaceMap<k, v>) -> Vec<Vec<(k, v)>> {
+pub fn localNames<k, v>(NsMap(_, l): NameSpaceMap<k, v>) -> Vec<Vec<(k, v)>> {
     l
 }
 
-pub fn nameSpaceMap() -> NameSpaceMap<k, v> {
-    NsMap(Map::empty, vec![])
+pub fn nameSpaceMap<k, v>() -> NameSpaceMap<k, v> {
+    NsMap(Map::empty(), vec![])
 }
 
-pub fn defGlobal<a>(NsMap(gs, lss): NameSpaceMap<k, a>,
+pub fn defGlobal<a, k>(NsMap(gs, lss): NameSpaceMap<k, a>,
                     ident: k,
                     def: a)
                     -> (NameSpaceMap<k, a>, Option<a>) {
     (NsMap((Map::insert(ident, def, gs)), lss), Map::lookup(ident, gs))
 }
 
-pub fn enterNewScope<a>(NsMap(gs, lss): NameSpaceMap<k, a>) -> NameSpaceMap<k, a> {
+pub fn enterNewScope<a, k>(NsMap(gs, lss): NameSpaceMap<k, a>) -> NameSpaceMap<k, a> {
     NsMap(gs, (__op_concat(vec![], lss)))
 }
 
-pub fn leaveScope<a>(_0: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>) {
+pub fn leaveScope<a, k>(_0: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>) {
     match (_0) {
         NsMap(_, []) => __error!("NsMaps.leaveScope: No local scope!".to_string()),
         NsMap(gs, [ls, lss]) => (NsMap(gs, lss), ls),
     }
 }
 
-pub fn defLocal<a>(_0: NameSpaceMap<k, a>,
+pub fn defLocal<a, k>(_0: NameSpaceMap<k, a>,
                    _1: k,
                    _2: a,
                    _3: (NameSpaceMap<k, a>, Option<a>))
@@ -63,7 +65,7 @@ pub fn defLocal<a>(_0: NameSpaceMap<k, a>,
     }
 }
 
-pub fn lookupName<a>(ns: NameSpaceMap<k, a>,
+pub fn lookupName<a, k>(ns: NameSpaceMap<k, a>,
                      __OP__: k,
                      NsMap(_, localDefs): Option<a>)
                      -> Option<a> {
@@ -84,7 +86,7 @@ pub fn lookupName<a>(ns: NameSpaceMap<k, a>,
     }
 }
 
-pub fn lookupGlobal<a>(NsMap(gs, _): NameSpaceMap<k, a>, ident: k) -> Option<a> {
+pub fn lookupGlobal<a, k>(NsMap(gs, _): NameSpaceMap<k, a>, ident: k) -> Option<a> {
     Map::lookup(ident, gs)
 }
 
@@ -98,11 +100,11 @@ pub fn lookupInnermostScope<a>(nsm: NameSpaceMap<k, a>,
     }
 }
 
-pub fn nsMapToList<a>(NsMap(gs, lss): NameSpaceMap<k, a>) -> Vec<(k, a)> {
+pub fn nsMapToList<a, k>(NsMap(gs, lss): NameSpaceMap<k, a>) -> Vec<(k, a)> {
     __op_addadd(concat(lss), Map::toList(gs))
 }
 
-pub fn mergeNameSpace<a>(NsMap(global1, local1): NameSpaceMap<k, a>,
+pub fn mergeNameSpace<a, k>(NsMap(global1, local1): NameSpaceMap<k, a>,
                          NsMap(global2, local2): NameSpaceMap<k, a>)
                          -> NameSpaceMap<k, a> {
 
