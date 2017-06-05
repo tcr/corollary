@@ -159,15 +159,15 @@ pub enum DeclEvent {
 pub use self::DeclEvent::*;
 
 #[derive(Clone, Debug)]
-pub struct Decl(VarDecl, NodeInfo);
+pub struct Decl(pub VarDecl, pub NodeInfo);
 
 
 #[derive(Clone, Debug)]
-pub struct ObjDef(VarDecl, Option<Initializer>, NodeInfo);
+pub struct ObjDef(pub VarDecl, pub Option<Initializer>, pub NodeInfo);
 
 
 #[derive(Clone, Debug)]
-pub struct FunDef(VarDecl, Stmt, NodeInfo);
+pub struct FunDef(pub VarDecl, pub Stmt, pub NodeInfo);
 
 
 #[derive(Clone, Debug)]
@@ -185,7 +185,7 @@ pub enum MemberDecl {
 pub use self::MemberDecl::*;
 
 #[derive(Clone, Debug)]
-pub struct TypeDef(Ident, Type, Attributes, NodeInfo);
+pub struct TypeDef(pub Ident, pub Type, pub Attributes, pub NodeInfo);
 
 
 pub fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
@@ -193,7 +193,7 @@ pub fn identOfTypeDef(TypeDef(ide, _, _, _): TypeDef) -> Ident {
 }
 
 #[derive(Clone, Debug)]
-pub struct VarDecl(pub VarName, pub DeclAttrs, pub Type);
+pub struct VarDecl();
 
 
 pub fn isExtDecl() -> bool {
@@ -201,7 +201,7 @@ pub fn isExtDecl() -> bool {
 }
 
 #[derive(Clone, Debug)]
-pub struct DeclAttrs(FunctionAttrs, Storage, Attributes);
+pub struct DeclAttrs(pub FunctionAttrs, pub Storage, pub Attributes);
 
 
 pub fn declStorage(d: d) -> Storage {
@@ -331,7 +331,7 @@ pub enum BuiltinType {
 pub use self::BuiltinType::*;
 
 #[derive(Clone, Debug)]
-pub struct TypeDefRef(Ident, Type, NodeInfo);
+pub struct TypeDefRef(pub Ident, pub Type, pub NodeInfo);
 
 
 #[derive(Clone, Debug, Eq, Ord)]
@@ -362,15 +362,15 @@ pub enum FloatType {
 pub use self::FloatType::*;
 
 #[derive(Clone, Debug)]
-pub struct CompTypeRef(SUERef, CompTyKind, NodeInfo);
+pub struct CompTypeRef(pub SUERef, pub CompTyKind, pub NodeInfo);
 
 
 #[derive(Clone, Debug)]
-pub struct EnumTypeRef(SUERef, NodeInfo);
+pub struct EnumTypeRef(pub SUERef, pub NodeInfo);
 
 
 #[derive(Clone, Debug)]
-pub struct CompType(SUERef, CompTyKind, Vec<MemberDecl>, Attributes, NodeInfo);
+pub struct CompType(pub SUERef, pub CompTyKind, pub Vec<MemberDecl>, pub Attributes, pub NodeInfo);
 
 
 pub fn typeOfCompDef(CompType(__ref, tag, _, _, _): CompType) -> TypeName {
@@ -385,7 +385,7 @@ pub enum CompTyKind {
 pub use self::CompTyKind::*;
 
 #[derive(Clone, Debug)]
-pub struct EnumType(SUERef, Vec<Enumerator>, Attributes, NodeInfo);
+pub struct EnumType(pub SUERef, pub Vec<Enumerator>, pub Attributes, pub NodeInfo);
 
 
 pub fn typeOfEnumDef(EnumType(__ref, _, _, _): EnumType) -> TypeName {
@@ -393,7 +393,7 @@ pub fn typeOfEnumDef(EnumType(__ref, _, _, _): EnumType) -> TypeName {
 }
 
 #[derive(Clone, Debug)]
-pub struct Enumerator(Ident, Expr, EnumType, NodeInfo);
+pub struct Enumerator(pub Ident, pub Expr, pub EnumType, pub NodeInfo);
 
 
 #[derive(Clone, Debug)]
@@ -456,7 +456,7 @@ pub type AsmBlock = CStrLit;
 pub type AsmName = CStrLit;
 
 #[derive(Clone, Debug)]
-pub struct Attr(Ident, Vec<Expr>, NodeInfo);
+pub struct Attr(pub Ident, pub Vec<Expr>, pub NodeInfo);
 
 
 pub type Attributes = Vec<Attr>;

@@ -91,7 +91,7 @@ pub enum CIntFlag {
 pub use self::CIntFlag::*;
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct CInteger(Integer, CIntRepr, Flags<CIntFlag>);
+pub struct CInteger(pub Integer, pub CIntRepr, pub Flags<CIntFlag>);
 
 
 pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
@@ -183,7 +183,7 @@ pub fn cInteger(i: Integer) -> CInteger {
 }
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct CFloat(String);
+pub struct CFloat(pub String);
 
 
 pub fn cFloat() -> CFloat {
@@ -195,7 +195,7 @@ pub fn readCFloat() -> CFloat {
 }
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct ClangCVersion(String);
+pub struct ClangCVersion(pub String);
 
 
 pub fn readClangCVersion() -> ClangCVersion {
@@ -203,7 +203,7 @@ pub fn readClangCVersion() -> ClangCVersion {
 }
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct CString(String, bool);
+pub struct CString(pub String, pub bool);
 
 
 pub fn cString(__str: String) -> CString {
@@ -442,7 +442,7 @@ pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
 }
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct Flags<f>(Integer);
+pub struct Flags<f>(pub Integer);
 
 
 pub fn noFlags() -> Flags<f> {

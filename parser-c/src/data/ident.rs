@@ -30,7 +30,7 @@ pub fn isAnonymousRef(_0: SUERef) -> bool {
 }
 
 #[derive(Clone, Debug)]
-pub struct Ident(String, isize, NodeInfo);
+pub struct Ident(pub String, pub isize, pub NodeInfo);
 
 
 pub fn quad(_0: String) -> isize {

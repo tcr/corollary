@@ -8,7 +8,7 @@
 // use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct Name(isize);
+pub struct Name(pub isize);
 
 pub fn newNameSupply() -> Vec<Name> {
     namesStartingFrom(0)

@@ -41472,7 +41472,7 @@ pub fn reverseList<a>() -> Reversed<Vec<a>> {
     Reversed(List::reverse)
 }
 
-pub struct Located<a>(a, Position);
+pub struct Located<a>(pub a, pub Position);
 
 
 pub fn unL<a>(L(a, pos): Located<a>) -> a {
@@ -41505,7 +41505,7 @@ pub fn withLength<a>(nodeinfo: NodeInfo, mkAttrNode: fn(NodeInfo) -> a) -> P<a> 
     }
 }
 
-pub struct CDeclrR(Option<Ident>, Reversed<Vec<CDerivedDeclr>>, Option<CStrLit>, Vec<CAttr>, NodeInfo);
+pub struct CDeclrR(pub Option<Ident>, pub Reversed<Vec<CDerivedDeclr>>, pub Option<CStrLit>, pub Vec<CAttr>, pub NodeInfo);
 
 
 pub fn reverseDeclr(CDeclrR(ide, reversedDDs, asmname, cattrs, at): CDeclrR) -> CDeclr {
@@ -41705,7 +41705,7 @@ pub fn expressionP() -> P<CExpr> {
     expression
 }
 
-pub struct HappyStk<a>(a, HappyStk<a>);
+pub struct HappyStk<a>(pub a, pub HappyStk<a>);
 
 
 pub fn happyParse(start_state: bool) -> bool {

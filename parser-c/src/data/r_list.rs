@@ -7,7 +7,7 @@
 // use Prelude;
 // use Data::List;
 
-pub struct Reversed<a>(a);
+pub struct Reversed<a>(pub a);
 
 
 pub type RList<a> = Reversed<Vec<a>>;

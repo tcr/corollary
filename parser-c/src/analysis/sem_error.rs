@@ -10,18 +10,18 @@
 // use Language::C::Data::Node;
 
 #[derive(Debug)]
-pub struct InvalidASTError(ErrorInfo);
+pub struct InvalidASTError(pub ErrorInfo);
 
 
 #[derive(Debug)]
-pub struct BadSpecifierError(ErrorInfo);
+pub struct BadSpecifierError(pub ErrorInfo);
 
 
 #[derive(Debug)]
-pub struct RedefError(ErrorLevel, RedefInfo);
+pub struct RedefError(pub ErrorLevel, pub RedefInfo);
 
 
-pub struct RedefInfo(String, RedefKind, NodeInfo, NodeInfo);
+pub struct RedefInfo(pub String, pub RedefKind, pub NodeInfo, pub NodeInfo);
 
 
 pub enum RedefKind {
@@ -34,7 +34,7 @@ pub enum RedefKind {
 pub use self::RedefKind::*;
 
 #[derive(Debug)]
-pub struct TypeMismatch(String, (NodeInfo, Type), (NodeInfo, Type));
+pub struct TypeMismatch(pub String, pub (NodeInfo, pub Type), pub (NodeInfo, pub Type));
 
 
 pub fn invalidAST(node_info: NodeInfo, msg: String) -> InvalidASTError {

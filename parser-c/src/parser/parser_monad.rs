@@ -26,7 +26,7 @@
 use data::position::Position;
 use parser::tokens::*;
 
-pub struct ParseError((Vec<String>, Position));
+pub struct ParseError(pub (Vec<String>, pub Position));
 
 // instance Show ParseError where
 //     show (ParseError (msgs,pos)) = showErrorInfo "Syntax Error !" (ErrorInfo LevelError pos msgs)

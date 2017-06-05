@@ -22,7 +22,7 @@ pub fn isHardError() -> bool {
 }
 
 #[derive(Debug)]
-pub struct ErrorInfo(ErrorLevel, Position, Vec<String>);
+pub struct ErrorInfo(pub ErrorLevel, pub Position, pub Vec<String>);
 
 
 pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
@@ -30,7 +30,7 @@ pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
 }
 
 #[derive(Debug)]
-pub struct CError(err);
+pub struct CError(pub err);
 
 
 pub fn errorPos() -> Position {
@@ -52,7 +52,7 @@ pub fn errorMsgs() -> Vec<String> {
 }
 
 #[derive(Debug)]
-pub struct UnsupportedFeature(String, Position);
+pub struct UnsupportedFeature(pub String, pub Position);
 
 
 pub fn unsupportedFeature<a>(msg: String, a: a) -> UnsupportedFeature {
@@ -64,7 +64,7 @@ pub fn unsupportedFeature_(msg: String) -> UnsupportedFeature {
 }
 
 #[derive(Debug)]
-pub struct UserError(ErrorInfo);
+pub struct UserError(pub ErrorInfo);
 
 
 pub fn userErr(msg: String) -> UserError {

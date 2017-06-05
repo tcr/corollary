@@ -132,7 +132,7 @@ pub enum GnuCTok {
 }
 pub use self::GnuCTok::*;
 
-pub struct ClangCTok(ClangCVersion);
+pub struct ClangCTok(pub ClangCVersion);
 
 
 pub fn posLenOfTok(_0: CToken) -> (Position, isize) {

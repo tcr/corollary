@@ -120,7 +120,7 @@ pub fn hasThreadLocalSpec(_0: StorageSpec) -> bool {
     }
 }
 
-pub struct VarDeclInfo(pub VarName, pub FunctionAttrs, pub StorageSpec, pub Attributes, pub Type, pub NodeInfo);
+pub struct VarDeclInfo();
 
 
 pub fn analyseVarDecl_q(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, oldstyle: Vec<CDecl>, init_opt: Option<CInit>) -> m<VarDeclInfo> {

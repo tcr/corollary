@@ -19,7 +19,7 @@ use ::syntax::constants::*;
 pub type CTranslUnit = CTranslationUnit<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CTranslationUnit<a>(pub Vec<CExternalDeclaration<a>>, pub a);
+pub struct CTranslationUnit<a>();
 
 
 pub type CExtDecl = CExternalDeclaration<NodeInfo>;
@@ -35,7 +35,7 @@ pub use self::CExternalDeclaration::*;
 pub type CFunDef = CFunctionDef<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CFunctionDef<a>(Vec<CDeclarationSpecifier<a>>, CDeclarator<a>, Vec<CDeclaration<a>>, CStatement<a>, a);
+pub struct CFunctionDef<a>(pub Vec<CDeclarationSpecifier<a>>, pub CDeclarator<a>, pub Vec<CDeclaration<a>>, pub CStatement<a>, pub a);
 
 
 pub type CDecl = CDeclaration<NodeInfo>;
@@ -50,7 +50,7 @@ pub use self::CDeclaration::*;
 pub type CDeclr = CDeclarator<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CDeclarator<a>(Option<Ident>, Vec<CDerivedDeclarator<a>>, Option<CStringLiteral<a>>, Vec<CAttribute<a>>, a);
+pub struct CDeclarator<a>(pub Option<Ident>, pub Vec<CDerivedDeclarator<a>>, pub Option<CStringLiteral<a>>, pub Vec<CAttribute<a>>, pub a);
 
 
 pub type CDerivedDeclr = CDerivedDeclarator<NodeInfo>;
@@ -98,13 +98,13 @@ pub use self::CStatement::*;
 pub type CAsmStmt = CAssemblyStatement<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CAssemblyStatement<a>(Option<CTypeQualifier<a>>, CStringLiteral<a>, Vec<CAssemblyOperand<a>>, Vec<CAssemblyOperand<a>>, Vec<CStringLiteral<a>>, a);
+pub struct CAssemblyStatement<a>(pub Option<CTypeQualifier<a>>, pub CStringLiteral<a>, pub Vec<CAssemblyOperand<a>>, pub Vec<CAssemblyOperand<a>>, pub Vec<CStringLiteral<a>>, pub a);
 
 
 pub type CAsmOperand = CAssemblyOperand<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CAssemblyOperand<a>(Option<Ident>, CStringLiteral<a>, CExpression<a>, a);
+pub struct CAssemblyOperand<a>(pub Option<Ident>, pub CStringLiteral<a>, pub CExpression<a>, pub a);
 
 
 pub type CBlockItem = CCompoundBlockItem<NodeInfo>;
@@ -244,7 +244,7 @@ pub use self::CAlignmentSpecifier::*;
 pub type CStructUnion = CStructureUnion<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CStructureUnion<a>(CStructTag, Option<Ident>, Option<Vec<CDeclaration<a>>>, Vec<CAttribute<a>>, a);
+pub struct CStructureUnion<a>(pub CStructTag, pub Option<Ident>, pub Option<Vec<CDeclaration<a>>>, pub Vec<CAttribute<a>>, pub a);
 
 
 #[derive(Clone, Debug, Eq)]
@@ -257,7 +257,7 @@ pub use self::CStructTag::*;
 pub type CEnum = CEnumeration<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CEnumeration<a>(Option<Ident>, Option<Vec<(Ident, Option<CExpression<a>>)>>, Vec<CAttribute<a>>, a);
+pub struct CEnumeration<a>(pub Option<Ident>, pub Option<Vec<(Ident, pub Option<CExpression<a>>)>>, pub Vec<CAttribute<a>>, pub a);
 
 
 pub type CInit = CInitializer<NodeInfo>;
@@ -291,7 +291,7 @@ pub use self::CPartDesignator::*;
 pub type CAttr = CAttribute<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CAttribute<a>(Ident, Vec<CExpression<a>>, a);
+pub struct CAttribute<a>(pub Ident, pub Vec<CExpression<a>>, pub a);
 
 
 pub type CExpr = CExpression<NodeInfo>;
@@ -347,7 +347,7 @@ pub use self::CConstant::*;
 pub type CStrLit = CStringLiteral<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CStringLiteral<a>(CString, a);
+pub struct CStringLiteral<a>(pub CString, pub a);
 
 
 pub fn cstringOfLit<a>(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
