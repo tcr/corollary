@@ -1,7 +1,19 @@
 // Original file: "C.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#![allow(unused_parens)]
+
+extern crate corollary_support;
+
+#[macro_use]
+use corollary_support::*;
+
+pub mod analysis;
+pub mod data;
+// pub mod parser;
+pub mod syntax;
+
+use syntax::preprocess::Preprocessor;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data;
@@ -10,41 +22,42 @@
 // use Language::C::Parser;
 // use Language::C::System::Preprocess;
 
-pub fn parseCFile(cpp: cpp, tmp_dir_opt: Option<FilePath>, args: Vec<String>, input_file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
+pub fn parseCFile<C: Preprocessor>(cpp: C,
+                  tmp_dir_opt: Option<FilePath>,
+                  args: Vec<String>,
+                  input_file: FilePath)
+                  -> Either<ParseError, CTranslUnit> {
 
-    let handleCppError = |_0| {
-        match (_0) {
-            Left(exitCode) => {
-                fail(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode)))
-            },
-            Right(ok) => {
-                fail(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode)))
-            },
+    let handleCppError = |_0| match (_0) {
+        Left(exitCode) => {
+            Err(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode)))
         }
+        Right(ok) => Err(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode))),
     };
 
-    /*do*/ {
-        let input_stream = if not((isPreprocessed(input_file))) {             
-{
+    /*do*/
+    {
+        let input_stream = if !isPreprocessed(input_file) {
+            {
                 let cpp_args = __assign!((rawCppArgs(args, input_file)), {
-                        cppTmpDir: tmp_dir_opt
-                    });
+                    cppTmpDir: tmp_dir_opt
+                });
 
-            __op_bind(runPreprocessor(cpp, cpp_args), handleCppError)            }} else {
-readInputStream(input_file)
-            };
+                __op_bind(runPreprocessor(cpp, cpp_args), handleCppError)
+            }
+        } else {
+            readInputStream(input_file)
+        };
 
         parseC(input_stream, (initPos(input_file)))
     }
 }
 
-pub fn parseCFilePre(file: FilePath) -> IO<Either<ParseError, CTranslUnit>> {
-    /*do*/ {
+pub fn parseCFilePre(file: FilePath) -> Either<ParseError, CTranslUnit> {
+    /*do*/
+    {
         let input_stream = readInputStream(file);
 
         parseC(input_stream, (initPos(file)))
     }
 }
-
-
-

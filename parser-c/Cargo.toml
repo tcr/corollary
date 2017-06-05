@@ -9,3 +9,6 @@ description = "Parses C into an AST."
 repository = "http://github.com/tcr/corrode-but-in-rust"
 homepage = "http://github.com/tcr/corrode-but-in-rust"
 license = "BSD-3"
+
+[dependencies]
+corollary-support = { path = "../corollary-support" }

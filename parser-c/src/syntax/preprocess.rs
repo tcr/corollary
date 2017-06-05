@@ -13,6 +13,14 @@
 // use Control::Monad;
 // use Data::List;
 
+// 'Preprocessor' encapsulates the abstract interface for invoking C preprocessors
+pub trait Preprocessor {
+    // parse the given command line arguments, and return a pair of parsed and ignored arguments
+    fn parseCPPArgs(&self, Vec<String>, Either<String, String>) -> (CppArgs, Vec<String>);
+    // run the preprocessor
+    fn runCPP(&self, CppArgs) -> ExitCode;
+}
+
 pub fn preprocessedExt() -> String {
     ".i".to_string()
 }
@@ -59,26 +67,26 @@ pub fn rawCppArgs(opts: Vec<String>, input_file: FilePath) -> CppArgs {
 }
 
 pub fn addCppOption(cpp_args: CppArgs, opt: CppOption) -> CppArgs {
-    cpp_args {
+    __assign!(cpp_args, {
         cppOptions: __op_concat(opt, cppOptions(cpp_args))
-    }
+    })
 }
 
 pub fn addExtraOption(cpp_args: CppArgs, extra: String) -> CppArgs {
-    cpp_args {
+    __assign!(cpp_args, {
         extraOptions: __op_concat(extra, extraOptions(cpp_args))
-    }
+    })
 }
 
-pub fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO<Either<ExitCode, InputStream>> {
+pub fn runPreprocessor<P: Preprocessor>(cpp: P, cpp_args: CppArgs) -> Either<ExitCode, InputStream> {
 
-    pub fn getActualOutFile() -> IO<FilePath> {
-        maybe((mkOutputFile((cppTmpDir(cpp_args)), (inputFile(cpp_args)))), return, (outputFile(cpp_args)))
+    pub fn getActualOutFile(cpp_args: CppArgs) -> FilePath {
+        maybe((mkOutputFile((cppTmpDir(cpp_args)), (inputFile(cpp_args)))), (outputFile(cpp_args)))
     }
 
     let invokeCpp = |actual_out_file| {
         /*do*/ {
-            let exit_code = runCPP(cpp, (cpp_args {
+            let exit_code = cpp.runCPP(__assign!(cpp_args, {
                         outputFile: Some(actual_out_file)
                     }));
 
@@ -100,7 +108,7 @@ pub fn runPreprocessor(cpp: cpp, cpp_args: CppArgs) -> IO<Either<ExitCode, Input
     bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
 }
 
-pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> IO<FilePath> {
+pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> FilePath {
 
     let getTempDir = |_0| {
         match (_0) {
@@ -108,7 +116,7 @@ pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> IO<F
                 tmpdir
             },
             None => {
-                tmpdir
+                getTemporaryDirectory()
             },
         }
     };
@@ -120,7 +128,7 @@ pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> IO<F
     }
 }
 
-pub fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> IO<FilePath> {
+pub fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> FilePath {
     /*do*/ {
         let (path, file_handle) = openTempFile(tmp_dir, file_templ);
 
@@ -129,8 +137,8 @@ pub fn mkTmpFile(tmp_dir: FilePath, file_templ: FilePath) -> IO<FilePath> {
     }
 }
 
-pub fn isPreprocessed() -> bool {
-    (".i".to_string()(isSuffixOf))
+pub fn isPreprocessed(x: String) -> bool {
+    isSuffixOf(".i".to_string(), x)
 }
 
 

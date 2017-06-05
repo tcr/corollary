@@ -8,6 +8,8 @@
 // use Language::C::Data::Ident;
 // use Language::C::Syntax::AST;
 
+use syntax::ast::*;
+
 pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
     match (_0) {
         CLabel(_, s, _, _) => {

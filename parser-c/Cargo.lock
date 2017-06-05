@@ -1,4 +1,11 @@
 [root]
 name = "parser-c"
 version = "0.1.0"
+dependencies = [
+ "corollary-support 0.1.0",
+]
+
+[[package]]
+name = "corollary-support"
+version = "0.1.0"
 

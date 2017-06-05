@@ -3,6 +3,8 @@
 
 #[macro_use] use corollary_support::*;
 
+use data::node::*;
+
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Syntax::Constants;
 // use Language::C::Syntax::Ops;
@@ -265,7 +267,8 @@ pub enum CInitializer<a> {
 pub use self::CInitializer::*;
 
 pub fn fmapInitList<a, b>(_f: fn(a) -> b) -> CInitializerList<b> {
-    __map!((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
+    //TODO
+    // __map!((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
 }
 
 pub type CInitList = CInitializerList<NodeInfo>;

@@ -7,18 +7,16 @@
 // use Data::Ix;
 // use Data::Generics;
 
-#[derive(Clone, Debug, Eq, Ix, Ord, Read)]
-pub struct Name{
-    nameId: isize
-}
-fn nameId(a: Name) -> isize { a.nameId }
+#[derive(Clone, Debug, Eq, Ord)]
+pub struct Name(isize);
 
 pub fn newNameSupply() -> Vec<Name> {
     namesStartingFrom(0)
 }
 
 pub fn namesStartingFrom(k: isize) -> Vec<Name> {
-    vec![Name(k::::)]
+    // TODO fix this to be an infinite iterator
+    vec![Name(k)]
 }
 
 

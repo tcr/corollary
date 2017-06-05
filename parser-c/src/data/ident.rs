@@ -34,20 +34,21 @@ pub struct Ident(String, isize, NodeInfo);
 
 
 pub fn quad(_0: String) -> isize {
-    match (_0) {
-        [c1, [c2, [c3, [c4, s]]]] => {
+    let v = _0.iter().chars().collect::<Vec<char>>();
+    match &v {
+        &[c1, c2, c3, c4, ..s] => {
             ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
-        [c1, [c2, [c3, []]]] => {
+        &[c1, c2, c3] => {
             ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
-        [c1, [c2, []]] => {
+        &[c1, c2] => {
             ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
-        [c1, []] => {
+        &[c1] => {
             ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
-        [] => {
+        &[] => {
             ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
     }

@@ -9,6 +9,9 @@
 // use Name;
 // use Data::Generics;
 
+use ::data::name::Name;
+use ::data::position::{Position, PosLength};
+
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum NodeInfo {
     OnlyPos(Position, PosLength),
@@ -17,6 +20,13 @@ pub enum NodeInfo {
 pub use self::NodeInfo::*;
 
 pub fn lengthOfNode(ni: NodeInfo) -> Option<isize> {
+
+    let computeLength = |firstPos, (lastPos, lastTokLen)| {
+        if lastTokLen < 0 { None }
+        else {
+            Some(posOffset(lastPos) + lastTokLen - posOffset(pos))
+        }
+    };
 
     let len = match ni {
             NodeInfo(firstPos, lastTok, _) => {
