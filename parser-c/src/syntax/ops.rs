@@ -28,34 +28,34 @@ pub fn assignBinop(_0: CAssignOp) -> CBinaryOp {
             __error!("direct assignment has no binary operator".to_string())
         },
         CMulAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            CMulOp
         },
         CDivAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            CDivOp
         },
         CRmdAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            CRmdOp
         },
         CAddAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            CAddOp
         },
         CSubAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            CSubOp
         },
         CShlAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            CShlOp
         },
         CShrAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            CShrOp
         },
         CAndAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            CAndOp
         },
         CXorAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            CXorOp
         },
         COrAssOp => {
-            __error!("direct assignment has no binary operator".to_string())
+            COrOp
         },
     }
 }

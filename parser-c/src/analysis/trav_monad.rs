@@ -99,13 +99,13 @@ pub fn _checkIdentTyRedef(_0: IdentEntry, _1: DeclarationStatus<IdentEntry>) -> 
             checkVarRedef(decl, status)
         },
         (Left(tydef), KindMismatch(old_def)) => {
-            checkVarRedef(decl, status)
+            redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DiffKindRedecl)
         },
         (Left(tydef), Redeclared(old_def)) => {
-            checkVarRedef(decl, status)
+            redefErr((identOfTypeDef(tydef)), LevelError, tydef, old_def, DuplicateDef)
         },
         (Left(_tydef), _) => {
-            checkVarRedef(decl, status)
+            ()
         },
     }
 }
@@ -135,10 +135,10 @@ pub fn checkVarRedef(def: IdentDecl, redecl: DeclarationStatus<IdentEntry>) -> m
                 true
             },
             ObjectDef(od) => {
-                true
+                isTentative(od)
             },
             _ => {
-                true
+                false
             },
         }
     };
@@ -175,7 +175,14 @@ pub fn handleParamDecl(_0: ParamDecl, _1: m<()>) -> m<()> {
             handleDecl((ParamEvent(pd)))
         },
         (pd, __OP__, ParamDecl(vardecl, node)) => {
-            handleDecl((ParamEvent(pd)))
+            /*do*/ {
+                let def = ObjectDef((ObjDef(vardecl, None, node)));
+
+                let redecl = withDefTable(defineScopedIdent((declIdent(def)), def));
+
+                checkVarRedef(def, redecl);
+                handleDecl((ParamEvent(pd)))
+            }
         },
     }
 }
@@ -208,7 +215,7 @@ pub fn isDeclaration(_0: IdentDecl) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -225,7 +232,7 @@ pub fn handleObjectDef(local: bool, ident: Ident, obj_def: ObjDef) -> m<()> {
                 isTentative(object_def)
             },
             _ => {
-                isTentative(object_def)
+                false
             },
         }
     };
@@ -328,7 +335,7 @@ pub fn createSUERef(_0: NodeInfo, _1: Option<Ident>) -> m<SUERef> {
             NamedRef(ident)
         },
         (node_info, None) => {
-            NamedRef(ident)
+            /* Expr::Error */ Error
         },
     }
 }
@@ -351,7 +358,7 @@ pub fn throwOnLeft<a>(_0: Either<e, a>) -> m<a> {
             throwTravError(err)
         },
         Right(v) => {
-            throwTravError(err)
+            v
         },
     }
 }

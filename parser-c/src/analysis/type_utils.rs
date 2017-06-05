@@ -92,7 +92,7 @@ pub fn isIntegralType(_0: Type) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -103,7 +103,7 @@ pub fn isFloatingType(_0: Type) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -117,7 +117,7 @@ pub fn isPointerType(_0: Type) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -152,10 +152,10 @@ pub fn typeQuals(_0: Type) -> TypeQuals {
             q
         },
         FunctionType(_, _) => {
-            q
+            noTypeQuals
         },
         TypeDefType(TypeDefRef(_, t, _), q, _) => {
-            q
+            mergeTypeQuals(q, (typeQuals(t)))
         },
     }
 }
@@ -195,7 +195,7 @@ pub fn typeAttrs(_0: Type) -> Attributes {
             a
         },
         TypeDefType(TypeDefRef(_, t, _), _, a) => {
-            a
+            mergeAttributes(a, (typeAttrs(t)))
         },
     }
 }
@@ -229,7 +229,7 @@ pub fn baseType(_0: Type) -> Type {
             t
         },
         _ => {
-            t
+            __error!("base of non-pointer type".to_string())
         },
     }
 }
@@ -240,7 +240,7 @@ pub fn derefTypeDef(_0: Type) -> Type {
             (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
         },
         ty => {
-            (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((derefTypeDef(t)))
+            ty
         },
     }
 }
@@ -251,19 +251,19 @@ pub fn deepDerefTypeDef(_0: Type) -> Type {
             PtrType((deepDerefTypeDef(t)), quals, attrs)
         },
         ArrayType(t, size, quals, attrs) => {
-            PtrType((deepDerefTypeDef(t)), quals, attrs)
+            ArrayType((deepDerefTypeDef(t)), size, quals, attrs)
         },
         FunctionType(FunType(rt, params, varargs), attrs) => {
-            PtrType((deepDerefTypeDef(t)), quals, attrs)
+            FunctionType((FunType((deepDerefTypeDef(rt)), params, varargs)), attrs)
         },
         FunctionType(FunTypeIncomplete(rt), attrs) => {
-            PtrType((deepDerefTypeDef(t)), quals, attrs)
+            FunctionType((FunTypeIncomplete((deepDerefTypeDef(rt)))), attrs)
         },
         TypeDefType(TypeDefRef(_, t, _), q, a) => {
-            PtrType((deepDerefTypeDef(t)), quals, attrs)
+            (typeAttrsUpd((mergeAttributes(a)), typeQualsUpd((mergeTypeQuals(q)))))((deepDerefTypeDef(t)))
         },
         t => {
-            PtrType((deepDerefTypeDef(t)), quals, attrs)
+            t
         },
     }
 }
@@ -276,7 +276,7 @@ pub fn isVariablyModifiedType(t: Type) -> bool {
                 isStarred
             },
             ArraySize(isStatic, e) => {
-                isStarred
+                (isStatic || isConstantSize(e))
             },
         }
     }
@@ -289,7 +289,7 @@ pub fn isVariablyModifiedType(t: Type) -> bool {
                 true
             },
             _ => {
-                true
+                false
             },
         }
     }
@@ -387,10 +387,10 @@ pub fn sameBuiltinType(_0: BuiltinType, _1: BuiltinType) -> bool {
             true
         },
         (TyAny, TyAny) => {
-            true
+            false
         },
         (_, _) => {
-            true
+            false
         },
     }
 }
@@ -409,10 +409,10 @@ pub fn sameFunType(_0: FunType, _1: FunType) -> bool {
             (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
         },
         (FunTypeIncomplete(rt1), FunTypeIncomplete(rt2)) => {
-            (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
+            sameType(rt1, rt2)
         },
         (_, _) => {
-            (sameType(rt1, rt2) && (sameParamDecls(params1, params2) && (isVar1 == isVar2)))
+            false
         },
     }
 }
@@ -423,10 +423,10 @@ pub fn sameArraySize(_0: ArraySize, _1: ArraySize) -> bool {
             (isStar1 == isStar2)
         },
         (ArraySize(s1, e1), ArraySize(s2, e2)) => {
-            (isStar1 == isStar2)
+            (s1 == (s2 && sizeEqual(e1, e2)))
         },
         (_, _) => {
-            (isStar1 == isStar2)
+            false
         },
     }
 }

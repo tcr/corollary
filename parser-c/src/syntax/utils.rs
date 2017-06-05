@@ -8,8 +8,6 @@
 // use Language::C::Data::Ident;
 // use Language::C::Syntax::AST;
 
-use syntax::ast::*;
-
 pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
     match (_0) {
         CLabel(_, s, _, _) => {
@@ -25,13 +23,13 @@ pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
             vec![s]
         },
         CExpr(_, _) => {
-            vec![s]
+            vec![]
         },
         CCompound(_, body, _) => {
-            vec![s]
+            concatMap(compoundSubStmts, body)
         },
         CIf(_, sthen, selse, _) => {
-            vec![s]
+            maybe(vec![sthen], (|s| { vec![sthen, s] }), selse)
         },
         CSwitch(_, s, _) => {
             vec![s]
@@ -43,22 +41,22 @@ pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
             vec![s]
         },
         CGoto(_, _) => {
-            vec![s]
+            vec![]
         },
         CGotoPtr(_, _) => {
-            vec![s]
+            vec![]
         },
         CCont(_) => {
-            vec![s]
+            vec![]
         },
         CBreak(_) => {
-            vec![s]
+            vec![]
         },
         CReturn(_, _) => {
-            vec![s]
+            vec![]
         },
         CAsm(_, _) => {
-            vec![s]
+            vec![]
         },
     }
 }
@@ -69,7 +67,7 @@ pub fn mapBlockItemStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CBlo
             CBlockStmt((mapSubStmts(stop, f, s)))
         },
         (_, _, bi) => {
-            CBlockStmt((mapSubStmts(stop, f, s)))
+            bi
         },
     }
 }
@@ -80,10 +78,10 @@ pub fn compoundSubStmts(_0: CBlockItem) -> Vec<CStat> {
             vec![s]
         },
         CBlockDecl(_) => {
-            vec![s]
+            vec![]
         },
         CNestedFunDef(_) => {
-            vec![s]
+            vec![]
         },
     }
 }
@@ -94,10 +92,10 @@ pub fn getLabels(_0: CStat) -> Vec<Ident> {
             __op_concat(l, getLabels(s))
         },
         CCompound(ls, body, _) => {
-            __op_concat(l, getLabels(s))
+            __op_forwardslash(concatMap((concatMap(getLabels, compoundSubStmts)), body), ls)
         },
         stmt => {
-            __op_concat(l, getLabels(s))
+            concatMap(getLabels, (getSubStmts(stmt)))
         },
     }
 }

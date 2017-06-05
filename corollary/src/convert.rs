@@ -620,7 +620,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
         if fnset.len() > 1 {
             // There are multiple impls of this function, so expand this into a
             // case statement.
-            if let (ast::Assignment::Assign { ref mut pats, ref mut expr }, ..) = fnset[0] {
+            if let (ast::Assignment::Assign { ref mut pats, .. }, ..) = fnset[0] {
                 let args = (0..pats.len())
                     .map(|x| format!("_{}", x))
                     .collect::<Vec<_>>();
@@ -638,7 +638,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                         .collect::<Vec<_>>())),
                     fnset2.iter().map(|&(ref x, _)| {
                         match x {
-                            &ast::Assignment::Assign { ref pats, .. } => {
+                            &ast::Assignment::Assign { ref pats, ref expr } => {
                                 ast::CaseCond::Direct(
                                     vec![Pat::Tuple(pats.clone())],
                                     vec![expr.clone()])
@@ -646,7 +646,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                             &ast::Assignment::Case { ref pats, .. } => {
                                 ast::CaseCond::Direct(
                                     vec![Pat::Tuple(pats.clone())],
-                                    vec![expr.clone()])
+                                    vec![Expr::Error]) // TODO
                             }
                         }
                     }).collect::<Vec<_>>(),
@@ -691,7 +691,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
             item = ast::Item::Data(name, vec![vec![ty]], derives, args);
         }
 
-        if let ast::Item::Data(name, data, derives, args) = item {
+        if let ast::Item::Data(name, data, derives, args) = item { // Enums or Structs
             let derive_rust = derives.iter()
                 .map(|x| {
                     // Convert common Haskell "derive" terms into Rust's
@@ -707,8 +707,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                 .into_iter()
                 .collect::<Vec<_>>();
 
-            // Enum
-            if data.len() > 1 {
+            if data.len() > 1 { // Enum
                 out.push(format!("{}{}pub enum {} {{\n{}{}\n{}}}\n{}{}",
                     state.indent(),
                     if derive_rust.len() > 0 {
@@ -746,7 +745,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                     state.indent(),
                     format!("pub use self::{}::*;", print_ident(state, name.0)),
                 ));
-            } else {
+            } else { // Structs
                 let props = if data.len() == 0 {
                     format!(";")
                 } else {
@@ -801,7 +800,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                 ));
             }
             out.push("".to_string())
-        } else if let ast::Item::Type(name, data, args) = item.clone() {
+        } else if let ast::Item::Type(name, data, args) = item.clone() { // Typedef
             assert!(data.len() > 0);
             let tyset = data[0].clone(); // 0th in pipe sequence
             let props = format!(" = {};", print_type(state, &tyset));
@@ -814,7 +813,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                 })),
                 props,
             ));
-        } else if let ast::Item::Assign(mut assign, _) = item.clone() {
+        } else if let ast::Item::Assign(mut assign, _) = item.clone() { // Assignment
             let assign_name = if let Some(s) = get_assign_ident(&mut assign) {
                 s
             } else {
@@ -919,7 +918,10 @@ pub fn print_let(state: PrintState, assign: &ast::Assignment) -> String {
     // If there are no arguments, we compute it now (non-lazily).
     let (pats, expr) = match assign {
       &ast::Assignment::Assign { ref pats, ref expr } => (pats, expr),
-      _ => unreachable!(),
+      _ => {
+          errln!("TODO! print_let {:?}", assign);
+          return "".to_string()
+      }
     };
     if pats.len() == 0 {
         // TODO why does this case occur?

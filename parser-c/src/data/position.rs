@@ -6,7 +6,7 @@
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Generics;
 
-#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Ord)]
 pub enum Position {
     Position{
         posOffset: isize,
@@ -36,7 +36,7 @@ pub fn isSourcePos(_0: Position) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -51,7 +51,7 @@ pub fn isNoPos(_0: Position) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -66,7 +66,7 @@ pub fn isBuiltinPos(_0: Position) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -81,7 +81,7 @@ pub fn isInternalPos(_0: Position) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -92,7 +92,7 @@ pub fn incPos(_0: Position, _1: isize) -> Position {
             Position(((offs + n)), fname, row, ((col + n)))
         },
         (p, _) => {
-            Position(((offs + n)), fname, row, ((col + n)))
+            p
         },
     }
 }
@@ -103,7 +103,7 @@ pub fn retPos(_0: Position) -> Position {
             Position(((offs + 1)), fname, ((row + 1)), 1)
         },
         p => {
-            Position(((offs + 1)), fname, ((row + 1)), 1)
+            p
         },
     }
 }
@@ -114,7 +114,7 @@ pub fn adjustPos(_0: FilePath, _1: isize, _2: Position) -> Position {
             Position(offs, fname, row, 1)
         },
         (_, _, p) => {
-            Position(offs, fname, row, 1)
+            p
         },
     }
 }
@@ -125,7 +125,7 @@ pub fn incOffset(_0: Position, _1: isize) -> Position {
             Position(((o + n)), f, r, c)
         },
         (p, _) => {
-            Position(((o + n)), f, r, c)
+            p
         },
     }
 }

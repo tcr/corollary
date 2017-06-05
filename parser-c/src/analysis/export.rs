@@ -41,33 +41,33 @@ pub fn exportType(ty: Type) -> (Vec<CDeclSpec>, Vec<CDerivedDeclr>) {
             },
             (dd, ArrayType(ity, array_sz, tyquals, attrs)) => {
                 {
-                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+                    let arr_declr = CArrDeclr((exportTypeQualsAttrs(tyquals, attrs)), (exportArraySize(array_sz)), ni);
 
-                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+                exportTy((__op_concat(arr_declr, dd)), ity)                }
             },
             (dd, FunctionType(FunType(ity, params, variadic), attrs)) => {
                 {
-                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+                    let fun_declr = CFunDeclr((Right((__map!(exportParamDecl, params), variadic))), (exportAttrs(attrs)), ni);
 
-                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+                exportTy((__op_concat(fun_declr, dd)), ity)                }
             },
             (dd, FunctionType(FunTypeIncomplete(ity), attrs)) => {
                 {
-                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+                    let fun_declr = CFunDeclr((Right((vec![], false))), (exportAttrs(attrs)), ni);
 
-                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+                exportTy((__op_concat(fun_declr, dd)), ity)                }
             },
             (dd, TypeDefType(TypeDefRef(ty_ident, _, node), quals, attrs)) => {
                 {
-                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+                    let declspecs = __op_concat(CTypeSpec((CTypeDef(ty_ident, node))), __map!(CTypeQual, (exportTypeQualsAttrs(quals, attrs))));
 
-                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+                (declspecs, reverse(dd))                }
             },
             (dd, DirectType(ity, quals, attrs)) => {
                 {
-                    let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+                    let declspecs = __op_addadd(__map!(CTypeQual, (exportTypeQualsAttrs(quals, attrs))), __map!(CTypeSpec, (exportTypeSpec(ity))));
 
-                exportTy((__op_concat(ptr_declr, dd)), ity)                }
+                (declspecs, reverse(dd))                }
             },
         }
     };
@@ -90,7 +90,7 @@ pub fn exportArraySize(_0: ArraySize) -> CArrSize {
             CArrSize(__static, e)
         },
         UnknownArraySize(complete) => {
-            CArrSize(__static, e)
+            CNoArrSize(complete)
         },
     }
 }
@@ -239,7 +239,7 @@ pub fn exportSUERef(_0: SUERef) -> Option<Ident> {
             Some((internalIdent(__op_addadd("$".to_string(), show((nameId(name)))))))
         },
         NamedRef(ident) => {
-            Some((internalIdent(__op_addadd("$".to_string(), show((nameId(name)))))))
+            Some(ident)
         },
     }
 }
@@ -250,7 +250,10 @@ pub fn exportMemberDecl(_0: MemberDecl) -> CDecl {
             CDecl((__map!(CTypeSpec, exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
         },
         MemberDecl(vardecl, bitfieldsz, node_info) => {
-            CDecl((__map!(CTypeSpec, exportTypeSpec(fromDirectType(ty)))), vec![(None, None, Some(expr))], node_info)
+            {
+                let (specs, declarator) = exportVarDecl(vardecl);
+
+            CDecl(specs, vec![(Some(declarator), None, bitfieldsz)], node_info)            }
         },
     }
 }
@@ -291,25 +294,28 @@ pub fn exportStorage(_0: Storage) -> Vec<CStorageSpec> {
             vec![]
         },
         Auto(reg) => {
-            vec![]
+            if reg {             
+vec![CRegister(ni)]} else {
+vec![]
+            }
         },
         Static(InternalLinkage, thread_local) => {
-            vec![]
+            threadLocal(thread_local, vec![CStatic(ni)])
         },
         Static(ExternalLinkage, thread_local) => {
-            vec![]
+            threadLocal(thread_local, vec![CExtern(ni)])
         },
         Static(NoLinkage, _) => {
-            vec![]
+            __error!("impossible storage: static without linkage".to_string())
         },
         FunLinkage(InternalLinkage) => {
-            vec![]
+            vec![CStatic(ni)]
         },
         FunLinkage(ExternalLinkage) => {
             vec![]
         },
         FunLinkage(NoLinkage) => {
-            vec![]
+            __error!("impossible storage: function without linkage".to_string())
         },
     }
 }
@@ -320,7 +326,7 @@ pub fn threadLocal(_0: bool) -> Vec<CStorageSpec> {
             id
         },
         true => {
-            id
+            ((CThread(ni))(__op_concat))
         },
     }
 }
@@ -340,10 +346,10 @@ pub fn fromDirectType(_0: Type) -> TypeName {
             ty
         },
         TypeDefType(TypeDefRef(_, ty, _), _, _) => {
-            ty
+            fromDirectType(ty)
         },
         _ => {
-            ty
+            __error!("fromDirectType".to_string())
         },
     }
 }

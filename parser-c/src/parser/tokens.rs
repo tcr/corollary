@@ -445,7 +445,7 @@ pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
             pos
         },
         CTokEof => {
-            pos
+            __error!("tokenPos: Eof".to_string())
         },
     }
 }

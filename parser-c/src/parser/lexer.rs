@@ -33233,12 +33233,7 @@ pub fn readCOctal(_0: String, _1: Either<String, CInteger>) -> Either<String, CI
             }
         },
         _ => {
-            match r {
-                [c, _] if isDigit(c) => { readCInteger(OctalRepr, r) }
-                _ => {
-                    readCInteger(DecRepr, s)
-                },
-            }
+            __error!("ReadOctal: string does not start with `0\'".to_string())
         },
     }
 }
@@ -33249,244 +33244,261 @@ pub fn idkwtok(_0: bool) -> bool {
             tok(8, CTokAlignas)
         },
         ['_', ['A', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokAlignof)
         },
         ['_', ['A', ['t', ['o', ['m', ['i', ['c', []]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(7, CTokAtomic)
         },
         ['_', ['B', ['o', ['o', ['l', []]]]]] => {
-            tok(8, CTokAlignas)
+            tok(5, CTokBool)
         },
         ['_', ['C', ['o', ['m', ['p', ['l', ['e', ['x', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokComplex)
         },
         ['_', ['N', ['o', ['n', ['n', ['u', ['l', ['l', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokNonnull)
         },
         ['_', ['G', ['e', ['n', ['e', ['r', ['i', ['c', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokGeneric)
         },
         ['_', ['N', ['o', ['r', ['e', ['t', ['u', ['r', ['n', []]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(9, CTokNoreturn)
         },
         ['_', ['N', ['u', ['l', ['l', ['a', ['b', ['l', ['e', []]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(9, CTokNullable)
         },
         ['_', ['S', ['t', ['a', ['t', ['i', ['c', ['_', ['a', ['s', ['s', ['e', ['r', ['t', []]]]]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(14, CTokStaticAssert)
         },
         ['_', ['T', ['h', ['r', ['e', ['a', ['d', ['_', ['l', ['o', ['c', ['a', ['l', []]]]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(13, CTokThread)
         },
         ['_', ['_', ['a', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(9, CTokAlignof)
         },
         ['a', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(7, CTokAlignof)
         },
         ['_', ['_', ['a', ['l', ['i', ['g', ['n', ['o', ['f', ['_', ['_', []]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(11, CTokAlignof)
         },
         ['_', ['_', ['a', ['s', ['m', []]]]]] => {
-            tok(8, CTokAlignas)
+            tok(5, CTokAsm)
         },
         ['a', ['s', ['m', []]]] => {
-            tok(8, CTokAlignas)
+            tok(3, CTokAsm)
         },
         ['_', ['_', ['a', ['s', ['m', ['_', ['_', []]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(7, CTokAsm)
         },
         ['_', ['_', ['a', ['t', ['t', ['r', ['i', ['b', ['u', ['t', ['e', []]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(11, (CTokGnuC(GnuCAttrTok)))
         },
         ['_', ['_', ['a', ['t', ['t', ['r', ['i', ['b', ['u', ['t', ['e', ['_', ['_', []]]]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(13, (CTokGnuC(GnuCAttrTok)))
         },
         ['a', ['u', ['t', ['o', []]]]] => {
-            tok(8, CTokAlignas)
+            tok(4, CTokAuto)
         },
         ['b', ['r', ['e', ['a', ['k', []]]]]] => {
-            tok(8, CTokAlignas)
+            tok(5, CTokBreak)
         },
         ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['o', ['f', ['f', ['s', ['e', ['t', ['o', ['f', []]]]]]]]]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(18, (CTokGnuC(GnuCOffsetof)))
         },
         ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['t', ['y', ['p', ['e', ['s', ['_', ['c', ['o', ['m', ['p', ['a', ['t', ['i', ['b', ['l', ['e', ['_', ['p', []]]]]]]]]]]]]]]]]]]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(28, (CTokGnuC(GnuCTyCompat)))
         },
         ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['v', ['a', ['_', ['a', ['r', ['g', []]]]]]]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(16, (CTokGnuC(GnuCVaArg)))
         },
         ['c', ['a', ['s', ['e', []]]]] => {
-            tok(8, CTokAlignas)
+            tok(4, CTokCase)
         },
         ['c', ['h', ['a', ['r', []]]]] => {
-            tok(8, CTokAlignas)
+            tok(4, CTokChar)
         },
         ['_', ['_', ['c', ['o', ['m', ['p', ['l', ['e', ['x', ['_', ['_', []]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(11, CTokComplex)
         },
         ['_', ['_', ['c', ['o', ['n', ['s', ['t', []]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(7, CTokConst)
         },
         ['c', ['o', ['n', ['s', ['t', []]]]]] => {
-            tok(8, CTokAlignas)
+            tok(5, CTokConst)
         },
         ['_', ['_', ['c', ['o', ['n', ['s', ['t', ['_', ['_', []]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(9, CTokConst)
         },
         ['c', ['o', ['n', ['t', ['i', ['n', ['u', ['e', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokContinue)
         },
         ['d', ['e', ['f', ['a', ['u', ['l', ['t', []]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(7, CTokDefault)
         },
         ['d', ['o', []]] => {
-            tok(8, CTokAlignas)
+            tok(2, CTokDo)
         },
         ['d', ['o', ['u', ['b', ['l', ['e', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokDouble)
         },
         ['e', ['l', ['s', ['e', []]]]] => {
-            tok(8, CTokAlignas)
+            tok(4, CTokElse)
         },
         ['e', ['n', ['u', ['m', []]]]] => {
-            tok(8, CTokAlignas)
+            tok(4, CTokEnum)
         },
         ['_', ['_', ['e', ['x', ['t', ['e', ['n', ['s', ['i', ['o', ['n', ['_', ['_', []]]]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(13, (CTokGnuC(GnuCExtTok)))
         },
         ['e', ['x', ['t', ['e', ['r', ['n', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokExtern)
         },
         ['f', ['l', ['o', ['a', ['t', []]]]]] => {
-            tok(8, CTokAlignas)
+            tok(5, CTokFloat)
         },
         ['f', ['o', ['r', []]]] => {
-            tok(8, CTokAlignas)
+            tok(3, CTokFor)
         },
         ['g', ['o', ['t', ['o', []]]]] => {
-            tok(8, CTokAlignas)
+            tok(4, CTokGoto)
         },
         ['i', ['f', []]] => {
-            tok(8, CTokAlignas)
+            tok(2, CTokIf)
         },
         ['_', ['_', ['i', ['m', ['a', ['g', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, (CTokGnuC(GnuCComplexImag)))
         },
         ['_', ['_', ['i', ['m', ['a', ['g', ['_', ['_', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, (CTokGnuC(GnuCComplexImag)))
         },
         ['_', ['_', ['i', ['n', ['l', ['i', ['n', ['e', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokInline)
         },
         ['i', ['n', ['l', ['i', ['n', ['e', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokInline)
         },
         ['_', ['_', ['i', ['n', ['l', ['i', ['n', ['e', ['_', ['_', []]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(10, CTokInline)
         },
         ['i', ['n', ['t', []]]] => {
-            tok(8, CTokAlignas)
+            tok(3, CTokInt)
         },
         ['_', ['_', ['i', ['n', ['t', ['1', ['2', ['8', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokInt128)
         },
         ['_', ['_', ['l', ['a', ['b', ['e', ['l', ['_', ['_', []]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(9, CTokLabel)
         },
         ['l', ['o', ['n', ['g', []]]]] => {
-            tok(8, CTokAlignas)
+            tok(4, CTokLong)
         },
         ['_', ['_', ['n', ['o', ['n', ['n', ['u', ['l', ['l', []]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(9, CTokNonnull)
         },
         ['_', ['_', ['n', ['u', ['l', ['l', ['a', ['b', ['l', ['e', []]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(10, CTokNullable)
         },
         ['_', ['_', ['r', ['e', ['a', ['l', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, (CTokGnuC(GnuCComplexReal)))
         },
         ['_', ['_', ['r', ['e', ['a', ['l', ['_', ['_', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, (CTokGnuC(GnuCComplexReal)))
         },
         ['r', ['e', ['g', ['i', ['s', ['t', ['e', ['r', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokRegister)
         },
         ['_', ['_', ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', []]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(10, CTokRestrict)
         },
         ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokRestrict)
         },
         ['_', ['_', ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', ['_', ['_', []]]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(12, CTokRestrict)
         },
         ['r', ['e', ['t', ['u', ['r', ['n', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokReturn)
         },
         ['s', ['h', ['o', ['r', ['t', []]]]]] => {
-            tok(8, CTokAlignas)
+            tok(5, CTokShort)
         },
         ['_', ['_', ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokSigned)
         },
         ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokSigned)
         },
         ['_', ['_', ['s', ['i', ['g', ['n', ['e', ['d', ['_', ['_', []]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(10, CTokSigned)
         },
         ['s', ['i', ['z', ['e', ['o', ['f', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokSizeof)
         },
         ['s', ['t', ['a', ['t', ['i', ['c', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokStatic)
         },
         ['s', ['t', ['r', ['u', ['c', ['t', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokStruct)
         },
         ['s', ['w', ['i', ['t', ['c', ['h', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokSwitch)
         },
         ['_', ['_', ['t', ['h', ['r', ['e', ['a', ['d', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokThread)
         },
         ['t', ['y', ['p', ['e', ['d', ['e', ['f', []]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(7, CTokTypedef)
         },
         ['_', ['_', ['t', ['y', ['p', ['e', ['o', ['f', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokTypeof)
         },
         ['t', ['y', ['p', ['e', ['o', ['f', []]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(6, CTokTypeof)
         },
         ['_', ['_', ['t', ['y', ['p', ['e', ['o', ['f', ['_', ['_', []]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(10, CTokTypeof)
         },
         ['u', ['n', ['i', ['o', ['n', []]]]]] => {
-            tok(8, CTokAlignas)
+            tok(5, CTokUnion)
         },
         ['u', ['n', ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokUnsigned)
         },
         ['v', ['o', ['i', ['d', []]]]] => {
-            tok(8, CTokAlignas)
+            tok(4, CTokVoid)
         },
         ['_', ['_', ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', []]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(10, CTokVolatile)
         },
         ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokVolatile)
         },
         ['_', ['_', ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', ['_', ['_', []]]]]]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(12, CTokVolatile)
         },
         ['w', ['h', ['i', ['l', ['e', []]]]]] => {
-            tok(8, CTokAlignas)
+            tok(5, CTokWhile)
         },
         cs => {
-            tok(8, CTokAlignas)
+            |pos| { /*do*/ {
+                    let name = getNewName;
+
+                    let len = match length(cs) {
+                            l => {
+                                l
+                            },
+                        };
+
+                    let ident = mkIdent(pos, cs, name);
+
+                    let tyident = isTypeIdent(ident);
+
+                    if tyident {                     
+(CTokTyIdent((pos, len), ident))} else {
+(CTokIdent((pos, len), ident))
+                    }
+                } }
         },
     }
 }
@@ -33546,18 +33558,10 @@ pub fn unescapeMultiChars(_0: String, _1: Vec<Char>) -> Vec<Char> {
             }
         },
         ['\'', []] => {
-            match unescapeChar(cs) {
-                (c, cs_q) => {
-                    __op_concat(c, unescapeMultiChars(cs_q))
-                },
-            }
+            vec![]
         },
         _ => {
-            match unescapeChar(cs) {
-                (c, cs_q) => {
-                    __op_concat(c, unescapeMultiChars(cs_q))
-                },
-            }
+            __error!("Unexpected end of multi-char constant".to_string())
         },
     }
 }
@@ -33597,10 +33601,10 @@ pub fn alexMove(_0: Position, _1: Char) -> Position {
             incPos(pos, 1)
         },
         (pos, '\n') => {
-            incPos(pos, 1)
+            retPos(pos)
         },
         (pos, '\r') => {
-            incPos(pos, 1)
+            incOffset(pos, 1)
         },
         (pos, _) => {
             incPos(pos, 1)
@@ -33994,16 +33998,16 @@ pub fn alex_scan_tkn(user: bool) -> bool {
                 last_acc
             },
             AlexAcc(a) => {
-                last_acc
+                AlexLastAcc(a, input, len())
             },
             AlexAccSkip => {
-                last_acc
+                AlexLastSkip(input, len())
             },
             AlexAccPred(a, predx, rest) => {
-                last_acc
+                /* Expr::Error */ Error
             },
             AlexAccSkipPred(predx, rest) => {
-                last_acc
+                /* Expr::Error */ Error
             },
         }
     };

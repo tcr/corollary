@@ -25,7 +25,7 @@ pub fn typeOfTagDef(_0: TagDef) -> TypeName {
             typeOfCompDef(comptype)
         },
         EnumDef(enumtype) => {
-            typeOfCompDef(comptype)
+            typeOfEnumDef(enumtype)
         },
     }
 }
@@ -68,13 +68,13 @@ pub fn objKindDescr(_0: IdentDecl) -> String {
             "declaration".to_string()
         },
         ObjectDef(_) => {
-            "declaration".to_string()
+            "object definition".to_string()
         },
         FunctionDef(_) => {
-            "declaration".to_string()
+            "function definition".to_string()
         },
         EnumeratorDef(_) => {
-            "declaration".to_string()
+            "enumerator definition".to_string()
         },
     }
 }
@@ -91,7 +91,7 @@ pub fn splitIdentDecls(include_all: bool) -> (Map<Ident, Decl>, (Map<Ident, Enum
                 (Map::insert(ident, d, decls), defs)
             },
             (ident, def, (decls, defs)) => {
-                (Map::insert(ident, d, decls), defs)
+                (decls, addDef(ident, def, defs))
             },
         }
     };
@@ -265,7 +265,7 @@ pub fn hasLinkage(_0: Storage) -> bool {
             false
         },
         _ => {
-            false
+            true
         },
     }
 }
@@ -435,7 +435,7 @@ pub fn identOfVarName(_0: VarName) -> Ident {
             __error!("identOfVarName: NoName".to_string())
         },
         VarName(ident, _) => {
-            __error!("identOfVarName: NoName".to_string())
+            ident
         },
     }
 }
@@ -446,7 +446,7 @@ pub fn isNoName(_0: VarName) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }

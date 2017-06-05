@@ -194,6 +194,7 @@ pub fn setLastToken(_0: CToken) -> P<()> {
         },
         tok => {
             P(|s| { POk(s {
+                            prevToken: tok,
                             savedToken: (prevToken(s))
                         }, ()) })
         },

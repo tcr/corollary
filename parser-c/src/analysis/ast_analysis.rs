@@ -48,10 +48,10 @@ pub fn analyseExt(_0: CExtDecl) -> m<()> {
             handleAsmBlock(asm)
         },
         CFDefExt(fundef) => {
-            handleAsmBlock(asm)
+            analyseFunDef(fundef)
         },
         CDeclExt(decl) => {
-            handleAsmBlock(asm)
+            analyseDecl(false, decl)
         },
     }
 }
@@ -64,7 +64,7 @@ pub fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info):
                 FunctionType((FunType(return_ty, vec![], false)), attrs)
             },
             ty => {
-                FunctionType((FunType(return_ty, vec![], false)), attrs)
+                ty
             },
         }
     };
@@ -100,7 +100,7 @@ pub fn analyseDecl(_0: bool, _1: CDecl) -> m<()> {
             ()
         },
         (is_local, decl, __OP__, CDecl(declspecs, declrs, node)) => {
-            ()
+            /* Expr::Error */ Error
         },
     }
 }
@@ -124,7 +124,23 @@ pub fn computeFunDefStorage(_0: Ident, _1: StorageSpec) -> m<Storage> {
             FunLinkage(InternalLinkage)
         },
         (ident, other_spec) => {
-            FunLinkage(InternalLinkage)
+            /*do*/ {
+                let obj_opt = lookupObject(ident);
+
+                let defaultSpec = FunLinkage(ExternalLinkage);
+
+                match other_spec {
+                    NoStorageSpec => {
+                        maybe(defaultSpec, declStorage, obj_opt)
+                    },
+                    ExternSpec(false) => {
+                        maybe(defaultSpec, declStorage, obj_opt)
+                    },
+                    bad_spec => {
+                        throwTravError(badSpecifierError((nodeInfo(ident)), __op_addadd("unexpected function storage specifier (only static or extern is allowed)".to_string(), show(bad_spec))))
+                    },
+                }
+            }
         },
     }
 }
@@ -135,7 +151,7 @@ pub fn getParams(_0: Type) -> Option<Vec<ParamDecl>> {
             Some(params)
         },
         _ => {
-            Some(params)
+            None
         },
     }
 }
@@ -194,7 +210,7 @@ pub fn extVarDecl(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, typ, node
                 not((isInline(functionAttrs))(fd))
             },
             _ => {
-                not((isInline(functionAttrs))(fd))
+                false
             },
         }
     };
@@ -219,19 +235,19 @@ pub fn localVarDecl(VarDeclInfo(var_name, fun_attrs, storage_spec, attrs, typ, n
                 (Auto(false), true)
             },
             ThreadSpec => {
-                (Auto(false), true)
+                (Auto(true), true)
             },
             RegSpec => {
-                (Auto(false), true)
+                (Auto(true), true)
             },
             StaticSpec(thread_local) => {
-                (Auto(false), true)
+                (Static(NoLinkage, thread_local), true)
             },
             ExternSpec(thread_local) => {
-                (Auto(false), true)
+                /* Expr::Error */ Error
             },
             _ => {
-                (Auto(false), true)
+                astError(node_info, "bad storage specifier for local".to_string())
             },
         }
     };
@@ -273,14 +289,7 @@ pub fn analyseFunctionBody(_0: NodeInfo, _1: VarDecl, _2: CStat, _3: m<Stmt>) ->
             }
         },
         (_, _, s) => {
-            /*do*/ {
-                enterFunctionScope;
-                mapM_((withDefTable(defineLabel)), (__op_addadd(localLabels, getLabels(s))));
-                defineParams(node_info, decl);
-                mapM_((tBlockItem(vec![FunCtx(decl)])), items);
-                leaveFunctionScope;
-                s
-            }
+            astError((nodeInfo(s)), "Function body is no compound statement".to_string())
         },
     }
 }
@@ -298,10 +307,10 @@ pub fn enclosingFunctionType(_0: Vec<StmtCtx>) -> Option<Type> {
             None
         },
         [FunCtx(vd), _] => {
-            None
+            Some(declType(vd))
         },
         [_, cs] => {
-            None
+            enclosingFunctionType(cs)
         },
     }
 }
@@ -314,7 +323,7 @@ pub fn inLoop(c: Vec<StmtCtx>) -> bool {
                 true
             },
             _ => {
-                true
+                false
             },
         }
     };
@@ -330,7 +339,7 @@ pub fn inSwitch(c: Vec<StmtCtx>) -> bool {
                 true
             },
             _ => {
-                true
+                false
             },
         }
     };
@@ -351,52 +360,135 @@ pub fn tStmt(_0: Vec<StmtCtx>, _1: CStat) -> m<Type> {
             tStmt(c, s)
         },
         (c, CExpr(e, _)) => {
-            tStmt(c, s)
+            maybe((voidType), (tExpr(c, RValue)), e)
         },
         (c, CCompound(ls, body, _)) => {
-            tStmt(c, s)
+            /*do*/ {
+                enterBlockScope;
+                mapM_((withDefTable(defineLabel)), ls);
+                let t = foldM((__TODO_const(tBlockItem(c))), voidType, body);
+
+                leaveBlockScope;
+                t
+            }
         },
         (c, CIf(e, sthen, selse, _)) => {
-            tStmt(c, s)
+            __op_rshift(checkGuard(c, e), __op_rshift(tStmt(c, sthen), __op_rshift(maybe((()), (voidM(tStmt(c))), selse), voidType)))
         },
         (c, CSwitch(e, s, ni)) => {
-            tStmt(c, s)
+            __op_bind(tExpr(c, RValue, e), __op_rshift(checkIntegral_q(ni), tStmt((__op_concat(SwitchCtx, c)), s)))
         },
         (c, CWhile(e, s, _, _)) => {
-            tStmt(c, s)
+            __op_rshift(checkGuard(c, e), tStmt((__op_concat(LoopCtx, c)), s))
         },
         (_, CGoto(l, ni)) => {
-            tStmt(c, s)
+            /*do*/ {
+                let dt = getDefTable;
+
+                match lookupLabel(l, dt) {
+                    Some(_) => {
+                        voidType
+                    },
+                    None => {
+                        typeError(ni, __op_addadd("undefined label in goto: ".to_string(), identToString(l)))
+                    },
+                }
+            }
         },
         (c, CCont(ni)) => {
-            tStmt(c, s)
+            /*do*/ {
+                if !((inLoop(c))) { astError(ni, "continue statement outside of loop".to_string()) };
+                voidType
+            }
         },
         (c, CBreak(ni)) => {
-            tStmt(c, s)
+            /*do*/ {
+                if !(((inLoop(c) || inSwitch(c)))) { astError(ni, "break statement outside of loop or switch statement".to_string()) };
+                voidType
+            }
         },
         (c, CReturn(Some(e), ni)) => {
-            tStmt(c, s)
+            /*do*/ {
+                let t = tExpr(c, RValue, e);
+
+                let rt = match enclosingFunctionType(c) {
+                        Some(FunctionType(FunType(rt, _, _), _)) => {
+                            rt
+                        },
+                        Some(FunctionType(FunTypeIncomplete(rt), _)) => {
+                            rt
+                        },
+                        Some(ft) => {
+                            astError(ni, __op_addadd("bad function type: ".to_string(), pType(ft)))
+                        },
+                        None => {
+                            astError(ni, "return statement outside function".to_string())
+                        },
+                    };
+
+                match (rt, t) {
+                    (DirectType(TyVoid, _, _), DirectType(TyVoid, _, _)) => {
+                        ()
+                    },
+                    _ => {
+                        assignCompatible_q(ni, CAssignOp, rt, t)
+                    },
+                };
+                voidType
+            }
         },
         (_, CReturn(None, _)) => {
-            tStmt(c, s)
+            voidType
         },
         (_, CAsm(_, _)) => {
-            tStmt(c, s)
+            voidType
         },
         (c, CCase(e, s, ni)) => {
-            tStmt(c, s)
+            /*do*/ {
+                if !((inSwitch(c))) { astError(ni, "case statement outside of switch statement".to_string()) };
+                __op_bind(tExpr(c, RValue, e), checkIntegral_q(ni));
+                tStmt(c, s)
+            }
         },
         (c, CCases(e1, e2, s, ni)) => {
-            tStmt(c, s)
+            /*do*/ {
+                if !((inSwitch(c))) { astError(ni, "case statement outside of switch statement".to_string()) };
+                __op_bind(tExpr(c, RValue, e1), checkIntegral_q(ni));
+                __op_bind(tExpr(c, RValue, e2), checkIntegral_q(ni));
+                tStmt(c, s)
+            }
         },
         (c, CDefault(s, ni)) => {
-            tStmt(c, s)
+            /*do*/ {
+                if !((inSwitch(c))) { astError(ni, "default statement outside of switch statement".to_string()) };
+                tStmt(c, s)
+            }
         },
         (c, CFor(i, g, inc, s, _)) => {
-            tStmt(c, s)
+            /*do*/ {
+                enterBlockScope;
+                either((maybe((()), checkExpr)), (analyseDecl(true)), i);
+                maybe((()), (checkGuard(c)), g);
+                maybe((()), checkExpr, inc);
+                let _ = tStmt((__op_concat(LoopCtx, c)), s);
+
+                leaveBlockScope;
+                voidType
+            }
         },
         (c, CGotoPtr(e, ni)) => {
-            tStmt(c, s)
+            /*do*/ {
+                let t = tExpr(c, RValue, e);
+
+                match t {
+                    PtrType(_, _, _) => {
+                        voidType
+                    },
+                    _ => {
+                        typeError(ni, "can\'t goto non-pointer".to_string())
+                    },
+                }
+            }
         },
     }
 }
@@ -407,10 +499,10 @@ pub fn tBlockItem(_0: Vec<StmtCtx>, _1: CBlockItem) -> m<Type> {
             tStmt(c, s)
         },
         (_, CBlockDecl(d)) => {
-            tStmt(c, s)
+            __op_rshift(analyseDecl(true, d), voidType)
         },
         (_, CNestedFunDef(fd)) => {
-            tStmt(c, s)
+            __op_rshift(analyseFunDef(fd), voidType)
         },
     }
 }
@@ -594,282 +686,264 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         },
         (c, side, CUnary(CAdrOp, e, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
+                if ((side == LValue)) { typeError(ni, "address-of operator as lvalue".to_string()) };
+                match e {
+                    CCompoundLit(_, _, _) => {
+                        liftM(simplePtr, tExpr(c, RValue, e))
+                    },
+                    CVar(i, _) => {
+                        __op_bind(lookupObject(i), typeErrorOnLeft(ni, maybe((notFound(i)), varAddrType)))
+                    },
+                    _ => {
+                        liftM(simplePtr, tExpr(c, LValue, e))
+                    },
+                }
             }
         },
         (c, _, CUnary(CIndOp, e, ni)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            __op_bind(tExpr(c, RValue, e), (typeErrorOnLeft(ni, derefType)))
         },
         (c, _, CUnary(CCompOp, e, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                let t = tExpr(c, RValue, e);
 
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
+                checkIntegral_q(ni, t);
+                t
             }
         },
         (c, side, CUnary(CNegOp, e, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
+                if ((side == LValue)) { typeError(ni, "logical negation used as lvalue".to_string()) };
+                __op_bind(tExpr(c, RValue, e), checkScalar_q(ni));
+                boolType
             }
         },
         (c, side, CUnary(op, e, _)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            tExpr(c, (if isEffectfulOp(op) {                 
+LValue} else {
+side
+                }), e)
         },
         (c, _, CIndex(b, i, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                let bt = tExpr(c, RValue, b);
 
-                let rt = tExpr(c, RValue, re);
+                let it = tExpr(c, RValue, i);
 
-                binopType_q(ni, op, lt, rt)
+                let addrTy = binopType_q(ni, CAddOp, bt, it);
+
+                typeErrorOnLeft(ni, derefType(addrTy))
             }
         },
         (c, side, CCond(e1, me2, e3, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                let t1 = tExpr(c, RValue, e1);
 
-                let rt = tExpr(c, RValue, re);
+                checkScalar_q((nodeInfo(e1)), t1);
+                let t3 = tExpr(c, side, e3);
 
-                binopType_q(ni, op, lt, rt)
+                match me2 {
+                    Some(e2) => {
+                        /*do*/ {
+                            let t2 = tExpr(c, side, e2);
+
+                            conditionalType_q(ni, t2, t3)
+                        }
+                    },
+                    None => {
+                        conditionalType_q(ni, t1, t3)
+                    },
+                }
             }
         },
         (c, _, CMember(e, m, deref, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                let t = tExpr(c, RValue, e);
 
-                let rt = tExpr(c, RValue, re);
+                let bt = if deref {                     
+typeErrorOnLeft(ni, (derefType(t)))} else {
+t
+                    };
 
-                binopType_q(ni, op, lt, rt)
+                fieldType(ni, m, bt)
             }
         },
         (c, side, CComma(es, _)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            __op_bind(mapM((tExpr(c, side)), es), last)
         },
         (c, side, CCast(d, e, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                let dt = analyseTypeDecl(d);
 
-                let rt = tExpr(c, RValue, re);
+                let et = tExpr(c, side, e);
 
-                binopType_q(ni, op, lt, rt)
+                typeErrorOnLeft(ni, castCompatible(dt, et));
+                dt
             }
         },
         (c, side, CSizeofExpr(e, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                if ((side == LValue)) { typeError(ni, "sizeof as lvalue".to_string()) };
+                let _ = tExpr(c, RValue, e);
 
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
+                size_tType
             }
         },
         (c, side, CAlignofExpr(e, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                if ((side == LValue)) { typeError(ni, "alignof as lvalue".to_string()) };
+                let _ = tExpr(c, RValue, e);
 
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
+                size_tType
             }
         },
         (c, side, CComplexReal(e, ni)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            complexBaseType(ni, c, side, e)
         },
         (c, side, CComplexImag(e, ni)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            complexBaseType(ni, c, side, e)
         },
         (_, side, CLabAddrExpr(_, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
+                if ((side == LValue)) { typeError(ni, "label address as lvalue".to_string()) };
+                PtrType(voidType, noTypeQuals, vec![])
             }
         },
         (_, side, CCompoundLit(d, initList, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                if ((side == LValue)) { typeError(ni, "compound literal as lvalue".to_string()) };
+                let lt = analyseTypeDecl(d);
 
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
+                tInitList(ni, (canonicalType(lt)), initList);
+                lt
             }
         },
         (_, RValue, CAlignofType(_, _)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            size_tType
         },
         (_, RValue, CSizeofType(_, _)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            size_tType
         },
         (_, LValue, CAlignofType(_, ni)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            typeError(ni, "alignoftype as lvalue".to_string())
         },
         (_, LValue, CSizeofType(_, ni)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            typeError(ni, "sizeoftype as lvalue".to_string())
         },
         (ctx, side, CGenericSelection(expr, list, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                let ty_sel = tExpr(ctx, side, expr);
 
-                let rt = tExpr(c, RValue, re);
+                let ty_list = mapM(analyseAssoc, list);
 
-                binopType_q(ni, op, lt, rt)
+                let def_expr_ty = match dropWhile((isJust(fst)), ty_list) {
+                        [(None, tExpr_q_q)] => {
+                            (Some(tExpr_q_q))
+                        },
+                        [] => {
+                            None
+                        },
+                        _ => {
+                            astError(ni, "more than one default clause in generic selection".to_string())
+                        },
+                    };
+
+                match dropWhile((maybe(true, (not(typesMatch(ty_sel))), fst)), ty_list) {
+                    [(_, expr_ty), _] => {
+                        expr_ty
+                    },
+                    [] => {
+                        match def_expr_ty {
+                            Some(expr_ty) => {
+                                expr_ty
+                            },
+                            None => {
+                                astError(ni, (__op_addadd("no clause matches for generic selection (not fully supported) - selector type is ".to_string(), __op_addadd(show((pretty(ty_sel))), __op_addadd(", available types are ".to_string(), show((__map!(pretty::fromJust::fst(), (filter(isJust::fst(), ty_list))))))))))
+                            },
+                        }
+                    },
+                }
             }
         },
         (_, _, CVar(i, ni)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            __op_bind(lookupObject(i), maybe((typeErrorOnLeft(ni, notFound(i))), (declType)))
         },
         (_, _, CConst(c)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            constType(c)
         },
         (_, _, CBuiltinExpr(b)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            builtinType(b)
         },
         (c, side, CCall(CVar(i, _), args, ni)) => {
-            /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
-
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
-            }
+            /* Expr::Error */ Error
         },
         (c, _, CCall(fe, args, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                let defType = FunctionType((FunTypeIncomplete((DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)))), noAttributes);
 
-                let rt = tExpr(c, RValue, re);
+                let fallback = |i| {
+                    /*do*/ {
+                        warn(invalidAST(ni, __op_addadd("unknown function: ".to_string(), identToString(i))));
+                        defType
+                    }
+                };
 
-                binopType_q(ni, op, lt, rt)
+                let t = match fe {
+                        CVar(i, _) => {
+                            __op_bind(lookupObject(i), maybe((fallback(i)), (__TODO_const(tExpr(c, RValue, fe)))))
+                        },
+                        _ => {
+                            tExpr(c, RValue, fe)
+                        },
+                    };
+
+                let atys = mapM((tExpr(c, RValue)), args);
+
+                match canonicalType(t) {
+                    PtrType(FunctionType(FunType(rt, pdecls, varargs), _), _, _) => {
+                        /*do*/ {
+                            let ptys = __map!(declType, pdecls);
+
+                            mapM_(checkArg, zip3(ptys, atys, args));
+                            if !(varargs) { if (__op_assign_div(length(atys), length(ptys))) { typeError(ni, "incorrect number of arguments".to_string()) } };
+                            canonicalType(rt)
+                        }
+                    },
+                    PtrType(FunctionType(FunTypeIncomplete(rt), _), _, _) => {
+                        /*do*/ {
+                            canonicalType(rt)
+                        }
+                    },
+                    _ => {
+                        typeError(ni, __op_addadd("attempt to call non-function of type ".to_string(), pType(t)))
+                    },
+                }
             }
         },
         (c, _, CAssign(op, le, re, ni)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                let lt = tExpr(c, LValue, le);
 
                 let rt = tExpr(c, RValue, re);
 
-                binopType_q(ni, op, lt, rt)
+                if (constant(typeQuals(lt))) { typeError(ni, __op_addadd("assignment to lvalue with `constant\' qualifier: ".to_string(), (render(pretty))(le))) };
+                match (canonicalType(lt), re) {
+                    (lt_q, CConst(CIntConst(i, _))) if (isPointerType(lt_q) && (getCInteger(i) == 0)) => { () }
+                    (_, _) => {
+                        assignCompatible_q(ni, op, lt, rt)
+                    },
+                };
+                lt
             }
         },
         (c, _, CStatExpr(s, _)) => {
             /*do*/ {
-                if ((side == LValue)) { typeError(ni, "binary operator as lvalue".to_string()) };
-                let lt = tExpr(c, RValue, le);
+                enterBlockScope;
+                mapM_((withDefTable(defineLabel)), (getLabels(s)));
+                let t = tStmt(c, s);
 
-                let rt = tExpr(c, RValue, re);
-
-                binopType_q(ni, op, lt, rt)
+                leaveBlockScope;
+                t
             }
         },
     }
@@ -881,19 +955,31 @@ pub fn tInitList(_0: NodeInfo, _1: Type, _2: CInitList) -> m<()> {
             __op_rshift(tExpr(vec![], RValue, e), ())
         },
         (ni, t, __OP__, ArrayType(_, _, _, _), initList) => {
-            __op_rshift(tExpr(vec![], RValue, e), ())
+            /*do*/ {
+                let default_ds = repeat((CArrDesig((CConst((CIntConst((cInteger(0)), ni)))), ni)));
+
+                checkInits(t, default_ds, initList)
+            }
         },
         (ni, t, __OP__, DirectType(TyComp(ctr), _, _), initList) => {
-            __op_rshift(tExpr(vec![], RValue, e), ())
+            /*do*/ {
+                let td = lookupSUE(ni, (sueRef(ctr)));
+
+                let ms = tagMembers(ni, td);
+
+                let default_ds = __map!((|m| { CMemberDesig((fst(m)), ni) }), ms);
+
+                checkInits(t, default_ds, initList)
+            }
         },
         (_, PtrType(DirectType(TyVoid, _, _), _, _), _) => {
-            __op_rshift(tExpr(vec![], RValue, e), ())
+            ()
         },
         (_, t, [([], i)]) => {
-            __op_rshift(tExpr(vec![], RValue, e), ())
+            voidM(tInit(t, i))
         },
         (ni, t, _) => {
-            __op_rshift(tExpr(vec![], RValue, e), ())
+            typeError(ni, __op_addadd("initializer list for type: ".to_string(), pType(t)))
         },
     }
 }
@@ -904,7 +990,25 @@ pub fn checkInits(_0: Type, _1: Vec<CDesignator>, _2: CInitList) -> m<()> {
             ()
         },
         (t, dds, [(ds, i), is]) => {
-            ()
+            /*do*/ {
+                let (dds_q, ds_q) = match (dds, ds) {
+                        ([], []) => {
+                            typeError((nodeInfo(i)), "excess elements in initializer".to_string())
+                        },
+                        ([dd_q, rest], []) => {
+                            (rest, vec![dd_q])
+                        },
+                        (_, [d, _]) => {
+                            (advanceDesigList(dds, d), ds)
+                        },
+                    };
+
+                let t_q = tDesignator(t, ds_q);
+
+                let _ = tInit(t_q, i);
+
+                checkInits(t, dds_q, is)
+            }
         },
     }
 }
@@ -919,7 +1023,7 @@ pub fn matchDesignator(_0: CDesignator, _1: CDesignator) -> bool {
             (m1 == m2)
         },
         (_, _) => {
-            (m1 == m2)
+            true
         },
     }
 }
@@ -934,39 +1038,29 @@ pub fn tDesignator(_0: Type, _1: Vec<CDesignator>) -> m<Type> {
         },
         (ArrayType(bt, _, _, _), [CRangeDesig(e1, e2, ni), ds]) => {
             /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                __op_bind(tExpr(vec![], RValue, e1), checkIntegral_q(ni));
+                __op_bind(tExpr(vec![], RValue, e2), checkIntegral_q(ni));
                 tDesignator(bt, ds)
             }
         },
         (ArrayType(_, _, _, _), [d, _]) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
+            typeError((nodeInfo(d)), "member designator in array initializer".to_string())
         },
         (t, __OP__, DirectType(TyComp(_), _, _), [CMemberDesig(m, ni), ds]) => {
             /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
+                let mt = fieldType(ni, m, t);
+
+                tDesignator((canonicalType(mt)), ds)
             }
         },
         (DirectType(TyComp(_), _, _), [d, _]) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
+            typeError((nodeInfo(d)), "array designator in compound initializer".to_string())
         },
         (t, []) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
+            t
         },
         (_t, _) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
+            __error!("unepxected type with designator".to_string())
         },
     }
 }
@@ -982,12 +1076,7 @@ pub fn tInit(_0: Type, _1: CInit, _2: m<Initializer>) -> m<Initializer> {
             }
         },
         (t, i, __OP__, CInitList(initList, ni)) => {
-            /*do*/ {
-                let it = tExpr(vec![], RValue, e);
-
-                assignCompatible_q(ni, CAssignOp, t, it);
-                i
-            }
+            __op_rshift(tInitList(ni, (canonicalType(t)), initList), i)
         },
     }
 }
@@ -1013,10 +1102,10 @@ pub fn builtinType(_0: CBuiltin) -> m<Type> {
             analyseTypeDecl(d)
         },
         CBuiltinOffsetOf(_, _, _) => {
-            analyseTypeDecl(d)
+            size_tType
         },
         CBuiltinTypesCompatible(_, _, _) => {
-            analyseTypeDecl(d)
+            boolType
         },
     }
 }
@@ -1029,7 +1118,7 @@ pub fn hasTypeDef(declspecs: Vec<CDeclSpec>) -> Option<Vec<CDeclSpec>> {
                 (true, specs)
             },
             (spec, (b, specs)) => {
-                (true, specs)
+                (b, __op_concat(spec, specs))
             },
         }
     };

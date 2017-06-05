@@ -50,7 +50,7 @@ pub fn viewr<a>(_0: Reversed<Vec<a>>) -> (Reversed<Vec<a>>, a) {
             __error!("viewr: empty RList".to_string())
         },
         Reversed([x, xs]) => {
-            __error!("viewr: empty RList".to_string())
+            (Reversed(xs), x)
         },
     }
 }

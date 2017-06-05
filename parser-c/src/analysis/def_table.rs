@@ -59,7 +59,7 @@ pub fn globalDefs(deftbl: DefTable) -> GlobalDecls {
             },
             (ident, Right(obj), ds) => {
                 ds {
-                    gTypeDefs: Map::insert(ident, tydef, (gTypeDefs(ds)))
+                    gObjs: Map::insert(ident, obj, (gObjs(ds)))
                 }
             },
         }
@@ -145,16 +145,16 @@ pub fn declStatusDescr(_0: DeclarationStatus<t>) -> String {
             "new".to_string()
         },
         Redeclared(_) => {
-            "new".to_string()
+            "redeclared".to_string()
         },
         KeepDef(_) => {
-            "new".to_string()
+            "keep old".to_string()
         },
         Shadowed(_) => {
-            "new".to_string()
+            "shadowed".to_string()
         },
         KindMismatch(_) => {
-            "new".to_string()
+            "kind mismatch".to_string()
         },
     }
 }
@@ -165,7 +165,20 @@ pub fn compatIdentEntry(_0: IdentEntry) -> bool {
             either((__TODO_const(true)), (__TODO_const(false)))
         },
         Right(def) => {
-            either((__TODO_const(true)), (__TODO_const(false)))
+            either((__TODO_const(false)), |other_def| { match (def, other_def) {
+                        (EnumeratorDef(_), EnumeratorDef(_)) => {
+                            true
+                        },
+                        (EnumeratorDef(_), _) => {
+                            true
+                        },
+                        (_, EnumeratorDef(_)) => {
+                            true
+                        },
+                        (_, _) => {
+                            true
+                        },
+                    } })
         },
     }
 }
@@ -183,13 +196,13 @@ pub fn tagKind(_0: TagEntry) -> TagEntryKind {
             CompKind((compTag(cd)))
         },
         Left(EnumDecl(_)) => {
-            CompKind((compTag(cd)))
+            EnumKind
         },
         Right(CompDef(cd)) => {
             CompKind((compTag(cd)))
         },
         Right(EnumDef(_)) => {
-            CompKind((compTag(cd)))
+            EnumKind
         },
     }
 }
@@ -260,7 +273,7 @@ pub fn defineScopedIdentWhen(override_def: fn(IdentDecl) -> bool, ident: Ident, 
                 false
             },
             Right(old_def) => {
-                false
+                override_def(old_def)
             },
         }
     };

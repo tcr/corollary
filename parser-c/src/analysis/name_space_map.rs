@@ -44,7 +44,7 @@ pub fn leaveScope<a>(_0: NameSpaceMap<k, a>) -> (NameSpaceMap<k, a>, Vec<(k, a)>
             __error!("NsMaps.leaveScope: No local scope!".to_string())
         },
         NsMap(gs, [ls, lss]) => {
-            __error!("NsMaps.leaveScope: No local scope!".to_string())
+            (NsMap(gs, lss), ls)
         },
     }
 }
@@ -55,7 +55,7 @@ pub fn defLocal<a>(_0: NameSpaceMap<k, a>, _1: k, _2: a, _3: (NameSpaceMap<k, a>
             defGlobal(ns, ident, def)
         },
         (NsMap(gs, [ls, lss]), ident, def) => {
-            defGlobal(ns, ident, def)
+            (NsMap(gs, (__op_concat((__op_concat((ident, def), ls)), lss))), Prelude::lookup(ident, ls))
         },
     }
 }
@@ -68,7 +68,14 @@ pub fn lookupName<a>(ns: NameSpaceMap<k, a>, __OP__: k, NsMap(_, localDefs): Opt
                 None
             },
             [ls, lss] => {
-                None
+                match Prelude::lookup(ident, ls) {
+                    None => {
+                        lookupLocal(lss)
+                    },
+                    Some(def) => {
+                        Some(def)
+                    },
+                }
             },
         }
     };
@@ -110,10 +117,10 @@ pub fn mergeNameSpace<a>(NsMap(global1, local1): NameSpaceMap<k, a>, NsMap(globa
                 __op_concat(List::unionBy((|p1, p2| { (fst(p1) == fst(p2)) }), l1, l2), localUnion(ls1, ls2))
             },
             ([], ls2) => {
-                __op_concat(List::unionBy((|p1, p2| { (fst(p1) == fst(p2)) }), l1, l2), localUnion(ls1, ls2))
+                ls2
             },
             (ls1, []) => {
-                __op_concat(List::unionBy((|p1, p2| { (fst(p1) == fst(p2)) }), l1, l2), localUnion(ls1, ls2))
+                ls1
             },
         }
     };

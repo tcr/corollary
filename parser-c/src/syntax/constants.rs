@@ -34,7 +34,7 @@ pub fn getCChar(_0: CChar) -> String {
             vec![c]
         },
         CChars(cs, _) => {
-            vec![c]
+            cs
         },
     }
 }
@@ -45,7 +45,7 @@ pub fn getCCharAsInt(_0: CChar) -> Integer {
             fromIntegral((fromEnum(c)))
         },
         CChars(_cs, _) => {
-            fromIntegral((fromEnum(c)))
+            __error!("integer value of multi-character character constants is implementation defined".to_string())
         },
     }
 }
@@ -120,13 +120,46 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
                 Right(flags)
             },
             (flags, ['l', ['l', fs]]) => {
-                Right(flags)
+                parseFlags((setFlag(FlagLongLong, flags)), fs)
             },
             (flags, ['L', ['L', fs]]) => {
-                Right(flags)
+                parseFlags((setFlag(FlagLongLong, flags)), fs)
             },
             (flags, [f, fs]) => {
-                Right(flags)
+                {
+                    let go1 = |flag| {
+                        parseFlags((setFlag(flag, flags)), fs)
+                    };
+
+                match f {
+                        'l' => {
+                            go1(FlagLong)
+                        },
+                        'L' => {
+                            go1(FlagLong)
+                        },
+                        'u' => {
+                            go1(FlagUnsigned)
+                        },
+                        'U' => {
+                            go1(FlagUnsigned)
+                        },
+                        'i' => {
+                            go1(FlagImag)
+                        },
+                        'I' => {
+                            go1(FlagImag)
+                        },
+                        'j' => {
+                            go1(FlagImag)
+                        },
+                        'J' => {
+                            go1(FlagImag)
+                        },
+                        _ => {
+                            Left(__op_addadd("Unexpected flag ".to_string(), show(f)))
+                        },
+                    }                }
             },
         }
     };
@@ -214,7 +247,7 @@ pub fn isCChar(_0: Char) -> bool {
             false
         },
         c => {
-            false
+            isAsciiSourceChar(c)
         },
     }
 }
@@ -225,7 +258,7 @@ pub fn escapeCChar(_0: Char) -> String {
             "\\\'".to_string()
         },
         c => {
-            "\\\'".to_string()
+            /* Expr::Error */ Error
         },
     }
 }
@@ -242,7 +275,7 @@ pub fn isSChar(_0: Char) -> bool {
             false
         },
         c => {
-            false
+            isAsciiSourceChar(c)
         },
     }
 }
@@ -260,31 +293,31 @@ pub fn escapeChar(_0: Char) -> String {
             "\\\\".to_string()
         },
         '\u{7}' => {
-            "\\\\".to_string()
+            "\\a".to_string()
         },
         '\u{8}' => {
-            "\\\\".to_string()
+            "\\b".to_string()
         },
         '\u{1b}' => {
-            "\\\\".to_string()
+            "\\e".to_string()
         },
         '\u{c}' => {
-            "\\\\".to_string()
+            "\\f".to_string()
         },
         '\n' => {
-            "\\\\".to_string()
+            "\\n".to_string()
         },
         '\r' => {
-            "\\\\".to_string()
+            "\\r".to_string()
         },
         '\t' => {
-            "\\\\".to_string()
+            "\\t".to_string()
         },
         '\u{b}' => {
-            "\\\\".to_string()
+            "\\v".to_string()
         },
         c => {
-            "\\\\".to_string()
+            /* Expr::Error */ Error
         },
     }
 }
@@ -349,118 +382,10 @@ pub fn unescapeChar(_0: String) -> (Char, String) {
             }
         },
         [c, cs] => {
-            match c {
-                'n' => {
-                    ('\n', cs)
-                },
-                't' => {
-                    ('\t', cs)
-                },
-                'v' => {
-                    ('\u{b}', cs)
-                },
-                'b' => {
-                    ('\u{8}', cs)
-                },
-                'r' => {
-                    ('\r', cs)
-                },
-                'f' => {
-                    ('\u{c}', cs)
-                },
-                'a' => {
-                    ('\u{7}', cs)
-                },
-                'e' => {
-                    ('\u{1b}', cs)
-                },
-                'E' => {
-                    ('\u{1b}', cs)
-                },
-                '\\' => {
-                    ('\\', cs)
-                },
-                '?' => {
-                    ('?', cs)
-                },
-                '\'' => {
-                    ('\'', cs)
-                },
-                '\"' => {
-                    ('\"', cs)
-                },
-                'x' => {
-                    match head_q("bad escape sequence".to_string(), (readHex(cs))) {
-                        (i, cs_q) => {
-                            (toEnum(i), cs_q)
-                        },
-                    }
-                },
-                _ => {
-                    match head_q("bad escape sequence".to_string(), (readOct_q((__op_concat(c, cs))))) {
-                        (i, cs_q) => {
-                            (toEnum(i), cs_q)
-                        },
-                    }
-                },
-            }
+            (c, cs)
         },
         [] => {
-            match c {
-                'n' => {
-                    ('\n', cs)
-                },
-                't' => {
-                    ('\t', cs)
-                },
-                'v' => {
-                    ('\u{b}', cs)
-                },
-                'b' => {
-                    ('\u{8}', cs)
-                },
-                'r' => {
-                    ('\r', cs)
-                },
-                'f' => {
-                    ('\u{c}', cs)
-                },
-                'a' => {
-                    ('\u{7}', cs)
-                },
-                'e' => {
-                    ('\u{1b}', cs)
-                },
-                'E' => {
-                    ('\u{1b}', cs)
-                },
-                '\\' => {
-                    ('\\', cs)
-                },
-                '?' => {
-                    ('?', cs)
-                },
-                '\'' => {
-                    ('\'', cs)
-                },
-                '\"' => {
-                    ('\"', cs)
-                },
-                'x' => {
-                    match head_q("bad escape sequence".to_string(), (readHex(cs))) {
-                        (i, cs_q) => {
-                            (toEnum(i), cs_q)
-                        },
-                    }
-                },
-                _ => {
-                    match head_q("bad escape sequence".to_string(), (readOct_q((__op_concat(c, cs))))) {
-                        (i, cs_q) => {
-                            (toEnum(i), cs_q)
-                        },
-                    }
-                },
-            }
+            __error!("unescape char: empty string".to_string())
         },
     }
 }
@@ -480,7 +405,11 @@ pub fn unescapeString(_0: String) -> String {
             vec![]
         },
         cs => {
-            vec![]
+            match unescapeChar(cs) {
+                (c, cs_q) => {
+                    __op_concat(c, unescapeString(cs_q))
+                },
+            }
         },
     }
 }
@@ -499,7 +428,7 @@ pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
             __error!(err)
         },
         (_, [x, _]) => {
-            __error!(err)
+            x
         },
     }
 }

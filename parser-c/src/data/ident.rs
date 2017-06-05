@@ -24,7 +24,7 @@ pub fn isAnonymousRef(_0: SUERef) -> bool {
             true
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -34,22 +34,21 @@ pub struct Ident(String, isize, NodeInfo);
 
 
 pub fn quad(_0: String) -> isize {
-    let v = _0.iter().chars().collect::<Vec<char>>();
-    match &v {
-        &[c1, c2, c3, c4, ..s] => {
+    match (_0) {
+        [c1, [c2, [c3, [c4, s]]]] => {
             ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
         },
-        &[c1, c2, c3] => {
-            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
+        [c1, [c2, [c3, []]]] => {
+            (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))
         },
-        &[c1, c2] => {
-            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
+        [c1, [c2, []]] => {
+            (ord(c2) * (bits7 + ord(c1)))
         },
-        &[c1] => {
-            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
+        [c1, []] => {
+            ord(c1)
         },
-        &[] => {
-            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
+        [] => {
+            0
         },
     }
 }
@@ -100,7 +99,7 @@ pub fn sueRefToString(_0: SUERef) -> String {
             "".to_string()
         },
         NamedRef(ident) => {
-            "".to_string()
+            identToString(ident)
         },
     }
 }

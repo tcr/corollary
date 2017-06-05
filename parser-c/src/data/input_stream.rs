@@ -19,7 +19,7 @@ pub fn takeByte(_0: InputStream) -> (Word8, InputStream) {
             seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
         },
         bs => {
-            seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
+            /* Expr::Error */ Error
         },
     }
 }
@@ -30,7 +30,7 @@ pub fn takeChar(_0: InputStream) -> (Char, InputStream) {
             seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
         },
         bs => {
-            seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
+            (head(bs), tail(bs))
         },
     }
 }
@@ -41,7 +41,7 @@ pub fn inputStreamEmpty() -> bool {
             BSW::null
         },
         () => {
-            BSW::null
+            null
         },
     }
 }
@@ -52,7 +52,7 @@ pub fn takeChars(_0: isize, _1: InputStream) -> Vec<Char> {
             BSC::unpack(BSC::take(n, bstr))
         },
         (n, __str) => {
-            BSC::unpack(BSC::take(n, bstr))
+            take(n, __str)
         },
     }
 }
@@ -63,7 +63,7 @@ pub fn readInputStream() -> IO<InputStream> {
             BSW::readFile
         },
         () => {
-            BSW::readFile
+            readFile
         },
     }
 }
@@ -74,7 +74,7 @@ pub fn inputStreamToString() -> String {
             BSC::unpack
         },
         () => {
-            BSC::unpack
+            id
         },
     }
 }
@@ -85,7 +85,7 @@ pub fn inputStreamFromString() -> InputStream {
             BSC::pack
         },
         () => {
-            BSC::pack
+            id
         },
     }
 }
@@ -96,7 +96,7 @@ pub fn countLines() -> isize {
             length(BSC::lines)
         },
         () => {
-            length(BSC::lines)
+            length(lines)
         },
     }
 }

@@ -55,37 +55,52 @@ pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
             voidSize(md)
         },
         (md, _, DirectType(TyIntegral(it), _, _)) => {
-            voidSize(md)
+            iSize(md, it)
         },
         (md, _, DirectType(TyFloating(ft), _, _)) => {
-            voidSize(md)
+            fSize(md, ft)
         },
         (md, _, DirectType(TyComplex(ft), _, _)) => {
-            voidSize(md)
+            (2 * fSize(md, ft))
         },
         (md, _, DirectType(TyComp(ctr), _, _)) => {
-            voidSize(md)
+            compSize(md, ctr)
         },
         (md, _, DirectType(TyEnum(_), _, _)) => {
-            voidSize(md)
+            iSize(md, TyInt)
         },
         (md, _, DirectType(TyBuiltin(b), _, _)) => {
-            voidSize(md)
+            builtinSize(md, b)
         },
         (md, _, PtrType(_, _, _)) => {
-            voidSize(md)
+            ptrSize(md)
         },
         (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
-            voidSize(md)
+            ptrSize(md)
         },
         (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
-            voidSize(md)
+            /*do*/ {
+                let sz_q = constEval(md, Map::empty, sz);
+
+                match sz_q {
+                    CConst(CIntConst(i, _)) => {
+                        /*do*/ {
+                            let s = sizeofType(md, n, bt);
+
+                            (getCInteger(i) * s)
+                        }
+                    },
+                    _ => {
+                        ptrSize(md)
+                    },
+                }
+            }
         },
         (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
-            voidSize(md)
+            sizeofType(md, n, t)
         },
         (md, _, FunctionType(_, _)) => {
-            voidSize(md)
+            ptrSize(md)
         },
     }
 }
@@ -96,34 +111,34 @@ pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
             voidAlign(md)
         },
         (md, _, DirectType(TyIntegral(it), _, _)) => {
-            voidAlign(md)
+            iAlign(md, it)
         },
         (md, _, DirectType(TyFloating(ft), _, _)) => {
-            voidAlign(md)
+            fAlign(md, ft)
         },
         (md, _, DirectType(TyComplex(ft), _, _)) => {
-            voidAlign(md)
+            fAlign(md, ft)
         },
         (md, _, DirectType(TyEnum(_), _, _)) => {
-            voidAlign(md)
+            iAlign(md, TyInt)
         },
         (md, _, DirectType(TyBuiltin(b), _, _)) => {
-            voidAlign(md)
+            builtinAlign(md, b)
         },
         (md, _, PtrType(_, _, _)) => {
-            voidAlign(md)
+            ptrAlign(md)
         },
         (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
-            voidAlign(md)
+            ptrAlign(md)
         },
         (md, n, ArrayType(bt, ArraySize(_, _), _, _)) => {
-            voidAlign(md)
+            alignofType(md, n, bt)
         },
         (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
-            voidAlign(md)
+            alignofType(md, n, t)
         },
         (_, n, t) => {
-            voidAlign(md)
+            astError((nodeInfo(n)), __op_addadd("can\'t find alignment of type: ".to_string(), (render(pretty))(t)))
         },
     }
 }
@@ -168,55 +183,55 @@ pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
             (i1 + i2)
         },
         (CSubOp, i1, i2) => {
-            (i1 + i2)
+            (i1 - i2)
         },
         (CMulOp, i1, i2) => {
-            (i1 + i2)
+            (i1 * i2)
         },
         (CDivOp, i1, i2) => {
-            (i1 + i2)
+            div(i1, i2)
         },
         (CRmdOp, i1, i2) => {
-            (i1 + i2)
+            __mod(i1, i2)
         },
         (CShlOp, i1, i2) => {
-            (i1 + i2)
+            shiftL(i1, fromInteger(i2))
         },
         (CShrOp, i1, i2) => {
-            (i1 + i2)
+            shiftR(i1, fromInteger(i2))
         },
         (CLeOp, i1, i2) => {
-            (i1 + i2)
+            toInteger(fromEnum((i1 < i2)))
         },
         (CGrOp, i1, i2) => {
-            (i1 + i2)
+            toInteger(fromEnum((i1 > i2)))
         },
         (CLeqOp, i1, i2) => {
-            (i1 + i2)
+            toInteger(fromEnum((i1 <= i2)))
         },
         (CGeqOp, i1, i2) => {
-            (i1 + i2)
+            toInteger(fromEnum((i1 >= i2)))
         },
         (CEqOp, i1, i2) => {
-            (i1 + i2)
+            toInteger(fromEnum((i1 == i2)))
         },
         (CNeqOp, i1, i2) => {
-            (i1 + i2)
+            toInteger(fromEnum(__op_assign_div(i1, i2)))
         },
         (CAndOp, i1, i2) => {
-            (i1 + i2)
+            __op_dotted_and(i1, i2)
         },
         (CXorOp, i1, i2) => {
-            (i1 + i2)
+            xor(i1, i2)
         },
         (COrOp, i1, i2) => {
-            (i1 + i2)
+            __op_dotted_or(i1, i2)
         },
         (CLndOp, i1, i2) => {
-            (i1 + i2)
+            toInteger(fromEnum(((__op_assign_div(i1, 0)) && (__op_assign_div(i2, 0)))))
         },
         (CLorOp, i1, i2) => {
-            (i1 + i2)
+            toInteger(fromEnum(((__op_assign_div(i1, 0)) || (__op_assign_div(i2, 0)))))
         },
     }
 }
@@ -227,16 +242,16 @@ pub fn intUnOp(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
             Some(i)
         },
         (CMinOp, i) => {
-            Some(i)
+            Some(-(i))
         },
         (CCompOp, i) => {
-            Some(i)
+            Some(complement(i))
         },
         (CNegOp, i) => {
-            Some(i)
+            Some(toInteger(fromEnum((i == 0))))
         },
         (_, _) => {
-            Some(i)
+            None
         },
     }
 }
@@ -251,13 +266,13 @@ pub fn boolValue(_0: CExpr) -> Option<bool> {
             Some(__op_assign_div(getCInteger(i), 0))
         },
         CConst(CCharConst(c, _)) => {
-            Some(__op_assign_div(getCInteger(i), 0))
+            Some(__op_assign_div(getCCharAsInt(c), 0))
         },
         CConst(CStrConst(_, _)) => {
-            Some(__op_assign_div(getCInteger(i), 0))
+            Some(true)
         },
         _ => {
-            Some(__op_assign_div(getCInteger(i), 0))
+            None
         },
     }
 }
@@ -268,10 +283,10 @@ pub fn intValue(_0: CExpr) -> Option<Integer> {
             Some(getCInteger(i))
         },
         CConst(CCharConst(c, _)) => {
-            Some(getCInteger(i))
+            Some(getCCharAsInt(c))
         },
         _ => {
-            Some(getCInteger(i))
+            None
         },
     }
 }
@@ -303,211 +318,135 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
             /*do*/ {
                 let e1_q = constEval(md, env, e1);
 
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
+                let e2_q = constEval(md, env, e2);
 
-                let e3_q = constEval(md, env, e3);
+                let t = tExpr(vec![], RValue, e);
 
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
+                let bytes = liftM(fromIntegral, sizeofType(md, e, t));
+
+                match (intValue(e1_q), intValue(e2_q)) {
+                    (Some(i1), Some(i2)) => {
+                        intExpr(ni, (withWordBytes(bytes, (intOp(op, i1, i2)))))
                     },
-                    Some(false) => {
-                        e3_q
-                    },
-                    None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
+                    (_, _) => {
+                        CBinary(op, e1_q, e2_q, ni)
                     },
                 }
             }
         },
         (md, env, CUnary(op, e, ni)) => {
             /*do*/ {
-                let e1_q = constEval(md, env, e1);
+                let e_q = constEval(md, env, e);
 
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
+                let t = tExpr(vec![], RValue, e);
 
-                let e3_q = constEval(md, env, e3);
+                let bytes = liftM(fromIntegral, sizeofType(md, e, t));
 
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
-                    },
-                    Some(false) => {
-                        e3_q
+                match intValue(e_q) {
+                    Some(i) => {
+                        match intUnOp(op, i) {
+                            Some(i_q) => {
+                                intExpr(ni, (withWordBytes(bytes, i_q)))
+                            },
+                            None => {
+                                astError(ni, "invalid unary operator applied to constant".to_string())
+                            },
+                        }
                     },
                     None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
+                        CUnary(op, e_q, ni)
                     },
                 }
             }
         },
         (md, env, CCast(d, e, ni)) => {
             /*do*/ {
-                let e1_q = constEval(md, env, e1);
+                let e_q = constEval(md, env, e);
 
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
+                let t = analyseTypeDecl(d);
 
-                let e3_q = constEval(md, env, e3);
+                let bytes = liftM(fromIntegral, sizeofType(md, d, t));
 
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
-                    },
-                    Some(false) => {
-                        e3_q
+                match intValue(e_q) {
+                    Some(i) => {
+                        intExpr(ni, (withWordBytes(bytes, i)))
                     },
                     None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
+                        CCast(d, e_q, ni)
                     },
                 }
             }
         },
         (md, _, CSizeofExpr(e, ni)) => {
             /*do*/ {
-                let e1_q = constEval(md, env, e1);
+                let t = tExpr(vec![], RValue, e);
 
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
+                let sz = sizeofType(md, e, t);
 
-                let e3_q = constEval(md, env, e3);
-
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
-                    },
-                    Some(false) => {
-                        e3_q
-                    },
-                    None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
-                    },
-                }
+                intExpr(ni, sz)
             }
         },
         (md, _, CSizeofType(d, ni)) => {
             /*do*/ {
-                let e1_q = constEval(md, env, e1);
+                let t = analyseTypeDecl(d);
 
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
+                let sz = sizeofType(md, d, t);
 
-                let e3_q = constEval(md, env, e3);
-
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
-                    },
-                    Some(false) => {
-                        e3_q
-                    },
-                    None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
-                    },
-                }
+                intExpr(ni, sz)
             }
         },
         (md, _, CAlignofExpr(e, ni)) => {
             /*do*/ {
-                let e1_q = constEval(md, env, e1);
+                let t = tExpr(vec![], RValue, e);
 
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
+                let sz = alignofType(md, e, t);
 
-                let e3_q = constEval(md, env, e3);
-
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
-                    },
-                    Some(false) => {
-                        e3_q
-                    },
-                    None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
-                    },
-                }
+                intExpr(ni, sz)
             }
         },
         (md, _, CAlignofType(d, ni)) => {
             /*do*/ {
-                let e1_q = constEval(md, env, e1);
+                let t = analyseTypeDecl(d);
 
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
+                let sz = alignofType(md, d, t);
 
-                let e3_q = constEval(md, env, e3);
-
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
-                    },
-                    Some(false) => {
-                        e3_q
-                    },
-                    None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
-                    },
-                }
+                intExpr(ni, sz)
             }
         },
         (_, env, e, __OP__, CVar(i, _)) => {
-            /*do*/ {
-                let e1_q = constEval(md, env, e1);
-
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
-
-                let e3_q = constEval(md, env, e3);
-
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
-                    },
-                    Some(false) => {
-                        e3_q
-                    },
-                    None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
-                    },
-                }
-            }
+            /* Expr::Error */ Error
         },
         (md, env, e, __OP__, CVar(i, _)) => {
             /*do*/ {
-                let e1_q = constEval(md, env, e1);
+                let t = tExpr(vec![], RValue, e);
 
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
+                match derefTypeDef(t) {
+                    DirectType(TyEnum(etr), _, _) => {
+                        /*do*/ {
+                            let dt = getDefTable;
 
-                let e3_q = constEval(md, env, e3);
+                            match lookupTag((sueRef(etr)), dt) {
+                                Some(Right(EnumDef(EnumType(_, es, _, _)))) => {
+                                    /*do*/ {
+                                        let env_q = foldM(enumConst, env, es);
 
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
+                                        fromMaybe(e, Map::lookup(i, env_q))
+                                    }
+                                },
+                                _ => {
+                                    e
+                                },
+                            }
+                        }
                     },
-                    Some(false) => {
-                        e3_q
-                    },
-                    None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
+                    _ => {
+                        e
                     },
                 }
             }
         },
         (_, _, e) => {
-            /*do*/ {
-                let e1_q = constEval(md, env, e1);
-
-                let me2_q = maybe((None), (|e| { liftM(Some, constEval(md, env, e)) }), me2);
-
-                let e3_q = constEval(md, env, e3);
-
-                match boolValue(e1_q) {
-                    Some(true) => {
-                        fromMaybe(e1_q, me2_q)
-                    },
-                    Some(false) => {
-                        e3_q
-                    },
-                    None => {
-                        CCond(e1_q, me2_q, e3_q, ni)
-                    },
-                }
-            }
+            e
         },
     }
 }

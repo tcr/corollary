@@ -67,16 +67,16 @@ pub fn redefErrReason(_0: RedefInfo) -> String {
             __op_addadd("duplicate definition of ".to_string(), ident)
         },
         RedefInfo(ident, ShadowedDef, _, _) => {
-            __op_addadd("duplicate definition of ".to_string(), ident)
+            __op_addadd("this declaration of ".to_string(), __op_addadd(ident, " shadows a previous one".to_string()))
         },
         RedefInfo(ident, DiffKindRedecl, _, _) => {
-            __op_addadd("duplicate definition of ".to_string(), ident)
+            __op_addadd(ident, " previously declared as a different kind of symbol".to_string())
         },
         RedefInfo(ident, DisagreeLinkage, _, _) => {
-            __op_addadd("duplicate definition of ".to_string(), ident)
+            __op_addadd(ident, " previously declared with different linkage".to_string())
         },
         RedefInfo(ident, NoLinkageOld, _, _) => {
-            __op_addadd("duplicate definition of ".to_string(), ident)
+            __op_addadd(ident, " previously declared without linkage".to_string())
         },
     }
 }

@@ -81,13 +81,18 @@ pub fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_fil
                 vec!["-I".to_string(), incl]
             },
             Define(key, value) => {
-                vec!["-I".to_string(), incl]
+                vec![
+                    __op_addadd("-D".to_string(), __op_addadd(key, (__op_addadd(if null(value) {                 
+"".to_string()} else {
+"=".to_string()
+                }, value)))),
+                ]
             },
             Undefine(key) => {
-                vec!["-I".to_string(), incl]
+                vec![__op_addadd("-U".to_string(), key)]
             },
             IncludeFile(f) => {
-                vec!["-I".to_string(), incl]
+                vec!["-include".to_string(), f]
             },
         }
     };

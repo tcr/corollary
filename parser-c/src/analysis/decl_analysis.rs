@@ -30,7 +30,18 @@ pub fn tParamDecl(_0: CDecl) -> m<ParamDecl> {
             astError(node, "expected parameter, not static assertion".to_string())
         },
         CDecl(declspecs, declrs, node) => {
-            astError(node, "expected parameter, not static assertion".to_string())
+            /*do*/ {
+                let declr = getParamDeclr;
+
+                let VarDeclInfo(name, fun_spec, storage_spec, attrs, ty, declr_node) = analyseVarDecl_q(true, declspecs, declr, vec![], None);
+
+                if ((isInline(fun_spec) || isNoreturn(fun_spec))) { throwTravError((badSpecifierError(node, "parameter declaration with function specifier".to_string()))) };
+                let storage = throwOnLeft(computeParamStorage(node, storage_spec));
+
+                let paramDecl = mkParamDecl(name, storage, attrs, ty, declr_node);
+
+                paramDecl
+            }
         },
     }
 }
@@ -41,10 +52,10 @@ pub fn computeParamStorage(_0: NodeInfo, _1: StorageSpec) -> Either<BadSpecifier
             Right((Auto(false)))
         },
         (_, RegSpec) => {
-            Right((Auto(false)))
+            Right((Auto(true)))
         },
         (node, spec) => {
-            Right((Auto(false)))
+            Left(badSpecifierError(node, __op_addadd("Bad storage specified for parameter: ".to_string(), show(spec))))
         },
     }
 }
@@ -55,10 +66,28 @@ pub fn tMemberDecls(_0: CDecl) -> m<Vec<MemberDecl>> {
             astError(node, "expected struct or union member, found static assertion".to_string())
         },
         CDecl(declspecs, [], node) => {
-            astError(node, "expected struct or union member, found static assertion".to_string())
+            /*do*/ {
+                let (_storage_specs, _attrs, typequals, typespecs, funspecs, _alignspecs) = partitionDeclSpecs(declspecs);
+
+                if !((null(funspecs))) { astError(node, "member declaration with function specifier".to_string()) };
+                let canonTySpecs = canonicalTypeSpec(typespecs);
+
+                let ty = tType(true, node, typequals, canonTySpecs, vec![], vec![]);
+
+                match ty {
+                    DirectType(TyComp(_), _, _) => {
+                        vec![
+                            MemberDecl((VarDecl(NoName, (DeclAttrs(noFunctionAttrs, NoStorage, vec![])), ty)), None, node),
+                        ]
+                    },
+                    _ => {
+                        astError(node, "anonymous member has a non-composite type".to_string())
+                    },
+                }
+            }
         },
         CDecl(declspecs, declrs, node) => {
-            astError(node, "expected struct or union member, found static assertion".to_string())
+            zipWithM(tMemberDecl, (__op_concat(true, repeat(false))), declrs)
         },
     }
 }
@@ -80,13 +109,13 @@ pub fn hasThreadLocalSpec(_0: StorageSpec) -> bool {
             true
         },
         StaticSpec(b) => {
-            true
+            b
         },
         ExternSpec(b) => {
-            true
+            b
         },
         _ => {
-            true
+            false
         },
     }
 }
@@ -115,7 +144,7 @@ pub fn analyseVarDecl(handle_sue_def: bool, storage_specs: Vec<CStorageSpec>, de
             },
             (CNoreturnQual(_), f) => {
                 f {
-                    isInline: true
+                    isNoreturn: true
                 }
             },
         }
@@ -146,7 +175,7 @@ pub fn analyseTypeDecl(_0: CDecl) -> m<Type> {
             astError(node, "Expected type declaration, found static assert".to_string())
         },
         CDecl(declspecs, declrs, node) => {
-            astError(node, "Expected type declaration, found static assert".to_string())
+            /* Expr::Error */ Error
         },
     }
 }
@@ -159,16 +188,16 @@ pub fn tType(handle_sue_def: bool, top_node: NodeInfo, typequals: Vec<CTypeQual>
                 tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
             },
             [CPtrDeclr(ptrquals, node), dds] => {
-                tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
+                __op_bind(buildType(dds), buildPointerType(ptrquals, node))
             },
             [CArrDeclr(arrquals, size, node), dds] => {
-                tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
+                __op_bind(buildType(dds), buildArrayType(arrquals, size, node))
             },
             [CFunDeclr(Right((params, isVariadic)), attrs, node), dds] => {
-                tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
+                __op_bind(buildType(dds), (liftM((uncurry(FunctionType)), buildFunctionType(params, isVariadic, attrs, node))))
             },
             [CFunDeclr(Left(_), _, _), _] => {
-                tDirectType(handle_sue_def, top_node, typequals, canonTySpecs)
+                astError(top_node, "old-style parameters remaining after mergeOldStyle".to_string())
             },
         }
     };
@@ -312,7 +341,7 @@ pub fn tTag(_0: CStructTag) -> CompTyKind {
             StructTag
         },
         CUnionTag => {
-            StructTag
+            UnionTag
         },
     }
 }
@@ -338,10 +367,10 @@ pub fn tEnumType(sue_ref: SUERef, enumerators: Vec<(Ident, Option<CExpr>)>, attr
                 (Left((succ(i))), intExpr(i))
             },
             (Right((e, offs)), None) => {
-                (Left((succ(i))), intExpr(i))
+                (Right((e, succ(offs))), offsExpr(e, offs))
             },
             (_, Some(e)) => {
-                (Left((succ(i))), intExpr(i))
+                (Right((e, 1)), e)
             },
         }
     }
@@ -368,7 +397,7 @@ pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Eit
                 true
             },
             (expect, baseTy) => {
-                true
+                (expect == baseTy)
             },
         }
     };
@@ -379,7 +408,7 @@ pub fn tNumType(NumTypeSpec(basetype, sgn, sz, iscomplex): NumTypeSpec) -> m<Eit
                 true
             },
             (expect, sign) => {
-                true
+                (expect == sign)
             },
         }
     };
@@ -459,10 +488,10 @@ pub fn tArraySize(_0: CArrSize) -> m<ArraySize> {
             (UnknownArraySize(false))
         },
         CNoArrSize(true) => {
-            (UnknownArraySize(false))
+            (UnknownArraySize(true))
         },
         CArrSize(__static, szexpr) => {
-            (UnknownArraySize(false))
+            liftM((ArraySize(__static)), (szexpr))
         },
     }
 }
@@ -478,32 +507,30 @@ pub fn tTypeQuals() -> m<(TypeQuals, Attributes)> {
             },
             (CVolatQual(_), (tq, attrs)) => {
                 (tq {
-                    constant: true
+                    volatile: true
                 }, attrs)
             },
             (CRestrQual(_), (tq, attrs)) => {
                 (tq {
-                    constant: true
+                    restrict: true
                 }, attrs)
             },
             (CAtomicQual(_), (tq, attrs)) => {
                 (tq {
-                    constant: true
+                    atomic: true
                 }, attrs)
             },
             (CAttrQual(attr), (tq, attrs)) => {
-                (tq {
-                    constant: true
-                }, attrs)
+                liftM((|attr_q| { (tq, __op_concat(attr_q, attrs)) }), (tAttr(attr)))
             },
             (CNullableQual(_), (tq, attrs)) => {
                 (tq {
-                    constant: true
+                    nullable: true
                 }, attrs)
             },
             (CNonnullQual(_), (tq, attrs)) => {
                 (tq {
-                    constant: true
+                    nonnull: true
                 }, attrs)
             },
         }
@@ -579,10 +606,10 @@ pub fn canonicalTypeSpec() -> m<TypeSpecAnalysis> {
                 Some(emptyNumTypeSpec)
             },
             TSNum(nts) => {
-                Some(emptyNumTypeSpec)
+                Some(nts)
             },
             _ => {
-                Some(emptyNumTypeSpec)
+                None
             },
         }
     };
@@ -593,10 +620,10 @@ pub fn canonicalTypeSpec() -> m<TypeSpecAnalysis> {
                 Some(LongMod)
             },
             LongMod => {
-                Some(LongMod)
+                Some(LongLongMod)
             },
             _ => {
-                Some(LongMod)
+                None
             },
         }
     };
@@ -607,55 +634,55 @@ pub fn canonicalTypeSpec() -> m<TypeSpecAnalysis> {
                 TSVoid
             },
             (CBoolType(_), TSNone) => {
-                TSVoid
+                TSBool
             },
             (CCharType(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CIntType(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CInt128Type(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CFloatType(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CDoubleType(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CShortType(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CLongType(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CSignedType(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CUnsigType(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CComplexType(_), tsa) => {
-                TSVoid
+                /* Expr::Error */ Error
             },
             (CTypeDef(i, ni), TSNone) => {
-                TSVoid
+                liftM(TSTypeDef, typeDefRef(ni, i))
             },
             (CTypeOfType(d, _ni), TSNone) => {
-                TSVoid
+                liftM(TSType, analyseTypeDecl(d))
             },
             (CTypeOfExpr(e, _), TSNone) => {
-                TSVoid
+                liftM(TSType, tExpr(vec![], RValue, e))
             },
             (CAtomicType(d, _ni), TSNone) => {
-                TSVoid
+                liftM(TSType, analyseTypeDecl(d))
             },
             (otherType, TSNone) => {
-                TSVoid
+                TSNonBasic(otherType)
             },
             (ty, _ts) => {
-                TSVoid
+                astError((nodeInfo(ty)), "Invalid type specifier".to_string())
             },
         }
     }
@@ -671,31 +698,31 @@ pub fn canonicalStorageSpec(storagespecs: Vec<CStorageSpec>) -> m<StorageSpec> {
                 AutoSpec
             },
             (CRegister(_), NoStorageSpec) => {
-                AutoSpec
+                RegSpec
             },
             (CThread(_), NoStorageSpec) => {
-                AutoSpec
+                ThreadSpec
             },
             (CThread(_), StaticSpec(_)) => {
-                AutoSpec
+                StaticSpec(true)
             },
             (CThread(_), ExternSpec(_)) => {
-                AutoSpec
+                ExternSpec(true)
             },
             (CStatic(_), NoStorageSpec) => {
-                AutoSpec
+                StaticSpec(false)
             },
             (CExtern(_), NoStorageSpec) => {
-                AutoSpec
+                ExternSpec(false)
             },
             (CStatic(_), ThreadSpec) => {
-                AutoSpec
+                StaticSpec(true)
             },
             (CExtern(_), ThreadSpec) => {
-                AutoSpec
+                ExternSpec(true)
             },
             (badSpec, old) => {
-                AutoSpec
+                astError((nodeInfo(badSpec)), __op_addadd("Invalid storage specifier ".to_string(), __op_addadd(render((pretty(badSpec))), __op_addadd(" in combination with ".to_string(), show(old)))))
             },
         }
     };
@@ -706,7 +733,7 @@ pub fn canonicalStorageSpec(storagespecs: Vec<CStorageSpec>) -> m<StorageSpec> {
                 NoStorageSpec
             },
             spec => {
-                NoStorageSpec
+                spec
             },
         }
     };
@@ -720,10 +747,26 @@ pub fn mergeOldStyle(_0: NodeInfo, _1: Vec<CDecl>, _2: Vec<CDerivedDeclr>) -> m<
             declrs
         },
         (node, oldstyle_params, [CFunDeclr(params, attrs, fdnode), dds]) => {
-            declrs
+            match params {
+                Left(list) => {
+                    /*do*/ {
+                        let oldstyle_params_q = liftM(concat, mapM(splitCDecl, oldstyle_params));
+
+                        let param_map = liftM(Map::fromList, mapM(attachNameOfDecl, oldstyle_params_q));
+
+                        let (newstyle_params, param_map_q) = foldrM(insertParamDecl, (vec![], param_map), list);
+
+                        if !((Map::null(param_map_q))) { astError(node, __op_addadd("declarations for parameter(s) ".to_string(), __op_addadd(showParamMap(param_map_q), " but no such parameter".to_string()))) };
+                        (__op_concat(CFunDeclr((Right((newstyle_params, false))), attrs, fdnode), dds))
+                    }
+                },
+                Right(_newstyle) => {
+                    astError(node, "oldstyle parameter list, but newstyle function declaration".to_string())
+                },
+            }
         },
         (node, _, _) => {
-            declrs
+            astError(node, "oldstyle parameter list, but not function type".to_string())
         },
     }
 }
@@ -734,7 +777,20 @@ pub fn splitCDecl(_0: CDecl, _1: m<Vec<CDecl>>) -> m<Vec<CDecl>> {
             vec![decl]
         },
         (decl, __OP__, CDecl(declspecs, declrs, node)) => {
-            vec![decl]
+            match declrs {
+                [] => {
+                    internalErr("splitCDecl applied to empty declaration".to_string())
+                },
+                [_declr] => {
+                    vec![decl]
+                },
+                [d1, ds] => {
+                    {
+                        let declspecs_q = __map!(elideSUEDef, declspecs);
+
+                    __op_concat((CDecl(declspecs, vec![d1], node)), /* Expr::Generator */ Generator)                    }
+                },
+            }
         },
     }
 }
@@ -749,7 +805,7 @@ pub fn mkVarName(_0: NodeInfo, _1: Option<Ident>, _2: Option<AsmName>) -> m<VarN
             NoName
         },
         (_node, Some(n), asm) => {
-            NoName
+            VarName(n, asm)
         },
     }
 }
@@ -775,10 +831,10 @@ pub fn getOnlyDeclr(_0: CDecl) -> m<CDeclr> {
             declr
         },
         CDecl(_, _, _node) => {
-            declr
+            internalErr("getOnlyDeclr: declaration doesn\'t have a unique declarator".to_string())
         },
         CStaticAssert(_, _, _) => {
-            declr
+            internalErr("getOnlyDeclr: static assertion doesn\'t have a unique declarator".to_string())
         },
     }
 }

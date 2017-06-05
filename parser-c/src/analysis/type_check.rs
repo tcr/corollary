@@ -31,7 +31,7 @@ pub fn typeErrorOnLeft<a>(_0: NodeInfo, _1: Either<String, a>) -> m<a> {
             typeError(ni, err)
         },
         (_, Right(v)) => {
-            typeError(ni, err)
+            v
         },
     }
 }
@@ -87,19 +87,28 @@ pub fn constType(_0: CConst) -> m<Type> {
             DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
         },
         CCharConst(CChar(_, true), _) => {
-            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
+            DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)
         },
         CCharConst(CChar(_, false), _) => {
-            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
+            DirectType((TyIntegral(TyChar)), noTypeQuals, noAttributes)
         },
         CCharConst(CChars(_, _), _) => {
-            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
+            DirectType((TyIntegral(TyInt)), noTypeQuals, noAttributes)
         },
         CFloatConst(CFloat(fs), _) => {
-            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
+            DirectType((TyFloating((getFloatType(fs)))), noTypeQuals, noAttributes)
         },
         CStrConst(CString(chars, wide), ni) => {
-            DirectType((TyIntegral((getIntType(flags)))), noTypeQuals, noAttributes)
+            /*do*/ {
+                let n = genName;
+
+
+                let ni_q = mkNodeInfo((posOf(ni)), n);
+
+                let arraySize = ArraySize(true, (CConst((CIntConst((cInteger((toInteger((length(chars)))))), ni_q)))));
+
+                ArrayType((DirectType((TyIntegral(charType)), noTypeQuals, noAttributes)), arraySize, noTypeQuals, vec![])
+            }
         },
     }
 }
@@ -114,43 +123,123 @@ pub fn compositeType(_0: Type, _1: Type) -> Either<String, Type> {
             t1
         },
         (DirectType(TyBuiltin(TyAny), _, _), t2) => {
-            t1
+            t2
         },
         (t1, __OP__, DirectType(tn1, q1, a1), t2, __OP__, DirectType(tn2, q2, a2)) => {
-            t1
+            /*do*/ {
+                let tn = match (tn1, tn2) {
+                        (TyVoid, TyVoid) => {
+                            TyVoid
+                        },
+                        (TyIntegral(_), TyEnum(_)) => {
+                            tn1
+                        },
+                        (TyEnum(_), TyIntegral(_)) => {
+                            tn2
+                        },
+                        (TyIntegral(i1), TyIntegral(i2)) => {
+                            TyIntegral((intConversion(i1, i2)))
+                        },
+                        (TyFloating(f1), TyFloating(f2)) => {
+                            TyFloating((floatConversion(f1, f2)))
+                        },
+                        (TyComplex(f1), TyComplex(f2)) => {
+                            TyComplex((floatConversion(f1, f2)))
+                        },
+                        (TyComp(c1), TyComp(c2)) => {
+                            /*do*/ {
+                                if (__op_assign_div(sueRef(c1), sueRef(c2))) { fail(__op_addadd("incompatible composite types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) };
+                                tn1
+                            }
+                        },
+                        (TyEnum(e1), TyEnum(e2)) => {
+                            /*do*/ {
+                                if (__op_assign_div(sueRef(e1), sueRef(e2))) { fail(__op_addadd("incompatible enumeration types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) };
+                                TyEnum(e1)
+                            }
+                        },
+                        (TyBuiltin(TyVaList), TyBuiltin(TyVaList)) => {
+                            TyBuiltin(TyVaList)
+                        },
+                        (TyBuiltin(_), TyBuiltin(_)) => {
+                            fail(__op_addadd("incompatible builtin types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2)))))
+                        },
+                        (_, _) => {
+                            fail(__op_addadd("incompatible direct types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2)))))
+                        },
+                    };
+
+                DirectType(tn, (mergeTypeQuals(q1, q2)), (mergeAttributes(a1, a2)))
+            }
         },
         (PtrType(t1, q1, a1), PtrType(DirectType(TyVoid, _, _), q2, _)) => {
-            t1
+            PtrType(t1, (mergeTypeQuals(q1, q2)), a1)
         },
         (PtrType(DirectType(TyVoid, _, _), q1, _), PtrType(t2, q2, a2)) => {
-            t1
+            PtrType(t2, (mergeTypeQuals(q1, q2)), a2)
         },
         (PtrType(t1, q1, a1), t2) => {
-            t1
+            /* Expr::Error */ Error
         },
         (t1, PtrType(t2, q2, a2)) => {
-            t1
+            /* Expr::Error */ Error
         },
         (ArrayType(t1, _sz1, q1, a1), t2) => {
-            t1
+            /* Expr::Error */ Error
         },
         (t1, ArrayType(t2, _sz2, q2, a2)) => {
-            t1
+            /* Expr::Error */ Error
         },
         (ArrayType(t1, s1, q1, a1), ArrayType(t2, s2, q2, a2)) => {
-            t1
+            /*do*/ {
+                let t = compositeType(t1, t2);
+
+                let s = compositeSize(s1, s2);
+
+                let quals = mergeTypeQuals(q1, q2);
+
+                let attrs = mergeAttrs(a1, a2);
+
+                (ArrayType(t, s, quals, attrs))
+            }
         },
         (t1, t2) => {
-            t1
+            /* Expr::Error */ Error
         },
         (TypeDefType(tdr1, _q1, _a1), TypeDefType(tdr2, _q2, _a2)) => {
-            t1
+            match (tdr1, tdr2) {
+                (TypeDefRef(_, t1, _), TypeDefRef(_, t2, _)) => {
+                    compositeType(t1, t2)
+                },
+            }
         },
         (FunctionType(ft1, attrs1), FunctionType(ft2, attrs2)) => {
-            t1
+            match (ft1, ft2) {
+                (FunType(rt1, args1, varargs1), FunType(rt2, args2, varargs2)) => {
+                    /*do*/ {
+                        let args = zipWithM(compositeParamDecl, args1, args2);
+
+                        if (__op_assign_div(varargs1, varargs2)) { fail("incompatible varargs declarations".to_string()) };
+                        doFunType(rt1, rt2, args, varargs1)
+                    }
+                },
+                (FunType(rt1, args1, varargs1), FunTypeIncomplete(rt2)) => {
+                    doFunType(rt1, rt2, args1, varargs1)
+                },
+                (FunTypeIncomplete(rt1), FunType(rt2, args2, varargs2)) => {
+                    doFunType(rt1, rt2, args2, varargs2)
+                },
+                (FunTypeIncomplete(rt1), FunTypeIncomplete(rt2)) => {
+                    /*do*/ {
+                        let rt = compositeType(rt1, rt2);
+
+                        (FunctionType((FunTypeIncomplete(rt)), (mergeAttrs(attrs1, attrs2))))
+                    }
+                },
+            }
         },
         (t1, t2) => {
-            t1
+            fail(__op_addadd("incompatible types: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2)))))
         },
     }
 }
@@ -161,10 +250,10 @@ pub fn compositeSize(_0: ArraySize, _1: ArraySize) -> Either<String, ArraySize> 
             s2
         },
         (s1, UnknownArraySize(_)) => {
-            s2
+            s1
         },
         (ArraySize(s1, e1), ArraySize(s2, e2)) => {
-            s2
+            /* Expr::Error */ Error
         },
     }
 }
@@ -175,7 +264,7 @@ pub fn sizeEqual(_0: CExpr, _1: CExpr) -> bool {
             (i1 == i2)
         },
         (e1, e2) => {
-            (i1 == i2)
+            (nodeInfo(e1) == nodeInfo(e2))
         },
     }
 }
@@ -190,13 +279,13 @@ pub fn compositeParamDecl(_0: ParamDecl, _1: ParamDecl) -> Either<String, ParamD
             compositeParamDecl_q(ParamDecl, vd1, vd2, ni1)
         },
         (AbstractParamDecl(vd1, _), ParamDecl(vd2, ni2)) => {
-            compositeParamDecl_q(ParamDecl, vd1, vd2, ni1)
+            compositeParamDecl_q(ParamDecl, vd1, vd2, ni2)
         },
         (ParamDecl(vd1, ni1), AbstractParamDecl(vd2, _)) => {
             compositeParamDecl_q(ParamDecl, vd1, vd2, ni1)
         },
         (AbstractParamDecl(vd1, ni1), AbstractParamDecl(vd2, _)) => {
-            compositeParamDecl_q(ParamDecl, vd1, vd2, ni1)
+            compositeParamDecl_q(AbstractParamDecl, vd1, vd2, ni1)
         },
     }
 }
@@ -264,28 +353,7 @@ pub fn assignCompatible(_0: CAssignOp, _1: Type, _2: Type) -> Either<String, ()>
             }
         },
         (op, t1, t2) => {
-            match (canonicalType(t1), canonicalType(t2)) {
-                (DirectType(TyBuiltin(TyAny), _, _), _) => {
-                    ()
-                },
-                (_, DirectType(TyBuiltin(TyAny), _, _)) => {
-                    ()
-                },
-                (PtrType(DirectType(TyVoid, _, _), _, _), t2_q) if isPointerType(t2_q) => { () }
-                (t1_q, PtrType(DirectType(TyVoid, _, _), _, _)) if isPointerType(t1_q) => { () }
-                (PtrType(_, _, _), t2_q) if isIntegralType(t2_q) => { () }
-                (t1_q, t2_q) if (isPointerType(t1_q) && isPointerType(t2_q)) => { compatible((baseType(t1_q)), (baseType(t2_q))) }
-                (DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) if (sueRef(c1) == sueRef(c2)) => { () }
-                (DirectType(TyComp(c1), _, _), DirectType(TyComp(c2), _, _)) => { fail(__op_addadd("incompatible compound types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) }
-                (DirectType(TyBuiltin(TyVaList), _, _), DirectType(TyBuiltin(TyVaList), _, _)) => {
-                    ()
-                },
-                (DirectType(tn1, _, _), DirectType(tn2, _, _)) if isJust((arithmeticConversion(tn1, tn2))) => { () }
-                (DirectType(tn1, _, _), DirectType(tn2, _, _)) => { fail(__op_addadd("incompatible direct types in assignment: ".to_string(), __op_addadd(pType(t1), __op_addadd(", ".to_string(), pType(t2))))) }
-                (t1_q, t2_q) => {
-                    compatible(t1_q, t2_q)
-                },
-            }
+            void(binopType((assignBinop(op)), t1, t2))
         },
     }
 }
@@ -386,7 +454,17 @@ pub fn derefType(_0: Type) -> Either<String, Type> {
             t
         },
         t => {
-            t
+            match canonicalType(t) {
+                PtrType(t_q, _, _) => {
+                    t_q
+                },
+                ArrayType(t_q, _, _, _) => {
+                    t_q
+                },
+                _ => {
+                    fail(__op_addadd("dereferencing non-pointer: ".to_string(), pType(t)))
+                },
+            }
         },
     }
 }
@@ -467,10 +545,10 @@ pub fn expandAnonymous(_0: NodeInfo, _1: (VarName, Type)) -> m<Vec<(Ident, Type)
             __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni))
         },
         (_, (NoName, _)) => {
-            __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni))
+            vec![]
         },
         (_, (VarName(n, _), t)) => {
-            __op_bind(lookupSUE(ni, (sueRef(ctr))), tagMembers(ni))
+            vec![(n, t)]
         },
     }
 }
@@ -499,22 +577,22 @@ pub fn deepTypeAttrs(_0: Type) -> m<Attributes> {
             liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
         },
         DirectType(_, _, attrs) => {
-            liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
+            attrs
         },
         PtrType(t, _, attrs) => {
-            liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
+            liftM((attrs(__op_addadd)), deepTypeAttrs(t))
         },
         ArrayType(t, _, _, attrs) => {
-            liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
+            liftM((attrs(__op_addadd)), deepTypeAttrs(t))
         },
         FunctionType(FunType(t, _, _), attrs) => {
-            liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
+            liftM((attrs(__op_addadd)), deepTypeAttrs(t))
         },
         FunctionType(FunTypeIncomplete(t), attrs) => {
-            liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
+            liftM((attrs(__op_addadd)), deepTypeAttrs(t))
         },
         TypeDefType(TypeDefRef(i, _, ni), _, attrs) => {
-            liftM((attrs(__op_addadd)), sueAttrs(ni, sue))
+            liftM((attrs(__op_addadd)), typeDefAttrs(ni, i))
         },
     }
 }
