@@ -1,7 +1,8 @@
 // Original file: "Node.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data::Position;
@@ -9,67 +10,50 @@
 // use Name;
 // use Data::Generics;
 
-use ::data::name::Name;
-use ::data::position::{Position, PosLength};
+use data::name::Name;
+use data::position::{Position, PosLength};
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum NodeInfo {
     OnlyPos(Position, PosLength),
-    NodeInfo(Position, PosLength, Name)
+    NodeInfo(Position, PosLength, Name),
 }
 pub use self::NodeInfo::*;
 
 pub fn lengthOfNode(ni: NodeInfo) -> Option<isize> {
 
-    let computeLength = |firstPos, (lastPos, lastTokLen)| {
-        if lastTokLen < 0 { None }
-        else {
-            Some(posOffset(lastPos) + lastTokLen - posOffset(pos))
-        }
+    let computeLength = |firstPos, (lastPos, lastTokLen)| if lastTokLen < 0 {
+        None
+    } else {
+        Some(posOffset(lastPos) + lastTokLen - posOffset(pos))
     };
 
     let len = match ni {
-            NodeInfo(firstPos, lastTok, _) => {
-                computeLength(firstPos, lastTok)
-            },
-            OnlyPos(firstPos, lastTok) => {
-                computeLength(firstPos, lastTok)
-            },
-        };
+        NodeInfo(firstPos, lastTok, _) => computeLength(firstPos, lastTok),
+        OnlyPos(firstPos, lastTok) => computeLength(firstPos, lastTok),
+    };
 
     len
 }
 
 pub fn getLastTokenPos(_0: NodeInfo) -> PosLength {
     match (_0) {
-        NodeInfo(_, lastTok, _) => {
-            lastTok
-        },
-        OnlyPos(_, lastTok) => {
-            lastTok
-        },
+        NodeInfo(_, lastTok, _) => lastTok,
+        OnlyPos(_, lastTok) => lastTok,
     }
 }
 
 pub fn nameOfNode(_0: NodeInfo) -> Option<Name> {
     match (_0) {
-        OnlyPos(_, _) => {
-            None
-        },
-        NodeInfo(_, _, name) => {
-            None
-        },
+        OnlyPos(_, _) => None,
+        NodeInfo(_, _, name) => None,
     }
 }
 
 pub fn posOfNode(ni: NodeInfo) -> Position {
     match ni {
-        OnlyPos(pos, _) => {
-            pos
-        },
-        NodeInfo(pos, _, _) => {
-            pos
-        },
+        OnlyPos(pos, _) => pos,
+        NodeInfo(pos, _, _) => pos,
     }
 }
 
@@ -105,6 +89,3 @@ pub fn mkNodeInfo(pos: Position, name: Name) -> NodeInfo {
 pub fn mkNodeInfo_q(pos: Position, lasttok: PosLength, name: Name) -> NodeInfo {
     NodeInfo(pos, lasttok, name)
 }
-
-
-

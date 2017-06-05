@@ -1,7 +1,8 @@
 // Original file: "SemRep.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data;
@@ -15,18 +16,14 @@
 #[derive(Clone, Debug)]
 pub enum TagDef {
     CompDef(CompType),
-    EnumDef(EnumType)
+    EnumDef(EnumType),
 }
 pub use self::TagDef::*;
 
 pub fn typeOfTagDef(_0: TagDef) -> TypeName {
     match (_0) {
-        CompDef(comptype) => {
-            typeOfCompDef(comptype)
-        },
-        EnumDef(enumtype) => {
-            typeOfEnumDef(enumtype)
-        },
+        CompDef(comptype) => typeOfCompDef(comptype),
+        EnumDef(enumtype) => typeOfEnumDef(enumtype),
     }
 }
 
@@ -34,7 +31,8 @@ pub fn declOfDef(def: n) -> Decl {
     {
         let vd = getVarDecl(def);
 
-    Decl(vd, (nodeInfo(def)))    }
+        Decl(vd, (nodeInfo(def)))
+    }
 }
 
 pub fn declIdent() -> Ident {
@@ -42,15 +40,21 @@ pub fn declIdent() -> Ident {
 }
 
 pub fn declName() -> VarName {
-    (|VarDecl(n, _, _)| { n }(getVarDecl))
+    (|VarDecl(n, _, _)| {
+         n
+     }(getVarDecl))
 }
 
 pub fn declType() -> Type {
-    (|VarDecl(_, _, ty)| { ty }(getVarDecl))
+    (|VarDecl(_, _, ty)| {
+         ty
+     }(getVarDecl))
 }
 
 pub fn declAttrs() -> DeclAttrs {
-    (|VarDecl(_, specs, _)| { specs }(getVarDecl))
+    (|VarDecl(_, specs, _)| {
+         specs
+     }(getVarDecl))
 }
 
 #[derive(Clone, Debug)]
@@ -58,75 +62,57 @@ pub enum IdentDecl {
     Declaration(Decl),
     ObjectDef(ObjDef),
     FunctionDef(FunDef),
-    EnumeratorDef(Enumerator)
+    EnumeratorDef(Enumerator),
 }
 pub use self::IdentDecl::*;
 
 pub fn objKindDescr(_0: IdentDecl) -> String {
     match (_0) {
-        Declaration(_) => {
-            "declaration".to_string()
-        },
-        ObjectDef(_) => {
-            "object definition".to_string()
-        },
-        FunctionDef(_) => {
-            "function definition".to_string()
-        },
-        EnumeratorDef(_) => {
-            "enumerator definition".to_string()
-        },
+        Declaration(_) => "declaration".to_string(),
+        ObjectDef(_) => "object definition".to_string(),
+        FunctionDef(_) => "function definition".to_string(),
+        EnumeratorDef(_) => "enumerator definition".to_string(),
     }
 }
 
-pub fn splitIdentDecls(include_all: bool) -> (Map<Ident, Decl>, (Map<Ident, Enumerator>, Map<Ident, ObjDef>, Map<Ident, FunDef>)) {
+pub fn splitIdentDecls
+    (include_all: bool)
+     -> (Map<Ident, Decl>, (Map<Ident, Enumerator>, Map<Ident, ObjDef>, Map<Ident, FunDef>)) {
 
     let deal = |ident, entry, (decls, defs)| {
         (Map::insert(ident, (declOfDef(entry)), decls), addDef(ident, entry, defs))
     };
 
-    let deal_q = |_0, _1, _2| {
-        match (_0, _1, _2) {
-            (ident, Declaration(d), (decls, defs)) => {
-                (Map::insert(ident, d, decls), defs)
-            },
-            (ident, def, (decls, defs)) => {
-                (decls, addDef(ident, def, defs))
-            },
-        }
+    let deal_q = |_0, _1, _2| match (_0, _1, _2) {
+        (ident, Declaration(d), (decls, defs)) => (Map::insert(ident, d, decls), defs),
+        (ident, def, (decls, defs)) => (decls, addDef(ident, def, defs)),
     };
 
-    let addDef = |ident, entry, (es, os, fs)| {
-        match entry {
-            Declaration(_) => {
-                (es, os, fs)
-            },
-            EnumeratorDef(e) => {
-                (Map::insert(ident, e, es), os, fs)
-            },
-            ObjectDef(o) => {
-                (es, Map::insert(ident, o, os), fs)
-            },
-            FunctionDef(f) => {
-                (es, os, Map::insert(ident, f, fs))
-            },
-        }
+    let addDef = |ident, entry, (es, os, fs)| match entry {
+        Declaration(_) => (es, os, fs),
+        EnumeratorDef(e) => (Map::insert(ident, e, es), os, fs),
+        ObjectDef(o) => (es, Map::insert(ident, o, os), fs),
+        FunctionDef(f) => (es, os, Map::insert(ident, f, fs)),
     };
 
-    Map::foldWithKey((if include_all {         
-deal} else {
-deal_q
-        }), (Map::empty, (Map::empty, Map::empty, Map::empty)))
+    Map::foldWithKey((if include_all { deal } else { deal_q }),
+                     (Map::empty, (Map::empty, Map::empty, Map::empty)))
 }
 
-pub struct GlobalDecls{
+pub struct GlobalDecls {
     gObjs: Map<Ident, IdentDecl>,
     gTags: Map<SUERef, TagDef>,
-    gTypeDefs: Map<Ident, TypeDef>
+    gTypeDefs: Map<Ident, TypeDef>,
 }
-fn gObjs(a: GlobalDecls) -> Map<Ident, IdentDecl> { a.gObjs }
-fn gTags(a: GlobalDecls) -> Map<SUERef, TagDef> { a.gTags }
-fn gTypeDefs(a: GlobalDecls) -> Map<Ident, TypeDef> { a.gTypeDefs }
+fn gObjs(a: GlobalDecls) -> Map<Ident, IdentDecl> {
+    a.gObjs
+}
+fn gTags(a: GlobalDecls) -> Map<SUERef, TagDef> {
+    a.gTags
+}
+fn gTypeDefs(a: GlobalDecls) -> Map<Ident, TypeDef> {
+    a.gTypeDefs
+}
 
 pub fn emptyGlobalDecls() -> GlobalDecls {
     GlobalDecls(Map::empty, Map::empty, Map::empty)
@@ -136,7 +122,7 @@ pub fn filterGlobalDecls(decl_filter: fn(DeclEvent) -> bool, gmap: GlobalDecls) 
     GlobalDecls {
         gObjs: Map::filter((decl_filter(DeclEvent)), (gObjs(gmap))),
         gTags: Map::filter((decl_filter(TagEvent)), (gTags(gmap))),
-        gTypeDefs: Map::filter((decl_filter(TypeDefEvent)), (gTypeDefs(gmap)))
+        gTypeDefs: Map::filter((decl_filter(TypeDefEvent)), (gTypeDefs(gmap))),
     }
 }
 
@@ -144,7 +130,7 @@ pub fn mergeGlobalDecls(gmap1: GlobalDecls, gmap2: GlobalDecls) -> GlobalDecls {
     GlobalDecls {
         gObjs: Map::union((gObjs(gmap1)), (gObjs(gmap2))),
         gTags: Map::union((gTags(gmap1)), (gTags(gmap2))),
-        gTypeDefs: Map::union((gTypeDefs(gmap1)), (gTypeDefs(gmap2)))
+        gTypeDefs: Map::union((gTypeDefs(gmap1)), (gTypeDefs(gmap2))),
     }
 }
 
@@ -154,7 +140,7 @@ pub enum DeclEvent {
     ParamEvent(ParamDecl),
     LocalEvent(IdentDecl),
     TypeDefEvent(TypeDef),
-    AsmEvent(AsmBlock)
+    AsmEvent(AsmBlock),
 }
 pub use self::DeclEvent::*;
 
@@ -173,14 +159,14 @@ pub struct FunDef(pub VarDecl, pub Stmt, pub NodeInfo);
 #[derive(Clone, Debug)]
 pub enum ParamDecl {
     ParamDecl(VarDecl, NodeInfo),
-    AbstractParamDecl(VarDecl, NodeInfo)
+    AbstractParamDecl(VarDecl, NodeInfo),
 }
 pub use self::ParamDecl::*;
 
 #[derive(Clone, Debug)]
 pub enum MemberDecl {
     MemberDecl(VarDecl, Option<Expr>, NodeInfo),
-    AnonBitField(Type, Expr, NodeInfo)
+    AnonBitField(Type, Expr, NodeInfo),
 }
 pub use self::MemberDecl::*;
 
@@ -206,32 +192,32 @@ pub struct DeclAttrs(pub FunctionAttrs, pub Storage, pub Attributes);
 
 pub fn declStorage(d: d) -> Storage {
     match declAttrs(d) {
-        DeclAttrs(_, st, _) => {
-            st
-        },
+        DeclAttrs(_, st, _) => st,
     }
 }
 
 pub fn functionAttrs(d: d) -> FunctionAttrs {
     match declAttrs(d) {
-        DeclAttrs(fa, _, _) => {
-            fa
-        },
+        DeclAttrs(fa, _, _) => fa,
     }
 }
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct FunctionAttrs{
+pub struct FunctionAttrs {
     isInline: bool,
-    isNoreturn: bool
+    isNoreturn: bool,
 }
-fn isInline(a: FunctionAttrs) -> bool { a.isInline }
-fn isNoreturn(a: FunctionAttrs) -> bool { a.isNoreturn }
+fn isInline(a: FunctionAttrs) -> bool {
+    a.isInline
+}
+fn isNoreturn(a: FunctionAttrs) -> bool {
+    a.isNoreturn
+}
 
 pub fn noFunctionAttrs() -> FunctionAttrs {
     FunctionAttrs {
         isInline: false,
-        isNoreturn: false
+        isNoreturn: false,
     }
 }
 
@@ -240,7 +226,7 @@ pub enum Storage {
     NoStorage,
     Auto(Register),
     Static(Linkage, ThreadLocal),
-    FunLinkage(Linkage)
+    FunLinkage(Linkage),
 }
 pub use self::Storage::*;
 
@@ -252,38 +238,24 @@ pub type Register = bool;
 pub enum Linkage {
     NoLinkage,
     InternalLinkage,
-    ExternalLinkage
+    ExternalLinkage,
 }
 pub use self::Linkage::*;
 
 pub fn hasLinkage(_0: Storage) -> bool {
     match (_0) {
-        Auto(_) => {
-            false
-        },
-        Static(NoLinkage, _) => {
-            false
-        },
-        _ => {
-            true
-        },
+        Auto(_) => false,
+        Static(NoLinkage, _) => false,
+        _ => true,
     }
 }
 
 pub fn declLinkage(decl: d) -> Linkage {
     match declStorage(decl) {
-        NoStorage => {
-            undefined
-        },
-        Auto(_) => {
-            NoLinkage
-        },
-        Static(linkage, _) => {
-            linkage
-        },
-        FunLinkage(linkage) => {
-            linkage
-        },
+        NoStorage => undefined,
+        Auto(_) => NoLinkage,
+        Static(linkage, _) => linkage,
+        FunLinkage(linkage) => linkage,
     }
 }
 
@@ -293,21 +265,21 @@ pub enum Type {
     PtrType(Type, TypeQuals, Attributes),
     ArrayType(Type, ArraySize, TypeQuals, Attributes),
     FunctionType(FunType, Attributes),
-    TypeDefType(TypeDefRef, TypeQuals, Attributes)
+    TypeDefType(TypeDefRef, TypeQuals, Attributes),
 }
 pub use self::Type::*;
 
 #[derive(Clone, Debug)]
 pub enum FunType {
     FunType(Type, Vec<ParamDecl>, bool),
-    FunTypeIncomplete(Type)
+    FunTypeIncomplete(Type),
 }
 pub use self::FunType::*;
 
 #[derive(Clone, Debug)]
 pub enum ArraySize {
     UnknownArraySize(bool),
-    ArraySize(bool, Expr)
+    ArraySize(bool, Expr),
 }
 pub use self::ArraySize::*;
 
@@ -319,14 +291,14 @@ pub enum TypeName {
     TyComplex(FloatType),
     TyComp(CompTypeRef),
     TyEnum(EnumTypeRef),
-    TyBuiltin(BuiltinType)
+    TyBuiltin(BuiltinType),
 }
 pub use self::TypeName::*;
 
 #[derive(Clone, Debug)]
 pub enum BuiltinType {
     TyVaList,
-    TyAny
+    TyAny,
 }
 pub use self::BuiltinType::*;
 
@@ -349,7 +321,7 @@ pub enum IntType {
     TyLong,
     TyULong,
     TyLLong,
-    TyULLong
+    TyULLong,
 }
 pub use self::IntType::*;
 
@@ -357,7 +329,7 @@ pub use self::IntType::*;
 pub enum FloatType {
     TyFloat,
     TyDouble,
-    TyLDouble
+    TyLDouble,
 }
 pub use self::FloatType::*;
 
@@ -380,7 +352,7 @@ pub fn typeOfCompDef(CompType(__ref, tag, _, _, _): CompType) -> TypeName {
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CompTyKind {
     StructTag,
-    UnionTag
+    UnionTag,
 }
 pub use self::CompTyKind::*;
 
@@ -397,27 +369,46 @@ pub struct Enumerator(pub Ident, pub Expr, pub EnumType, pub NodeInfo);
 
 
 #[derive(Clone, Debug)]
-pub struct TypeQuals{
+pub struct TypeQuals {
     constant: bool,
     volatile: bool,
     restrict: bool,
     atomic: bool,
     nullable: bool,
-    nonnull: bool
+    nonnull: bool,
 }
-fn constant(a: TypeQuals) -> bool { a.constant }
-fn volatile(a: TypeQuals) -> bool { a.volatile }
-fn restrict(a: TypeQuals) -> bool { a.restrict }
-fn atomic(a: TypeQuals) -> bool { a.atomic }
-fn nullable(a: TypeQuals) -> bool { a.nullable }
-fn nonnull(a: TypeQuals) -> bool { a.nonnull }
+fn constant(a: TypeQuals) -> bool {
+    a.constant
+}
+fn volatile(a: TypeQuals) -> bool {
+    a.volatile
+}
+fn restrict(a: TypeQuals) -> bool {
+    a.restrict
+}
+fn atomic(a: TypeQuals) -> bool {
+    a.atomic
+}
+fn nullable(a: TypeQuals) -> bool {
+    a.nullable
+}
+fn nonnull(a: TypeQuals) -> bool {
+    a.nonnull
+}
 
 pub fn noTypeQuals() -> TypeQuals {
     TypeQuals(false, false, false, false, false, false)
 }
 
-pub fn mergeTypeQuals(TypeQuals(c1, v1, r1, a1, n1, nn1): TypeQuals, TypeQuals(c2, v2, r2, a2, n2, nn2): TypeQuals) -> TypeQuals {
-    TypeQuals(((c1 && c2)), ((v1 && v2)), ((r1 && r2)), ((a1 && a2)), ((n1 && n2)), ((nn1 && nn2)))
+pub fn mergeTypeQuals(TypeQuals(c1, v1, r1, a1, n1, nn1): TypeQuals,
+                      TypeQuals(c2, v2, r2, a2, n2, nn2): TypeQuals)
+                      -> TypeQuals {
+    TypeQuals(((c1 && c2)),
+              ((v1 && v2)),
+              ((r1 && r2)),
+              ((a1 && a2)),
+              ((n1 && n2)),
+              ((nn1 && nn2)))
 }
 
 pub type Initializer = CInit;
@@ -425,29 +416,21 @@ pub type Initializer = CInit;
 #[derive(Clone, Debug)]
 pub enum VarName {
     VarName(Ident, Option<AsmName>),
-    NoName
+    NoName,
 }
 pub use self::VarName::*;
 
 pub fn identOfVarName(_0: VarName) -> Ident {
     match (_0) {
-        NoName => {
-            __error!("identOfVarName: NoName".to_string())
-        },
-        VarName(ident, _) => {
-            ident
-        },
+        NoName => __error!("identOfVarName: NoName".to_string()),
+        VarName(ident, _) => ident,
     }
 }
 
 pub fn isNoName(_0: VarName) -> bool {
     match (_0) {
-        NoName => {
-            true
-        },
-        _ => {
-            false
-        },
+        NoName => true,
+        _ => false,
     }
 }
 
@@ -472,6 +455,3 @@ pub fn mergeAttributes() -> Attributes {
 pub type Stmt = CStat;
 
 pub type Expr = CExpr;
-
-
-

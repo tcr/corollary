@@ -1,7 +1,8 @@
 // Original file: "SemError.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Typeable;
@@ -29,7 +30,7 @@ pub enum RedefKind {
     DiffKindRedecl,
     ShadowedDef,
     DisagreeLinkage,
-    NoLinkageOld
+    NoLinkageOld,
 }
 pub use self::RedefKind::*;
 
@@ -58,36 +59,44 @@ pub fn redefErrLabel(RedefInfo(ident, _, _, _): RedefInfo) -> String {
 }
 
 pub fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, __OP__: ErrorInfo) -> ErrorInfo {
-    ErrorInfo(lvl, (posOfNode(node)), (__op_addadd(vec![redefErrReason(info)], prevDeclMsg(old_node))))
+    ErrorInfo(lvl,
+              (posOfNode(node)),
+              (__op_addadd(vec![redefErrReason(info)], prevDeclMsg(old_node))))
 }
 
 pub fn redefErrReason(_0: RedefInfo) -> String {
     match (_0) {
         RedefInfo(ident, DuplicateDef, _, _) => {
             __op_addadd("duplicate definition of ".to_string(), ident)
-        },
+        }
         RedefInfo(ident, ShadowedDef, _, _) => {
-            __op_addadd("this declaration of ".to_string(), __op_addadd(ident, " shadows a previous one".to_string()))
-        },
+            __op_addadd("this declaration of ".to_string(),
+                        __op_addadd(ident, " shadows a previous one".to_string()))
+        }
         RedefInfo(ident, DiffKindRedecl, _, _) => {
-            __op_addadd(ident, " previously declared as a different kind of symbol".to_string())
-        },
+            __op_addadd(ident,
+                        " previously declared as a different kind of symbol".to_string())
+        }
         RedefInfo(ident, DisagreeLinkage, _, _) => {
-            __op_addadd(ident, " previously declared with different linkage".to_string())
-        },
+            __op_addadd(ident,
+                        " previously declared with different linkage".to_string())
+        }
         RedefInfo(ident, NoLinkageOld, _, _) => {
             __op_addadd(ident, " previously declared without linkage".to_string())
-        },
+        }
     }
 }
 
 pub fn prevDeclMsg(old_node: NodeInfo) -> Vec<String> {
-    vec!["The previous declaration was here: ".to_string(), show((posOfNode(old_node)))]
+    vec!["The previous declaration was here: ".to_string(),
+         show((posOfNode(old_node)))]
 }
 
-pub fn redefinition(lvl: ErrorLevel, ctx: String, kind: RedefKind, new: NodeInfo, old: NodeInfo) -> RedefError {
+pub fn redefinition(lvl: ErrorLevel,
+                    ctx: String,
+                    kind: RedefKind,
+                    new: NodeInfo,
+                    old: NodeInfo)
+                    -> RedefError {
     RedefError(lvl, (RedefInfo(ctx, kind, new, old)))
 }
-
-
-

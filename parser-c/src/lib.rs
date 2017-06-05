@@ -28,15 +28,13 @@ use parser::parser::parseC;
 // use Language::C::System::Preprocess;
 
 pub fn parseCFile<C: Preprocessor>(cpp: C,
-                  tmp_dir_opt: Option<FilePath>,
-                  args: Vec<String>,
-                  input_file: FilePath)
-                  -> Either<ParseError, CTranslUnit> {
+                                   tmp_dir_opt: Option<FilePath>,
+                                   args: Vec<String>,
+                                   input_file: FilePath)
+                                   -> Either<ParseError, CTranslUnit> {
 
     let handleCppError = |_0| match (_0) {
-        Left(exitCode) => {
-            Err(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode)))
-        }
+        Left(exitCode) => Err(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode))),
         Right(ok) => ok,
     };
 

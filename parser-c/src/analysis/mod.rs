@@ -1,7 +1,8 @@
 // Original file: "Analysis.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Analysis::SemError;
@@ -25,4 +26,3 @@ pub mod trav_monad;
 pub mod type_check;
 pub mod type_conversions;
 pub mod type_utils;
-

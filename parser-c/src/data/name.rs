@@ -1,7 +1,8 @@
 // Original file: "Name.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Ix;
@@ -18,6 +19,3 @@ pub fn namesStartingFrom(k: isize) -> Vec<Name> {
     // TODO fix this to be an infinite iterator
     vec![Name(k)]
 }
-
-
-

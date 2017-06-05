@@ -1,7 +1,8 @@
 // Original file: "Ops.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Generics;
@@ -18,45 +19,23 @@ pub enum CAssignOp {
     CShrAssOp,
     CAndAssOp,
     CXorAssOp,
-    COrAssOp
+    COrAssOp,
 }
 pub use self::CAssignOp::*;
 
 pub fn assignBinop(_0: CAssignOp) -> CBinaryOp {
     match (_0) {
-        CAssignOp => {
-            __error!("direct assignment has no binary operator".to_string())
-        },
-        CMulAssOp => {
-            CMulOp
-        },
-        CDivAssOp => {
-            CDivOp
-        },
-        CRmdAssOp => {
-            CRmdOp
-        },
-        CAddAssOp => {
-            CAddOp
-        },
-        CSubAssOp => {
-            CSubOp
-        },
-        CShlAssOp => {
-            CShlOp
-        },
-        CShrAssOp => {
-            CShrOp
-        },
-        CAndAssOp => {
-            CAndOp
-        },
-        CXorAssOp => {
-            CXorOp
-        },
-        COrAssOp => {
-            COrOp
-        },
+        CAssignOp => __error!("direct assignment has no binary operator".to_string()),
+        CMulAssOp => CMulOp,
+        CDivAssOp => CDivOp,
+        CRmdAssOp => CRmdOp,
+        CAddAssOp => CAddOp,
+        CSubAssOp => CSubOp,
+        CShlAssOp => CShlOp,
+        CShrAssOp => CShrOp,
+        CAndAssOp => CAndOp,
+        CXorAssOp => CXorOp,
+        COrAssOp => COrOp,
     }
 }
 
@@ -79,7 +58,7 @@ pub enum CBinaryOp {
     CXorOp,
     COrOp,
     CLndOp,
-    CLorOp
+    CLorOp,
 }
 pub use self::CBinaryOp::*;
 
@@ -110,13 +89,10 @@ pub enum CUnaryOp {
     CPlusOp,
     CMinOp,
     CCompOp,
-    CNegOp
+    CNegOp,
 }
 pub use self::CUnaryOp::*;
 
 pub fn isEffectfulOp(op: CUnaryOp) -> bool {
     elem(op, vec![CPreIncOp, CPreDecOp, CPostIncOp, CPostDecOp])
 }
-
-
-

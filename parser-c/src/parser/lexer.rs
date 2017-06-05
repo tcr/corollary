@@ -1,2 +1,2 @@
-#[macro_use] use corollary_support::*;
-
+#[macro_use]
+use corollary_support::*;

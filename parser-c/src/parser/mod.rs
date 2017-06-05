@@ -1,7 +1,8 @@
 // Original file: "Parser.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Parser::Parser;
@@ -21,8 +22,6 @@ pub mod tokens;
 use parser::parser_monad::execParser;
 
 pub fn execParser_<a>(parser: P<a>, input: InputStream, pos: Position) -> Either<ParseError, a> {
-    fmap(fst, execParser(parser, input, pos, builtinTypeNames, newNameSupply))
+    fmap(fst,
+         execParser(parser, input, pos, builtinTypeNames, newNameSupply))
 }
-
-
-

@@ -1,7 +1,8 @@
 // Original file: "Constants.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Bits;
@@ -13,7 +14,7 @@
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CChar {
     CChar(char, bool),
-    CChars(Vec<char>, bool)
+    CChars(Vec<char>, bool),
 }
 pub use self::CChar::*;
 
@@ -22,42 +23,33 @@ pub fn showCharConst(c: char) -> ShowS {
 }
 
 pub fn _showWideFlag(flag: bool) -> ShowS {
-    if flag {     
-showString("L".to_string())} else {
-id
+    if flag {
+        showString("L".to_string())
+    } else {
+        id
     }
 }
 
 pub fn getCChar(_0: CChar) -> String {
     match (_0) {
-        CChar(c, _) => {
-            vec![c]
-        },
-        CChars(cs, _) => {
-            cs
-        },
+        CChar(c, _) => vec![c],
+        CChars(cs, _) => cs,
     }
 }
 
 pub fn getCCharAsInt(_0: CChar) -> Integer {
     match (_0) {
-        CChar(c, _) => {
-            fromIntegral((fromEnum(c)))
-        },
+        CChar(c, _) => fromIntegral((fromEnum(c))),
         CChars(_cs, _) => {
             __error!("integer value of multi-character character constants is implementation defined".to_string())
-        },
+        }
     }
 }
 
 pub fn isWideChar(_0: CChar) -> bool {
     match (_0) {
-        CChar(_, wideFlag) => {
-            wideFlag
-        },
-        CChars(_, wideFlag) => {
-            wideFlag
-        },
+        CChar(_, wideFlag) => wideFlag,
+        CChars(_, wideFlag) => wideFlag,
     }
 }
 
@@ -77,7 +69,7 @@ pub fn cChars() -> CChar {
 pub enum CIntRepr {
     DecRepr,
     HexRepr,
-    OctalRepr
+    OctalRepr,
 }
 pub use self::CIntRepr::*;
 
@@ -86,7 +78,7 @@ pub enum CIntFlag {
     FlagUnsigned,
     FlagLong,
     FlagLongLong,
-    FlagImag
+    FlagImag,
 }
 pub use self::CIntFlag::*;
 
@@ -97,80 +89,39 @@ pub struct CInteger(pub Integer, pub CIntRepr, pub Flags<CIntFlag>);
 pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
 
     let readNum = match repr {
-            DecRepr => {
-                readDec
-            },
-            HexRepr => {
-                readHex
-            },
-            OctalRepr => {
-                readOct
-            },
-        };
-
-    let mkCInt = |n, suffix| {
-        either(Left, (Right(CInteger(n, repr))), readSuffix(suffix))
+        DecRepr => readDec,
+        HexRepr => readHex,
+        OctalRepr => readOct,
     };
+
+    let mkCInt = |n, suffix| either(Left, (Right(CInteger(n, repr))), readSuffix(suffix));
 
     let readSuffix = parseFlags(noFlags);
 
-    let parseFlags = |_0, _1| {
-        match (_0, _1) {
-            (flags, []) => {
-                Right(flags)
-            },
-            (flags, ['l', ['l', fs]]) => {
-                parseFlags((setFlag(FlagLongLong, flags)), fs)
-            },
-            (flags, ['L', ['L', fs]]) => {
-                parseFlags((setFlag(FlagLongLong, flags)), fs)
-            },
-            (flags, [f, fs]) => {
-                {
-                    let go1 = |flag| {
-                        parseFlags((setFlag(flag, flags)), fs)
-                    };
+    let parseFlags = |_0, _1| match (_0, _1) {
+        (flags, []) => Right(flags),
+        (flags, ['l', ['l', fs]]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
+        (flags, ['L', ['L', fs]]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
+        (flags, [f, fs]) => {
+            let go1 = |flag| parseFlags((setFlag(flag, flags)), fs);
 
-                match f {
-                        'l' => {
-                            go1(FlagLong)
-                        },
-                        'L' => {
-                            go1(FlagLong)
-                        },
-                        'u' => {
-                            go1(FlagUnsigned)
-                        },
-                        'U' => {
-                            go1(FlagUnsigned)
-                        },
-                        'i' => {
-                            go1(FlagImag)
-                        },
-                        'I' => {
-                            go1(FlagImag)
-                        },
-                        'j' => {
-                            go1(FlagImag)
-                        },
-                        'J' => {
-                            go1(FlagImag)
-                        },
-                        _ => {
-                            Left(__op_addadd("Unexpected flag ".to_string(), show(f)))
-                        },
-                    }                }
-            },
+            match f {
+                'l' => go1(FlagLong),
+                'L' => go1(FlagLong),
+                'u' => go1(FlagUnsigned),
+                'U' => go1(FlagUnsigned),
+                'i' => go1(FlagImag),
+                'I' => go1(FlagImag),
+                'j' => go1(FlagImag),
+                'J' => go1(FlagImag),
+                _ => Left(__op_addadd("Unexpected flag ".to_string(), show(f))),
+            }
         }
     };
 
     match readNum(__str) {
-        [(n, suffix)] => {
-            mkCInt(n, suffix)
-        },
-        parseFailed => {
-            Left(__op_addadd("Bad Integer literal: ".to_string(), show(parseFailed)))
-        },
+        [(n, suffix)] => mkCInt(n, suffix),
+        parseFailed => Left(__op_addadd("Bad Integer literal: ".to_string(), show(parseFailed))),
     }
 }
 
@@ -227,14 +178,12 @@ pub fn concatCStrings(cs: Vec<CString>) -> CString {
 }
 
 pub fn showStringLit(s: String) -> ShowS {
-    let showStringChar = |c| {
-        if isSChar(c) {
-            c
-        } else if c == '"' {
-            "\\\"".to_string()
-        } else {
-            escapeChar(c)
-        }
+    let showStringChar = |c| if isSChar(c) {
+        c
+    } else if c == '"' {
+        "\\\"".to_string()
+    } else {
+        escapeChar(c)
     };
     dQuote(__concatMap!(showStringChar, s))
 }
@@ -245,46 +194,29 @@ pub fn isAsciiSourceChar(c: char) -> bool {
 
 pub fn isCChar(_0: char) -> bool {
     match (_0) {
-        '\\' => {
-            false
-        },
-        '\'' => {
-            false
-        },
-        '\n' => {
-            false
-        },
-        c => {
-            isAsciiSourceChar(c)
-        },
+        '\\' => false,
+        '\'' => false,
+        '\n' => false,
+        c => isAsciiSourceChar(c),
     }
 }
 
 pub fn escapeCChar(_0: char) -> String {
     match (_0) {
-        '\'' => {
-            "\\\'".to_string()
-        },
+        '\'' => "\\\'".to_string(),
         c => {
-            /* Expr::Error */ Error
-        },
+            /* Expr::Error */
+            Error
+        }
     }
 }
 
 pub fn isSChar(_0: char) -> bool {
     match (_0) {
-        '\\' => {
-            false
-        },
-        '\"' => {
-            false
-        },
-        '\n' => {
-            false
-        },
-        c => {
-            isAsciiSourceChar(c)
-        },
+        '\\' => false,
+        '\"' => false,
+        '\n' => false,
+        c => isAsciiSourceChar(c),
     }
 }
 
@@ -297,36 +229,19 @@ pub fn showOct_q(i: isize) -> String {
 
 pub fn escapeChar(_0: char) -> String {
     match (_0) {
-        '\\' => {
-            "\\\\".to_string()
-        },
-        '\u{7}' => {
-            "\\a".to_string()
-        },
-        '\u{8}' => {
-            "\\b".to_string()
-        },
-        '\u{1b}' => {
-            "\\e".to_string()
-        },
-        '\u{c}' => {
-            "\\f".to_string()
-        },
-        '\n' => {
-            "\\n".to_string()
-        },
-        '\r' => {
-            "\\r".to_string()
-        },
-        '\t' => {
-            "\\t".to_string()
-        },
-        '\u{b}' => {
-            "\\v".to_string()
-        },
+        '\\' => "\\\\".to_string(),
+        '\u{7}' => "\\a".to_string(),
+        '\u{8}' => "\\b".to_string(),
+        '\u{1b}' => "\\e".to_string(),
+        '\u{c}' => "\\f".to_string(),
+        '\n' => "\\n".to_string(),
+        '\r' => "\\r".to_string(),
+        '\t' => "\\t".to_string(),
+        '\u{b}' => "\\v".to_string(),
         c => {
-            /* Expr::Error */ Error
-        },
+            /* Expr::Error */
+            Error
+        }
     }
 }
 
@@ -334,67 +249,34 @@ pub fn unescapeChar(_0: String) -> (char, String) {
     match (_0) {
         ['\\', [c, cs]] => {
             match c {
-                'n' => {
-                    ('\n', cs)
-                },
-                't' => {
-                    ('\t', cs)
-                },
-                'v' => {
-                    ('\u{b}', cs)
-                },
-                'b' => {
-                    ('\u{8}', cs)
-                },
-                'r' => {
-                    ('\r', cs)
-                },
-                'f' => {
-                    ('\u{c}', cs)
-                },
-                'a' => {
-                    ('\u{7}', cs)
-                },
-                'e' => {
-                    ('\u{1b}', cs)
-                },
-                'E' => {
-                    ('\u{1b}', cs)
-                },
-                '\\' => {
-                    ('\\', cs)
-                },
-                '?' => {
-                    ('?', cs)
-                },
-                '\'' => {
-                    ('\'', cs)
-                },
-                '\"' => {
-                    ('\"', cs)
-                },
+                'n' => ('\n', cs),
+                't' => ('\t', cs),
+                'v' => ('\u{b}', cs),
+                'b' => ('\u{8}', cs),
+                'r' => ('\r', cs),
+                'f' => ('\u{c}', cs),
+                'a' => ('\u{7}', cs),
+                'e' => ('\u{1b}', cs),
+                'E' => ('\u{1b}', cs),
+                '\\' => ('\\', cs),
+                '?' => ('?', cs),
+                '\'' => ('\'', cs),
+                '\"' => ('\"', cs),
                 'x' => {
                     match head_q("bad escape sequence".to_string(), (readHex(cs))) {
-                        (i, cs_q) => {
-                            (toEnum(i), cs_q)
-                        },
+                        (i, cs_q) => (toEnum(i), cs_q),
                     }
-                },
+                }
                 _ => {
-                    match head_q("bad escape sequence".to_string(), (readOct_q((__op_concat(c, cs))))) {
-                        (i, cs_q) => {
-                            (toEnum(i), cs_q)
-                        },
+                    match head_q("bad escape sequence".to_string(),
+                                 (readOct_q((__op_concat(c, cs))))) {
+                        (i, cs_q) => (toEnum(i), cs_q),
                     }
-                },
+                }
             }
-        },
-        [c, cs] => {
-            (c, cs)
-        },
-        [] => {
-            __error!("unescape char: empty string".to_string())
-        },
+        }
+        [c, cs] => (c, cs),
+        [] => __error!("unescape char: empty string".to_string()),
     }
 }
 
@@ -404,26 +286,23 @@ pub fn readOct_q(s: ReadS<isize>) -> ReadS<isize> {
 
     let rest = drop((length(octStr)), s);
 
-    __map!((|(i, cs)| { (i, __op_addadd(cs, rest)) }), (readOct(octStr)))
+    __map!((|(i, cs)| (i, __op_addadd(cs, rest))), (readOct(octStr)))
 }
 
 pub fn unescapeString(_0: String) -> String {
     match (_0) {
-        [] => {
-            vec![]
-        },
+        [] => vec![],
         cs => {
             match unescapeChar(cs) {
-                (c, cs_q) => {
-                    __op_concat(c, unescapeString(cs_q))
-                },
+                (c, cs_q) => __op_concat(c, unescapeString(cs_q)),
             }
-        },
+        }
     }
 }
 
 pub fn sQuote(s: String, t: ShowS) -> ShowS {
-    __op_addadd("\'".to_string(), __op_addadd(s, __op_addadd("\'".to_string(), t)))
+    __op_addadd("\'".to_string(),
+                __op_addadd(s, __op_addadd("\'".to_string(), t)))
 }
 
 pub fn dQuote(s: String, t: ShowS) -> ShowS {
@@ -432,12 +311,8 @@ pub fn dQuote(s: String, t: ShowS) -> ShowS {
 
 pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
     match (_0, _1) {
-        (err, []) => {
-            __error!(err)
-        },
-        (_, [x, _]) => {
-            x
-        },
+        (err, []) => __error!(err),
+        (_, [x, _]) => x,
     }
 }
 
@@ -460,6 +335,3 @@ pub fn clearFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
 pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
     testBit(k, fromEnum(flag))
 }
-
-
-

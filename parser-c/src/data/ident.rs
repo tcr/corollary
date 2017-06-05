@@ -1,7 +1,8 @@
 // Original file: "Ident.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Char;
@@ -14,18 +15,14 @@
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum SUERef {
     AnonymousRef(Name),
-    NamedRef(Ident)
+    NamedRef(Ident),
 }
 pub use self::SUERef::*;
 
 pub fn isAnonymousRef(_0: SUERef) -> bool {
     match (_0) {
-        AnonymousRef(_) => {
-            true
-        },
-        _ => {
-            false
-        },
+        AnonymousRef(_) => true,
+        _ => false,
     }
 }
 
@@ -36,20 +33,14 @@ pub struct Ident(pub String, pub isize, pub NodeInfo);
 pub fn quad(_0: String) -> isize {
     match (_0) {
         [c1, [c2, [c3, [c4, s]]]] => {
-            ((__mod(((ord(c4) * (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))), bits28)) + (__mod(quad(s), bits28)))
-        },
-        [c1, [c2, [c3, []]]] => {
-            (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))
-        },
-        [c1, [c2, []]] => {
-            (ord(c2) * (bits7 + ord(c1)))
-        },
-        [c1, []] => {
-            ord(c1)
-        },
-        [] => {
-            0
-        },
+            ((__mod(((ord(c4) *
+                      (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))),
+                    bits28)) + (__mod(quad(s), bits28)))
+        }
+        [c1, [c2, [c3, []]]] => (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1))))),
+        [c1, [c2, []]] => (ord(c2) * (bits7 + ord(c1))),
+        [c1, []] => ord(c1),
+        [] => 0,
     }
 }
 
@@ -95,18 +86,12 @@ pub fn identToString(Ident(s, _, _): Ident) -> String {
 
 pub fn sueRefToString(_0: SUERef) -> String {
     match (_0) {
-        AnonymousRef(_) => {
-            "".to_string()
-        },
-        NamedRef(ident) => {
-            identToString(ident)
-        },
+        AnonymousRef(_) => "".to_string(),
+        NamedRef(ident) => identToString(ident),
     }
 }
 
 pub fn dumpIdent(ide: Ident) -> String {
-    __op_addadd(identToString(ide), __op_addadd(" at ".to_string(), show((nodeInfo(ide)))))
+    __op_addadd(identToString(ide),
+                __op_addadd(" at ".to_string(), show((nodeInfo(ide)))))
 }
-
-
-

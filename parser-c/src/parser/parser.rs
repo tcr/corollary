@@ -1,4 +1,5 @@
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 use data::input_stream::*;
 use data::position::*;
