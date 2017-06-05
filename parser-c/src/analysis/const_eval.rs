@@ -22,6 +22,8 @@
 // use Language::C::Analysis::TypeUtils;
 // use Text::PrettyPrint::HughesPJ;
 
+use analysis::sem_rep::*;
+
 pub struct MachineDesc{
     iSize: fn(IntType) -> Integer,
     fSize: fn(FloatType) -> Integer,

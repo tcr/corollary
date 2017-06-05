@@ -13,6 +13,11 @@
 // use Data::IntMap;
 // use Data::Generics;
 
+use analysis::sem_rep::*;
+use data::ident::Ident;
+use analysis::name_space_map::mergeNameSpace;
+use data::name::Name;
+
 pub type IdentEntry = Either<TypeDef, IdentDecl>;
 
 pub fn identOfTyDecl() -> Ident {
@@ -211,7 +216,7 @@ pub fn compatTagEntry(te1: TagEntry, te2: TagEntry) -> bool {
     (tagKind(te1) == tagKind(te2))
 }
 
-pub fn defRedeclStatus(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option<t>) -> DeclarationStatus<t> {
+pub fn defRedeclStatus<t>(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option<t>) -> DeclarationStatus<t> {
     match oldDecl {
         Some(def_q) if sameKind(def, def_q) => { Redeclared(def_q) }
         Some(def_q) => { KindMismatch(def_q) }
@@ -221,7 +226,7 @@ pub fn defRedeclStatus(sameKind: fn(t) -> fn(t) -> bool, def: t, oldDecl: Option
     }
 }
 
-pub fn defRedeclStatusLocal(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, oldDecl: Option<t>, nsm: NameSpaceMap<k, t>) -> DeclarationStatus<t> {
+pub fn defRedeclStatusLocal<t, k>(sameKind: fn(t) -> fn(t) -> bool, ident: k, def: t, oldDecl: Option<t>, nsm: NameSpaceMap<k, t>) -> DeclarationStatus<t> {
     match defRedeclStatus(sameKind, def, oldDecl) {
         NewDecl => {
             match lookupName(nsm, ident) {
@@ -354,7 +359,14 @@ pub fn lookupType(dt: DefTable, n: Name) -> Option<Type> {
 }
 
 pub fn mergeDefTable(DefTable(i1, t1, l1, m1, r1, tt1): DefTable, DefTable(i2, t2, l2, m2, r2, tt2): DefTable) -> DefTable {
-    DefTable((mergeNameSpace(i1, i2)), (mergeNameSpace(t1, t2)), (mergeNameSpace(l1, l2)), (mergeNameSpace(m1, m2)), (union(r1, r2)), (union(tt1, tt2)))
+    DefTable {
+        identDecls: mergeNameSpace(i1, i2), 
+        tagDecls: mergeNameSpace(t1, t2),
+        labelDefs: mergeNameSpace(l1, l2),
+        memberDecls: mergeNameSpace(m1, m2),
+        refTable: union(r1, r2),
+        typeTable: union(tt1, tt2),
+    }
 }
 
 

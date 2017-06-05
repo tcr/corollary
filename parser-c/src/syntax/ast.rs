@@ -257,7 +257,7 @@ pub use self::CStructTag::*;
 pub type CEnum = CEnumeration<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CEnumeration<a>(pub Option<Ident>, pub Option<Vec<(Ident, pub Option<CExpression<a>>)>>, pub Vec<CAttribute<a>>, pub a);
+pub struct CEnumeration<a>(pub Option<Ident>, pub Option<Vec<(Ident, Option<CExpression<a>>)>>, pub Vec<CAttribute<a>>, pub a);
 
 
 pub type CInit = CInitializer<NodeInfo>;

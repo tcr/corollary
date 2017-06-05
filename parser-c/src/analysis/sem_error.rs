@@ -34,7 +34,7 @@ pub enum RedefKind {
 pub use self::RedefKind::*;
 
 #[derive(Debug)]
-pub struct TypeMismatch(pub String, pub (NodeInfo, pub Type), pub (NodeInfo, pub Type));
+pub struct TypeMismatch(pub String, pub (NodeInfo, Type), pub (NodeInfo, Type));
 
 
 pub fn invalidAST(node_info: NodeInfo, msg: String) -> InvalidASTError {

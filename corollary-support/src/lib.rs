@@ -127,6 +127,16 @@ pub fn __op_concat<A, B>(left: A, right: B) {
 }
 
 
+pub fn union<A: PartialEq>(mut left: Vec<A>, right: Vec<A>) -> Vec<A> {
+    for item in right {
+        if left.iter().position(|x| *x == item).is_none() {
+            left.push(item);
+        }
+    }
+    left
+}
+
+
 
 
 

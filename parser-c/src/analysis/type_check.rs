@@ -21,6 +21,13 @@
 // use Language::C::Analysis::Debug;
 // use Text::PrettyPrint::HughesPJ;
 
+use analysis::sem_rep::Type;
+use data::node::NodeInfo;
+use syntax::ast::*;
+use analysis::sem_rep::*;
+use syntax::constants::*;
+use data::node;
+
 pub fn pType() -> String {
     render(pretty)
 }

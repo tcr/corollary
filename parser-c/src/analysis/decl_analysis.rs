@@ -24,6 +24,8 @@
 // use Data::Map;
 // use Text::PrettyPrint::HughesPJ;
 
+use analysis::sem_rep::*;
+
 pub fn tParamDecl(_0: CDecl) -> m<ParamDecl> {
     match (_0) {
         CStaticAssert(_, _, node) => {

@@ -12,19 +12,34 @@
 // use Language::C::Analysis::SemRep;
 // use Data::Maybe;
 
+use analysis::sem_rep::*;
+use syntax::ast::*;
+
 pub fn exportDeclr(other_specs: Vec<CDeclSpec>, ty: Type, attrs: Attributes, name: VarName) -> (Vec<CDeclSpec>, CDeclr) {
 
-    (__op_addadd(other_specs, specs), CDeclr(ident, derived, asmname, (exportAttrs(attrs)), ni))
+    let (specs, derived) = exportType(ty);
+    let (ident, asmname) = match name {
+        VarName(vident, asmname_opt) => (Some(vident), asmname_opt)
+        _ -> (None, None)
+    };
+                                   
+    (__op_addadd(other_specs, specs), CDeclarator(ident, derived, asmname, (exportAttrs(attrs)), ni))
 }
 
 pub fn exportTypeDecl(ty: Type) -> CDecl {
+    let (declspecs, derived) = exportType(ty);
+    let declrs = if null(derived) {
+        vec![]
+    } else {
+        [Some(CDeclr(None, derived, None, vec![] ni, None, None))]
+    };
 
     CDecl(declspecs, declrs, ni)
 }
 
 pub fn exportTypeDef(TypeDef(ident, ty, attrs, node_info): TypeDef) -> CDecl {
 
-    let declr = (Some(CDeclr((Some(ident)), derived, None, (exportAttrs(attrs)), ni)), None, None);
+    let declr = (Some(CDeclarator((Some(ident)), derived, None, (exportAttrs(attrs)), ni)), None, None);
 
     CDecl((__op_concat(CStorageSpec((CTypedef(ni))), declspecs)), vec![declr], node_info)
 }

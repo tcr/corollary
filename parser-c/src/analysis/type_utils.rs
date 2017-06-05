@@ -11,6 +11,8 @@
 // use CExpression;
 // use Language::C::Syntax::Constants;
 
+use analysis::sem_rep::*;
+
 pub fn integral(ty: IntType) -> Type {
     DirectType((TyIntegral(ty)), noTypeQuals, noAttributes)
 }

@@ -33,7 +33,10 @@ use syntax::ast::*;
 use analysis::sem_rep::*;
 use analysis::trav_monad::*;
 use analysis::def_table::*;
-use analysis::decl_analysis::*;
+use analysis::decl_analysis::{StorageSpec, StaticSpec, ExternSpec, analyseVarDecl_q, VarDeclInfo};
+use data::node::NodeInfo;
+use data::ident::Ident;
+use analysis::type_utils::*;
 
 pub fn analyseAST(CTranslationUnit(decls, _file_node): CTranslUnit) -> GlobalDecls {
 

@@ -22,6 +22,9 @@
 // use liftM;
 // use Prelude;
 
+use data::name::newNameSupply;
+use analysis::def_table::*;
+
 pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus<t1>) -> m<()> {
     match redecl_status {
         NewDecl => {
