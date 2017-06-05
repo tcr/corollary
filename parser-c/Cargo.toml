@@ -12,3 +12,5 @@ license = "BSD-3"
 
 [dependencies]
 corollary-support = { path = "../corollary-support" }
+num = "0.1"
+num-derive = "0.1"

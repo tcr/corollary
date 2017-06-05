@@ -14,6 +14,7 @@ use corollary_support::*;
 
 use data::position::*;
 use syntax::constants::*;
+use data::ident::Ident;
 
 pub enum CToken {
     CTokLParen(PosLength),

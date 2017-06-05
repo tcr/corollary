@@ -20,6 +20,11 @@ pub mod parser;
 pub mod tokens;
 
 use parser::parser_monad::execParser;
+use parser::builtin::*;
+use data::name::*;
+use parser::parser_monad::ParseError;
+use data::position::Position;
+use data::input_stream::InputStream;
 
 pub fn execParser_<a>(parser: P<a>, input: InputStream, pos: Position) -> Either<ParseError, a> {
     fmap(fst,

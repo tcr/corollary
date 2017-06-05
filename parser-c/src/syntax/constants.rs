@@ -11,6 +11,9 @@ use corollary_support::*;
 // use showOct;
 // use Data::Generics;
 
+use num::ToPrimitive;
+use std::marker::PhantomData;
+
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CChar {
     CChar(char, bool),
@@ -37,7 +40,7 @@ pub fn getCChar(_0: CChar) -> String {
     }
 }
 
-pub fn getCCharAsInt(_0: CChar) -> Integer {
+pub fn getCCharAsInt(_0: CChar) -> isize {
     match (_0) {
         CChar(c, _) => fromIntegral((fromEnum(c))),
         CChars(_cs, _) => {
@@ -65,7 +68,7 @@ pub fn cChars() -> CChar {
     CChars
 }
 
-#[derive(Bounded, Clone, Debug, Enum, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord)]
 pub enum CIntRepr {
     DecRepr,
     HexRepr,
@@ -73,7 +76,7 @@ pub enum CIntRepr {
 }
 pub use self::CIntRepr::*;
 
-#[derive(Bounded, Clone, Debug, Enum, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord)]
 pub enum CIntFlag {
     FlagUnsigned,
     FlagLong,
@@ -83,7 +86,7 @@ pub enum CIntFlag {
 pub use self::CIntFlag::*;
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct CInteger(pub Integer, pub CIntRepr, pub Flags<CIntFlag>);
+pub struct CInteger(pub isize, pub CIntRepr, pub Flags<CIntFlag>);
 
 
 pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
@@ -125,11 +128,11 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
     }
 }
 
-pub fn getCInteger(CInteger(i, _, _): CInteger) -> Integer {
+pub fn getCInteger(CInteger(i, _, _): CInteger) -> isize {
     i
 }
 
-pub fn cInteger(i: Integer) -> CInteger {
+pub fn cInteger(i: isize) -> CInteger {
     CInteger(i, DecRepr, noFlags)
 }
 
@@ -317,21 +320,33 @@ pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
 }
 
 #[derive(Clone, Debug, Eq, Ord)]
-pub struct Flags<f>(pub Integer);
-
-
-pub fn noFlags() -> Flags<f> {
-    Flags(0)
+pub struct Flags<F: ToPrimitive>{
+    flags: isize,
+    _phantom: PhantomData<F>,
 }
 
-pub fn setFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
-    Flags(setBit(k, fromEnum(flag)))
+impl<F: ToPrimitive> Flags<F> {
+    fn new(flags: isize) -> Self {
+        Flags {
+            flags,
+            _phantom: PhantomData::new(),
+        }
+    }
 }
 
-pub fn clearFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
-    Flags(clearBit(k, fromEnum(flag)))
+
+pub fn noFlags<f: ToPrimitive>() -> Flags<f> {
+    Flags::new(0)
 }
 
-pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
-    testBit(k, fromEnum(flag))
+pub fn setFlag<f: ToPrimitive>(flag: f, Flags { flags: k, .. }: Flags<f>) -> Flags<f> {
+    Flags::new(setBit(k, flag.to_isize()))
+}
+
+pub fn clearFlag<f: ToPrimitive>(flag: f, Flags { flags: k, .. }: Flags<f>) -> Flags<f> {
+    Flags::new(clearBit(k, flag.to_isize()))
+}
+
+pub fn testFlag<f: ToPrimitive>(flag: f, Flags { flags: k, .. }: Flags<f>) -> bool {
+    testBit(k, flag.to_isize())
 }

@@ -1,14 +1,16 @@
 // Original file: "C.hs"
 // File auto-generated using Corollary.
 
+#![feature(slice_patterns)]
 #![allow(unused_parens)]
 
-extern crate corollary_support;
+#[macro_use] extern crate corollary_support;
+extern crate num;
+#[macro_use] extern crate num_derive;
 
-#[macro_use]
 use corollary_support::*;
 
-pub mod analysis;
+// pub mod analysis;
 pub mod data;
 pub mod parser;
 pub mod syntax;

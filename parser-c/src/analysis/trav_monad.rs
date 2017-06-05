@@ -27,6 +27,8 @@ use data::name::newNameSupply;
 use analysis::def_table::*;
 use analysis::sem_rep::*;
 use analysis::sem_error::*;
+use data::ident::*;
+use data::error::*;
 
 pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus<t1>) -> m<()> {
     match redecl_status {
@@ -183,10 +185,10 @@ pub fn handleVarDecl(is_local: bool, decl: Decl) -> m<()> {
     }
 }
 
-pub fn handleParamDecl(_0: ParamDecl, _1: m<()>) -> m<()> {
-    match (_0, _1, _2) {
-        (pd, __OP__, AbstractParamDecl(_, _)) => handleDecl((ParamEvent(pd))),
-        (pd, __OP__, ParamDecl(vardecl, node)) => {
+pub fn handleParamDecl(_0: ParamDecl) -> m<()> {
+    match _0 {
+        pd @ AbstractParamDecl(_, _) => handleDecl((ParamEvent(pd))),
+        pd @ ParamDecl(vardecl, node) => {
             /*do*/
             {
                 let def = ObjectDef((ObjDef(vardecl, None, node)));

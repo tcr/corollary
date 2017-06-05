@@ -10,6 +10,7 @@ use corollary_support::*;
 // use Language::C::Data::Position;
 
 use data::position::*;
+use data::node::*;
 
 #[derive(Eq, Ord)]
 pub enum ErrorLevel {
@@ -32,7 +33,7 @@ pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
 }
 
 #[derive(Debug)]
-pub struct CError(pub err);
+pub struct CError<E: Error>(pub E);
 
 
 pub fn errorPos() -> Position {
@@ -55,6 +56,10 @@ pub fn errorMsgs() -> Vec<String> {
 
 #[derive(Debug)]
 pub struct UnsupportedFeature(pub String, pub Position);
+
+// pub trait Error<T: UnsupportedFeature> {
+    // errorInfo (UnsupportedFeature msg pos) = ErrorInfo LevelError pos (lines msg)
+// instance Show UnsupportedFeature where show = showError "Unsupported Feature"
 
 
 pub fn unsupportedFeature<a>(msg: String, a: a) -> UnsupportedFeature {

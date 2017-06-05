@@ -80,6 +80,10 @@ pub fn isSuffixOf(a: String, r: String) -> bool {
     r.ends_with(&a)
 }
 
+pub fn isPrefixOf(a: String, r: String) -> bool {
+    r.starts_with(&a)
+}
+
 pub fn elem<T: PartialEq>(item: T, value: Vec<T>) -> bool {
     value.contains(&item)
 }
@@ -175,12 +179,103 @@ pub fn __op_tuple2<A, B>(left: A, right: B) -> (A, B) {
     (left, right)
 }
 
+pub fn __op_power(l: isize, r: isize) -> isize {
+    //TODO
+    l
+}
+
+pub fn __mod(l: isize, r: isize) -> isize {
+    // TODO
+    l
+}
+
 pub fn not(left: bool) -> bool {
     !left
 }
 
+pub fn __break<T, F: Fn(&T) -> bool>(cond: F, input: Vec<T>) -> (Vec<T>, Vec<T>) {
+    let mut left = vec![];
+    let mut right = vec![];
+    for item in input.into_iter() {
+        if right.is_empty() && cond(&item) {
+            left.push(item);
+        } else {
+            right.push(item);
+        }
+    }
+    (left, right)
+}
+
+pub fn any<T, F: Fn(&T) -> bool>(cond: F, input: Vec<T>) -> bool {
+    input.iter()
+        .any(cond)
+}
+
+pub fn isJust<T>(input: Option<T>) -> bool {
+    input.is_some()
+}
+
+pub fn null<T>(input: Vec<T>) -> bool {
+    input.is_empty()
+}
+
+pub fn lines(input: String) -> Vec<String> {
+    input.lines().map(|x| x.to_string()).collect()
+}
+
+pub fn unlines(input: Vec<String>) -> String {
+    input.join("\n")
+}
+
+pub fn ord(input: char) -> isize {
+    input as isize
+}
+
+pub fn isAscii(input: char) -> bool {
+    // TODO
+    false
+}
+
+pub fn isPrint(input: char) -> bool {
+    // TODO
+    false
+}
+
+pub fn isOctDigit(input: char) -> bool {
+    // TODO
+    false
+}
 
 
+
+
+// ShowS
+
+// This is wrong, obviously, but passing around lambdas is hard
+pub struct ShowS(pub String);
+
+
+
+// BSC
+
+pub mod BSC {
+    pub fn head(input: Vec<char>) -> char {
+        input[0]
+    }
+
+    pub fn tail(input: Vec<char>) -> char {
+        input[input.len() - 1]
+    }
+
+    pub fn null() -> Vec<char> {
+        vec![]
+    }
+
+    pub fn lines(input: Vec<char>) -> Vec<Vec<char>> {
+        //TODO
+        vec![]
+    }
+}
 
 
 

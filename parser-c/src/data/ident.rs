@@ -14,6 +14,7 @@ use corollary_support::*;
 
 use data::position::*;
 use data::node::*;
+use data::name::Name;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum SUERef {

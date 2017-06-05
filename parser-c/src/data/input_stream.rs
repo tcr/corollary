@@ -18,7 +18,7 @@ pub fn takeByte(bs: InputStream) -> (Word8, InputStream) {
     seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
 }
 
-pub fn takeChar(bs: InputStream) -> (Char, InputStream) {
+pub fn takeChar(bs: InputStream) -> (char, InputStream) {
     seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
 }
 
@@ -26,7 +26,7 @@ pub fn inputStreamEmpty() -> bool {
     BSW::null
 }
 
-pub fn takeChars(n: isize, bstr: InputStream) -> Vec<Char> {
+pub fn takeChars(n: isize, bstr: InputStream) -> Vec<char> {
     BSC::unpack(BSC::take(n, bstr))
 }
 
