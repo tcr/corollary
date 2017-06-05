@@ -11,7 +11,7 @@ use corollary_support::*;
 // use Data::Generics;
 
 use data::name::Name;
-use data::position::{Position, PosLength};
+use data::position::*;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum NodeInfo {
@@ -59,7 +59,7 @@ pub fn posOfNode(ni: NodeInfo) -> Position {
 
 pub fn fileOfNode() -> Option<FilePath> {
 
-    fmap(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
+    __fmap!(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
 }
 
 pub fn eqByName<a>(obj1: a, obj2: a) -> bool {

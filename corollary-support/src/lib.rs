@@ -175,6 +175,11 @@ pub fn __op_tuple2<A, B>(left: A, right: B) -> (A, B) {
     (left, right)
 }
 
+pub fn not(left: bool) -> bool {
+    !left
+}
+
+
 
 
 

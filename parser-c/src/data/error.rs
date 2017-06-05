@@ -9,6 +9,8 @@ use corollary_support::*;
 // use Language::C::Data::Node;
 // use Language::C::Data::Position;
 
+use data::position::*;
+
 #[derive(Eq, Ord)]
 pub enum ErrorLevel {
     LevelWarn,

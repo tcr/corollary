@@ -7,6 +7,8 @@ use corollary_support::*;
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Analysis::SemRep;
 
+use analysis::sem_rep::*;
+
 pub fn arithmeticConversion(_0: TypeName, _1: TypeName) -> Option<TypeName> {
     match (_0, _1) {
         (TyComplex(t1), TyComplex(t2)) => Some(TyComplex(floatConversion(t1, t2))),

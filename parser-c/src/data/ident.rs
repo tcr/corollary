@@ -12,6 +12,9 @@ use corollary_support::*;
 // use Name;
 // use Data::Generics;
 
+use data::position::*;
+use data::node::*;
+
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum SUERef {
     AnonymousRef(Name),
