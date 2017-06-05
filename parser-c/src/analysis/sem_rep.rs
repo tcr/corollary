@@ -13,6 +13,8 @@ use corollary_support::*;
 // use Data::Maybe;
 // use Data::Generics;
 
+use data::ident::*;
+
 #[derive(Clone, Debug)]
 pub enum TagDef {
     CompDef(CompType),

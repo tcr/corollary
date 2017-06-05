@@ -136,6 +136,45 @@ pub fn union<A: PartialEq>(mut left: Vec<A>, right: Vec<A>) -> Vec<A> {
     left
 }
 
+pub fn toInteger<T: Display>(left: T) -> isize {
+    // TODO
+    0
+}
+
+pub fn fromInteger(left: isize) -> String {
+    // TODO
+    "".to_string()
+}
+
+pub fn shiftL(l: isize, r: isize) -> isize {
+    l << r
+}
+
+pub fn shiftR(l: isize, r: isize) -> isize {
+    l >> r
+}
+
+pub fn fromEnum(arg: bool) -> String {
+    //TODO
+    "WHAT".to_string()
+}
+
+pub fn __op_dotted_and(l: isize, r: isize) -> isize {
+    l & r
+}
+
+pub fn __op_dotted_or(l: isize, r: isize) -> isize {
+    l | r
+}
+
+pub fn __op_assign_div(l: isize, r: isize) -> isize {
+    l / r
+}
+
+pub fn __op_tuple2<A, B>(left: A, right: B) -> (A, B) {
+    (left, right)
+}
+
 
 
 

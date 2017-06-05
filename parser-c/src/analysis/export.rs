@@ -55,44 +55,46 @@ pub fn exportTypeDef(TypeDef(ident, ty, attrs, node_info): TypeDef) -> CDecl {
 
 pub fn exportType(ty: Type) -> (Vec<CDeclSpec>, Vec<CDerivedDeclr>) {
 
-    let exportTy = |_0, _1| match (_0, _1) {
-        (dd, PtrType(ity, tyquals, attrs)) => {
-            let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
+    fn exportTy (_0: Vec<CDeclSpec>, _1: Type) {
+        match (_0, _1) {
+            (dd, PtrType(ity, tyquals, attrs)) => {
+                let ptr_declr = CPtrDeclr((exportTypeQualsAttrs(tyquals, attrs)), ni);
 
-            exportTy((__op_concat(ptr_declr, dd)), ity)
-        }
-        (dd, ArrayType(ity, array_sz, tyquals, attrs)) => {
-            let arr_declr = CArrDeclr((exportTypeQualsAttrs(tyquals, attrs)),
-                                      (exportArraySize(array_sz)),
-                                      ni);
+                exportTy((__op_concat(ptr_declr, dd)), ity)
+            }
+            (dd, ArrayType(ity, array_sz, tyquals, attrs)) => {
+                let arr_declr = CArrDeclr((exportTypeQualsAttrs(tyquals, attrs)),
+                                        (exportArraySize(array_sz)),
+                                        ni);
 
-            exportTy((__op_concat(arr_declr, dd)), ity)
-        }
-        (dd, FunctionType(FunType(ity, params, variadic), attrs)) => {
-            let fun_declr = CFunDeclr((Right((__map!(exportParamDecl, params), variadic))),
-                                      (exportAttrs(attrs)),
-                                      ni);
+                exportTy((__op_concat(arr_declr, dd)), ity)
+            }
+            (dd, FunctionType(FunType(ity, params, variadic), attrs)) => {
+                let fun_declr = CFunDeclr((Right((__map!(exportParamDecl, params), variadic))),
+                                        (exportAttrs(attrs)),
+                                        ni);
 
-            exportTy((__op_concat(fun_declr, dd)), ity)
-        }
-        (dd, FunctionType(FunTypeIncomplete(ity), attrs)) => {
-            let fun_declr = CFunDeclr((Right((vec![], false))), (exportAttrs(attrs)), ni);
+                exportTy((__op_concat(fun_declr, dd)), ity)
+            }
+            (dd, FunctionType(FunTypeIncomplete(ity), attrs)) => {
+                let fun_declr = CFunDeclr((Right((vec![], false))), (exportAttrs(attrs)), ni);
 
-            exportTy((__op_concat(fun_declr, dd)), ity)
-        }
-        (dd, TypeDefType(TypeDefRef(ty_ident, _, node), quals, attrs)) => {
-            let declspecs = __op_concat(CTypeSpec((CTypeDef(ty_ident, node))),
-                                        __map!(CTypeQual, (exportTypeQualsAttrs(quals, attrs))));
+                exportTy((__op_concat(fun_declr, dd)), ity)
+            }
+            (dd, TypeDefType(TypeDefRef(ty_ident, _, node), quals, attrs)) => {
+                let declspecs = __op_concat(CTypeSpec((CTypeDef(ty_ident, node))),
+                                            __map!(CTypeQual, (exportTypeQualsAttrs(quals, attrs))));
 
-            (declspecs, reverse(dd))
-        }
-        (dd, DirectType(ity, quals, attrs)) => {
-            let declspecs = __op_addadd(__map!(CTypeQual, (exportTypeQualsAttrs(quals, attrs))),
-                                        __map!(CTypeSpec, (exportTypeSpec(ity))));
+                (declspecs, reverse(dd))
+            }
+            (dd, DirectType(ity, quals, attrs)) => {
+                let declspecs = __op_addadd(__map!(CTypeQual, (exportTypeQualsAttrs(quals, attrs))),
+                                            __map!(CTypeSpec, (exportTypeSpec(ity))));
 
-            (declspecs, reverse(dd))
+                (declspecs, reverse(dd))
+            }
         }
-    };
+    }
 
     exportTy(vec![], ty)
 }

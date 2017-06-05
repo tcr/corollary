@@ -16,6 +16,8 @@ use corollary_support::*;
 // use Map;
 // use Data::Map;
 
+use analysis::sem_rep::*;
+
 pub fn prettyAssocs(label: String) -> Doc {
     prettyAssocsWith(label, pretty, pretty)
 }

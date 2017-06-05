@@ -11,6 +11,9 @@ use corollary_support::*;
 // use Language::C::Data::Ident;
 // use Language::C::Data::Node;
 
+use analysis::sem_rep::*;
+use analysis::type_utils::*;
+
 pub fn builtins() -> DefTable {
 
     let doTypeDef = |d| snd(defineTypeDef((identOfTypeDef(d)), d));

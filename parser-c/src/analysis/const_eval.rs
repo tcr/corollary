@@ -24,56 +24,62 @@ use corollary_support::*;
 // use Text::PrettyPrint::HughesPJ;
 
 use analysis::sem_rep::*;
+use syntax::ast::*;
+use analysis::trav_monad::*;
+use syntax::constants::*;
+use data::ident::Ident;
+use analysis::ast_analysis::*;
+use analysis::def_table::*;
 
 pub struct MachineDesc {
-    iSize: fn(IntType) -> Integer,
-    fSize: fn(FloatType) -> Integer,
-    builtinSize: fn(BuiltinType) -> Integer,
-    ptrSize: Integer,
-    voidSize: Integer,
-    iAlign: fn(IntType) -> Integer,
-    fAlign: fn(FloatType) -> Integer,
-    builtinAlign: fn(BuiltinType) -> Integer,
-    ptrAlign: Integer,
-    voidAlign: Integer,
+    iSize: fn(IntType) -> isize,
+    fSize: fn(FloatType) -> isize,
+    builtinSize: fn(BuiltinType) -> isize,
+    ptrSize: isize,
+    voidSize: isize,
+    iAlign: fn(IntType) -> isize,
+    fAlign: fn(FloatType) -> isize,
+    builtinAlign: fn(BuiltinType) -> isize,
+    ptrAlign: isize,
+    voidAlign: isize,
 }
-fn iSize(a: MachineDesc) -> fn(IntType) -> Integer {
+fn iSize(a: MachineDesc) -> fn(IntType) -> isize {
     a.iSize
 }
-fn fSize(a: MachineDesc) -> fn(FloatType) -> Integer {
+fn fSize(a: MachineDesc) -> fn(FloatType) -> isize {
     a.fSize
 }
-fn builtinSize(a: MachineDesc) -> fn(BuiltinType) -> Integer {
+fn builtinSize(a: MachineDesc) -> fn(BuiltinType) -> isize {
     a.builtinSize
 }
-fn ptrSize(a: MachineDesc) -> Integer {
+fn ptrSize(a: MachineDesc) -> isize {
     a.ptrSize
 }
-fn voidSize(a: MachineDesc) -> Integer {
+fn voidSize(a: MachineDesc) -> isize {
     a.voidSize
 }
-fn iAlign(a: MachineDesc) -> fn(IntType) -> Integer {
+fn iAlign(a: MachineDesc) -> fn(IntType) -> isize {
     a.iAlign
 }
-fn fAlign(a: MachineDesc) -> fn(FloatType) -> Integer {
+fn fAlign(a: MachineDesc) -> fn(FloatType) -> isize {
     a.fAlign
 }
-fn builtinAlign(a: MachineDesc) -> fn(BuiltinType) -> Integer {
+fn builtinAlign(a: MachineDesc) -> fn(BuiltinType) -> isize {
     a.builtinAlign
 }
-fn ptrAlign(a: MachineDesc) -> Integer {
+fn ptrAlign(a: MachineDesc) -> isize {
     a.ptrAlign
 }
-fn voidAlign(a: MachineDesc) -> Integer {
+fn voidAlign(a: MachineDesc) -> isize {
     a.voidAlign
 }
 
-pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
+pub fn intExpr(n: n, i: isize) -> m<CExpr> {
     __op_bind(genName,
-              |name| CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name)))))
+              |name| CConst(CIntConst((cisize(i)), (mkNodeInfo((posOf(n)), name)))))
 }
 
-pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
+pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<isize> {
     match (_0, _1, _2) {
         (md, _, DirectType(TyVoid, _, _)) => voidSize(md),
         (md, _, DirectType(TyIntegral(it), _, _)) => iSize(md, it),
@@ -95,7 +101,7 @@ pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
                         {
                             let s = sizeofType(md, n, bt);
 
-                            (getCInteger(i) * s)
+                            (getCisize(i) * s)
                         }
                     }
                     _ => ptrSize(md),
@@ -107,7 +113,7 @@ pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     }
 }
 
-pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
+pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<isize> {
     match (_0, _1, _2) {
         (md, _, DirectType(TyVoid, _, _)) => voidAlign(md),
         (md, _, DirectType(TyIntegral(it), _, _)) => iAlign(md, it),
@@ -127,7 +133,7 @@ pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     }
 }
 
-pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
+pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<isize> {
     /*do*/
     {
         let dt = getDefTable;
@@ -156,7 +162,7 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
     }
 }
 
-pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
+pub fn intOp(_0: CBinaryOp, _1: isize, _2: isize) -> isize {
     match (_0, _1, _2) {
         (CAddOp, i1, i2) => (i1 + i2),
         (CSubOp, i1, i2) => (i1 - i2),
@@ -183,7 +189,7 @@ pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
     }
 }
 
-pub fn intUnOp(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
+pub fn intUnOp(_0: CUnaryOp, _1: isize) -> Option<isize> {
     match (_0, _1) {
         (CPlusOp, i) => Some(i),
         (CMinOp, i) => Some(-(i)),
@@ -193,7 +199,7 @@ pub fn intUnOp(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
     }
 }
 
-pub fn withWordBytes(bytes: isize, n: Integer) -> Integer {
+pub fn withWordBytes(bytes: isize, n: isize) -> isize {
     rem(n, (shiftL(1, (shiftL(bytes, 3)))))
 }
 
@@ -206,7 +212,7 @@ pub fn boolValue(_0: CExpr) -> Option<bool> {
     }
 }
 
-pub fn intValue(_0: CExpr) -> Option<Integer> {
+pub fn intValue(_0: CExpr) -> Option<isize> {
     match (_0) {
         CConst(CIntConst(i, _)) => Some(getCInteger(i)),
         CConst(CCharConst(c, _)) => Some(getCCharAsInt(c)),

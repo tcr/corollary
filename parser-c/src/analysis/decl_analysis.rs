@@ -26,6 +26,12 @@ use corollary_support::*;
 // use Text::PrettyPrint::HughesPJ;
 
 use analysis::sem_rep::*;
+use syntax::ast::*;
+use analysis::trav_monad::*;
+use analysis::sem_rep::*;
+use data::node::*;
+use analysis::sem_error::*; 
+use data::ident::*;
 
 pub fn tParamDecl(_0: CDecl) -> m<ParamDecl> {
     match (_0) {
@@ -402,9 +408,9 @@ pub fn tEnumType(sue_ref: SUERef,
         (memo_q, Enumerator(ident, expr, ty, (nodeInfo(ident))))
     };
 
-    pub fn nextEnrExpr(_0: Either<Integer, (Expr, Integer)>,
+    pub fn nextEnrExpr(_0: Either<isize, (Expr, isize)>,
                        _1: Option<CExpr>)
-                       -> (Either<Integer, (Expr, Integer)>, CExpr) {
+                       -> (Either<isize, (Expr, isize)>, CExpr) {
         match (_0, _1) {
             (Left(i), None) => (Left((succ(i))), intExpr(i)),
             (Right((e, offs)), None) => (Right((e, succ(offs))), offsExpr(e, offs)),
@@ -496,10 +502,10 @@ pub fn tArraySize(_0: CArrSize) -> m<ArraySize> {
 pub fn tTypeQuals() -> m<(TypeQuals, Attributes)> {
 
     let go = |_0, _1| match (_0, _1) {
-        (CConstQual(_), (tq, attrs)) => (tq { constant: true }, attrs),
-        (CVolatQual(_), (tq, attrs)) => (tq { volatile: true }, attrs),
-        (CRestrQual(_), (tq, attrs)) => (tq { restrict: true }, attrs),
-        (CAtomicQual(_), (tq, attrs)) => (tq { atomic: true }, attrs),
+        (CConstQual(_), (tq, attrs)) => (__assign!(tq, TODO { constant: true }), attrs),
+        (CVolatQual(_), (tq, attrs)) => (__assign!(tq, TODO { volatile: true }), attrs),
+        (CRestrQual(_), (tq, attrs)) => (__assign!(tq, TODO { restrict: true }), attrs),
+        (CAtomicQual(_), (tq, attrs)) => (__assign!(tq, TODO { atomic: true }), attrs),
         (CAttrQual(attr), (tq, attrs)) => {
             liftM((|attr_q| (tq, __op_concat(attr_q, attrs))), (tAttr(attr)))
         }

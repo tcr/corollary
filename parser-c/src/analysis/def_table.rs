@@ -18,6 +18,7 @@ use analysis::sem_rep::*;
 use data::ident::Ident;
 use analysis::name_space_map::mergeNameSpace;
 use data::name::Name;
+use data::ident::*;
 
 pub type IdentEntry = Either<TypeDef, IdentDecl>;
 
@@ -324,7 +325,7 @@ pub fn lookupTagInner(sue_ref: SUERef, deftbl: DefTable) -> Option<TagEntry> {
 }
 
 pub fn insertType(dt: DefTable, n: Name, t: Type) -> DefTable {
-    dt { typeTable: IntMap::insert((nameId(n)), t, (typeTable(dt))) }
+    __assign!(dt, TODO { typeTable: IntMap::insert((nameId(n)), t, (typeTable(dt))) })
 }
 
 pub fn lookupType(dt: DefTable, n: Name) -> Option<Type> {

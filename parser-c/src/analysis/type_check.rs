@@ -28,6 +28,9 @@ use syntax::ast::*;
 use analysis::sem_rep::*;
 use syntax::constants::*;
 use data::node;
+use analysis::type_utils::*;
+use analysis::trav_monad::*;
+use data::ident::*;
 
 pub fn pType() -> String {
     render(pretty)

@@ -25,6 +25,7 @@ use corollary_support::*;
 
 use data::name::newNameSupply;
 use analysis::def_table::*;
+use analysis::sem_rep::*;
 
 pub fn checkRedef(subject: String, new_decl: t, redecl_status: DeclarationStatus<t1>) -> m<()> {
     match redecl_status {

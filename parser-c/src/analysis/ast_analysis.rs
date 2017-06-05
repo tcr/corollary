@@ -34,10 +34,14 @@ use syntax::ast::*;
 use analysis::sem_rep::*;
 use analysis::trav_monad::*;
 use analysis::def_table::*;
-use analysis::decl_analysis::{StorageSpec, StaticSpec, ExternSpec, analyseVarDecl_q, VarDeclInfo};
+use analysis::decl_analysis::{analyseTypeDecl, analyseTypeDef, StorageSpec, StaticSpec, ExternSpec, analyseVarDecl_q, VarDeclInfo};
 use data::node::NodeInfo;
 use data::ident::Ident;
 use analysis::type_utils::*;
+use analysis::type_check::*;
+use analysis::sem_error::*;
+use syntax::ops::*;
+use analysis::const_eval::*;
 
 pub fn analyseAST(CTranslationUnit(decls, _file_node): CTranslUnit) -> GlobalDecls {
 
@@ -730,6 +734,18 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
         (ctx, side, CGenericSelection(expr, list, ni)) => {
             /*do*/
             {
+                // analyseAssoc (mdecl,expr') = do
+                // tDecl <- mapM analyseTypeDecl mdecl
+                // tExpr'' <- tExpr ctx side expr'
+                // return (tDecl, tExpr'')
+                // typesMatch (DirectType tn1 _ _) (DirectType tn2 _ _) = directTypesMatch tn1 tn2
+                // typesMatch _ _ = False -- not fully supported
+                // directTypesMatch TyVoid TyVoid = True
+                // directTypesMatch (TyIntegral t1) (TyIntegral t2) = t1 == t2
+                // directTypesMatch (TyFloating t1) (TyFloating t2) = t1 == t2
+                // directTypesMatch (TyComplex t1) (TyComplex t2) = t1 == t2
+                // directTypesMatch _ _ = False -- TODO: not fully supported
+                
                 let ty_sel = tExpr(ctx, side, expr);
 
                 let ty_list = mapM(analyseAssoc, list);
