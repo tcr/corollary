@@ -13,63 +13,6 @@
 
 pub type InputStream = ByteString;
 
-pub type InputStream = String;
-
-pub fn countLines() -> isize {
-    match () {
-        () => {
-            length(BSC::lines)
-        },
-        () => {
-            length(BSC::lines)
-        },
-    }
-}
-
-pub fn inputStreamEmpty() -> bool {
-    match () {
-        () => {
-            BSW::null
-        },
-        () => {
-            BSW::null
-        },
-    }
-}
-
-pub fn inputStreamFromString() -> InputStream {
-    match () {
-        () => {
-            BSC::pack
-        },
-        () => {
-            BSC::pack
-        },
-    }
-}
-
-pub fn inputStreamToString() -> String {
-    match () {
-        () => {
-            BSC::unpack
-        },
-        () => {
-            BSC::unpack
-        },
-    }
-}
-
-pub fn readInputStream() -> IO<InputStream> {
-    match () {
-        () => {
-            BSW::readFile
-        },
-        () => {
-            BSW::readFile
-        },
-    }
-}
-
 pub fn takeByte(_0: InputStream) -> (Word8, InputStream) {
     match (_0) {
         bs => {
@@ -92,6 +35,17 @@ pub fn takeChar(_0: InputStream) -> (Char, InputStream) {
     }
 }
 
+pub fn inputStreamEmpty() -> bool {
+    match () {
+        () => {
+            BSW::null
+        },
+        () => {
+            BSW::null
+        },
+    }
+}
+
 pub fn takeChars(_0: isize, _1: InputStream) -> Vec<Char> {
     match (_0, _1) {
         (n, bstr) => {
@@ -102,6 +56,52 @@ pub fn takeChars(_0: isize, _1: InputStream) -> Vec<Char> {
         },
     }
 }
+
+pub fn readInputStream() -> IO<InputStream> {
+    match () {
+        () => {
+            BSW::readFile
+        },
+        () => {
+            BSW::readFile
+        },
+    }
+}
+
+pub fn inputStreamToString() -> String {
+    match () {
+        () => {
+            BSC::unpack
+        },
+        () => {
+            BSC::unpack
+        },
+    }
+}
+
+pub fn inputStreamFromString() -> InputStream {
+    match () {
+        () => {
+            BSC::pack
+        },
+        () => {
+            BSC::pack
+        },
+    }
+}
+
+pub fn countLines() -> isize {
+    match () {
+        () => {
+            length(BSC::lines)
+        },
+        () => {
+            length(BSC::lines)
+        },
+    }
+}
+
+pub type InputStream = String;
 
 
 

@@ -17,6 +17,62 @@ pub enum CChar {
 }
 pub use self::CChar::*;
 
+pub fn showCharConst(c: Char) -> ShowS {
+    sQuote(escapeCChar(c))
+}
+
+pub fn _showWideFlag(flag: bool) -> ShowS {
+    if flag {     
+showString("L".to_string())} else {
+id
+    }
+}
+
+pub fn getCChar(_0: CChar) -> String {
+    match (_0) {
+        CChar(c, _) => {
+            vec![c]
+        },
+        CChars(cs, _) => {
+            vec![c]
+        },
+    }
+}
+
+pub fn getCCharAsInt(_0: CChar) -> Integer {
+    match (_0) {
+        CChar(c, _) => {
+            fromIntegral((fromEnum(c)))
+        },
+        CChars(_cs, _) => {
+            fromIntegral((fromEnum(c)))
+        },
+    }
+}
+
+pub fn isWideChar(_0: CChar) -> bool {
+    match (_0) {
+        CChar(_, wideFlag) => {
+            wideFlag
+        },
+        CChars(_, wideFlag) => {
+            wideFlag
+        },
+    }
+}
+
+pub fn cChar(c: Char) -> CChar {
+    CChar(c, false)
+}
+
+pub fn cChar_w(c: Char) -> CChar {
+    CChar(c, true)
+}
+
+pub fn cChars() -> CChar {
+    CChars
+}
+
 #[derive(Bounded, Clone, Debug, Enum, Eq, Ord)]
 pub enum CIntRepr {
     DecRepr,
@@ -38,48 +94,84 @@ pub use self::CIntFlag::*;
 pub struct CInteger(Integer, CIntRepr, Flags<CIntFlag>);
 
 
-#[derive(Clone, Debug, Eq, Ord)]
-pub struct CFloat(String);
+pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
 
+    let readNum = match repr {
+            DecRepr => {
+                readDec
+            },
+            HexRepr => {
+                readHex
+            },
+            OctalRepr => {
+                readOct
+            },
+        };
 
-#[derive(Clone, Debug, Eq, Ord)]
-pub struct ClangCVersion(String);
+    let mkCInt = |n, suffix| {
+        either(Left, (Right(CInteger(n, repr))), readSuffix(suffix))
+    };
 
+    let readSuffix = parseFlags(noFlags);
 
-#[derive(Clone, Debug, Eq, Ord)]
-pub struct CString(String, bool);
+    let parseFlags = |_0, _1| {
+        match (_0, _1) {
+            (flags, []) => {
+                Right(flags)
+            },
+            (flags, ['l', ['l', fs]]) => {
+                Right(flags)
+            },
+            (flags, ['L', ['L', fs]]) => {
+                Right(flags)
+            },
+            (flags, [f, fs]) => {
+                Right(flags)
+            },
+        }
+    };
 
-
-#[derive(Clone, Debug, Eq, Ord)]
-pub struct Flags<f>(Integer);
-
-
-pub fn _showWideFlag(flag: bool) -> ShowS {
-    if flag {     
-showString("L".to_string())} else {
-id
+    match readNum(__str) {
+        [(n, suffix)] => {
+            mkCInt(n, suffix)
+        },
+        parseFailed => {
+            Left(__op_addadd("Bad Integer literal: ".to_string(), show(parseFailed)))
+        },
     }
 }
 
-pub fn cChar(c: Char) -> CChar {
-    CChar(c, false)
-}
-
-pub fn cChar_w(c: Char) -> CChar {
-    CChar(c, true)
-}
-
-pub fn cChars() -> CChar {
-    CChars
-}
-
-pub fn cFloat() -> CFloat {
-    CFloat(show)
+pub fn getCInteger(CInteger(i, _, _): CInteger) -> Integer {
+    i
 }
 
 pub fn cInteger(i: Integer) -> CInteger {
     CInteger(i, DecRepr, noFlags)
 }
+
+#[derive(Clone, Debug, Eq, Ord)]
+pub struct CFloat(String);
+
+
+pub fn cFloat() -> CFloat {
+    CFloat(show)
+}
+
+pub fn readCFloat() -> CFloat {
+    CFloat
+}
+
+#[derive(Clone, Debug, Eq, Ord)]
+pub struct ClangCVersion(String);
+
+
+pub fn readClangCVersion() -> ClangCVersion {
+    ClangCVersion
+}
+
+#[derive(Clone, Debug, Eq, Ord)]
+pub struct CString(String, bool);
+
 
 pub fn cString(__str: String) -> CString {
     CString(__str, false)
@@ -89,16 +181,42 @@ pub fn cString_w(__str: String) -> CString {
     CString(__str, true)
 }
 
-pub fn clearFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
-    Flags(clearBit(k, fromEnum(flag)))
+pub fn getCString(CString(__str, _): CString) -> String {
+    __str
+}
+
+pub fn isWideString(CString(_, wideflag): CString) -> bool {
+    wideflag
 }
 
 pub fn concatCStrings(cs: Vec<CString>) -> CString {
     CString((concatMap(getCString, cs)), (any(isWideString, cs)))
 }
 
-pub fn dQuote(s: String, t: ShowS) -> ShowS {
-    __op_addadd((__op_concat('\"', s)), __op_addadd("\"".to_string(), t))
+pub fn showStringLit() -> ShowS {
+
+    dQuote(concatMap(showStringChar))
+}
+
+pub fn isAsciiSourceChar(c: Char) -> bool {
+    (isAscii(c) && isPrint(c))
+}
+
+pub fn isCChar(_0: Char) -> bool {
+    match (_0) {
+        '\\' => {
+            false
+        },
+        '\'' => {
+            false
+        },
+        '\n' => {
+            false
+        },
+        c => {
+            false
+        },
+    }
 }
 
 pub fn escapeCChar(_0: Char) -> String {
@@ -110,6 +228,30 @@ pub fn escapeCChar(_0: Char) -> String {
             "\\\'".to_string()
         },
     }
+}
+
+pub fn isSChar(_0: Char) -> bool {
+    match (_0) {
+        '\\' => {
+            false
+        },
+        '\"' => {
+            false
+        },
+        '\n' => {
+            false
+        },
+        c => {
+            false
+        },
+    }
+}
+
+pub fn showOct_q(i: isize) -> String {
+
+    let s = showOct(i, "".to_string());
+
+    __op_addadd(replicate(((3 - length(s))), '0'), s)
 }
 
 pub fn escapeChar(_0: Char) -> String {
@@ -145,196 +287,6 @@ pub fn escapeChar(_0: Char) -> String {
             "\\\\".to_string()
         },
     }
-}
-
-pub fn getCChar(_0: CChar) -> String {
-    match (_0) {
-        CChar(c, _) => {
-            vec![c]
-        },
-        CChars(cs, _) => {
-            vec![c]
-        },
-    }
-}
-
-pub fn getCCharAsInt(_0: CChar) -> Integer {
-    match (_0) {
-        CChar(c, _) => {
-            fromIntegral((fromEnum(c)))
-        },
-        CChars(_cs, _) => {
-            fromIntegral((fromEnum(c)))
-        },
-    }
-}
-
-pub fn getCInteger(CInteger(i, _, _): CInteger) -> Integer {
-    i
-}
-
-pub fn getCString(CString(__str, _): CString) -> String {
-    __str
-}
-
-pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
-    match (_0, _1) {
-        (err, []) => {
-            __error!(err)
-        },
-        (_, [x, _]) => {
-            __error!(err)
-        },
-    }
-}
-
-pub fn isAsciiSourceChar(c: Char) -> bool {
-    (isAscii(c) && isPrint(c))
-}
-
-pub fn isCChar(_0: Char) -> bool {
-    match (_0) {
-        '\\' => {
-            false
-        },
-        '\'' => {
-            false
-        },
-        '\n' => {
-            false
-        },
-        c => {
-            false
-        },
-    }
-}
-
-pub fn isSChar(_0: Char) -> bool {
-    match (_0) {
-        '\\' => {
-            false
-        },
-        '\"' => {
-            false
-        },
-        '\n' => {
-            false
-        },
-        c => {
-            false
-        },
-    }
-}
-
-pub fn isWideChar(_0: CChar) -> bool {
-    match (_0) {
-        CChar(_, wideFlag) => {
-            wideFlag
-        },
-        CChars(_, wideFlag) => {
-            wideFlag
-        },
-    }
-}
-
-pub fn isWideString(CString(_, wideflag): CString) -> bool {
-    wideflag
-}
-
-pub fn noFlags() -> Flags<f> {
-    Flags(0)
-}
-
-pub fn readCFloat() -> CFloat {
-    CFloat
-}
-
-pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
-
-    let mkCInt = |n, suffix| {
-        either(Left, (Right(CInteger(n, repr))), readSuffix(suffix))
-    };
-
-    let parseFlags = |_0, _1| {
-        match (_0, _1) {
-            (flags, []) => {
-                Right(flags)
-            },
-            (flags, ['l', ['l', fs]]) => {
-                Right(flags)
-            },
-            (flags, ['L', ['L', fs]]) => {
-                Right(flags)
-            },
-            (flags, [f, fs]) => {
-                Right(flags)
-            },
-        }
-    };
-
-    let readNum = match repr {
-            DecRepr => {
-                readDec
-            },
-            HexRepr => {
-                readHex
-            },
-            OctalRepr => {
-                readOct
-            },
-        };
-
-    let readSuffix = parseFlags(noFlags);
-
-    match readNum(__str) {
-        [(n, suffix)] => {
-            mkCInt(n, suffix)
-        },
-        parseFailed => {
-            Left(__op_addadd("Bad Integer literal: ".to_string(), show(parseFailed)))
-        },
-    }
-}
-
-pub fn readClangCVersion() -> ClangCVersion {
-    ClangCVersion
-}
-
-pub fn readOct_q(s: ReadS<isize>) -> ReadS<isize> {
-
-    let octStr = takeWhile(isOctDigit, take(3, s));
-
-    let rest = drop((length(octStr)), s);
-
-    __map!((|(i, cs)| { (i, __op_addadd(cs, rest)) }), (readOct(octStr)))
-}
-
-pub fn sQuote(s: String, t: ShowS) -> ShowS {
-    __op_addadd("\'".to_string(), __op_addadd(s, __op_addadd("\'".to_string(), t)))
-}
-
-pub fn setFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
-    Flags(setBit(k, fromEnum(flag)))
-}
-
-pub fn showCharConst(c: Char) -> ShowS {
-    sQuote(escapeCChar(c))
-}
-
-pub fn showOct_q(i: isize) -> String {
-
-    let s = showOct(i, "".to_string());
-
-    __op_addadd(replicate(((3 - length(s))), '0'), s)
-}
-
-pub fn showStringLit() -> ShowS {
-
-    dQuote(concatMap(showStringChar))
-}
-
-pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
-    testBit(k, fromEnum(flag))
 }
 
 pub fn unescapeChar(_0: String) -> (Char, String) {
@@ -513,6 +465,15 @@ pub fn unescapeChar(_0: String) -> (Char, String) {
     }
 }
 
+pub fn readOct_q(s: ReadS<isize>) -> ReadS<isize> {
+
+    let octStr = takeWhile(isOctDigit, take(3, s));
+
+    let rest = drop((length(octStr)), s);
+
+    __map!((|(i, cs)| { (i, __op_addadd(cs, rest)) }), (readOct(octStr)))
+}
+
 pub fn unescapeString(_0: String) -> String {
     match (_0) {
         [] => {
@@ -522,6 +483,45 @@ pub fn unescapeString(_0: String) -> String {
             vec![]
         },
     }
+}
+
+pub fn sQuote(s: String, t: ShowS) -> ShowS {
+    __op_addadd("\'".to_string(), __op_addadd(s, __op_addadd("\'".to_string(), t)))
+}
+
+pub fn dQuote(s: String, t: ShowS) -> ShowS {
+    __op_addadd((__op_concat('\"', s)), __op_addadd("\"".to_string(), t))
+}
+
+pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
+    match (_0, _1) {
+        (err, []) => {
+            __error!(err)
+        },
+        (_, [x, _]) => {
+            __error!(err)
+        },
+    }
+}
+
+#[derive(Clone, Debug, Eq, Ord)]
+pub struct Flags<f>(Integer);
+
+
+pub fn noFlags() -> Flags<f> {
+    Flags(0)
+}
+
+pub fn setFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
+    Flags(setBit(k, fromEnum(flag)))
+}
+
+pub fn clearFlag(flag: f, Flags(k): Flags<f>) -> Flags<f> {
+    Flags(clearBit(k, fromEnum(flag)))
+}
+
+pub fn testFlag(flag: f, Flags(k): Flags<f>) -> bool {
+    testBit(k, fromEnum(flag))
 }
 
 

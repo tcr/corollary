@@ -16,43 +16,11 @@ pub struct GCC{
 }
 fn gccPath(a: GCC) -> FilePath { a.gccPath }
 
-pub type ParseArgsState = ((Option<FilePath>, Option<FilePath>, RList<CppOption>), (RList<String>, RList<String>));
-
-pub fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
-
-    let outputFileOpt = concat(/* Expr::Generator */ Generator);
-
-    let tOption = |_0| {
-        match (_0) {
-            IncludeDir(incl) => {
-                vec!["-I".to_string(), incl]
-            },
-            Define(key, value) => {
-                vec!["-I".to_string(), incl]
-            },
-            Undefine(key) => {
-                vec!["-I".to_string(), incl]
-            },
-            IncludeFile(f) => {
-                vec!["-I".to_string(), incl]
-            },
-        }
-    };
-
-    __op_addadd((concatMap(tOption, options)), __op_addadd(outputFileOpt, __op_addadd(vec!["-E".to_string(), input_file], extra_args)))
+pub fn newGCC() -> GCC {
+    GCC
 }
 
 pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String>)> {
-
-    let getDefine = |opt| {
-        {
-            let (key, val) = break((==('=')), opt);
-
-        Define(key, (if null(val) {                 
-"".to_string()} else {
-tail(val)
-                }))        }
-    };
 
     pub fn mungeArgs(parsed: ParseArgsState, __OP__: Vec<String>, (cpp_args(__OP__, (inp, out, cpp_opts)), unparsed(__OP__, (extra, other))): Either<String, ParseArgsState>) -> Either<String, ParseArgsState> {
         match unparsed_args {
@@ -77,6 +45,16 @@ mungeArgs(((Some(cfile), out, cpp_opts), unparsed), rest)
         }
     }
 
+    let getDefine = |opt| {
+        {
+            let (key, val) = break((==('=')), opt);
+
+        Define(key, (if null(val) {                 
+"".to_string()} else {
+tail(val)
+                }))        }
+    };
+
     match mungeArgs(((None, None, RList::empty), (RList::empty, RList::empty)), args) {
         Left(err) => {
             Left(err)
@@ -93,8 +71,30 @@ mungeArgs(((Some(cfile), out, cpp_opts), unparsed), rest)
     }
 }
 
-pub fn newGCC() -> GCC {
-    GCC
+pub type ParseArgsState = ((Option<FilePath>, Option<FilePath>, RList<CppOption>), (RList<String>, RList<String>));
+
+pub fn buildCppArgs(CppArgs(options, extra_args, _tmpdir, input_file, output_file_opt): CppArgs) -> Vec<String> {
+
+    let tOption = |_0| {
+        match (_0) {
+            IncludeDir(incl) => {
+                vec!["-I".to_string(), incl]
+            },
+            Define(key, value) => {
+                vec!["-I".to_string(), incl]
+            },
+            Undefine(key) => {
+                vec!["-I".to_string(), incl]
+            },
+            IncludeFile(f) => {
+                vec!["-I".to_string(), incl]
+            },
+        }
+    };
+
+    let outputFileOpt = concat(/* Expr::Generator */ Generator);
+
+    __op_addadd((concatMap(tOption, options)), __op_addadd(outputFileOpt, __op_addadd(vec!["-E".to_string(), input_file], extra_args)))
 }
 
 

@@ -45,6 +45,51 @@ fn builtinAlign(a: MachineDesc) -> fn(BuiltinType) -> Integer { a.builtinAlign }
 fn ptrAlign(a: MachineDesc) -> Integer { a.ptrAlign }
 fn voidAlign(a: MachineDesc) -> Integer { a.voidAlign }
 
+pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
+    __op_bind(genName, |name| { CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name)))) })
+}
+
+pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
+    match (_0, _1, _2) {
+        (md, _, DirectType(TyVoid, _, _)) => {
+            voidSize(md)
+        },
+        (md, _, DirectType(TyIntegral(it), _, _)) => {
+            voidSize(md)
+        },
+        (md, _, DirectType(TyFloating(ft), _, _)) => {
+            voidSize(md)
+        },
+        (md, _, DirectType(TyComplex(ft), _, _)) => {
+            voidSize(md)
+        },
+        (md, _, DirectType(TyComp(ctr), _, _)) => {
+            voidSize(md)
+        },
+        (md, _, DirectType(TyEnum(_), _, _)) => {
+            voidSize(md)
+        },
+        (md, _, DirectType(TyBuiltin(b), _, _)) => {
+            voidSize(md)
+        },
+        (md, _, PtrType(_, _, _)) => {
+            voidSize(md)
+        },
+        (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
+            voidSize(md)
+        },
+        (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
+            voidSize(md)
+        },
+        (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
+            voidSize(md)
+        },
+        (md, _, FunctionType(_, _)) => {
+            voidSize(md)
+        },
+    }
+}
+
 pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     match (_0, _1, _2) {
         (md, _, DirectType(TyVoid, _, _)) => {
@@ -83,23 +128,6 @@ pub fn alignofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
     }
 }
 
-pub fn boolValue(_0: CExpr) -> Option<bool> {
-    match (_0) {
-        CConst(CIntConst(i, _)) => {
-            Some(__op_assign_div(getCInteger(i), 0))
-        },
-        CConst(CCharConst(c, _)) => {
-            Some(__op_assign_div(getCInteger(i), 0))
-        },
-        CConst(CStrConst(_, _)) => {
-            Some(__op_assign_div(getCInteger(i), 0))
-        },
-        _ => {
-            Some(__op_assign_div(getCInteger(i), 0))
-        },
-    }
-}
-
 pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
     /*do*/ {
         let dt = getDefTable;
@@ -131,6 +159,120 @@ pub fn compSize(md: MachineDesc, ctr: CompTypeRef) -> m<Integer> {
                 astError((nodeInfo(ctr)), "unknown composite".to_string())
             },
         }
+    }
+}
+
+pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
+    match (_0, _1, _2) {
+        (CAddOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CSubOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CMulOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CDivOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CRmdOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CShlOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CShrOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CLeOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CGrOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CLeqOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CGeqOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CEqOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CNeqOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CAndOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CXorOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (COrOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CLndOp, i1, i2) => {
+            (i1 + i2)
+        },
+        (CLorOp, i1, i2) => {
+            (i1 + i2)
+        },
+    }
+}
+
+pub fn intUnOp(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
+    match (_0, _1) {
+        (CPlusOp, i) => {
+            Some(i)
+        },
+        (CMinOp, i) => {
+            Some(i)
+        },
+        (CCompOp, i) => {
+            Some(i)
+        },
+        (CNegOp, i) => {
+            Some(i)
+        },
+        (_, _) => {
+            Some(i)
+        },
+    }
+}
+
+pub fn withWordBytes(bytes: isize, n: Integer) -> Integer {
+    rem(n, (shiftL(1, (shiftL(bytes, 3)))))
+}
+
+pub fn boolValue(_0: CExpr) -> Option<bool> {
+    match (_0) {
+        CConst(CIntConst(i, _)) => {
+            Some(__op_assign_div(getCInteger(i), 0))
+        },
+        CConst(CCharConst(c, _)) => {
+            Some(__op_assign_div(getCInteger(i), 0))
+        },
+        CConst(CStrConst(_, _)) => {
+            Some(__op_assign_div(getCInteger(i), 0))
+        },
+        _ => {
+            Some(__op_assign_div(getCInteger(i), 0))
+        },
+    }
+}
+
+pub fn intValue(_0: CExpr) -> Option<Integer> {
+    match (_0) {
+        CConst(CIntConst(i, _)) => {
+            Some(getCInteger(i))
+        },
+        CConst(CCharConst(c, _)) => {
+            Some(getCInteger(i))
+        },
+        _ => {
+            Some(getCInteger(i))
+        },
     }
 }
 
@@ -368,148 +510,6 @@ pub fn constEval(_0: MachineDesc, _1: Map::Map<Ident, CExpr>, _2: CExpr) -> m<CE
             }
         },
     }
-}
-
-pub fn intExpr(n: n, i: Integer) -> m<CExpr> {
-    __op_bind(genName, |name| { CConst(CIntConst((cInteger(i)), (mkNodeInfo((posOf(n)), name)))) })
-}
-
-pub fn intOp(_0: CBinaryOp, _1: Integer, _2: Integer) -> Integer {
-    match (_0, _1, _2) {
-        (CAddOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CSubOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CMulOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CDivOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CRmdOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CShlOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CShrOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CLeOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CGrOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CLeqOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CGeqOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CEqOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CNeqOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CAndOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CXorOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (COrOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CLndOp, i1, i2) => {
-            (i1 + i2)
-        },
-        (CLorOp, i1, i2) => {
-            (i1 + i2)
-        },
-    }
-}
-
-pub fn intUnOp(_0: CUnaryOp, _1: Integer) -> Option<Integer> {
-    match (_0, _1) {
-        (CPlusOp, i) => {
-            Some(i)
-        },
-        (CMinOp, i) => {
-            Some(i)
-        },
-        (CCompOp, i) => {
-            Some(i)
-        },
-        (CNegOp, i) => {
-            Some(i)
-        },
-        (_, _) => {
-            Some(i)
-        },
-    }
-}
-
-pub fn intValue(_0: CExpr) -> Option<Integer> {
-    match (_0) {
-        CConst(CIntConst(i, _)) => {
-            Some(getCInteger(i))
-        },
-        CConst(CCharConst(c, _)) => {
-            Some(getCInteger(i))
-        },
-        _ => {
-            Some(getCInteger(i))
-        },
-    }
-}
-
-pub fn sizeofType(_0: MachineDesc, _1: n, _2: Type) -> m<Integer> {
-    match (_0, _1, _2) {
-        (md, _, DirectType(TyVoid, _, _)) => {
-            voidSize(md)
-        },
-        (md, _, DirectType(TyIntegral(it), _, _)) => {
-            voidSize(md)
-        },
-        (md, _, DirectType(TyFloating(ft), _, _)) => {
-            voidSize(md)
-        },
-        (md, _, DirectType(TyComplex(ft), _, _)) => {
-            voidSize(md)
-        },
-        (md, _, DirectType(TyComp(ctr), _, _)) => {
-            voidSize(md)
-        },
-        (md, _, DirectType(TyEnum(_), _, _)) => {
-            voidSize(md)
-        },
-        (md, _, DirectType(TyBuiltin(b), _, _)) => {
-            voidSize(md)
-        },
-        (md, _, PtrType(_, _, _)) => {
-            voidSize(md)
-        },
-        (md, _, ArrayType(_, UnknownArraySize(_), _, _)) => {
-            voidSize(md)
-        },
-        (md, n, ArrayType(bt, ArraySize(_, sz), _, _)) => {
-            voidSize(md)
-        },
-        (md, n, TypeDefType(TypeDefRef(_, t, _), _, _)) => {
-            voidSize(md)
-        },
-        (md, _, FunctionType(_, _)) => {
-            voidSize(md)
-        },
-    }
-}
-
-pub fn withWordBytes(bytes: isize, n: Integer) -> Integer {
-    rem(n, (shiftL(1, (shiftL(bytes, 3)))))
 }
 
 

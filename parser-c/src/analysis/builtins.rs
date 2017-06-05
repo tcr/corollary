@@ -12,19 +12,25 @@
 
 pub fn builtins() -> DefTable {
 
-    let dName = |s| {
-        VarName((builtinIdent(s)), None)
+    let doTypeDef = |d| {
+        snd(defineTypeDef((identOfTypeDef(d)), d))
     };
 
     let doIdent = |d| {
         snd(defineGlobalIdent((declIdent(d)), d))
     };
 
-    let doTypeDef = |d| {
-        snd(defineTypeDef((identOfTypeDef(d)), d))
+    let dName = |s| {
+        VarName((builtinIdent(s)), None)
+    };
+
+    let param = |ty| {
+        ParamDecl((VarDecl(NoName, (DeclAttrs(noFunctionAttrs, (Auto(false)), vec![])), ty)), undefNode)
     };
 
     let fnAttrs = DeclAttrs(noFunctionAttrs, (FunLinkage(ExternalLinkage)), vec![]);
+
+    let varAttrs = DeclAttrs(noFunctionAttrs, (Static(InternalLinkage, false)), vec![]);
 
     let fnType = |r, __as| {
         FunctionType((FunType(r, (__map!(param, __as)), false)), noAttributes)
@@ -41,6 +47,16 @@ pub fn builtins() -> DefTable {
     let func_q = |n, r, __as| {
         Declaration((Decl((VarDecl((dName(n)), fnAttrs, (fnType_q(r, __as)))), undefNode)))
     };
+
+    let var = |n, t| {
+        Declaration((Decl((VarDecl((dName(n)), varAttrs, t)), undefNode)))
+    };
+
+    let typedef = |n, t| {
+        TypeDef((builtinIdent(n)), t, vec![], undefNode)
+    };
+
+    let typedefs = vec![typedef("__builtin_va_list".to_string(), valistType)];
 
     let idents = vec![
             func("__builtin_expect".to_string(), (integral(TyLong)), vec![integral(TyLong), integral(TyLong)]),
@@ -97,22 +113,6 @@ pub fn builtins() -> DefTable {
             func("__builtin___vsprintf_chk".to_string(), (integral(TyInt)), vec![charPtr, integral(TyInt), size_tType, constCharPtr, valistType]),
             func("__builtin___vsnprintf_chk".to_string(), (integral(TyInt)), vec![charPtr, size_tType, integral(TyInt), size_tType, constCharPtr, valistType]),
         ];
-
-    let param = |ty| {
-        ParamDecl((VarDecl(NoName, (DeclAttrs(noFunctionAttrs, (Auto(false)), vec![])), ty)), undefNode)
-    };
-
-    let typedef = |n, t| {
-        TypeDef((builtinIdent(n)), t, vec![], undefNode)
-    };
-
-    let typedefs = vec![typedef("__builtin_va_list".to_string(), valistType)];
-
-    let var = |n, t| {
-        Declaration((Decl((VarDecl((dName(n)), varAttrs, t)), undefNode)))
-    };
-
-    let varAttrs = DeclAttrs(noFunctionAttrs, (Static(InternalLinkage, false)), vec![]);
 
     foldr(doIdent, (foldr(doTypeDef, emptyDefTable, typedefs)), idents)
 }

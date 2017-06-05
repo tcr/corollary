@@ -124,6 +124,34 @@ pub enum CDeclarationSpecifier<a> {
 }
 pub use self::CDeclarationSpecifier::*;
 
+pub fn partitionDeclSpecs<a>() -> (Vec<CStorageSpecifier<a>>, Vec<CAttribute<a>>, Vec<CTypeQualifier<a>>, Vec<CTypeSpecifier<a>>, Vec<CFunctionSpecifier<a>>, Vec<CAlignmentSpecifier<a>>) {
+
+    let deals = |_0, _1| {
+        match (_0, _1) {
+            (CStorageSpec(sp), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CTypeQual(CAttrQual(attr)), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CTypeQual(tq), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CTypeSpec(ts), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CFunSpec(fs), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+            (CAlignSpec(__as), (sts, ats, tqs, tss, fss, ass)) => {
+                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            },
+        }
+    };
+
+    foldr(deals, (vec![], vec![], vec![], vec![], vec![], vec![]))
+}
+
 pub type CStorageSpec = CStorageSpecifier<NodeInfo>;
 
 #[derive(Clone, Debug, Eq, Ord)]
@@ -161,6 +189,20 @@ pub enum CTypeSpecifier<a> {
     CAtomicType(CDeclaration<a>, a)
 }
 pub use self::CTypeSpecifier::*;
+
+pub fn isSUEDef<a>(_0: CTypeSpecifier<a>) -> bool {
+    match (_0) {
+        CSUType(CStruct(_, _, Some(_), _, _), _) => {
+            true
+        },
+        CEnumType(CEnum(_, Some(_), _, _), _) => {
+            true
+        },
+        _ => {
+            true
+        },
+    }
+}
 
 pub type CTypeQual = CTypeQualifier<NodeInfo>;
 
@@ -221,6 +263,10 @@ pub enum CInitializer<a> {
     CInitList(CInitializerList<a>, a)
 }
 pub use self::CInitializer::*;
+
+pub fn fmapInitList<a, b>(_f: fn(a) -> b) -> CInitializerList<b> {
+    __map!((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
+}
 
 pub type CInitList = CInitializerList<NodeInfo>;
 
@@ -302,54 +348,8 @@ pub fn cstringOfLit<a>(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
     cstr
 }
 
-pub fn fmapInitList<a, b>(_f: fn(a) -> b) -> CInitializerList<b> {
-    __map!((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
-}
-
-pub fn isSUEDef<a>(_0: CTypeSpecifier<a>) -> bool {
-    match (_0) {
-        CSUType(CStruct(_, _, Some(_), _, _), _) => {
-            true
-        },
-        CEnumType(CEnum(_, Some(_), _, _), _) => {
-            true
-        },
-        _ => {
-            true
-        },
-    }
-}
-
 pub fn liftStrLit<a>(CStrLit(__str, at): CStringLiteral<a>) -> CConstant<a> {
     CStrConst(__str, at)
-}
-
-pub fn partitionDeclSpecs<a>() -> (Vec<CStorageSpecifier<a>>, Vec<CAttribute<a>>, Vec<CTypeQualifier<a>>, Vec<CTypeSpecifier<a>>, Vec<CFunctionSpecifier<a>>, Vec<CAlignmentSpecifier<a>>) {
-
-    let deals = |_0, _1| {
-        match (_0, _1) {
-            (CStorageSpec(sp), (sts, ats, tqs, tss, fss, ass)) => {
-                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
-            },
-            (CTypeQual(CAttrQual(attr)), (sts, ats, tqs, tss, fss, ass)) => {
-                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
-            },
-            (CTypeQual(tq), (sts, ats, tqs, tss, fss, ass)) => {
-                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
-            },
-            (CTypeSpec(ts), (sts, ats, tqs, tss, fss, ass)) => {
-                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
-            },
-            (CFunSpec(fs), (sts, ats, tqs, tss, fss, ass)) => {
-                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
-            },
-            (CAlignSpec(__as), (sts, ats, tqs, tss, fss, ass)) => {
-                (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
-            },
-        }
-    };
-
-    foldr(deals, (vec![], vec![], vec![], vec![], vec![], vec![]))
 }
 
 

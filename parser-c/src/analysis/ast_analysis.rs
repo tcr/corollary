@@ -29,24 +29,6 @@
 // use Data::Foldable;
 // use mapM_;
 
-pub enum StmtCtx {
-    FunCtx(VarDecl),
-    LoopCtx,
-    SwitchCtx
-}
-pub use self::StmtCtx::*;
-
-#[derive(Debug, Eq)]
-pub enum ExprSide {
-    LValue,
-    RValue
-}
-pub use self::ExprSide::*;
-
-pub fn advanceDesigList(ds: Vec<CDesignator>, d: CDesignator) -> Vec<CDesignator> {
-    drop(1, dropWhile((not(matchDesignator(d))), ds))
-}
-
 pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls> {
 
     let mapRecoverM_ = |f| {
@@ -57,17 +39,6 @@ pub fn analyseAST(CTranslUnit(decls, _file_node): CTranslUnit) -> m<GlobalDecls>
         mapRecoverM_(analyseExt, decls);
         __op_bind(getDefTable, |dt| { if !((inFileScope(dt))) { __error!("Internal Error: Not in filescope after analysis".to_string()) } });
         liftM(globalDefs, getDefTable)
-    }
-}
-
-pub fn analyseDecl(_0: bool, _1: CDecl) -> m<()> {
-    match (_0, _1) {
-        (_is_local, CStaticAssert(_expr, _strlit, _annot)) => {
-            ()
-        },
-        (is_local, decl, __OP__, CDecl(declspecs, declrs, node)) => {
-            ()
-        },
     }
 }
 
@@ -119,6 +90,176 @@ pub fn analyseFunDef(CFunDef(declspecs, declr, oldstyle_decls, stmt, node_info):
     }
 }
 
+pub fn voidM<a>(m: m<a>) -> m<()> {
+    __op_rshift(m, ())
+}
+
+pub fn analyseDecl(_0: bool, _1: CDecl) -> m<()> {
+    match (_0, _1) {
+        (_is_local, CStaticAssert(_expr, _strlit, _annot)) => {
+            ()
+        },
+        (is_local, decl, __OP__, CDecl(declspecs, declrs, node)) => {
+            ()
+        },
+    }
+}
+
+pub fn analyseTypeDef(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, node_info: NodeInfo) -> m<()> {
+
+    /*do*/ {
+        let VarDeclInfo(name, fun_attrs, storage_spec, attrs, ty, _node) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], None);
+
+        checkValidTypeDef(fun_attrs, storage_spec, attrs);
+        if (isNoName(name)) { astError(node_info, "NoName in analyseTypeDef".to_string()) };
+        let ident = identOfVarName(name);
+
+        handleTypeDef((TypeDef(ident, ty, attrs, node_info)))
+    }
+}
+
+pub fn computeFunDefStorage(_0: Ident, _1: StorageSpec) -> m<Storage> {
+    match (_0, _1) {
+        (_, StaticSpec(_)) => {
+            FunLinkage(InternalLinkage)
+        },
+        (ident, other_spec) => {
+            FunLinkage(InternalLinkage)
+        },
+    }
+}
+
+pub fn getParams(_0: Type) -> Option<Vec<ParamDecl>> {
+    match (_0) {
+        FunctionType(FunType(_, params, _), _) => {
+            Some(params)
+        },
+        _ => {
+            Some(params)
+        },
+    }
+}
+
+pub fn extFunProto(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, ty, node_info): VarDeclInfo) -> m<()> {
+
+    let funDeclLinkage = |old_fun| {
+        match storage_spec {
+            NoStorageSpec => {
+                FunLinkage(ExternalLinkage)
+            },
+            StaticSpec(false) => {
+                FunLinkage(InternalLinkage)
+            },
+            ExternSpec(false) => {
+                match old_fun {
+                    None => {
+                        FunLinkage(ExternalLinkage)
+                    },
+                    Some(f) => {
+                        declStorage(f)
+                    },
+                }
+            },
+            _ => {
+                __error!(__op_addadd("funDeclLinkage: ".to_string(), show(storage_spec)))
+            },
+        }
+    };
+
+    /*do*/ {
+        if (isNoName(var_name)) { astError(node_info, "NoName in extFunProto".to_string()) };
+        let old_fun = lookupObject((identOfVarName(var_name)));
+
+        checkValidSpecs;
+        let decl = VarDecl(var_name, (DeclAttrs(fun_spec, (funDeclLinkage(old_fun)), attrs)), ty);
+
+        handleVarDecl(false, (Decl(decl, node_info)));
+        enterPrototypeScope;
+        maybe((()), (mapM_(handleParamDecl)), (getParams(ty)));
+        leavePrototypeScope
+    }
+}
+
+pub fn extVarDecl(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
+
+    let ident = identOfVarName(var_name);
+
+    let hasFunDef = |dt| {
+        any((isFuncDef(snd)), (Map::toList(gObjs(globalDefs(dt)))))
+    };
+
+    let isFuncDef = |_0| {
+        match (_0) {
+            FunctionDef(fd) => {
+                not((isInline(functionAttrs))(fd))
+            },
+            _ => {
+                not((isInline(functionAttrs))(fd))
+            },
+        }
+    };
+
+    /*do*/ {
+        if (isNoName(var_name)) { astError(node_info, "NoName in extVarDecl".to_string()) };
+        let (storage, is_def) = globalStorage(storage_spec);
+
+        let vardecl = VarDecl(var_name, (DeclAttrs(fun_spec, storage, attrs)), typ);
+
+        if is_def { handleObjectDef(false, ident, ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, false, Decl(vardecl, node_info))) }
+    }
+}
+
+pub fn localVarDecl(VarDeclInfo(var_name, fun_attrs, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
+
+    let ident = identOfVarName(var_name);
+
+    let localStorage = |_0| {
+        match (_0) {
+            NoStorageSpec => {
+                (Auto(false), true)
+            },
+            ThreadSpec => {
+                (Auto(false), true)
+            },
+            RegSpec => {
+                (Auto(false), true)
+            },
+            StaticSpec(thread_local) => {
+                (Auto(false), true)
+            },
+            ExternSpec(thread_local) => {
+                (Auto(false), true)
+            },
+            _ => {
+                (Auto(false), true)
+            },
+        }
+    };
+
+    /*do*/ {
+        if (isNoName(var_name)) { astError(node_info, "NoName in localVarDecl".to_string()) };
+        let (storage, is_def) = localStorage(storage_spec);
+
+        let vardecl = VarDecl(var_name, (DeclAttrs(fun_attrs, storage, attrs)), typ);
+
+        if is_def {         
+handleObjectDef(true, ident, (ObjDef(vardecl, init_opt, node_info)))} else {
+handleVarDecl(true, (Decl(vardecl, node_info)))
+        }
+    }
+}
+
+pub fn defineParams(ni: NodeInfo, decl: VarDecl) -> m<()> {
+    match getParams((declType(decl))) {
+        None => {
+            astError(ni, "expecting complete function type in function definition".to_string())
+        },
+        Some(params) => {
+            mapM_(handleParamDecl, params)
+        },
+    }
+}
+
 pub fn analyseFunctionBody(_0: NodeInfo, _1: VarDecl, _2: CStat, _3: m<Stmt>) -> m<Stmt> {
     match (_0, _1, _2, _3, _4) {
         (node_info, decl, s, __OP__, CCompound(localLabels, items, _)) => {
@@ -144,72 +285,138 @@ pub fn analyseFunctionBody(_0: NodeInfo, _1: VarDecl, _2: CStat, _3: m<Stmt>) ->
     }
 }
 
-pub fn analyseTypeDef(handle_sue_def: bool, declspecs: Vec<CDeclSpec>, declr: CDeclr, node_info: NodeInfo) -> m<()> {
+pub enum StmtCtx {
+    FunCtx(VarDecl),
+    LoopCtx,
+    SwitchCtx
+}
+pub use self::StmtCtx::*;
 
-    /*do*/ {
-        let VarDeclInfo(name, fun_attrs, storage_spec, attrs, ty, _node) = analyseVarDecl_q(handle_sue_def, declspecs, declr, vec![], None);
-
-        checkValidTypeDef(fun_attrs, storage_spec, attrs);
-        if (isNoName(name)) { astError(node_info, "NoName in analyseTypeDef".to_string()) };
-        let ident = identOfVarName(name);
-
-        handleTypeDef((TypeDef(ident, ty, attrs, node_info)))
+pub fn enclosingFunctionType(_0: Vec<StmtCtx>) -> Option<Type> {
+    match (_0) {
+        [] => {
+            None
+        },
+        [FunCtx(vd), _] => {
+            None
+        },
+        [_, cs] => {
+            None
+        },
     }
 }
 
-pub fn builtinType(_0: CBuiltin) -> m<Type> {
-    match (_0) {
-        CBuiltinVaArg(_, d, _) => {
-            analyseTypeDecl(d)
+pub fn inLoop(c: Vec<StmtCtx>) -> bool {
+
+    let isLoop = |_0| {
+        match (_0) {
+            LoopCtx => {
+                true
+            },
+            _ => {
+                true
+            },
+        }
+    };
+
+    any(isLoop, c)
+}
+
+pub fn inSwitch(c: Vec<StmtCtx>) -> bool {
+
+    let isSwitch = |_0| {
+        match (_0) {
+            SwitchCtx => {
+                true
+            },
+            _ => {
+                true
+            },
+        }
+    };
+
+    any(isSwitch, c)
+}
+
+#[derive(Debug, Eq)]
+pub enum ExprSide {
+    LValue,
+    RValue
+}
+pub use self::ExprSide::*;
+
+pub fn tStmt(_0: Vec<StmtCtx>, _1: CStat) -> m<Type> {
+    match (_0, _1) {
+        (c, CLabel(_, s, _, _)) => {
+            tStmt(c, s)
         },
-        CBuiltinOffsetOf(_, _, _) => {
-            analyseTypeDecl(d)
+        (c, CExpr(e, _)) => {
+            tStmt(c, s)
         },
-        CBuiltinTypesCompatible(_, _, _) => {
-            analyseTypeDecl(d)
+        (c, CCompound(ls, body, _)) => {
+            tStmt(c, s)
+        },
+        (c, CIf(e, sthen, selse, _)) => {
+            tStmt(c, s)
+        },
+        (c, CSwitch(e, s, ni)) => {
+            tStmt(c, s)
+        },
+        (c, CWhile(e, s, _, _)) => {
+            tStmt(c, s)
+        },
+        (_, CGoto(l, ni)) => {
+            tStmt(c, s)
+        },
+        (c, CCont(ni)) => {
+            tStmt(c, s)
+        },
+        (c, CBreak(ni)) => {
+            tStmt(c, s)
+        },
+        (c, CReturn(Some(e), ni)) => {
+            tStmt(c, s)
+        },
+        (_, CReturn(None, _)) => {
+            tStmt(c, s)
+        },
+        (_, CAsm(_, _)) => {
+            tStmt(c, s)
+        },
+        (c, CCase(e, s, ni)) => {
+            tStmt(c, s)
+        },
+        (c, CCases(e1, e2, s, ni)) => {
+            tStmt(c, s)
+        },
+        (c, CDefault(s, ni)) => {
+            tStmt(c, s)
+        },
+        (c, CFor(i, g, inc, s, _)) => {
+            tStmt(c, s)
+        },
+        (c, CGotoPtr(e, ni)) => {
+            tStmt(c, s)
+        },
+    }
+}
+
+pub fn tBlockItem(_0: Vec<StmtCtx>, _1: CBlockItem) -> m<Type> {
+    match (_0, _1) {
+        (c, CBlockStmt(s)) => {
+            tStmt(c, s)
+        },
+        (_, CBlockDecl(d)) => {
+            tStmt(c, s)
+        },
+        (_, CNestedFunDef(fd)) => {
+            tStmt(c, s)
         },
     }
 }
 
 pub fn checkGuard(c: Vec<StmtCtx>, e: CExpr) -> m<()> {
     __op_bind(tExpr(c, RValue, e), checkScalar_q((nodeInfo(e))))
-}
-
-pub fn checkInits(_0: Type, _1: Vec<CDesignator>, _2: CInitList) -> m<()> {
-    match (_0, _1, _2) {
-        (_, _, []) => {
-            ()
-        },
-        (t, dds, [(ds, i), is]) => {
-            ()
-        },
-    }
-}
-
-pub fn complexBaseType(ni: NodeInfo, c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m<Type> {
-    /*do*/ {
-        let t = tExpr(c, side, e);
-
-        match canonicalType(t) {
-            DirectType(TyComplex(ft), quals, attrs) => {
-                DirectType((TyFloating(ft)), quals, attrs)
-            },
-            _ => {
-                typeError(ni, __op_addadd("expected complex type, got: ".to_string(), pType(t)))
-            },
-        }
-    }
-}
-
-pub fn computeFunDefStorage(_0: Ident, _1: StorageSpec) -> m<Storage> {
-    match (_0, _1) {
-        (_, StaticSpec(_)) => {
-            FunLinkage(InternalLinkage)
-        },
-        (ident, other_spec) => {
-            FunLinkage(InternalLinkage)
-        },
-    }
 }
 
 pub fn defaultMD() -> MachineDesc {
@@ -344,278 +551,6 @@ pub fn defaultMD() -> MachineDesc {
                 } },
         ptrAlign: 4,
         voidAlign: 1
-    }
-}
-
-pub fn defineParams(ni: NodeInfo, decl: VarDecl) -> m<()> {
-    match getParams((declType(decl))) {
-        None => {
-            astError(ni, "expecting complete function type in function definition".to_string())
-        },
-        Some(params) => {
-            mapM_(handleParamDecl, params)
-        },
-    }
-}
-
-pub fn enclosingFunctionType(_0: Vec<StmtCtx>) -> Option<Type> {
-    match (_0) {
-        [] => {
-            None
-        },
-        [FunCtx(vd), _] => {
-            None
-        },
-        [_, cs] => {
-            None
-        },
-    }
-}
-
-pub fn extFunProto(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, ty, node_info): VarDeclInfo) -> m<()> {
-
-    let funDeclLinkage = |old_fun| {
-        match storage_spec {
-            NoStorageSpec => {
-                FunLinkage(ExternalLinkage)
-            },
-            StaticSpec(false) => {
-                FunLinkage(InternalLinkage)
-            },
-            ExternSpec(false) => {
-                match old_fun {
-                    None => {
-                        FunLinkage(ExternalLinkage)
-                    },
-                    Some(f) => {
-                        declStorage(f)
-                    },
-                }
-            },
-            _ => {
-                __error!(__op_addadd("funDeclLinkage: ".to_string(), show(storage_spec)))
-            },
-        }
-    };
-
-    /*do*/ {
-        if (isNoName(var_name)) { astError(node_info, "NoName in extFunProto".to_string()) };
-        let old_fun = lookupObject((identOfVarName(var_name)));
-
-        checkValidSpecs;
-        let decl = VarDecl(var_name, (DeclAttrs(fun_spec, (funDeclLinkage(old_fun)), attrs)), ty);
-
-        handleVarDecl(false, (Decl(decl, node_info)));
-        enterPrototypeScope;
-        maybe((()), (mapM_(handleParamDecl)), (getParams(ty)));
-        leavePrototypeScope
-    }
-}
-
-pub fn extVarDecl(VarDeclInfo(var_name, fun_spec, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
-
-    let hasFunDef = |dt| {
-        any((isFuncDef(snd)), (Map::toList(gObjs(globalDefs(dt)))))
-    };
-
-    let ident = identOfVarName(var_name);
-
-    let isFuncDef = |_0| {
-        match (_0) {
-            FunctionDef(fd) => {
-                not((isInline(functionAttrs))(fd))
-            },
-            _ => {
-                not((isInline(functionAttrs))(fd))
-            },
-        }
-    };
-
-    /*do*/ {
-        if (isNoName(var_name)) { astError(node_info, "NoName in extVarDecl".to_string()) };
-        let (storage, is_def) = globalStorage(storage_spec);
-
-        let vardecl = VarDecl(var_name, (DeclAttrs(fun_spec, storage, attrs)), typ);
-
-        if is_def { handleObjectDef(false, ident, ObjDef(vardecl, init_opt, node_info, else, handleVarDecl, false, Decl(vardecl, node_info))) }
-    }
-}
-
-pub fn getParams(_0: Type) -> Option<Vec<ParamDecl>> {
-    match (_0) {
-        FunctionType(FunType(_, params, _), _) => {
-            Some(params)
-        },
-        _ => {
-            Some(params)
-        },
-    }
-}
-
-pub fn hasTypeDef(declspecs: Vec<CDeclSpec>) -> Option<Vec<CDeclSpec>> {
-
-    let hasTypeDefSpec = |_0, _1| {
-        match (_0, _1) {
-            (CStorageSpec(CTypedef(_)), (_, specs)) => {
-                (true, specs)
-            },
-            (spec, (b, specs)) => {
-                (true, specs)
-            },
-        }
-    };
-
-    match foldr(hasTypeDefSpec, (false, vec![]), declspecs) {
-        (true, specs_q) => {
-            Some(specs_q)
-        },
-        (false, _) => {
-            None
-        },
-    }
-}
-
-pub fn inLoop(c: Vec<StmtCtx>) -> bool {
-
-    let isLoop = |_0| {
-        match (_0) {
-            LoopCtx => {
-                true
-            },
-            _ => {
-                true
-            },
-        }
-    };
-
-    any(isLoop, c)
-}
-
-pub fn inSwitch(c: Vec<StmtCtx>) -> bool {
-
-    let isSwitch = |_0| {
-        match (_0) {
-            SwitchCtx => {
-                true
-            },
-            _ => {
-                true
-            },
-        }
-    };
-
-    any(isSwitch, c)
-}
-
-pub fn localVarDecl(VarDeclInfo(var_name, fun_attrs, storage_spec, attrs, typ, node_info): VarDeclInfo, init_opt: Option<Initializer>) -> m<()> {
-
-    let ident = identOfVarName(var_name);
-
-    let localStorage = |_0| {
-        match (_0) {
-            NoStorageSpec => {
-                (Auto(false), true)
-            },
-            ThreadSpec => {
-                (Auto(false), true)
-            },
-            RegSpec => {
-                (Auto(false), true)
-            },
-            StaticSpec(thread_local) => {
-                (Auto(false), true)
-            },
-            ExternSpec(thread_local) => {
-                (Auto(false), true)
-            },
-            _ => {
-                (Auto(false), true)
-            },
-        }
-    };
-
-    /*do*/ {
-        if (isNoName(var_name)) { astError(node_info, "NoName in localVarDecl".to_string()) };
-        let (storage, is_def) = localStorage(storage_spec);
-
-        let vardecl = VarDecl(var_name, (DeclAttrs(fun_attrs, storage, attrs)), typ);
-
-        if is_def {         
-handleObjectDef(true, ident, (ObjDef(vardecl, init_opt, node_info)))} else {
-handleVarDecl(true, (Decl(vardecl, node_info)))
-        }
-    }
-}
-
-pub fn matchDesignator(_0: CDesignator, _1: CDesignator) -> bool {
-    match (_0, _1) {
-        (CMemberDesig(m1, _), CMemberDesig(m2, _)) => {
-            (m1 == m2)
-        },
-        (_, _) => {
-            (m1 == m2)
-        },
-    }
-}
-
-pub fn tBlockItem(_0: Vec<StmtCtx>, _1: CBlockItem) -> m<Type> {
-    match (_0, _1) {
-        (c, CBlockStmt(s)) => {
-            tStmt(c, s)
-        },
-        (_, CBlockDecl(d)) => {
-            tStmt(c, s)
-        },
-        (_, CNestedFunDef(fd)) => {
-            tStmt(c, s)
-        },
-    }
-}
-
-pub fn tDesignator(_0: Type, _1: Vec<CDesignator>) -> m<Type> {
-    match (_0, _1) {
-        (ArrayType(bt, _, _, _), [CArrDesig(e, ni), ds]) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
-        },
-        (ArrayType(bt, _, _, _), [CRangeDesig(e1, e2, ni), ds]) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
-        },
-        (ArrayType(_, _, _, _), [d, _]) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
-        },
-        (t, __OP__, DirectType(TyComp(_), _, _), [CMemberDesig(m, ni), ds]) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
-        },
-        (DirectType(TyComp(_), _, _), [d, _]) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
-        },
-        (t, []) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
-        },
-        (_t, _) => {
-            /*do*/ {
-                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
-                tDesignator(bt, ds)
-            }
-        },
     }
 }
 
@@ -940,27 +875,6 @@ pub fn tExpr_q(_0: Vec<StmtCtx>, _1: ExprSide, _2: CExpr) -> m<Type> {
     }
 }
 
-pub fn tInit(_0: Type, _1: CInit, _2: m<Initializer>) -> m<Initializer> {
-    match (_0, _1, _2, _3) {
-        (t, i, __OP__, CInitExpr(e, ni)) => {
-            /*do*/ {
-                let it = tExpr(vec![], RValue, e);
-
-                assignCompatible_q(ni, CAssignOp, t, it);
-                i
-            }
-        },
-        (t, i, __OP__, CInitList(initList, ni)) => {
-            /*do*/ {
-                let it = tExpr(vec![], RValue, e);
-
-                assignCompatible_q(ni, CAssignOp, t, it);
-                i
-            }
-        },
-    }
-}
-
 pub fn tInitList(_0: NodeInfo, _1: Type, _2: CInitList) -> m<()> {
     match (_0, _1, _2) {
         (_, ArrayType(DirectType(TyIntegral(TyChar), _, _), _, _, _), [([], CInitExpr(e, __OP__, CConst(CStrConst(_, _)), _))]) => {
@@ -984,64 +898,150 @@ pub fn tInitList(_0: NodeInfo, _1: Type, _2: CInitList) -> m<()> {
     }
 }
 
-pub fn tStmt(_0: Vec<StmtCtx>, _1: CStat) -> m<Type> {
-    match (_0, _1) {
-        (c, CLabel(_, s, _, _)) => {
-            tStmt(c, s)
+pub fn checkInits(_0: Type, _1: Vec<CDesignator>, _2: CInitList) -> m<()> {
+    match (_0, _1, _2) {
+        (_, _, []) => {
+            ()
         },
-        (c, CExpr(e, _)) => {
-            tStmt(c, s)
-        },
-        (c, CCompound(ls, body, _)) => {
-            tStmt(c, s)
-        },
-        (c, CIf(e, sthen, selse, _)) => {
-            tStmt(c, s)
-        },
-        (c, CSwitch(e, s, ni)) => {
-            tStmt(c, s)
-        },
-        (c, CWhile(e, s, _, _)) => {
-            tStmt(c, s)
-        },
-        (_, CGoto(l, ni)) => {
-            tStmt(c, s)
-        },
-        (c, CCont(ni)) => {
-            tStmt(c, s)
-        },
-        (c, CBreak(ni)) => {
-            tStmt(c, s)
-        },
-        (c, CReturn(Some(e), ni)) => {
-            tStmt(c, s)
-        },
-        (_, CReturn(None, _)) => {
-            tStmt(c, s)
-        },
-        (_, CAsm(_, _)) => {
-            tStmt(c, s)
-        },
-        (c, CCase(e, s, ni)) => {
-            tStmt(c, s)
-        },
-        (c, CCases(e1, e2, s, ni)) => {
-            tStmt(c, s)
-        },
-        (c, CDefault(s, ni)) => {
-            tStmt(c, s)
-        },
-        (c, CFor(i, g, inc, s, _)) => {
-            tStmt(c, s)
-        },
-        (c, CGotoPtr(e, ni)) => {
-            tStmt(c, s)
+        (t, dds, [(ds, i), is]) => {
+            ()
         },
     }
 }
 
-pub fn voidM<a>(m: m<a>) -> m<()> {
-    __op_rshift(m, ())
+pub fn advanceDesigList(ds: Vec<CDesignator>, d: CDesignator) -> Vec<CDesignator> {
+    drop(1, dropWhile((not(matchDesignator(d))), ds))
+}
+
+pub fn matchDesignator(_0: CDesignator, _1: CDesignator) -> bool {
+    match (_0, _1) {
+        (CMemberDesig(m1, _), CMemberDesig(m2, _)) => {
+            (m1 == m2)
+        },
+        (_, _) => {
+            (m1 == m2)
+        },
+    }
+}
+
+pub fn tDesignator(_0: Type, _1: Vec<CDesignator>) -> m<Type> {
+    match (_0, _1) {
+        (ArrayType(bt, _, _, _), [CArrDesig(e, ni), ds]) => {
+            /*do*/ {
+                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                tDesignator(bt, ds)
+            }
+        },
+        (ArrayType(bt, _, _, _), [CRangeDesig(e1, e2, ni), ds]) => {
+            /*do*/ {
+                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                tDesignator(bt, ds)
+            }
+        },
+        (ArrayType(_, _, _, _), [d, _]) => {
+            /*do*/ {
+                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                tDesignator(bt, ds)
+            }
+        },
+        (t, __OP__, DirectType(TyComp(_), _, _), [CMemberDesig(m, ni), ds]) => {
+            /*do*/ {
+                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                tDesignator(bt, ds)
+            }
+        },
+        (DirectType(TyComp(_), _, _), [d, _]) => {
+            /*do*/ {
+                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                tDesignator(bt, ds)
+            }
+        },
+        (t, []) => {
+            /*do*/ {
+                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                tDesignator(bt, ds)
+            }
+        },
+        (_t, _) => {
+            /*do*/ {
+                __op_bind(tExpr(vec![], RValue, e), checkIntegral_q(ni));
+                tDesignator(bt, ds)
+            }
+        },
+    }
+}
+
+pub fn tInit(_0: Type, _1: CInit, _2: m<Initializer>) -> m<Initializer> {
+    match (_0, _1, _2, _3) {
+        (t, i, __OP__, CInitExpr(e, ni)) => {
+            /*do*/ {
+                let it = tExpr(vec![], RValue, e);
+
+                assignCompatible_q(ni, CAssignOp, t, it);
+                i
+            }
+        },
+        (t, i, __OP__, CInitList(initList, ni)) => {
+            /*do*/ {
+                let it = tExpr(vec![], RValue, e);
+
+                assignCompatible_q(ni, CAssignOp, t, it);
+                i
+            }
+        },
+    }
+}
+
+pub fn complexBaseType(ni: NodeInfo, c: Vec<StmtCtx>, side: ExprSide, e: CExpr) -> m<Type> {
+    /*do*/ {
+        let t = tExpr(c, side, e);
+
+        match canonicalType(t) {
+            DirectType(TyComplex(ft), quals, attrs) => {
+                DirectType((TyFloating(ft)), quals, attrs)
+            },
+            _ => {
+                typeError(ni, __op_addadd("expected complex type, got: ".to_string(), pType(t)))
+            },
+        }
+    }
+}
+
+pub fn builtinType(_0: CBuiltin) -> m<Type> {
+    match (_0) {
+        CBuiltinVaArg(_, d, _) => {
+            analyseTypeDecl(d)
+        },
+        CBuiltinOffsetOf(_, _, _) => {
+            analyseTypeDecl(d)
+        },
+        CBuiltinTypesCompatible(_, _, _) => {
+            analyseTypeDecl(d)
+        },
+    }
+}
+
+pub fn hasTypeDef(declspecs: Vec<CDeclSpec>) -> Option<Vec<CDeclSpec>> {
+
+    let hasTypeDefSpec = |_0, _1| {
+        match (_0, _1) {
+            (CStorageSpec(CTypedef(_)), (_, specs)) => {
+                (true, specs)
+            },
+            (spec, (b, specs)) => {
+                (true, specs)
+            },
+        }
+    };
+
+    match foldr(hasTypeDefSpec, (false, vec![]), declspecs) {
+        (true, specs_q) => {
+            Some(specs_q)
+        },
+        (false, _) => {
+            None
+        },
+    }
 }
 
 

@@ -68,6 +68,25 @@ pub use self::Stmt::*;
 pub struct Block(Vec<Stmt>, Option<Expr>);
 
 
+pub fn pPrintBlock(_0: Doc, _1: Block) -> Doc {
+    match (_0, _1) {
+        (pre, Block([], e)) => {
+            sep(vec![
+                    __op_doc_conat(pre, text("{".to_string())),
+                    nest(4, (maybe(empty, pPrint, e))),
+                    text("}".to_string()),
+                ])
+        },
+        (pre, Block(ss, e)) => {
+            sep(vec![
+                    __op_doc_conat(pre, text("{".to_string())),
+                    nest(4, (maybe(empty, pPrint, e))),
+                    text("}".to_string()),
+                ])
+        },
+    }
+}
+
 #[derive(Debug)]
 pub struct Attribute(String);
 
@@ -182,25 +201,6 @@ pub enum ExprPosition {
     RightExpr
 }
 pub use self::ExprPosition::*;
-
-pub fn pPrintBlock(_0: Doc, _1: Block) -> Doc {
-    match (_0, _1) {
-        (pre, Block([], e)) => {
-            sep(vec![
-                    __op_doc_conat(pre, text("{".to_string())),
-                    nest(4, (maybe(empty, pPrint, e))),
-                    text("}".to_string()),
-                ])
-        },
-        (pre, Block(ss, e)) => {
-            sep(vec![
-                    __op_doc_conat(pre, text("{".to_string())),
-                    nest(4, (maybe(empty, pPrint, e))),
-                    text("}".to_string()),
-                ])
-        },
-    }
-}
 
 
 

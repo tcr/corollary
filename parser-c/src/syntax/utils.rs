@@ -8,34 +8,6 @@
 // use Language::C::Data::Ident;
 // use Language::C::Syntax::AST;
 
-pub fn compoundSubStmts(_0: CBlockItem) -> Vec<CStat> {
-    match (_0) {
-        CBlockStmt(s) => {
-            vec![s]
-        },
-        CBlockDecl(_) => {
-            vec![s]
-        },
-        CNestedFunDef(_) => {
-            vec![s]
-        },
-    }
-}
-
-pub fn getLabels(_0: CStat) -> Vec<Ident> {
-    match (_0) {
-        CLabel(l, s, _, _) => {
-            __op_concat(l, getLabels(s))
-        },
-        CCompound(ls, body, _) => {
-            __op_concat(l, getLabels(s))
-        },
-        stmt => {
-            __op_concat(l, getLabels(s))
-        },
-    }
-}
-
 pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
     match (_0) {
         CLabel(_, s, _, _) => {
@@ -96,6 +68,34 @@ pub fn mapBlockItemStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CBlo
         },
         (_, _, bi) => {
             CBlockStmt((mapSubStmts(stop, f, s)))
+        },
+    }
+}
+
+pub fn compoundSubStmts(_0: CBlockItem) -> Vec<CStat> {
+    match (_0) {
+        CBlockStmt(s) => {
+            vec![s]
+        },
+        CBlockDecl(_) => {
+            vec![s]
+        },
+        CNestedFunDef(_) => {
+            vec![s]
+        },
+    }
+}
+
+pub fn getLabels(_0: CStat) -> Vec<Ident> {
+    match (_0) {
+        CLabel(l, s, _, _) => {
+            __op_concat(l, getLabels(s))
+        },
+        CCompound(ls, body, _) => {
+            __op_concat(l, getLabels(s))
+        },
+        stmt => {
+            __op_concat(l, getLabels(s))
         },
     }
 }

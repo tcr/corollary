@@ -16,21 +16,25 @@ pub enum ErrorLevel {
 }
 pub use self::ErrorLevel::*;
 
+pub fn isHardError() -> bool {
+    ((() > LevelWarn(errorLevel)))
+}
+
 #[derive(Debug)]
 pub struct ErrorInfo(ErrorLevel, Position, Vec<String>);
 
+
+pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
+    ErrorInfo(lvl, (posOfNode(node)), (lines(msg)))
+}
 
 #[derive(Debug)]
 pub struct CError(err);
 
 
-#[derive(Debug)]
-pub struct UnsupportedFeature(String, Position);
-
-
-#[derive(Debug)]
-pub struct UserError(ErrorInfo);
-
+pub fn errorPos() -> Position {
+    (|ErrorInfo(_, pos, _)| { pos }(errorInfo))
+}
 
 pub fn errorLevel() -> ErrorLevel {
     (|ErrorInfo(lvl, _, _)| { lvl }(errorInfo))
@@ -40,35 +44,24 @@ pub fn errorMsgs() -> Vec<String> {
     (|ErrorInfo(_, _, msgs)| { msgs }(errorInfo))
 }
 
-pub fn errorPos() -> Position {
-    (|ErrorInfo(_, pos, _)| { pos }(errorInfo))
+#[derive(Debug)]
+pub struct UnsupportedFeature(String, Position);
+
+
+pub fn unsupportedFeature<a>(msg: String, a: a) -> UnsupportedFeature {
+    UnsupportedFeature(msg, (posOf(a)))
 }
 
-pub fn indent() -> String {
-    "  ".to_string()
+pub fn unsupportedFeature_(msg: String) -> UnsupportedFeature {
+    UnsupportedFeature(msg, internalPos)
 }
 
-pub fn indentLines() -> String {
-    unlines(__map!((indent(__op_addadd)), lines))
-}
+#[derive(Debug)]
+pub struct UserError(ErrorInfo);
 
-pub fn internalErr<a>(msg: String) -> a {
-    __error!((__op_addadd(internalErrPrefix, __op_addadd("\n".to_string(), __op_addadd(indentLines(msg), "\n".to_string())))))
-}
 
-pub fn internalErrPrefix() -> String {
-    unlines(vec![
-            "Language.C : Internal Error".to_string(),
-            __op_addadd("This is propably a bug, and should be reported at ".to_string(), "http://www.sivity.net/projects/language.c/newticket".to_string()),
-        ])
-}
-
-pub fn isHardError() -> bool {
-    ((() > LevelWarn(errorLevel)))
-}
-
-pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
-    ErrorInfo(lvl, (posOfNode(node)), (lines(msg)))
+pub fn userErr(msg: String) -> UserError {
+    UserError((ErrorInfo(LevelError, internalPos, (lines(msg)))))
 }
 
 pub fn showError(short_msg: String) -> String {
@@ -96,16 +89,23 @@ short_msg
         }, msgs))))
 }
 
-pub fn unsupportedFeature<a>(msg: String, a: a) -> UnsupportedFeature {
-    UnsupportedFeature(msg, (posOf(a)))
+pub fn internalErrPrefix() -> String {
+    unlines(vec![
+            "Language.C : Internal Error".to_string(),
+            __op_addadd("This is propably a bug, and should be reported at ".to_string(), "http://www.sivity.net/projects/language.c/newticket".to_string()),
+        ])
 }
 
-pub fn unsupportedFeature_(msg: String) -> UnsupportedFeature {
-    UnsupportedFeature(msg, internalPos)
+pub fn internalErr<a>(msg: String) -> a {
+    __error!((__op_addadd(internalErrPrefix, __op_addadd("\n".to_string(), __op_addadd(indentLines(msg), "\n".to_string())))))
 }
 
-pub fn userErr(msg: String) -> UserError {
-    UserError((ErrorInfo(LevelError, internalPos, (lines(msg)))))
+pub fn indent() -> String {
+    "  ".to_string()
+}
+
+pub fn indentLines() -> String {
+    unlines(__map!((indent(__op_addadd)), lines))
 }
 
 

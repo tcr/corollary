@@ -37,20 +37,28 @@ pub use self::RedefKind::*;
 pub struct TypeMismatch(String, (NodeInfo, Type), (NodeInfo, Type));
 
 
-pub fn badSpecifierError(node_info: NodeInfo, msg: String) -> BadSpecifierError {
-    BadSpecifierError((mkErrorInfo(LevelError, msg, node_info)))
-}
-
 pub fn invalidAST(node_info: NodeInfo, msg: String) -> InvalidASTError {
     InvalidAST((mkErrorInfo(LevelError, msg, node_info)))
 }
 
-pub fn prevDeclMsg(old_node: NodeInfo) -> Vec<String> {
-    vec!["The previous declaration was here: ".to_string(), show((posOfNode(old_node)))]
+pub fn badSpecifierError(node_info: NodeInfo, msg: String) -> BadSpecifierError {
+    BadSpecifierError((mkErrorInfo(LevelError, msg, node_info)))
+}
+
+pub fn typeMismatch() -> TypeMismatch {
+    TypeMismatch
+}
+
+pub fn typeMismatchInfo(TypeMismatch(reason, (node1, _ty2), _t2): TypeMismatch) -> ErrorInfo {
+    ErrorInfo(LevelError, (posOfNode(node1)), vec![reason])
 }
 
 pub fn redefErrLabel(RedefInfo(ident, _, _, _): RedefInfo) -> String {
     __op_addadd(ident, " redefined".to_string())
+}
+
+pub fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, __OP__: ErrorInfo) -> ErrorInfo {
+    ErrorInfo(lvl, (posOfNode(node)), (__op_addadd(vec![redefErrReason(info)], prevDeclMsg(old_node))))
 }
 
 pub fn redefErrReason(_0: RedefInfo) -> String {
@@ -73,20 +81,12 @@ pub fn redefErrReason(_0: RedefInfo) -> String {
     }
 }
 
-pub fn redefErrorInfo(lvl: ErrorLevel, info: RedefInfo, __OP__: ErrorInfo) -> ErrorInfo {
-    ErrorInfo(lvl, (posOfNode(node)), (__op_addadd(vec![redefErrReason(info)], prevDeclMsg(old_node))))
+pub fn prevDeclMsg(old_node: NodeInfo) -> Vec<String> {
+    vec!["The previous declaration was here: ".to_string(), show((posOfNode(old_node)))]
 }
 
 pub fn redefinition(lvl: ErrorLevel, ctx: String, kind: RedefKind, new: NodeInfo, old: NodeInfo) -> RedefError {
     RedefError(lvl, (RedefInfo(ctx, kind, new, old)))
-}
-
-pub fn typeMismatch() -> TypeMismatch {
-    TypeMismatch
-}
-
-pub fn typeMismatchInfo(TypeMismatch(reason, (node1, _ty2), _t2): TypeMismatch) -> ErrorInfo {
-    ErrorInfo(LevelError, (posOfNode(node1)), vec![reason])
 }
 
 

@@ -18,46 +18,6 @@ pub enum SUERef {
 }
 pub use self::SUERef::*;
 
-#[derive(Clone, Debug)]
-pub struct Ident(String, isize, NodeInfo);
-
-
-pub fn bits14() -> isize {
-    __op_power(2, (14))
-}
-
-pub fn bits21() -> isize {
-    __op_power(2, (21))
-}
-
-pub fn bits28() -> isize {
-    __op_power(2, (28))
-}
-
-pub fn bits7() -> isize {
-    __op_power(2, (7))
-}
-
-pub fn builtinIdent(s: String) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(builtinPos)))
-}
-
-pub fn dumpIdent(ide: Ident) -> String {
-    __op_addadd(identToString(ide), __op_addadd(" at ".to_string(), show((nodeInfo(ide)))))
-}
-
-pub fn identToString(Ident(s, _, _): Ident) -> String {
-    s
-}
-
-pub fn internalIdent(s: String) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(internalPos)))
-}
-
-pub fn internalIdentAt(pos: Position, s: String) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfoPosLen(pos, (pos, length(s)))))
-}
-
 pub fn isAnonymousRef(_0: SUERef) -> bool {
     match (_0) {
         AnonymousRef(_) => {
@@ -69,13 +29,9 @@ pub fn isAnonymousRef(_0: SUERef) -> bool {
     }
 }
 
-pub fn isInternalIdent(Ident(_, _, nodeinfo): Ident) -> bool {
-    isInternalPos((posOfNode(nodeinfo)))
-}
+#[derive(Clone, Debug)]
+pub struct Ident(String, isize, NodeInfo);
 
-pub fn mkIdent(pos: Position, s: String, name: Name) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfo_q(pos, (pos, length(s)), name)))
-}
 
 pub fn quad(_0: String) -> isize {
     match (_0) {
@@ -97,6 +53,46 @@ pub fn quad(_0: String) -> isize {
     }
 }
 
+pub fn bits7() -> isize {
+    __op_power(2, (7))
+}
+
+pub fn bits14() -> isize {
+    __op_power(2, (14))
+}
+
+pub fn bits21() -> isize {
+    __op_power(2, (21))
+}
+
+pub fn bits28() -> isize {
+    __op_power(2, (28))
+}
+
+pub fn mkIdent(pos: Position, s: String, name: Name) -> Ident {
+    Ident(s, (quad(s)), (mkNodeInfo_q(pos, (pos, length(s)), name)))
+}
+
+pub fn internalIdent(s: String) -> Ident {
+    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(internalPos)))
+}
+
+pub fn internalIdentAt(pos: Position, s: String) -> Ident {
+    Ident(s, (quad(s)), (mkNodeInfoPosLen(pos, (pos, length(s)))))
+}
+
+pub fn builtinIdent(s: String) -> Ident {
+    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(builtinPos)))
+}
+
+pub fn isInternalIdent(Ident(_, _, nodeinfo): Ident) -> bool {
+    isInternalPos((posOfNode(nodeinfo)))
+}
+
+pub fn identToString(Ident(s, _, _): Ident) -> String {
+    s
+}
+
 pub fn sueRefToString(_0: SUERef) -> String {
     match (_0) {
         AnonymousRef(_) => {
@@ -106,6 +102,10 @@ pub fn sueRefToString(_0: SUERef) -> String {
             "".to_string()
         },
     }
+}
+
+pub fn dumpIdent(ide: Ident) -> String {
+    __op_addadd(identToString(ide), __op_addadd(" at ".to_string(), show((nodeInfo(ide)))))
 }
 
 

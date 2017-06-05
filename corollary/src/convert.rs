@@ -1,7 +1,6 @@
 use parser_haskell::ast;
 use parser_haskell::ast::{Expr, Pat, Ty};
 
-use inflector::Inflector;
 use hex::*;
 use std::borrow::Borrow;
 use std::collections::{BTreeMap, BTreeSet};
@@ -478,7 +477,7 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
                 print_type_ident(state, &id.0),
                 out.join(",\n"), state.indent())
         }
-        Pat::ViewPattern(ast::Ident(ref s), ref p) => {
+        Pat::ViewPattern(ast::Ident(ref s), _) => {
             format!("/* TODO ViewPattern */ {}", s) // print_pattern(state.tab(), &**p))
         }
         Pat::Not(ref s) => print_pattern(state, &**s),
@@ -571,11 +570,9 @@ where
 }
 
 pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -> String {
+    // Parse out type signatures.
     let mut types = btreemap![];
     for item in stats {
-        //errln!("{:?}", item);
-
-        // println!("well {:?}", item);
         if let &ast::Item::Prototype(ref idents, ref d) = item {
             for &ast::Ident(ref s) in idents {
                 if types.contains_key(&s) {
@@ -586,7 +583,85 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
         }
     }
 
-    // Output
+    fn get_assign_ident(assign: &mut ast::Assignment) -> Option<String> {
+        match assign {
+            &mut ast::Assignment::Assign { ref mut pats, .. }
+            | &mut ast::Assignment::Case { ref mut pats, .. } =>
+                match pats.remove(0) {
+                    Pat::Ref(ast::Ident(s)) => Some(s),
+                    _ => None
+                }
+        }
+    }
+
+    // Store assignments into a cache structure by name.
+    let mut cache: BTreeMap<String, Vec<(ast::Assignment, Vec<ast::Item>)>> = btreemap![];
+    for item in stats {
+        if let ast::Item::Assign(mut assign, where_) = item.clone() {
+            let ident = if let Some(s) = get_assign_ident(&mut assign) {
+                s
+            } else {
+                // TODO is this warning necessary? If a tuple begins an assignment, is
+                // it ever overloaded? We should compensate below.
+                errln!("Expected ident to begin assignment, but found this: {:?}", item);
+                continue;
+            };
+
+            cache.entry(ident)
+                .or_insert(vec![])
+                .push((*assign, where_));
+        }
+    }
+
+    // Decompose guards into case statements in a new cache.
+    let mut new_cache: BTreeMap<String, Vec<(ast::Assignment, Vec<ast::Item>)>> = btreemap![];
+    for (key, mut fnset) in cache {
+        let fnset2 = fnset.clone();
+        if fnset.len() > 1 {
+            // There are multiple impls of this function, so expand this into a
+            // case statement.
+            if let (ast::Assignment::Assign { ref mut pats, ref mut expr }, ..) = fnset[0] {
+                let args = (0..pats.len())
+                    .map(|x| format!("_{}", x))
+                    .collect::<Vec<_>>();
+
+                // Convert args into case options.
+                let src_pats = args
+                    .iter()
+                    .map(|x| Pat::Ref(ast::Ident(x.to_string())))
+                    .collect::<Vec<_>>();
+
+                // Generate case statements.
+                let expr = ast::Expr::Case(
+                    Box::new(ast::Expr::Parens(args.iter()
+                        .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
+                        .collect::<Vec<_>>())),
+                    fnset2.iter().map(|&(ref x, _)| {
+                        match x {
+                            &ast::Assignment::Assign { ref pats, .. } => {
+                                ast::CaseCond::Direct(
+                                    vec![Pat::Tuple(pats.clone())],
+                                    vec![expr.clone()])
+                            }
+                            &ast::Assignment::Case { ref pats, .. } => {
+                                ast::CaseCond::Direct(
+                                    vec![Pat::Tuple(pats.clone())],
+                                    vec![expr.clone()])
+                            }
+                        }
+                    }).collect::<Vec<_>>(),
+                );
+                let res = vec![(ast::Assignment::Assign { pats: src_pats, expr }, vec![])];
+                new_cache.insert(key, res);
+            } else {
+                // unreachable!();
+            }
+        } else {
+            new_cache.insert(key, fnset);
+        }
+    }
+
+    // Text output.
     let mut out = vec![];
 
     // Print out imports.
@@ -607,7 +682,8 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
     }
     out.push(format!(""));
 
-    // Print out data structures & type aliases.
+    // Print out data structures & type aliases & functions.
+    let mut fn_used = hashset![]; // Functions already printed out
     for item in stats {
         let mut item = item.clone();
 
@@ -738,158 +814,98 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                 })),
                 props,
             ));
-        }
-    }
-
-    // Print out assignments as fns
-    let mut cache: BTreeMap<String, Vec<(ast::Assignment, Vec<ast::Item>)>> = btreemap![];
-    for item in stats {
-        if let ast::Item::Assign(assign, where_) = item.clone() {
-            if !where_.is_empty() {
-                // TODO
-                //println!("// push {:?} into fn", where_)
-                // out.push(print_item_list(state.tab(), &where_, false));
-            }
-
-            let mut assign = *assign;
-
-            // If hte AST is refactored to break out the first Ident
-            // for the issigned, this whole check should be deleted
-            let ident = match assign {
-              ast::Assignment::Assign { ref mut pats, .. }
-              | ast::Assignment::Case { ref mut pats, .. } =>
-                    match pats.remove(0) {
-                        Pat::Ref(ast::Ident(s)) => s,
-                        span => {
-                            errln!("Expected ident, got {:?}\n\nin: {:?}\n", span, item);
-                            continue;
-                        }
-                    }
+        } else if let ast::Item::Assign(mut assign, _) = item.clone() {
+            let assign_name = if let Some(s) = get_assign_ident(&mut assign) {
+                s
+            } else {
+                // No identifier found, skip.
+                //TODO should we print it out regardless?
+                continue;
             };
 
-            cache.entry(ident)
-                .or_insert(vec![])
-                .push((assign, where_));
-        }
-    }
+            // Only print out unused functions.
+            if fn_used.contains(&assign_name) {
+                continue;
+            }
 
-    // Convert guards into basically case statements
-    let mut new_cache: BTreeMap<String, Vec<(ast::Assignment, Vec<ast::Item>)>> = btreemap![];
-    for (key, mut fnset) in cache {
-        let fnset2 = fnset.clone();
-        if fnset.len() > 1 {
-            // There are multiple impls of this function, so expand this into a
-            // case statement.
-            if let (ast::Assignment::Assign { ref mut pats, ref mut expr }, ..) = fnset[0] {
-                let args = (0..pats.len())
-                    .map(|x| format!("_{}", x))
-                    .collect::<Vec<_>>();
+            let key = assign_name.clone();
+            if let Some(fnset) = new_cache.get(&assign_name) {
+                // Only print this out once.
+                fn_used.insert(assign_name);
 
-                // Convert args into case options.
-                let src_pats = args
-                    .iter()
-                    .map(|x| Pat::Ref(ast::Ident(x.to_string())))
-                    .collect::<Vec<_>>();
-
-                // Generate case statements.
-                let expr = ast::Expr::Case(
-                    Box::new(ast::Expr::Parens(args.iter()
-                        .map(|x| ast::Expr::Ref(ast::Ident(x.to_string())))
-                        .collect::<Vec<_>>())),
-                    fnset2.iter().map(|&(ref x, _)| {
-                        match x {
-                            &ast::Assignment::Assign { ref pats, .. } => {
-                                ast::CaseCond::Direct(
-                                    vec![Pat::Tuple(pats.clone())],
-                                    vec![expr.clone()])
-                            }
-                            &ast::Assignment::Case { ref pats, .. } => {
-                                ast::CaseCond::Direct(
-                                    vec![Pat::Tuple(pats.clone())],
-                                    vec![expr.clone()])
+                for (assign, where_) in fnset.clone() {
+                    if let ast::Assignment::Assign { pats: args, expr } = assign {
+                        // For type-less functions,
+                        if !types.contains_key(&key) {
+                            // TODO Unless we can infer top-level types, we just bail.
+                            if toplevel {
+                                panic!("Cannot print untyped fn {:?}", key);
+                            } else {
+                                let let_str = print_let(state, &ast::Assignment::Assign { pats: {
+                                    let mut out = vec![ast::Pat::Ref(ast::Ident(key.to_string()))];
+                                    out.extend(args);
+                                    out
+                                }, expr });
+                                out.push(format!("{}", let_str));
+                                continue;
                             }
                         }
-                    }).collect::<Vec<_>>(),
-                );
-                let res = vec![(ast::Assignment::Assign { pats: src_pats, expr }, vec![])];
-                new_cache.insert(key, res);
-            } else {
-                // unreachable!();
-            }
-        } else {
-            new_cache.insert(key, fnset);
-        }
-    }
 
-    for (key, fnset) in new_cache {
-        for (assign, where_) in fnset {
-            if let ast::Assignment::Assign { pats: args, expr } = assign {
-                // For type-less functions,
-                if !types.contains_key(&key) {
-                    // TODO Unless we can infer top-level types, we just bail.
-                    if toplevel {
-                        panic!("Cannot print untyped fn {:?}", key);
+                        let d = types[&key].clone();
+                        //assert!(d.len() == 1);
+                        //TODO what did this assert do
+                        let t = unpack_fndef(d[0].clone());
+                        assert!(t.len() >= 1);
+
+                        let mut args_span = vec![];
+                        for (arg, ty) in args.iter().zip(t.iter()) {
+                            args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
+                        }
+                        let args_str = args_span.join(", ");
+
+                        let ret_str = print_type(state.tab(), t.last().unwrap());
+
+                        let re = Regex::new(r"\b(a|b)\b").unwrap();
+                        let mut type_args = re.captures_iter(&args_str)
+                            .map(|x| x[1].to_string())
+                            .collect::<::std::collections::HashSet<_>>();
+                        
+                        for item in re.captures_iter(&ret_str) {
+                            type_args.insert(item[1].to_string());
+                        }
+
+                        let mut type_args = type_args.into_iter().collect::<Vec<_>>();
+                        type_args.sort();
+
+                        // Format where clause
+                        let mut where_str = format!("");
+                        if where_.len() > 0 {
+                            where_str = format!("{}\n",
+                                print_item_list(state.tab(), &where_, false));
+                        }
+
+                        let trans_name = print_type_ident(state, &key);
+                        out.push(
+                            format!("{}pub fn {}{}({}) -> {} {{\n{}{}{}\n{}}}\n",
+                                state.indent(),
+                                trans_name,
+                                if type_args.len() > 0 {
+                                    format!("<{}>", type_args.join(", "))
+                                } else {
+                                    format!("")
+                                },
+                                args_str,
+                                ret_str,
+                                where_str,
+                                state.tab().indent(),
+                                print_expr(state.tab(), &expr),
+                                state.indent()));
                     } else {
-                        let let_str = print_let(state, &ast::Assignment::Assign { pats: {
-                            let mut out = vec![ast::Pat::Ref(ast::Ident(key.to_string()))];
-                            out.extend(args);
-                            out
-                        }, expr });
-                        out.push(format!("{}", let_str));
-                        continue;
+                        // TODO
                     }
                 }
-
-                let d = types[&key].clone();
-                //assert!(d.len() == 1);
-                //TODO what did this assert do
-                let t = unpack_fndef(d[0].clone());
-                assert!(t.len() >= 1);
-
-                let mut args_span = vec![];
-                for (arg, ty) in args.iter().zip(t.iter()) {
-                    args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
-                }
-                let args_str = args_span.join(", ");
-
-                let ret_str = print_type(state.tab(), t.last().unwrap());
-
-                let re = Regex::new(r"\b(a|b)\b").unwrap();
-                let mut type_args = re.captures_iter(&args_str)
-                    .map(|x| x[1].to_string())
-                    .collect::<::std::collections::HashSet<_>>();
-                
-                for item in re.captures_iter(&ret_str) {
-                    type_args.insert(item[1].to_string());
-                }
-
-                let mut type_args = type_args.into_iter().collect::<Vec<_>>();
-                type_args.sort();
-
-                // Format where clause
-                let mut where_str = format!("");
-                if where_.len() > 0 {
-                    where_str = format!("{}\n",
-                        print_item_list(state.tab(), &where_, false));
-                }
-
-                let trans_name = print_type_ident(state, &key);
-                out.push(
-                    format!("{}pub fn {}{}({}) -> {} {{\n{}{}{}\n{}}}\n",
-                        state.indent(),
-                        trans_name,
-                        if type_args.len() > 0 {
-                            format!("<{}>", type_args.join(", "))
-                        } else {
-                            format!("")
-                        },
-                        args_str,
-                        ret_str,
-                        where_str,
-                        state.tab().indent(),
-                        print_expr(state.tab(), &expr),
-                        state.indent()));
             } else {
+                // Missing definition?
                 // TODO
             }
         }

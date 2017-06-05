@@ -15,13 +15,26 @@
 // use Map;
 // use Data::Map;
 
+pub fn prettyAssocs(label: String) -> Doc {
+    prettyAssocsWith(label, pretty, pretty)
+}
+
+pub fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
+
+    let prettyEntry = |(k, v)| {
+        __op_doc_conat(prettyKey(k), __op_doc_conat(text(" ~> ".to_string()), prettyVal(v)))
+    };
+
+    __op_line_something(text(label), nest(8, (vcat(__map!(prettyEntry, theMap)))))
+}
+
 pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> Vec<(String, isize)> {
+
+    let gmap_q = filterGlobalDecls(filterFile, gmap);
 
     pub fn filterFile() -> bool {
         maybe(true, file_filter, fileOfNode(nodeInfo))
     }
-
-    let gmap_q = filterGlobalDecls(filterFile, gmap);
 
     vec![
         ("Enumeration Constants".to_string(), Map::size(enumerators)),
@@ -35,19 +48,6 @@ pub fn globalDeclStats(file_filter: fn(FilePath) -> bool, gmap: GlobalDecls) -> 
 
 pub fn joinComma() -> Doc {
     hsep(punctuate(comma, __map!(pretty)))
-}
-
-pub fn prettyAssocs(label: String) -> Doc {
-    prettyAssocsWith(label, pretty, pretty)
-}
-
-pub fn prettyAssocsWith(label: String, prettyKey: fn(k) -> Doc, prettyVal: fn(v) -> Doc, theMap: Vec<(k, v)>) -> Doc {
-
-    let prettyEntry = |(k, v)| {
-        __op_doc_conat(prettyKey(k), __op_doc_conat(text(" ~> ".to_string()), prettyVal(v)))
-    };
-
-    __op_line_something(text(label), nest(8, (vcat(__map!(prettyEntry, theMap)))))
 }
 
 pub fn terminateSemi() -> Doc {

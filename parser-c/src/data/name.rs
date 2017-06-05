@@ -13,12 +13,12 @@ pub struct Name{
 }
 fn nameId(a: Name) -> isize { a.nameId }
 
-pub fn namesStartingFrom(k: isize) -> Vec<Name> {
-    vec![Name(k::::)]
-}
-
 pub fn newNameSupply() -> Vec<Name> {
     namesStartingFrom(0)
+}
+
+pub fn namesStartingFrom(k: isize) -> Vec<Name> {
+    vec![Name(k::::)]
 }
 
 
