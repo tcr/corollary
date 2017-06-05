@@ -23,8 +23,13 @@
 // use Set;
 // use Data::Set;
 
+use data::position::Position;
+use parser::tokens::*;
+
 pub struct ParseError((Vec<String>, Position));
 
+// instance Show ParseError where
+//     show (ParseError (msgs,pos)) = showErrorInfo "Syntax Error !" (ErrorInfo LevelError pos msgs)
 
 pub enum ParseResult<a> {
     POk(PState, a),
@@ -124,11 +129,10 @@ pub fn addTypedef(ident: Ident) -> P<()> {
 }
 
 pub fn shadowTypedef(ident: Ident) -> P<()> {
-    (P(|s, __OP__, PState {
-
-            }| { POk(s {
-                    tyidents: Set::member(if ident { () }, Set::delete(tyids(then, ident), tyids(else, tyids)))
-                }, ()) }))
+    (P(|s, __OP__, PState| { POk(__assign!(s, TODO {
+            tyidents: if Set::member(ident, tyids) { Set::delete(ident, tyids) } else { tyids },
+    }), ())
+        }))
 }
 
 pub fn isTypeIdent(ident: Ident) -> P<bool> {

@@ -45,15 +45,6 @@ pub mod List {
     }
 }
 
-#[macro_export]
-macro_rules! __map {
-    ($fn: expr, $target: expr) => {
-        $target.into_iter()
-            .map($fn)
-            .collect::<Vec<_>>()
-    }
-}
-
 pub fn __op_index<F, T: ::std::ops::Index<F>>(a: T, pos: F) -> (<T as std::ops::Index<F>>::Output)
 where <T as std::ops::Index<F>>::Output: std::marker::Sized + Clone {
     a[pos].clone()
@@ -89,16 +80,82 @@ pub fn isSuffixOf(a: String, r: String) -> bool {
     r.ends_with(&a)
 }
 
+pub fn elem<T: PartialEq>(item: T, value: Vec<T>) -> bool {
+    value.contains(&item)
+}
+
+pub fn replicate<T: Clone>(rep: isize, item: T) -> Vec<T> {
+    (0..rep).map(|_| item.clone()).collect()
+}
+
+pub fn words(input: String) -> Vec<String> {
+    input.split_whitespace().map(|x| x.to_string()).collect()
+}
+
+pub trait Lengthable {
+    fn get_len(&self) -> isize;
+}
+pub fn length<A: Lengthable>(left: A) -> isize {
+    Lengthable::get_len(&left)
+}
+impl Lengthable for String {
+    fn get_len(&self) -> isize {
+        self.len() as isize
+    }
+}
+
+pub trait Bindable<T> {
+    fn bind_it(self, right: T) -> Self;
+}
+pub fn __op_bind<A: Bindable<B>, B>(left: A, b: B) -> A {
+    Bindable::bind_it(left, b)
+}
+impl<T: Display> Bindable<T> for String {
+    fn bind_it(mut self, right: T) -> Self {
+        // TODO
+        self.push_str(&format!("{}", right));
+        self
+    }
+}
+
+
+
+
+
+// Map stuff
+
+
+#[macro_export]
+macro_rules! __map {
+    ($fn: expr, $target: expr) => {
+        $target.into_iter()
+            .map($fn)
+            .collect::<Vec<_>>()
+    }
+}
+
+#[macro_export]
+macro_rules! __concatMap {
+    ($fn: expr, $target: expr) => {
+        $target.into_iter()
+            .flat_map($fn)
+            .collect::<Vec<_>>()
+    }
+}
+
+#[macro_export]
+macro_rules! __error {
+    ($fn: expr) => {
+        // TODO
+        panic!("ERROR!")
+    }
+}
+
 
 
 
 
 // IO fns
-
-#[allow(dead_code)]
-pub struct InputStream {
-    pub stream: String,
-}
 
 #[allow(dead_code)]
 pub struct FilePath {
@@ -120,11 +177,6 @@ pub fn openTempFile(t: FilePath, template: FilePath) -> (FilePath, FileHandle) {
 
 pub fn hClose(h: FileHandle) {
     // TODO
-}
-
-pub fn readInputStream(i: InputStream) -> String {
-    // TODO
-    "TODO".to_string()
 }
 
 pub fn removeFile(h: FileHandle) {

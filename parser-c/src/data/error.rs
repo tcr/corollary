@@ -1,7 +1,8 @@
 // Original file: "Error.hs"
 // File auto-generated using Corollary.
 
-#[macro_use] use corollary_support::*;
+#[macro_use]
+use corollary_support::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Typeable;
@@ -12,7 +13,7 @@
 pub enum ErrorLevel {
     LevelWarn,
     LevelError,
-    LevelFatal
+    LevelFatal,
 }
 pub use self::ErrorLevel::*;
 
@@ -33,15 +34,21 @@ pub struct CError(err);
 
 
 pub fn errorPos() -> Position {
-    (|ErrorInfo(_, pos, _)| { pos }(errorInfo))
+    (|ErrorInfo(_, pos, _)| {
+         pos
+     }(errorInfo))
 }
 
 pub fn errorLevel() -> ErrorLevel {
-    (|ErrorInfo(lvl, _, _)| { lvl }(errorInfo))
+    (|ErrorInfo(lvl, _, _)| {
+         lvl
+     }(errorInfo))
 }
 
 pub fn errorMsgs() -> Vec<String> {
-    (|ErrorInfo(_, _, msgs)| { msgs }(errorInfo))
+    (|ErrorInfo(_, _, msgs)| {
+         msgs
+     }(errorInfo))
 }
 
 #[derive(Debug)]
@@ -70,34 +77,31 @@ pub fn showError(short_msg: String) -> String {
 
 pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) -> String {
 
-    let header = __op_addadd(showPos(pos), __op_addadd("[".to_string(), __op_addadd(show(level), "]".to_string())));
+    let header = __op_addadd(showPos(pos),
+                             __op_addadd("[".to_string(),
+                                         __op_addadd(show(level), "]".to_string())));
 
-    let showMsgLines = |_0| {
-        match (_0) {
-            [] => {
-                internalErr("No short message or error message provided.".to_string())
-            },
-            [x, xs] => {
+    let showMsgLines = |_0| match (_0) {
+        [] => internalErr("No short message or error message provided.".to_string()),
+        [x, xs] => {
                 __op_addadd(indent, __op_addadd(">>> ".to_string(), __op_addadd(x, __op_addadd("\n".to_string(), unlines((__map!((indent(__op_addadd)), xs)))))))
-            },
-        }
+            }
     };
 
-    __op_addadd(header, showMsgLines((__op_concat(if null(short_msg) {         
-msgs} else {
-short_msg
-        }, msgs))))
+    __op_addadd(header,
+                showMsgLines((__op_concat(if null(short_msg) { msgs } else { short_msg }, msgs))))
 }
 
 pub fn internalErrPrefix() -> String {
-    unlines(vec![
-            "Language.C : Internal Error".to_string(),
-            __op_addadd("This is propably a bug, and should be reported at ".to_string(), "http://www.sivity.net/projects/language.c/newticket".to_string()),
-        ])
+    unlines(vec!["Language.C : Internal Error".to_string(),
+                 __op_addadd("This is propably a bug, and should be reported at ".to_string(),
+                             "http://www.sivity.net/projects/language.c/newticket".to_string())])
 }
 
 pub fn internalErr<a>(msg: String) -> a {
-    __error!((__op_addadd(internalErrPrefix, __op_addadd("\n".to_string(), __op_addadd(indentLines(msg), "\n".to_string())))))
+    __error!(__op_addadd(internalErrPrefix,
+                         __op_addadd("\n".to_string(),
+                                     __op_addadd(indentLines(msg), "\n".to_string()))));
 }
 
 pub fn indent() -> String {
@@ -107,6 +111,3 @@ pub fn indent() -> String {
 pub fn indentLines() -> String {
     unlines(__map!((indent(__op_addadd)), lines))
 }
-
-
-

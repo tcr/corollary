@@ -13,95 +13,34 @@
 
 pub type InputStream = ByteString;
 
-pub fn takeByte(_0: InputStream) -> (Word8, InputStream) {
-    match (_0) {
-        bs => {
-            seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
-        },
-        bs => {
-            /* Expr::Error */ Error
-        },
-    }
+pub fn takeByte(bs: InputStream) -> (Word8, InputStream) {
+    seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
 }
 
-pub fn takeChar(_0: InputStream) -> (Char, InputStream) {
-    match (_0) {
-        bs => {
-            seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
-        },
-        bs => {
-            (head(bs), tail(bs))
-        },
-    }
+pub fn takeChar(bs: InputStream) -> (Char, InputStream) {
+    seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
 }
 
 pub fn inputStreamEmpty() -> bool {
-    match () {
-        () => {
-            BSW::null
-        },
-        () => {
-            null
-        },
-    }
+    BSW::null
 }
 
-pub fn takeChars(_0: isize, _1: InputStream) -> Vec<Char> {
-    match (_0, _1) {
-        (n, bstr) => {
-            BSC::unpack(BSC::take(n, bstr))
-        },
-        (n, __str) => {
-            take(n, __str)
-        },
-    }
+pub fn takeChars(n: isize, bstr: InputStream) -> Vec<Char> {
+    BSC::unpack(BSC::take(n, bstr))
 }
 
 pub fn readInputStream() -> IO<InputStream> {
-    match () {
-        () => {
-            BSW::readFile
-        },
-        () => {
-            readFile
-        },
-    }
+    BSW::readFile()
 }
 
-pub fn inputStreamToString() -> String {
-    match () {
-        () => {
-            BSC::unpack
-        },
-        () => {
-            id
-        },
-    }
+pub fn inputStreamToString(bs: InputSstream) -> String {
+    BSC::unpack(bs)
 }
 
-pub fn inputStreamFromString() -> InputStream {
-    match () {
-        () => {
-            BSC::pack
-        },
-        () => {
-            id
-        },
-    }
+pub fn inputStreamFromString(s: String) -> InputStream {
+    BSC::pack(s)
 }
 
 pub fn countLines() -> isize {
-    match () {
-        () => {
-            length(BSC::lines)
-        },
-        () => {
-            length(lines)
-        },
-    }
+    length(BSC::lines)
 }
-
-pub type InputStream = String;
-
-
-

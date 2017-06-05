@@ -11,6 +11,10 @@
 // use System::Directory;
 // use Data::List;
 
+use syntax::preprocess::CppArgs;
+use data::r_list::RList;
+use syntax::preprocess::CppOption::*;
+
 pub struct GCC{
     gccPath: FilePath
 }
@@ -47,7 +51,7 @@ mungeArgs(((Some(cfile), out, cpp_opts), unparsed), rest)
 
     let getDefine = |opt| {
         {
-            let (key, val) = break((==('=')), opt);
+            let (key, val) = __break('=' == opt);
 
         Define(key, (if null(val) {                 
 "".to_string()} else {
@@ -63,7 +67,7 @@ tail(val)
             Left("No .c / .hc / .h source file given".to_string())
         },
         Right(((Some(input_file), output_file_opt, cpp_opts), (extra_args, other_args))) => {
-            Right((__assign!((rawCppArgs((RList::reverse(extra_args)), input_file)), {
+            Right((__assign!((rawCppArgs((RList::reverse(extra_args)), input_file)), REMOVE {
                     outputFile: output_file_opt,
                     cppOptions: RList::reverse(cpp_opts)
                 }), RList::reverse(other_args)))

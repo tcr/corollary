@@ -13,6 +13,8 @@
 // use Control::Monad;
 // use Data::List;
 
+use data::input_stream::*;
+
 // 'Preprocessor' encapsulates the abstract interface for invoking C preprocessors
 pub trait Preprocessor {
     // parse the given command line arguments, and return a pair of parsed and ignored arguments

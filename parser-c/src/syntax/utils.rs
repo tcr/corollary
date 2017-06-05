@@ -8,6 +8,9 @@
 // use Language::C::Data::Ident;
 // use Language::C::Syntax::AST;
 
+use syntax::ast::*;
+use data::ident::Ident;
+
 pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
     match (_0) {
         CLabel(_, s, _, _) => {
@@ -26,7 +29,7 @@ pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
             vec![]
         },
         CCompound(_, body, _) => {
-            concatMap(compoundSubStmts, body)
+            __concatMap!(compoundSubStmts, body)
         },
         CIf(_, sthen, selse, _) => {
             maybe(vec![sthen], (|s| { vec![sthen, s] }), selse)
@@ -92,10 +95,10 @@ pub fn getLabels(_0: CStat) -> Vec<Ident> {
             __op_concat(l, getLabels(s))
         },
         CCompound(ls, body, _) => {
-            __op_forwardslash(concatMap((concatMap(getLabels, compoundSubStmts)), body), ls)
+            __op_forwardslash(__concatMap!((__concatMap!(getLabels, compoundSubStmts)), body), ls)
         },
         stmt => {
-            concatMap(getLabels, (getSubStmts(stmt)))
+            __concatMap!(getLabels, (getSubStmts(stmt)))
         },
     }
 }

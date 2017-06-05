@@ -3,7 +3,10 @@
 
 #[macro_use] use corollary_support::*;
 
-use data::node::*;
+use ::data::node::*;
+use ::data::ident::*;
+use ::syntax::ops::*;
+use ::syntax::constants::*;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Syntax::Constants;

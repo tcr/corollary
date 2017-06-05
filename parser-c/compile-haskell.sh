@@ -41,8 +41,8 @@ $COROLLARY ../deps/language-c/src/Language/C/Parser/ParserMonad.hs -o src/parser
 $COROLLARY ../deps/language-c/src/Language/C/Parser/Tokens.hs -o src/parser/tokens.rs
 
 # Generated files
-$COROLLARY ./gen/Parser.hs -o src/parser/parser.rs
-$COROLLARY ./gen/Lexer.hs -o src/parser/lexer.rs
+$COROLLARY ./gen/Parser.hs -o src/parser/parser_real.rs
+$COROLLARY ./gen/Lexer.hs -o src/parser/lexer_real.rs
 
 # $COROLLARY ../deps/language-c/src/Language/C/Syntax.hs -o src/syntax/mod.rs
 # $COROLLARY ../deps/language-c/src/Language/C/Syntax/AST.hs -o src/syntax/ast.rs

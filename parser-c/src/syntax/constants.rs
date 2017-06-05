@@ -5,19 +5,19 @@
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Bits;
-// use Data::Char;
+// use Data::char;
 // use Numeric;
 // use showOct;
 // use Data::Generics;
 
 #[derive(Clone, Debug, Eq, Ord)]
 pub enum CChar {
-    CChar(Char, bool),
-    CChars(Vec<Char>, bool)
+    CChar(char, bool),
+    CChars(Vec<char>, bool)
 }
 pub use self::CChar::*;
 
-pub fn showCharConst(c: Char) -> ShowS {
+pub fn showCharConst(c: char) -> ShowS {
     sQuote(escapeCChar(c))
 }
 
@@ -61,11 +61,11 @@ pub fn isWideChar(_0: CChar) -> bool {
     }
 }
 
-pub fn cChar(c: Char) -> CChar {
+pub fn cChar(c: char) -> CChar {
     CChar(c, false)
 }
 
-pub fn cChar_w(c: Char) -> CChar {
+pub fn cChar_w(c: char) -> CChar {
     CChar(c, true)
 }
 
@@ -223,19 +223,27 @@ pub fn isWideString(CString(_, wideflag): CString) -> bool {
 }
 
 pub fn concatCStrings(cs: Vec<CString>) -> CString {
-    CString((concatMap(getCString, cs)), (any(isWideString, cs)))
+    CString((__concatMap!(getCString, cs)), (any(isWideString, cs)))
 }
 
-pub fn showStringLit() -> ShowS {
-
-    dQuote(concatMap(showStringChar))
+pub fn showStringLit(s: String) -> ShowS {
+    let showStringChar = |c| {
+        if isSChar(c) {
+            c
+        } else if c == '"' {
+            "\\\"".to_string()
+        } else {
+            escapeChar(c)
+        }
+    };
+    dQuote(__concatMap!(showStringChar, s))
 }
 
-pub fn isAsciiSourceChar(c: Char) -> bool {
+pub fn isAsciiSourceChar(c: char) -> bool {
     (isAscii(c) && isPrint(c))
 }
 
-pub fn isCChar(_0: Char) -> bool {
+pub fn isCChar(_0: char) -> bool {
     match (_0) {
         '\\' => {
             false
@@ -252,7 +260,7 @@ pub fn isCChar(_0: Char) -> bool {
     }
 }
 
-pub fn escapeCChar(_0: Char) -> String {
+pub fn escapeCChar(_0: char) -> String {
     match (_0) {
         '\'' => {
             "\\\'".to_string()
@@ -263,7 +271,7 @@ pub fn escapeCChar(_0: Char) -> String {
     }
 }
 
-pub fn isSChar(_0: Char) -> bool {
+pub fn isSChar(_0: char) -> bool {
     match (_0) {
         '\\' => {
             false
@@ -287,7 +295,7 @@ pub fn showOct_q(i: isize) -> String {
     __op_addadd(replicate(((3 - length(s))), '0'), s)
 }
 
-pub fn escapeChar(_0: Char) -> String {
+pub fn escapeChar(_0: char) -> String {
     match (_0) {
         '\\' => {
             "\\\\".to_string()
@@ -322,7 +330,7 @@ pub fn escapeChar(_0: Char) -> String {
     }
 }
 
-pub fn unescapeChar(_0: String) -> (Char, String) {
+pub fn unescapeChar(_0: String) -> (char, String) {
     match (_0) {
         ['\\', [c, cs]] => {
             match c {

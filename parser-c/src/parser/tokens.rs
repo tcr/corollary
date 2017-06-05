@@ -11,6 +11,8 @@
 // use Language::C::Syntax::Constants;
 // use CChar;
 
+use data::position::*;
+
 pub enum CToken {
     CTokLParen(PosLength),
     CTokRParen(PosLength),

@@ -10,10 +10,15 @@ use corollary_support::*;
 
 pub mod analysis;
 pub mod data;
-// pub mod parser;
+pub mod parser;
 pub mod syntax;
 
-use syntax::preprocess::Preprocessor;
+use syntax::preprocess::*;
+use syntax::ast::*;
+use data::input_stream::readInputStream;
+use data::position::initPos;
+use parser::parser_monad::ParseError;
+use parser::parser::parseC;
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Data;
@@ -32,7 +37,7 @@ pub fn parseCFile<C: Preprocessor>(cpp: C,
         Left(exitCode) => {
             Err(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode)))
         }
-        Right(ok) => Err(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode))),
+        Right(ok) => ok,
     };
 
     /*do*/
