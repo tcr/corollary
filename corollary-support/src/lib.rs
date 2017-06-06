@@ -53,7 +53,9 @@ where <T as std::ops::Index<F>>::Output: std::marker::Sized + Clone {
 
 #[macro_export]
 macro_rules! __assign {
-    ($left: expr, $args: expr) => {
+    ($left: expr, {
+        $($field_name:ident: $field_type:expr),+ $(,)*
+    }) => {
         // TODO
         $left
     }
@@ -254,6 +256,42 @@ pub fn head(input: Vec<char>) -> char {
 pub fn tail(input: Vec<char>) -> char {
     input[input.len() - 1]
 }
+
+
+
+// Monads
+
+// pub trait Functor {
+//   fmap = liftM
+// }
+
+// pub trait Applicative P where
+//   pure = return
+//   (<*>) = ap
+
+// pub trait Monad<P> {
+//   fn ret(Self) -> Self;
+//   fn bind(Self) -> Self;
+//   fn fail(m) -> Self;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
