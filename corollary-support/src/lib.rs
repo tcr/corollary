@@ -23,6 +23,28 @@ impl<A> OpAddable for Vec<A> {
 }
 
 
+pub trait OpConcatable {
+    type Item;
+    fn concat(self, right: Self::Item) -> Self;
+}
+pub fn __op_concat<A: OpConcatable>(left: A::Item, right: A) -> A {
+    OpConcatable::concat(right, left)
+}
+impl OpConcatable for String {
+    type Item = char;
+    fn concat(self, right: Self::Item) -> Self {
+        format!("{}{}", right, self)
+    }
+}
+impl<A> OpConcatable for Vec<A> {
+    type Item = A;
+    fn concat(mut self, right: Self::Item) -> Self {
+        self.insert(0, right);
+        self
+    }
+}
+
+
 pub struct IO<A: Sized>(A);
 
 pub fn assertEqual<A: Eq + Sized>(desc: String, left: A, right: A) -> IO<()> {
@@ -132,10 +154,6 @@ impl<T: Display> Bindable<T> for String {
 pub fn __op_forwardslash<A, B>(left: A, right: B) -> B {
     // TODO
     right
-}
-
-pub fn __op_concat<A: OpAddable>(left: A, right: A) -> A {
-    OpAddable::add(left, right)
 }
 
 pub fn __op_dollarnot<A, B>(left: A, right: B) -> B {
@@ -535,8 +553,15 @@ macro_rules! __foldr {
 // IO fns
 
 #[allow(dead_code)]
+#[derive(Clone)]
 pub struct FilePath {
     pub path: String,
+}
+
+impl ToString for FilePath {
+    fn to_string(&self) -> String {
+        return self.path.clone()
+    }
 }
 
 pub struct FileHandle {
@@ -556,7 +581,7 @@ pub fn hClose(h: FileHandle) {
     // TODO
 }
 
-pub fn removeFile(h: FileHandle) {
+pub fn removeFile(p: FilePath) {
     // TODO
 }
 
@@ -567,9 +592,9 @@ pub fn getTemporaryDirectory() -> FilePath {
     }
 }
 
-pub fn getOutputFileName(h: FileHandle) -> String {
+pub fn takeFileName(h: FilePath) -> FilePath {
     // TODO
-    "TODO".to_string()
+    h
 }
 
 
@@ -577,17 +602,17 @@ pub fn getOutputFileName(h: FileHandle) -> String {
 
 // TODO what do we do here:
 
-pub fn maybe() {
-    // TODO
+pub fn maybe<A, B, F: Fn(A) -> B>(default_: B, method: F, maybe: Option<A>) -> B {
+    maybe.map(|x| method(x)).unwrap_or(default_)
 }
 
 pub fn liftM() {
     // TODO
 }
 
-//TODO is this even a monadic fn
-pub fn bracket() {
-    // TODO
+pub fn bracket<A, B, C>(a: A, b: B, c: C) -> C {
+    // TODO these are all methods
+    c
 }
 
 

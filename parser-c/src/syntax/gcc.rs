@@ -116,7 +116,7 @@ pub fn buildCppArgs(CppArgs {
                     -> Vec<String> {
 
     let tOption = |_0| match (_0) {
-        IncludeDir(incl) => vec!["-I".to_string(), incl],
+        IncludeDir(incl) => vec!["-I".to_string(), incl.to_string()],
         Define(key, value) => {
             vec![__op_addadd("-D".to_string(),
                              __op_addadd(key,
@@ -128,12 +128,13 @@ pub fn buildCppArgs(CppArgs {
                                                       value))))]
         }
         Undefine(key) => vec![__op_addadd("-U".to_string(), key)],
-        IncludeFile(f) => vec!["-include".to_string(), f],
+        IncludeFile(f) => vec!["-include".to_string(), f.to_string()],
     };
     
-    let outputFileOpt = output_file_opt.map(|x| ["-o".to_string(), x]).unwrap_or(vec![]);
+    let outputFileOpt = output_file_opt.map(|x| vec!["-o".to_string(), x.to_string()]).unwrap_or(vec![]);
 
     __op_addadd((__concatMap!(tOption, options)),
                 __op_addadd(outputFileOpt,
-                            __op_addadd(vec!["-E".to_string(), input_file], extra_args)))
+                            __op_addadd(vec!["-E".to_string(), input_file.to_string()],
+                            extra_args)))
 }

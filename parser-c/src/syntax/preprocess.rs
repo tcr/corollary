@@ -28,6 +28,7 @@ pub fn preprocessedExt() -> String {
     ".i".to_string()
 }
 
+#[derive(Clone)]
 pub enum CppOption {
     IncludeDir(FilePath),
     Define(String, String),
@@ -36,6 +37,7 @@ pub enum CppOption {
 }
 pub use self::CppOption::*;
 
+#[derive(Clone)]
 pub struct CppArgs {
     cppOptions: Vec<CppOption>,
     extraOptions: Vec<String>,
@@ -96,8 +98,10 @@ pub fn runPreprocessor<P: Preprocessor>(cpp: P,
                                         -> Either<ExitCode, InputStream> {
 
     pub fn getActualOutFile(cpp_args: CppArgs) -> FilePath {
-        maybe((mkOutputFile((cppTmpDir(cpp_args)), (inputFile(cpp_args)))),
-              (outputFile(cpp_args)))
+        outputFile(cpp_args.clone())
+            .unwrap_or_else(|| {
+                mkOutputFile((cppTmpDir(cpp_args)), (inputFile(cpp_args)))
+            })
     }
 
     let invokeCpp = |actual_out_file| {
@@ -117,7 +121,10 @@ pub fn runPreprocessor<P: Preprocessor>(cpp: P,
     let removeTmpOutFile =
         |out_file| maybe((removeFile(out_file)), (|_| ()), (outputFile(cpp_args)));
 
-    bracket(getActualOutFile, removeTmpOutFile, invokeCpp)
+    let path = getActualOutFile(cpp_args);
+    let ret = invokeCpp(path.clone());
+    removeTmpOutFile(path.clone());
+    ret
 }
 
 pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> FilePath {
@@ -132,6 +139,16 @@ pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> File
         let tmpDir = getTempDir(tmp_dir_opt);
 
         mkTmpFile(tmpDir, (getOutputFileName(input_file)))
+    }
+}
+
+// compute output file name from input file name
+pub fn getOutputFileName(fp: FilePath) -> FilePath {
+    let filename = takeFileName(fp);
+    if hasExtension(fp) {
+        replaceExtension(filename, preprocessedExt())
+    } else {
+        addExtension(filename, preprocessedExt())
     }
 }
 

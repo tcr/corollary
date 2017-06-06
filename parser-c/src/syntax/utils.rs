@@ -20,7 +20,7 @@ pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
         CDefault(box s, _) => vec![s],
         CExpr(_, _) => vec![],
         CCompound(_, body, _) => __concatMap!(compoundSubStmts, body),
-        CIf(_, sthen, selse, _) => maybe(vec![sthen], (|s| vec![sthen, s]), selse),
+        CIf(_, box sthen, selse, _) => maybe(vec![sthen], (|s| vec![sthen, *s]), selse),
         CSwitch(_, box s, _) => vec![s],
         CWhile(_, box s, _, _) => vec![s],
         CFor(_, _, _, box s, _) => vec![s],
@@ -35,26 +35,25 @@ pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
 
 pub fn mapSubStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> CStat {
     match (_0, _1, _2) {
-        (stop, _, s) => {
-            // TODO this should actually be "mapSubStmts stop _ s | stop s = s"
-            stop
+        (stop, _, s) if stop(s) => {
+            s
         }
         (stop, f, CLabel(i, box s, attrs, ni)) => f((CLabel(i, box (mapSubStmts(stop, f, s)), attrs, ni))),
-        (stop, f, CCase(e, box s, ni)) => f((CCase(e, (mapSubStmts(stop, f, s)), ni))),
+        (stop, f, CCase(e, box s, ni)) => f((CCase(e, box (mapSubStmts(stop, f, s)), ni))),
         (stop, f, CCases(e1, e2, box s, ni)) => f((CCases(e1, e2, box (mapSubStmts(stop, f, s)), ni))),
-        (stop, f, CDefault(box s, ni)) => f((CDefault((mapSubStmts(stop, f, s)), ni))),
+        (stop, f, CDefault(box s, ni)) => f((CDefault(box (mapSubStmts(stop, f, s)), ni))),
         (stop, f, CCompound(ls, body, ni)) => {
-            f((CCompound(ls, (__map!((mapBlockItemStmts(stop, f)), body)), ni)))
+            f((CCompound(ls, (__map!(|x| { mapBlockItemStmts(stop, f, x) }, body)), ni)))
         }
-        (stop, f, CIf(e, sthen, selse, ni)) => {
+        (stop, f, CIf(e, box sthen, selse, ni)) => {
             f((CIf(e,
-                   (mapSubStmts(stop, f, sthen)),
-                   (__fmap!((mapSubStmts(stop, f)), selse)),
+                   box (mapSubStmts(stop, f, sthen)),
+                   selse.map(|x| { box mapSubStmts(stop, f, *x) }),
                    ni)))
         }
-        (stop, f, CSwitch(e, s, ni)) => f((CSwitch(e, (mapSubStmts(stop, f, s)), ni))),
-        (stop, f, CWhile(e, s, isdo, ni)) => f((CWhile(e, (mapSubStmts(stop, f, s)), isdo, ni))),
-        (stop, f, CFor(i, t, a, s, ni)) => f((CFor(i, t, a, (mapSubStmts(stop, f, s)), ni))),
+        (stop, f, CSwitch(e, box s, ni)) => f((CSwitch(e, box (mapSubStmts(stop, f, s)), ni))),
+        (stop, f, CWhile(e, box s, isdo, ni)) => f((CWhile(e, box (mapSubStmts(stop, f, s)), isdo, ni))),
+        (stop, f, CFor(i, t, a, box s, ni)) => f((CFor(i, t, a, box (mapSubStmts(stop, f, s)), ni))),
         (_, f, s) => f(s),
     }
 }
@@ -81,8 +80,9 @@ pub fn getLabels(_0: CStat) -> Vec<Ident> {
     match (_0) {
         CLabel(l, box s, _, _) => __op_concat(l, getLabels(s)),
         CCompound(ls, body, _) => {
-            __op_forwardslash(__concatMap!((__concatMap!(getLabels, compoundSubStmts)), body),
-                              ls)
+            __op_forwardslash(
+                __concatMap!(|x| { __concatMap!(getLabels, compoundSubStmts(x)) }, body),
+                ls)
         }
         stmt => __concatMap!(getLabels, (getSubStmts(stmt))),
     }
