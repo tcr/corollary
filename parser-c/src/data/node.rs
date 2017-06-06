@@ -13,7 +13,7 @@ use corollary_support::*;
 use data::name::Name;
 use data::position::*;
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub enum NodeInfo {
     OnlyPos(Position, PosLength),
     NodeInfo(Position, PosLength, Name),
@@ -22,10 +22,12 @@ pub use self::NodeInfo::*;
 
 pub fn lengthOfNode(ni: NodeInfo) -> Option<isize> {
 
-    let computeLength = |firstPos, (lastPos, lastTokLen)| if lastTokLen < 0 {
-        None
-    } else {
-        Some(posOffset(lastPos) + lastTokLen - posOffset(pos))
+    let computeLength = |pos, (lastPos, lastTokLen)| {
+        if lastTokLen < 0 {
+            None
+        } else {
+            Some(posOffset(lastPos) + lastTokLen - posOffset(pos))
+        }
     };
 
     let len = match ni {
@@ -50,6 +52,11 @@ pub trait CNode {
 impl CNode for NodeInfo {
     fn nodeInfo(self) -> NodeInfo { self }
 }
+
+pub fn nodeInfo<T: CNode>(n: T) -> NodeInfo {
+    n.nodeInfo()
+}
+
 // impl CNode for (CNode<a>, CNode<b>) {
 //     pub fn nodeInfo(self) -> NodeInfo { Either(a, b) }
 //     => CNode (Either a b) where
@@ -70,6 +77,9 @@ pub fn posOfNode(ni: NodeInfo) -> Position {
 }
 
 pub fn fileOfNode() -> Option<FilePath> {
+    fn justIf<T>(predicate: bool, x: T) -> Option<T> {
+        if predicate { Some(x) } else { None }
+    }
 
     __fmap!(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
 }

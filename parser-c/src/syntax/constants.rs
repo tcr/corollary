@@ -13,8 +13,9 @@ use corollary_support::*;
 
 use num::ToPrimitive;
 use std::marker::PhantomData;
+use data::error::Error;
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub enum CChar {
     CChar(char, bool),
     CChars(Vec<char>, bool),
@@ -29,7 +30,7 @@ pub fn _showWideFlag(flag: bool) -> ShowS {
     if flag {
         showString("L".to_string())
     } else {
-        id
+        showString("".to_string())
     }
 }
 
@@ -68,7 +69,7 @@ pub fn cChars() -> CChar {
     CChars
 }
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub enum CIntRepr {
     DecRepr,
     HexRepr,
@@ -76,7 +77,7 @@ pub enum CIntRepr {
 }
 pub use self::CIntRepr::*;
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub enum CIntFlag {
     FlagUnsigned,
     FlagLong,
@@ -85,7 +86,21 @@ pub enum CIntFlag {
 }
 pub use self::CIntFlag::*;
 
-#[derive(Clone, Debug, Eq, Ord)]
+impl ToPrimitive for CIntFlag {
+    fn to_i64(&self) -> Option<i64> {
+        Some(match *self {
+            FlagUnsigned => 0,
+            FlagLong => 1,
+            FlagLongLong => 2,
+            FlagImag => 3,
+        })
+    }
+    fn to_u64(&self) -> Option<u64> {
+        self.to_i64().map(|x| x as u64)
+    }
+}
+
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct CInteger(pub isize, pub CIntRepr, pub Flags<CIntFlag>);
 
 
@@ -97,9 +112,13 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
         OctalRepr => readOct,
     };
 
-    let mkCInt = |n, suffix| either(Left, (Right(CInteger(n, repr))), readSuffix(suffix));
-
-    let readSuffix = parseFlags(noFlags);
+    let mkCInt = |n, suffix| {
+        match parseFlags(noFlags, suffix) {
+            s @ Left(..) => s,
+            // TODO not sure this is right
+            Right(value) => CInteger(n, repr)
+        }
+    };
 
     fn parseFlags(_0: (), _1: ()) -> Either<(), ()> {
         match (_0, _1) {
@@ -138,7 +157,7 @@ pub fn cInteger(i: isize) -> CInteger {
     CInteger(i, DecRepr, noFlags)
 }
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct CFloat(pub String);
 
 
@@ -150,7 +169,7 @@ pub fn readCFloat() -> CFloat {
     CFloat
 }
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct ClangCVersion(pub String);
 
 
@@ -158,7 +177,7 @@ pub fn readClangCVersion() -> ClangCVersion {
     ClangCVersion
 }
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct CString(pub String, pub bool);
 
 
@@ -210,8 +229,11 @@ pub fn escapeCChar(_0: char) -> String {
     match (_0) {
         '\'' => "\\\'".to_string(),
         c => {
-            /* Expr::Error */
-            Error
+            if isSChar(c) {
+                c.to_string()
+            } else {
+                escapeChar(c)
+            }
         }
     }
 }
@@ -244,8 +266,11 @@ pub fn escapeChar(_0: char) -> String {
         '\t' => "\\t".to_string(),
         '\u{b}' => "\\v".to_string(),
         c => {
-            /* Expr::Error */
-            Error
+            if ord(c) < 512 {
+                format!("\\{}", showOct_q(ord(c)))
+            } else {
+                format!("\\x{}", showHex(ord(c)).show_s("".to_string()))
+            }
         }
     }
 }
@@ -269,13 +294,13 @@ pub fn unescapeChar(_0: String) -> (char, String) {
                 '\"' => ('\"', cs),
                 'x' => {
                     match head_q("bad escape sequence".to_string(), (readHex(cs))) {
-                        (i, cs_q) => (toEnum(i), cs_q),
+                        (i, cs_q) => (i, cs_q),
                     }
                 }
                 _ => {
                     match head_q("bad escape sequence".to_string(),
                                  (readOct_q((__op_concat(c, cs))))) {
-                        (i, cs_q) => (toEnum(i), cs_q),
+                        (i, cs_q) => (i, cs_q),
                     }
                 }
             }
@@ -321,7 +346,7 @@ pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
     }
 }
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Flags<F: ToPrimitive>{
     flags: isize,
     _phantom: PhantomData<F>,

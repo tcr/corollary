@@ -13,7 +13,7 @@ use data::position::*;
 use data::node::*;
 use data::position::Pos;
 
-#[derive(Eq, Ord)]
+#[derive(Eq, Ord, PartialEq, PartialOrd)]
 pub enum ErrorLevel {
     LevelWarn,
     LevelError,
@@ -37,16 +37,16 @@ pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
 pub struct CError<E: Error>(pub E);
 
 // errors in Language.C are instance of 'Error'
-use std::fmt::Display;
-pub trait Error where Self: Display {
+use std::fmt::Debug;
+pub trait Error where Self: Debug + Sized {
     // obtain source location etc. of an error
     fn errorInfo(self) -> ErrorInfo;
     // wrap error in 'CError'
-    fn toError(self) -> CError {
+    fn toError(self) -> CError<Self> {
         CError(self)
     }
     // try to cast a generic 'CError' to the specific error type
-    fn fromError(c: CError) -> Option<Self> {
+    fn fromError(c: CError<Self>) -> Option<Self> {
         Some(c)
     }
     // modify the error level
@@ -54,7 +54,7 @@ pub trait Error where Self: Display {
         if errorLevel(self) == lvl {
             self
         } else {
-            panic!("changeErrorLevel: not possible for {}", self);
+            panic!("changeErrorLevel: not possible for {:?}", self);
         }
     }
 }
@@ -62,16 +62,16 @@ pub trait Error where Self: Display {
 //TODO
 // instance Show CError where
 //     show (CError e) = show e
-impl Error for CError {
+impl<E: Error + Sized> Error for CError<E> {
     fn errorInfo(self) -> ErrorInfo {
         self.0.errorInfo()
     }
 
-    fn toError(self) -> CError {
+    fn toError(self) -> CError<E> {
         self
     }
 
-    fn fromError(c: CError) -> Option<Self> {
+    fn fromError(c: CError<E>) -> Option<Self> {
         Some(c)
     }
 
@@ -102,7 +102,8 @@ pub fn errorMsg<E: Error>(e: E) -> Vec<String> {
 pub struct UnsupportedFeature(pub String, pub Position);
 
 // pub trait Error<T: UnsupportedFeature> {
-    // errorInfo (UnsupportedFeature msg pos) = ErrorInfo LevelError pos (lines msg)
+//     fn errorInfo (UnsupportedFeature msg pos) = ErrorInfo LevelError pos (lines msg)
+// }
 // instance Show UnsupportedFeature where show = showError "Unsupported Feature"
 
 
@@ -128,7 +129,7 @@ pub fn showError<E: Error>(short_msg: String, e: E) -> String {
 
 pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) -> String {
 
-    fn showPos(p: Position) -> String {
+    let showPos = |p: Position| -> String {
         if isSourcePos(p) {
             __op_concat(posFile(p),
                 __op_concat(":",
@@ -140,7 +141,7 @@ pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) 
         } else {
             __op_concat(show(p), ":: ")
         }
-    }
+    };
 
     let header = __op_addadd(showPos(pos),
                              __op_addadd("[".to_string(),

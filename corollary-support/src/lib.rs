@@ -127,10 +127,18 @@ impl<T: Display> Bindable<T> for String {
 
 
 pub fn __op_forwardslash<A, B>(left: A, right: B) {
+    // TODO
     ()
 }
+
 pub fn __op_concat<A, B>(left: A, right: B) {
+    // TODO
     ()
+}
+
+pub fn __op_dollarnot<A, B>(left: A, right: B) -> B {
+    // TODO
+    right
 }
 
 
@@ -275,6 +283,28 @@ pub fn takeWhile<T, F: Fn(&T) -> bool>(cond: F, input: Vec<T>) -> Vec<T> {
 }
 
 
+pub fn fromIntegral(left: isize) -> isize {
+    left
+}
+
+// bits
+
+pub fn setBit(left: isize, right: isize) -> isize {
+    left | (1 << right)
+}
+
+pub fn clearBit(left: isize, right: isize) -> isize {
+    left & !(1 << right)
+}
+
+pub fn testBit(left: isize, right: isize) -> bool {
+    left & (1 << right) != 0
+}
+
+
+
+
+
 
 // Monads
 
@@ -330,6 +360,13 @@ impl ShowS for showOct {
     }
 }
 
+pub struct showHex(pub isize);
+impl ShowS for showHex {
+    fn show_s(&self, input: String) -> String {
+        format!("{:x}{}", self.0, input)
+    }
+}
+
 pub struct showString(pub String);
 impl ShowS for showString {
     fn show_s(&self, input: String) -> String {
@@ -368,6 +405,8 @@ impl ReadS<isize> for readDec {
 
 // BSC
 
+
+//TODO what is BSC vs BSW?
 pub mod BSC {
     pub fn head(input: Vec<char>) -> char {
         input[0]
@@ -421,6 +460,8 @@ pub mod BSW {
 
 pub struct ByteString();
 
+pub type Word8 = char;
+
 
 
 // Map stuff
@@ -458,6 +499,15 @@ macro_rules! __error {
     ($fn: expr) => {
         // TODO
         panic!("ERROR!")
+    }
+}
+
+#[macro_export]
+macro_rules! __foldr {
+    ($fn: expr, $target: expr) => {
+        $target.into_iter()
+            .map($fn)
+            .collect::<Vec<_>>()
     }
 }
 
@@ -523,6 +573,11 @@ pub fn bracket() {
     // TODO
 }
 
+
+pub fn seq<A, B>(a: A, b: B) -> B {
+    // we don't do lazy
+    b
+}
 
 
 

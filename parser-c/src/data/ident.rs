@@ -16,7 +16,7 @@ use data::position::*;
 use data::node::*;
 use data::name::Name;
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub enum SUERef {
     AnonymousRef(Name),
     NamedRef(Ident),

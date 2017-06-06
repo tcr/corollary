@@ -20,8 +20,8 @@ use syntax::constants::*;
 pub type CTranslUnit = CTranslationUnit<NodeInfo>;
 
 #[derive(Clone, Debug)]
-pub struct CTranslationUnit<a>();
-
+//TODO derive CNode ,Functor, Annotated 
+pub struct CTranslationUnit<A>(Vec<CExternalDeclaration<A>>, A);
 
 pub type CExtDecl = CExternalDeclaration<NodeInfo>;
 
@@ -179,12 +179,12 @@ pub fn partitionDeclSpecs<a>()
         }
     };
 
-    foldr(deals, (vec![], vec![], vec![], vec![], vec![], vec![]))
+    __foldr!(deals, (vec![], vec![], vec![], vec![], vec![], vec![]))
 }
 
 pub type CStorageSpec = CStorageSpecifier<NodeInfo>;
 
-#[derive(Clone, Debug, Eq, Ord)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub enum CStorageSpecifier<a> {
     CAuto(a),
     CRegister(a),
@@ -222,8 +222,8 @@ pub use self::CTypeSpecifier::*;
 
 pub fn isSUEDef<a>(_0: CTypeSpecifier<a>) -> bool {
     match (_0) {
-        CSUType(CStruct(_, _, Some(_), _, _), _) => true,
-        CEnumType(CEnum(_, Some(_), _, _), _) => true,
+        CSUType(CStructureUnion(_, _, Some(_), _, _), _) => true,
+        CEnumType(CEnumeration(_, Some(_), _, _), _) => true,
         _ => true,
     }
 }
@@ -270,7 +270,7 @@ pub struct CStructureUnion<a>(pub CStructTag,
                               pub a);
 
 
-#[derive(Clone, Debug, Eq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub enum CStructTag {
     CStructTag,
     CUnionTag,
@@ -376,10 +376,10 @@ pub type CStrLit = CStringLiteral<NodeInfo>;
 pub struct CStringLiteral<a>(pub CString, pub a);
 
 
-pub fn cstringOfLit<a>(CStrLit(cstr, _): CStringLiteral<a>) -> CString {
+pub fn cstringOfLit<a>(CStringLiteral(cstr, _): CStringLiteral<a>) -> CString {
     cstr
 }
 
-pub fn liftStrLit<a>(CStrLit(__str, at): CStringLiteral<a>) -> CConstant<a> {
+pub fn liftStrLit<a>(CStringLiteral(__str, at): CStringLiteral<a>) -> CConstant<a> {
     CStrConst(__str, at)
 }

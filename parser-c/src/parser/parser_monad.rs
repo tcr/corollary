@@ -151,7 +151,7 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
 }
 
 pub fn isTypeIdent(ident: Ident) -> P<bool> {
-    P(box |s| POk(__op_TODO_dollarnot(s, Set::member(ident, tyids))))
+    P(box |s| POk(__op_dollarnot(s, Set::member(ident, s.tyidents.clone()))))
 }
 
 pub fn enterScope() -> P<()> {
@@ -172,7 +172,7 @@ pub fn leaveScope() -> P<()> {
 }
 
 pub fn getInput() -> P<InputStream> {
-    P(|s| POk(s, i))
+    P(|s| POk(s, s.curInput.clone()))
 }
 
 pub fn setInput(i: InputStream) -> P<()> {
@@ -203,9 +203,9 @@ pub fn setLastToken(_0: CToken) -> P<()> {
 }
 
 pub fn handleEofToken() -> P<()> {
-    P(|s| POk(__assign!(s, { savedToken: prevToken(s) }), ()))
+    P(box |s| POk(__assign!(s, { savedToken: prevToken(s) }), ()))
 }
 
 pub fn getCurrentPosition() -> P<Position> {
-    P(|s| POk(s, pos))
+    P(box |s| POk(s, s.curPos.clone()))
 }

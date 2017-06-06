@@ -30,6 +30,28 @@ pub fn newGCC(gccPath: FilePath) -> GCC {
 
 pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String>)> {
 
+
+    fn getDefine(opt: String) -> CppOption {
+        let (key, val) = __break(|x| { '=' == x}, opt);
+
+        Define(key, (if val.is_empty() { "".to_string() } else { tail(val) }))
+    }
+
+    fn getArgOpt (cpp_opt: String, mut rest: Vec<String>) -> Option<(CppOption, Vec<String>)> {
+        if isPrefixOf("-I", cpp_opt) {
+            Some((IncludeDir(drop(2, cpp_opt)), rest))
+        } else if isPrefixOf("-U", cpp_opt) {
+            Some((Undefine(drop(2, cpp_opt)), rest))
+        } else if isPrefixOf("-D", cpp_opt) {
+            Some((getDefine(drop(2, cpp_opt), rest)))
+        } else if cpp_opt == "-include" {
+            let f = rest.remove(0);
+            Some((IncludeFile(f), rest))
+        } else {
+            None
+        }
+    }
+    
     fn mungeArgs(_0: ParseArgsState, unparsed_args: Vec<String>) -> Either<String, ParseArgsState> {
         match _0 {
             parsed @ (cpp_args @ (inp, out, cpp_opts),
@@ -65,12 +87,6 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
             }
         }
     }
-
-    let getDefine = |opt| {
-        let (key, val) = __break(|x| { '=' == x}, opt);
-
-        Define(key, (if val.is_empty() { "".to_string() } else { tail(val) }))
-    };
 
     match mungeArgs(((None, None, RList::empty), (RList::empty, RList::empty)),
                     args) {
