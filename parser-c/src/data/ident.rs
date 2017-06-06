@@ -51,7 +51,7 @@ impl PartialEq for Ident {
 
 // -- identifiers are attributed
 impl CNode for Ident {
-    fn nodeInfo(self) {
+    fn nodeInfo(self) -> NodeInfo {
         if let Ident(_, _, at) = self {
             at
         }

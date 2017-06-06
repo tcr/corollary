@@ -34,23 +34,19 @@ pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
 }
 
 #[derive(Debug)]
-pub struct CError<E: Error>(pub E);
+pub struct CError(pub Box<Error>);
 
 // errors in Language.C are instance of 'Error'
 use std::fmt::Debug;
-pub trait Error where Self: Debug + Sized {
+pub trait Error where Self: Debug {
     // obtain source location etc. of an error
     fn errorInfo(self) -> ErrorInfo;
     // wrap error in 'CError'
-    fn toError(self) -> CError<Self> {
-        CError(self)
-    }
+    fn toError(self) -> CError;
     // try to cast a generic 'CError' to the specific error type
-    fn fromError(c: CError<Self>) -> Option<Self> {
-        Some(c)
-    }
+    fn fromError(c: CError) -> Option<Box<Self>> where Self: Sized;
     // modify the error level
-    fn changeErrorLevel(self, lvl: ErrorLevel) -> Self {
+    fn changeErrorLevel(self, lvl: ErrorLevel) -> Self where Self: Sized {
         if errorLevel(self) == lvl {
             self
         } else {
@@ -62,21 +58,21 @@ pub trait Error where Self: Debug + Sized {
 //TODO
 // instance Show CError where
 //     show (CError e) = show e
-impl<E: Error + Sized> Error for CError<E> {
+impl Error for CError {
     fn errorInfo(self) -> ErrorInfo {
         self.0.errorInfo()
     }
 
-    fn toError(self) -> CError<E> {
+    fn toError(self) -> CError {
         self
     }
 
-    fn fromError(c: CError<E>) -> Option<Self> {
-        Some(c)
+    fn fromError(c: CError) -> Option<Box<Self>> {
+        Some(box c)
     }
 
     fn changeErrorLevel(self, lvl: ErrorLevel) -> Self {
-        CError(self.0.changeErrorLevel(lvl))
+        CError(box self.0.changeErrorLevel(lvl))
     }
 }
 
