@@ -276,38 +276,48 @@ pub fn escapeChar(_0: char) -> String {
 }
 
 pub fn unescapeChar(_0: String) -> (char, String) {
-    match __boxed_chars(_0) {
-        box ['\\', c, cs..] => {
-            match c {
-                'n' => ('\n', cs),
-                't' => ('\t', cs),
-                'v' => ('\u{b}', cs),
-                'b' => ('\u{8}', cs),
-                'r' => ('\r', cs),
-                'f' => ('\u{c}', cs),
-                'a' => ('\u{7}', cs),
-                'e' => ('\u{1b}', cs),
-                'E' => ('\u{1b}', cs),
-                '\\' => ('\\', cs),
-                '?' => ('?', cs),
-                '\'' => ('\'', cs),
-                '\"' => ('\"', cs),
-                'x' => {
-                    match head_q("bad escape sequence".to_string(), (readHex(cs))) {
-                        (i, cs_q) => (i, cs_q),
-                    }
+    let v = _0.chars().collect::<Vec<_>>();
+    // ['\\', c, cs..]
+    if v.len() > 2 && v[0] == '\\' {
+        let c = v[1];
+        let cs: String = v[2..].into_iter().collect();
+        return match c {
+            'n' => ('\n', cs),
+            't' => ('\t', cs),
+            'v' => ('\u{b}', cs),
+            'b' => ('\u{8}', cs),
+            'r' => ('\r', cs),
+            'f' => ('\u{c}', cs),
+            'a' => ('\u{7}', cs),
+            'e' => ('\u{1b}', cs),
+            'E' => ('\u{1b}', cs),
+            '\\' => ('\\', cs),
+            '?' => ('?', cs),
+            '\'' => ('\'', cs),
+            '\"' => ('\"', cs),
+            'x' => {
+                match head_q("bad escape sequence".to_string(), (readHex(cs))) {
+                    (i, cs_q) => (i, cs_q),
                 }
-                _ => {
-                    match head_q("bad escape sequence".to_string(),
-                                 (readOct_q((__op_concat(c, cs))))) {
-                        (i, cs_q) => (i, cs_q),
-                    }
+            }
+            _ => {
+                match head_q("bad escape sequence".to_string(),
+                                (readOct_q((__op_concat(c, cs))))) {
+                    (i, cs_q) => (i, cs_q),
                 }
             }
         }
-        box [c, cs..] => (c, cs),
-        box [] => __error!("unescape char: empty string".to_string()),
     }
+
+    // [c, cs..]
+    if v.len() > 0 {
+        let c = v[0];
+        let cs: String = v[1..].into_iter().collect();
+        return (c, cs)
+    }
+
+    // []
+    __error!("unescape char: empty string".to_string())
 }
 
 pub fn readOct_q(s: ReadS<isize>) -> ReadS<isize> {
@@ -319,24 +329,22 @@ pub fn readOct_q(s: ReadS<isize>) -> ReadS<isize> {
     __map!((|(i, cs)| (i, __op_addadd(cs, rest))), (readOct(octStr)))
 }
 
-pub fn unescapeString(_0: String) -> String {
-    match (_0) {
-        [] => vec![],
-        cs => {
-            match unescapeChar(cs) {
-                (c, cs_q) => __op_concat(c, unescapeString(cs_q)),
-            }
+pub fn unescapeString(cs: String) -> String {
+    if cs.len() == 0 {
+        cs
+    } else {
+        match unescapeChar(cs) {
+            (c, cs_q) => __op_concat(c, unescapeString(cs_q)),
         }
     }
 }
 
-pub fn sQuote(s: String, t: ShowS) -> ShowS {
-    __op_addadd("\'".to_string(),
-                __op_addadd(s, __op_addadd("\'".to_string(), t)))
+pub fn sQuote(s: String, t: ShowS) -> showString {
+    showString(format!("\'{}\'{}", s, t.show_s("".to_string())))
 }
 
-pub fn dQuote(s: String, t: ShowS) -> ShowS {
-    __op_addadd(__op_concat('\"', s), __op_addadd("\"".to_string(), t))
+pub fn dQuote(s: String, t: ShowS) -> showString {
+    showString(format!("\"{}\"{}", s, t.show_s("".to_string())))
 }
 
 pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
@@ -356,7 +364,7 @@ impl<F: ToPrimitive> Flags<F> {
     fn new(flags: isize) -> Self {
         Flags {
             flags,
-            _phantom: PhantomData::new(),
+            _phantom: PhantomData,
         }
     }
 }

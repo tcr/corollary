@@ -237,6 +237,19 @@ pub fn __break<T: Clone, F: Fn(T) -> bool>(cond: F, input: Vec<T>) -> (Vec<T>, V
     (left, right)
 }
 
+pub fn __break_str<F: Fn(char) -> bool>(cond: F, input: String) -> (String, String) {
+    let mut left = vec![];
+    let mut right = vec![];
+    for item in input.chars() {
+        if right.is_empty() && cond(item) {
+            left.push(item);
+        } else {
+            right.push(item);
+        }
+    }
+    (left.into_iter().collect(), right.into_iter().collect())
+}
+
 pub fn any<T: Clone, F: Fn(T) -> bool>(cond: F, input: Vec<T>) -> bool {
     input.iter()
         .any(|x| cond(x.clone()))
@@ -281,8 +294,12 @@ pub fn head(input: Vec<char>) -> char {
     input[0]
 }
 
-pub fn tail(input: Vec<char>) -> char {
-    input[input.len() - 1]
+pub fn tail(input: Vec<char>) -> Vec<char> {
+    input[1..].to_vec()
+}
+
+pub fn tail_str(input: String) -> String {
+    input.chars().skip(1).collect()
 }
 
 pub fn take(len: isize, input: Vec<String>) {
@@ -312,6 +329,10 @@ pub fn drop<T>(len: isize, mut input: Vec<T>) -> Vec<T> {
         input.remove(0);
     }
     input
+}
+
+pub fn drop_str<T>(len: isize, mut input: String) -> String {
+    input.chars().skip(len as usize).collect()
 }
 
 pub fn __boxed_chars(input: String) -> Box<[char]> {
@@ -556,6 +577,14 @@ macro_rules! __foldr {
 #[derive(Clone)]
 pub struct FilePath {
     pub path: String,
+}
+
+impl From<String> for FilePath {
+    fn from(value: String) -> Self {
+        FilePath {
+            path: value
+        }
+    }
 }
 
 impl ToString for FilePath {
