@@ -9,14 +9,12 @@ pub trait OpAddable {
 pub fn __op_addadd<A: OpAddable>(left: A, right: A) -> A {
     OpAddable::add(left, right)
 }
-
 impl OpAddable for String {
     fn add(mut self, right: Self) -> Self {
         self.push_str(&right);
         self
     }
 }
-
 impl<A> OpAddable for Vec<A> {
     fn add(mut self, right: Self) -> Self {
         self.extend(right);
@@ -110,6 +108,11 @@ impl Lengthable for String {
         self.len() as isize
     }
 }
+impl<T> Lengthable for Vec<T> {
+    fn get_len(&self) -> isize {
+        self.len() as isize
+    }
+}
 
 pub trait Bindable<T> {
     fn bind_it(self, right: T) -> Self;
@@ -126,14 +129,13 @@ impl<T: Display> Bindable<T> for String {
 }
 
 
-pub fn __op_forwardslash<A, B>(left: A, right: B) {
+pub fn __op_forwardslash<A, B>(left: A, right: B) -> B {
     // TODO
-    ()
+    right
 }
 
-pub fn __op_concat<A, B>(left: A, right: B) {
-    // TODO
-    ()
+pub fn __op_concat<A: OpAddable>(left: A, right: A) -> A {
+    OpAddable::add(left, right)
 }
 
 pub fn __op_dollarnot<A, B>(left: A, right: B) -> B {
@@ -204,11 +206,11 @@ pub fn not(left: bool) -> bool {
     !left
 }
 
-pub fn __break<T, F: Fn(&T) -> bool>(cond: F, input: Vec<T>) -> (Vec<T>, Vec<T>) {
+pub fn __break<T: Clone, F: Fn(T) -> bool>(cond: F, input: Vec<T>) -> (Vec<T>, Vec<T>) {
     let mut left = vec![];
     let mut right = vec![];
     for item in input.into_iter() {
-        if right.is_empty() && cond(&item) {
+        if right.is_empty() && cond(item.clone()) {
             left.push(item);
         } else {
             right.push(item);
@@ -217,9 +219,9 @@ pub fn __break<T, F: Fn(&T) -> bool>(cond: F, input: Vec<T>) -> (Vec<T>, Vec<T>)
     (left, right)
 }
 
-pub fn any<T, F: Fn(&T) -> bool>(cond: F, input: Vec<T>) -> bool {
+pub fn any<T: Clone, F: Fn(T) -> bool>(cond: F, input: Vec<T>) -> bool {
     input.iter()
-        .any(cond)
+        .any(|x| cond(x.clone()))
 }
 
 pub fn isJust<T>(input: Option<T>) -> bool {
@@ -270,10 +272,10 @@ pub fn take(len: isize, input: Vec<String>) {
 }
 
 
-pub fn takeWhile<T, F: Fn(&T) -> bool>(cond: F, input: Vec<T>) -> Vec<T> {
+pub fn takeWhile<T: Clone, F: Fn(T) -> bool>(cond: F, input: Vec<T>) -> Vec<T> {
     let mut left = vec![];
     for item in input.into_iter() {
-        if cond(&item) {
+        if cond(item.clone()) {
             left.push(item);
         } else {
             return left
@@ -285,6 +287,21 @@ pub fn takeWhile<T, F: Fn(&T) -> bool>(cond: F, input: Vec<T>) -> Vec<T> {
 
 pub fn fromIntegral(left: isize) -> isize {
     left
+}
+
+pub fn drop<T>(len: isize, mut input: Vec<T>) -> Vec<T> {
+    for _ in 0..len {
+        input.remove(0);
+    }
+    input
+}
+
+pub fn __boxed_chars(input: String) -> Box<[char]> {
+    input.chars().collect::<Vec<_>>().into_boxed_slice()
+}
+
+pub fn __boxed_slice<T: Sized>(input: Vec<T>) -> Box<[T]> {
+    input.into_boxed_slice()
 }
 
 // bits

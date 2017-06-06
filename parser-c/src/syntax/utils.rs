@@ -14,16 +14,16 @@ use data::ident::Ident;
 
 pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
     match (_0) {
-        CLabel(_, s, _, _) => vec![s],
-        CCase(_, s, _) => vec![s],
-        CCases(_, _, s, _) => vec![s],
-        CDefault(s, _) => vec![s],
+        CLabel(_, box s, _, _) => vec![s],
+        CCase(_, box s, _) => vec![s],
+        CCases(_, _, box s, _) => vec![s],
+        CDefault(box s, _) => vec![s],
         CExpr(_, _) => vec![],
         CCompound(_, body, _) => __concatMap!(compoundSubStmts, body),
         CIf(_, sthen, selse, _) => maybe(vec![sthen], (|s| vec![sthen, s]), selse),
-        CSwitch(_, s, _) => vec![s],
-        CWhile(_, s, _, _) => vec![s],
-        CFor(_, _, _, s, _) => vec![s],
+        CSwitch(_, box s, _) => vec![s],
+        CWhile(_, box s, _, _) => vec![s],
+        CFor(_, _, _, box s, _) => vec![s],
         CGoto(_, _) => vec![],
         CGotoPtr(_, _) => vec![],
         CCont(_) => vec![],
@@ -39,10 +39,10 @@ pub fn mapSubStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> 
             // TODO this should actually be "mapSubStmts stop _ s | stop s = s"
             stop
         }
-        (stop, f, CLabel(i, s, attrs, ni)) => f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni))),
-        (stop, f, CCase(e, s, ni)) => f((CCase(e, (mapSubStmts(stop, f, s)), ni))),
-        (stop, f, CCases(e1, e2, s, ni)) => f((CCases(e1, e2, (mapSubStmts(stop, f, s)), ni))),
-        (stop, f, CDefault(s, ni)) => f((CDefault((mapSubStmts(stop, f, s)), ni))),
+        (stop, f, CLabel(i, box s, attrs, ni)) => f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni))),
+        (stop, f, CCase(e, box s, ni)) => f((CCase(e, (mapSubStmts(stop, f, s)), ni))),
+        (stop, f, CCases(e1, e2, box s, ni)) => f((CCases(e1, e2, (mapSubStmts(stop, f, s)), ni))),
+        (stop, f, CDefault(box s, ni)) => f((CDefault((mapSubStmts(stop, f, s)), ni))),
         (stop, f, CCompound(ls, body, ni)) => {
             f((CCompound(ls, (__map!((mapBlockItemStmts(stop, f)), body)), ni)))
         }

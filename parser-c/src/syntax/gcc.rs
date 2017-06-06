@@ -74,7 +74,7 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
                         let (opt, rest_q) = getArgOpt(cpp_opt, rest).unwrap();
                         mungeArgs(((inp, out, snoc(cpp_opts, opt)), unparsed), rest_q)
                     }
-                    [cfile, rest..] if any(|x| { isSuffixOf(cfile, x) }, (words(".c .hc .h".to_string()))) => {
+                    [cfile, rest..] if any(|x| { isSuffixOf(cfile, x.clone()) }, (words(".c .hc .h".to_string()))) => {
                         if isJust(inp) {
                             Left("two input files given".to_string())
                         } else {

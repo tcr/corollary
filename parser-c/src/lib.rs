@@ -1,7 +1,7 @@
 // Original file: "C.hs"
 // File auto-generated using Corollary.
 
-#![feature(slice_patterns, box_syntax)]
+#![feature(slice_patterns, box_syntax, box_patterns)]
 #![allow(unused_parens)]
 
 #[macro_use] extern crate corollary_support;

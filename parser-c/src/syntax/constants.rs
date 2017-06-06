@@ -120,12 +120,12 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
         }
     };
 
-    fn parseFlags(_0: (), _1: ()) -> Either<(), ()> {
-        match (_0, _1) {
-            (flags, []) => Right(flags),
-            (flags, ['l', ['l', fs]]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
-            (flags, ['L', ['L', fs]]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
-            (flags, [f, fs]) => {
+    fn parseFlags<T: ToPrimitive>(_0: Flags<T>, _1: String) -> Either<String, Flags<T>> {
+        match (_0, __boxed_chars(_1)) {
+            (flags, box []) => Right(flags),
+            (flags, box ['l', 'l', fs..]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
+            (flags, box ['L', 'L', fs..]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
+            (flags, box [f, fs..]) => {
                 let go1 = |flag| parseFlags((setFlag(flag, flags)), fs);
 
                 match f {
@@ -276,8 +276,8 @@ pub fn escapeChar(_0: char) -> String {
 }
 
 pub fn unescapeChar(_0: String) -> (char, String) {
-    match (_0) {
-        ['\\', [c, cs]] => {
+    match __boxed_chars(_0) {
+        box ['\\', c, cs..] => {
             match c {
                 'n' => ('\n', cs),
                 't' => ('\t', cs),
@@ -305,8 +305,8 @@ pub fn unescapeChar(_0: String) -> (char, String) {
                 }
             }
         }
-        [c, cs] => (c, cs),
-        [] => __error!("unescape char: empty string".to_string()),
+        box [c, cs..] => (c, cs),
+        box [] => __error!("unescape char: empty string".to_string()),
     }
 }
 
@@ -336,13 +336,13 @@ pub fn sQuote(s: String, t: ShowS) -> ShowS {
 }
 
 pub fn dQuote(s: String, t: ShowS) -> ShowS {
-    __op_addadd((__op_concat('\"', s)), __op_addadd("\"".to_string(), t))
+    __op_addadd(__op_concat('\"', s), __op_addadd("\"".to_string(), t))
 }
 
 pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
-    match (_0, _1) {
-        (err, []) => __error!(err),
-        (_, [x, _]) => x,
+    match (_0, _1.into_boxed_slice()) {
+        (err, box []) => __error!(err),
+        (_, box [x, _]) => x,
     }
 }
 
@@ -367,13 +367,13 @@ pub fn noFlags<f: ToPrimitive>() -> Flags<f> {
 }
 
 pub fn setFlag<f: ToPrimitive>(flag: f, Flags { flags: k, .. }: Flags<f>) -> Flags<f> {
-    Flags::new(setBit(k, flag.to_isize()))
+    Flags::new(setBit(k, flag.to_isize().unwrap()))
 }
 
 pub fn clearFlag<f: ToPrimitive>(flag: f, Flags { flags: k, .. }: Flags<f>) -> Flags<f> {
-    Flags::new(clearBit(k, flag.to_isize()))
+    Flags::new(clearBit(k, flag.to_isize().unwrap()))
 }
 
 pub fn testFlag<f: ToPrimitive>(flag: f, Flags { flags: k, .. }: Flags<f>) -> bool {
-    testBit(k, flag.to_isize())
+    testBit(k, flag.to_isize().unwrap())
 }
