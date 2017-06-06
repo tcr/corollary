@@ -90,12 +90,12 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
 
                     // ["-o", file, rest..]
                     if a.len() > 1 && a[0] == "-o" {
-                        let flag = a[1].clone();
+                        let file = a[1].clone();
                         let rest = a[2..].to_vec();
                         return if isJust(out) {
                             Left("two output files given".to_string())
                         } else {
-                            mungeArgs(((inp, Just(file), cpp_opts), unparsed), rest)
+                            mungeArgs(((inp, Some(file), cpp_opts), unparsed), rest)
                         };
                     }
 

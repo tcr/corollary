@@ -16,7 +16,7 @@ use data::position::*;
 use data::node::*;
 use data::name::Name;
 
-#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, PartialEq, PartialOrd)]
 pub enum SUERef {
     AnonymousRef(Name),
     NamedRef(Ident),
@@ -30,17 +30,17 @@ pub fn isAnonymousRef(_0: SUERef) -> bool {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialOrd)]
 pub struct Ident(pub String, pub isize, pub NodeInfo);
 
 // the definition of the equality allows identifiers to be equal that are
 // defined at different source text positions, and aims at speeding up the
 // equality test, by comparing the lexemes only if the two numbers are equal
 impl PartialEq for Ident {
-    fn eq(&self, Ident(s_, h_, _): &Self) -> bool {
-        if let Ident(s, h, _) = self {
+    fn eq(&self, &Ident(ref s_, ref h_, _): &Self) -> bool {
+        if let &Ident(ref s, ref h, _) = self {
             (h == h_) && (s == s_)
-        }
+        } else { unreachable!() }
     }
 }
 
@@ -54,24 +54,36 @@ impl CNode for Ident {
     fn nodeInfo(self) -> NodeInfo {
         if let Ident(_, _, at) = self {
             at
-        }
+        } else { unreachable!() }
     }
 }
 // instance Pos Ident where
 //   posOf = posOfNode . nodeInfo
 
 pub fn quad(_0: String) -> isize {
+    let c: Vec<char> = _0.chars().collect();
     match (_0) {
-        [c1, c2, c3, c4, s..] => {
-            ((__mod(((ord(c4) *
-                      (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))),
-                    bits28)) + (__mod(quad(s), bits28)))
-        }
-        [c1, c2, c3] => (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1))))),
-        [c1, c2] => (ord(c2) * (bits7 + ord(c1))),
-        [c1] => ord(c1),
-        [] => 0,
+    // [c1, c2, c3, c4, s..]
+    if c.len() > 3 {
+        let s: String = c[4..].to_vec().into_iter().collect();
+        return ((__mod(((ord(c[3]) *
+                    (bits21 + (ord(c[2]) * (bits14 + (ord(c[1]) * (bits7 + ord(c[0])))))))),
+                bits28)) + (__mod(quad(s), bits28)))
     }
+    // [c1, c2, c3]
+    if c.len() == 3 {
+        return (ord(c[2]) * (bits14 + (ord(c[1]) * (bits7 + ord(c[2])))));
+    }
+    // [c1, c2]
+    if c.len() == 2 { 
+        return (ord(c[1]) * (bits7 + ord(c[0])));
+    }
+    // [c1]
+    if c.len() == 1 {
+        return ord(c[0]);
+    }
+    // []
+    return 0;
 }
 
 pub fn bits7() -> isize {
@@ -103,7 +115,7 @@ pub fn internalIdentAt(pos: Position, s: String) -> Ident {
 }
 
 pub fn builtinIdent(s: String) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(builtinPos)))
+    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(builtinPos())))
 }
 
 pub fn isInternalIdent(Ident(_, _, nodeinfo): Ident) -> bool {

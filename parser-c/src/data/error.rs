@@ -13,7 +13,7 @@ use data::position::*;
 use data::node::*;
 use data::position::Pos;
 
-#[derive(Eq, Ord, PartialEq, PartialOrd)]
+#[derive(Eq, Ord, PartialEq, PartialOrd, Debug)]
 pub enum ErrorLevel {
     LevelWarn,
     LevelError,
@@ -21,8 +21,8 @@ pub enum ErrorLevel {
 }
 pub use self::ErrorLevel::*;
 
-pub fn isHardError() -> bool {
-    ((() > LevelWarn(errorLevel)))
+pub fn isHardError<E: Error>(e: E) -> bool {
+    errorLevel(e) > LevelWarn
 }
 
 #[derive(Debug)]
@@ -79,19 +79,19 @@ impl Error for CError {
 pub fn errorPos<E: Error>(e: E) -> Position {
     if let ErrorInfo(_, pos, _) = e.errorInfo() {
          pos
-    }
+    } else { unreachable!(); }
 }
 
 pub fn errorLevel<E: Error>(e: E) -> ErrorLevel {
     if let ErrorInfo(lvl, _, _) = e.errorInfo() {
          lvl
-    }
+    } else { unreachable!(); }
 }
 
 pub fn errorMsg<E: Error>(e: E) -> Vec<String> {
     if let ErrorInfo(_, _, msgs) = e.errorInfo() {
          msgs
-    }
+    } else { unreachable!(); }
 }
 
 #[derive(Debug)]
@@ -108,7 +108,7 @@ pub fn unsupportedFeature<P: Pos>(msg: String, a: P) -> UnsupportedFeature {
 }
 
 pub fn unsupportedFeature_(msg: String) -> UnsupportedFeature {
-    UnsupportedFeature(msg, internalPos)
+    UnsupportedFeature(msg, internalPos())
 }
 
 #[derive(Debug)]
@@ -116,7 +116,7 @@ pub struct UserError(pub ErrorInfo);
 
 
 pub fn userErr(msg: String) -> UserError {
-    UserError((ErrorInfo(LevelError, internalPos, (lines(msg)))))
+    UserError((ErrorInfo(LevelError, internalPos(), (lines(msg)))))
 }
 
 pub fn showError<E: Error>(short_msg: String, e: E) -> String {
@@ -127,15 +127,15 @@ pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) 
 
     let showPos = |p: Position| -> String {
         if isSourcePos(p) {
-            __op_concat(posFile(p),
-                __op_concat(":",
-                    __op_concat(show(posRow(pos)),
-                        __op_concat(": ",
-                            __op_concat("(column ",
-                                __op_concat(show(posColumn(pos)),
-                                    ") "))))))
+            __op_addadd(posFile(p),
+                __op_addadd(":".to_string(),
+                    __op_addadd(show(posRow(pos)),
+                        __op_addadd(": ".to_string(),
+                            __op_addadd("(column ".to_string(),
+                                __op_addadd(show(posColumn(pos)),
+                                    ") ".to_string()))))))
         } else {
-            __op_concat(show(p), ":: ")
+            __op_addadd(show(p), ":: ".to_string())
         }
     };
 

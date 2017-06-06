@@ -36,19 +36,19 @@ pub fn parseCFile<C: Preprocessor>(cpp: C,
                                    -> Either<ParseError, CTranslUnit> {
 
     let handleCppError = |_0| match (_0) {
-        Left(exitCode) => Err(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode))),
+        Left(exitCode) => __error!(__op_addadd("Preprocessor failed with ".to_string(), show(exitCode))),
         Right(ok) => ok,
     };
 
     /*do*/
     {
-        let input_stream = if !isPreprocessed(input_file) {
+        let input_stream = if !isPreprocessed(input_file.into()) {
             {
                 let cpp_args = __assign!((rawCppArgs(args, input_file)), {
                     cppTmpDir: tmp_dir_opt
                 });
 
-                __op_bind(runPreprocessor(cpp, cpp_args), handleCppError)
+                handleCppError(runPreprocessor(cpp, cpp_args))
             }
         } else {
             readInputStream(input_file)

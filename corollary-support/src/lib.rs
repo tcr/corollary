@@ -306,6 +306,21 @@ pub fn take(len: isize, input: Vec<String>) {
     // TODO
 }
 
+pub fn hasExtension(fp: FilePath) -> bool {
+    // TODO
+    false
+}
+
+pub fn replaceExtension(fp: FilePath, ext: String) -> FilePath {
+    // TODO
+    fp
+}
+
+pub fn addExtension(fp: FilePath, ext: String) -> FilePath {
+    // TODO
+    fp
+}
+
 
 pub fn takeWhile<T: Clone, F: Fn(T) -> bool>(cond: F, input: Vec<T>) -> Vec<T> {
     let mut left = vec![];
@@ -331,7 +346,7 @@ pub fn drop<T>(len: isize, mut input: Vec<T>) -> Vec<T> {
     input
 }
 
-pub fn drop_str<T>(len: isize, mut input: String) -> String {
+pub fn drop_str<T>(len: isize, input: String) -> String {
     input.chars().skip(len as usize).collect()
 }
 
@@ -584,6 +599,12 @@ impl From<String> for FilePath {
         FilePath {
             path: value
         }
+    }
+}
+
+impl From<FilePath> for String {
+    fn from(value: FilePath) -> Self {
+        value.path
     }
 }
 
