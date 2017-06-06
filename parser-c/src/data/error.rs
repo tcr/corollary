@@ -11,6 +11,7 @@ use corollary_support::*;
 
 use data::position::*;
 use data::node::*;
+use data::position::Pos;
 
 #[derive(Eq, Ord)]
 pub enum ErrorLevel {
@@ -36,6 +37,7 @@ pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
 pub struct CError<E: Error>(pub E);
 
 // errors in Language.C are instance of 'Error'
+use std::fmt::Display;
 pub trait Error where Self: Display {
     // obtain source location etc. of an error
     fn errorInfo(self) -> ErrorInfo;
@@ -104,8 +106,8 @@ pub struct UnsupportedFeature(pub String, pub Position);
 // instance Show UnsupportedFeature where show = showError "Unsupported Feature"
 
 
-pub fn unsupportedFeature<a>(msg: String, a: a) -> UnsupportedFeature {
-    UnsupportedFeature(msg, (posOf(a)))
+pub fn unsupportedFeature<P: Pos>(msg: String, a: P) -> UnsupportedFeature {
+    UnsupportedFeature(msg, a.posOf())
 }
 
 pub fn unsupportedFeature_(msg: String) -> UnsupportedFeature {
@@ -120,11 +122,25 @@ pub fn userErr(msg: String) -> UserError {
     UserError((ErrorInfo(LevelError, internalPos, (lines(msg)))))
 }
 
-pub fn showError(short_msg: String) -> String {
-    showErrorInfo(short_msg, errorInfo)
+pub fn showError<E: Error>(short_msg: String, e: E) -> String {
+    showErrorInfo(short_msg, e.errorInfo())
 }
 
 pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) -> String {
+
+    fn showPos(p: Position) -> String {
+        if isSourcePos(p) {
+            __op_concat(posFile(p),
+                __op_concat(":"
+                    __op_concat(show(posRow(pos)),
+                        __op_concat(": ",
+                            __op_concat("(column ",
+                                __op_concat(show(posColumn(pos)),
+                                    ") "))))))
+        } else {
+            __op_concat(show(p), ":: ")
+        }
+    }
 
     let header = __op_addadd(showPos(pos),
                              __op_addadd("[".to_string(),

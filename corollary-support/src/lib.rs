@@ -257,6 +257,10 @@ pub fn tail(input: Vec<char>) -> char {
     input[input.len() - 1]
 }
 
+pub fn take(len: isize, input: Vec<String>) {
+    // TODO
+}
+
 
 
 // Monads

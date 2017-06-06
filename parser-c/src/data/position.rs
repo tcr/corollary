@@ -27,6 +27,11 @@ pub fn position() -> Position {
     Position
 }
 
+// class of type which aggregate a source code location
+pub trait Pos {
+    fn posOf(self) -> Position;
+}
+
 pub fn initPos(file: FilePath) -> Position {
     Position(0, file, 1, 1)
 }

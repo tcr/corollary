@@ -48,7 +48,8 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
                     }
                     ["-o", file, rest..] if isJust(out) => Left("two output files given".to_string()),
                     ["-o", file, rest..] => mungeArgs(((inp, Some(file), cpp_opts), unparsed), rest),
-                    [cpp_opt, rest..] if Some((opt, rest_q)) => {
+                    [cpp_opt, rest..] if getArgOpt(cpp_opt, rest).is_some() => {
+                        let (opt, rest_q) = getArgOpt(cpp_opt, rest).unwrap();
                         mungeArgs(((inp, out, snoc(cpp_opts, opt)), unparsed), rest_q)
                     }
                     [cfile, rest..] if any(|x| { isSuffixOf(cfile, x) }, (words(".c .hc .h".to_string()))) => {

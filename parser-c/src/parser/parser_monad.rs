@@ -73,11 +73,9 @@ fn scopes(a: PState) -> Vec<Set<Ident>> {
     a.scopes
 }
 
-pub struct P<a> {
-    unP: Box<fn(PState) -> ParseResult<a>>,
-}
-fn unP(a: P) -> Box<fn(PState) -> ParseResult<a>> {
-    a.unP
+pub struct P<a>(Box<fn(PState) -> ParseResult<a>>);
+fn unP<a>(p: P<a>) -> Box<fn(PState) -> ParseResult<a>> {
+    p.0
 }
 
 pub fn execParser<a>(P(parser): P<a>,
@@ -170,7 +168,7 @@ pub fn leaveScope() -> P<()> {
 }
 
 pub fn getInput() -> P<InputStream> {
-    P(|s, __OP__, PState {}| POk(s, i))
+    P(|s| POk(s, i))
 }
 
 pub fn setInput(i: InputStream) -> P<()> {
@@ -201,9 +199,9 @@ pub fn setLastToken(_0: CToken) -> P<()> {
 }
 
 pub fn handleEofToken() -> P<()> {
-    P(|s| POk(s { savedToken: (prevToken(s)) }, ()))
+    P(|s| POk(__assign!(s, { savedToken: prevToken(s) }), ()))
 }
 
 pub fn getCurrentPosition() -> P<Position> {
-    P(|s, __OP__, PState {}| POk(s, pos))
+    P(|s| POk(s, pos))
 }
