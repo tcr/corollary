@@ -1,5 +1,6 @@
 #![allow(non_snake_case)]
 #![allow(unused_variables)]
+#![allow(non_camel_case_types)]
 
 pub trait OpAddable {
     fn add(self, right: Self) -> Self;
@@ -246,13 +247,67 @@ pub fn isOctDigit(input: char) -> bool {
     false
 }
 
+pub fn head(input: Vec<char>) -> char {
+    input[0]
+}
+
+pub fn tail(input: Vec<char>) -> char {
+    input[input.len() - 1]
+}
 
 
 
-// ShowS
 
-// This is wrong, obviously, but passing around lambdas is hard
-pub struct ShowS(pub String);
+// ShowS, ReadS
+
+pub trait ShowS {
+    fn show_s(&self, String) -> String;
+}
+pub trait ReadS<A> {
+    fn read_s(&self, String) -> Vec<(A, String)>;
+}
+
+
+pub struct showOct(pub isize);
+impl ShowS for showOct {
+    fn show_s(&self, input: String) -> String {
+        format!("{:o}{}", self.0, input)
+    }
+}
+
+pub struct showString(pub String);
+impl ShowS for showString {
+    fn show_s(&self, input: String) -> String {
+        format!("{}{}", self.0, input)
+    }
+}
+
+pub struct readHex();
+impl ReadS<isize> for readHex {
+    fn read_s(&self, input: String) -> Vec<(isize, String)> {
+        // TODO
+        vec![]
+    }
+}
+
+pub struct readOct();
+impl ReadS<isize> for readOct {
+    fn read_s(&self, input: String) -> Vec<(isize, String)> {
+        // TODO
+        vec![]
+    }
+}
+
+pub struct readDec();
+impl ReadS<isize> for readDec {
+    fn read_s(&self, input: String) -> Vec<(isize, String)> {
+        // TODO
+        vec![]
+    }
+}
+
+
+
 
 
 
@@ -274,6 +329,32 @@ pub mod BSC {
     pub fn lines(input: Vec<char>) -> Vec<Vec<char>> {
         //TODO
         vec![]
+    }
+
+    pub fn pack(input: Vec<String>) {
+        // TODO
+    }
+
+    pub fn unpack(input: Vec<String>) {
+        // TODO
+    }
+
+    pub fn take(len: isize, input: Vec<String>) {
+        // TODO
+    }
+}
+
+pub mod BSW {
+    pub fn null() -> Vec<char> {
+        vec![]
+    }
+
+    pub fn head(input: Vec<char>) -> char {
+        input[0]
+    }
+
+    pub fn tail(input: Vec<char>) -> char {
+        input[input.len() - 1]
     }
 }
 

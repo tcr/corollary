@@ -34,7 +34,7 @@ pub fn readInputStream() -> IO<InputStream> {
     BSW::readFile()
 }
 
-pub fn inputStreamToString(bs: InputSstream) -> String {
+pub fn inputStreamToString(bs: InputStream) -> String {
     BSC::unpack(bs)
 }
 

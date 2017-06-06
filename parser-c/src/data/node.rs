@@ -43,6 +43,18 @@ pub fn getLastTokenPos(_0: NodeInfo) -> PosLength {
     }
 }
 
+// a class for convenient access to the attributes of an attributed object
+pub trait CNode {
+    fn nodeInfo(self) -> NodeInfo;
+}
+impl CNode for NodeInfo {
+    fn nodeInfo(self) -> NodeInfo { self }
+}
+// impl CNode for (CNode<a>, CNode<b>) {
+//     pub fn nodeInfo(self) -> NodeInfo { Either(a, b) }
+//     => CNode (Either a b) where
+//   nodeInfo = either nodeInfo nodeInfo
+
 pub fn nameOfNode(_0: NodeInfo) -> Option<Name> {
     match (_0) {
         OnlyPos(_, _) => None,

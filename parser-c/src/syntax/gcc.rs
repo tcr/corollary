@@ -24,41 +24,44 @@ fn gccPath(a: GCC) -> FilePath {
     a.gccPath
 }
 
-pub fn newGCC() -> GCC {
-    GCC
+pub fn newGCC(gccPath: FilePath) -> GCC {
+    GCC { gccPath }
 }
 
 pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String>)> {
 
-pub fn mungeArgs(parsed: ParseArgsState, __OP__: Vec<String>, (cpp_args(__OP__, (inp, out, cpp_opts)), unparsed(__OP__, (extra, other))): Either<String, ParseArgsState>) -> Either<String, ParseArgsState>{
-        match unparsed_args {
-            ["-E", rest..] => mungeArgs(parsed, rest),
-            [flag, flagArg, rest..] if (flag ==
-                                        ("-MF".to_string() ||
-                                         (flag ==
-                                          ("-MT".to_string() || (flag == "-MQ".to_string()))))) => {
-                mungeArgs((cpp_args, (extra, snoc(other, snoc(flag, flagArg)))), rest)
-            }
-            [flag, rest..] if (flag ==
-                             ("-c".to_string() ||
-                              (flag ==
-                               ("-S".to_string() || isPrefixOf("-M".to_string(), flag))))) => {
-                mungeArgs((cpp_args, (extra, snoc(other, flag))), rest)
-            }
-            ["-o", file, rest..] if isJust(out) => Left("two output files given".to_string()),
-            ["-o", file, rest..] => mungeArgs(((inp, Some(file), cpp_opts), unparsed), rest),
-            [cpp_opt, rest..] if Some((opt, rest_q)) => {
-                mungeArgs(((inp, out, snoc(cpp_opts, opt)), unparsed), rest_q)
-            }
-            [cfile, rest..] if any(|x| { isSuffixOf(cfile, x) }, (words(".c .hc .h".to_string()))) => {
-                if isJust(inp) {
-                    Left("two input files given".to_string())
-                } else {
-                    mungeArgs(((Some(cfile), out, cpp_opts), unparsed), rest)
+    fn mungeArgs(_0: ParseArgsState, unparsed_args: Vec<String>) -> Either<String, ParseArgsState> {
+        match _0 {
+            parsed @ (cpp_args @ (inp, out, cpp_opts),
+                unparsed @ (extra, other)) => {
+                match unparsed_args {
+                    ["-E", rest..] => mungeArgs(parsed, rest),
+                    [flag, flagArg, rest..] if (flag == "-MF".to_string()) ||
+                                                (flag == "-MT".to_string()) ||
+                                                (flag == "-MQ".to_string()) => {
+                        mungeArgs((cpp_args, (extra, snoc(other, snoc(flag, flagArg)))), rest)
+                    }
+                    [flag, rest..] if (flag == "-c".to_string()) ||
+                                    (flag == "-S".to_string()) ||
+                                    isPrefixOf("-M".to_string(), flag) => {
+                        mungeArgs((cpp_args, (extra, snoc(other, flag))), rest)
+                    }
+                    ["-o", file, rest..] if isJust(out) => Left("two output files given".to_string()),
+                    ["-o", file, rest..] => mungeArgs(((inp, Some(file), cpp_opts), unparsed), rest),
+                    [cpp_opt, rest..] if Some((opt, rest_q)) => {
+                        mungeArgs(((inp, out, snoc(cpp_opts, opt)), unparsed), rest_q)
+                    }
+                    [cfile, rest..] if any(|x| { isSuffixOf(cfile, x) }, (words(".c .hc .h".to_string()))) => {
+                        if isJust(inp) {
+                            Left("two input files given".to_string())
+                        } else {
+                            mungeArgs(((Some(cfile), out, cpp_opts), unparsed), rest)
+                        }
+                    }
+                    [unknown, rest..] => mungeArgs((cpp_args, (snoc(extra, unknown), other)), rest),
+                    [] => Right(parsed),
                 }
             }
-            [unknown, rest..] => mungeArgs((cpp_args, (snoc(extra, unknown), other)), rest),
-            [] => Right(parsed),
         }
     }
 

@@ -101,26 +101,28 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
 
     let readSuffix = parseFlags(noFlags);
 
-    let parseFlags = |_0, _1| match (_0, _1) {
-        (flags, []) => Right(flags),
-        (flags, ['l', ['l', fs]]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
-        (flags, ['L', ['L', fs]]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
-        (flags, [f, fs]) => {
-            let go1 = |flag| parseFlags((setFlag(flag, flags)), fs);
+    fn parseFlags(_0: (), _1: ()) -> Either<(), ()> {
+        match (_0, _1) {
+            (flags, []) => Right(flags),
+            (flags, ['l', ['l', fs]]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
+            (flags, ['L', ['L', fs]]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
+            (flags, [f, fs]) => {
+                let go1 = |flag| parseFlags((setFlag(flag, flags)), fs);
 
-            match f {
-                'l' => go1(FlagLong),
-                'L' => go1(FlagLong),
-                'u' => go1(FlagUnsigned),
-                'U' => go1(FlagUnsigned),
-                'i' => go1(FlagImag),
-                'I' => go1(FlagImag),
-                'j' => go1(FlagImag),
-                'J' => go1(FlagImag),
-                _ => Left(__op_addadd("Unexpected flag ".to_string(), show(f))),
+                match f {
+                    'l' => go1(FlagLong),
+                    'L' => go1(FlagLong),
+                    'u' => go1(FlagUnsigned),
+                    'U' => go1(FlagUnsigned),
+                    'i' => go1(FlagImag),
+                    'I' => go1(FlagImag),
+                    'j' => go1(FlagImag),
+                    'J' => go1(FlagImag),
+                    _ => Left(__op_addadd("Unexpected flag ".to_string(), show(f))),
+                }
             }
         }
-    };
+    }
 
     match readNum(__str) {
         [(n, suffix)] => mkCInt(n, suffix),
@@ -225,7 +227,7 @@ pub fn isSChar(_0: char) -> bool {
 
 pub fn showOct_q(i: isize) -> String {
 
-    let s = showOct(i, "".to_string());
+    let s = showOct(i).show_s("".to_string());
 
     __op_addadd(replicate(((3 - length(s))), '0'), s)
 }

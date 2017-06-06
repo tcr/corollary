@@ -33,17 +33,43 @@ pub fn isAnonymousRef(_0: SUERef) -> bool {
 #[derive(Clone, Debug)]
 pub struct Ident(pub String, pub isize, pub NodeInfo);
 
+// the definition of the equality allows identifiers to be equal that are
+// defined at different source text positions, and aims at speeding up the
+// equality test, by comparing the lexemes only if the two numbers are equal
+impl PartialEq for Ident {
+    fn eq(&self, Ident(s_, h_, _): &Self) -> bool {
+        if let Ident(s, h, _) = self {
+            (h == h_) && (s == s_)
+        }
+    }
+}
+
+// -- this does *not* follow the alphanumerical ordering of the lexemes
+// --
+// instance Ord Ident where
+//   compare (Ident s h _) (Ident s' h' _) = compare (h, s) (h', s')
+
+// -- identifiers are attributed
+impl CNode for Ident {
+    fn nodeInfo(self) {
+        if let Ident(_, _, at) = self {
+            at
+        }
+    }
+}
+// instance Pos Ident where
+//   posOf = posOfNode . nodeInfo
 
 pub fn quad(_0: String) -> isize {
     match (_0) {
-        [c1, [c2, [c3, [c4, s]]]] => {
+        [c1, c2, c3, c4, s..] => {
             ((__mod(((ord(c4) *
                       (bits21 + (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1)))))))),
                     bits28)) + (__mod(quad(s), bits28)))
         }
-        [c1, [c2, [c3, []]]] => (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1))))),
-        [c1, [c2, []]] => (ord(c2) * (bits7 + ord(c1))),
-        [c1, []] => ord(c1),
+        [c1, c2, c3] => (ord(c3) * (bits14 + (ord(c2) * (bits7 + ord(c1))))),
+        [c1, c2] => (ord(c2) * (bits7 + ord(c1))),
+        [c1] => ord(c1),
         [] => 0,
     }
 }
@@ -97,5 +123,5 @@ pub fn sueRefToString(_0: SUERef) -> String {
 
 pub fn dumpIdent(ide: Ident) -> String {
     __op_addadd(identToString(ide),
-                __op_addadd(" at ".to_string(), show((nodeInfo(ide)))))
+                __op_addadd(" at ".to_string(), show((ide.nodeInfo()))))
 }

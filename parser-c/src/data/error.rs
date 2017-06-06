@@ -35,23 +35,65 @@ pub fn mkErrorInfo(lvl: ErrorLevel, msg: String, node: NodeInfo) -> ErrorInfo {
 #[derive(Debug)]
 pub struct CError<E: Error>(pub E);
 
+// errors in Language.C are instance of 'Error'
+pub trait Error where Self: Display {
+    // obtain source location etc. of an error
+    fn errorInfo(self) -> ErrorInfo;
+    // wrap error in 'CError'
+    fn toError(self) -> CError {
+        CError(self)
+    }
+    // try to cast a generic 'CError' to the specific error type
+    fn fromError(c: CError) -> Option<Self> {
+        Some(c)
+    }
+    // modify the error level
+    fn changeErrorLevel(self, lvl: ErrorLevel) -> Self {
+        if errorLevel(self) == lvl {
+            self
+        } else {
+            panic!("changeErrorLevel: not possible for {}", self);
+        }
+    }
+}
 
-pub fn errorPos() -> Position {
-    (|ErrorInfo(_, pos, _)| {
+//TODO
+// instance Show CError where
+//     show (CError e) = show e
+impl Error for CError {
+    fn errorInfo(self) -> ErrorInfo {
+        self.0.errorInfo()
+    }
+
+    fn toError(self) -> CError {
+        self
+    }
+
+    fn fromError(c: CError) -> Option<Self> {
+        Some(c)
+    }
+
+    fn changeErrorLevel(self, lvl: ErrorLevel) -> Self {
+        CError(self.0.changeErrorLevel(lvl))
+    }
+}
+
+pub fn errorPos<E: Error>(e: E) -> Position {
+    if let ErrorInfo(_, pos, _) = e.errorInfo() {
          pos
-     }(errorInfo))
+    }
 }
 
-pub fn errorLevel() -> ErrorLevel {
-    (|ErrorInfo(lvl, _, _)| {
+pub fn errorLevel<E: Error>(e: E) -> ErrorLevel {
+    if let ErrorInfo(lvl, _, _) = e.errorInfo() {
          lvl
-     }(errorInfo))
+    }
 }
 
-pub fn errorMsgs() -> Vec<String> {
-    (|ErrorInfo(_, _, msgs)| {
+pub fn errorMsg<E: Error>(e: E) -> Vec<String> {
+    if let ErrorInfo(_, _, msgs) = e.errorInfo() {
          msgs
-     }(errorInfo))
+    }
 }
 
 #[derive(Debug)]
