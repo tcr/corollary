@@ -108,7 +108,7 @@ pub fn runPreprocessor<P: Preprocessor>(cpp: P,
             }));
 
             match exit_code {
-                ExitSuccess => liftM(Right, (readInputStream(actual_out_file))),
+                ExitSuccess => Right(readInputStream(actual_out_file)),
                 ExitFailure(_) => Left(exit_code),
             }
         }

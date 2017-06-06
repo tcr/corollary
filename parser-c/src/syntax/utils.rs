@@ -39,9 +39,9 @@ pub fn mapSubStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> 
             // TODO this should actually be "mapSubStmts stop _ s | stop s = s"
             stop
         }
-        (stop, f, CLabel(i, box s, attrs, ni)) => f((CLabel(i, (mapSubStmts(stop, f, s)), attrs, ni))),
+        (stop, f, CLabel(i, box s, attrs, ni)) => f((CLabel(i, box (mapSubStmts(stop, f, s)), attrs, ni))),
         (stop, f, CCase(e, box s, ni)) => f((CCase(e, (mapSubStmts(stop, f, s)), ni))),
-        (stop, f, CCases(e1, e2, box s, ni)) => f((CCases(e1, e2, (mapSubStmts(stop, f, s)), ni))),
+        (stop, f, CCases(e1, e2, box s, ni)) => f((CCases(e1, e2, box (mapSubStmts(stop, f, s)), ni))),
         (stop, f, CDefault(box s, ni)) => f((CDefault((mapSubStmts(stop, f, s)), ni))),
         (stop, f, CCompound(ls, body, ni)) => {
             f((CCompound(ls, (__map!((mapBlockItemStmts(stop, f)), body)), ni)))
@@ -79,7 +79,7 @@ pub fn compoundSubStmts(_0: CBlockItem) -> Vec<CStat> {
 
 pub fn getLabels(_0: CStat) -> Vec<Ident> {
     match (_0) {
-        CLabel(l, s, _, _) => __op_concat(l, getLabels(s)),
+        CLabel(l, box s, _, _) => __op_concat(l, getLabels(s)),
         CCompound(ls, body, _) => {
             __op_forwardslash(__concatMap!((__concatMap!(getLabels, compoundSubStmts)), body),
                               ls)

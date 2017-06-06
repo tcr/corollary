@@ -38,11 +38,11 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
     }
 
     fn getArgOpt (cpp_opt: String, mut rest: Vec<String>) -> Option<(CppOption, Vec<String>)> {
-        if isPrefixOf("-I", cpp_opt) {
+        if isPrefixOf("-I".to_string(), cpp_opt) {
             Some((IncludeDir(drop(2, cpp_opt)), rest))
-        } else if isPrefixOf("-U", cpp_opt) {
+        } else if isPrefixOf("-U".to_string(), cpp_opt) {
             Some((Undefine(drop(2, cpp_opt)), rest))
-        } else if isPrefixOf("-D", cpp_opt) {
+        } else if isPrefixOf("-D".to_string(), cpp_opt) {
             Some((getDefine(drop(2, cpp_opt), rest)))
         } else if cpp_opt == "-include" {
             let f = rest.remove(0);
@@ -56,33 +56,33 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
         match _0 {
             parsed @ (cpp_args @ (inp, out, cpp_opts),
                 unparsed @ (extra, other)) => {
-                match unparsed_args {
-                    ["-E", rest..] => mungeArgs(parsed, rest),
-                    [flag, flagArg, rest..] if (flag == "-MF".to_string()) ||
+                match __boxed_slice(unparsed_args) {
+                    box ["-E", rest..] => mungeArgs(parsed, rest),
+                    box [flag, flagArg, rest..] if (flag == "-MF".to_string()) ||
                                                 (flag == "-MT".to_string()) ||
                                                 (flag == "-MQ".to_string()) => {
                         mungeArgs((cpp_args, (extra, snoc(other, snoc(flag, flagArg)))), rest)
                     }
-                    [flag, rest..] if (flag == "-c".to_string()) ||
+                    box [flag, rest..] if (flag == "-c".to_string()) ||
                                     (flag == "-S".to_string()) ||
                                     isPrefixOf("-M".to_string(), flag) => {
                         mungeArgs((cpp_args, (extra, snoc(other, flag))), rest)
                     }
-                    ["-o", file, rest..] if isJust(out) => Left("two output files given".to_string()),
-                    ["-o", file, rest..] => mungeArgs(((inp, Some(file), cpp_opts), unparsed), rest),
-                    [cpp_opt, rest..] if getArgOpt(cpp_opt, rest).is_some() => {
-                        let (opt, rest_q) = getArgOpt(cpp_opt, rest).unwrap();
+                    box ["-o", file, rest..] if isJust(out) => Left("two output files given".to_string()),
+                    box ["-o", file, rest..] => mungeArgs(((inp, Some(file), cpp_opts), unparsed), rest),
+                    box [cpp_opt, rest..] if getArgOpt(cpp_opt, rest.to_vec()).is_some() => {
+                        let (opt, rest_q) = getArgOpt(cpp_opt, rest.to_vec()).unwrap();
                         mungeArgs(((inp, out, snoc(cpp_opts, opt)), unparsed), rest_q)
                     }
-                    [cfile, rest..] if any(|x| { isSuffixOf(cfile, x.clone()) }, (words(".c .hc .h".to_string()))) => {
+                    box [cfile, rest..] if any(|x| { isSuffixOf(cfile, x.clone()) }, (words(".c .hc .h".to_string()))) => {
                         if isJust(inp) {
                             Left("two input files given".to_string())
                         } else {
                             mungeArgs(((Some(cfile), out, cpp_opts), unparsed), rest)
                         }
                     }
-                    [unknown, rest..] => mungeArgs((cpp_args, (snoc(extra, unknown), other)), rest),
-                    [] => Right(parsed),
+                    box [unknown, rest..] => mungeArgs((cpp_args, (snoc(extra, unknown), other)), rest),
+                    box [] => Right(parsed),
                 }
             }
         }
