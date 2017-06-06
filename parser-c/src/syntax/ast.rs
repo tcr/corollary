@@ -163,19 +163,19 @@ pub fn partitionDeclSpecs<a>()
             (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
         }
         (CTypeQual(CAttrQual(attr)), (sts, ats, tqs, tss, fss, ass)) => {
-            (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            (sts, __op_concat(attr, ats), tqs, tss, fss, ass)
         }
         (CTypeQual(tq), (sts, ats, tqs, tss, fss, ass)) => {
-            (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            (sts, ats, __op_concat(tq, tqs), tss, fss, ass)
         }
         (CTypeSpec(ts), (sts, ats, tqs, tss, fss, ass)) => {
-            (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            (sts, ats, tqs, __op_concat(ts, tss), fss, ass)
         }
         (CFunSpec(fs), (sts, ats, tqs, tss, fss, ass)) => {
-            (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            (sts, ats, tqs, tss, __op_concat(fs, fss), ass)
         }
         (CAlignSpec(__as), (sts, ats, tqs, tss, fss, ass)) => {
-            (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+            (sts, ats, tqs, tss, fss, __op_concat(__as, ass))
         }
     };
 

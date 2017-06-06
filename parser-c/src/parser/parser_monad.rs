@@ -118,7 +118,11 @@ pub fn failP<a>(pos: Position, msg: Vec<String>) -> P<a> {
 }
 
 pub fn getNewName() -> P<Name> {
-    P(box |s| seq(n, POk(__assign!(s, { namesupply: ns }), n)))
+    P(box |s| {
+        let mut ns = s.namesupply.clone();
+        let n = ns.remove(0);
+        seq(n, POk(__assign!(s, { namesupply: ns }), n))
+    })
 }
 
 pub fn setPos(pos: Position) -> P<()> {
@@ -130,16 +134,16 @@ pub fn getPos() -> P<Position> {
 }
 
 pub fn addTypedef(ident: Ident) -> P<()> {
-    P(box |s| POk(s { tyidents: Set::insert(ident, s.tyidents.clone()) }, ()))
+    P(box |s| POk(__assign!(s, { tyidents: Set::insert(ident, s.tyidents.clone()) }), ()))
 }
 
 pub fn shadowTypedef(ident: Ident) -> P<()> {
     P(box |s| {
         POk(__assign!(s, {
-                tyidents: (if Set::member(ident, tyids) {
+                tyidents: (if Set::member(ident, s.tyidents.clone()) {
                     Set::delete(ident, s.tyidents.clone())
                 } else {
-                    tyids
+                    s.tyidents.clone()
                 }),
             }),
             ())

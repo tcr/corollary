@@ -131,7 +131,7 @@ pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) 
     fn showPos(p: Position) -> String {
         if isSourcePos(p) {
             __op_concat(posFile(p),
-                __op_concat(":"
+                __op_concat(":",
                     __op_concat(show(posRow(pos)),
                         __op_concat(": ",
                             __op_concat("(column ",

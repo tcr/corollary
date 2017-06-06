@@ -262,6 +262,19 @@ pub fn take(len: isize, input: Vec<String>) {
 }
 
 
+pub fn takeWhile<T, F: Fn(&T) -> bool>(cond: F, input: Vec<T>) -> Vec<T> {
+    let mut left = vec![];
+    for item in input.into_iter() {
+        if cond(&item) {
+            left.push(item);
+        } else {
+            return left
+        }
+    }
+    left
+}
+
+
 
 // Monads
 
@@ -387,6 +400,8 @@ pub mod BSC {
 }
 
 pub mod BSW {
+    use FilePath;
+
     pub fn null() -> Vec<char> {
         vec![]
     }
@@ -398,7 +413,13 @@ pub mod BSW {
     pub fn tail(input: Vec<char>) -> char {
         input[input.len() - 1]
     }
+
+    pub fn readFile(f: FilePath) {
+        // TODO
+    }
 }
+
+pub struct ByteString();
 
 
 
@@ -519,5 +540,16 @@ pub mod Map {
     pub fn lookup<T>(value: T, inside: Vec<T>) -> isize {
         //TODO
         0
+    }
+}
+
+
+use std::hash::Hash;
+use std::collections::HashSet;
+pub struct Set<T>(HashSet<T>);
+
+impl<T: Eq + Hash> Set<T> {
+    pub fn member(item: T, list: Self) -> bool {
+        list.0.contains(&item)
     }
 }
