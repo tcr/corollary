@@ -22,12 +22,12 @@ pub enum CChar {
 }
 pub use self::CChar::*;
 
-pub fn showCharConst(c: char) -> ShowS {
+pub fn showCharConst(c: char) -> Box<ShowS> {
     sQuote(escapeCChar(c))
 }
 
-pub fn _showWideFlag(flag: bool) -> ShowS {
-    if flag {
+pub fn _showWideFlag(flag: bool) -> Box<ShowS> {
+    box if flag {
         showString("L".to_string())
     } else {
         showString("".to_string())
@@ -36,8 +36,8 @@ pub fn _showWideFlag(flag: bool) -> ShowS {
 
 pub fn getCChar(_0: CChar) -> String {
     match (_0) {
-        CChar(c, _) => vec![c],
-        CChars(cs, _) => cs,
+        CChar(c, _) => c.to_string(),
+        CChars(cs, _) => cs.into_iter().collect(),
     }
 }
 
@@ -65,8 +65,8 @@ pub fn cChar_w(c: char) -> CChar {
     CChar(c, true)
 }
 
-pub fn cChars() -> CChar {
-    CChars
+pub fn cChars(a: String, b: bool) -> CChar {
+    CChars(a.chars().collect(), b)
 }
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
@@ -106,27 +106,29 @@ pub struct CInteger(pub isize, pub CIntRepr, pub Flags<CIntFlag>);
 
 pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
 
-    let readNum = match repr {
-        DecRepr => readDec,
-        HexRepr => readHex,
-        OctalRepr => readOct,
+    let readNum: Box<Fn(String) -> Box<ReadS<isize>>> = match repr {
+        DecRepr => box |x| box readDec(x),
+        HexRepr => box |x| box readHex(x),
+        OctalRepr => box |x| box readOct(x),
     };
 
     let mkCInt = |n, suffix| {
         match parseFlags(noFlags, suffix) {
             s @ Left(..) => s,
             // TODO not sure this is right
-            Right(value) => CInteger(n, repr)
+            Right(value) => CInteger(n, repr, readSuffix(suffix))
         }
     };
 
-    fn parseFlags<T: ToPrimitive>(_0: Flags<T>, _1: String) -> Either<String, Flags<T>> {
+    fn parseFlags<T: ToPrimitive. U: ToPrimitive>(_0: Flags<T>, _1: String) -> Either<String, Flags<U>> {
         match (_0, __boxed_chars(_1)) {
             (flags, box []) => Right(flags),
             (flags, box ['l', 'l', fs..]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
             (flags, box ['L', 'L', fs..]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
             (flags, box [f, fs..]) => {
-                let go1 = |flag| parseFlags((setFlag(flag, flags)), fs);
+                let go1 = |flag| {
+                    parseFlags((setFlag(flag, flags)), fs)
+                };
 
                 match f {
                     'l' => go1(FlagLong),
@@ -154,27 +156,27 @@ pub fn getCInteger(CInteger(i, _, _): CInteger) -> isize {
 }
 
 pub fn cInteger(i: isize) -> CInteger {
-    CInteger(i, DecRepr, noFlags)
+    CInteger(i, DecRepr, noFlags())
 }
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct CFloat(pub String);
 
 
-pub fn cFloat() -> CFloat {
-    CFloat(show)
+pub fn cFloat(input: double) -> CFloat {
+    CFloat(show(input))
 }
 
-pub fn readCFloat() -> CFloat {
-    CFloat
+pub fn readCFloat(input: String) -> CFloat {
+    CFloat(input)
 }
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct ClangCVersion(pub String);
 
 
-pub fn readClangCVersion() -> ClangCVersion {
-    ClangCVersion
+pub fn readClangCVersion(input: String) -> ClangCVersion {
+    ClangCVersion(input)
 }
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
@@ -198,18 +200,21 @@ pub fn isWideString(CString(_, wideflag): CString) -> bool {
 }
 
 pub fn concatCStrings(cs: Vec<CString>) -> CString {
-    CString((__concatMap!(getCString, cs)), (any(isWideString, cs)))
+    CString(cs.into_iter()
+        .map(getCString)
+        .collect::<Vec<_>>().join(""), (any(isWideString, cs)))
 }
 
-pub fn showStringLit(s: String) -> ShowS {
-    let showStringChar = |c| if isSChar(c) {
-        c
-    } else if c == '"' {
-        "\\\"".to_string()
-    } else {
-        escapeChar(c)
-    };
-    dQuote(__concatMap!(showStringChar, s))
+pub fn showStringLit(s: String) -> Box<ShowS> {
+    dQuote(s.chars().map(|c| {
+        if isSChar(c) {
+            format!("{}", c)
+        } else if c == '"' {
+            "\\\"".to_string()
+        } else {
+            escapeChar(c)
+        }
+    }).collect::<Vec<_>>().join(""))
 }
 
 pub fn isAsciiSourceChar(c: char) -> bool {
@@ -251,7 +256,7 @@ pub fn showOct_q(i: isize) -> String {
 
     let s = showOct(i).show_s("".to_string());
 
-    __op_addadd(replicate(((3 - length(s))), '0'), s)
+    __op_addadd(replicate(((3 - length(s))), '0').into_iter().collect(), s)
 }
 
 pub fn escapeChar(_0: char) -> String {
@@ -320,13 +325,13 @@ pub fn unescapeChar(_0: String) -> (char, String) {
     __error!("unescape char: empty string".to_string())
 }
 
-pub fn readOct_q(s: ReadS<isize>) -> ReadS<isize> {
+pub fn readOct_q(s: String) -> Box<ReadS<isize>> {
 
-    let octStr = takeWhile(isOctDigit, take(3, s));
+    let octStr = takeWhile_str(isOctDigit, take_str(3, s));
 
-    let rest = drop((length(octStr)), s);
+    let rest = drop_str((length(octStr)), s);
 
-    __map!((|(i, cs)| (i, __op_addadd(cs, rest))), (readOct(octStr)))
+    box readOct(octStr).map(|(i, cs)| { (i, __op_addadd(cs, rest)) })
 }
 
 pub fn unescapeString(cs: String) -> String {
@@ -339,18 +344,27 @@ pub fn unescapeString(cs: String) -> String {
     }
 }
 
-pub fn sQuote(s: String, t: ShowS) -> showString {
-    showString(format!("\'{}\'{}", s, t.show_s("".to_string())))
+pub fn sQuote(s: String) -> Box<ShowS> {
+    box showString(format!("\'{}\'", s))
 }
 
-pub fn dQuote(s: String, t: ShowS) -> showString {
-    showString(format!("\"{}\"{}", s, t.show_s("".to_string())))
+pub fn dQuote(s: String) -> Box<ShowS> {
+    box showString(format!("\"{}\"", s))
 }
 
-pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
-    match (_0, _1.into_boxed_slice()) {
-        (err, box []) => __error!(err),
-        (_, box [x, _]) => x,
+pub fn head_q(_0: String, _1: Vec<a>) -> a {
+    if _1.is_empty() {
+        __error!(_0);
+    } else {
+        _1.remove(0)
+    }
+}
+
+pub fn head_q_str(_0: String, _1: String) -> char {
+    if let Some(c) = _1.chars().next() {
+       c 
+    } else {
+        __error!(_0);
     }
 }
 

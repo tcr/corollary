@@ -334,6 +334,18 @@ pub fn takeWhile<T: Clone, F: Fn(T) -> bool>(cond: F, input: Vec<T>) -> Vec<T> {
     left
 }
 
+pub fn takeWhile_str<F: Fn(char) -> bool>(cond: F, input: String) -> String {
+    let mut left = vec![];
+    for item in input.chars() {
+        if cond(item.clone()) {
+            left.push(item);
+        } else {
+            return left.into_iter().collect();
+        }
+    }
+    left.into_iter().collect()
+}
+
 
 pub fn fromIntegral(left: isize) -> isize {
     left
@@ -419,9 +431,6 @@ pub fn testBit(left: isize, right: isize) -> bool {
 pub trait ShowS {
     fn show_s(&self, String) -> String;
 }
-pub trait ReadS<A> {
-    fn read_s(&self, String) -> Vec<(A, String)>;
-}
 
 
 pub struct showOct(pub isize);
@@ -445,25 +454,34 @@ impl ShowS for showString {
     }
 }
 
-pub struct readHex();
+
+pub trait ReadS<A> {
+    fn read_s(&self) -> Vec<(A, String)>;
+    fn map<F: Fn((isize, String)) -> (isize, String)>(self, f: F) -> Self where Self: Sized {
+        // TODO
+        self
+    }
+}
+
+pub struct readHex(pub String);
 impl ReadS<isize> for readHex {
-    fn read_s(&self, input: String) -> Vec<(isize, String)> {
+    fn read_s(&self) -> Vec<(isize, String)> {
         // TODO
         vec![]
     }
 }
 
-pub struct readOct();
+pub struct readOct(pub String);
 impl ReadS<isize> for readOct {
-    fn read_s(&self, input: String) -> Vec<(isize, String)> {
+    fn read_s(&self) -> Vec<(isize, String)> {
         // TODO
         vec![]
     }
 }
 
-pub struct readDec();
+pub struct readDec(pub String);
 impl ReadS<isize> for readDec {
-    fn read_s(&self, input: String) -> Vec<(isize, String)> {
+    fn read_s(&self) -> Vec<(isize, String)> {
         // TODO
         vec![]
     }

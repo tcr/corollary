@@ -67,16 +67,16 @@ pub fn quad(_0: String) -> isize {
     if c.len() > 3 {
         let s: String = c[4..].to_vec().into_iter().collect();
         return ((__mod(((ord(c[3]) *
-                    (bits21 + (ord(c[2]) * (bits14 + (ord(c[1]) * (bits7 + ord(c[0])))))))),
-                bits28)) + (__mod(quad(s), bits28)));
+                    (bits21() + (ord(c[2]) * (bits14() + (ord(c[1]) * (bits7() + ord(c[0])))))))),
+                bits28())) + (__mod(quad(s), bits28())));
     }
     // [c1, c2, c3]
     if c.len() == 3 {
-        return (ord(c[2]) * (bits14 + (ord(c[1]) * (bits7 + ord(c[2])))));
+        return (ord(c[2]) * (bits14() + (ord(c[1]) * (bits7() + ord(c[2])))));
     }
     // [c1, c2]
     if c.len() == 2 { 
-        return (ord(c[1]) * (bits7 + ord(c[0])));
+        return (ord(c[1]) * (bits7() + ord(c[0])));
     }
     // [c1]
     if c.len() == 1 {

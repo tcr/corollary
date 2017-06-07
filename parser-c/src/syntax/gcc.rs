@@ -13,7 +13,7 @@ use corollary_support::*;
 // use Data::List;
 
 use syntax::preprocess::CppArgs;
-use data::r_list::{RList, snoc};
+use data::r_list::{Reversed, RList, snoc};
 use syntax::preprocess::CppOption::*;
 use syntax::preprocess::*;
 
@@ -73,7 +73,7 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
                         if (flag == "-MF".to_string()) ||
                             (flag == "-MT".to_string()) ||
                             (flag == "-MQ".to_string()) {
-                            return mungeArgs((cpp_args, (extra, snoc(other, snoc(flag, flagArg)))), rest);
+                            return mungeArgs((cpp_args, (extra, snoc(snoc(other, flag), flagArg))), rest);
                         }
                     }
 
@@ -95,7 +95,7 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
                         return if isJust(out) {
                             Left("two output files given".to_string())
                         } else {
-                            mungeArgs(((inp, Some(file), cpp_opts), unparsed), rest)
+                            mungeArgs(((inp, Some(file.into()), cpp_opts), unparsed), rest)
                         };
                     }
 
@@ -150,8 +150,8 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
     }
 }
 
-pub type ParseArgsState = ((Option<FilePath>, Option<FilePath>, RList<CppOption>),
-                           (RList<String>, RList<String>));
+pub type ParseArgsState = ((Option<FilePath>, Option<FilePath>, Reversed<CppOption>),
+                           (Reversed<String>, Reversed<String>));
 
 pub fn buildCppArgs(CppArgs {
     cppOptions: options,
