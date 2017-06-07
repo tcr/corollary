@@ -65,7 +65,7 @@ pub trait Pos {
 }
 
 pub fn initPos(file: FilePath) -> Position {
-    position(0, file, 1, 1)
+    position(0, file.into(), 1, 1)
 }
 
 pub fn isSourcePos(_0: Position) -> bool {
@@ -124,7 +124,7 @@ pub fn retPos(_0: Position) -> Position {
 
 pub fn adjustPos(_0: FilePath, _1: isize, _2: Position) -> Position {
     match (_0, _1, _2) {
-        (fname, row, Position::Position {posOffset: offs, .. }) => position(offs, fname, row, 1),
+        (fname, row, Position::Position {posOffset: offs, .. }) => position(offs, fname.into(), row, 1),
         (_, _, p) => p,
     }
 }

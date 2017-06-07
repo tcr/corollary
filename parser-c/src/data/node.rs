@@ -89,23 +89,23 @@ pub fn eqByName<a>(obj1: a, obj2: a) -> bool {
 }
 
 pub fn internalNode() -> NodeInfo {
-    undefNode
+    undefNode()
 }
 
 pub fn undefNode() -> NodeInfo {
-    OnlyPos(nopos, (nopos, -(1)))
+    OnlyPos(nopos(), (nopos(), -(1)))
 }
 
 pub fn mkNodeInfoOnlyPos(pos: Position) -> NodeInfo {
-    OnlyPos(pos, (nopos, -(1)))
+    OnlyPos(pos, (nopos(), -(1)))
 }
 
-pub fn mkNodeInfoPosLen() -> NodeInfo {
-    OnlyPos
+pub fn mkNodeInfoPosLen(a: Position, b: PosLength) -> NodeInfo {
+    OnlyPos(a, b)
 }
 
 pub fn mkNodeInfo(pos: Position, name: Name) -> NodeInfo {
-    NodeInfo(pos, (nopos, -(1)), name)
+    NodeInfo(pos, (nopos(), -(1)), name)
 }
 
 pub fn mkNodeInfo_q(pos: Position, lasttok: PosLength, name: Name) -> NodeInfo {

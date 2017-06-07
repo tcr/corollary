@@ -112,10 +112,6 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
         OctalRepr => box |x| box readOct(x),
     };
 
-    mkCInt n suffix = either
-        Left
-        (Right . CInteger n repr)  $ readSuffix suffix
-
     let mkCInt = |n, suffix| {
         match readSuffix(suffix) {
             s @ Left(..) => s,
@@ -181,7 +177,7 @@ pub fn cInteger(i: isize) -> CInteger {
 pub struct CFloat(pub String);
 
 
-pub fn cFloat(input: double) -> CFloat {
+pub fn cFloat(input: f32) -> CFloat {
     CFloat(show(input))
 }
 
@@ -370,7 +366,7 @@ pub fn dQuote(s: String) -> Box<ShowS> {
     box showString(format!("\"{}\"", s))
 }
 
-pub fn head_q(_0: String, _1: Vec<a>) -> a {
+pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
     if _1.is_empty() {
         __error!(_0);
     } else {

@@ -10,8 +10,13 @@ use corollary_support::*;
 
 pub struct Reversed<a>(pub a);
 
+pub fn snoc<a>(Reversed(xs): Reversed<Vec<a>>, x: a) -> Reversed<Vec<a>> {
+    Reversed((__op_concat(x, xs)))
+}
+
 pub mod RList {
     use super::Reversed;
+    use corollary_support::*;
 
     pub fn empty<a>() -> Reversed<Vec<a>> {
         Reversed(vec![])
@@ -19,10 +24,6 @@ pub mod RList {
 
     pub fn singleton<a>(x: a) -> Reversed<Vec<a>> {
         Reversed(vec![x])
-    }
-
-    pub fn snoc<a>(Reversed(xs): Reversed<Vec<a>>, x: a) -> Reversed<Vec<a>> {
-        Reversed((__op_concat(x, xs)))
     }
 
     pub fn rappend<a>(Reversed(xs): Reversed<Vec<a>>, ys: Vec<a>) -> Reversed<Vec<a>> {

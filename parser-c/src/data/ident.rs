@@ -134,6 +134,5 @@ pub fn sueRefToString(_0: SUERef) -> String {
 }
 
 pub fn dumpIdent(ide: Ident) -> String {
-    __op_addadd(identToString(ide),
-                __op_addadd(" at ".to_string(), show((ide.nodeInfo()))))
+    format!("{:?} at {:?}", identToString(ide), ide.nodeInfo())
 }
