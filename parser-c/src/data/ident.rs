@@ -30,7 +30,7 @@ pub fn isAnonymousRef(_0: SUERef) -> bool {
     }
 }
 
-#[derive(Clone, Debug, PartialOrd, Hash)]
+#[derive(Clone, Debug, PartialOrd, Hash, Eq)]
 pub struct Ident(pub String, pub isize, pub NodeInfo);
 
 // the definition of the equality allows identifiers to be equal that are

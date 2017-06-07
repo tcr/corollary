@@ -43,7 +43,7 @@ pub fn getCChar(_0: CChar) -> String {
 
 pub fn getCCharAsInt(_0: CChar) -> isize {
     match (_0) {
-        CChar(c, _) => fromIntegral((fromEnum(c))),
+        CChar(c, _) => fromIntegral(c as isize),
         CChars(_cs, _) => {
             __error!("integer value of multi-character character constants is implementation defined".to_string())
         }
@@ -112,11 +112,14 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
         OctalRepr => box |x| box readOct(x),
     };
 
+    mkCInt n suffix = either
+        Left
+        (Right . CInteger n repr)  $ readSuffix suffix
+
     let mkCInt = |n, suffix| {
-        match parseFlags(noFlags, suffix) {
+        match readSuffix(suffix) {
             s @ Left(..) => s,
-            // TODO not sure this is right
-            Right(value) => CInteger(n, repr, readSuffix(suffix))
+            Right(s) => CInteger(n, repr, s)
         }
     };
 
@@ -156,9 +159,13 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
         }
     }
 
-    match readNum(__str) {
-        [(n, suffix)] => mkCInt(n, suffix),
-        parseFailed => Left(__op_addadd("Bad Integer literal: ".to_string(), show(parseFailed))),
+    let s = readNum(__str).read_s();
+    if s.len() == 1 {
+        if let (n, suffix) = s[0] {
+            mkCInt(n, suffix)
+        } else { unreachable!() }
+    } else {
+        Left(format!("Bad Integer literal: {:?}", s))
     }
 }
 

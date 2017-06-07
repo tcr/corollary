@@ -16,6 +16,7 @@ use data::position::*;
 use syntax::constants::*;
 use data::ident::Ident;
 
+#[derive(Clone, Debug)]
 pub enum CToken {
     CTokLParen(PosLength),
     CTokRParen(PosLength),
@@ -124,6 +125,7 @@ pub enum CToken {
 }
 pub use self::CToken::*;
 
+#[derive(Clone, Debug)]
 pub enum GnuCTok {
     GnuCAttrTok,
     GnuCExtTok,
@@ -135,6 +137,7 @@ pub enum GnuCTok {
 }
 pub use self::GnuCTok::*;
 
+#[derive(Clone, Debug)]
 pub struct ClangCTok(pub ClangCVersion);
 
 

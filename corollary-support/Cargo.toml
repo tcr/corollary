@@ -7,3 +7,4 @@ repository = "http://github.com/tcr/corrode-but-in-rust"
 license = "MIT/Apache-2.0"
 
 [dependencies]
+num = "0.1"

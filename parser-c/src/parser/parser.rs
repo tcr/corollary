@@ -9,5 +9,5 @@ use syntax::constants::*;
 
 pub fn parseC(input: InputStream, initialPosition: Position) -> Either<ParseError, CTranslUnit> {
     // TODO
-    Left(ParseError("dummy".to_string()))
+    Left(ParseError((vec![], initialPosition)))
 }

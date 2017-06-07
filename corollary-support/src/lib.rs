@@ -2,6 +2,10 @@
 #![allow(unused_variables)]
 #![allow(non_camel_case_types)]
 
+extern crate num;
+
+use num::ToPrimitive;
+
 pub trait OpAddable {
     fn add(self, right: Self) -> Self;
 }
@@ -81,6 +85,7 @@ macro_rules! __assign {
     }
 }
 
+#[derive(Clone, Debug)]
 pub enum Either<A, B> {
     Left(A),
     Right(B)
@@ -189,9 +194,8 @@ pub fn shiftR(l: isize, r: isize) -> isize {
     l >> r
 }
 
-pub fn fromEnum(arg: bool) -> String {
-    //TODO
-    "WHAT".to_string()
+pub fn fromEnum<A: ToPrimitive>(arg: A) -> isize {
+    arg.to_isize().unwrap()
 }
 
 pub fn __op_dotted_and(l: isize, r: isize) -> isize {
@@ -463,6 +467,14 @@ pub trait ReadS<A> {
     }
 }
 
+// TODO
+use std::fmt;
+impl<A> fmt::Display for ReadS<A> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "...")
+    }
+}
+
 pub struct readHex(pub String);
 impl ReadS<isize> for readHex {
     fn read_s(&self) -> Vec<(isize, String)> {
@@ -547,6 +559,7 @@ pub mod BSW {
     }
 }
 
+#[derive(Clone)]
 pub struct ByteString();
 
 pub type Word8 = char;
@@ -710,10 +723,13 @@ pub mod Map {
 
 
 use std::hash::Hash;
+use std::fmt::Debug;
 use std::collections::HashSet;
-pub struct Set<T>(HashSet<T>);
 
-impl<T: Eq + Hash> Set<T> {
+#[derive(Clone, Debug)]
+pub struct Set<T: Eq + Hash>(HashSet<T>);
+
+impl<T: Eq + Hash + Debug> Set<T> {
     pub fn member(item: T, list: Self) -> bool {
         list.0.contains(&item)
     }
