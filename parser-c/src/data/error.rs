@@ -44,7 +44,9 @@ pub struct CError(pub Box<Error>);
 
 // errors in Language.C are instance of 'Error'
 use std::fmt::Debug;
-pub trait Error where Self: Debug {
+pub trait Error
+    where Self: Debug
+{
     // obtain source location etc. of an error
     fn errorInfo(self) -> ErrorInfo;
     // wrap error in 'CError'
@@ -52,7 +54,9 @@ pub trait Error where Self: Debug {
     // try to cast a generic 'CError' to the specific error type
     fn fromError(c: CError) -> Option<Box<Self>> where Self: Sized;
     // modify the error level
-    fn changeErrorLevel(self, lvl: ErrorLevel) -> Self where Self: Sized {
+    fn changeErrorLevel(self, lvl: ErrorLevel) -> Self
+        where Self: Sized
+    {
         if errorLevel(self) == lvl {
             self
         } else {
@@ -84,20 +88,26 @@ impl Error for CError {
 
 pub fn errorPos<E: Error>(e: E) -> Position {
     if let ErrorInfo(_, pos, _) = e.errorInfo() {
-         pos
-    } else { unreachable!(); }
+        pos
+    } else {
+        unreachable!();
+    }
 }
 
 pub fn errorLevel<E: Error>(e: E) -> ErrorLevel {
     if let ErrorInfo(lvl, _, _) = e.errorInfo() {
-         lvl
-    } else { unreachable!(); }
+        lvl
+    } else {
+        unreachable!();
+    }
 }
 
 pub fn errorMsg<E: Error>(e: E) -> Vec<String> {
     if let ErrorInfo(_, _, msgs) = e.errorInfo() {
-         msgs
-    } else { unreachable!(); }
+        msgs
+    } else {
+        unreachable!();
+    }
 }
 
 #[derive(Debug)]
@@ -151,16 +161,27 @@ pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) 
 
     let showMsgLines = |mut _0: Vec<String>| {
         if _0.len() == 0 {
-            internalErr("No short message or error message provided.".to_string());
+            internalErr("No short message or error message provided.".to_string())
         } else {
             let x = _0.remove(0);
             let xs = _0;
-            __op_addadd(indent, __op_addadd(">>> ".to_string(), __op_addadd(x, __op_addadd("\n".to_string(), unlines((__map!(|x| { __op_addadd(indent(), x) }, xs)))))))
+            __op_addadd(indent(),
+                __op_addadd(">>> ".to_string(),
+                    __op_addadd(x,
+                        __op_addadd("\n".to_string(),
+                            unlines((__map!(|x| {
+                                        __op_addadd(indent(), x)
+                                    },
+                                    xs)))))))
         }
     };
 
     __op_addadd(header,
-                showMsgLines((__op_concat(if short_msg.is_empty() { msgs } else { short_msg }, msgs))))
+                showMsgLines(if short_msg.is_empty() {
+                                msgs
+                            } else {
+                                __op_concat(short_msg, msgs)
+                            }))
 }
 
 pub fn internalErrPrefix() -> String {

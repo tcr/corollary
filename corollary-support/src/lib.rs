@@ -523,62 +523,75 @@ impl ReadS<isize> for readDec {
 // BSC
 
 
-//TODO what is BSC vs BSW?
+// Char8
+//TODO make this deal with u8's, not chars
 pub mod BSC {
-    pub fn head(input: Vec<char>) -> char {
-        input[0]
+    pub fn head(input: Vec<u8>) -> char {
+        input[0] as char
     }
 
-    pub fn tail(input: Vec<char>) -> char {
-        input[input.len() - 1]
+    pub fn tail(input: Vec<u8>) -> Vec<u8> {
+        if input.len() > 0 {
+            input[1..].to_vec()
+        } else {
+            vec![]
+        }
     }
 
-    pub fn null() -> Vec<char> {
-        vec![]
+    pub fn null(input: Vec<u8>) -> bool {
+        input.is_empty()
     }
 
-    pub fn lines(input: Vec<char>) -> Vec<Vec<char>> {
+    pub fn lines(input: Vec<u8>) -> Vec<Vec<u8>> {
         //TODO
         vec![]
     }
 
-    pub fn pack(input: Vec<String>) {
+    pub fn pack(input: String) -> Vec<u8> {
         // TODO
-    }
-
-    pub fn unpack(input: Vec<String>) {
-        // TODO
-    }
-
-    pub fn take(len: isize, input: Vec<String>) {
-        // TODO
-    }
-}
-
-pub mod BSW {
-    use FilePath;
-
-    pub fn null() -> Vec<char> {
         vec![]
     }
 
-    pub fn head(input: Vec<char>) -> char {
-        input[0]
-    }
-
-    pub fn tail(input: Vec<char>) -> char {
-        input[input.len() - 1]
-    }
-
-    pub fn readFile(f: FilePath) {
+    pub fn unpack(input: Vec<u8>) -> String {
         // TODO
+        "".to_string()
+    }
+
+    pub fn take(len: isize, input: Vec<u8>) -> Vec<u8> {
+        // TODO
+        vec![]
     }
 }
 
-#[derive(Clone)]
-pub struct ByteString();
+// ByteString
+pub mod BSW {
+    use FilePath;
 
-pub type Word8 = char;
+    pub fn null(input: Vec<u8>) -> bool {
+        input.is_empty()
+    }
+
+    pub fn head(input: Vec<u8>) -> u8 {
+        input[0]
+    }
+
+    pub fn tail(input: Vec<u8>) -> Vec<u8> {
+        if input.len() > 0 {
+            input[1..].to_vec()
+        } else {
+            vec![]
+        }
+    }
+
+    pub fn readFile(f: FilePath) -> Vec<u8> {
+        // TODO
+        vec![]
+    }
+}
+
+pub type ByteString = Vec<u8>;
+
+pub type Word8 = u8;
 
 
 

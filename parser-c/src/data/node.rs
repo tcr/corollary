@@ -76,12 +76,12 @@ pub fn posOfNode(ni: NodeInfo) -> Position {
     }
 }
 
-pub fn fileOfNode() -> Option<FilePath> {
+pub fn fileOfNode<A: CNode>(obj: A) -> Option<FilePath> {
     fn justIf<T>(predicate: bool, x: T) -> Option<T> {
         if predicate { Some(x) } else { None }
     }
 
-    __fmap!(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
+    __fmap!(posFile, justIf(isSourcePos(posOfNode(obj.nodeInfo()))))
 }
 
 pub fn eqByName<A: CNode>(obj1: A, obj2: A) -> bool {

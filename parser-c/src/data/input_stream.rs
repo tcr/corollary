@@ -22,12 +22,12 @@ pub fn takeChar(bs: InputStream) -> (char, InputStream) {
     seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
 }
 
-pub fn inputStreamEmpty() -> bool {
-    BSW::null()
+pub fn inputStreamEmpty(bs: InputStream) -> bool {
+    BSW::null(bs)
 }
 
 pub fn takeChars(n: isize, bstr: InputStream) -> Vec<char> {
-    BSC::unpack(BSC::take(n, bstr))
+    BSC::unpack(BSC::take(n, bstr)).chars().collect()
 }
 
 pub fn readInputStream(f: FilePath) -> InputStream {
