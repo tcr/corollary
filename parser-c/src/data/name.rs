@@ -8,7 +8,7 @@ use corollary_support::*;
 // use Data::Ix;
 // use Data::Generics;
 
-#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 pub struct Name(pub isize);
 
 pub fn newNameSupply() -> Vec<Name> {

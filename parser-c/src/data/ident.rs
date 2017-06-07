@@ -107,7 +107,7 @@ pub fn mkIdent(pos: Position, s: String, name: Name) -> Ident {
 }
 
 pub fn internalIdent(s: String) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(internalPos)))
+    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(internalPos())))
 }
 
 pub fn internalIdentAt(pos: Position, s: String) -> Ident {

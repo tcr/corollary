@@ -23,7 +23,7 @@ pub fn takeChar(bs: InputStream) -> (char, InputStream) {
 }
 
 pub fn inputStreamEmpty() -> bool {
-    BSW::null
+    BSW::null()
 }
 
 pub fn takeChars(n: isize, bstr: InputStream) -> Vec<char> {
@@ -42,6 +42,6 @@ pub fn inputStreamFromString(s: String) -> InputStream {
     BSC::pack(s)
 }
 
-pub fn countLines() -> isize {
-    length(BSC::lines)
+pub fn countLines(bs: InputStream) -> isize {
+    length(BSC::lines(bs))
 }

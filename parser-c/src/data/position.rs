@@ -7,7 +7,7 @@ use corollary_support::*;
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Data::Generics;
 
-#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 pub enum Position {
     Position {
         posOffset: isize,

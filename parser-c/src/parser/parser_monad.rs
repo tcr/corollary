@@ -151,7 +151,7 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
 }
 
 pub fn isTypeIdent(ident: Ident) -> P<bool> {
-    P(box |s| POk(__op_dollarnot(s, Set::member(ident, s.tyidents.clone()))))
+    P(box |s| POk(s, Set::member(ident, s.tyidents.clone())))
 }
 
 pub fn enterScope() -> P<()> {
@@ -159,16 +159,18 @@ pub fn enterScope() -> P<()> {
 }
 
 pub fn leaveScope() -> P<()> {
-    P(box |s| match s.scopes.clone() {
-          [] => __error!("leaveScope: already in global scope".to_string()),
-          [tyids, ss_q] => {
-              POk(__assign!(s, {
-                      tyidents: tyids,
-                      scopes: ss_q,
-                  }),
-                  ())
-          }
-      })
+    P(box |s| {
+        let mut ss = s.scopes.clone();
+        if ss.is_empty() {
+            __error!("leaveScope: already in global scope".to_string());
+        } else {
+            let tyids = ss.remove(0);
+            POk(__assign!(s, {
+                tyidents: tyids,
+                scopes: ss_q,
+            }), ())
+        }
+    })
 }
 
 pub fn getInput() -> P<InputStream> {

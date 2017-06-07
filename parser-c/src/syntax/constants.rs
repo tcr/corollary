@@ -116,12 +116,12 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
         parseFlags(noFlags(), input)
     }
 
-    fn mkCInt(n: isize, suffix: String) -> Either<String, CInteger> {
+    let mkCInt = |n: isize, suffix: String| -> Either<String, CInteger> {
         match readSuffix(suffix) {
             Left(s) => Left(s),
             Right(s) => Right(CInteger(n, repr, s))
         }
-    }
+    };
 
     fn parseFlags(flags: Flags<CIntFlag>, _1: String) -> Either<String, Flags<CIntFlag>> {
         // []

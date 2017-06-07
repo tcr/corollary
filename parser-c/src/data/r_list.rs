@@ -49,9 +49,12 @@ pub mod RList {
     }
 
     pub fn viewr<a>(_0: Reversed<Vec<a>>) -> (Reversed<Vec<a>>, a) {
-        match (_0) {
-            Reversed([]) => __error!("viewr: empty RList".to_string()),
-            Reversed([x, xs]) => (Reversed(xs), x),
+        let mut xs = _0.0;
+        if xs.is_empty() {
+            __error!("viewr: empty RList".to_string());
+        } else {
+            let x = xs.remove(0);
+            (Reversed(xs), x)
         }
     }
 }

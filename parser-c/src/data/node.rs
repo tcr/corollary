@@ -13,7 +13,7 @@ use corollary_support::*;
 use data::name::Name;
 use data::position::*;
 
-#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 pub enum NodeInfo {
     OnlyPos(Position, PosLength),
     NodeInfo(Position, PosLength, Name),
@@ -84,8 +84,8 @@ pub fn fileOfNode() -> Option<FilePath> {
     __fmap!(posFile, justIf(isSourcePos, posOfNode(nodeInfo)))
 }
 
-pub fn eqByName<a>(obj1: a, obj2: a) -> bool {
-    ((nodeInfo(obj1)) == (nodeInfo(obj2)))
+pub fn eqByName<A: CNode>(obj1: A, obj2: A) -> bool {
+    obj1.nodeInfo() == obj2.nodeInfo()
 }
 
 pub fn internalNode() -> NodeInfo {

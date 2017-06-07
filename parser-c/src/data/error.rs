@@ -155,12 +155,12 @@ pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) 
         } else {
             let x = _0.remove(0);
             let xs = _0;
-            __op_addadd(indent, __op_addadd(">>> ".to_string(), __op_addadd(x, __op_addadd("\n".to_string(), unlines((__map!((indent(__op_addadd)), xs)))))))
+            __op_addadd(indent, __op_addadd(">>> ".to_string(), __op_addadd(x, __op_addadd("\n".to_string(), unlines((__map!(|x| { __op_addadd(indent(), x) }, xs)))))))
         }
     };
 
     __op_addadd(header,
-                showMsgLines((__op_concat(if null(short_msg) { msgs } else { short_msg }, msgs))))
+                showMsgLines((__op_concat(if short_msg.is_empty() { msgs } else { short_msg }, msgs))))
 }
 
 pub fn internalErrPrefix() -> String {
@@ -179,6 +179,6 @@ pub fn indent() -> String {
     "  ".to_string()
 }
 
-pub fn indentLines() -> String {
-    unlines(__map!((indent(__op_addadd)), lines))
+pub fn indentLines(input: String) -> String {
+    unlines(__map!(|x| __op_addadd(indent(), x), lines(input)))
 }
