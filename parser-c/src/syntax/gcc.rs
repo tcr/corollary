@@ -135,7 +135,7 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
         }
     }
 
-    match mungeArgs(((None, None, RList::empty), (RList::empty, RList::empty)),
+    match mungeArgs(((None, None, RList::empty()), (RList::empty(), RList::empty())),
                     args) {
         Left(err) => Left(err),
         Right(((None, _, _), _)) => Left("No .c / .hc / .h source file given".to_string()),
@@ -150,8 +150,8 @@ pub fn gccParseCPPArgs(args: Vec<String>) -> Either<String, (CppArgs, Vec<String
     }
 }
 
-pub type ParseArgsState = ((Option<FilePath>, Option<FilePath>, Reversed<CppOption>),
-                           (Reversed<String>, Reversed<String>));
+pub type ParseArgsState = ((Option<FilePath>, Option<FilePath>, Reversed<Vec<CppOption>>),
+                           (Reversed<Vec<String>>, Reversed<Vec<String>>));
 
 pub fn buildCppArgs(CppArgs {
     cppOptions: options,

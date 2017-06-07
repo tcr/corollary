@@ -120,28 +120,39 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
         }
     };
 
-    fn parseFlags<T: ToPrimitive. U: ToPrimitive>(_0: Flags<T>, _1: String) -> Either<String, Flags<U>> {
-        match (_0, __boxed_chars(_1)) {
-            (flags, box []) => Right(flags),
-            (flags, box ['l', 'l', fs..]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
-            (flags, box ['L', 'L', fs..]) => parseFlags((setFlag(FlagLongLong, flags)), fs),
-            (flags, box [f, fs..]) => {
-                let go1 = |flag| {
-                    parseFlags((setFlag(flag, flags)), fs)
-                };
+    fn parseFlags(flags: Flags<CIntFlag>, _1: String) -> Either<String, Flags<CIntFlag>> {
+        // []
+        if _1.len() == 0 {
+            return Right(flags);
+        }
+        // ['l', 'l', fs...]
+        if _1.starts_with("ll") {
+            let fs: String = _1.chars().skip(2).collect();
+            return parseFlags((setFlag(FlagLongLong, flags)), fs);
+        }
+        // ['L', 'L', fs...]
+        if _1.starts_with("LL") {
+            let fs: String = _1.chars().skip(2).collect();
+            return parseFlags((setFlag(FlagLongLong, flags)), fs);
+        }
+        // [f, fs..]
+        let f = _1.chars().next().unwrap();
+        let fs: String = _1.chars().skip(2).collect();
+        
+        let go1 = |flag: CIntFlag| {
+            parseFlags((setFlag(flag, flags)), fs)
+        };
 
-                match f {
-                    'l' => go1(FlagLong),
-                    'L' => go1(FlagLong),
-                    'u' => go1(FlagUnsigned),
-                    'U' => go1(FlagUnsigned),
-                    'i' => go1(FlagImag),
-                    'I' => go1(FlagImag),
-                    'j' => go1(FlagImag),
-                    'J' => go1(FlagImag),
-                    _ => Left(__op_addadd("Unexpected flag ".to_string(), show(f))),
-                }
-            }
+        match f {
+            'l' => go1(FlagLong),
+            'L' => go1(FlagLong),
+            'u' => go1(FlagUnsigned),
+            'U' => go1(FlagUnsigned),
+            'i' => go1(FlagImag),
+            'I' => go1(FlagImag),
+            'j' => go1(FlagImag),
+            'J' => go1(FlagImag),
+            _ => Left(__op_addadd("Unexpected flag ".to_string(), show(f))),
         }
     }
 
