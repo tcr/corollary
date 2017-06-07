@@ -112,12 +112,16 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
         OctalRepr => box |x| box readOct(x),
     };
 
-    let mkCInt = |n, suffix| {
+    fn readSuffix(input: String) -> Either<String, Flags<CIntFlag>> {
+        parseFlags(noFlags(), input)
+    }
+
+    fn mkCInt(n: isize, suffix: String) -> Either<String, CInteger> {
         match readSuffix(suffix) {
-            s @ Left(..) => s,
-            Right(s) => CInteger(n, repr, s)
+            Left(s) => Left(s),
+            Right(s) => Right(CInteger(n, repr, s))
         }
-    };
+    }
 
     fn parseFlags(flags: Flags<CIntFlag>, _1: String) -> Either<String, Flags<CIntFlag>> {
         // []
@@ -315,13 +319,14 @@ pub fn unescapeChar(_0: String) -> (char, String) {
             '\'' => ('\'', cs),
             '\"' => ('\"', cs),
             'x' => {
-                match head_q("bad escape sequence".to_string(), (readHex(cs))) {
+                match head_q("bad escape sequence".to_string(),
+                    (readHex(cs).read_s())) {
                     (i, cs_q) => (i, cs_q),
                 }
             }
             _ => {
                 match head_q("bad escape sequence".to_string(),
-                                (readOct_q((__op_concat(c, cs))))) {
+                                (readOct_q((__op_concat(c, cs))).read_s())) {
                     (i, cs_q) => (i, cs_q),
                 }
             }
@@ -339,7 +344,7 @@ pub fn unescapeChar(_0: String) -> (char, String) {
     __error!("unescape char: empty string".to_string())
 }
 
-pub fn readOct_q(s: String) -> Box<ReadS<isize>> {
+pub fn readOct_q(s: String) -> Box<ReadS<char>> {
 
     let octStr = takeWhile_str(isOctDigit, take_str(3, s));
 

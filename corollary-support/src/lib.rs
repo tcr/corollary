@@ -310,6 +310,10 @@ pub fn take(len: isize, input: Vec<String>) {
     // TODO
 }
 
+pub fn take_str(len: isize, input: String) -> String {
+    input.chars().take(len as usize).collect()
+}
+
 pub fn hasExtension(fp: FilePath) -> bool {
     // TODO
     false
@@ -482,10 +486,22 @@ impl ReadS<isize> for readHex {
         vec![]
     }
 }
+impl ReadS<char> for readHex {
+    fn read_s(&self) -> Vec<(char, String)> {
+        // TODO
+        vec![]
+    }
+}
 
 pub struct readOct(pub String);
 impl ReadS<isize> for readOct {
     fn read_s(&self) -> Vec<(isize, String)> {
+        // TODO
+        vec![]
+    }
+}
+impl ReadS<char> for readOct {
+    fn read_s(&self) -> Vec<(char, String)> {
         // TODO
         vec![]
     }

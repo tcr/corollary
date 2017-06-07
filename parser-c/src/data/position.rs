@@ -21,6 +21,12 @@ pub enum Position {
 }
 pub use self::Position::{NoPosition, BuiltinPosition, InternalPosition};
 
+impl ::std::fmt::Display for Position {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
 pub fn posOffset(p: Position) -> isize {
     if let Position::Position { posOffset, .. } = p {
         posOffset

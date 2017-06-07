@@ -21,6 +21,12 @@ pub enum ErrorLevel {
 }
 pub use self::ErrorLevel::*;
 
+impl ::std::fmt::Display for ErrorLevel {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
 pub fn isHardError<E: Error>(e: E) -> bool {
     errorLevel(e) > LevelWarn
 }
@@ -143,11 +149,14 @@ pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) 
                              __op_addadd("[".to_string(),
                                          __op_addadd(show(level), "]".to_string())));
 
-    let showMsgLines = |_0| match (_0) {
-        [] => internalErr("No short message or error message provided.".to_string()),
-        [x, xs] => {
-                __op_addadd(indent, __op_addadd(">>> ".to_string(), __op_addadd(x, __op_addadd("\n".to_string(), unlines((__map!((indent(__op_addadd)), xs)))))))
-            }
+    let showMsgLines = |mut _0: Vec<String>| {
+        if _0.len() == 0 {
+            internalErr("No short message or error message provided.".to_string());
+        } else {
+            let x = _0.remove(0);
+            let xs = _0;
+            __op_addadd(indent, __op_addadd(">>> ".to_string(), __op_addadd(x, __op_addadd("\n".to_string(), unlines((__map!((indent(__op_addadd)), xs)))))))
+        }
     };
 
     __op_addadd(header,
