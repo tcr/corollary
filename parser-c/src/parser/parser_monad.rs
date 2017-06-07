@@ -73,12 +73,12 @@ fn scopes(a: PState) -> Vec<Set<Ident>> {
     a.scopes
 }
 
-pub struct P<a>(Box<fn(PState) -> ParseResult<a>>);
-fn unP<a>(p: P<a>) -> Box<fn(PState) -> ParseResult<a>> {
+pub struct P<a>(Box<Fn(PState) -> ParseResult<a>>);
+fn unP<a>(p: P<a>) -> Box<Fn(PState) -> ParseResult<a>> {
     p.0
 }
 
-pub fn execParser<a>(P(parser): P<a>,
+pub fn execParser<a: 'static>(P(parser): P<a>,
                      input: InputStream,
                      pos: Position,
                      builtins: Vec<Ident>,
@@ -102,18 +102,18 @@ pub fn execParser<a>(P(parser): P<a>,
     }
 }
 
-pub fn returnP<a>(a: a) -> P<a> {
+pub fn returnP<a: 'static>(a: a) -> P<a> {
     P(box |s| POk(s, a))
 }
 
-pub fn thenP<a, b>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
+pub fn thenP<a: 'static, b: 'static>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
     P(box |s| match m(s) {
           POk(s_q, a) => (unP((k(a))))(s_q),
           PFailed(err, pos) => PFailed(err, pos),
       })
 }
 
-pub fn failP<a>(pos: Position, msg: Vec<String>) -> P<a> {
+pub fn failP<a: 'static>(pos: Position, msg: Vec<String>) -> P<a> {
     P(box |_| PFailed(msg, pos))
 }
 
@@ -172,7 +172,7 @@ pub fn leaveScope() -> P<()> {
 }
 
 pub fn getInput() -> P<InputStream> {
-    P(|s| POk(s, s.curInput.clone()))
+    P(box |s| POk(s, s.curInput.clone()))
 }
 
 pub fn setInput(i: InputStream) -> P<()> {

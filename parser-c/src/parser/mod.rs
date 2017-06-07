@@ -29,7 +29,7 @@ use data::position::Position;
 use data::input_stream::InputStream;
 
 pub fn execParser_<a>(parser: P<a>, input: InputStream, pos: Position) -> Either<ParseError, a> {
-    match execParser(parser, input, pos, builtinTypeNames, newNameSupply) {
+    match execParser(parser, input, pos, builtinTypeNames(), newNameSupply()) {
         s @ Left(..) => s,
         Right((v, _)) => Right(v)
     }

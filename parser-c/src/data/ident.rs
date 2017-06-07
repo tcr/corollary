@@ -16,7 +16,7 @@ use data::position::*;
 use data::node::*;
 use data::name::Name;
 
-#[derive(Clone, Debug, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, PartialEq, PartialOrd, Eq)]
 pub enum SUERef {
     AnonymousRef(Name),
     NamedRef(Ident),
@@ -30,7 +30,7 @@ pub fn isAnonymousRef(_0: SUERef) -> bool {
     }
 }
 
-#[derive(Clone, Debug, PartialOrd)]
+#[derive(Clone, Debug, PartialOrd, Hash)]
 pub struct Ident(pub String, pub isize, pub NodeInfo);
 
 // the definition of the equality allows identifiers to be equal that are
@@ -62,13 +62,13 @@ impl CNode for Ident {
 
 pub fn quad(_0: String) -> isize {
     let c: Vec<char> = _0.chars().collect();
-    match (_0) {
+
     // [c1, c2, c3, c4, s..]
     if c.len() > 3 {
         let s: String = c[4..].to_vec().into_iter().collect();
         return ((__mod(((ord(c[3]) *
                     (bits21 + (ord(c[2]) * (bits14 + (ord(c[1]) * (bits7 + ord(c[0])))))))),
-                bits28)) + (__mod(quad(s), bits28)))
+                bits28)) + (__mod(quad(s), bits28)));
     }
     // [c1, c2, c3]
     if c.len() == 3 {
