@@ -762,4 +762,9 @@ impl<T: Eq + Hash + Debug> Set<T> {
     pub fn member(item: T, list: Self) -> bool {
         list.0.contains(&item)
     }
+
+    pub fn fromList(list: Vec<T>) -> Self {
+        // TODO
+        Set(HashSet::new())
+    }
 }

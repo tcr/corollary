@@ -55,9 +55,9 @@ pub trait Error
     fn fromError(c: CError) -> Option<Box<Self>> where Self: Sized;
     // modify the error level
     fn changeErrorLevel(self, lvl: ErrorLevel) -> Self
-        where Self: Sized
+        where Self: Sized + Clone
     {
-        if errorLevel(self) == lvl {
+        if errorLevel(self.clone()) == lvl {
             self
         } else {
             panic!("changeErrorLevel: not possible for {:?}", self);
@@ -70,7 +70,9 @@ pub trait Error
 //     show (CError e) = show e
 impl Error for CError {
     fn errorInfo(self) -> ErrorInfo {
-        self.0.errorInfo()
+        // TODO
+        unreachable!()
+        // self.0.errorInfo()
     }
 
     fn toError(self) -> CError {
@@ -82,32 +84,25 @@ impl Error for CError {
     }
 
     fn changeErrorLevel(self, lvl: ErrorLevel) -> Self {
-        CError(box self.0.changeErrorLevel(lvl))
+        //TODO
+        // CError(box self.0.changeErrorLevel(lvl))
+        unreachable!()
     }
 }
 
 pub fn errorPos<E: Error>(e: E) -> Position {
-    if let ErrorInfo(_, pos, _) = e.errorInfo() {
-        pos
-    } else {
-        unreachable!();
-    }
+    let ErrorInfo(_, pos, _) = e.errorInfo();
+    pos
 }
 
 pub fn errorLevel<E: Error>(e: E) -> ErrorLevel {
-    if let ErrorInfo(lvl, _, _) = e.errorInfo() {
-        lvl
-    } else {
-        unreachable!();
-    }
+    let ErrorInfo(lvl, _, _) = e.errorInfo();
+    lvl
 }
 
 pub fn errorMsg<E: Error>(e: E) -> Vec<String> {
-    if let ErrorInfo(_, _, msgs) = e.errorInfo() {
-        msgs
-    } else {
-        unreachable!();
-    }
+    let ErrorInfo(_, _, msgs) = e.errorInfo();
+    msgs
 }
 
 #[derive(Debug)]
@@ -141,17 +136,18 @@ pub fn showError<E: Error>(short_msg: String, e: E) -> String {
 
 pub fn showErrorInfo(short_msg: String, ErrorInfo(level, pos, msgs): ErrorInfo) -> String {
 
+    let pos2 = pos.clone();
     let showPos = |p: Position| -> String {
-        if isSourcePos(p) {
-            __op_addadd(posFile(p),
+        if isSourcePos(p.clone()) {
+            __op_addadd(posFile(p.clone()),
                 __op_addadd(":".to_string(),
-                    __op_addadd(show(posRow(pos)),
+                    __op_addadd(show(posRow(pos2.clone())),
                         __op_addadd(": ".to_string(),
                             __op_addadd("(column ".to_string(),
-                                __op_addadd(show(posColumn(pos)),
+                                __op_addadd(show(posColumn(pos2.clone())),
                                     ") ".to_string()))))))
         } else {
-            __op_addadd(show(p), ":: ".to_string())
+            __op_addadd(show(p.clone()), ":: ".to_string())
         }
     };
 

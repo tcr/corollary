@@ -149,7 +149,7 @@ pub enum CDeclarationSpecifier<a> {
 }
 pub use self::CDeclarationSpecifier::*;
 
-pub fn partitionDeclSpecs<a>()
+pub fn partitionDeclSpecs<a>(input: Vec<CDeclarationSpecifier<a>>)
     -> (Vec<CStorageSpecifier<a>>,
         Vec<CAttribute<a>>,
         Vec<CTypeQualifier<a>>,
@@ -158,28 +158,30 @@ pub fn partitionDeclSpecs<a>()
         Vec<CAlignmentSpecifier<a>>)
 {
 
-    let deals = |_0, _1| match (_0, _1) {
-        (CStorageSpec(sp), (sts, ats, tqs, tss, fss, ass)) => {
-            (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
-        }
-        (CTypeQual(CAttrQual(attr)), (sts, ats, tqs, tss, fss, ass)) => {
-            (sts, __op_concat(attr, ats), tqs, tss, fss, ass)
-        }
-        (CTypeQual(tq), (sts, ats, tqs, tss, fss, ass)) => {
-            (sts, ats, __op_concat(tq, tqs), tss, fss, ass)
-        }
-        (CTypeSpec(ts), (sts, ats, tqs, tss, fss, ass)) => {
-            (sts, ats, tqs, __op_concat(ts, tss), fss, ass)
-        }
-        (CFunSpec(fs), (sts, ats, tqs, tss, fss, ass)) => {
-            (sts, ats, tqs, tss, __op_concat(fs, fss), ass)
-        }
-        (CAlignSpec(__as), (sts, ats, tqs, tss, fss, ass)) => {
-            (sts, ats, tqs, tss, fss, __op_concat(__as, ass))
-        }
-    };
+    // let deals = |_0, _1| match (_0, _1) {
+    //     (CStorageSpec(sp), (sts, ats, tqs, tss, fss, ass)) => {
+    //         (__op_concat(sp, sts), ats, tqs, tss, fss, ass)
+    //     }
+    //     (CTypeQual(CAttrQual(attr)), (sts, ats, tqs, tss, fss, ass)) => {
+    //         (sts, __op_concat(attr, ats), tqs, tss, fss, ass)
+    //     }
+    //     (CTypeQual(tq), (sts, ats, tqs, tss, fss, ass)) => {
+    //         (sts, ats, __op_concat(tq, tqs), tss, fss, ass)
+    //     }
+    //     (CTypeSpec(ts), (sts, ats, tqs, tss, fss, ass)) => {
+    //         (sts, ats, tqs, __op_concat(ts, tss), fss, ass)
+    //     }
+    //     (CFunSpec(fs), (sts, ats, tqs, tss, fss, ass)) => {
+    //         (sts, ats, tqs, tss, __op_concat(fs, fss), ass)
+    //     }
+    //     (CAlignSpec(__as), (sts, ats, tqs, tss, fss, ass)) => {
+    //         (sts, ats, tqs, tss, fss, __op_concat(__as, ass))
+    //     }
+    // };
 
-    __foldr!(deals, (vec![], vec![], vec![], vec![], vec![], vec![]))
+    // TODO
+    unreachable!()
+    // __foldr!(deals, (vec![], vec![], vec![], vec![], vec![], vec![]))
 }
 
 pub type CStorageSpec = CStorageSpecifier<NodeInfo>;
@@ -301,6 +303,8 @@ pub fn fmapInitList<A, B, F: Fn(A) -> B>(_f: F, a: CInitializerList<A>) -> CInit
     //     CInitList(list, value) =>
     // }
     // __map!((|(desigs, initializer)| { (fmap((fmap(_f)), desigs), fmap(_f, initializer)) }))
+    // TODO
+    unreachable!()
 }
 
 pub type CInitList = CInitializerList<NodeInfo>;

@@ -20,7 +20,12 @@ pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
         CDefault(box s, _) => vec![s],
         CExpr(_, _) => vec![],
         CCompound(_, body, _) => __concatMap!(compoundSubStmts, body),
-        CIf(_, box sthen, selse, _) => maybe(vec![sthen], (|s| vec![sthen, *s]), selse),
+        CIf(_, box sthen, selse, _) => {
+            let sthen2 = sthen.clone();
+            selse
+                .map(|s| vec![sthen, *s])
+                .unwrap_or(vec![sthen2])
+        },
         CSwitch(_, box s, _) => vec![s],
         CWhile(_, box s, _, _) => vec![s],
         CFor(_, _, _, box s, _) => vec![s],
@@ -35,8 +40,8 @@ pub fn getSubStmts(_0: CStat) -> Vec<CStat> {
 
 pub fn mapSubStmts(_0: fn(CStat) -> bool, _1: fn(CStat) -> CStat, _2: CStat) -> CStat {
     match (_0, _1, _2) {
-        (stop, _, s) if stop(s) => {
-            s
+        (stop, _, ref s) if stop(s.clone()) => {
+            s.clone()
         }
         (stop, f, CLabel(i, box s, attrs, ni)) => f((CLabel(i, box (mapSubStmts(stop, f, s)), attrs, ni))),
         (stop, f, CCase(e, box s, ni)) => f((CCase(e, box (mapSubStmts(stop, f, s)), ni))),

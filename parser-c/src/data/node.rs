@@ -81,7 +81,9 @@ pub fn fileOfNode<A: CNode>(obj: A) -> Option<FilePath> {
         if predicate { Some(x) } else { None }
     }
 
-    __fmap!(posFile, justIf(isSourcePos(posOfNode(obj.nodeInfo()))))
+    // TODO
+    unreachable!()
+    // __fmap!(posFile, justIf(isSourcePos(posOfNode(obj.nodeInfo()))))
 }
 
 pub fn eqByName<A: CNode>(obj1: A, obj2: A) -> bool {

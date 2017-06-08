@@ -1,7 +1,7 @@
 // Original file: "C.hs"
 // File auto-generated using Corollary.
 
-#![feature(slice_patterns, box_syntax, box_patterns)]
+#![feature(slice_patterns, box_syntax, box_patterns, fnbox)]
 #![allow(unused_parens)]
 
 #[macro_use] extern crate corollary_support;
@@ -42,16 +42,16 @@ pub fn parseCFile<C: Preprocessor>(cpp: C,
 
     /*do*/
     {
-        let input_stream = if !isPreprocessed(input_file.into()) {
+        let input_stream = if !isPreprocessed(input_file.clone().into()) {
             {
-                let cpp_args = __assign!((rawCppArgs(args, input_file)), {
+                let cpp_args = __assign!((rawCppArgs(args, input_file.clone())), {
                     cppTmpDir: tmp_dir_opt
                 });
 
                 handleCppError(runPreprocessor(cpp, cpp_args))
             }
         } else {
-            readInputStream(input_file)
+            readInputStream(input_file.clone())
         };
 
         parseC(input_stream, (initPos(input_file)))
@@ -61,7 +61,7 @@ pub fn parseCFile<C: Preprocessor>(cpp: C,
 pub fn parseCFilePre(file: FilePath) -> Either<ParseError, CTranslUnit> {
     /*do*/
     {
-        let input_stream = readInputStream(file);
+        let input_stream = readInputStream(file.clone());
 
         parseC(input_stream, (initPos(file)))
     }

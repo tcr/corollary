@@ -8,6 +8,7 @@ use corollary_support::*;
 // use Prelude;
 // use Data::List;
 
+#[derive(Clone)]
 pub struct Reversed<a>(pub a);
 
 pub fn snoc<a>(Reversed(xs): Reversed<Vec<a>>, x: a) -> Reversed<Vec<a>> {

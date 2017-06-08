@@ -161,9 +161,8 @@ pub fn readCInteger(repr: CIntRepr, __str: String) -> Either<String, CInteger> {
 
     let s = readNum(__str).read_s();
     if s.len() == 1 {
-        if let (n, suffix) = s[0] {
-            mkCInt(n, suffix)
-        } else { unreachable!() }
+        let (n, suffix) = s[0].clone();
+        mkCInt(n, suffix)
     } else {
         Left(format!("Bad Integer literal: {:?}", s))
     }
@@ -218,7 +217,7 @@ pub fn isWideString(CString(_, wideflag): CString) -> bool {
 }
 
 pub fn concatCStrings(cs: Vec<CString>) -> CString {
-    CString(cs.into_iter()
+    CString(cs.clone().into_iter()
         .map(getCString)
         .collect::<Vec<_>>().join(""), (any(isWideString, cs)))
 }
@@ -274,7 +273,7 @@ pub fn showOct_q(i: isize) -> String {
 
     let s = showOct(i).show_s("".to_string());
 
-    __op_addadd(replicate(((3 - length(s))), '0').into_iter().collect(), s)
+    __op_addadd(replicate(((3 - length(s.clone()))), '0').into_iter().collect(), s)
 }
 
 pub fn escapeChar(_0: char) -> String {
@@ -348,9 +347,11 @@ pub fn readOct_q(s: String) -> Box<ReadS<char>> {
 
     let octStr = takeWhile_str(isOctDigit, take_str(3, s));
 
-    let rest = drop_str((length(octStr)), s);
+    // TODO
+    unreachable!()
+    // let rest = drop_str((length(octStr)), s);
 
-    box readOct(octStr).map(|(i, cs)| { (i, __op_addadd(cs, rest)) })
+    // box readOct(octStr).map(|(i, cs)| { (i, __op_addadd(cs, rest)) })
 }
 
 pub fn unescapeString(cs: String) -> String {
@@ -371,7 +372,7 @@ pub fn dQuote(s: String) -> Box<ShowS> {
     box showString(format!("\"{}\"", s))
 }
 
-pub fn head_q<a>(_0: String, _1: Vec<a>) -> a {
+pub fn head_q<a>(_0: String, mut _1: Vec<a>) -> a {
     if _1.is_empty() {
         __error!(_0);
     } else {

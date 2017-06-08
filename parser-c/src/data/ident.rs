@@ -38,9 +38,8 @@ pub struct Ident(pub String, pub isize, pub NodeInfo);
 // equality test, by comparing the lexemes only if the two numbers are equal
 impl PartialEq for Ident {
     fn eq(&self, &Ident(ref s_, ref h_, _): &Self) -> bool {
-        if let &Ident(ref s, ref h, _) = self {
-            (h == h_) && (s == s_)
-        } else { unreachable!() }
+        let &Ident(ref s, ref h, _) = self;
+        (h == h_) && (s == s_)
     }
 }
 
@@ -52,9 +51,8 @@ impl PartialEq for Ident {
 // -- identifiers are attributed
 impl CNode for Ident {
     fn nodeInfo(self) -> NodeInfo {
-        if let Ident(_, _, at) = self {
-            at
-        } else { unreachable!() }
+        let Ident(_, _, at) = self;
+        at
     }
 }
 // instance Pos Ident where
@@ -103,19 +101,19 @@ pub fn bits28() -> isize {
 }
 
 pub fn mkIdent(pos: Position, s: String, name: Name) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfo_q(pos, (pos, length(s)), name)))
+    Ident(s.clone(), (quad(s.clone())), (mkNodeInfo_q(pos.clone(), (pos, length(s)), name)))
 }
 
 pub fn internalIdent(s: String) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(internalPos())))
+    Ident(s.clone(), (quad(s.clone())), (mkNodeInfoOnlyPos(internalPos())))
 }
 
 pub fn internalIdentAt(pos: Position, s: String) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfoPosLen(pos, (pos, length(s)))))
+    Ident(s.clone(), (quad(s.clone())), (mkNodeInfoPosLen(pos.clone(), (pos, length(s)))))
 }
 
 pub fn builtinIdent(s: String) -> Ident {
-    Ident(s, (quad(s)), (mkNodeInfoOnlyPos(builtinPos())))
+    Ident(s.clone(), (quad(s.clone())), (mkNodeInfoOnlyPos(builtinPos())))
 }
 
 pub fn isInternalIdent(Ident(_, _, nodeinfo): Ident) -> bool {
@@ -134,5 +132,5 @@ pub fn sueRefToString(_0: SUERef) -> String {
 }
 
 pub fn dumpIdent(ide: Ident) -> String {
-    format!("{:?} at {:?}", identToString(ide), ide.nodeInfo())
+    format!("{:?} at {:?}", identToString(ide.clone()), ide.nodeInfo())
 }

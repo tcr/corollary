@@ -15,11 +15,11 @@ use corollary_support::*;
 pub type InputStream = ByteString;
 
 pub fn takeByte(bs: InputStream) -> (Word8, InputStream) {
-    seq(BSW::head(bs), (BSW::head(bs), BSW::tail(bs)))
+    seq(BSW::head(bs.clone()), (BSW::head(bs.clone()), BSW::tail(bs)))
 }
 
 pub fn takeChar(bs: InputStream) -> (char, InputStream) {
-    seq(BSC::head(bs), (BSC::head(bs), BSC::tail(bs)))
+    seq(BSC::head(bs.clone()), (BSC::head(bs.clone()), BSC::tail(bs)))
 }
 
 pub fn inputStreamEmpty(bs: InputStream) -> bool {

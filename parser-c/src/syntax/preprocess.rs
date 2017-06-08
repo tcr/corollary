@@ -39,11 +39,11 @@ pub use self::CppOption::*;
 
 #[derive(Clone)]
 pub struct CppArgs {
-    cppOptions: Vec<CppOption>,
-    extraOptions: Vec<String>,
-    cppTmpDir: Option<FilePath>,
-    inputFile: FilePath,
-    outputFile: Option<FilePath>,
+    pub cppOptions: Vec<CppOption>,
+    pub extraOptions: Vec<String>,
+    pub cppTmpDir: Option<FilePath>,
+    pub inputFile: FilePath,
+    pub outputFile: Option<FilePath>,
 }
 fn cppOptions(a: CppArgs) -> Vec<CppOption> {
     a.cppOptions
@@ -100,14 +100,15 @@ pub fn runPreprocessor<P: Preprocessor>(cpp: P,
     pub fn getActualOutFile(cpp_args: CppArgs) -> FilePath {
         outputFile(cpp_args.clone())
             .unwrap_or_else(|| {
-                mkOutputFile((cppTmpDir(cpp_args)), (inputFile(cpp_args)))
+                mkOutputFile((cppTmpDir(cpp_args.clone())), (inputFile(cpp_args.clone())))
             })
     }
 
+    let cpp_args2 = cpp_args.clone();
     let invokeCpp = |actual_out_file| {
         /*do*/
         {
-            let exit_code = cpp.runCPP(__assign!(cpp_args, {
+            let exit_code = cpp.runCPP(__assign!(cpp_args2, {
                 outputFile: Some(actual_out_file)
             }));
 
@@ -118,8 +119,9 @@ pub fn runPreprocessor<P: Preprocessor>(cpp: P,
         }
     };
 
+    let cpp_args2 = cpp_args.clone();
     let removeTmpOutFile =
-        |out_file| maybe((removeFile(out_file)), (|_| ()), (outputFile(cpp_args)));
+        |out_file| maybe((removeFile(out_file)), (|_| ()), (outputFile(cpp_args2)));
 
     let path = getActualOutFile(cpp_args);
     let ret = invokeCpp(path.clone());
@@ -144,7 +146,7 @@ pub fn mkOutputFile(tmp_dir_opt: Option<FilePath>, input_file: FilePath) -> File
 
 // compute output file name from input file name
 pub fn getOutputFileName(fp: FilePath) -> FilePath {
-    let filename = takeFileName(fp);
+    let filename = takeFileName(fp.clone());
     if hasExtension(fp) {
         replaceExtension(filename, preprocessedExt())
     } else {
