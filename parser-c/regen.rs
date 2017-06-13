@@ -59,119 +59,102 @@ fn run() -> Result<()> {
 }
 
 const lexer_heading: &'static str = "
-alexAndPred :: Bool
-alexIndexInt16OffAddr :: Bool
-alexIndexInt32OffAddr :: Bool
-idkwtok :: Bool
-alexScan :: Bool
+alexAndPred :: (a -> AlexInput -> Int -> AlexInput -> Bool)
+  -> (a -> AlexInput -> Int -> AlexInput -> Bool)
+  -> a
+  -> AlexInput
+  -> Int
+  -> AlexInput
+  -> Bool
+alexIndexInt16OffAddr :: Array Int Int -> Int -> Int
+alexIndexInt32OffAddr :: Array Int Int -> Int -> Int
+quickIndex :: Array Int b -> Int -> b
+idkwtok :: [Char] -> Position -> P CToken
+alexScan :: (Position, InputStream)
+  -> Int
+  -> AlexReturn (Position -> Int -> InputStream -> P CToken)
 alexScanUser :: Bool
+  -> AlexInput
+  -> Int
+  -> AlexReturn (Position -> Int -> InputStream -> P CToken)
 alex_scan_tkn :: Bool
-alexPrevCharIs :: Bool
-alexPrevCharMatches :: Bool
-alexPrevCharIsOneOf :: Bool
-alexRightContext :: Bool
-quickIndex :: Bool
-alex_actions :: Bool
-alex_accept :: Bool
-alex_action_1 :: Int
-alex_action_2 :: Int
-alex_action_3 :: Int
-alex_action_4 :: Int
-alex_action_5 :: Int
-alex_action_6 :: Int
-alex_action_7 :: Int
-alex_action_8 :: Int
-alex_action_9 :: Int
-alex_action_10 :: Int
-alex_action_11 :: Int
-alex_action_12 :: Int
-alex_action_13 :: Int
-alex_action_14 :: Int
-alex_action_15 :: Int
-alex_action_16 :: Int
-alex_action_17 :: Int
-alex_action_18 :: Int
-alex_action_19 :: Int
-alex_action_20 :: Int
-alex_action_21 :: Int
-alex_action_22 :: Int
-alex_action_23 :: Int
-alex_action_24 :: Int
-alex_action_25 :: Int
-alex_action_26 :: Int
-alex_action_27 :: Int
-alex_action_28 :: Int
-alex_action_29 :: Int
-alex_action_30 :: Int
-alex_action_31 :: Int
-alex_action_32 :: Int
-alex_action_33 :: Int
-alex_action_34 :: Int
-alex_action_35 :: Int
-alex_action_36 :: Int
-alex_action_37 :: Int
-alex_action_38 :: Int
-alex_action_39 :: Int
-alex_action_40 :: Int
-alex_action_41 :: Int
-alex_action_42 :: Int
-alex_action_43 :: Int
-alex_action_44 :: Int
-alex_action_45 :: Int
-alex_action_46 :: Int
-alex_action_47 :: Int
-alex_action_48 :: Int
-alex_action_49 :: Int
-alex_action_50 :: Int
-alex_action_51 :: Int
-alex_action_52 :: Int
-alex_action_53 :: Int
-alex_action_54 :: Int
-alex_action_55 :: Int
-alex_action_56 :: Int
-alex_action_57 :: Int
-alex_action_58 :: Int
-alex_action_59 :: Int
-alex_action_60 :: Int
-alex_action_61 :: Int
-alex_action_62 :: Int
-alex_action_63 :: Int
-alex_action_64 :: Int
-alex_action_65 :: Int
-alex_action_66 :: Int
-alex_action_67 :: Int
-alex_action_68 :: Int
-alex_action_69 :: Int
-alex_action_70 :: Int
-alex_action_71 :: Int
-alex_action_72 :: Int
-alex_action_73 :: Int
-alex_action_74 :: Int
-alex_action_75 :: Int
-alex_action_76 :: Int
-alex_action_77 :: Int
-alex_action_78 :: Int
-alex_action_79 :: Int
-alex_action_80 :: Int
-alex_action_81 :: Int
-alex_action_82 :: Int
-alex_action_83 :: Int
-alex_action_84 :: Int
-alex_action_85 :: Int
-alex_action_86 :: Int
-alex_action_87 :: Int
-alex_action_88 :: Int
-alex_action_89 :: Int
-alex_action_90 :: Int
-alex_action_91 :: Int
-alex_action_92 :: Int
-alex_action_93 :: Int
-alex_action_94 :: Int
-alex_action_95 :: Int
-alex_action_96 :: Int
-alex_action_97 :: Int
-alex_action_98 :: Int
-alex_action_99 :: Int
+  -> AlexInput
+  -> Int
+  -> AlexInput
+  -> Int
+  -> AlexLastAcc
+  -> (AlexLastAcc, AlexInput)
+alexPrevCharIs :: Char -> Int -> AlexInput -> Int -> Int -> Bool
+alexPrevCharMatches :: (Char -> Int) -> Int -> AlexInput -> Int -> Int -> Int
+alexPrevCharIsOneOf :: Array Char Bool -> Int -> AlexInput -> Int -> AlexInput -> Bool
+alexRightContext :: Int -> Bool -> AlexInput -> Int -> AlexInput -> Bool
+alex_accept :: Array Int (AlexAcc a)
+alex_actions :: Array Int (Position -> Int -> InputStream -> P CToken)
+alex_action_1 :: Position -> Int -> InputStream -> P CToken
+alex_action_4 :: Position -> Int -> InputStream -> P CToken
+alex_action_5 :: Position -> Int -> InputStream -> P CToken
+alex_action_6 :: Position -> Int -> InputStream -> P CToken
+alex_action_7 :: Position -> Int -> InputStream -> P CToken
+alex_action_8 :: Position -> Int -> InputStream -> P CToken
+alex_action_9 :: Position -> Int -> InputStream -> P CToken
+alex_action_10 :: Position -> Int -> InputStream -> P CToken
+alex_action_11 :: Position -> Int -> InputStream -> P CToken
+alex_action_12 :: Position -> Int -> InputStream -> P CToken
+alex_action_13 :: Position -> Int -> InputStream -> P CToken
+alex_action_14 :: Position -> Int -> InputStream -> P CToken
+alex_action_15 :: Position -> Int -> InputStream -> P CToken
+alex_action_16 :: Position -> Int -> InputStream -> P CToken
+alex_action_17 :: Position -> Int -> InputStream -> P CToken
+alex_action_18 :: Position -> Int -> InputStream -> P CToken
+alex_action_19 :: Position -> Int -> InputStream -> P CToken
+alex_action_20 :: Position -> Int -> InputStream -> P CToken
+alex_action_21 :: Position -> Int -> InputStream -> P CToken
+alex_action_22 :: Position -> Int -> InputStream -> P CToken
+alex_action_23 :: Position -> Int -> InputStream -> P CToken
+alex_action_24 :: Position -> Int -> InputStream -> P CToken
+alex_action_25 :: Position -> Int -> InputStream -> P CToken
+alex_action_26 :: Position -> Int -> InputStream -> P CToken
+alex_action_27 :: Position -> Int -> InputStream -> P CToken
+alex_action_28 :: Position -> Int -> InputStream -> P CToken
+alex_action_29 :: Position -> Int -> InputStream -> P CToken
+alex_action_30 :: Position -> Int -> InputStream -> P CToken
+alex_action_31 :: Position -> Int -> InputStream -> P CToken
+alex_action_32 :: Position -> Int -> InputStream -> P CToken
+alex_action_33 :: Position -> Int -> InputStream -> P CToken
+alex_action_34 :: Position -> Int -> InputStream -> P CToken
+alex_action_35 :: Position -> Int -> InputStream -> P CToken
+alex_action_36 :: Position -> Int -> InputStream -> P CToken
+alex_action_37 :: Position -> Int -> InputStream -> P CToken
+alex_action_38 :: Position -> Int -> InputStream -> P CToken
+alex_action_39 :: Position -> Int -> InputStream -> P CToken
+alex_action_40 :: Position -> Int -> InputStream -> P CToken
+alex_action_41 :: Position -> Int -> InputStream -> P CToken
+alex_action_42 :: Position -> Int -> InputStream -> P CToken
+alex_action_43 :: Position -> Int -> InputStream -> P CToken
+alex_action_44 :: Position -> Int -> InputStream -> P CToken
+alex_action_45 :: Position -> Int -> InputStream -> P CToken
+alex_action_46 :: Position -> Int -> InputStream -> P CToken
+alex_action_47 :: Position -> Int -> InputStream -> P CToken
+alex_action_48 :: Position -> Int -> InputStream -> P CToken
+alex_action_49 :: Position -> Int -> InputStream -> P CToken
+alex_action_50 :: Position -> Int -> InputStream -> P CToken
+alex_action_51 :: Position -> Int -> InputStream -> P CToken
+alex_action_52 :: Position -> Int -> InputStream -> P CToken
+alex_action_53 :: Position -> Int -> InputStream -> P CToken
+alex_action_54 :: Position -> Int -> InputStream -> P CToken
+alex_action_55 :: Position -> Int -> InputStream -> P CToken
+alex_action_56 :: Position -> Int -> InputStream -> P CToken
+alex_action_57 :: Position -> Int -> InputStream -> P CToken
+alex_action_58 :: Position -> Int -> InputStream -> P CToken
+alex_action_59 :: Position -> Int -> InputStream -> P CToken
+alex_action_60 :: Position -> Int -> InputStream -> P CToken
+alex_action_61 :: Position -> Int -> InputStream -> P CToken
+alex_action_62 :: Position -> Int -> InputStream -> P CToken
+alex_action_63 :: Position -> Int -> InputStream -> P CToken
+alex_action_64 :: Position -> Int -> InputStream -> P CToken
+alex_action_65 :: Position -> Int -> InputStream -> P CToken
+alex_action_66 :: Position -> Int -> InputStream -> P CToken
+alex_action_67 :: Position -> Int -> InputStream -> P CToken
 ";
 
 const parser_heading: &'static str = "

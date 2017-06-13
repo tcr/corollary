@@ -139,7 +139,7 @@ pub use self::GnuCTok::*;
 
 #[derive(Clone, Debug)]
 pub struct ClangCTok(pub ClangCVersion);
-
+pub type ClangCVersionTok = ClangCTok;
 
 pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
     match (_0) {

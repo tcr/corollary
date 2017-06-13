@@ -10,529 +10,25 @@ module Language.C.Parser.Parser
   , expressionP
   ) where
 
+{-RUST
 
-happyNewToken :: Bool
-happyError_ :: Bool
-translation_unit :: Bool
-external_declaration :: Bool
-statement :: Bool
-expression :: Bool
-happySeq :: Bool
-happyParse :: Bool
-happyAccept :: Bool
-happyShift :: Bool
-happyReduce :: Bool
-happyMonadReduce :: Bool
-happyGoto :: Bool
-happyFail :: Bool
-happyDrop :: Bool
-happyDropStk :: Bool
-happyMonad2Reduce :: Bool
-happyReduction_0 :: Bool
-happyReduction_1 :: Bool
-happyReduction_2 :: Bool
-happyReduction_3 :: Bool
-happyReduction_4 :: Bool
-happyReduction_5 :: Bool
-happyReduction_6 :: Bool
-happyReduction_7 :: Bool
-happyReduction_8 :: Bool
-happyReduction_9 :: Bool
-happyReduction_10 :: Bool
-happyReduction_11 :: Bool
-happyReduction_12 :: Bool
-happyReduction_13 :: Bool
-happyReduction_14 :: Bool
-happyReduction_15 :: Bool
-happyReduction_16 :: Bool
-happyReduction_17 :: Bool
-happyReduction_18 :: Bool
-happyReduction_19 :: Bool
-happyReduction_20 :: Bool
-happyReduction_21 :: Bool
-happyReduction_22 :: Bool
-happyReduction_23 :: Bool
-happyReduction_24 :: Bool
-happyReduction_25 :: Bool
-happyReduction_26 :: Bool
-happyReduction_27 :: Bool
-happyReduction_28 :: Bool
-happyReduction_29 :: Bool
-happyReduction_30 :: Bool
-happyReduction_31 :: Bool
-happyReduction_32 :: Bool
-happyReduction_33 :: Bool
-happyReduction_34 :: Bool
-happyReduction_35 :: Bool
-happyReduction_36 :: Bool
-happyReduction_37 :: Bool
-happyReduction_38 :: Bool
-happyReduction_39 :: Bool
-happyReduction_40 :: Bool
-happyReduction_41 :: Bool
-happyReduction_42 :: Bool
-happyReduction_43 :: Bool
-happyReduction_44 :: Bool
-happyReduction_45 :: Bool
-happyReduction_46 :: Bool
-happyReduction_47 :: Bool
-happyReduction_48 :: Bool
-happyReduction_49 :: Bool
-happyReduction_50 :: Bool
-happyReduction_51 :: Bool
-happyReduction_52 :: Bool
-happyReduction_53 :: Bool
-happyReduction_54 :: Bool
-happyReduction_55 :: Bool
-happyReduction_56 :: Bool
-happyReduction_57 :: Bool
-happyReduction_58 :: Bool
-happyReduction_59 :: Bool
-happyReduction_60 :: Bool
-happyReduction_61 :: Bool
-happyReduction_62 :: Bool
-happyReduction_63 :: Bool
-happyReduction_64 :: Bool
-happyReduction_65 :: Bool
-happyReduction_66 :: Bool
-happyReduction_67 :: Bool
-happyReduction_68 :: Bool
-happyReduction_69 :: Bool
-happyReduction_70 :: Bool
-happyReduction_71 :: Bool
-happyReduction_72 :: Bool
-happyReduction_73 :: Bool
-happyReduction_74 :: Bool
-happyReduction_75 :: Bool
-happyReduction_76 :: Bool
-happyReduction_77 :: Bool
-happyReduction_78 :: Bool
-happyReduction_79 :: Bool
-happyReduction_80 :: Bool
-happyReduction_81 :: Bool
-happyReduction_82 :: Bool
-happyReduction_83 :: Bool
-happyReduction_84 :: Bool
-happyReduction_85 :: Bool
-happyReduction_86 :: Bool
-happyReduction_87 :: Bool
-happyReduction_88 :: Bool
-happyReduction_89 :: Bool
-happyReduction_90 :: Bool
-happyReduction_91 :: Bool
-happyReduction_92 :: Bool
-happyReduction_93 :: Bool
-happyReduction_94 :: Bool
-happyReduction_95 :: Bool
-happyReduction_96 :: Bool
-happyReduction_97 :: Bool
-happyReduction_98 :: Bool
-happyReduction_99 :: Bool
-happyReduction_100 :: Bool
-happyReduction_101 :: Bool
-happyReduction_102 :: Bool
-happyReduction_103 :: Bool
-happyReduction_104 :: Bool
-happyReduction_105 :: Bool
-happyReduction_106 :: Bool
-happyReduction_107 :: Bool
-happyReduction_108 :: Bool
-happyReduction_109 :: Bool
-happyReduction_110 :: Bool
-happyReduction_111 :: Bool
-happyReduction_112 :: Bool
-happyReduction_113 :: Bool
-happyReduction_114 :: Bool
-happyReduction_115 :: Bool
-happyReduction_116 :: Bool
-happyReduction_117 :: Bool
-happyReduction_118 :: Bool
-happyReduction_119 :: Bool
-happyReduction_120 :: Bool
-happyReduction_121 :: Bool
-happyReduction_122 :: Bool
-happyReduction_123 :: Bool
-happyReduction_124 :: Bool
-happyReduction_125 :: Bool
-happyReduction_126 :: Bool
-happyReduction_127 :: Bool
-happyReduction_128 :: Bool
-happyReduction_129 :: Bool
-happyReduction_130 :: Bool
-happyReduction_131 :: Bool
-happyReduction_132 :: Bool
-happyReduction_133 :: Bool
-happyReduction_134 :: Bool
-happyReduction_135 :: Bool
-happyReduction_136 :: Bool
-happyReduction_137 :: Bool
-happyReduction_138 :: Bool
-happyReduction_139 :: Bool
-happyReduction_140 :: Bool
-happyReduction_141 :: Bool
-happyReduction_142 :: Bool
-happyReduction_143 :: Bool
-happyReduction_144 :: Bool
-happyReduction_145 :: Bool
-happyReduction_146 :: Bool
-happyReduction_147 :: Bool
-happyReduction_148 :: Bool
-happyReduction_149 :: Bool
-happyReduction_150 :: Bool
-happyReduction_151 :: Bool
-happyReduction_152 :: Bool
-happyReduction_153 :: Bool
-happyReduction_154 :: Bool
-happyReduction_155 :: Bool
-happyReduction_156 :: Bool
-happyReduction_157 :: Bool
-happyReduction_158 :: Bool
-happyReduction_159 :: Bool
-happyReduction_160 :: Bool
-happyReduction_161 :: Bool
-happyReduction_162 :: Bool
-happyReduction_163 :: Bool
-happyReduction_164 :: Bool
-happyReduction_165 :: Bool
-happyReduction_166 :: Bool
-happyReduction_167 :: Bool
-happyReduction_168 :: Bool
-happyReduction_169 :: Bool
-happyReduction_170 :: Bool
-happyReduction_171 :: Bool
-happyReduction_172 :: Bool
-happyReduction_173 :: Bool
-happyReduction_174 :: Bool
-happyReduction_175 :: Bool
-happyReduction_176 :: Bool
-happyReduction_177 :: Bool
-happyReduction_178 :: Bool
-happyReduction_179 :: Bool
-happyReduction_180 :: Bool
-happyReduction_181 :: Bool
-happyReduction_182 :: Bool
-happyReduction_183 :: Bool
-happyReduction_184 :: Bool
-happyReduction_185 :: Bool
-happyReduction_186 :: Bool
-happyReduction_187 :: Bool
-happyReduction_188 :: Bool
-happyReduction_189 :: Bool
-happyReduction_190 :: Bool
-happyReduction_191 :: Bool
-happyReduction_192 :: Bool
-happyReduction_193 :: Bool
-happyReduction_194 :: Bool
-happyReduction_195 :: Bool
-happyReduction_196 :: Bool
-happyReduction_197 :: Bool
-happyReduction_198 :: Bool
-happyReduction_199 :: Bool
-happyReduction_200 :: Bool
-happyReduction_201 :: Bool
-happyReduction_202 :: Bool
-happyReduction_203 :: Bool
-happyReduction_204 :: Bool
-happyReduction_205 :: Bool
-happyReduction_206 :: Bool
-happyReduction_207 :: Bool
-happyReduction_208 :: Bool
-happyReduction_209 :: Bool
-happyReduction_210 :: Bool
-happyReduction_211 :: Bool
-happyReduction_212 :: Bool
-happyReduction_213 :: Bool
-happyReduction_214 :: Bool
-happyReduction_215 :: Bool
-happyReduction_216 :: Bool
-happyReduction_217 :: Bool
-happyReduction_218 :: Bool
-happyReduction_219 :: Bool
-happyReduction_220 :: Bool
-happyReduction_221 :: Bool
-happyReduction_222 :: Bool
-happyReduction_223 :: Bool
-happyReduction_224 :: Bool
-happyReduction_225 :: Bool
-happyReduction_226 :: Bool
-happyReduction_227 :: Bool
-happyReduction_228 :: Bool
-happyReduction_229 :: Bool
-happyReduction_230 :: Bool
-happyReduction_231 :: Bool
-happyReduction_232 :: Bool
-happyReduction_233 :: Bool
-happyReduction_234 :: Bool
-happyReduction_235 :: Bool
-happyReduction_236 :: Bool
-happyReduction_237 :: Bool
-happyReduction_238 :: Bool
-happyReduction_239 :: Bool
-happyReduction_240 :: Bool
-happyReduction_241 :: Bool
-happyReduction_242 :: Bool
-happyReduction_243 :: Bool
-happyReduction_244 :: Bool
-happyReduction_245 :: Bool
-happyReduction_246 :: Bool
-happyReduction_247 :: Bool
-happyReduction_248 :: Bool
-happyReduction_249 :: Bool
-happyReduction_250 :: Bool
-happyReduction_251 :: Bool
-happyReduction_252 :: Bool
-happyReduction_253 :: Bool
-happyReduction_254 :: Bool
-happyReduction_255 :: Bool
-happyReduction_256 :: Bool
-happyReduction_257 :: Bool
-happyReduction_258 :: Bool
-happyReduction_259 :: Bool
-happyReduction_260 :: Bool
-happyReduction_261 :: Bool
-happyReduction_262 :: Bool
-happyReduction_263 :: Bool
-happyReduction_264 :: Bool
-happyReduction_265 :: Bool
-happyReduction_266 :: Bool
-happyReduction_267 :: Bool
-happyReduction_268 :: Bool
-happyReduction_269 :: Bool
-happyReduction_270 :: Bool
-happyReduction_271 :: Bool
-happyReduction_272 :: Bool
-happyReduction_273 :: Bool
-happyReduction_274 :: Bool
-happyReduction_275 :: Bool
-happyReduction_276 :: Bool
-happyReduction_277 :: Bool
-happyReduction_278 :: Bool
-happyReduction_279 :: Bool
-happyReduction_280 :: Bool
-happyReduction_281 :: Bool
-happyReduction_282 :: Bool
-happyReduction_283 :: Bool
-happyReduction_284 :: Bool
-happyReduction_285 :: Bool
-happyReduction_286 :: Bool
-happyReduction_287 :: Bool
-happyReduction_288 :: Bool
-happyReduction_289 :: Bool
-happyReduction_290 :: Bool
-happyReduction_291 :: Bool
-happyReduction_292 :: Bool
-happyReduction_293 :: Bool
-happyReduction_294 :: Bool
-happyReduction_295 :: Bool
-happyReduction_296 :: Bool
-happyReduction_297 :: Bool
-happyReduction_298 :: Bool
-happyReduction_299 :: Bool
-happyReduction_300 :: Bool
-happyReduction_301 :: Bool
-happyReduction_302 :: Bool
-happyReduction_303 :: Bool
-happyReduction_304 :: Bool
-happyReduction_305 :: Bool
-happyReduction_306 :: Bool
-happyReduction_307 :: Bool
-happyReduction_308 :: Bool
-happyReduction_309 :: Bool
-happyReduction_310 :: Bool
-happyReduction_311 :: Bool
-happyReduction_312 :: Bool
-happyReduction_313 :: Bool
-happyReduction_314 :: Bool
-happyReduction_315 :: Bool
-happyReduction_316 :: Bool
-happyReduction_317 :: Bool
-happyReduction_318 :: Bool
-happyReduction_319 :: Bool
-happyReduction_320 :: Bool
-happyReduction_321 :: Bool
-happyReduction_322 :: Bool
-happyReduction_323 :: Bool
-happyReduction_324 :: Bool
-happyReduction_325 :: Bool
-happyReduction_326 :: Bool
-happyReduction_327 :: Bool
-happyReduction_328 :: Bool
-happyReduction_329 :: Bool
-happyReduction_330 :: Bool
-happyReduction_331 :: Bool
-happyReduction_332 :: Bool
-happyReduction_333 :: Bool
-happyReduction_334 :: Bool
-happyReduction_335 :: Bool
-happyReduction_336 :: Bool
-happyReduction_337 :: Bool
-happyReduction_338 :: Bool
-happyReduction_339 :: Bool
-happyReduction_340 :: Bool
-happyReduction_341 :: Bool
-happyReduction_342 :: Bool
-happyReduction_343 :: Bool
-happyReduction_344 :: Bool
-happyReduction_345 :: Bool
-happyReduction_346 :: Bool
-happyReduction_347 :: Bool
-happyReduction_348 :: Bool
-happyReduction_349 :: Bool
-happyReduction_350 :: Bool
-happyReduction_351 :: Bool
-happyReduction_352 :: Bool
-happyReduction_353 :: Bool
-happyReduction_354 :: Bool
-happyReduction_355 :: Bool
-happyReduction_356 :: Bool
-happyReduction_357 :: Bool
-happyReduction_358 :: Bool
-happyReduction_359 :: Bool
-happyReduction_360 :: Bool
-happyReduction_361 :: Bool
-happyReduction_362 :: Bool
-happyReduction_363 :: Bool
-happyReduction_364 :: Bool
-happyReduction_365 :: Bool
-happyReduction_366 :: Bool
-happyReduction_367 :: Bool
-happyReduction_368 :: Bool
-happyReduction_369 :: Bool
-happyReduction_370 :: Bool
-happyReduction_371 :: Bool
-happyReduction_372 :: Bool
-happyReduction_373 :: Bool
-happyReduction_374 :: Bool
-happyReduction_375 :: Bool
-happyReduction_376 :: Bool
-happyReduction_377 :: Bool
-happyReduction_378 :: Bool
-happyReduction_379 :: Bool
-happyReduction_380 :: Bool
-happyReduction_381 :: Bool
-happyReduction_382 :: Bool
-happyReduction_383 :: Bool
-happyReduction_384 :: Bool
-happyReduction_385 :: Bool
-happyReduction_386 :: Bool
-happyReduction_387 :: Bool
-happyReduction_388 :: Bool
-happyReduction_389 :: Bool
-happyReduction_390 :: Bool
-happyReduction_391 :: Bool
-happyReduction_392 :: Bool
-happyReduction_393 :: Bool
-happyReduction_394 :: Bool
-happyReduction_395 :: Bool
-happyReduction_396 :: Bool
-happyReduction_397 :: Bool
-happyReduction_398 :: Bool
-happyReduction_399 :: Bool
-happyReduction_400 :: Bool
-happyReduction_401 :: Bool
-happyReduction_402 :: Bool
-happyReduction_403 :: Bool
-happyReduction_404 :: Bool
-happyReduction_405 :: Bool
-happyReduction_406 :: Bool
-happyReduction_407 :: Bool
-happyReduction_408 :: Bool
-happyReduction_409 :: Bool
-happyReduction_410 :: Bool
-happyReduction_411 :: Bool
-happyReduction_412 :: Bool
-happyReduction_413 :: Bool
-happyReduction_414 :: Bool
-happyReduction_415 :: Bool
-happyReduction_416 :: Bool
-happyReduction_417 :: Bool
-happyReduction_418 :: Bool
-happyReduction_419 :: Bool
-happyReduction_420 :: Bool
-happyReduction_421 :: Bool
-happyReduction_422 :: Bool
-happyReduction_423 :: Bool
-happyReduction_424 :: Bool
-happyReduction_425 :: Bool
-happyReduction_426 :: Bool
-happyReduction_427 :: Bool
-happyReduction_428 :: Bool
-happyReduction_429 :: Bool
-happyReduction_430 :: Bool
-happyReduction_431 :: Bool
-happyReduction_432 :: Bool
-happyReduction_433 :: Bool
-happyReduction_434 :: Bool
-happyReduction_435 :: Bool
-happyReduction_436 :: Bool
-happyReduction_437 :: Bool
-happyReduction_438 :: Bool
-happyReduction_439 :: Bool
-happyReduction_440 :: Bool
-happyReduction_441 :: Bool
-happyReduction_442 :: Bool
-happyReduction_443 :: Bool
-happyReduction_444 :: Bool
-happyReduction_445 :: Bool
-happyReduction_446 :: Bool
-happyReduction_447 :: Bool
-happyReduction_448 :: Bool
-happyReduction_449 :: Bool
-happyReduction_450 :: Bool
-happyReduction_451 :: Bool
-happyReduction_452 :: Bool
-happyReduction_453 :: Bool
-happyReduction_454 :: Bool
-happyReduction_455 :: Bool
-happyReduction_456 :: Bool
-happyReduction_457 :: Bool
-happyReduction_458 :: Bool
-happyReduction_459 :: Bool
-happyReduction_460 :: Bool
-happyReduction_461 :: Bool
-happyReduction_462 :: Bool
-happyReduction_463 :: Bool
-happyReduction_464 :: Bool
-happyReduction_465 :: Bool
-happyReduction_466 :: Bool
-happyReduction_467 :: Bool
-happyReduction_468 :: Bool
-happyReduction_469 :: Bool
-happyReduction_470 :: Bool
-happyReduction_471 :: Bool
-happyReduction_472 :: Bool
-happyReduction_473 :: Bool
-happyReduction_474 :: Bool
-happyReduction_475 :: Bool
-happyReduction_476 :: Bool
-happyReduction_477 :: Bool
-happyReduction_478 :: Bool
-happyReduction_479 :: Bool
-happyReduction_480 :: Bool
-happyReduction_481 :: Bool
-happyReduction_482 :: Bool
-happyReduction_483 :: Bool
-happyReduction_484 :: Bool
-happyReduction_485 :: Bool
-happyReduction_486 :: Bool
-happyReduction_487 :: Bool
-happyReduction_488 :: Bool
-happyReduction_489 :: Bool
-happyReduction_490 :: Bool
-happyReduction_491 :: Bool
-happyReduction_492 :: Bool
-happyReduction_493 :: Bool
-happyReduction_494 :: Bool
-happyReduction_495 :: Bool
-happyReduction_496 :: Bool
-happyReduction_497 :: Bool
-happyReduction_498 :: Bool
-happyReduction_499 :: Bool
-happySpecReduce_0 :: Bool
-happySpecReduce_1 :: Bool
-happySpecReduce_2 :: Bool
-happySpecReduce_3 :: Bool
-happyThen1 :: Bool
+use data::input_stream::*;
+use data::position::*;
+use parser::parser_monad::*;
+use syntax::ast::*;
+use syntax::constants::*;
+use parser::tokens::*;
+use data::r_list::RList::*;
+use data::r_list::Reversed;
+use data::node::*;
+use data::r_list::snoc;
+use data::ident::*;
+use syntax::ops::*;
+use parser::lexer::{lexC, parseError};
+use parser::builtin::builtinTypeNames;
+use data::name::namesStartingFrom;
+
+/RUST-}
 
 
 import Control.Monad (mplus)
@@ -622,6 +118,618 @@ import Language.C.Data.Node
 import Language.C.Data.Position
 import Language.C.Data.RList
 import Language.C.Syntax
+
+
+happyNewToken :: (Int
+    -> Int
+    -> CToken
+    -> HappyState CToken (b -> P a)
+    -> [HappyState CToken (b -> P a)]
+    -> b
+    -> P a)
+  -> [HappyState CToken (b -> P a)] -> b -> P a
+happyError_ :: Int -> CToken -> P a
+translation_unit :: P CTranslUnit
+external_declaration :: P CExtDecl
+statement :: P CStat
+expression :: P CExpr
+happySeq :: HappyAbsSyn -> P a -> P a
+happyParse :: (Int
+    -> Int
+    -> CToken
+    -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+    -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+    -> HappyStk HappyAbsSyn
+    -> P HappyAbsSyn)
+  -> P HappyAbsSyn
+happyAccept :: Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+  -> HappyStk HappyAbsSyn
+  -> P HappyAbsSyn
+happyShift :: (Int
+    -> Int
+    -> CToken
+    -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+    -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+    -> HappyStk HappyAbsSyn
+    -> P HappyAbsSyn)
+  -> Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+  -> HappyStk HappyAbsSyn
+  -> P HappyAbsSyn
+happyReduce :: Int
+  -> Int
+  -> (HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn)
+  -> Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P a00)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P a00)]
+  -> HappyStk HappyAbsSyn
+  -> P a00
+happyMonadReduce :: Int
+  -> Int
+  -> (HappyStk HappyAbsSyn -> CToken -> P HappyAbsSyn)
+  -> Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P b00)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P b00)]
+  -> HappyStk HappyAbsSyn
+  -> P b00
+happyGoto :: (Int
+    -> Int
+    -> CToken
+    -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+    -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+    -> HappyStk HappyAbsSyn
+    -> P HappyAbsSyn)
+  -> Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+  -> HappyStk HappyAbsSyn
+  -> P HappyAbsSyn
+happyFail :: Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P a0)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P a0)]
+  -> HappyStk HappyAbsSyn
+  -> P a0
+happyDrop :: Int -> [t0] -> [t0]
+happyDropStk :: Int -> HappyStk t0 -> HappyStk t0
+happyMonad2Reduce :: Int
+  -> t0
+  -> (HappyStk HappyAbsSyn -> CToken -> P HappyAbsSyn)
+  -> Integer
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P b00)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P b00)]
+  -> HappyStk HappyAbsSyn
+  -> P b00
+
+happyReduction_10 :: HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_100 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_101 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_102 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_103 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_104 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_105 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_106 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_107 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_108 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_109 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_11 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_110 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_111 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_112 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_113 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_114 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_115 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_116 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_117 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_118 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_119 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_12 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_120 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_121 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_122 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_123 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_124 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_125 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_126 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_127 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_128 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_129 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_13 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_130 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_131 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_132 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_133 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_134 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_135 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_136 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_137 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_138 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_139 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_14 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_140 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_141 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_142 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_143 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_144 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_145 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_146 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_147 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_148 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_149 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_15 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_150 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_151 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_152 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_153 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_154 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_155 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_156 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_157 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_158 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_159 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_16 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_160 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_161 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_162 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_163 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_164 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_165 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_166 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_167 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_168 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_169 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_17 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_170 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_171 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_172 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_173 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_174 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_175 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_176 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_177 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_178 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_179 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_18 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_180 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_181 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_182 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_183 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_184 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_185 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_186 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_187 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_188 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_189 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_19 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_190 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_191 :: HappyAbsSyn
+happyReduction_192 :: t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_193 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_194 :: t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_195 :: t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_196 :: HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_197 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_198 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_199 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_20 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_200 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_201 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_202 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_203 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_204 :: HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_205 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_206 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_207 :: HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_208 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_209 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_21 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_210 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_211 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_212 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_213 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_214 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_215 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_216 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_217 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_218 :: t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_219 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_22 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_220 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_221 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_222 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_223 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_224 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_225 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_226 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_227 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_228 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_229 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_23 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_230 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_231 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_232 :: HappyAbsSyn
+happyReduction_233 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_234 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_235 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_236 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_237 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_238 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_239 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_24 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_240 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_241 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_242 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_243 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_244 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_245 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_246 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_247 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_248 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_249 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_25 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_250 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_251 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_252 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_253 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_254 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_255 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_256 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_257 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_258 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_259 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_26 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_260 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_261 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_262 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_263 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_264 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_265 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_266 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_267 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_268 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_269 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_27 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_270 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_271 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_272 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_273 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_274 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_275 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_276 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_277 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_278 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_279 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_28 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_280 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_281 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_282 :: HappyAbsSyn
+happyReduction_283 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_284 :: t1 -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_285 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_286 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_287 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_288 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_289 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_29 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_290 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_291 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_292 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_293 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_294 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_295 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_296 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_297 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_298 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_299 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_30 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_300 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_301 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_302 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_303 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_304 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_305 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_306 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_307 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_308 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_309 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_31 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_310 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_311 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_312 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_313 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_314 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_315 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_316 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_317 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_318 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_319 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_32 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_320 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_321 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_322 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_323 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_324 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_325 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_326 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_327 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_328 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_329 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_33 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_330 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_331 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_332 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_333 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_334 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_335 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_336 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_337 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_338 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_339 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_34 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_340 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_341 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_342 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_343 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_344 :: HappyAbsSyn
+happyReduction_345 :: HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_346 :: HappyAbsSyn
+happyReduction_347 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_348 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_349 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_35 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_350 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_351 :: t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_352 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_353 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_354 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_355 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_356 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_357 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_358 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_359 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_36 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_360 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_361 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_362 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_363 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_364 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_365 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_366 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_367 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_368 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_369 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_37 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_370 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_371 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_372 :: HappyAbsSyn -> t1 -> t -> HappyAbsSyn
+happyReduction_373 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_374 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_375 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_376 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_377 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_378 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_379 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_38 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_380 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_381 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_382 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_383 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_384 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_385 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_386 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_387 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_388 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_389 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_39 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_390 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_391 :: HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_392 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_393 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_394 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_395 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_396 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_397 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_398 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_399 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_4 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_40 :: t1 -> t -> P HappyAbsSyn
+happyReduction_400 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_401 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_402 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_403 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_404 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_405 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_406 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_407 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_408 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_409 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_41 :: t1 -> t -> P HappyAbsSyn
+happyReduction_410 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_411 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_412 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_413 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_414 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_415 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_416 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_417 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_418 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_419 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_42 :: HappyAbsSyn
+happyReduction_420 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_421 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_422 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_423 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_424 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_425 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_426 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_427 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_428 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_429 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_43 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_430 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_431 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_432 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_433 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_434 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_435 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_436 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_437 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_438 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_439 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_44 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_440 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_441 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_442 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_443 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_444 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_445 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_446 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_447 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_448 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_449 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_45 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_450 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_451 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_452 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_453 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_454 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_455 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_456 :: HappyAbsSyn
+happyReduction_457 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_458 :: HappyAbsSyn
+happyReduction_459 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_46 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_460 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_461 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_462 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_463 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_464 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_465 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_466 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_467 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_468 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_469 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_47 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_470 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_471 :: HappyAbsSyn
+happyReduction_472 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_473 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_474 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_475 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_476 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_477 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_478 :: HappyAbsSyn
+happyReduction_479 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_48 :: HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_480 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_481 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_482 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_483 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_484 :: t2 -> t1 -> t -> HappyAbsSyn
+happyReduction_485 :: t2 -> t1 -> t -> HappyAbsSyn
+happyReduction_486 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_487 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_488 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_49 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_5 :: HappyAbsSyn
+happyReduction_50 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_51 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_52 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_53 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_54 :: t1 -> HappyAbsSyn -> t -> HappyAbsSyn
+happyReduction_55 :: HappyStk HappyAbsSyn -> HappyStk HappyAbsSyn
+happyReduction_56 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_57 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_58 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_59 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_6 :: t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_60 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_61 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_62 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_63 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_64 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_65 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_66 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_67 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_68 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_69 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_7 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_70 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_71 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_72 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_73 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_74 :: HappyAbsSyn
+happyReduction_75 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_76 :: HappyAbsSyn
+happyReduction_77 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_78 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_79 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_8 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_80 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_81 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_82 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_83 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_84 :: HappyAbsSyn -> t -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_85 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_86 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_87 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_88 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_89 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_9 :: HappyAbsSyn -> HappyAbsSyn
+happyReduction_90 :: HappyAbsSyn
+happyReduction_91 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_92 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_93 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_94 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_95 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_96 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_97 :: HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn
+happyReduction_98 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+happyReduction_99 :: HappyStk HappyAbsSyn -> t -> P HappyAbsSyn
+
+happySpecReduce_0 :: Int
+  -> HappyAbsSyn
+  -> Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+  -> HappyStk HappyAbsSyn
+  -> P HappyAbsSyn
+happySpecReduce_1 :: Int
+  -> (HappyAbsSyn -> HappyAbsSyn)
+  -> Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+  -> HappyStk HappyAbsSyn
+  -> P HappyAbsSyn
+happySpecReduce_2 :: Int
+  -> (HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn)
+  -> Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+  -> HappyStk HappyAbsSyn
+  -> P HappyAbsSyn
+happySpecReduce_3 :: Int
+  -> (HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn -> HappyAbsSyn)
+  -> Int
+  -> CToken
+  -> HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)
+  -> [HappyState CToken (HappyStk HappyAbsSyn -> P HappyAbsSyn)]
+  -> HappyStk HappyAbsSyn
+  -> P HappyAbsSyn
+happyThen1 :: P a0 -> (a0 -> P b0) -> P b0
+
 
 -- parser produced by Happy Version 1.19.5
 data HappyAbsSyn

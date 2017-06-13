@@ -21,7 +21,7 @@ pub type CTranslUnit = CTranslationUnit<NodeInfo>;
 
 #[derive(Clone, Debug)]
 //TODO derive CNode ,Functor, Annotated 
-pub struct CTranslationUnit<A>(Vec<CExternalDeclaration<A>>, A);
+pub struct CTranslationUnit<A>(pub Vec<CExternalDeclaration<A>>, pub A);
 
 pub type CExtDecl = CExternalDeclaration<NodeInfo>;
 
@@ -270,6 +270,7 @@ pub struct CStructureUnion<a>(pub CStructTag,
                               pub Option<Vec<CDeclaration<a>>>,
                               pub Vec<CAttribute<a>>,
                               pub a);
+pub type CStruct = CStructureUnion<NodeInfo>;
 
 
 #[derive(Clone, Debug, Eq, PartialEq)]

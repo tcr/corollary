@@ -294,8 +294,18 @@ pub fn isOctDigit(input: char) -> bool {
     false
 }
 
+pub fn isDigit(input: char) -> bool {
+    // TODO
+    false
+}
+
 pub fn head(input: Vec<char>) -> char {
     input[0]
+}
+
+pub fn init(mut input: Vec<char>) -> Vec<char> {
+    input.pop();
+    input
 }
 
 pub fn tail(input: Vec<char>) -> Vec<char> {
@@ -304,6 +314,10 @@ pub fn tail(input: Vec<char>) -> Vec<char> {
 
 pub fn tail_str(input: String) -> String {
     input.chars().skip(1).collect()
+}
+
+pub fn fst<A, B>(input: (A, B)) -> A {
+    input.0
 }
 
 pub fn take(len: isize, input: Vec<String>) {
@@ -600,6 +614,10 @@ pub type Word8 = u8;
 
 #[macro_export]
 macro_rules! __map {
+    ($fn: expr) => {
+        //TODO reject this
+        panic!("need two arguments for map")
+    };
     ($fn: expr, $target: expr) => {
         $target.into_iter()
             .map($fn)
@@ -768,3 +786,32 @@ impl<T: Eq + Hash + Debug> Set<T> {
         Set(HashSet::new())
     }
 }
+
+
+// Array things
+
+pub fn array<T>(dim: (isize, isize), list: Vec<(isize, T)>) -> Vec<T> {
+    // TODO
+    vec![]
+}
+
+pub fn listArray<T>(dim: (isize, isize), list: Vec<T>) -> Vec<T> {
+    // TODO
+    list
+}
+
+pub struct Array<T, U> {
+    idx: Vec<T>,
+    inner: Vec<U>,
+}
+
+pub fn __op_array_index<T>(arr: Vec<T>, idx: isize) -> T {
+    // TODO
+    unreachable!()
+}
+
+pub fn __op_rshift(left: isize, right: isize) {
+    // TODO
+    unreachable!();
+}
+

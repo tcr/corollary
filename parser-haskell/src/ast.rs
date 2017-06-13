@@ -16,6 +16,7 @@ pub enum Expr {
     Lambda(Vec<Pat>, Box<Expr>),
     Str(String),
     Char(String),
+    If(Box<Expr>, Box<Expr>, Option<Box<Expr>>),
 
     RecordArgs(Vec<(Ident, Expr)>), // Should be preprocessed out
     Error,

@@ -69,6 +69,9 @@ pub fn position(posOffset: isize, posFile: String, posRow: isize, posColumn: isi
 pub trait Pos {
     fn posOf(self) -> Position;
 }
+pub fn posOf<P>(input: P) -> Position {
+    input.posOf()
+}
 
 pub fn initPos(file: FilePath) -> Position {
     position(0, file.into(), 1, 1)

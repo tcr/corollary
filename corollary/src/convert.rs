@@ -8,6 +8,16 @@ use regex::Regex;
 
 use ir::{self, PrintState};
 
+// HACK expand anonymous struct defns into named struct fields
+// e.g. CStruct(i) into CStruct { name: i }
+// Actually this does type aliases instead
+// fn hack_struct_expand() {
+//     let defns = hashmap![
+//         "CDeclr" => vec![]
+//     ];
+// }
+
+
 // Expand a sequence of expression terms into a nested tree of operators
 // TODO Operator precedence rules should be applied here
 pub fn expr_explode(span: Vec<Expr>) -> Vec<Expr> {
@@ -45,6 +55,20 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "as" => "__as".to_string(),
         "main" => "__main".to_string(),
 
+        // HACK multiple hacks for Parser.hs
+        // these are because typedef expansions don't work in patterns
+        "L" => "Located".to_string(),
+        "CStrLit" => "CStringLiteral<NodeInfo>".to_string(),
+        "ClangCVersionTok" => "ClangCTok".to_string(),
+        "CEnum" => "CEnumeration<NodeInfo>".to_string(),
+        "CFunDef" => "CFunctionDef<NodeInfo>".to_string(),
+        "CAsmStmt" => "CAssemblyStatement<NodeInfo>".to_string(),
+        "CAsmOperand" => "CAssemblyOperand<NodeInfo>".to_string(),
+        "CDeclr" => "CDeclarator<NodeInfo>".to_string(),
+        "CAttr" => "CAttribute<NodeInfo>".to_string(),
+        "CStruct" => "CStructureUnion<NodeInfo>".to_string(), // might have to double check this
+        "CTranslUnit" => "CTranslationUnit<NodeInfo>".to_string(),
+
         "map" => "__map!".to_string(),
 
         _ => {
@@ -61,10 +85,12 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
     }
 }
 
-
+// TODO merge with print_ident probably
 pub fn print_type_ident(state: PrintState, s: &str) -> String {
     // Handle common translations for types here
     match s {
+        "Char" => "char".to_string(),
+        "Integer" => "isize".to_string(),
         "Int" => format!("isize"),
         "Nothing" => format!("None"),
         "Just" => format!("Some"),
@@ -74,6 +100,19 @@ pub fn print_type_ident(state: PrintState, s: &str) -> String {
         "Bool" => format!("bool"),
         _ => print_ident(state, s.to_string()),
     }
+}
+
+pub fn print_code_ident(state: PrintState, s: &str) -> String {
+    // For constructors, you need the turbofish
+    let out = print_type_ident(state, s);
+    out.replace("<", "::<")
+}
+
+pub fn print_pat_ident(state: PrintState, s: &str) -> String {
+    // For constructors, you need the turbofish
+    let re = Regex::new(r#"<.*"#).unwrap();
+    let out = print_type_ident(state, s);
+    re.replace(&out, "").to_string()
 }
 
 pub fn print_op_fn(value: &str) -> String {
@@ -165,7 +204,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             format!("{{\n{}{}}}", out.join("\n"), state.indent())
         }
         Ref(ast::Ident(ref i)) => {
-            print_type_ident(state, i)
+            print_code_ident(state, i)
         }
         Number(n) => return ir::Expr::Number(n),
         Op(ref l, ref op, ref r) => {
@@ -180,7 +219,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 || op == ">="
                 || op == "<=" {
                 format!("({} {} {})", print_expr(state, l), op, print_expr(state, r))
-            } else if op == "$" {
+            } else if op == "$" || op == "$!" {
                 if let &Expr::Span(ref left) = &**l {
                     let mut left_inner = left.clone();
                     left_inner.push((**r).clone());
@@ -253,6 +292,25 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             assert!(s.len() == 1, "char lit {:?}", s);
             format!("{:?}", s.chars().next().unwrap())
         }
+        If(ref cond, ref then_, ref else_) => {
+            let cond = cond.clone();
+            let then_ = then_.clone();
+            let else_ = else_.clone();
+
+            let cond = print_expr(state, &cond);
+            if let Some(else_) = else_ {
+                format!("if {} {{ {}\n{}}} else {{\n{}\n{}}}",
+                    cond,
+                    state.indent(),
+                    print_expr(state, &then_),
+                    print_expr(state, &else_),
+                    state.indent())
+            } else {
+                format!("if {} {{ {} }}",
+                    cond,
+                    print_expr(state, &then_))
+            }
+        }
         Span(ref span) => {
             let span = expr_explode(span.clone());
 
@@ -278,37 +336,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 } else {
                     // Check for `if` statements
                     let first_word = print_expr(PrintState::new(), &span[0]);
-                    if first_word == "if" {
-                        let mut span = span.clone();
-                        span.remove(0);
-                        let mut then = vec![];
-                        let mut els = vec![]; // TODO
-                        if let Some(pos) = span.iter()
-                            .position(|x| print_expr(PrintState::new(), x) == "else") {
-                            els = span.split_off(pos + 1);
-                            span.split_off(pos);
-                        }
-                        if let Some(pos) = span.iter()
-                            .position(|x| print_expr(PrintState::new(), x) == "then") {
-                            then = span.split_off(pos + 1);
-                            span.split_off(pos);
-                        }
-
-                        // Condition
-                        let cond = print_expr(state, &Expr::Span(span));
-                        if els.len() > 0 {
-                            format!("if {} {{ {}\n{}}} else {{\n{}\n{}}}",
-                                cond,
-                                state.indent(),
-                                print_expr(state, &Expr::Span(then)),
-                                print_expr(state, &Expr::Span(els)),
-                                state.indent())
-                        } else {
-                            format!("if {} {{ {} }}",
-                                cond,
-                                print_expr(state, &Expr::Span(then)))
-                        }
-                    } else if first_word == "unless" || first_word == "when" {
+                    if first_word == "unless" || first_word == "when" {
                         let mut span = span.clone();
                         span.remove(0);
 
@@ -437,7 +465,7 @@ pub fn pat_explode(span: Vec<Pat>) -> Vec<Pat> {
 pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
     match *pat {
         Pat::Ref(ast::Ident(ref s)) =>{
-            print_type_ident(state, s)
+            print_pat_ident(state, s)
         }
         Pat::Span(ref span) => {
             let span = pat_explode(span.to_vec());
@@ -474,7 +502,7 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
                     print_pattern(state.tab().tab(), v)));
             }
             format!("{} {{\n{}\n{}}}",
-                print_type_ident(state, &id.0),
+                print_pat_ident(state, &id.0),
                 out.join(",\n"), state.indent())
         }
         Pat::ViewPattern(ast::Ident(ref s), _) => {
@@ -493,8 +521,7 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
             format!("__OP__")
         }
         Pat::Infix(ref ident) => {
-            errln!("Infix pattern `{}` was not rearranged", ident.0);
-            format!("/* TODO(INFIX) */")
+            panic!("Infix pattern `{}` was not rearranged", ident.0);
         }
     }
 }
@@ -743,7 +770,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                     }).collect::<Vec<_>>().join(&format!(",\n{}", state.tab().indent())),
                     state.indent(),
                     state.indent(),
-                    format!("pub use self::{}::*;", print_ident(state, name.0)),
+                    format!("pub use self::{}::*;", print_type_ident(state, &name.0)),
                 ));
             } else { // Structs
                 let props = if data.len() == 0 {
@@ -864,7 +891,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
 
                         let ret_str = print_type(state.tab(), t.last().unwrap());
 
-                        let re = Regex::new(r"\b(a|b)\b").unwrap();
+                        let re = Regex::new(r"\b((?:a|b|t)\d*)\b").unwrap();
                         let mut type_args = re.captures_iter(&args_str)
                             .map(|x| x[1].to_string())
                             .collect::<::std::collections::HashSet<_>>();
