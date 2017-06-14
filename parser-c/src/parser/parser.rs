@@ -41499,7 +41499,7 @@ pub fn unL<a>(Located(a, pos): Located<a>) -> a {
     a
 }
 
-pub fn withNodeInfo<a, node: Pos>(node: node, mkAttrNode: Box<fn(NodeInfo) -> a>) -> P<a> {
+pub fn withNodeInfo<a, node: Pos>(node: node, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
     /*do*/ {
         let name = getNewName;
 
@@ -41747,7 +41747,7 @@ pub fn expressionP() -> P<CExpr> {
     expression
 }
 
-pub struct HappyStk<a>(a, HappyStk<a>);
+pub struct HappyStk<a>(a, Box<HappyStk<a>>);
 
 
 pub fn happyParse(start_state: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> P<HappyAbsSyn> {
@@ -41768,9 +41768,9 @@ pub fn happyAccept(_0: isize, _1: CToken, _2: HappyState<CToken, Box<Fn(HappyStk
 pub struct HappyState<b, c>(Box<Fn(isize, isize, b, HappyState<b, c>, Vec<HappyState<b, c>>) -> c>);
 
 
-pub fn happyShift(_0: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, _1: isize, _2: CToken, _3: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, _4: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, _5: HappyStk<HappyAbsSyn>, _6: P<HappyAbsSyn>) -> P<HappyAbsSyn> {
-    match (_0, _1, _2, _3, _4, _5, _6, _7) {
-        (new_state, 1, tk, st, sts, stk, __OP__, HappyStk(x, _)) => {
+pub fn happyShift(_0: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, _1: isize, _2: CToken, _3: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, _4: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, _5: HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (_0, _1, _2, _3, _4, _5) {
+        (new_state, 1, tk, st, sts, stk) => {
             {
                 let HappyStk(x, _) = stk.clone();
                 let i = (match x {
@@ -41945,7 +41945,7 @@ pub fn happyGoto(action: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(
     action(j, j, tk, (HappyState(action)), _curry_4)(_curry_5)
 }
 
-pub fn happyFail<a0>(_0: isize, _1: CToken, _2: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a0>>>, _3: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a0>>>>, _4: HappyStk<HappyAbsSyn>, _5: P<a0>) -> P<a0> {
+pub fn happyFail<a0>(_0: isize, _1: CToken, _2: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a0>>>, _3: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a0>>>>, _4: HappyStk<HappyAbsSyn>) -> P<a0> {
     match (_0, _1, _2, _3, _4) {
         (1, tk, old_st, _, HappyStk(x, _)) => {
             {

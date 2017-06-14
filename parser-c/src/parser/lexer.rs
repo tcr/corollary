@@ -34112,8 +34112,8 @@ pub enum AlexAcc<user> {
     AlexAccNone,
     AlexAcc(isize),
     AlexAccSkip,
-    AlexAccPred(isize, AlexAccPred<user>, AlexAcc<user>),
-    AlexAccSkipPred(AlexAccPred<user>, AlexAcc<user>)
+    AlexAccPred(isize, Box<AlexAccPred<user>>, Box<AlexAcc<user>>),
+    AlexAccSkipPred(Box<AlexAccPred<user>>, Box<AlexAcc<user>>)
 }
 pub use self::AlexAcc::*;
 
