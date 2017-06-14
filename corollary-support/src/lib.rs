@@ -320,6 +320,14 @@ pub fn fst<A, B>(input: (A, B)) -> A {
     input.0
 }
 
+pub fn snd<A, B>(input: (A, B)) -> B {
+    input.1
+}
+
+pub fn flip<A, B, C, F: Fn(A, B) -> C>(input: F, b: B, a: A) -> C {
+    input(a, b)
+}
+
 pub fn take(len: isize, input: Vec<String>) {
     // TODO
 }
@@ -377,6 +385,39 @@ pub fn drop<T>(len: isize, mut input: Vec<T>) -> Vec<T> {
     for _ in 0..len {
         input.remove(0);
     }
+    input
+}
+
+pub fn dropWhile<F: Fn(char) -> bool>(cond: F, input: String) -> String {
+    let mut out = vec![];
+    for item in input.chars() {
+        if cond(item.clone()) && out.is_empty() {
+            // skip
+        } else {
+            out.push(item);
+        }
+    }
+    out.into_iter().collect()
+}
+
+pub fn span<F: Fn(char) -> bool>(cond: F, input: String) -> (String, String) {
+    let mut left = vec![];
+    let mut right = vec![];
+    for item in input.chars() {
+        if cond(item.clone()) && right.is_empty() {
+            left.push(item);
+        } else {
+            right.push(item);
+        }
+    }
+    (left.into_iter().collect(), right.into_iter().collect())
+}
+
+pub fn chr(input: isize) -> char {
+    input as u8 as char
+}
+
+pub fn id<A>(input: A) -> A {
     input
 }
 

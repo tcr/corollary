@@ -33252,19 +33252,15 @@ pub fn alex_actions() -> Vec<Box<Fn(Position, isize, InputStream) -> P<CToken>>>
         ])
 }
 
-pub fn readCOctal(_0: String, _1: Either<String, CInteger>) -> Either<String, CInteger> {
-    match (_0, _1, _2) {
-        (s, __OP__, "0", r) => {
-            match r {
-                [c, _] if isDigit(c) => { readCInteger(OctalRepr, r) }
-                _ => {
-                    readCInteger(DecRepr, s)
-                },
-            }
-        },
-        _ => {
-            __error!("ReadOctal: string does not start with `0\'".to_string())
-        },
+pub fn readCOctal(s: String) -> Either<String, CInteger> {
+    if s[0] == '0' {
+        if isDigit(s[1]) {
+            readCInteger(OctalRepr, s[1..].to_string())
+        } else {
+            readCInteger(DecRepr, s)
+        }
+    }  else {
+        __error!("ReadOctal: string does not start with `0\'".to_string())
     }
 }
 
@@ -33560,12 +33556,18 @@ pub fn tok(len: isize, tc: Box<Fn(PosLength) -> CToken>, pos: Position) -> P<CTo
 }
 
 pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Position {
+    fn dropWhite(input: String) {
+        dropWhile((|c| { (c == (' ' || (c == '\t'))) }), input);
+    }
 
     let offs_q = ((posOffset(pos)) + pragmaLen);
 
     let str_q = dropWhite(drop(1, __str));
 
-    let row_q = read(rowStr);
+    let (rowStr, str_q_q) = span(isDigit, str_q);
+
+    // from read(rowStr)
+    let row_q = isize::from_str(&rowStr).unwrap();
 
     let str_q_q_q = dropWhite(str_q_q);
 
@@ -33573,26 +33575,26 @@ pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Po
 
     let fname = posFile(pos);
 
-    let dropWhite = dropWhile((box |c| { (c == (' ' || (c == '\t'))) }));
+    let fname_q = if null(str_q_q_q) || head(str_q_q_q) != '"' {
+        fname
+    } else if fnameStr == fname {
+        // try and get more sharing of file name strings
+        fname
+    } else {
+        fnameStr
+    };
 
     seq(offs_q, seq(fname_q, seq(row_q, (position(offs_q, fname_q, row_q, 1)))))
 }
 
-pub fn unescapeMultiChars(_0: String, _1: Vec<char>) -> Vec<char> {
-    match (_0, _1, _2) {
-        (cs, __OP__, [_, [_, _]]) => {
-            match unescapeChar(cs) {
-                (c, cs_q) => {
-                    __op_concat(c, unescapeMultiChars(cs_q))
-                },
-            }
-        },
-        "'" => {
-            vec![]
-        },
-        _ => {
-            __error!("Unexpected end of multi-char constant".to_string())
-        },
+pub fn unescapeMultiChars(cs: String) -> Vec<char> {
+    if cs.len() > 2 {
+        let value = unescapeChar(cs);
+        format!("{}{}", cs[0], unescapeMultiChars(cs[1..].to_string()))
+    } else if cs.len() == 1 && cs[0] == '\'' {
+        "".to_string()
+    } else {
+        __error!("Unexpected end of multi-char constant".to_string())
     }
 }
 
@@ -33623,6 +33625,17 @@ pub type AlexInput = (Position, InputStream);
 
 pub fn alexInputPrevChar(_: AlexInput) -> char {
     __error!("alexInputPrevChar not used".to_string())
+}
+
+pub fn alexGetByte((p, is): AlexInput) -> Option<(Word8, AlexInput)> {
+    if inputStreamEmpty(is) {
+        None
+    } else {
+        let (b, s) = takeByte(is);
+        // this is safe for latin-1, but ugly
+        let p_q = alexMove(p, chr(fromIntegral(b)));
+        seq(p_q, Some((b, (p_q, s))))
+    }
 }
 
 pub fn alexMove(_0: Position, _1: char) -> Position {
@@ -33996,7 +34009,8 @@ pub enum AlexReturn<a> {
 pub use self::AlexReturn::*;
 
 pub fn alexScan(input: (Position, InputStream), sc: isize) -> AlexReturn<Box<Fn(Position, isize, InputStream) -> P<CToken>>> {
-    alexScanUser(undefined, input, sc)
+    // TODO first argument should be "undefined"
+    alexScanUser(false, input, sc())
 }
 
 pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<Box<Fn(Position, isize, InputStream) -> P<CToken>>> {
@@ -34021,8 +34035,8 @@ pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<Box<F
 }
 
 pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexInput, s: isize, last_acc: AlexLastAcc) -> (AlexLastAcc, AlexInput) {
-
-    let check_accs = |_0| {
+    // TODO recursive lambda
+    fn check_accs<A>((user, orig_input, len, input, last_acc): (bool, AlexInput, isize, AlexInput, AlexLastAcc), _0: AlexAcc<A>) -> AlexAcc<A> {
         match (_0) {
             AlexAccNone => {
                 last_acc
@@ -34033,17 +34047,23 @@ pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexI
             AlexAccSkip => {
                 AlexLastSkip(input, len)
             },
+            AlexAccPred(a, predx, rest) if predx(user, orig_input, len, input) => {
+                AlexLastAcc(a, input, len)
+            },
             AlexAccPred(a, predx, rest) => {
-                /* Expr::Error */ Error
+                check_accs((user, orig_input, len, input, last_acc), rest)
+            },
+            AlexAccSkipPred(predx, rest) if predx(user, orig_input, len, input) => {
+                AlexLastSkip(input, len)
             },
             AlexAccSkipPred(predx, rest) => {
-                /* Expr::Error */ Error
+                check_accs((user, orig_input, len, input, last_acc), rest)
             },
         }
     };
 
     seq(input, {
-        let new_acc = (check_accs((quickIndex(alex_accept, s))));
+        let new_acc = (check_accs((user, orig_input, len, input, last_acc), (quickIndex(alex_accept, s()))));
 
     seq(new_acc, match alexGetByte(input) {
             None => {

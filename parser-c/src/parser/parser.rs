@@ -41499,7 +41499,7 @@ pub fn unL<a>(Located(a, pos): Located<a>) -> a {
     a
 }
 
-pub fn withNodeInfo<a>(node: node, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
+pub fn withNodeInfo<a, node: Pos>(node: node, mkAttrNode: Box<fn(NodeInfo) -> a>) -> P<a> {
     /*do*/ {
         let name = getNewName;
 
@@ -41532,7 +41532,7 @@ pub fn reverseDeclr(CDeclrR(ide, reversedDDs, asmname, cattrs, at): CDeclrR) -> 
     CDeclarator::<NodeInfo>(ide, (reverse(reversedDDs)), asmname, cattrs, at)
 }
 
-pub fn withAttribute(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrNode: Box<Fn(NodeInfo) -> CDeclrR>) -> P<CDeclrR> {
+pub fn withAttribute<node: Pos>(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrNode: Box<Fn(NodeInfo) -> CDeclrR>) -> P<CDeclrR> {
     /*do*/ {
         let name = getNewName;
 
@@ -41544,7 +41544,7 @@ pub fn withAttribute(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrNode:
     }
 }
 
-pub fn withAttributePF(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrCtor: Box<Fn(NodeInfo, CDeclrR) -> CDeclrR>) -> P<Box<Fn(CDeclrR) -> CDeclrR>> {
+pub fn withAttributePF<node: Pos>(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrCtor: Box<Fn(NodeInfo, CDeclrR) -> CDeclrR>) -> P<Box<Fn(CDeclrR) -> CDeclrR>> {
     /*do*/ {
         let name = getNewName;
 
@@ -41607,6 +41607,17 @@ pub fn appendDeclrAttrs(_0: Vec<CAttribute<NodeInfo>>, _1: CDeclrR) -> CDeclrR {
             CDeclrR(ident, (empty)(), asmname, (__op_addadd(cattrs, newAttrs)), at)
         },
         (newAttrs, CDeclrR(ident, Reversed([x, xs]), asmname, cattrs, at)) => {
+            let appendAttrs = |_0| {
+                match _0 {
+                    CPtrDeclr(typeQuals, at) =>
+                        CPtrDeclr(__op_addadd(typeQuals, __map!(CAttrQual, newAttrs)), at),
+                    CArrDeclr(typeQuals, arraySize, at) =>
+                        CArrDeclr(__op_addadd(typeQuals, __map!(CAttrQual, newAttrs)), arraySize, at),
+                    CFunDeclr(parameters, cattrs, at) =>
+                        CFunDeclr(parameters, __op_addadd(cattrs, newAttrs), at),
+                }
+            };
+            
             CDeclrR(ident, (Reversed((__op_concat(appendAttrs(x), xs)))), asmname, cattrs, at)
         },
     }
@@ -41689,7 +41700,18 @@ pub fn doDeclIdent(declspecs: Vec<CDeclSpec>, CDeclrR(mIdent, _, _, _, _): CDecl
 pub fn doFuncParamDeclIdent(_0: CDeclarator<NodeInfo>) -> P<()> {
     match (_0) {
         CDeclarator(_, [CFunDeclr(params, _, _), _], _, _, _) => {
-            sequence_(/* Expr::Generator */ Generator)
+            //TODO
+            unreachable!();
+            // params.map(|x| fst(x)).unwrap_or(vec![])
+                // .flat_map(|CDecl(_, dle, _)| dle)
+                // .flat_map(|(declr, _, _)| declr.map(|x| vec![x]).unwrap_or(vec![]))
+                // .map(|declr| {
+                //     match getCDeclrIdent(declr) {
+                //         None => P()
+                //         Some(ident) => shadowTypedef(ident)
+                //     }
+                // })
+            // TODO thread P through this
         },
         _ => {
             __return(())
@@ -41706,7 +41728,7 @@ pub fn happyError<a>() -> P<a> {
 }
 
 pub fn parseC(input: InputStream, initialPosition: Position) -> Either<ParseError, CTranslationUnit<NodeInfo>> {
-    fmap(fst, execParser(translUnitP, input, initialPosition, builtinTypeNames, (namesStartingFrom(0))))
+    __fmap!(fst, execParser(translUnitP, input, initialPosition, builtinTypeNames, (namesStartingFrom(0))))
 }
 
 pub fn translUnitP() -> P<CTranslationUnit<NodeInfo>> {
@@ -41750,6 +41772,7 @@ pub fn happyShift(_0: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(Hap
     match (_0, _1, _2, _3, _4, _5, _6, _7) {
         (new_state, 1, tk, st, sts, stk, __OP__, HappyStk(x, _)) => {
             {
+                let HappyStk(x, _) = stk.clone();
                 let i = (match x {
                         HappyErrorToken(i) => {
                             i
@@ -41780,8 +41803,11 @@ pub fn happySpecReduce_1(_0: isize, _1: Box<Fn(HappyAbsSyn) -> HappyAbsSyn>, _2:
         (i, __fn, 1, tk, st, sts, stk) => {
             partial_1!(box happyFail, (1), tk, st, sts, stk)
         },
-        (nt, __fn, j, tk, _, sts, __OP__, [st(__OP__, HappyState(action)), _], HappyStk(v1, stk_q)) => {
+        (nt, __fn, j, tk, _, sts, HappyStk(v1, stk_q)) => {
             {
+                // TODO assert len > 0?
+                let st = sts.clone().remove(0);
+                let HappyState(action) = st.clone();
                 let r = __fn(v1);
 
             happySeq(r, (action(nt, j, tk, st, sts)((HappyStk(r, box stk_q)))))            }
@@ -41794,8 +41820,13 @@ pub fn happySpecReduce_2(_0: isize, _1: Box<Fn(HappyAbsSyn, HappyAbsSyn) -> Happ
         (i, __fn, 1, tk, st, sts, stk) => {
             partial_1!(box happyFail, (1), tk, st, sts, stk)
         },
-        (nt, __fn, j, tk, _, [_, sts(__OP__, [st(__OP__, HappyState(action)), _])], HappyStk(v1, box HappyStk(v2, stk_q))) => {
+        (nt, __fn, j, tk, _, mut stses, HappyStk(v1, box HappyStk(v2, box stk_q))) => {
             {
+                stses.remove(0);
+                let sts = stses.remove(0);
+                let st = sts.clone().remove(0);
+                let HappyState(action) = st.clone();
+
                 let r = __fn(v1, v2);
 
             happySeq(r, (action(nt, j, tk, st, sts)((HappyStk(r, box stk_q)))))            }
@@ -41808,8 +41839,14 @@ pub fn happySpecReduce_3(_0: isize, _1: Box<Fn(HappyAbsSyn, HappyAbsSyn, HappyAb
         (i, __fn, 1, tk, st, sts, stk) => {
             partial_1!(box happyFail, (1), tk, st, sts, stk)
         },
-        (nt, __fn, j, tk, _, [_, [_, sts(__OP__, [st(__OP__, HappyState(action)), _])]], HappyStk(v1, box HappyStk(v2, box HappyStk(v3, stk_q)))) => {
+        (nt, __fn, j, tk, _, mut stses, HappyStk(v1, box HappyStk(v2, box HappyStk(v3, box stk_q)))) => {
             {
+                stses.remove(0);
+                stses.remove(0);
+                let sts = stses.remove(0);
+                let st = sts.clone().remove(0);
+                let HappyState(action) = st.clone();
+
                 let r = __fn(v1, v2, v3);
 
             happySeq(r, (action(nt, j, tk, st, sts)((HappyStk(r, box stk_q)))))            }
@@ -41824,8 +41861,12 @@ pub fn happyReduce<a00>(_0: isize, _1: isize, _2: Box<Fn(HappyStk<HappyAbsSyn>) 
         },
         (k, nt, __fn, j, tk, st, sts, stk) => {
             match happyDrop(((k - ((1)))), sts) {
-                sts1(__OP__, [st1(__OP__, HappyState(action)), _]) => {
+                sts1 => {
                     {
+                        let st1 = sts1.clone().remove(0);
+                        let HappyState(action) = st1.clone();
+                        
+                        // it doesn't hurt to always seq here...
                         let r = __fn(stk);
 
                     happyDoSeq(r, (action(nt, j, tk, st1, sts1)(r)))                    }
@@ -41842,8 +41883,11 @@ pub fn happyMonadReduce<b00>(_0: isize, _1: isize, _2: Box<Fn(HappyStk<HappyAbsS
         },
         (k, nt, __fn, j, tk, st, sts, stk) => {
             match happyDrop(k, (__op_concat(st, sts))) {
-                sts1(__OP__, [st1(__OP__, HappyState(action)), _]) => {
+                sts1 => {
                     {
+                        let st1 = sts1.clone().remove(0);
+                        let HappyState(action) = st1.clone();
+
                         let drop_stk = happyDropStk(k, stk);
 
                     happyThen1((__fn(stk, tk)), (box |r| { action(nt, j, tk, st1, sts1)((HappyStk(r, box drop_stk))) }))                    }
@@ -41860,8 +41904,10 @@ pub fn happyMonad2Reduce<b00, t0>(_0: isize, _1: t0, _2: Box<Fn(HappyStk<HappyAb
         },
         (k, nt, __fn, j, tk, st, sts, stk) => {
             match happyDrop(k, (__op_concat(st, sts))) {
-                sts1(__OP__, [st1(__OP__, HappyState(action)), _]) => {
-                    {
+                sts1 => { {
+                        let st1 = sts1.clone().remove(0);
+                        let HappyState(action) = st1.clone();
+
                         let drop_stk = happyDropStk(k, stk);
 
                         let new_state = action;
@@ -41900,8 +41946,8 @@ pub fn happyGoto(action: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(
 }
 
 pub fn happyFail<a0>(_0: isize, _1: CToken, _2: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a0>>>, _3: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a0>>>>, _4: HappyStk<HappyAbsSyn>, _5: P<a0>) -> P<a0> {
-    match (_0, _1, _2, _3, _4, _5, _6) {
-        (1, tk, old_st, _, stk, __OP__, HappyStk(x, _)) => {
+    match (_0, _1, _2, _3, _4) {
+        (1, tk, old_st, _, HappyStk(x, _)) => {
             {
                 let i = (match x {
                         HappyErrorToken(i) => {
