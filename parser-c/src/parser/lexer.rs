@@ -33093,7 +33093,7 @@ pub fn alex_accept<a>() -> Array<isize, AlexAcc<a>> {
         ])
 }
 
-pub fn alex_actions() -> Array<isize, fn(Position) -> fn(isize) -> fn(InputStream) -> P<CToken>> {
+pub fn alex_actions() -> Array<isize, fn(Position, isize, InputStream) -> P<CToken>> {
     array((0, 124), vec![
             (123, alex_action_1),
             (122, alex_action_4),
@@ -33574,11 +33574,11 @@ pub fn token_fail(errmsg: String, pos: Position, _: isize, _: InputStream) -> P<
     failP(pos, vec!["Lexical Error !".to_string(), errmsg])
 }
 
-pub fn token<a>(mkTok: fn(PosLength) -> fn(a) -> CToken, fromStr: fn(String) -> a, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
+pub fn token<a>(mkTok: fn(PosLength, a) -> CToken, fromStr: fn(String) -> a, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
     (mkTok((pos, len), (fromStr(takeChars(len, __str)))))
 }
 
-pub fn token_plus<a>(mkTok: fn(PosLength) -> fn(a) -> CToken, fromStr: fn(String) -> Either<String, a>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
+pub fn token_plus<a>(mkTok: fn(PosLength, a) -> CToken, fromStr: fn(String) -> Either<String, a>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
     match fromStr((takeChars(len, __str))) {
         Left(err) => {
             failP(pos, vec!["Lexical error ! ".to_string(), err])
@@ -33965,11 +33965,11 @@ pub enum AlexReturn<a> {
 }
 pub use self::AlexReturn::*;
 
-pub fn alexScan(input: (Position, InputStream), sc: isize) -> AlexReturn<fn(Position) -> fn(isize) -> fn(InputStream) -> P<CToken>> {
+pub fn alexScan(input: (Position, InputStream), sc: isize) -> AlexReturn<fn(Position, isize, InputStream) -> P<CToken>> {
     alexScanUser(undefined, input, sc())
 }
 
-pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<fn(Position) -> fn(isize) -> fn(InputStream) -> P<CToken>> {
+pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<fn(Position, isize, InputStream) -> P<CToken>> {
     match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
         (AlexNone, input_q) => {
             match alexGetByte(input) {
@@ -34067,9 +34067,9 @@ pub enum AlexAcc<user> {
 }
 pub use self::AlexAcc::*;
 
-pub type AlexAccPred<user> = fn(user) -> fn(AlexInput) -> fn(isize) -> fn(AlexInput) -> bool;
+pub type AlexAccPred<user> = fn(user, AlexInput, isize, AlexInput) -> bool;
 
-pub fn alexAndPred<a>(p1: fn(a) -> fn(AlexInput) -> fn(isize) -> fn(AlexInput) -> bool, p2: fn(a) -> fn(AlexInput) -> fn(isize) -> fn(AlexInput) -> bool, user: a, in1: AlexInput, len: isize, in2: AlexInput) -> bool {
+pub fn alexAndPred<a>(p1: fn(a, AlexInput, isize, AlexInput) -> bool, p2: fn(a, AlexInput, isize, AlexInput) -> bool, user: a, in1: AlexInput, len: isize, in2: AlexInput) -> bool {
     (p1(user, in1, len, in2) && p2(user, in1, len, in2))
 }
 

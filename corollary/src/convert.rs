@@ -552,6 +552,9 @@ pub fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         Ty::Brackets(ref t) => {
             format!("Vec<{}>", print_type(state.tab(), &**t))
         }
+        Ty::Pair(ref a, ref b) if matches!(**b, Ty::Pair(..)) => {
+            format!("fn({}, {}", print_type(state, &**a), print_type(state, &**b).replacen("fn(", "", 1))
+        }
         Ty::Pair(ref a, ref b) => {
             format!("fn({}) -> {}", print_type(state, &**a), print_type(state, &**b))
         }
@@ -605,6 +608,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                 if types.contains_key(&s) {
                     panic!("that shouldn't happen {:?}", s);
                 }
+                // println!("{:#?}", d);
                 types.insert(s, d.clone());
             }
         }
