@@ -167,14 +167,16 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
     let freeform = match *expr {
         Parens(ref r) => {
             let mut res = None;
-            if r.len() == 1 {
-                if let &Expr::Span(ref inner) = &r[0] {
-                    if inner.len() == 1 && matches!(&inner[0], &Expr::Ref(..)) {
-                        // HACK: Print singly-wrapped idents as functions
-                        res = Some(format!("{}()", print_expr(state, &inner[0])))
-                    }
-                }
-            }
+
+            // 
+            // if r.len() == 1 {
+            //     if let &Expr::Span(ref inner) = &r[0] {
+            //         if inner.len() == 1 && matches!(&inner[0], &Expr::Ref(..)) {
+            //             // HACK: Print singly-wrapped idents as functions
+            //             res = Some(format!("{}()", print_expr(state, &inner[0])))
+            //         }
+            //     }
+            // }
 
             if res.is_none() {
                 let mut out = vec![];

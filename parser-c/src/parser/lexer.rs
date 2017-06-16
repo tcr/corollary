@@ -33685,264 +33685,264 @@ pub fn lexC<a>(cont: fn(CToken) -> P<a>) -> P<a> {
     }
 }
 
-pub fn alex_action_1() -> P<CToken> {
-    |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) }
+pub fn alex_action_1(_curry_0: Position) -> P<CToken> {
+    |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) }(_curry_0)
 }
 
-pub fn alex_action_4() -> P<CToken> {
-    |pos, len, __str| { idkwtok((takeChars(len, __str)), pos) }
+pub fn alex_action_4(_curry_0: Position) -> P<CToken> {
+    |pos, len, __str| { idkwtok((takeChars(len, __str)), pos) }(_curry_0)
 }
 
-pub fn alex_action_5() -> P<CToken> {
-    token_plus(CTokILit, readCOctal)
+pub fn alex_action_5(_curry_0: Position) -> P<CToken> {
+    token_plus(CTokILit, readCOctal, _curry_0)
 }
 
-pub fn alex_action_6() -> P<CToken> {
-    token_plus(CTokILit, (readCInteger(DecRepr)))
+pub fn alex_action_6(_curry_0: Position) -> P<CToken> {
+    token_plus(CTokILit, (readCInteger(DecRepr)), _curry_0)
 }
 
-pub fn alex_action_7() -> P<CToken> {
-    token_plus(CTokILit, (readCInteger(HexRepr, drop(2))))
+pub fn alex_action_7(_curry_0: Position) -> P<CToken> {
+    token_plus(CTokILit, (readCInteger(HexRepr, drop(2))), _curry_0)
 }
 
-pub fn alex_action_8() -> P<CToken> {
-    token_fail("Invalid integer constant suffix".to_string())
+pub fn alex_action_8(_curry_0: Position) -> P<CToken> {
+    token_fail("Invalid integer constant suffix".to_string(), _curry_0)
 }
 
-pub fn alex_action_9() -> P<CToken> {
-    token(CTokCLit, (cChar(fst(unescapeChar(tail)))))
+pub fn alex_action_9(_curry_0: Position) -> P<CToken> {
+    token(CTokCLit, (cChar(fst(unescapeChar(tail)))), _curry_0)
 }
 
-pub fn alex_action_10() -> P<CToken> {
-    token(CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))))
+pub fn alex_action_10(_curry_0: Position) -> P<CToken> {
+    token(CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))), _curry_0)
 }
 
-pub fn alex_action_11() -> P<CToken> {
-    token(CTokCLit, (flip(cChars, false, unescapeMultiChars(tail))))
+pub fn alex_action_11(_curry_0: Position) -> P<CToken> {
+    token(CTokCLit, (flip(cChars, false, unescapeMultiChars(tail))), _curry_0)
 }
 
-pub fn alex_action_12() -> P<CToken> {
-    token(CTokCLit, (flip(cChars, true, unescapeMultiChars(tail(tail)))))
+pub fn alex_action_12(_curry_0: Position) -> P<CToken> {
+    token(CTokCLit, (flip(cChars, true, unescapeMultiChars(tail(tail)))), _curry_0)
 }
 
-pub fn alex_action_13() -> P<CToken> {
-    token((|pos| { CTokClangC(pos, ClangCTok) }), readClangCVersion)
+pub fn alex_action_13(_curry_0: Position) -> P<CToken> {
+    token((|pos| { CTokClangC(pos, ClangCTok) }), readClangCVersion, _curry_0)
 }
 
-pub fn alex_action_14() -> P<CToken> {
-    token(CTokFLit, readCFloat)
+pub fn alex_action_14(_curry_0: Position) -> P<CToken> {
+    token(CTokFLit, readCFloat, _curry_0)
 }
 
-pub fn alex_action_15() -> P<CToken> {
-    token(CTokFLit, readCFloat)
+pub fn alex_action_15(_curry_0: Position) -> P<CToken> {
+    token(CTokFLit, readCFloat, _curry_0)
 }
 
-pub fn alex_action_16() -> P<CToken> {
-    token_fail("Hexadecimal floating constant requires an exponent".to_string())
+pub fn alex_action_16(_curry_0: Position) -> P<CToken> {
+    token_fail("Hexadecimal floating constant requires an exponent".to_string(), _curry_0)
 }
 
-pub fn alex_action_17() -> P<CToken> {
-    token(CTokSLit, (cString(unescapeString(init(tail)))))
+pub fn alex_action_17(_curry_0: Position) -> P<CToken> {
+    token(CTokSLit, (cString(unescapeString(init(tail)))), _curry_0)
 }
 
-pub fn alex_action_18() -> P<CToken> {
-    token(CTokSLit, (cString_w(unescapeString(init(tail(tail))))))
+pub fn alex_action_18(_curry_0: Position) -> P<CToken> {
+    token(CTokSLit, (cString_w(unescapeString(init(tail(tail))))), _curry_0)
 }
 
-pub fn alex_action_19() -> P<CToken> {
-    token_fail("Universal character names are unsupported".to_string())
+pub fn alex_action_19(_curry_0: Position) -> P<CToken> {
+    token_fail("Universal character names are unsupported".to_string(), _curry_0)
 }
 
-pub fn alex_action_20() -> P<CToken> {
-    token_fail("Invalid escape sequence".to_string())
+pub fn alex_action_20(_curry_0: Position) -> P<CToken> {
+    token_fail("Invalid escape sequence".to_string(), _curry_0)
 }
 
-pub fn alex_action_21() -> P<CToken> {
-    token_fail("Universal character names in string literals are unsupported".to_string())
+pub fn alex_action_21(_curry_0: Position) -> P<CToken> {
+    token_fail("Universal character names in string literals are unsupported".to_string(), _curry_0)
 }
 
-pub fn alex_action_22() -> P<CToken> {
-    token_(1, CTokLParen)
+pub fn alex_action_22(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokLParen, _curry_0)
 }
 
-pub fn alex_action_23() -> P<CToken> {
-    token_(1, CTokRParen)
+pub fn alex_action_23(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokRParen, _curry_0)
 }
 
-pub fn alex_action_24() -> P<CToken> {
-    token_(1, CTokLBracket)
+pub fn alex_action_24(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokLBracket, _curry_0)
 }
 
-pub fn alex_action_25() -> P<CToken> {
-    token_(1, CTokRBracket)
+pub fn alex_action_25(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokRBracket, _curry_0)
 }
 
-pub fn alex_action_26() -> P<CToken> {
-    token_(2, CTokArrow)
+pub fn alex_action_26(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokArrow, _curry_0)
 }
 
-pub fn alex_action_27() -> P<CToken> {
-    token_(1, CTokDot)
+pub fn alex_action_27(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokDot, _curry_0)
 }
 
-pub fn alex_action_28() -> P<CToken> {
-    token_(1, CTokExclam)
+pub fn alex_action_28(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokExclam, _curry_0)
 }
 
-pub fn alex_action_29() -> P<CToken> {
-    token_(1, CTokTilde)
+pub fn alex_action_29(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokTilde, _curry_0)
 }
 
-pub fn alex_action_30() -> P<CToken> {
-    token_(2, CTokInc)
+pub fn alex_action_30(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokInc, _curry_0)
 }
 
-pub fn alex_action_31() -> P<CToken> {
-    token_(2, CTokDec)
+pub fn alex_action_31(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokDec, _curry_0)
 }
 
-pub fn alex_action_32() -> P<CToken> {
-    token_(1, CTokPlus)
+pub fn alex_action_32(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokPlus, _curry_0)
 }
 
-pub fn alex_action_33() -> P<CToken> {
-    token_(1, CTokMinus)
+pub fn alex_action_33(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokMinus, _curry_0)
 }
 
-pub fn alex_action_34() -> P<CToken> {
-    token_(1, CTokStar)
+pub fn alex_action_34(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokStar, _curry_0)
 }
 
-pub fn alex_action_35() -> P<CToken> {
-    token_(1, CTokSlash)
+pub fn alex_action_35(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokSlash, _curry_0)
 }
 
-pub fn alex_action_36() -> P<CToken> {
-    token_(1, CTokPercent)
+pub fn alex_action_36(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokPercent, _curry_0)
 }
 
-pub fn alex_action_37() -> P<CToken> {
-    token_(1, CTokAmper)
+pub fn alex_action_37(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokAmper, _curry_0)
 }
 
-pub fn alex_action_38() -> P<CToken> {
-    token_(2, CTokShiftL)
+pub fn alex_action_38(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokShiftL, _curry_0)
 }
 
-pub fn alex_action_39() -> P<CToken> {
-    token_(2, CTokShiftR)
+pub fn alex_action_39(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokShiftR, _curry_0)
 }
 
-pub fn alex_action_40() -> P<CToken> {
-    token_(1, CTokLess)
+pub fn alex_action_40(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokLess, _curry_0)
 }
 
-pub fn alex_action_41() -> P<CToken> {
-    token_(2, CTokLessEq)
+pub fn alex_action_41(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokLessEq, _curry_0)
 }
 
-pub fn alex_action_42() -> P<CToken> {
-    token_(1, CTokHigh)
+pub fn alex_action_42(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokHigh, _curry_0)
 }
 
-pub fn alex_action_43() -> P<CToken> {
-    token_(2, CTokHighEq)
+pub fn alex_action_43(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokHighEq, _curry_0)
 }
 
-pub fn alex_action_44() -> P<CToken> {
-    token_(2, CTokEqual)
+pub fn alex_action_44(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokEqual, _curry_0)
 }
 
-pub fn alex_action_45() -> P<CToken> {
-    token_(2, CTokUnequal)
+pub fn alex_action_45(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokUnequal, _curry_0)
 }
 
-pub fn alex_action_46() -> P<CToken> {
-    token_(1, CTokHat)
+pub fn alex_action_46(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokHat, _curry_0)
 }
 
-pub fn alex_action_47() -> P<CToken> {
-    token_(1, CTokBar)
+pub fn alex_action_47(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokBar, _curry_0)
 }
 
-pub fn alex_action_48() -> P<CToken> {
-    token_(2, CTokAnd)
+pub fn alex_action_48(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokAnd, _curry_0)
 }
 
-pub fn alex_action_49() -> P<CToken> {
-    token_(2, CTokOr)
+pub fn alex_action_49(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokOr, _curry_0)
 }
 
-pub fn alex_action_50() -> P<CToken> {
-    token_(1, CTokQuest)
+pub fn alex_action_50(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokQuest, _curry_0)
 }
 
-pub fn alex_action_51() -> P<CToken> {
-    token_(1, CTokColon)
+pub fn alex_action_51(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokColon, _curry_0)
 }
 
-pub fn alex_action_52() -> P<CToken> {
-    token_(1, CTokAssign)
+pub fn alex_action_52(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokAssign, _curry_0)
 }
 
-pub fn alex_action_53() -> P<CToken> {
-    token_(2, CTokPlusAss)
+pub fn alex_action_53(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokPlusAss, _curry_0)
 }
 
-pub fn alex_action_54() -> P<CToken> {
-    token_(2, CTokMinusAss)
+pub fn alex_action_54(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokMinusAss, _curry_0)
 }
 
-pub fn alex_action_55() -> P<CToken> {
-    token_(2, CTokStarAss)
+pub fn alex_action_55(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokStarAss, _curry_0)
 }
 
-pub fn alex_action_56() -> P<CToken> {
-    token_(2, CTokSlashAss)
+pub fn alex_action_56(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokSlashAss, _curry_0)
 }
 
-pub fn alex_action_57() -> P<CToken> {
-    token_(2, CTokPercAss)
+pub fn alex_action_57(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokPercAss, _curry_0)
 }
 
-pub fn alex_action_58() -> P<CToken> {
-    token_(2, CTokAmpAss)
+pub fn alex_action_58(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokAmpAss, _curry_0)
 }
 
-pub fn alex_action_59() -> P<CToken> {
-    token_(2, CTokHatAss)
+pub fn alex_action_59(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokHatAss, _curry_0)
 }
 
-pub fn alex_action_60() -> P<CToken> {
-    token_(2, CTokBarAss)
+pub fn alex_action_60(_curry_0: Position) -> P<CToken> {
+    token_(2, CTokBarAss, _curry_0)
 }
 
-pub fn alex_action_61() -> P<CToken> {
-    token_(3, CTokSLAss)
+pub fn alex_action_61(_curry_0: Position) -> P<CToken> {
+    token_(3, CTokSLAss, _curry_0)
 }
 
-pub fn alex_action_62() -> P<CToken> {
-    token_(3, CTokSRAss)
+pub fn alex_action_62(_curry_0: Position) -> P<CToken> {
+    token_(3, CTokSRAss, _curry_0)
 }
 
-pub fn alex_action_63() -> P<CToken> {
-    token_(1, CTokComma)
+pub fn alex_action_63(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokComma, _curry_0)
 }
 
-pub fn alex_action_64() -> P<CToken> {
-    token_(1, CTokSemic)
+pub fn alex_action_64(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokSemic, _curry_0)
 }
 
-pub fn alex_action_65() -> P<CToken> {
-    token_(1, CTokLBrace)
+pub fn alex_action_65(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokLBrace, _curry_0)
 }
 
-pub fn alex_action_66() -> P<CToken> {
-    token_(1, CTokRBrace)
+pub fn alex_action_66(_curry_0: Position) -> P<CToken> {
+    token_(1, CTokRBrace, _curry_0)
 }
 
-pub fn alex_action_67() -> P<CToken> {
-    token_(3, CTokEllipsis)
+pub fn alex_action_67(_curry_0: Position) -> P<CToken> {
+    token_(3, CTokEllipsis, _curry_0)
 }
 
 pub fn alexIndexInt16OffAddr(arr: Array<isize, isize>, off: isize) -> isize {
@@ -33966,7 +33966,7 @@ pub enum AlexReturn<a> {
 pub use self::AlexReturn::*;
 
 pub fn alexScan(input: (Position, InputStream), sc: isize) -> AlexReturn<fn(Position, isize, InputStream) -> P<CToken>> {
-    alexScanUser(undefined, input, sc())
+    alexScanUser(undefined, input, (sc))
 }
 
 pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<fn(Position, isize, InputStream) -> P<CToken>> {
@@ -33998,10 +33998,10 @@ pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexI
                 last_acc
             },
             AlexAcc(a) => {
-                AlexLastAcc(a, input, len())
+                AlexLastAcc(a, input, (len))
             },
             AlexAccSkip => {
-                AlexLastSkip(input, len())
+                AlexLastSkip(input, (len))
             },
             AlexAccPred(a, predx, rest) => {
                 /* Expr::Error */ Error
@@ -34013,7 +34013,7 @@ pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexI
     };
 
     seq(input, {
-        let new_acc = (check_accs((quickIndex(alex_accept, s()))));
+        let new_acc = (check_accs((quickIndex(alex_accept, (s)))));
 
     seq(new_acc, match alexGetByte(input) {
             None => {
