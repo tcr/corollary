@@ -864,10 +864,11 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                 fn_used.insert(assign_name);
 
                 for (assign, where_) in fnset.clone() {
-                    if let ast::Assignment::Assign { pats: args, expr } = assign {
-                        // For type-less functions,
+                    if let ast::Assignment::Assign { pats: mut args, mut expr } = assign {
+                        // For functions without type prototypes, just generate lambda
+                        // function definitions.
                         if !types.contains_key(&key) {
-                            // TODO Unless we can infer top-level types, we just bail.
+                            // TODO For now, functions on the top level require type definitions.
                             if toplevel {
                                 panic!("Cannot print untyped fn {:?}", key);
                             } else {
@@ -887,25 +888,8 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                         let t = unpack_fndef(d[0].clone());
                         assert!(t.len() >= 1);
 
-                        let mut args_span = vec![];
-                        for (arg, ty) in args.iter().zip(t.iter()) {
-                            args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
-                        }
-                        let args_str = args_span.join(", ");
-
+                        // Generate the return type.
                         let ret_str = print_type(state.tab(), t.last().unwrap());
-
-                        let re = Regex::new(r"\b((?:a|b|t)\d*)\b").unwrap();
-                        let mut type_args = re.captures_iter(&args_str)
-                            .map(|x| x[1].to_string())
-                            .collect::<::std::collections::HashSet<_>>();
-                        
-                        for item in re.captures_iter(&ret_str) {
-                            type_args.insert(item[1].to_string());
-                        }
-
-                        let mut type_args = type_args.into_iter().collect::<Vec<_>>();
-                        type_args.sort();
 
                         // Format where clause
                         let mut where_str = format!("");
@@ -913,6 +897,39 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                             where_str = format!("{}\n",
                                 print_item_list(state.tab(), &where_, false));
                         }
+
+                        // If there are fewer types than arguments, convert a pointfree
+                        // function to a pointful one by adding in an explicit argument.
+                        if (t.len() as isize) > (args.len() as isize) + 1 {
+                            // println!("------ LOL {:?}", t.len() - (args.len()) - 1);
+                            match expr {
+                                ast::Expr::Span(ref mut inner) => {
+                                    args.push(ast::Pat::Ref(ast::Ident("_curry_0".to_string())));
+                                    inner.push(ast::Expr::Ref(ast::Ident("_curry_0".to_string())));
+                                }
+                                _ => {}
+                            }
+                        }
+
+                        // Generate argument types.
+                        // TODO ensure args.len() == t.len() - 1
+                        let mut args_span = vec![];
+                        for (arg, ty) in args.iter().zip(t.iter()) {
+                            args_span.push(format!("{}: {}", print_pattern(state, arg), print_type(state.tab(), ty)));
+                        }
+                        let args_str = args_span.join(", ");
+
+                        // Gneerate generic arguments.
+                        let re = Regex::new(r"\b((?:a|b|t)\d*)\b").unwrap();
+                        let mut type_args = re.captures_iter(&args_str)
+                            .map(|x| x[1].to_string())
+                            .collect::<::std::collections::HashSet<_>>();
+                        // Also accumulate return anonymous types.
+                        for item in re.captures_iter(&ret_str) {
+                            type_args.insert(item[1].to_string());
+                        }
+                        let mut type_args = type_args.into_iter().collect::<Vec<_>>();
+                        type_args.sort();
 
                         let trans_name = print_type_ident(state, &key);
                         out.push(
