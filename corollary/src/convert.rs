@@ -355,14 +355,26 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                         let mut span = span.clone();
                         let start = print_expr(state, &span.remove(0));
                         let mut end = "".to_string();
-                        if span.len() > 0 {
+
+                        //HACK check for action(..) calls in parser.rs
+                        if start.starts_with("action") && span.len() == 6 {
                             let mut out = vec![];
                             for item in &span {
                                 out.push(print_expr(state.tab(), item));
                             }
+                            let last = out.pop().unwrap();
                             end = format!("({})", out.join(", "));
+                            format!("{}{}({})", start, end, last)
+                        } else {
+                            if span.len() > 0 {
+                                let mut out = vec![];
+                                for item in &span {
+                                    out.push(print_expr(state.tab(), item));
+                                }
+                                end = format!("({})", out.join(", "));
+                            }
+                            format!("{}{}", start, end)
                         }
-                        format!("{}{}", start, end)
                     }
                 }
             }

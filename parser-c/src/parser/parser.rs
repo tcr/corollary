@@ -41027,12 +41027,12 @@ pub fn happyReduction_488(HappyStk(_, HappyStk(_, HappyStk(_, HappyStk(_, HappyS
 pub fn happyNewToken<a, b>(action: fn(isize, isize, CToken, HappyState<CToken, fn(b) -> P<a>>, Vec<HappyState<CToken, fn(b) -> P<a>>>, b) -> P<a>, sts: Vec<HappyState<CToken, fn(b) -> P<a>>>, stk: b) -> P<a> {
     lexC((|tk| { () }({
                 let cont = |i| {
-                    action(i, i, tk, (HappyState(action)), sts, stk)
+                    action(i, i, tk, (HappyState(action)), sts)(stk)
                 };
 
             match tk {
                     CTokEof => {
-                        action(247, 247, tk, (HappyState(action)), sts, stk)
+                        action(247, 247, tk, (HappyState(action)), sts)(stk)
                     },
                     CTokLParen(_) => {
                         cont(138)
@@ -41740,7 +41740,7 @@ pub fn happySpecReduce_0(_0: isize, _1: HappyAbsSyn, _2: isize, _3: CToken, _4: 
             happyFail((1), tk, st, sts, stk)
         },
         (nt, __fn, j, tk, st, __OP__, HappyState(action), sts, stk) => {
-            action(nt, j, tk, st, (__op_concat(st, sts)), (HappyStk(__fn, stk)))
+            action(nt, j, tk, st, (__op_concat(st, sts)))((HappyStk(__fn, stk)))
         },
     }
 }
@@ -41754,7 +41754,7 @@ pub fn happySpecReduce_1(_0: isize, _1: fn(HappyAbsSyn) -> HappyAbsSyn, _2: isiz
             {
                 let r = __fn(v1);
 
-            happySeq(r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))            }
+            happySeq(r, (action(nt, j, tk, st, sts)((HappyStk(r, stk_q)))))            }
         },
     }
 }
@@ -41768,7 +41768,7 @@ pub fn happySpecReduce_2(_0: isize, _1: fn(HappyAbsSyn, HappyAbsSyn) -> HappyAbs
             {
                 let r = __fn(v1, v2);
 
-            happySeq(r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))            }
+            happySeq(r, (action(nt, j, tk, st, sts)((HappyStk(r, stk_q)))))            }
         },
     }
 }
@@ -41782,7 +41782,7 @@ pub fn happySpecReduce_3(_0: isize, _1: fn(HappyAbsSyn, HappyAbsSyn, HappyAbsSyn
             {
                 let r = __fn(v1, v2, v3);
 
-            happySeq(r, (action(nt, j, tk, st, sts, (HappyStk(r, stk_q)))))            }
+            happySeq(r, (action(nt, j, tk, st, sts)((HappyStk(r, stk_q)))))            }
         },
     }
 }
@@ -41798,7 +41798,7 @@ pub fn happyReduce<a00>(_0: isize, _1: isize, _2: fn(HappyStk<HappyAbsSyn>) -> H
                     {
                         let r = __fn(stk);
 
-                    happyDoSeq(r, (action(nt, j, tk, st1, sts1, r)))                    }
+                    happyDoSeq(r, (action(nt, j, tk, st1, sts1)(r)))                    }
                 },
             }
         },
@@ -41816,7 +41816,7 @@ pub fn happyMonadReduce<b00>(_0: isize, _1: isize, _2: fn(HappyStk<HappyAbsSyn>,
                     {
                         let drop_stk = happyDropStk(k, stk);
 
-                    happyThen1((__fn(stk, tk)), (|r| { action(nt, j, tk, st1, sts1, (HappyStk(r, drop_stk))) }))                    }
+                    happyThen1((__fn(stk, tk)), (|r| { action(nt, j, tk, st1, sts1)((HappyStk(r, drop_stk))) }))                    }
                 },
             }
         },
@@ -41866,7 +41866,7 @@ pub fn happyDropStk<t0>(_0: isize, _1: HappyStk<t0>) -> HappyStk<t0> {
 }
 
 pub fn happyGoto(action: fn(isize, isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>, j: isize, tk: CToken, st: HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, _curry_4: Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, _curry_5: HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
-    action(j, j, tk, (HappyState(action)), _curry_4, _curry_5)
+    action(j, j, tk, (HappyState(action)), _curry_4)(_curry_5)
 }
 
 pub fn happyFail<a0>(_0: isize, _1: CToken, _2: HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<a0>>, _3: Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<a0>>>, _4: HappyStk<HappyAbsSyn>, _5: P<a0>) -> P<a0> {
@@ -41882,7 +41882,7 @@ pub fn happyFail<a0>(_0: isize, _1: CToken, _2: HappyState<CToken, fn(HappyStk<H
             happyError_(i, tk)            }
         },
         (i, tk, HappyState(action), sts, stk) => {
-            action((1), (1), tk, (HappyState(action)), sts, (HappyStk((HappyErrorToken(i)), stk)))
+            action((1), (1), tk, (HappyState(action)), sts)((HappyStk((HappyErrorToken(i)), stk)))
         },
     }
 }
