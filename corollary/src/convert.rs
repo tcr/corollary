@@ -168,15 +168,14 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         Parens(ref r) => {
             let mut res = None;
 
-            // 
-            // if r.len() == 1 {
-            //     if let &Expr::Span(ref inner) = &r[0] {
-            //         if inner.len() == 1 && matches!(&inner[0], &Expr::Ref(..)) {
-            //             // HACK: Print singly-wrapped idents as functions
-            //             res = Some(format!("{}()", print_expr(state, &inner[0])))
-            //         }
-            //     }
-            // }
+            // Print single-paren items as their literal values
+            if r.len() == 1 {
+                if let &Expr::Span(ref inner) = &r[0] {
+                    if inner.len() == 1 && matches!(&inner[0], &Expr::Ref(..)) {
+                        res = Some(format!("{}", print_expr(state, &inner[0])))
+                    }
+                }
+            }
 
             if res.is_none() {
                 let mut out = vec![];
@@ -904,12 +903,16 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                         // function to a pointful one by adding in an explicit argument.
                         if (t.len() as isize) > (args.len() as isize) + 1 {
                             // println!("------ LOL {:?}", t.len() - (args.len()) - 1);
-                            match expr {
-                                ast::Expr::Span(ref mut inner) => {
-                                    args.push(ast::Pat::Ref(ast::Ident("_curry_0".to_string())));
-                                    inner.push(ast::Expr::Ref(ast::Ident("_curry_0".to_string())));
+                            for i in args.len()..(t.len() - 1) {
+                                match expr {
+                                    ast::Expr::Span(ref mut inner) => {
+                                        args.push(ast::Pat::Ref(ast::Ident(format!("_curry_{}", i))));
+                                        inner.push(ast::Expr::Ref(ast::Ident(format!("_curry_{}", i))));
+                                    }
+                                    _ => {
+                                        // TODO
+                                    }
                                 }
-                                _ => {}
                             }
                         }
 

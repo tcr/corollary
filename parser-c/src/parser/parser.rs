@@ -35606,7 +35606,7 @@ pub fn happyReduce_5() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happy
 }
 
 pub fn happyReduction_5() -> HappyAbsSyn {
-    HappyAbsSyn8((empty))
+    HappyAbsSyn8(empty)
 }
 
 pub fn happyReduce_6() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -35616,7 +35616,7 @@ pub fn happyReduce_6() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happy
 pub fn happyReduction_6<t>(_0: t, _1: HappyAbsSyn) -> HappyAbsSyn {
     match (_0, _1) {
         (_, HappyAbsSyn8(happy_var_1)) => {
-            HappyAbsSyn8((happy_var_1))
+            HappyAbsSyn8(happy_var_1)
         },
         (_, _) => {
             notHappyAtAll
@@ -35676,7 +35676,7 @@ pub fn happyReduce_10() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_10<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
     match (_0, _1) {
         (HappyAbsSyn9(happy_var_2), _) => {
-            HappyAbsSyn9((happy_var_2))
+            HappyAbsSyn9(happy_var_2)
         },
         (_, _) => {
             notHappyAtAll
@@ -35822,7 +35822,7 @@ pub fn happyReduce_27() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_27(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn12(happy_var_1) => {
-            HappyAbsSyn12((happy_var_1))
+            HappyAbsSyn12(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -35837,7 +35837,7 @@ pub fn happyReduce_28() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_28(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn12(happy_var_1) => {
-            HappyAbsSyn12((happy_var_1))
+            HappyAbsSyn12(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -35852,7 +35852,7 @@ pub fn happyReduce_29() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_29(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn12(happy_var_1) => {
-            HappyAbsSyn12((happy_var_1))
+            HappyAbsSyn12(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -35867,7 +35867,7 @@ pub fn happyReduce_30() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_30(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn12(happy_var_1) => {
-            HappyAbsSyn12((happy_var_1))
+            HappyAbsSyn12(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -35882,7 +35882,7 @@ pub fn happyReduce_31() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_31(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn12(happy_var_1) => {
-            HappyAbsSyn12((happy_var_1))
+            HappyAbsSyn12(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -35897,7 +35897,7 @@ pub fn happyReduce_32() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_32(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn12(happy_var_1) => {
-            HappyAbsSyn12((happy_var_1))
+            HappyAbsSyn12(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -35966,7 +35966,7 @@ pub fn happyReduce_40() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 }
 
 pub fn happyReduction_40<t, t1>(happyRest: t1, tk: t) -> P<HappyAbsSyn> {
-    happyThen(((enterScope)), (|r| { happyReturn((HappyAbsSyn15(r))) }))
+    happyThen((enterScope), (|r| { happyReturn((HappyAbsSyn15(r))) }))
 }
 
 pub fn happyReduce_41() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -35974,7 +35974,7 @@ pub fn happyReduce_41() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 }
 
 pub fn happyReduction_41<t, t1>(happyRest: t1, tk: t) -> P<HappyAbsSyn> {
-    happyThen(((leaveScope)), (|r| { happyReturn((HappyAbsSyn15(r))) }))
+    happyThen((leaveScope), (|r| { happyReturn((HappyAbsSyn15(r))) }))
 }
 
 pub fn happyReduce_42() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -35982,7 +35982,7 @@ pub fn happyReduce_42() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 }
 
 pub fn happyReduction_42() -> HappyAbsSyn {
-    HappyAbsSyn17((empty))
+    HappyAbsSyn17(empty)
 }
 
 pub fn happyReduce_43() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -36022,7 +36022,7 @@ pub fn happyReduce_45() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_45(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn18(happy_var_1) => {
-            HappyAbsSyn18((happy_var_1))
+            HappyAbsSyn18(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -36067,7 +36067,7 @@ pub fn happyReduce_48() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_48<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
     match (_0, _1) {
         (HappyAbsSyn18(happy_var_2), _) => {
-            HappyAbsSyn18((happy_var_2))
+            HappyAbsSyn18(happy_var_2)
         },
         (_, _) => {
             notHappyAtAll
@@ -36122,7 +36122,7 @@ pub fn happyReduce_54() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 pub fn happyReduction_54<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn21(happy_var_2), _) => {
-            HappyAbsSyn21((happy_var_2))
+            HappyAbsSyn21(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -36287,7 +36287,7 @@ pub fn happyReduce_74() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 }
 
 pub fn happyReduction_74() -> HappyAbsSyn {
-    HappyAbsSyn27((None))
+    HappyAbsSyn27(None)
 }
 
 pub fn happyReduce_75() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -36465,7 +36465,7 @@ pub fn happyReduce_90() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Happ
 }
 
 pub fn happyReduction_90() -> HappyAbsSyn {
-    HappyAbsSyn33((empty))
+    HappyAbsSyn33(empty)
 }
 
 pub fn happyReduce_91() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -37683,7 +37683,7 @@ pub fn happyReduce_191() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 }
 
 pub fn happyReduction_191() -> HappyAbsSyn {
-    HappyAbsSyn33((empty))
+    HappyAbsSyn33(empty)
 }
 
 pub fn happyReduce_192() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -37693,7 +37693,7 @@ pub fn happyReduce_192() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_192<t>(_0: t, _1: HappyAbsSyn) -> HappyAbsSyn {
     match (_0, _1) {
         (_, HappyAbsSyn33(happy_var_1)) => {
-            HappyAbsSyn33((happy_var_1))
+            HappyAbsSyn33(happy_var_1)
         },
         (_, _) => {
             notHappyAtAll
@@ -37761,7 +37761,7 @@ pub fn happyReduce_196() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_196<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
     match (_0, _1) {
         (HappyAbsSyn32(happy_var_2), _) => {
-            HappyAbsSyn32((happy_var_2))
+            HappyAbsSyn32(happy_var_2)
         },
         (_, _) => {
             notHappyAtAll
@@ -38189,7 +38189,7 @@ pub fn happyReduce_230() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_230(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38204,7 +38204,7 @@ pub fn happyReduce_231() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_231(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38217,7 +38217,7 @@ pub fn happyReduce_232() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 }
 
 pub fn happyReduction_232() -> HappyAbsSyn {
-    HappyAbsSyn67((None))
+    HappyAbsSyn67(None)
 }
 
 pub fn happyReduce_233() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -38235,7 +38235,7 @@ pub fn happyReduce_234() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_234(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38250,7 +38250,7 @@ pub fn happyReduce_235() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_235(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38281,7 +38281,7 @@ pub fn happyReduce_238() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_238(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38296,7 +38296,7 @@ pub fn happyReduce_239() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_239(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38343,7 +38343,7 @@ pub fn happyReduce_244() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_244<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn66(happy_var_2), _) => {
-            HappyAbsSyn66((happy_var_2))
+            HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -38382,7 +38382,7 @@ pub fn happyReduce_248() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_248(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38445,7 +38445,7 @@ pub fn happyReduce_255() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_255<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn66(happy_var_2), _) => {
-            HappyAbsSyn66((happy_var_2))
+            HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -38484,7 +38484,7 @@ pub fn happyReduce_259() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_259<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn66(happy_var_2), _) => {
-            HappyAbsSyn66((happy_var_2))
+            HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -38499,7 +38499,7 @@ pub fn happyReduce_260() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_260(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38514,7 +38514,7 @@ pub fn happyReduce_261() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_261(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38529,7 +38529,7 @@ pub fn happyReduce_262() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_262(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38591,7 +38591,7 @@ pub fn happyReduce_268() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_268<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn66(happy_var_2), _) => {
-            HappyAbsSyn66((happy_var_2))
+            HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -38638,7 +38638,7 @@ pub fn happyReduce_273() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_273<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn66(happy_var_2), _) => {
-            HappyAbsSyn66((happy_var_2))
+            HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -38676,7 +38676,7 @@ pub fn happyReduce_276() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_276(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -38715,7 +38715,7 @@ pub fn happyReduce_280() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_280<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn66(happy_var_2), _) => {
-            HappyAbsSyn66((happy_var_2))
+            HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -38988,7 +38988,7 @@ pub fn happyReduce_308() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_308(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -39003,7 +39003,7 @@ pub fn happyReduce_309() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_309(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn66(happy_var_1) => {
-            HappyAbsSyn66((happy_var_1))
+            HappyAbsSyn66(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -39033,7 +39033,7 @@ pub fn happyReduce_311() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_311(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn88(happy_var_1) => {
-            HappyAbsSyn88((happy_var_1))
+            HappyAbsSyn88(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -39060,7 +39060,7 @@ pub fn happyReduce_313() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_313(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn88(happy_var_1) => {
-            HappyAbsSyn88((happy_var_1))
+            HappyAbsSyn88(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -39226,7 +39226,7 @@ pub fn happyReduce_332() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_332<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn66(happy_var_2), _) => {
-            HappyAbsSyn66((happy_var_2))
+            HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -39241,7 +39241,7 @@ pub fn happyReduce_333() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_333<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn66(happy_var_2), _) => {
-            HappyAbsSyn66((happy_var_2))
+            HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -39348,7 +39348,7 @@ pub fn happyReduce_344() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 }
 
 pub fn happyReduction_344() -> HappyAbsSyn {
-    HappyAbsSyn94((None))
+    HappyAbsSyn94(None)
 }
 
 pub fn happyReduce_345() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -39371,7 +39371,7 @@ pub fn happyReduce_346() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 }
 
 pub fn happyReduction_346() -> HappyAbsSyn {
-    HappyAbsSyn95((empty))
+    HappyAbsSyn95(empty)
 }
 
 pub fn happyReduce_347() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -39518,7 +39518,7 @@ pub fn happyReduce_358() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_358(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn98(happy_var_1) => {
-            HappyAbsSyn98((happy_var_1))
+            HappyAbsSyn98(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -39579,7 +39579,7 @@ pub fn happyReduce_363() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_363<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
     match (_0, _1, _2) {
         (_, HappyAbsSyn100(happy_var_2), _) => {
-            HappyAbsSyn100((happy_var_2))
+            HappyAbsSyn100(happy_var_2)
         },
         (_, _, _) => {
             notHappyAtAll
@@ -39718,7 +39718,7 @@ pub fn happyReduce_376() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_376(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -39835,7 +39835,7 @@ pub fn happyReduce_388() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_388(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -39866,7 +39866,7 @@ pub fn happyReduce_391() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_391<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
     match (_0, _1) {
         (HappyAbsSyn100(happy_var_2), _) => {
-            HappyAbsSyn100((happy_var_2))
+            HappyAbsSyn100(happy_var_2)
         },
         (_, _) => {
             notHappyAtAll
@@ -40035,7 +40035,7 @@ pub fn happyReduce_406() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_406(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40058,7 +40058,7 @@ pub fn happyReduce_408() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_408(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40097,7 +40097,7 @@ pub fn happyReduce_412() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_412(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40128,7 +40128,7 @@ pub fn happyReduce_415() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_415(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40159,7 +40159,7 @@ pub fn happyReduce_418() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_418(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40206,7 +40206,7 @@ pub fn happyReduce_423() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_423(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40237,7 +40237,7 @@ pub fn happyReduce_426() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_426(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40260,7 +40260,7 @@ pub fn happyReduce_428() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_428(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40283,7 +40283,7 @@ pub fn happyReduce_430() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_430(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40306,7 +40306,7 @@ pub fn happyReduce_432() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_432(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40329,7 +40329,7 @@ pub fn happyReduce_434() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_434(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40352,7 +40352,7 @@ pub fn happyReduce_436() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_436(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40383,7 +40383,7 @@ pub fn happyReduce_439() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_439(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40571,7 +40571,7 @@ pub fn happyReduce_452() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_452(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40625,7 +40625,7 @@ pub fn happyReduce_456() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 }
 
 pub fn happyReduction_456() -> HappyAbsSyn {
-    HappyAbsSyn124((None))
+    HappyAbsSyn124(None)
 }
 
 pub fn happyReduce_457() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -40648,7 +40648,7 @@ pub fn happyReduce_458() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 }
 
 pub fn happyReduction_458() -> HappyAbsSyn {
-    HappyAbsSyn124((None))
+    HappyAbsSyn124(None)
 }
 
 pub fn happyReduce_459() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -40673,7 +40673,7 @@ pub fn happyReduce_460() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_460(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn100(happy_var_1) => {
-            HappyAbsSyn100((happy_var_1))
+            HappyAbsSyn100(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40786,7 +40786,7 @@ pub fn happyReduce_468() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_468(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyTerminal(CTokClangC(_, ClangCTok(happy_var_1))) => {
-            HappyAbsSyn130((happy_var_1))
+            HappyAbsSyn130(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40801,7 +40801,7 @@ pub fn happyReduce_469() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_469(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyTerminal(CTokIdent(_, happy_var_1)) => {
-            HappyAbsSyn131((happy_var_1))
+            HappyAbsSyn131(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40816,7 +40816,7 @@ pub fn happyReduce_470() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_470(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyTerminal(CTokTyIdent(_, happy_var_1)) => {
-            HappyAbsSyn131((happy_var_1))
+            HappyAbsSyn131(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40839,7 +40839,7 @@ pub fn happyReduce_472() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_472(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn132(happy_var_1) => {
-            HappyAbsSyn132((happy_var_1))
+            HappyAbsSyn132(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40854,7 +40854,7 @@ pub fn happyReduce_473() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 pub fn happyReduction_473(_0: HappyAbsSyn) -> HappyAbsSyn {
     match (_0) {
         HappyAbsSyn132(happy_var_1) => {
-            HappyAbsSyn132((happy_var_1))
+            HappyAbsSyn132(happy_var_1)
         },
         _ => {
             notHappyAtAll
@@ -40927,7 +40927,7 @@ pub fn happyReduce_478() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 }
 
 pub fn happyReduction_478() -> HappyAbsSyn {
-    HappyAbsSyn136((None))
+    HappyAbsSyn136(None)
 }
 
 pub fn happyReduce_479() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -41013,7 +41013,7 @@ pub fn happyReduce_487() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 }
 
 pub fn happyReduction_487(HappyStk(_, HappyStk(_, HappyStk(_, HappyStk(_, HappyStk(HappyAbsSyn105(happy_var_1), happyRest))))): HappyStk<HappyAbsSyn>) -> HappyStk<HappyAbsSyn> {
-    HappyStk(HappyAbsSyn105((happy_var_1)), happyRest)
+    HappyStk(HappyAbsSyn105(happy_var_1), happyRest)
 }
 
 pub fn happyReduce_488() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
@@ -41021,7 +41021,7 @@ pub fn happyReduce_488() -> fn(isize, CToken, HappyState<CToken, fn(HappyStk<Hap
 }
 
 pub fn happyReduction_488(HappyStk(_, HappyStk(_, HappyStk(_, HappyStk(_, HappyStk(HappyAbsSyn105(happy_var_1), happyRest))))): HappyStk<HappyAbsSyn>) -> HappyStk<HappyAbsSyn> {
-    HappyStk(HappyAbsSyn105((happy_var_1)), happyRest)
+    HappyStk(HappyAbsSyn105(happy_var_1), happyRest)
 }
 
 pub fn happyNewToken<a, b>(action: fn(isize, isize, CToken, HappyState<CToken, fn(b) -> P<a>>, Vec<HappyState<CToken, fn(b) -> P<a>>>, b) -> P<a>, sts: Vec<HappyState<CToken, fn(b) -> P<a>>>, stk: b) -> P<a> {
@@ -41378,16 +41378,16 @@ pub fn happyError_<a>(_0: isize, _1: CToken) -> P<a> {
     }
 }
 
-pub fn happyThen<a, b>(_curry_0: P<a>) -> P<b> {
-    (__op_bind)(_curry_0)
+pub fn happyThen<a, b>(_curry_0: P<a>, _curry_1: fn(a) -> P<b>) -> P<b> {
+    (__op_bind)(_curry_0, _curry_1)
 }
 
 pub fn happyReturn<a>(_curry_0: a) -> P<a> {
-    (return)(_curry_0)
+    _curry_0
 }
 
-pub fn happyThen1<a0, b0>(_curry_0: P<a0>) -> P<b0> {
-    happyThen(_curry_0)
+pub fn happyThen1<a0, b0>(_curry_0: P<a0>, _curry_1: fn(a0) -> P<b0>) -> P<b0> {
+    happyThen(_curry_0, _curry_1)
 }
 
 pub fn happyReturn1<a>(_curry_0: a) -> P<a> {
@@ -41454,8 +41454,8 @@ pub fn expression() -> P<CExpr> {
     happySomeParser
 }
 
-pub fn happySeq<a>(_curry_0: HappyAbsSyn) -> P<a> {
-    happyDontSeq(_curry_0)
+pub fn happySeq<a>(_curry_0: HappyAbsSyn, _curry_1: P<a>) -> P<a> {
+    happyDontSeq(_curry_0, _curry_1)
 }
 
 pub fn reverseList<a>(_curry_0: Vec<a>) -> Reversed<Vec<a>> {
@@ -41630,8 +41630,8 @@ pub fn emptyDeclr() -> CDeclrR {
     CDeclrR(None, empty, None, vec![], undefNode)
 }
 
-pub fn mkVarDeclr(ident: Ident, _curry_0: NodeInfo) -> CDeclrR {
-    CDeclrR((Some(ident)), empty, None, vec![], _curry_0)
+pub fn mkVarDeclr(ident: Ident, _curry_1: NodeInfo) -> CDeclrR {
+    CDeclrR((Some(ident)), empty, None, vec![], _curry_1)
 }
 
 pub fn doDeclIdent(declspecs: Vec<CDeclSpec>, CDeclrR(mIdent, _, _, _, _): CDeclrR) -> P<()> {
@@ -41726,10 +41726,10 @@ pub fn happyShift(_0: fn(isize, isize, CToken, HappyState<CToken, fn(HappyStk<Ha
                         },
                     });
 
-            new_state(i, i, tk, (HappyState((new_state))), (__op_concat((st), (sts))), (stk))            }
+            new_state(i, i, tk, (HappyState(new_state)), (__op_concat(st, sts)), stk)            }
         },
         (new_state, i, tk, st, sts, stk) => {
-            happyNewToken(new_state, (__op_concat((st), (sts))), (HappyStk((HappyTerminal((tk))), stk)))
+            happyNewToken(new_state, (__op_concat(st, sts)), (HappyStk((HappyTerminal(tk)), stk)))
         },
     }
 }
@@ -41740,7 +41740,7 @@ pub fn happySpecReduce_0(_0: isize, _1: HappyAbsSyn, _2: isize, _3: CToken, _4: 
             happyFail((1), tk, st, sts, stk)
         },
         (nt, __fn, j, tk, st, __OP__, HappyState(action), sts, stk) => {
-            action(nt, j, tk, st, (__op_concat((st), (sts))), (HappyStk(__fn, stk)))
+            action(nt, j, tk, st, (__op_concat(st, sts)), (HappyStk(__fn, stk)))
         },
     }
 }
@@ -41811,7 +41811,7 @@ pub fn happyMonadReduce<b00>(_0: isize, _1: isize, _2: fn(HappyStk<HappyAbsSyn>,
             happyFail((1), tk, st, sts, stk)
         },
         (k, nt, __fn, j, tk, st, sts, stk) => {
-            match happyDrop(k, (__op_concat((st), (sts)))) {
+            match happyDrop(k, (__op_concat(st, sts))) {
                 sts1(__OP__, [st1(__OP__, HappyState(action)), _]) => {
                     {
                         let drop_stk = happyDropStk(k, stk);
@@ -41829,7 +41829,7 @@ pub fn happyMonad2Reduce<b00, t0>(_0: isize, _1: t0, _2: fn(HappyStk<HappyAbsSyn
             happyFail((1), tk, st, sts, stk)
         },
         (k, nt, __fn, j, tk, st, sts, stk) => {
-            match happyDrop(k, (__op_concat((st), (sts)))) {
+            match happyDrop(k, (__op_concat(st, sts))) {
                 sts1(__OP__, [st1(__OP__, HappyState(action)), _]) => {
                     {
                         let drop_stk = happyDropStk(k, stk);
@@ -41865,8 +41865,8 @@ pub fn happyDropStk<t0>(_0: isize, _1: HappyStk<t0>) -> HappyStk<t0> {
     }
 }
 
-pub fn happyGoto(action: fn(isize, isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>, j: isize, tk: CToken, st: HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, _curry_0: Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>) -> P<HappyAbsSyn> {
-    action(j, j, tk, (HappyState(action)), _curry_0)
+pub fn happyGoto(action: fn(isize, isize, CToken, HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>, j: isize, tk: CToken, st: HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, _curry_4: Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, _curry_5: HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    action(j, j, tk, (HappyState(action)), _curry_4, _curry_5)
 }
 
 pub fn happyFail<a0>(_0: isize, _1: CToken, _2: HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<a0>>, _3: Vec<HappyState<CToken, fn(HappyStk<HappyAbsSyn>) -> P<a0>>>, _4: HappyStk<HappyAbsSyn>, _5: P<a0>) -> P<a0> {
@@ -41882,7 +41882,7 @@ pub fn happyFail<a0>(_0: isize, _1: CToken, _2: HappyState<CToken, fn(HappyStk<H
             happyError_(i, tk)            }
         },
         (i, tk, HappyState(action), sts, stk) => {
-            action((1), (1), tk, (HappyState((action))), sts, (HappyStk((HappyErrorToken((i))), stk)))
+            action((1), (1), tk, (HappyState(action)), sts, (HappyStk((HappyErrorToken(i)), stk)))
         },
     }
 }
