@@ -33093,7 +33093,7 @@ pub fn alex_accept<a>() -> Array<isize, AlexAcc<a>> {
         ])
 }
 
-pub fn alex_actions() -> Array<isize, fn(Position, isize, InputStream) -> P<CToken>> {
+pub fn alex_actions() -> Array<isize, Box<Fn(Position, isize, InputStream) -> P<CToken>>> {
     array((0, 124), vec![
             (123, alex_action_1),
             (122, alex_action_4),
@@ -33481,7 +33481,7 @@ pub fn idkwtok(_0: Vec<char>) -> P<CToken> {
             tok(5, CTokWhile)
         },
         cs => {
-            |pos| { /*do*/ {
+            box |pos| { /*do*/ {
                     let name = getNewName;
 
                     let len = match length(cs) {
@@ -33525,7 +33525,7 @@ pub fn ignoreAttribute() -> P<()> {
     skipTokens((0))
 }
 
-pub fn tok(len: isize, tc: fn(PosLength) -> CToken, pos: Position) -> P<CToken> {
+pub fn tok(len: isize, tc: Box<Fn(PosLength) -> CToken>, pos: Position) -> P<CToken> {
     (tc((pos, len)))
 }
 
@@ -33543,7 +33543,7 @@ pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Po
 
     let fname = posFile(pos);
 
-    let dropWhite = dropWhile((|c| { (c == (' ' || (c == '\t'))) }));
+    let dropWhite = dropWhile((box |c| { (c == (' ' || (c == '\t'))) }));
 
     seq(offs_q, seq(fname_q, seq(row_q, (position(offs_q, fname_q, row_q, 1)))))
 }
@@ -33566,7 +33566,7 @@ pub fn unescapeMultiChars(_0: String, _1: Vec<char>) -> Vec<char> {
     }
 }
 
-pub fn token_(len: isize, mkTok: fn(PosLength) -> CToken, pos: Position, _: isize, _: InputStream) -> P<CToken> {
+pub fn token_(len: isize, mkTok: Box<Fn(PosLength) -> CToken>, pos: Position, _: isize, _: InputStream) -> P<CToken> {
     (mkTok((pos, len)))
 }
 
@@ -33574,11 +33574,11 @@ pub fn token_fail(errmsg: String, pos: Position, _: isize, _: InputStream) -> P<
     failP(pos, vec!["Lexical Error !".to_string(), errmsg])
 }
 
-pub fn token<a>(mkTok: fn(PosLength, a) -> CToken, fromStr: fn(String) -> a, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
+pub fn token<a>(mkTok: Box<Fn(PosLength, a) -> CToken>, fromStr: Box<Fn(String) -> a>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
     (mkTok((pos, len), (fromStr(takeChars(len, __str)))))
 }
 
-pub fn token_plus<a>(mkTok: fn(PosLength, a) -> CToken, fromStr: fn(String) -> Either<String, a>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
+pub fn token_plus<a>(mkTok: Box<Fn(PosLength, a) -> CToken>, fromStr: Box<Fn(String) -> Either<String, a>>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
     match fromStr((takeChars(len, __str))) {
         Left(err) => {
             failP(pos, vec!["Lexical error ! ".to_string(), err])
@@ -33677,7 +33677,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
     }
 }
 
-pub fn lexC<a>(cont: fn(CToken) -> P<a>) -> P<a> {
+pub fn lexC<a>(cont: Box<Fn(CToken) -> P<a>>) -> P<a> {
     /*do*/ {
         let nextTok = lexToken;
 
@@ -33686,11 +33686,11 @@ pub fn lexC<a>(cont: fn(CToken) -> P<a>) -> P<a> {
 }
 
 pub fn alex_action_1(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) }(_curry_0, _curry_1, _curry_2)
+    box |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) }(_curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_4(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    |pos, len, __str| { idkwtok((takeChars(len, __str)), pos) }(_curry_0, _curry_1, _curry_2)
+    box |pos, len, __str| { idkwtok((takeChars(len, __str)), pos) }(_curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_5(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33726,7 +33726,7 @@ pub fn alex_action_12(_curry_0: Position, _curry_1: isize, _curry_2: InputStream
 }
 
 pub fn alex_action_13(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token((|pos| { CTokClangC(pos, ClangCTok) }), readClangCVersion, _curry_0, _curry_1, _curry_2)
+    token((box |pos| { CTokClangC(pos, ClangCTok) }), readClangCVersion, _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_14(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33965,11 +33965,11 @@ pub enum AlexReturn<a> {
 }
 pub use self::AlexReturn::*;
 
-pub fn alexScan(input: (Position, InputStream), sc: isize) -> AlexReturn<fn(Position, isize, InputStream) -> P<CToken>> {
+pub fn alexScan(input: (Position, InputStream), sc: isize) -> AlexReturn<Box<Fn(Position, isize, InputStream) -> P<CToken>>> {
     alexScanUser(undefined, input, sc)
 }
 
-pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<fn(Position, isize, InputStream) -> P<CToken>> {
+pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<Box<Fn(Position, isize, InputStream) -> P<CToken>>> {
     match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
         (AlexNone, input_q) => {
             match alexGetByte(input) {
@@ -34067,9 +34067,9 @@ pub enum AlexAcc<user> {
 }
 pub use self::AlexAcc::*;
 
-pub type AlexAccPred<user> = fn(user, AlexInput, isize, AlexInput) -> bool;
+pub type AlexAccPred<user> = Box<Fn(user, AlexInput, isize, AlexInput) -> bool>;
 
-pub fn alexAndPred<a>(p1: fn(a, AlexInput, isize, AlexInput) -> bool, p2: fn(a, AlexInput, isize, AlexInput) -> bool, user: a, in1: AlexInput, len: isize, in2: AlexInput) -> bool {
+pub fn alexAndPred<a>(p1: Box<Fn(a, AlexInput, isize, AlexInput) -> bool>, p2: Box<Fn(a, AlexInput, isize, AlexInput) -> bool>, user: a, in1: AlexInput, len: isize, in2: AlexInput) -> bool {
     (p1(user, in1, len, in2) && p2(user, in1, len, in2))
 }
 
@@ -34077,7 +34077,7 @@ pub fn alexPrevCharIs(c: char, _: isize, input: AlexInput, _: isize, _: isize) -
     (c == alexInputPrevChar(input))
 }
 
-pub fn alexPrevCharMatches(f: fn(char) -> isize, _: isize, input: AlexInput, _: isize, _: isize) -> isize {
+pub fn alexPrevCharMatches(f: Box<Fn(char) -> isize>, _: isize, input: AlexInput, _: isize, _: isize) -> isize {
     f((alexInputPrevChar(input)))
 }
 

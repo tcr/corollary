@@ -420,7 +420,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             format!("match {} {{\n{}\n{}}}", print_expr(state.tab(), cond), out.join("\n"), state.indent())
         }
         Lambda(ref pats, ref body) => {
-            format!("|{}| {{ {} }}",
+            format!("box |{}| {{ {} }}",
                 print_patterns(state.tab(), pats),
                 print_expr(state.tab(), body))
         }
@@ -566,10 +566,10 @@ pub fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
             format!("Vec<{}>", print_type(state.tab(), &**t))
         }
         Ty::Pair(ref a, ref b) if matches!(**b, Ty::Pair(..)) => {
-            format!("fn({}, {}", print_type(state, &**a), print_type(state, &**b).replacen("fn(", "", 1))
+            format!("Box<Fn({}, {}", print_type(state, &**a), print_type(state, &**b).replacen("Box<Fn(", "", 1))
         }
         Ty::Pair(ref a, ref b) => {
-            format!("fn({}) -> {}", print_type(state, &**a), print_type(state, &**b))
+            format!("Box<Fn({}) -> {}>", print_type(state, &**a), print_type(state, &**b))
         }
         Ty::Record(ref items) => {
             let mut out = vec![];

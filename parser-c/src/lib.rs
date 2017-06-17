@@ -29,6 +29,17 @@ use parser::parser::parseC;
 // use Language::C::Parser;
 // use Language::C::System::Preprocess;
 
+#[macro_export]
+macro_rules! partial {
+    ($inner: expr) => (
+        box |_0, _1, _2, _3, _4| {
+            box |_5| {
+                $inner(_0, _1, _2, _3, _4, _5)
+            }
+        };
+    )
+}
+
 pub fn parseCFile<C: Preprocessor>(cpp: C,
                                    tmp_dir_opt: Option<FilePath>,
                                    args: Vec<String>,
