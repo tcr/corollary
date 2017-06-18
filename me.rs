@@ -1,17 +1,13 @@
 fn main() {
-    for left in 1..6 {
-        for right in 1..6 {
-            let out = format!(
-                r#"macro_rules! partial_{}_{} {{ ($inner: expr) => ( box |{}| {{ box |{}| {{ $inner({}) }} }}; ) }}"#,
-                left,
-                right,
-                (0..left).into_iter().map(|x| format!("_{}", x)).collect::<Vec<_>>().join(", "),
-                (left..left+right).into_iter().map(|x| format!("_{}", x)).collect::<Vec<_>>().join(", "),
-                (0..left+right).into_iter().map(|x| format!("_{}", x)).collect::<Vec<_>>().join(", ")
-            );
+    for right in 1..10 {
+        let out = format!(
+            r#"#[allow(unused_macros)]\nmacro_rules! partial_{} {{ ($inner: expr, $($arg: expr),+ ) => ( box |{}| {{ $inner($($arg),+ , {}) }} ) }}"#,
+            right,
+            (0..right).into_iter().map(|x| format!("_{}", x)).collect::<Vec<_>>().join(", "),
+            (0..right).into_iter().map(|x| format!("_{}", x)).collect::<Vec<_>>().join(", ")
+        );
 
-            println!("{}", out);
-        }
+        println!("{}", out);
     }
 }
 

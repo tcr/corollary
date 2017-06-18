@@ -206,33 +206,24 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool, dump_ast: bool) -> Resu
                     writeln!(file_out, "#[macro_use] use corollary_support::*;")?;
                     writeln!(file_out, "{}", r#"
 // fn(A, B) -> fn(C) -> {eval fn(A, B, C)}
-macro_rules! partial_1_1 { ($inner: expr) => ( box |_0| { box |_1| { $inner(_0, _1) } }; ) }
-macro_rules! partial_1_2 { ($inner: expr) => ( box |_0| { box |_1, _2| { $inner(_0, _1, _2) } }; ) }
-macro_rules! partial_1_3 { ($inner: expr) => ( box |_0| { box |_1, _2, _3| { $inner(_0, _1, _2, _3) } }; ) }
-macro_rules! partial_1_4 { ($inner: expr) => ( box |_0| { box |_1, _2, _3, _4| { $inner(_0, _1, _2, _3, _4) } }; ) }
-macro_rules! partial_1_5 { ($inner: expr) => ( box |_0| { box |_1, _2, _3, _4, _5| { $inner(_0, _1, _2, _3, _4, _5) } }; ) }
-macro_rules! partial_1_6 { ($inner: expr) => ( box |_0| { box |_1, _2, _3, _4, _5, _6| { $inner(_0, _1, _2, _3, _4, _5, _6) } }; ) }
-macro_rules! partial_1_7 { ($inner: expr) => ( box |_0| { box |_1, _2, _3, _4, _5, _6, _7| { $inner(_0, _1, _2, _3, _4, _5, _6, _7) } }; ) }
-macro_rules! partial_2_1 { ($inner: expr) => ( box |_0, _1| { box |_2| { $inner(_0, _1, _2) } }; ) }
-macro_rules! partial_2_2 { ($inner: expr) => ( box |_0, _1| { box |_2, _3| { $inner(_0, _1, _2, _3) } }; ) }
-macro_rules! partial_2_3 { ($inner: expr) => ( box |_0, _1| { box |_2, _3, _4| { $inner(_0, _1, _2, _3, _4) } }; ) }
-macro_rules! partial_2_4 { ($inner: expr) => ( box |_0, _1| { box |_2, _3, _4, _5| { $inner(_0, _1, _2, _3, _4, _5) } }; ) }
-macro_rules! partial_2_5 { ($inner: expr) => ( box |_0, _1| { box |_2, _3, _4, _5, _6| { $inner(_0, _1, _2, _3, _4, _5, _6) } }; ) }
-macro_rules! partial_3_1 { ($inner: expr) => ( box |_0, _1, _2| { box |_3| { $inner(_0, _1, _2, _3) } }; ) }
-macro_rules! partial_3_2 { ($inner: expr) => ( box |_0, _1, _2| { box |_3, _4| { $inner(_0, _1, _2, _3, _4) } }; ) }
-macro_rules! partial_3_3 { ($inner: expr) => ( box |_0, _1, _2| { box |_3, _4, _5| { $inner(_0, _1, _2, _3, _4, _5) } }; ) }
-macro_rules! partial_3_4 { ($inner: expr) => ( box |_0, _1, _2| { box |_3, _4, _5, _6| { $inner(_0, _1, _2, _3, _4, _5, _6) } }; ) }
-macro_rules! partial_3_5 { ($inner: expr) => ( box |_0, _1, _2| { box |_3, _4, _5, _6, _7| { $inner(_0, _1, _2, _3, _4, _5, _6, _7) } }; ) }
-macro_rules! partial_4_1 { ($inner: expr) => ( box |_0, _1, _2, _3| { box |_4| { $inner(_0, _1, _2, _3, _4) } }; ) }
-macro_rules! partial_4_2 { ($inner: expr) => ( box |_0, _1, _2, _3| { box |_4, _5| { $inner(_0, _1, _2, _3, _4, _5) } }; ) }
-macro_rules! partial_4_3 { ($inner: expr) => ( box |_0, _1, _2, _3| { box |_4, _5, _6| { $inner(_0, _1, _2, _3, _4, _5, _6) } }; ) }
-macro_rules! partial_4_4 { ($inner: expr) => ( box |_0, _1, _2, _3| { box |_4, _5, _6, _7| { $inner(_0, _1, _2, _3, _4, _5, _6, _7) } }; ) }
-macro_rules! partial_4_5 { ($inner: expr) => ( box |_0, _1, _2, _3| { box |_4, _5, _6, _7, _8| { $inner(_0, _1, _2, _3, _4, _5, _6, _7, _8) } }; ) }
-macro_rules! partial_5_1 { ($inner: expr) => ( box |_0, _1, _2, _3, _4| { box |_5| { $inner(_0, _1, _2, _3, _4, _5) } }; ) }
-macro_rules! partial_5_2 { ($inner: expr) => ( box |_0, _1, _2, _3, _4| { box |_5, _6| { $inner(_0, _1, _2, _3, _4, _5, _6) } }; ) }
-macro_rules! partial_5_3 { ($inner: expr) => ( box |_0, _1, _2, _3, _4| { box |_5, _6, _7| { $inner(_0, _1, _2, _3, _4, _5, _6, _7) } }; ) }
-macro_rules! partial_5_4 { ($inner: expr) => ( box |_0, _1, _2, _3, _4| { box |_5, _6, _7, _8| { $inner(_0, _1, _2, _3, _4, _5, _6, _7, _8) } }; ) }
-macro_rules! partial_5_5 { ($inner: expr) => ( box |_0, _1, _2, _3, _4| { box |_5, _6, _7, _8, _9| { $inner(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9) } }; ) }
+#[allow(unused_macros)]
+macro_rules! partial_1 { ($inner: expr, $($arg: expr),+ ) => ( box |_0| { $inner($($arg),+ , _0) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_2 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1| { $inner($($arg),+ , _0, _1) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_3 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2| { $inner($($arg),+ , _0, _1, _2) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_4 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3| { $inner($($arg),+ , _0, _1, _2, _3) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_5 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4| { $inner($($arg),+ , _0, _1, _2, _3, _4) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_6 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_7 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_8 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6, _7| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6, _7) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_9 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6, _7, _8| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6, _7, _8) } ) }
 
 macro_rules! curry_1_5 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0))(_1, _2, _3, _4, _5) }; ) }
 macro_rules! curry_5_1 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0, _1, _2, _3, _4))(_5) }; ) }
