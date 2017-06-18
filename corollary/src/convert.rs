@@ -207,7 +207,9 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         Ref(ast::Ident(ref i)) => {
             let mut out = print_code_ident(state, i);
 
-            if out.starts_with("happyReduction_") {
+            if out.starts_with("happyReduction_")
+                || out == "happyFail"
+                || out.starts_with("happyReduce_") {
                 out = format!("box {}", out);
             }
             if out.starts_with("action_") {
