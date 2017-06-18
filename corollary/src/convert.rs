@@ -214,7 +214,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             } else if out == "happyFail" {
                 out = format!("partial_5_1!({})", out);
             } else if out.starts_with("happyReduce_") {
-                out = format!("partial_5_1!(partial_4_1!(({})()))", out);
+                out = format!("({})()", out);
             }
             if out.starts_with("action_") {
                 out = format!("curry_1_5!({})", out);
