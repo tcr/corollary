@@ -207,7 +207,8 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
         Ref(ast::Ident(ref i)) => {
             let start = print_code_ident(state, i);
             if start.starts_with("happyReduction_")
-                || start.starts_with("alex_action_") {
+                || start.starts_with("alex_action_")
+                || start == "happyFail" {
                 format!("box {}", start)
             } else if start.starts_with("action_") {
                 format!("curry_1_5!({})", start)
@@ -411,7 +412,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                 } else if start == "happySpecReduce_3" && span.len() < 7 && span.len() > 0 {
                                     out.insert(0, start);
                                     format!("partial_{}!({})", 7 - span.len(), out.join(", "))
-                                } else if start == "happyFail" && span.len() < 6 && span.len() > 0 {
+                                } else if start.ends_with("happyFail") && span.len() < 6 && span.len() > 0 {
                                     out.insert(0, start);
                                     format!("partial_{}!({})", 6 - span.len(), out.join(", "))
                                 } else if start == "happyShift" && span.len() < 6 && span.len() > 0 {
