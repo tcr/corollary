@@ -205,7 +205,17 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             format!("{{\n{}{}}}", out.join("\n"), state.indent())
         }
         Ref(ast::Ident(ref i)) => {
-            print_code_ident(state, i)
+            let start = print_code_ident(state, i);
+            if start.starts_with("happyReduction_")
+                || start.starts_with("alex_action_") {
+                format!("box {}", start)
+            } else if start.starts_with("action_") {
+                format!("curry_1_5!({})", start)
+            } else if start.starts_with("happyReduce_") {
+                format!("({})()", start)
+            } else {
+                start
+            }
         }
         Number(n) => return ir::Expr::Number(n),
         Op(ref l, ref op, ref r) => {
@@ -375,16 +385,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                             format!("{}{}({})", start, end, last)
                         } else {
                             if span.len() == 0 {
-                                if start.starts_with("happyReduction_")
-                                    || start.starts_with("alex_action_") {
-                                    format!("box {}", start)
-                                } else if start.starts_with("action_") {
-                                    format!("curry_1_5!({})", start)
-                                } else if start.starts_with("happyReduce_") {
-                                    format!("({})()", start)
-                                } else {
-                                    format!("{}{}", start, end)
-                                }
+                                format!("{}{}", start, end)
                             } else {
                                 let mut out = vec![];
                                 for item in &span {
