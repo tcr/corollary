@@ -209,6 +209,8 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
 
             if out.starts_with("happyReduction_") {
                 out = format!("box {}", out);
+            } else if out.starts_with("alex_action_") {
+                out = format!("box {}", out);
             } else if out == "happyFail" {
                 out = format!("partial_5_1!({})", out);
             } else if out.starts_with("happyReduce_") {
