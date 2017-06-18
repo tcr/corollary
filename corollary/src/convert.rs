@@ -205,7 +205,16 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             format!("{{\n{}{}}}", out.join("\n"), state.indent())
         }
         Ref(ast::Ident(ref i)) => {
-            print_code_ident(state, i)
+            let mut out = print_code_ident(state, i);
+
+            if out.starts_with("happyReduction_") {
+                out = format!("box {}", out);
+            }
+            if out.starts_with("action_") {
+                out = format!("box {}", out);
+            }
+
+            out
         }
         Number(n) => return ir::Expr::Number(n),
         Op(ref l, ref op, ref r) => {
@@ -397,6 +406,8 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                 format!("partial_{}_{}!({}){}", span.len(), 7 - span.len(), start, end)
                             } else if start == "happyFail" && span.len() < 6 && span.len() > 0 {
                                 format!("partial_{}_{}!({}){}", span.len(), 6 - span.len(), start, end)
+                            } else if start == "happyShift" && span.len() < 8 && span.len() > 0 {
+                                format!("partial_{}_{}!({}){}", span.len(), 8 - span.len(), start, end)
                             } else {
                                 format!("{}{}", start, end)
                             }
