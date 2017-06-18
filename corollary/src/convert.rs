@@ -214,7 +214,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             } else if out == "happyFail" {
                 out = format!("partial_5_1!({})", out);
             } else if out.starts_with("happyReduce_") {
-                out = format!("partial_5_1!(({})())", out);
+                out = format!("partial_5_1!(curry_5_1!(({})()))", out);
             }
             if out.starts_with("action_") {
                 out = format!("curry_1_5!({})", out);
@@ -527,7 +527,19 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
             let span = pat_explode(span.to_vec());
             let mut out_span = print_pattern(state.tab(), &span[0]);
             if span.len() > 1 {
-                out_span.push_str(&format!("({})", print_patterns(state.tab(), &span[1..])));
+                let mut args = vec![];
+                for item in &span[1..] {
+                    args.push(print_pattern(state.tab(), item));
+                }
+
+                // HACK for HappyStk deconstructing
+                if args.len() > 1 {
+                    if args[1].starts_with("HappyStk") {
+                        args[1] = format!("box {}", args[1]);
+                    }
+                }
+
+                out_span.push_str(&format!("({})", args.join(", ")));
             }
             out_span
         }

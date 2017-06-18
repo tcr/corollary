@@ -235,6 +235,7 @@ macro_rules! partial_5_4 { ($inner: expr) => ( box |_0, _1, _2, _3, _4| { box |_
 macro_rules! partial_5_5 { ($inner: expr) => ( box |_0, _1, _2, _3, _4| { box |_5, _6, _7, _8, _9| { $inner(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9) } }; ) }
 
 macro_rules! curry_1_5 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0))(_1, _2, _3, _4, _5) }; ) }
+macro_rules! curry_5_1 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0, _1, _2, _3, _4))(_5) }; ) }
 
 "#)?;
                     writeln!(file_out, "")?;
