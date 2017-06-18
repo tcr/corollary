@@ -141,103 +141,103 @@ pub fn action_0(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_1(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_114)
+            partial_1_5!(happyShift)(box action_114)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_143)
+            partial_1_5!(happyShift)(box action_143)
         },
         9 => {
             partial_1_5!(happyGoto)(box action_76)
@@ -353,121 +353,121 @@ pub fn action_1(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_2(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_50)
@@ -565,76 +565,76 @@ pub fn action_2(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_3(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -716,106 +716,106 @@ pub fn action_4(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_5(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_334)
+            partial_1_5!(happyShift)(box action_334)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_114)
+            partial_1_5!(happyShift)(box action_114)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_143)
+            partial_1_5!(happyShift)(box action_143)
         },
         247 => {
             happyReduce_4
@@ -938,22 +938,22 @@ pub fn action_6(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Hap
 pub fn action_7(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_327)
+            partial_1_5!(happyShift)(box action_327)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_328)
+            partial_1_5!(happyShift)(box action_328)
         },
         142 => {
-            partial_1_7!(happyShift)(box action_329)
+            partial_1_5!(happyShift)(box action_329)
         },
         143 => {
-            partial_1_7!(happyShift)(box action_330)
+            partial_1_5!(happyShift)(box action_330)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_331)
+            partial_1_5!(happyShift)(box action_331)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_332)
+            partial_1_5!(happyShift)(box action_332)
         },
         _ => {
             happyReduce_388
@@ -964,37 +964,37 @@ pub fn action_7(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_8(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_316)
+            partial_1_5!(happyShift)(box action_316)
         },
         169 => {
-            partial_1_7!(happyShift)(box action_317)
+            partial_1_5!(happyShift)(box action_317)
         },
         170 => {
-            partial_1_7!(happyShift)(box action_318)
+            partial_1_5!(happyShift)(box action_318)
         },
         171 => {
-            partial_1_7!(happyShift)(box action_319)
+            partial_1_5!(happyShift)(box action_319)
         },
         172 => {
-            partial_1_7!(happyShift)(box action_320)
+            partial_1_5!(happyShift)(box action_320)
         },
         173 => {
-            partial_1_7!(happyShift)(box action_321)
+            partial_1_5!(happyShift)(box action_321)
         },
         174 => {
-            partial_1_7!(happyShift)(box action_322)
+            partial_1_5!(happyShift)(box action_322)
         },
         175 => {
-            partial_1_7!(happyShift)(box action_323)
+            partial_1_5!(happyShift)(box action_323)
         },
         176 => {
-            partial_1_7!(happyShift)(box action_324)
+            partial_1_5!(happyShift)(box action_324)
         },
         177 => {
-            partial_1_7!(happyShift)(box action_325)
+            partial_1_5!(happyShift)(box action_325)
         },
         178 => {
-            partial_1_7!(happyShift)(box action_326)
+            partial_1_5!(happyShift)(box action_326)
         },
         121 => {
             partial_1_5!(happyGoto)(box action_315)
@@ -1008,76 +1008,76 @@ pub fn action_8(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_9(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -1113,13 +1113,13 @@ pub fn action_10(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_11(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         150 => {
-            partial_1_7!(happyShift)(box action_311)
+            partial_1_5!(happyShift)(box action_311)
         },
         151 => {
-            partial_1_7!(happyShift)(box action_312)
+            partial_1_5!(happyShift)(box action_312)
         },
         152 => {
-            partial_1_7!(happyShift)(box action_313)
+            partial_1_5!(happyShift)(box action_313)
         },
         _ => {
             happyReduce_412
@@ -1130,10 +1130,10 @@ pub fn action_11(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_12(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         148 => {
-            partial_1_7!(happyShift)(box action_309)
+            partial_1_5!(happyShift)(box action_309)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_310)
+            partial_1_5!(happyShift)(box action_310)
         },
         _ => {
             happyReduce_415
@@ -1144,10 +1144,10 @@ pub fn action_12(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_13(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         154 => {
-            partial_1_7!(happyShift)(box action_307)
+            partial_1_5!(happyShift)(box action_307)
         },
         155 => {
-            partial_1_7!(happyShift)(box action_308)
+            partial_1_5!(happyShift)(box action_308)
         },
         _ => {
             happyReduce_418
@@ -1158,16 +1158,16 @@ pub fn action_13(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_14(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         156 => {
-            partial_1_7!(happyShift)(box action_303)
+            partial_1_5!(happyShift)(box action_303)
         },
         157 => {
-            partial_1_7!(happyShift)(box action_304)
+            partial_1_5!(happyShift)(box action_304)
         },
         158 => {
-            partial_1_7!(happyShift)(box action_305)
+            partial_1_5!(happyShift)(box action_305)
         },
         159 => {
-            partial_1_7!(happyShift)(box action_306)
+            partial_1_5!(happyShift)(box action_306)
         },
         _ => {
             happyReduce_423
@@ -1178,10 +1178,10 @@ pub fn action_14(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_15(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         160 => {
-            partial_1_7!(happyShift)(box action_301)
+            partial_1_5!(happyShift)(box action_301)
         },
         161 => {
-            partial_1_7!(happyShift)(box action_302)
+            partial_1_5!(happyShift)(box action_302)
         },
         _ => {
             happyReduce_426
@@ -1192,7 +1192,7 @@ pub fn action_15(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_16(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         153 => {
-            partial_1_7!(happyShift)(box action_300)
+            partial_1_5!(happyShift)(box action_300)
         },
         _ => {
             happyReduce_428
@@ -1203,7 +1203,7 @@ pub fn action_16(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_17(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         162 => {
-            partial_1_7!(happyShift)(box action_299)
+            partial_1_5!(happyShift)(box action_299)
         },
         _ => {
             happyReduce_430
@@ -1214,7 +1214,7 @@ pub fn action_17(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_18(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         163 => {
-            partial_1_7!(happyShift)(box action_298)
+            partial_1_5!(happyShift)(box action_298)
         },
         _ => {
             happyReduce_432
@@ -1225,7 +1225,7 @@ pub fn action_18(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_19(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         164 => {
-            partial_1_7!(happyShift)(box action_297)
+            partial_1_5!(happyShift)(box action_297)
         },
         _ => {
             happyReduce_434
@@ -1236,10 +1236,10 @@ pub fn action_19(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_20(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         165 => {
-            partial_1_7!(happyShift)(box action_295)
+            partial_1_5!(happyShift)(box action_295)
         },
         166 => {
-            partial_1_7!(happyShift)(box action_296)
+            partial_1_5!(happyShift)(box action_296)
         },
         _ => {
             happyReduce_436
@@ -1254,7 +1254,7 @@ pub fn action_21(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_22(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_294)
+            partial_1_5!(happyShift)(box action_294)
         },
         _ => {
             happyReduce_452
@@ -1284,133 +1284,133 @@ pub fn action_25(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_26(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_285)
@@ -1534,76 +1534,76 @@ pub fn action_28(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_29(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_272)
+            partial_1_5!(happyShift)(box action_272)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -1632,76 +1632,76 @@ pub fn action_29(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_30(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_272)
+            partial_1_5!(happyShift)(box action_272)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -1746,10 +1746,10 @@ pub fn action_34(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_35(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         131 => {
             partial_1_5!(happyGoto)(box action_282)
@@ -1763,76 +1763,76 @@ pub fn action_35(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_36(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_281)
+            partial_1_5!(happyShift)(box action_281)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -1861,7 +1861,7 @@ pub fn action_36(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_37(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_279)
+            partial_1_5!(happyShift)(box action_279)
         },
         _ => {
             happyFail
@@ -1872,76 +1872,76 @@ pub fn action_37(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_38(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_278)
+            partial_1_5!(happyShift)(box action_278)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -1982,7 +1982,7 @@ pub fn action_41(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_42(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_276)
+            partial_1_5!(happyShift)(box action_276)
         },
         129 => {
             partial_1_5!(happyGoto)(box action_275)
@@ -2000,76 +2000,76 @@ pub fn action_43(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_44(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -2101,76 +2101,76 @@ pub fn action_44(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_45(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_272)
+            partial_1_5!(happyShift)(box action_272)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -2199,76 +2199,76 @@ pub fn action_45(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_46(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_272)
+            partial_1_5!(happyShift)(box action_272)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -2297,7 +2297,7 @@ pub fn action_46(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_47(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_270)
+            partial_1_5!(happyShift)(box action_270)
         },
         _ => {
             happyFail
@@ -2308,7 +2308,7 @@ pub fn action_47(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_48(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_269)
+            partial_1_5!(happyShift)(box action_269)
         },
         _ => {
             happyFail
@@ -2319,7 +2319,7 @@ pub fn action_48(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_49(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_268)
+            partial_1_5!(happyShift)(box action_268)
         },
         _ => {
             happyFail
@@ -2369,7 +2369,7 @@ pub fn action_57(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_58(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_267)
+            partial_1_5!(happyShift)(box action_267)
         },
         _ => {
             happyFail
@@ -2380,7 +2380,7 @@ pub fn action_58(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_59(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_266)
+            partial_1_5!(happyShift)(box action_266)
         },
         _ => {
             happyFail
@@ -2406,22 +2406,22 @@ pub fn action_61(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_62(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         27 => {
             partial_1_5!(happyGoto)(box action_263)
@@ -2438,7 +2438,7 @@ pub fn action_62(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_63(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_262)
+            partial_1_5!(happyShift)(box action_262)
         },
         _ => {
             happyFail
@@ -2449,76 +2449,76 @@ pub fn action_63(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_64(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -2586,7 +2586,7 @@ pub fn action_64(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_65(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_258)
+            partial_1_5!(happyShift)(box action_258)
         },
         _ => {
             happyFail
@@ -2597,7 +2597,7 @@ pub fn action_65(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_66(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_257)
+            partial_1_5!(happyShift)(box action_257)
         },
         _ => {
             happyFail
@@ -2608,121 +2608,121 @@ pub fn action_66(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_67(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_256)
@@ -2820,7 +2820,7 @@ pub fn action_67(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_68(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_255)
+            partial_1_5!(happyShift)(box action_255)
         },
         _ => {
             happyFail
@@ -2831,13 +2831,13 @@ pub fn action_68(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_69(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         150 => {
-            partial_1_7!(happyShift)(box action_253)
+            partial_1_5!(happyShift)(box action_253)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         131 => {
             partial_1_5!(happyGoto)(box action_252)
@@ -2851,7 +2851,7 @@ pub fn action_69(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_70(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_251)
+            partial_1_5!(happyShift)(box action_251)
         },
         _ => {
             happyFail
@@ -2862,76 +2862,76 @@ pub fn action_70(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_71(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -3005,7 +3005,7 @@ pub fn action_71(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_72(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_248)
+            partial_1_5!(happyShift)(box action_248)
         },
         _ => {
             happyFail
@@ -3016,7 +3016,7 @@ pub fn action_72(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_73(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_247)
+            partial_1_5!(happyShift)(box action_247)
         },
         _ => {
             happyFail
@@ -3057,7 +3057,7 @@ pub fn action_77(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_78(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_246)
@@ -3075,10 +3075,10 @@ pub fn action_79(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_80(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_244)
+            partial_1_5!(happyShift)(box action_244)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_245)
+            partial_1_5!(happyShift)(box action_245)
         },
         _ => {
             happyFail
@@ -3089,10 +3089,10 @@ pub fn action_80(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_81(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_242)
+            partial_1_5!(happyShift)(box action_242)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_243)
+            partial_1_5!(happyShift)(box action_243)
         },
         _ => {
             happyFail
@@ -3103,16 +3103,16 @@ pub fn action_81(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_82(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_227)
+            partial_1_5!(happyShift)(box action_227)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_228)
+            partial_1_5!(happyShift)(box action_228)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_239)
@@ -3168,112 +3168,112 @@ pub fn action_82(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_83(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_237)
+            partial_1_5!(happyShift)(box action_237)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_238)
+            partial_1_5!(happyShift)(box action_238)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_230)
@@ -3357,16 +3357,16 @@ pub fn action_87(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_88(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_227)
+            partial_1_5!(happyShift)(box action_227)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_228)
+            partial_1_5!(happyShift)(box action_228)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_217)
@@ -3426,88 +3426,88 @@ pub fn action_89(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_90(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         39 => {
             partial_1_5!(happyGoto)(box action_214)
@@ -3539,79 +3539,79 @@ pub fn action_90(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_91(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         41 => {
             partial_1_5!(happyGoto)(box action_210)
@@ -3634,55 +3634,55 @@ pub fn action_91(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_92(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_209)
+            partial_1_5!(happyShift)(box action_209)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         39 => {
             partial_1_5!(happyGoto)(box action_207)
@@ -3711,46 +3711,46 @@ pub fn action_92(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_93(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_206)
+            partial_1_5!(happyShift)(box action_206)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         41 => {
             partial_1_5!(happyGoto)(box action_203)
@@ -3770,52 +3770,52 @@ pub fn action_93(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_94(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         39 => {
             partial_1_5!(happyGoto)(box action_197)
@@ -3844,43 +3844,43 @@ pub fn action_94(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_95(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         41 => {
             partial_1_5!(happyGoto)(box action_194)
@@ -3908,7 +3908,7 @@ pub fn action_97(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_98(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_193)
@@ -3932,112 +3932,112 @@ pub fn action_99(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Ha
 pub fn action_100(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_191)
+            partial_1_5!(happyShift)(box action_191)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_192)
+            partial_1_5!(happyShift)(box action_192)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_183)
@@ -4120,10 +4120,10 @@ pub fn action_103(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_104(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_181)
+            partial_1_5!(happyShift)(box action_181)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_178)
@@ -4162,22 +4162,22 @@ pub fn action_107(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_108(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_170)
@@ -4191,94 +4191,94 @@ pub fn action_108(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_109(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_168)
+            partial_1_5!(happyShift)(box action_168)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_169)
+            partial_1_5!(happyShift)(box action_169)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_161)
@@ -4347,16 +4347,16 @@ pub fn action_110(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_111(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         76 => {
             partial_1_5!(happyGoto)(box action_157)
@@ -4388,16 +4388,16 @@ pub fn action_111(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_112(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_153)
@@ -4438,7 +4438,7 @@ pub fn action_112(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_113(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_152)
+            partial_1_5!(happyShift)(box action_152)
         },
         _ => {
             happyFail
@@ -4449,7 +4449,7 @@ pub fn action_113(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_114(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_151)
+            partial_1_5!(happyShift)(box action_151)
         },
         _ => {
             happyFail
@@ -4480,7 +4480,7 @@ pub fn action_119(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_120(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_149)
@@ -4544,7 +4544,7 @@ pub fn action_131(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_132(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_148)
+            partial_1_5!(happyShift)(box action_148)
         },
         _ => {
             happyFail
@@ -4563,7 +4563,7 @@ pub fn action_134(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_135(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_147)
+            partial_1_5!(happyShift)(box action_147)
         },
         _ => {
             happyFail
@@ -4598,7 +4598,7 @@ pub fn action_141(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_142(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_146)
+            partial_1_5!(happyShift)(box action_146)
         },
         _ => {
             happyFail
@@ -4609,103 +4609,103 @@ pub fn action_142(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_143(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_114)
+            partial_1_5!(happyShift)(box action_114)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_143)
+            partial_1_5!(happyShift)(box action_143)
         },
         9 => {
             partial_1_5!(happyGoto)(box action_145)
@@ -4836,7 +4836,7 @@ pub fn action_145(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_146(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_493)
+            partial_1_5!(happyShift)(box action_493)
         },
         _ => {
             happyFail
@@ -4847,130 +4847,130 @@ pub fn action_146(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_147(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -5083,76 +5083,76 @@ pub fn action_147(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_148(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -5220,13 +5220,13 @@ pub fn action_148(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_149(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_489)
+            partial_1_5!(happyShift)(box action_489)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         131 => {
             partial_1_5!(happyGoto)(box action_488)
@@ -5240,7 +5240,7 @@ pub fn action_149(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_150(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         134 => {
             partial_1_5!(happyGoto)(box action_167)
@@ -5254,7 +5254,7 @@ pub fn action_150(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_151(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         128 => {
             partial_1_5!(happyGoto)(box action_487)
@@ -5268,130 +5268,130 @@ pub fn action_151(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_152(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -5501,34 +5501,34 @@ pub fn action_152(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_153(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -5574,16 +5574,16 @@ pub fn action_155(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_156(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         75 => {
             partial_1_5!(happyGoto)(box action_480)
@@ -5609,7 +5609,7 @@ pub fn action_156(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_157(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_479)
+            partial_1_5!(happyShift)(box action_479)
         },
         _ => {
             happyFail
@@ -5620,13 +5620,13 @@ pub fn action_157(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_158(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_181)
+            partial_1_5!(happyShift)(box action_181)
         },
         139 => {
-            partial_1_7!(happyShift)(box action_478)
+            partial_1_5!(happyShift)(box action_478)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_178)
@@ -5646,7 +5646,7 @@ pub fn action_158(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_159(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_477)
+            partial_1_5!(happyShift)(box action_477)
         },
         _ => {
             happyFail
@@ -5657,16 +5657,16 @@ pub fn action_159(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_160(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         76 => {
             partial_1_5!(happyGoto)(box action_473)
@@ -5689,7 +5689,7 @@ pub fn action_160(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_161(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_472)
@@ -5718,7 +5718,7 @@ pub fn action_165(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_26
         },
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_471)
@@ -5750,7 +5750,7 @@ pub fn action_167(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_168(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_469)
+            partial_1_5!(happyShift)(box action_469)
         },
         _ => {
             happyFail
@@ -5793,91 +5793,91 @@ pub fn action_176(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_177(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_462)
@@ -5970,7 +5970,7 @@ pub fn action_178(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_179(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         90 => {
             partial_1_5!(happyGoto)(box action_461)
@@ -5988,52 +5988,52 @@ pub fn action_180(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_181(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
             happyReduce_471
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
             happyReduce_471
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
             happyReduce_471
@@ -6042,52 +6042,52 @@ pub fn action_181(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
             happyReduce_471
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
             happyReduce_471
         },
         237 => {
-            partial_1_7!(happyShift)(box action_460)
+            partial_1_5!(happyShift)(box action_460)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         37 => {
             partial_1_5!(happyGoto)(box action_449)
@@ -6176,37 +6176,37 @@ pub fn action_181(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_182(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_447)
+            partial_1_5!(happyShift)(box action_447)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         186 => {
             happyReduce_471
@@ -6215,7 +6215,7 @@ pub fn action_182(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         213 => {
             happyReduce_471
@@ -6227,49 +6227,49 @@ pub fn action_182(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_448)
+            partial_1_5!(happyShift)(box action_448)
         },
         231 => {
             happyReduce_471
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_443)
@@ -6352,7 +6352,7 @@ pub fn action_182(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_183(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_442)
@@ -6385,7 +6385,7 @@ pub fn action_188(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_26
         },
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_441)
@@ -6413,112 +6413,112 @@ pub fn action_189(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_190(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_111)
+            partial_1_5!(happyShift)(box action_111)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_112)
+            partial_1_5!(happyShift)(box action_112)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_438)
+            partial_1_5!(happyShift)(box action_438)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_439)
+            partial_1_5!(happyShift)(box action_439)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_431)
@@ -6586,7 +6586,7 @@ pub fn action_190(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_191(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_430)
+            partial_1_5!(happyShift)(box action_430)
         },
         _ => {
             happyFail
@@ -6601,13 +6601,13 @@ pub fn action_192(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_193(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_429)
+            partial_1_5!(happyShift)(box action_429)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         131 => {
             partial_1_5!(happyGoto)(box action_428)
@@ -6713,7 +6713,7 @@ pub fn action_216(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_217(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_427)
@@ -6727,7 +6727,7 @@ pub fn action_217(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_218(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_426)
@@ -6790,19 +6790,19 @@ pub fn action_226(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_227(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_423)
+            partial_1_5!(happyShift)(box action_423)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_228)
+            partial_1_5!(happyShift)(box action_228)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_424)
+            partial_1_5!(happyShift)(box action_424)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -6849,19 +6849,19 @@ pub fn action_227(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_228(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_418)
+            partial_1_5!(happyShift)(box action_418)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_228)
+            partial_1_5!(happyShift)(box action_228)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_414)
@@ -6917,10 +6917,10 @@ pub fn action_228(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_229(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_412)
@@ -6940,7 +6940,7 @@ pub fn action_229(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_230(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_411)
@@ -6969,7 +6969,7 @@ pub fn action_234(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_26
         },
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_410)
@@ -7001,7 +7001,7 @@ pub fn action_236(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_237(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_408)
+            partial_1_5!(happyShift)(box action_408)
         },
         _ => {
             happyFail
@@ -7016,7 +7016,7 @@ pub fn action_238(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_239(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_407)
@@ -7030,7 +7030,7 @@ pub fn action_239(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_240(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_404)
@@ -7058,7 +7058,7 @@ pub fn action_241(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_242(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_402)
@@ -7082,7 +7082,7 @@ pub fn action_243(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_244(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_401)
@@ -7110,76 +7110,76 @@ pub fn action_246(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_247(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -7250,76 +7250,76 @@ pub fn action_247(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_248(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -7394,7 +7394,7 @@ pub fn action_249(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_250(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_398)
+            partial_1_5!(happyShift)(box action_398)
         },
         _ => {
             happyFail
@@ -7405,76 +7405,76 @@ pub fn action_250(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_251(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -7545,7 +7545,7 @@ pub fn action_251(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_252(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_396)
+            partial_1_5!(happyShift)(box action_396)
         },
         _ => {
             happyFail
@@ -7556,76 +7556,76 @@ pub fn action_252(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_253(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -7700,37 +7700,37 @@ pub fn action_254(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_255(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         185 => {
             happyReduce_40
@@ -7766,7 +7766,7 @@ pub fn action_255(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_40
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         207 => {
             happyReduce_40
@@ -7802,7 +7802,7 @@ pub fn action_255(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_40
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         221 => {
             happyReduce_40
@@ -7835,19 +7835,19 @@ pub fn action_255(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_40
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
             happyReduce_40
@@ -7856,22 +7856,22 @@ pub fn action_255(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_40
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         15 => {
             partial_1_5!(happyGoto)(box action_393)
@@ -7948,7 +7948,7 @@ pub fn action_255(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_256(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         232 => {
-            partial_1_7!(happyShift)(box action_392)
+            partial_1_5!(happyShift)(box action_392)
         },
         _ => {
             happyFail
@@ -7959,121 +7959,121 @@ pub fn action_256(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_257(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_391)
@@ -8183,10 +8183,10 @@ pub fn action_260(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_261(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_389)
+            partial_1_5!(happyShift)(box action_389)
         },
         183 => {
-            partial_1_7!(happyShift)(box action_390)
+            partial_1_5!(happyShift)(box action_390)
         },
         _ => {
             happyFail
@@ -8201,7 +8201,7 @@ pub fn action_262(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_263(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_388)
+            partial_1_5!(happyShift)(box action_388)
         },
         _ => {
             happyFail
@@ -8216,7 +8216,7 @@ pub fn action_264(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_265(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         211 => {
-            partial_1_7!(happyShift)(box action_387)
+            partial_1_5!(happyShift)(box action_387)
         },
         17 => {
             partial_1_5!(happyGoto)(box action_385)
@@ -8233,7 +8233,7 @@ pub fn action_265(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_266(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_384)
@@ -8257,58 +8257,58 @@ pub fn action_267(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_268(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -8361,58 +8361,58 @@ pub fn action_268(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_269(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -8465,76 +8465,76 @@ pub fn action_269(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_270(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -8606,133 +8606,133 @@ pub fn action_271(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_272(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_285)
@@ -8856,7 +8856,7 @@ pub fn action_274(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_275(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_379)
+            partial_1_5!(happyShift)(box action_379)
         },
         _ => {
             happyReduce_465
@@ -8875,133 +8875,133 @@ pub fn action_277(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_278(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_285)
@@ -9117,76 +9117,76 @@ pub fn action_278(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_279(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -9258,133 +9258,133 @@ pub fn action_280(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_281(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_285)
@@ -9512,7 +9512,7 @@ pub fn action_284(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_285(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_375)
+            partial_1_5!(happyShift)(box action_375)
         },
         _ => {
             happyFail
@@ -9523,13 +9523,13 @@ pub fn action_285(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_286(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_372)
+            partial_1_5!(happyShift)(box action_372)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_373)
+            partial_1_5!(happyShift)(box action_373)
         },
         87 => {
             partial_1_5!(happyGoto)(box action_374)
@@ -9558,61 +9558,61 @@ pub fn action_286(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_287(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         45 => {
             partial_1_5!(happyGoto)(box action_211)
@@ -9632,25 +9632,25 @@ pub fn action_287(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_288(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_204)
@@ -9667,25 +9667,25 @@ pub fn action_288(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_289(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_195)
@@ -9702,85 +9702,85 @@ pub fn action_289(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_290(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_372)
+            partial_1_5!(happyShift)(box action_372)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_373)
+            partial_1_5!(happyShift)(box action_373)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_191)
+            partial_1_5!(happyShift)(box action_191)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_192)
+            partial_1_5!(happyShift)(box action_192)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         45 => {
             partial_1_5!(happyGoto)(box action_185)
@@ -9833,7 +9833,7 @@ pub fn action_290(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_291(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_365)
+            partial_1_5!(happyShift)(box action_365)
         },
         _ => {
             happyFail
@@ -9844,7 +9844,7 @@ pub fn action_291(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_292(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_364)
+            partial_1_5!(happyShift)(box action_364)
         },
         _ => {
             happyFail
@@ -9855,58 +9855,58 @@ pub fn action_292(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_293(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_168)
+            partial_1_5!(happyShift)(box action_168)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_169)
+            partial_1_5!(happyShift)(box action_169)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         45 => {
             partial_1_5!(happyGoto)(box action_163)
@@ -9935,76 +9935,76 @@ pub fn action_293(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_294(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -10075,76 +10075,76 @@ pub fn action_294(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_295(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -10203,79 +10203,79 @@ pub fn action_295(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_296(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         167 => {
-            partial_1_7!(happyShift)(box action_360)
+            partial_1_5!(happyShift)(box action_360)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -10346,76 +10346,76 @@ pub fn action_296(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_297(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -10471,76 +10471,76 @@ pub fn action_297(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_298(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -10593,76 +10593,76 @@ pub fn action_298(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_299(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -10712,76 +10712,76 @@ pub fn action_299(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_300(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -10828,76 +10828,76 @@ pub fn action_300(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_301(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -10941,76 +10941,76 @@ pub fn action_301(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_302(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -11054,76 +11054,76 @@ pub fn action_302(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_303(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -11164,76 +11164,76 @@ pub fn action_303(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_304(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -11274,76 +11274,76 @@ pub fn action_304(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_305(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -11384,76 +11384,76 @@ pub fn action_305(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_306(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -11494,76 +11494,76 @@ pub fn action_306(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_307(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -11601,76 +11601,76 @@ pub fn action_307(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_308(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -11708,76 +11708,76 @@ pub fn action_308(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_309(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -11812,76 +11812,76 @@ pub fn action_309(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_310(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -11916,76 +11916,76 @@ pub fn action_310(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_311(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -12017,76 +12017,76 @@ pub fn action_311(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_312(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -12118,76 +12118,76 @@ pub fn action_312(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_313(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -12223,76 +12223,76 @@ pub fn action_314(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_315(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -12404,79 +12404,79 @@ pub fn action_326(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_327(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         139 => {
-            partial_1_7!(happyShift)(box action_340)
+            partial_1_5!(happyShift)(box action_340)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -12547,76 +12547,76 @@ pub fn action_327(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_328(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -12687,10 +12687,10 @@ pub fn action_328(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_329(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         131 => {
             partial_1_5!(happyGoto)(box action_336)
@@ -12704,10 +12704,10 @@ pub fn action_329(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_330(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         131 => {
             partial_1_5!(happyGoto)(box action_335)
@@ -12745,7 +12745,7 @@ pub fn action_336(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_337(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_640)
+            partial_1_5!(happyShift)(box action_640)
         },
         _ => {
             happyFail
@@ -12756,10 +12756,10 @@ pub fn action_337(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_338(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_638)
+            partial_1_5!(happyShift)(box action_638)
         },
         179 => {
-            partial_1_7!(happyShift)(box action_639)
+            partial_1_5!(happyShift)(box action_639)
         },
         _ => {
             happyFail
@@ -12794,13 +12794,13 @@ pub fn action_344(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_345(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         150 => {
-            partial_1_7!(happyShift)(box action_311)
+            partial_1_5!(happyShift)(box action_311)
         },
         151 => {
-            partial_1_7!(happyShift)(box action_312)
+            partial_1_5!(happyShift)(box action_312)
         },
         152 => {
-            partial_1_7!(happyShift)(box action_313)
+            partial_1_5!(happyShift)(box action_313)
         },
         _ => {
             happyReduce_414
@@ -12811,13 +12811,13 @@ pub fn action_345(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_346(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         150 => {
-            partial_1_7!(happyShift)(box action_311)
+            partial_1_5!(happyShift)(box action_311)
         },
         151 => {
-            partial_1_7!(happyShift)(box action_312)
+            partial_1_5!(happyShift)(box action_312)
         },
         152 => {
-            partial_1_7!(happyShift)(box action_313)
+            partial_1_5!(happyShift)(box action_313)
         },
         _ => {
             happyReduce_413
@@ -12828,10 +12828,10 @@ pub fn action_346(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_347(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         148 => {
-            partial_1_7!(happyShift)(box action_309)
+            partial_1_5!(happyShift)(box action_309)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_310)
+            partial_1_5!(happyShift)(box action_310)
         },
         _ => {
             happyReduce_417
@@ -12842,10 +12842,10 @@ pub fn action_347(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_348(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         148 => {
-            partial_1_7!(happyShift)(box action_309)
+            partial_1_5!(happyShift)(box action_309)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_310)
+            partial_1_5!(happyShift)(box action_310)
         },
         _ => {
             happyReduce_416
@@ -12856,10 +12856,10 @@ pub fn action_348(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_349(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         154 => {
-            partial_1_7!(happyShift)(box action_307)
+            partial_1_5!(happyShift)(box action_307)
         },
         155 => {
-            partial_1_7!(happyShift)(box action_308)
+            partial_1_5!(happyShift)(box action_308)
         },
         _ => {
             happyReduce_422
@@ -12870,10 +12870,10 @@ pub fn action_349(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_350(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         154 => {
-            partial_1_7!(happyShift)(box action_307)
+            partial_1_5!(happyShift)(box action_307)
         },
         155 => {
-            partial_1_7!(happyShift)(box action_308)
+            partial_1_5!(happyShift)(box action_308)
         },
         _ => {
             happyReduce_420
@@ -12884,10 +12884,10 @@ pub fn action_350(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_351(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         154 => {
-            partial_1_7!(happyShift)(box action_307)
+            partial_1_5!(happyShift)(box action_307)
         },
         155 => {
-            partial_1_7!(happyShift)(box action_308)
+            partial_1_5!(happyShift)(box action_308)
         },
         _ => {
             happyReduce_421
@@ -12898,10 +12898,10 @@ pub fn action_351(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_352(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         154 => {
-            partial_1_7!(happyShift)(box action_307)
+            partial_1_5!(happyShift)(box action_307)
         },
         155 => {
-            partial_1_7!(happyShift)(box action_308)
+            partial_1_5!(happyShift)(box action_308)
         },
         _ => {
             happyReduce_419
@@ -12912,16 +12912,16 @@ pub fn action_352(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_353(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         156 => {
-            partial_1_7!(happyShift)(box action_303)
+            partial_1_5!(happyShift)(box action_303)
         },
         157 => {
-            partial_1_7!(happyShift)(box action_304)
+            partial_1_5!(happyShift)(box action_304)
         },
         158 => {
-            partial_1_7!(happyShift)(box action_305)
+            partial_1_5!(happyShift)(box action_305)
         },
         159 => {
-            partial_1_7!(happyShift)(box action_306)
+            partial_1_5!(happyShift)(box action_306)
         },
         _ => {
             happyReduce_425
@@ -12932,16 +12932,16 @@ pub fn action_353(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_354(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         156 => {
-            partial_1_7!(happyShift)(box action_303)
+            partial_1_5!(happyShift)(box action_303)
         },
         157 => {
-            partial_1_7!(happyShift)(box action_304)
+            partial_1_5!(happyShift)(box action_304)
         },
         158 => {
-            partial_1_7!(happyShift)(box action_305)
+            partial_1_5!(happyShift)(box action_305)
         },
         159 => {
-            partial_1_7!(happyShift)(box action_306)
+            partial_1_5!(happyShift)(box action_306)
         },
         _ => {
             happyReduce_424
@@ -12952,10 +12952,10 @@ pub fn action_354(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_355(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         160 => {
-            partial_1_7!(happyShift)(box action_301)
+            partial_1_5!(happyShift)(box action_301)
         },
         161 => {
-            partial_1_7!(happyShift)(box action_302)
+            partial_1_5!(happyShift)(box action_302)
         },
         _ => {
             happyReduce_427
@@ -12966,7 +12966,7 @@ pub fn action_355(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_356(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         153 => {
-            partial_1_7!(happyShift)(box action_300)
+            partial_1_5!(happyShift)(box action_300)
         },
         _ => {
             happyReduce_429
@@ -12977,7 +12977,7 @@ pub fn action_356(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_357(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         162 => {
-            partial_1_7!(happyShift)(box action_299)
+            partial_1_5!(happyShift)(box action_299)
         },
         _ => {
             happyReduce_431
@@ -12988,7 +12988,7 @@ pub fn action_357(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_358(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         163 => {
-            partial_1_7!(happyShift)(box action_298)
+            partial_1_5!(happyShift)(box action_298)
         },
         _ => {
             happyReduce_433
@@ -12999,7 +12999,7 @@ pub fn action_358(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_359(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_637)
+            partial_1_5!(happyShift)(box action_637)
         },
         _ => {
             happyFail
@@ -13010,76 +13010,76 @@ pub fn action_359(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_360(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -13144,7 +13144,7 @@ pub fn action_360(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_361(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         164 => {
-            partial_1_7!(happyShift)(box action_297)
+            partial_1_5!(happyShift)(box action_297)
         },
         _ => {
             happyReduce_435
@@ -13159,7 +13159,7 @@ pub fn action_362(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_363(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_635)
+            partial_1_5!(happyShift)(box action_635)
         },
         _ => {
             happyReduce_453
@@ -13174,79 +13174,79 @@ pub fn action_364(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_365(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_634)
+            partial_1_5!(happyShift)(box action_634)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -13290,7 +13290,7 @@ pub fn action_368(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_369(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         134 => {
             partial_1_5!(happyGoto)(box action_632)
@@ -13304,76 +13304,76 @@ pub fn action_369(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_370(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_438)
+            partial_1_5!(happyShift)(box action_438)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_439)
+            partial_1_5!(happyShift)(box action_439)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         45 => {
             partial_1_5!(happyGoto)(box action_433)
@@ -13485,61 +13485,61 @@ pub fn action_371(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_372(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_372)
+            partial_1_5!(happyShift)(box action_372)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_373)
+            partial_1_5!(happyShift)(box action_373)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
             happyReduce_471
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
             happyReduce_471
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
             happyReduce_471
@@ -13548,49 +13548,49 @@ pub fn action_372(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
             happyReduce_471
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
             happyReduce_471
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         37 => {
             partial_1_5!(happyGoto)(box action_449)
@@ -13691,13 +13691,13 @@ pub fn action_372(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_373(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_372)
+            partial_1_5!(happyShift)(box action_372)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_373)
+            partial_1_5!(happyShift)(box action_373)
         },
         186 => {
             happyReduce_471
@@ -13718,7 +13718,7 @@ pub fn action_373(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_625)
@@ -13767,7 +13767,7 @@ pub fn action_375(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_376(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_624)
+            partial_1_5!(happyShift)(box action_624)
         },
         _ => {
             happyFail
@@ -13778,7 +13778,7 @@ pub fn action_376(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_377(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_623)
+            partial_1_5!(happyShift)(box action_623)
         },
         _ => {
             happyFail
@@ -13789,7 +13789,7 @@ pub fn action_377(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_378(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_622)
+            partial_1_5!(happyShift)(box action_622)
         },
         _ => {
             happyFail
@@ -13804,7 +13804,7 @@ pub fn action_379(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_380(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_621)
+            partial_1_5!(happyShift)(box action_621)
         },
         _ => {
             happyFail
@@ -13815,7 +13815,7 @@ pub fn action_380(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_381(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_620)
+            partial_1_5!(happyShift)(box action_620)
         },
         _ => {
             happyFail
@@ -13826,7 +13826,7 @@ pub fn action_381(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_382(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_619)
+            partial_1_5!(happyShift)(box action_619)
         },
         _ => {
             happyFail
@@ -13837,7 +13837,7 @@ pub fn action_382(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_383(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_618)
+            partial_1_5!(happyShift)(box action_618)
         },
         _ => {
             happyFail
@@ -13848,121 +13848,121 @@ pub fn action_383(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_384(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_617)
@@ -14060,121 +14060,121 @@ pub fn action_384(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_385(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
             happyReduce_471
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
             happyReduce_471
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
             happyReduce_471
@@ -14183,97 +14183,97 @@ pub fn action_385(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
             happyReduce_471
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
             happyReduce_471
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_615)
+            partial_1_5!(happyShift)(box action_615)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_616)
+            partial_1_5!(happyShift)(box action_616)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_605)
@@ -14458,7 +14458,7 @@ pub fn action_385(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_386(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         211 => {
-            partial_1_7!(happyShift)(box action_604)
+            partial_1_5!(happyShift)(box action_604)
         },
         17 => {
             partial_1_5!(happyGoto)(box action_603)
@@ -14472,7 +14472,7 @@ pub fn action_386(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_387(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_460)
+            partial_1_5!(happyShift)(box action_460)
         },
         85 => {
             partial_1_5!(happyGoto)(box action_602)
@@ -14486,7 +14486,7 @@ pub fn action_387(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_388(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         128 => {
             partial_1_5!(happyGoto)(box action_601)
@@ -14500,121 +14500,121 @@ pub fn action_388(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_389(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_600)
@@ -14712,76 +14712,76 @@ pub fn action_389(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_390(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -14853,7 +14853,7 @@ pub fn action_391(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_392(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_598)
+            partial_1_5!(happyShift)(box action_598)
         },
         _ => {
             happyFail
@@ -14864,88 +14864,88 @@ pub fn action_392(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_393(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         32 => {
             partial_1_5!(happyGoto)(box action_597)
@@ -15031,7 +15031,7 @@ pub fn action_393(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_394(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_596)
+            partial_1_5!(happyShift)(box action_596)
         },
         _ => {
             happyFail
@@ -15042,7 +15042,7 @@ pub fn action_394(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_395(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_595)
+            partial_1_5!(happyShift)(box action_595)
         },
         _ => {
             happyFail
@@ -15057,7 +15057,7 @@ pub fn action_396(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_397(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_594)
+            partial_1_5!(happyShift)(box action_594)
         },
         _ => {
             happyFail
@@ -15072,7 +15072,7 @@ pub fn action_398(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_399(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_593)
+            partial_1_5!(happyShift)(box action_593)
         },
         _ => {
             happyFail
@@ -15083,7 +15083,7 @@ pub fn action_399(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_400(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_592)
+            partial_1_5!(happyShift)(box action_592)
         },
         _ => {
             happyFail
@@ -15094,13 +15094,13 @@ pub fn action_400(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_401(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         75 => {
             partial_1_5!(happyGoto)(box action_591)
@@ -15123,16 +15123,16 @@ pub fn action_401(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_402(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_524)
+            partial_1_5!(happyShift)(box action_524)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         66 => {
             partial_1_5!(happyGoto)(box action_590)
@@ -15176,91 +15176,91 @@ pub fn action_402(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_403(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_589)
@@ -15349,7 +15349,7 @@ pub fn action_403(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_404(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_516)
+            partial_1_5!(happyShift)(box action_516)
         },
         94 => {
             partial_1_5!(happyGoto)(box action_588)
@@ -15363,7 +15363,7 @@ pub fn action_404(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_405(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_587)
@@ -15383,7 +15383,7 @@ pub fn action_405(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_406(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_586)
+            partial_1_5!(happyShift)(box action_586)
         },
         _ => {
             happyFail
@@ -15398,130 +15398,130 @@ pub fn action_407(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_408(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -15634,91 +15634,91 @@ pub fn action_408(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_409(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_583)
@@ -15807,7 +15807,7 @@ pub fn action_409(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_410(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_516)
+            partial_1_5!(happyShift)(box action_516)
         },
         94 => {
             partial_1_5!(happyGoto)(box action_582)
@@ -15829,52 +15829,52 @@ pub fn action_412(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_413(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
             happyReduce_471
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
             happyReduce_471
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
             happyReduce_471
@@ -15883,49 +15883,49 @@ pub fn action_413(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
             happyReduce_471
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
             happyReduce_471
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         37 => {
             partial_1_5!(happyGoto)(box action_449)
@@ -16011,37 +16011,37 @@ pub fn action_413(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_414(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_581)
+            partial_1_5!(happyShift)(box action_581)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_228)
+            partial_1_5!(happyShift)(box action_228)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -16102,19 +16102,19 @@ pub fn action_416(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_417(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_571)
+            partial_1_5!(happyShift)(box action_571)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_572)
+            partial_1_5!(happyShift)(box action_572)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         69 => {
             partial_1_5!(happyGoto)(box action_577)
@@ -16149,19 +16149,19 @@ pub fn action_417(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_418(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_423)
+            partial_1_5!(happyShift)(box action_423)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_228)
+            partial_1_5!(happyShift)(box action_228)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_424)
+            partial_1_5!(happyShift)(box action_424)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -16208,7 +16208,7 @@ pub fn action_418(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_419(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_575)
+            partial_1_5!(happyShift)(box action_575)
         },
         _ => {
             happyFail
@@ -16219,7 +16219,7 @@ pub fn action_419(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_420(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_574)
+            partial_1_5!(happyShift)(box action_574)
         },
         _ => {
             happyFail
@@ -16230,10 +16230,10 @@ pub fn action_420(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_421(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_573)
@@ -16253,16 +16253,16 @@ pub fn action_421(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_422(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_571)
+            partial_1_5!(happyShift)(box action_571)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_572)
+            partial_1_5!(happyShift)(box action_572)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_570)
@@ -16291,19 +16291,19 @@ pub fn action_422(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_423(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_423)
+            partial_1_5!(happyShift)(box action_423)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_228)
+            partial_1_5!(happyShift)(box action_228)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_424)
+            partial_1_5!(happyShift)(box action_424)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -16354,91 +16354,91 @@ pub fn action_424(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_425(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_568)
@@ -16527,7 +16527,7 @@ pub fn action_425(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_426(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_516)
+            partial_1_5!(happyShift)(box action_516)
         },
         94 => {
             partial_1_5!(happyGoto)(box action_567)
@@ -16545,7 +16545,7 @@ pub fn action_427(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_428(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_566)
+            partial_1_5!(happyShift)(box action_566)
         },
         _ => {
             happyReduce_188
@@ -16567,130 +16567,130 @@ pub fn action_429(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_430(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -16803,7 +16803,7 @@ pub fn action_430(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_431(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_562)
@@ -16836,7 +16836,7 @@ pub fn action_436(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_26
         },
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_561)
@@ -16864,7 +16864,7 @@ pub fn action_437(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_438(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_559)
+            partial_1_5!(happyShift)(box action_559)
         },
         _ => {
             happyFail
@@ -16879,91 +16879,91 @@ pub fn action_439(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_440(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_558)
@@ -17052,7 +17052,7 @@ pub fn action_440(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_441(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_516)
+            partial_1_5!(happyShift)(box action_516)
         },
         94 => {
             partial_1_5!(happyGoto)(box action_557)
@@ -17070,100 +17070,100 @@ pub fn action_442(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_443(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_556)
+            partial_1_5!(happyShift)(box action_556)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         221 => {
             happyReduce_471
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -17250,7 +17250,7 @@ pub fn action_444(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_445(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_552)
+            partial_1_5!(happyShift)(box action_552)
         },
         _ => {
             happyFail
@@ -17261,37 +17261,37 @@ pub fn action_445(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_446(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_551)
+            partial_1_5!(happyShift)(box action_551)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         186 => {
             happyReduce_472
@@ -17300,7 +17300,7 @@ pub fn action_446(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_472
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         213 => {
             happyReduce_472
@@ -17312,46 +17312,46 @@ pub fn action_446(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_472
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         231 => {
             happyReduce_472
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -17428,7 +17428,7 @@ pub fn action_447(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_549)
@@ -17448,7 +17448,7 @@ pub fn action_447(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_448(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_547)
@@ -17471,19 +17471,19 @@ pub fn action_448(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_449(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_540)
+            partial_1_5!(happyShift)(box action_540)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_541)
+            partial_1_5!(happyShift)(box action_541)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         69 => {
             partial_1_5!(happyGoto)(box action_544)
@@ -17533,115 +17533,115 @@ pub fn action_449(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_450(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_535)
+            partial_1_5!(happyShift)(box action_535)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_536)
+            partial_1_5!(happyShift)(box action_536)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_237)
+            partial_1_5!(happyShift)(box action_237)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_238)
+            partial_1_5!(happyShift)(box action_238)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         39 => {
             partial_1_5!(happyGoto)(box action_231)
@@ -17715,19 +17715,19 @@ pub fn action_450(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_451(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_540)
+            partial_1_5!(happyShift)(box action_540)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_541)
+            partial_1_5!(happyShift)(box action_541)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         69 => {
             partial_1_5!(happyGoto)(box action_537)
@@ -17777,52 +17777,52 @@ pub fn action_451(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_452(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         39 => {
             partial_1_5!(happyGoto)(box action_207)
@@ -17851,43 +17851,43 @@ pub fn action_452(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_453(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         41 => {
             partial_1_5!(happyGoto)(box action_203)
@@ -17907,115 +17907,115 @@ pub fn action_453(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_454(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_535)
+            partial_1_5!(happyShift)(box action_535)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_536)
+            partial_1_5!(happyShift)(box action_536)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_191)
+            partial_1_5!(happyShift)(box action_191)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_192)
+            partial_1_5!(happyShift)(box action_192)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         40 => {
             partial_1_5!(happyGoto)(box action_184)
@@ -18092,7 +18092,7 @@ pub fn action_454(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_455(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_530)
+            partial_1_5!(happyShift)(box action_530)
         },
         _ => {
             happyFail
@@ -18103,7 +18103,7 @@ pub fn action_455(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_456(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_529)
+            partial_1_5!(happyShift)(box action_529)
         },
         _ => {
             happyReduce_283
@@ -18118,10 +18118,10 @@ pub fn action_457(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_458(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_527)
+            partial_1_5!(happyShift)(box action_527)
         },
         179 => {
-            partial_1_7!(happyShift)(box action_528)
+            partial_1_5!(happyShift)(box action_528)
         },
         _ => {
             happyFail
@@ -18132,85 +18132,85 @@ pub fn action_458(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_459(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_168)
+            partial_1_5!(happyShift)(box action_168)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_169)
+            partial_1_5!(happyShift)(box action_169)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         40 => {
             partial_1_5!(happyGoto)(box action_162)
@@ -18267,16 +18267,16 @@ pub fn action_463(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_464(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_524)
+            partial_1_5!(happyShift)(box action_524)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         66 => {
             partial_1_5!(happyGoto)(box action_240)
@@ -18320,112 +18320,112 @@ pub fn action_464(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_465(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_237)
+            partial_1_5!(happyShift)(box action_237)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_238)
+            partial_1_5!(happyShift)(box action_238)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         39 => {
             partial_1_5!(happyGoto)(box action_231)
@@ -18481,16 +18481,16 @@ pub fn action_465(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_466(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_524)
+            partial_1_5!(happyShift)(box action_524)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         66 => {
             partial_1_5!(happyGoto)(box action_218)
@@ -18534,112 +18534,112 @@ pub fn action_466(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_467(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_191)
+            partial_1_5!(happyShift)(box action_191)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_192)
+            partial_1_5!(happyShift)(box action_192)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         40 => {
             partial_1_5!(happyGoto)(box action_184)
@@ -18698,94 +18698,94 @@ pub fn action_467(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_468(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_168)
+            partial_1_5!(happyShift)(box action_168)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_169)
+            partial_1_5!(happyShift)(box action_169)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         40 => {
             partial_1_5!(happyGoto)(box action_162)
@@ -18838,130 +18838,130 @@ pub fn action_468(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_469(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -19074,91 +19074,91 @@ pub fn action_469(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_470(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_517)
@@ -19247,7 +19247,7 @@ pub fn action_470(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_471(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_516)
+            partial_1_5!(happyShift)(box action_516)
         },
         94 => {
             partial_1_5!(happyGoto)(box action_515)
@@ -19265,7 +19265,7 @@ pub fn action_472(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_473(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_514)
+            partial_1_5!(happyShift)(box action_514)
         },
         _ => {
             happyFail
@@ -19276,13 +19276,13 @@ pub fn action_473(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_474(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         139 => {
-            partial_1_7!(happyShift)(box action_513)
+            partial_1_5!(happyShift)(box action_513)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_178)
@@ -19302,16 +19302,16 @@ pub fn action_474(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_475(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         76 => {
             partial_1_5!(happyGoto)(box action_157)
@@ -19337,16 +19337,16 @@ pub fn action_475(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_476(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_511)
@@ -19381,10 +19381,10 @@ pub fn action_476(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_477(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_510)
@@ -19408,10 +19408,10 @@ pub fn action_478(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_479(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_509)
@@ -19435,10 +19435,10 @@ pub fn action_480(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_481(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_178)
@@ -19466,34 +19466,34 @@ pub fn action_483(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_484(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_435)
@@ -19522,7 +19522,7 @@ pub fn action_484(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_485(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_507)
+            partial_1_5!(happyShift)(box action_507)
         },
         _ => {
             happyFail
@@ -19533,7 +19533,7 @@ pub fn action_485(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_486(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_506)
+            partial_1_5!(happyShift)(box action_506)
         },
         _ => {
             happyFail
@@ -19544,7 +19544,7 @@ pub fn action_486(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_487(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_505)
+            partial_1_5!(happyShift)(box action_505)
         },
         _ => {
             happyFail
@@ -19555,7 +19555,7 @@ pub fn action_487(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_488(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_504)
+            partial_1_5!(happyShift)(box action_504)
         },
         _ => {
             happyReduce_214
@@ -19566,10 +19566,10 @@ pub fn action_488(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_489(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         62 => {
             partial_1_5!(happyGoto)(box action_501)
@@ -19589,7 +19589,7 @@ pub fn action_489(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_490(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_500)
+            partial_1_5!(happyShift)(box action_500)
         },
         _ => {
             happyFail
@@ -19600,7 +19600,7 @@ pub fn action_490(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_491(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_499)
+            partial_1_5!(happyShift)(box action_499)
         },
         _ => {
             happyFail
@@ -19611,7 +19611,7 @@ pub fn action_491(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_492(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_498)
+            partial_1_5!(happyShift)(box action_498)
         },
         _ => {
             happyFail
@@ -19622,10 +19622,10 @@ pub fn action_492(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_493(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         193 => {
-            partial_1_7!(happyShift)(box action_496)
+            partial_1_5!(happyShift)(box action_496)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_497)
+            partial_1_5!(happyShift)(box action_497)
         },
         135 => {
             partial_1_5!(happyGoto)(box action_494)
@@ -19642,10 +19642,10 @@ pub fn action_493(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_494(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_765)
+            partial_1_5!(happyShift)(box action_765)
         },
         179 => {
-            partial_1_7!(happyShift)(box action_766)
+            partial_1_5!(happyShift)(box action_766)
         },
         _ => {
             happyFail
@@ -19664,7 +19664,7 @@ pub fn action_496(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_497(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_764)
+            partial_1_5!(happyShift)(box action_764)
         },
         _ => {
             happyReduce_479
@@ -19683,7 +19683,7 @@ pub fn action_499(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_500(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         128 => {
             partial_1_5!(happyGoto)(box action_763)
@@ -19697,10 +19697,10 @@ pub fn action_500(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_501(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_761)
+            partial_1_5!(happyShift)(box action_761)
         },
         182 => {
-            partial_1_7!(happyShift)(box action_762)
+            partial_1_5!(happyShift)(box action_762)
         },
         _ => {
             happyFail
@@ -19715,10 +19715,10 @@ pub fn action_502(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_503(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_760)
+            partial_1_5!(happyShift)(box action_760)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         133 => {
             partial_1_5!(happyGoto)(box action_759)
@@ -19735,10 +19735,10 @@ pub fn action_503(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_504(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         62 => {
             partial_1_5!(happyGoto)(box action_758)
@@ -19758,7 +19758,7 @@ pub fn action_504(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_505(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_757)
+            partial_1_5!(happyShift)(box action_757)
         },
         _ => {
             happyFail
@@ -19789,34 +19789,34 @@ pub fn action_510(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_511(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -19848,13 +19848,13 @@ pub fn action_511(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_512(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         139 => {
-            partial_1_7!(happyShift)(box action_478)
+            partial_1_5!(happyShift)(box action_478)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_178)
@@ -19878,10 +19878,10 @@ pub fn action_513(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_514(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_756)
@@ -19905,79 +19905,79 @@ pub fn action_515(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_516(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_654)
+            partial_1_5!(happyShift)(box action_654)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         93 => {
             partial_1_5!(happyGoto)(box action_755)
@@ -20052,7 +20052,7 @@ pub fn action_517(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_518(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_754)
+            partial_1_5!(happyShift)(box action_754)
         },
         _ => {
             happyFail
@@ -20063,7 +20063,7 @@ pub fn action_518(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_519(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_753)
+            partial_1_5!(happyShift)(box action_753)
         },
         _ => {
             happyFail
@@ -20074,7 +20074,7 @@ pub fn action_519(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_520(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_471)
@@ -20091,7 +20091,7 @@ pub fn action_520(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_521(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_441)
@@ -20108,112 +20108,112 @@ pub fn action_521(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_522(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_438)
+            partial_1_5!(happyShift)(box action_438)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_439)
+            partial_1_5!(happyShift)(box action_439)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         40 => {
             partial_1_5!(happyGoto)(box action_432)
@@ -20273,19 +20273,19 @@ pub fn action_523(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_524(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_751)
+            partial_1_5!(happyShift)(box action_751)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_424)
+            partial_1_5!(happyShift)(box action_424)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -20326,19 +20326,19 @@ pub fn action_524(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_525(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_750)
+            partial_1_5!(happyShift)(box action_750)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_749)
@@ -20388,7 +20388,7 @@ pub fn action_525(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_526(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_410)
@@ -20409,7 +20409,7 @@ pub fn action_527(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_528(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_748)
+            partial_1_5!(happyShift)(box action_748)
         },
         _ => {
             happyFail
@@ -20420,88 +20420,88 @@ pub fn action_528(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_529(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         183 => {
-            partial_1_7!(happyShift)(box action_747)
+            partial_1_5!(happyShift)(box action_747)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         37 => {
             partial_1_5!(happyGoto)(box action_449)
@@ -20585,7 +20585,7 @@ pub fn action_530(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_531(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_745)
@@ -20609,103 +20609,103 @@ pub fn action_532(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_533(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_438)
+            partial_1_5!(happyShift)(box action_438)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_439)
+            partial_1_5!(happyShift)(box action_439)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         40 => {
             partial_1_5!(happyGoto)(box action_432)
@@ -20856,61 +20856,61 @@ pub fn action_534(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_535(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_535)
+            partial_1_5!(happyShift)(box action_535)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_536)
+            partial_1_5!(happyShift)(box action_536)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
             happyReduce_471
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
             happyReduce_471
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
             happyReduce_471
@@ -20919,52 +20919,52 @@ pub fn action_535(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
             happyReduce_471
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
             happyReduce_471
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         37 => {
             partial_1_5!(happyGoto)(box action_449)
@@ -21074,13 +21074,13 @@ pub fn action_535(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_536(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_535)
+            partial_1_5!(happyShift)(box action_535)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_536)
+            partial_1_5!(happyShift)(box action_536)
         },
         186 => {
             happyReduce_471
@@ -21101,10 +21101,10 @@ pub fn action_536(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_742)
@@ -21157,7 +21157,7 @@ pub fn action_536(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_537(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_741)
@@ -21177,7 +21177,7 @@ pub fn action_537(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_538(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_740)
@@ -21201,61 +21201,61 @@ pub fn action_539(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_540(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_540)
+            partial_1_5!(happyShift)(box action_540)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_541)
+            partial_1_5!(happyShift)(box action_541)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
             happyReduce_471
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
             happyReduce_471
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
             happyReduce_471
@@ -21264,52 +21264,52 @@ pub fn action_540(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
             happyReduce_471
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
             happyReduce_471
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         37 => {
             partial_1_5!(happyGoto)(box action_449)
@@ -21425,13 +21425,13 @@ pub fn action_540(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_541(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_540)
+            partial_1_5!(happyShift)(box action_540)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_541)
+            partial_1_5!(happyShift)(box action_541)
         },
         186 => {
             happyReduce_471
@@ -21452,13 +21452,13 @@ pub fn action_541(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_737)
@@ -21520,7 +21520,7 @@ pub fn action_541(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_542(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_736)
@@ -21544,7 +21544,7 @@ pub fn action_543(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_544(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_735)
@@ -21564,7 +21564,7 @@ pub fn action_544(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_545(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_734)
@@ -21588,25 +21588,25 @@ pub fn action_546(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_547(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -21629,94 +21629,94 @@ pub fn action_547(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_548(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_170)
@@ -21787,7 +21787,7 @@ pub fn action_548(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_549(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_731)
+            partial_1_5!(happyShift)(box action_731)
         },
         _ => {
             happyFail
@@ -21798,7 +21798,7 @@ pub fn action_549(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_550(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_730)
+            partial_1_5!(happyShift)(box action_730)
         },
         _ => {
             happyFail
@@ -21812,7 +21812,7 @@ pub fn action_551(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_729)
@@ -21836,7 +21836,7 @@ pub fn action_552(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_553(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_728)
+            partial_1_5!(happyShift)(box action_728)
         },
         _ => {
             happyFail
@@ -21847,7 +21847,7 @@ pub fn action_553(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_554(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         221 => {
-            partial_1_7!(happyShift)(box action_727)
+            partial_1_5!(happyShift)(box action_727)
         },
         _ => {
             happyFail
@@ -21858,100 +21858,100 @@ pub fn action_554(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_555(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_726)
+            partial_1_5!(happyShift)(box action_726)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         221 => {
             happyReduce_472
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_435)
@@ -22031,7 +22031,7 @@ pub fn action_556(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_724)
@@ -22059,130 +22059,130 @@ pub fn action_558(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_559(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -22295,91 +22295,91 @@ pub fn action_559(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_560(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_721)
@@ -22468,7 +22468,7 @@ pub fn action_560(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_561(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_516)
+            partial_1_5!(happyShift)(box action_516)
         },
         94 => {
             partial_1_5!(happyGoto)(box action_720)
@@ -22486,7 +22486,7 @@ pub fn action_562(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_563(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_719)
+            partial_1_5!(happyShift)(box action_719)
         },
         _ => {
             happyFail
@@ -22497,7 +22497,7 @@ pub fn action_563(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_564(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_718)
+            partial_1_5!(happyShift)(box action_718)
         },
         _ => {
             happyFail
@@ -22508,67 +22508,67 @@ pub fn action_564(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_565(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_715)
+            partial_1_5!(happyShift)(box action_715)
         },
         182 => {
-            partial_1_7!(happyShift)(box action_716)
+            partial_1_5!(happyShift)(box action_716)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_717)
+            partial_1_5!(happyShift)(box action_717)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_709)
@@ -22646,13 +22646,13 @@ pub fn action_568(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_569(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         139 => {
-            partial_1_7!(happyShift)(box action_707)
+            partial_1_5!(happyShift)(box action_707)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_573)
@@ -22672,7 +22672,7 @@ pub fn action_569(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_570(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_706)
+            partial_1_5!(happyShift)(box action_706)
         },
         _ => {
             happyFail
@@ -22683,16 +22683,16 @@ pub fn action_570(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_571(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_571)
+            partial_1_5!(happyShift)(box action_571)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_572)
+            partial_1_5!(happyShift)(box action_572)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -22724,19 +22724,19 @@ pub fn action_571(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_572(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_571)
+            partial_1_5!(happyShift)(box action_571)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_572)
+            partial_1_5!(happyShift)(box action_572)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         65 => {
             partial_1_5!(happyGoto)(box action_705)
@@ -22780,7 +22780,7 @@ pub fn action_572(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_573(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_704)
+            partial_1_5!(happyShift)(box action_704)
         },
         _ => {
             happyFail
@@ -22791,10 +22791,10 @@ pub fn action_573(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_574(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_703)
@@ -22814,10 +22814,10 @@ pub fn action_574(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_575(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_702)
@@ -22837,13 +22837,13 @@ pub fn action_575(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_576(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         139 => {
-            partial_1_7!(happyShift)(box action_701)
+            partial_1_5!(happyShift)(box action_701)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_573)
@@ -22875,37 +22875,37 @@ pub fn action_579(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_580(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_700)
+            partial_1_5!(happyShift)(box action_700)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_435)
@@ -22949,19 +22949,19 @@ pub fn action_580(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_581(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_423)
+            partial_1_5!(happyShift)(box action_423)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_228)
+            partial_1_5!(happyShift)(box action_228)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_424)
+            partial_1_5!(happyShift)(box action_424)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -23016,7 +23016,7 @@ pub fn action_583(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_584(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_696)
+            partial_1_5!(happyShift)(box action_696)
         },
         _ => {
             happyFail
@@ -23027,7 +23027,7 @@ pub fn action_584(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_585(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_695)
+            partial_1_5!(happyShift)(box action_695)
         },
         _ => {
             happyFail
@@ -23038,7 +23038,7 @@ pub fn action_585(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_586(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         128 => {
             partial_1_5!(happyGoto)(box action_694)
@@ -23064,7 +23064,7 @@ pub fn action_589(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_590(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_693)
@@ -23081,7 +23081,7 @@ pub fn action_590(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_591(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_692)
@@ -23098,121 +23098,121 @@ pub fn action_591(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_592(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_691)
@@ -23310,121 +23310,121 @@ pub fn action_592(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_593(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_690)
@@ -23522,121 +23522,121 @@ pub fn action_593(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_594(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_689)
@@ -23738,76 +23738,76 @@ pub fn action_595(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_596(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -23881,76 +23881,76 @@ pub fn action_596(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_597(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -24024,76 +24024,76 @@ pub fn action_597(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_598(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -24164,7 +24164,7 @@ pub fn action_598(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_599(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_685)
+            partial_1_5!(happyShift)(box action_685)
         },
         _ => {
             happyFail
@@ -24179,10 +24179,10 @@ pub fn action_600(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_601(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_683)
+            partial_1_5!(happyShift)(box action_683)
         },
         167 => {
-            partial_1_7!(happyShift)(box action_684)
+            partial_1_5!(happyShift)(box action_684)
         },
         _ => {
             happyFail
@@ -24193,10 +24193,10 @@ pub fn action_601(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_602(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_528)
+            partial_1_5!(happyShift)(box action_528)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_682)
+            partial_1_5!(happyShift)(box action_682)
         },
         _ => {
             happyFail
@@ -24207,121 +24207,121 @@ pub fn action_602(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_603(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
             happyReduce_471
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
             happyReduce_471
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
             happyReduce_471
@@ -24330,97 +24330,97 @@ pub fn action_603(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
             happyReduce_471
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
             happyReduce_471
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_615)
+            partial_1_5!(happyShift)(box action_615)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_616)
+            partial_1_5!(happyShift)(box action_616)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_605)
@@ -24605,7 +24605,7 @@ pub fn action_603(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_604(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_460)
+            partial_1_5!(happyShift)(box action_460)
         },
         85 => {
             partial_1_5!(happyGoto)(box action_680)
@@ -24623,7 +24623,7 @@ pub fn action_605(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_606(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         182 => {
-            partial_1_7!(happyShift)(box action_679)
+            partial_1_5!(happyShift)(box action_679)
         },
         _ => {
             happyFail
@@ -24650,16 +24650,16 @@ pub fn action_610(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_611(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_524)
+            partial_1_5!(happyShift)(box action_524)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_678)
@@ -24706,112 +24706,112 @@ pub fn action_611(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_612(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_237)
+            partial_1_5!(happyShift)(box action_237)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_238)
+            partial_1_5!(happyShift)(box action_238)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_677)
@@ -24870,16 +24870,16 @@ pub fn action_612(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_613(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_524)
+            partial_1_5!(happyShift)(box action_524)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_676)
@@ -24926,112 +24926,112 @@ pub fn action_613(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_614(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_191)
+            partial_1_5!(happyShift)(box action_191)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_192)
+            partial_1_5!(happyShift)(box action_192)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_674)
@@ -25104,160 +25104,160 @@ pub fn action_615(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_616(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         222 => {
-            partial_1_7!(happyShift)(box action_132)
+            partial_1_5!(happyShift)(box action_132)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_616)
+            partial_1_5!(happyShift)(box action_616)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         19 => {
             partial_1_5!(happyGoto)(box action_673)
@@ -25374,58 +25374,58 @@ pub fn action_617(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_618(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -25478,10 +25478,10 @@ pub fn action_618(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_619(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         103 => {
             partial_1_5!(happyGoto)(box action_670)
@@ -25498,58 +25498,58 @@ pub fn action_619(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_620(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -25602,7 +25602,7 @@ pub fn action_620(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_621(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_634)
+            partial_1_5!(happyShift)(box action_634)
         },
         _ => {
             happyFail
@@ -25613,7 +25613,7 @@ pub fn action_621(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_622(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_634)
+            partial_1_5!(happyShift)(box action_634)
         },
         _ => {
             happyReduce_394
@@ -25624,61 +25624,61 @@ pub fn action_622(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_623(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_668)
+            partial_1_5!(happyShift)(box action_668)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -25737,7 +25737,7 @@ pub fn action_623(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_624(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_634)
+            partial_1_5!(happyShift)(box action_634)
         },
         _ => {
             happyReduce_396
@@ -25748,34 +25748,34 @@ pub fn action_624(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_625(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_372)
+            partial_1_5!(happyShift)(box action_372)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_373)
+            partial_1_5!(happyShift)(box action_373)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -25820,13 +25820,13 @@ pub fn action_626(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_627(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_372)
+            partial_1_5!(happyShift)(box action_372)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_373)
+            partial_1_5!(happyShift)(box action_373)
         },
         186 => {
             happyReduce_472
@@ -25847,7 +25847,7 @@ pub fn action_627(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_472
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         87 => {
             partial_1_5!(happyGoto)(box action_661)
@@ -25879,7 +25879,7 @@ pub fn action_627(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_628(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_660)
+            partial_1_5!(happyShift)(box action_660)
         },
         _ => {
             happyFail
@@ -25890,7 +25890,7 @@ pub fn action_628(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_629(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_659)
+            partial_1_5!(happyShift)(box action_659)
         },
         _ => {
             happyFail
@@ -25901,10 +25901,10 @@ pub fn action_629(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_630(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_658)
+            partial_1_5!(happyShift)(box action_658)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         134 => {
             partial_1_5!(happyGoto)(box action_632)
@@ -25918,94 +25918,94 @@ pub fn action_630(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_631(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_372)
+            partial_1_5!(happyShift)(box action_372)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_373)
+            partial_1_5!(happyShift)(box action_373)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_168)
+            partial_1_5!(happyShift)(box action_168)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_169)
+            partial_1_5!(happyShift)(box action_169)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         40 => {
             partial_1_5!(happyGoto)(box action_162)
@@ -26069,88 +26069,88 @@ pub fn action_633(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_634(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_652)
+            partial_1_5!(happyShift)(box action_652)
         },
         143 => {
-            partial_1_7!(happyShift)(box action_653)
+            partial_1_5!(happyShift)(box action_653)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_654)
+            partial_1_5!(happyShift)(box action_654)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         93 => {
             partial_1_5!(happyGoto)(box action_644)
@@ -26239,76 +26239,76 @@ pub fn action_634(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_635(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -26380,76 +26380,76 @@ pub fn action_636(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_637(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -26518,76 +26518,76 @@ pub fn action_638(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_639(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -26675,10 +26675,10 @@ pub fn action_644(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_645(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_852)
+            partial_1_5!(happyShift)(box action_852)
         },
         182 => {
-            partial_1_7!(happyShift)(box action_853)
+            partial_1_5!(happyShift)(box action_853)
         },
         _ => {
             happyFail
@@ -26689,79 +26689,79 @@ pub fn action_645(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_646(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_654)
+            partial_1_5!(happyShift)(box action_654)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         93 => {
             partial_1_5!(happyGoto)(box action_851)
@@ -26832,13 +26832,13 @@ pub fn action_646(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_647(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         140 => {
-            partial_1_7!(happyShift)(box action_652)
+            partial_1_5!(happyShift)(box action_652)
         },
         143 => {
-            partial_1_7!(happyShift)(box action_653)
+            partial_1_5!(happyShift)(box action_653)
         },
         168 => {
-            partial_1_7!(happyShift)(box action_850)
+            partial_1_5!(happyShift)(box action_850)
         },
         98 => {
             partial_1_5!(happyGoto)(box action_848)
@@ -26880,7 +26880,7 @@ pub fn action_650(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_651(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_847)
+            partial_1_5!(happyShift)(box action_847)
         },
         _ => {
             happyFail
@@ -26891,76 +26891,76 @@ pub fn action_651(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_652(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -27028,10 +27028,10 @@ pub fn action_652(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_653(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         131 => {
             partial_1_5!(happyGoto)(box action_845)
@@ -27045,88 +27045,88 @@ pub fn action_653(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_654(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_652)
+            partial_1_5!(happyShift)(box action_652)
         },
         143 => {
-            partial_1_7!(happyShift)(box action_653)
+            partial_1_5!(happyShift)(box action_653)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_654)
+            partial_1_5!(happyShift)(box action_654)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         93 => {
             partial_1_5!(happyGoto)(box action_644)
@@ -27215,7 +27215,7 @@ pub fn action_654(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_655(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_843)
+            partial_1_5!(happyShift)(box action_843)
         },
         _ => {
             happyFail
@@ -27226,7 +27226,7 @@ pub fn action_655(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_656(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_842)
+            partial_1_5!(happyShift)(box action_842)
         },
         _ => {
             happyFail
@@ -27237,10 +27237,10 @@ pub fn action_656(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_657(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_841)
+            partial_1_5!(happyShift)(box action_841)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         134 => {
             partial_1_5!(happyGoto)(box action_632)
@@ -27258,10 +27258,10 @@ pub fn action_658(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_659(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_840)
@@ -27297,25 +27297,25 @@ pub fn action_663(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_664(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_435)
@@ -27332,7 +27332,7 @@ pub fn action_664(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_665(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_839)
+            partial_1_5!(happyShift)(box action_839)
         },
         _ => {
             happyFail
@@ -27343,10 +27343,10 @@ pub fn action_665(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_666(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_837)
+            partial_1_5!(happyShift)(box action_837)
         },
         179 => {
-            partial_1_7!(happyShift)(box action_838)
+            partial_1_5!(happyShift)(box action_838)
         },
         _ => {
             happyFail
@@ -27361,7 +27361,7 @@ pub fn action_667(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_668(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_836)
+            partial_1_5!(happyShift)(box action_836)
         },
         _ => {
             happyFail
@@ -27372,7 +27372,7 @@ pub fn action_668(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_669(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_835)
+            partial_1_5!(happyShift)(box action_835)
         },
         _ => {
             happyFail
@@ -27383,13 +27383,13 @@ pub fn action_669(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_670(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_832)
+            partial_1_5!(happyShift)(box action_832)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_833)
+            partial_1_5!(happyShift)(box action_833)
         },
         143 => {
-            partial_1_7!(happyShift)(box action_834)
+            partial_1_5!(happyShift)(box action_834)
         },
         _ => {
             happyFail
@@ -27404,7 +27404,7 @@ pub fn action_671(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_672(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_831)
+            partial_1_5!(happyShift)(box action_831)
         },
         _ => {
             happyFail
@@ -27419,7 +27419,7 @@ pub fn action_673(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_674(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_830)
@@ -27433,112 +27433,112 @@ pub fn action_674(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_675(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_438)
+            partial_1_5!(happyShift)(box action_438)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_439)
+            partial_1_5!(happyShift)(box action_439)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         11 => {
             partial_1_5!(happyGoto)(box action_829)
@@ -27597,7 +27597,7 @@ pub fn action_675(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_676(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_828)
@@ -27611,7 +27611,7 @@ pub fn action_676(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_677(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_827)
@@ -27625,7 +27625,7 @@ pub fn action_677(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_678(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_826)
@@ -27643,10 +27643,10 @@ pub fn action_679(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_680(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_528)
+            partial_1_5!(happyShift)(box action_528)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_825)
+            partial_1_5!(happyShift)(box action_825)
         },
         _ => {
             happyFail
@@ -27657,7 +27657,7 @@ pub fn action_680(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_681(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         182 => {
-            partial_1_7!(happyShift)(box action_824)
+            partial_1_5!(happyShift)(box action_824)
         },
         _ => {
             happyFail
@@ -27672,7 +27672,7 @@ pub fn action_682(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_683(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_823)
+            partial_1_5!(happyShift)(box action_823)
         },
         _ => {
             happyFail
@@ -27683,10 +27683,10 @@ pub fn action_683(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_684(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         140 => {
-            partial_1_7!(happyShift)(box action_822)
+            partial_1_5!(happyShift)(box action_822)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         28 => {
             partial_1_5!(happyGoto)(box action_818)
@@ -27709,121 +27709,121 @@ pub fn action_684(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_685(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_817)
@@ -27921,7 +27921,7 @@ pub fn action_685(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_686(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_816)
+            partial_1_5!(happyShift)(box action_816)
         },
         _ => {
             happyFail
@@ -27932,7 +27932,7 @@ pub fn action_686(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_687(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_815)
+            partial_1_5!(happyShift)(box action_815)
         },
         _ => {
             happyFail
@@ -27943,7 +27943,7 @@ pub fn action_687(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_688(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_814)
+            partial_1_5!(happyShift)(box action_814)
         },
         _ => {
             happyFail
@@ -27954,7 +27954,7 @@ pub fn action_688(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_689(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         199 => {
-            partial_1_7!(happyShift)(box action_813)
+            partial_1_5!(happyShift)(box action_813)
         },
         _ => {
             happyReduce_58
@@ -27973,7 +27973,7 @@ pub fn action_691(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_692(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_516)
+            partial_1_5!(happyShift)(box action_516)
         },
         94 => {
             partial_1_5!(happyGoto)(box action_812)
@@ -27987,7 +27987,7 @@ pub fn action_692(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_693(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_516)
+            partial_1_5!(happyShift)(box action_516)
         },
         94 => {
             partial_1_5!(happyGoto)(box action_811)
@@ -28001,7 +28001,7 @@ pub fn action_693(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_694(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_810)
+            partial_1_5!(happyShift)(box action_810)
         },
         _ => {
             happyFail
@@ -28020,13 +28020,13 @@ pub fn action_696(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_697(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         139 => {
-            partial_1_7!(happyShift)(box action_809)
+            partial_1_5!(happyShift)(box action_809)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_573)
@@ -28054,19 +28054,19 @@ pub fn action_699(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_700(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_751)
+            partial_1_5!(happyShift)(box action_751)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_424)
+            partial_1_5!(happyShift)(box action_424)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -28123,37 +28123,37 @@ pub fn action_704(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_705(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_571)
+            partial_1_5!(happyShift)(box action_571)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_572)
+            partial_1_5!(happyShift)(box action_572)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -28194,10 +28194,10 @@ pub fn action_705(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_706(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_806)
@@ -28221,67 +28221,67 @@ pub fn action_707(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_708(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_715)
+            partial_1_5!(happyShift)(box action_715)
         },
         182 => {
-            partial_1_7!(happyShift)(box action_805)
+            partial_1_5!(happyShift)(box action_805)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_717)
+            partial_1_5!(happyShift)(box action_717)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_709)
@@ -28340,19 +28340,19 @@ pub fn action_708(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_709(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_524)
+            partial_1_5!(happyShift)(box action_524)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         167 => {
-            partial_1_7!(happyShift)(box action_804)
+            partial_1_5!(happyShift)(box action_804)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         59 => {
             partial_1_5!(happyGoto)(box action_802)
@@ -28403,10 +28403,10 @@ pub fn action_710(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_711(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_800)
+            partial_1_5!(happyShift)(box action_800)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_801)
+            partial_1_5!(happyShift)(box action_801)
         },
         _ => {
             happyFail
@@ -28417,10 +28417,10 @@ pub fn action_711(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_712(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_798)
+            partial_1_5!(happyShift)(box action_798)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_799)
+            partial_1_5!(happyShift)(box action_799)
         },
         _ => {
             happyFail
@@ -28431,76 +28431,76 @@ pub fn action_712(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_713(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_191)
+            partial_1_5!(happyShift)(box action_191)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_192)
+            partial_1_5!(happyShift)(box action_192)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         45 => {
             partial_1_5!(happyGoto)(box action_185)
@@ -28538,70 +28538,70 @@ pub fn action_713(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_714(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         167 => {
-            partial_1_7!(happyShift)(box action_795)
+            partial_1_5!(happyShift)(box action_795)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_168)
+            partial_1_5!(happyShift)(box action_168)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_169)
+            partial_1_5!(happyShift)(box action_169)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         45 => {
             partial_1_5!(happyGoto)(box action_163)
@@ -28653,61 +28653,61 @@ pub fn action_716(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_717(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_717)
+            partial_1_5!(happyShift)(box action_717)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_709)
@@ -28782,7 +28782,7 @@ pub fn action_721(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_722(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_791)
+            partial_1_5!(happyShift)(box action_791)
         },
         _ => {
             happyFail
@@ -28793,7 +28793,7 @@ pub fn action_722(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_723(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_790)
+            partial_1_5!(happyShift)(box action_790)
         },
         _ => {
             happyFail
@@ -28804,7 +28804,7 @@ pub fn action_723(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_724(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_789)
+            partial_1_5!(happyShift)(box action_789)
         },
         _ => {
             happyFail
@@ -28815,7 +28815,7 @@ pub fn action_724(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_725(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_788)
+            partial_1_5!(happyShift)(box action_788)
         },
         _ => {
             happyFail
@@ -28829,7 +28829,7 @@ pub fn action_726(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_471
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_787)
@@ -28849,7 +28849,7 @@ pub fn action_726(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_727(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_786)
@@ -28873,7 +28873,7 @@ pub fn action_728(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_729(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_785)
+            partial_1_5!(happyShift)(box action_785)
         },
         _ => {
             happyFail
@@ -28892,7 +28892,7 @@ pub fn action_731(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_732(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_784)
+            partial_1_5!(happyShift)(box action_784)
         },
         _ => {
             happyFail
@@ -28903,76 +28903,76 @@ pub fn action_732(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_733(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -29052,40 +29052,40 @@ pub fn action_736(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_737(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_540)
+            partial_1_5!(happyShift)(box action_540)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_541)
+            partial_1_5!(happyShift)(box action_541)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -29147,13 +29147,13 @@ pub fn action_737(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_738(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_540)
+            partial_1_5!(happyShift)(box action_540)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_541)
+            partial_1_5!(happyShift)(box action_541)
         },
         186 => {
             happyReduce_472
@@ -29174,13 +29174,13 @@ pub fn action_738(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_472
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         69 => {
             partial_1_5!(happyGoto)(box action_577)
@@ -29233,97 +29233,97 @@ pub fn action_738(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_739(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_540)
+            partial_1_5!(happyShift)(box action_540)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_541)
+            partial_1_5!(happyShift)(box action_541)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_168)
+            partial_1_5!(happyShift)(box action_168)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_169)
+            partial_1_5!(happyShift)(box action_169)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         40 => {
             partial_1_5!(happyGoto)(box action_162)
@@ -29402,37 +29402,37 @@ pub fn action_741(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_742(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_535)
+            partial_1_5!(happyShift)(box action_535)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_536)
+            partial_1_5!(happyShift)(box action_536)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -29485,13 +29485,13 @@ pub fn action_742(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_743(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_535)
+            partial_1_5!(happyShift)(box action_535)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_536)
+            partial_1_5!(happyShift)(box action_536)
         },
         186 => {
             happyReduce_472
@@ -29512,10 +29512,10 @@ pub fn action_743(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
             happyReduce_472
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         75 => {
             partial_1_5!(happyGoto)(box action_480)
@@ -29559,97 +29559,97 @@ pub fn action_743(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_744(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_535)
+            partial_1_5!(happyShift)(box action_535)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_536)
+            partial_1_5!(happyShift)(box action_536)
         },
         185 => {
-            partial_1_7!(happyShift)(box action_113)
+            partial_1_5!(happyShift)(box action_113)
         },
         188 => {
-            partial_1_7!(happyShift)(box action_115)
+            partial_1_5!(happyShift)(box action_115)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         201 => {
-            partial_1_7!(happyShift)(box action_121)
+            partial_1_5!(happyShift)(box action_121)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         207 => {
-            partial_1_7!(happyShift)(box action_123)
+            partial_1_5!(happyShift)(box action_123)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         212 => {
-            partial_1_7!(happyShift)(box action_127)
+            partial_1_5!(happyShift)(box action_127)
         },
         215 => {
-            partial_1_7!(happyShift)(box action_128)
+            partial_1_5!(happyShift)(box action_128)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         221 => {
-            partial_1_7!(happyShift)(box action_131)
+            partial_1_5!(happyShift)(box action_131)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         225 => {
-            partial_1_7!(happyShift)(box action_134)
+            partial_1_5!(happyShift)(box action_134)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_168)
+            partial_1_5!(happyShift)(box action_168)
         },
         227 => {
-            partial_1_7!(happyShift)(box action_136)
+            partial_1_5!(happyShift)(box action_136)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_169)
+            partial_1_5!(happyShift)(box action_169)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         40 => {
             partial_1_5!(happyGoto)(box action_162)
@@ -29730,37 +29730,37 @@ pub fn action_748(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_749(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_780)
+            partial_1_5!(happyShift)(box action_780)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_187)
@@ -29807,19 +29807,19 @@ pub fn action_749(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_750(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_751)
+            partial_1_5!(happyShift)(box action_751)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_424)
+            partial_1_5!(happyShift)(box action_424)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -29860,19 +29860,19 @@ pub fn action_750(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_751(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_751)
+            partial_1_5!(happyShift)(box action_751)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_424)
+            partial_1_5!(happyShift)(box action_424)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -29913,7 +29913,7 @@ pub fn action_751(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_752(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         187 => {
-            partial_1_7!(happyShift)(box action_406)
+            partial_1_5!(happyShift)(box action_406)
         },
         35 => {
             partial_1_5!(happyGoto)(box action_561)
@@ -29950,10 +29950,10 @@ pub fn action_757(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_758(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_778)
+            partial_1_5!(happyShift)(box action_778)
         },
         182 => {
-            partial_1_7!(happyShift)(box action_779)
+            partial_1_5!(happyShift)(box action_779)
         },
         _ => {
             happyFail
@@ -29964,10 +29964,10 @@ pub fn action_758(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_759(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_777)
+            partial_1_5!(happyShift)(box action_777)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         134 => {
             partial_1_5!(happyGoto)(box action_167)
@@ -29981,76 +29981,76 @@ pub fn action_759(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_760(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -30118,13 +30118,13 @@ pub fn action_760(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_761(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         182 => {
-            partial_1_7!(happyShift)(box action_775)
+            partial_1_5!(happyShift)(box action_775)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         63 => {
             partial_1_5!(happyGoto)(box action_774)
@@ -30145,7 +30145,7 @@ pub fn action_762(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_763(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_773)
+            partial_1_5!(happyShift)(box action_773)
         },
         _ => {
             happyFail
@@ -30156,79 +30156,79 @@ pub fn action_763(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_764(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         139 => {
-            partial_1_7!(happyShift)(box action_772)
+            partial_1_5!(happyShift)(box action_772)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -30299,7 +30299,7 @@ pub fn action_764(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_765(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_768)
+            partial_1_5!(happyShift)(box action_768)
         },
         _ => {
             happyFail
@@ -30310,10 +30310,10 @@ pub fn action_765(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_766(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         193 => {
-            partial_1_7!(happyShift)(box action_496)
+            partial_1_5!(happyShift)(box action_496)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_497)
+            partial_1_5!(happyShift)(box action_497)
         },
         136 => {
             partial_1_5!(happyGoto)(box action_767)
@@ -30335,37 +30335,37 @@ pub fn action_768(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_769(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_316)
+            partial_1_5!(happyShift)(box action_316)
         },
         169 => {
-            partial_1_7!(happyShift)(box action_317)
+            partial_1_5!(happyShift)(box action_317)
         },
         170 => {
-            partial_1_7!(happyShift)(box action_318)
+            partial_1_5!(happyShift)(box action_318)
         },
         171 => {
-            partial_1_7!(happyShift)(box action_319)
+            partial_1_5!(happyShift)(box action_319)
         },
         172 => {
-            partial_1_7!(happyShift)(box action_320)
+            partial_1_5!(happyShift)(box action_320)
         },
         173 => {
-            partial_1_7!(happyShift)(box action_321)
+            partial_1_5!(happyShift)(box action_321)
         },
         174 => {
-            partial_1_7!(happyShift)(box action_322)
+            partial_1_5!(happyShift)(box action_322)
         },
         175 => {
-            partial_1_7!(happyShift)(box action_323)
+            partial_1_5!(happyShift)(box action_323)
         },
         176 => {
-            partial_1_7!(happyShift)(box action_324)
+            partial_1_5!(happyShift)(box action_324)
         },
         177 => {
-            partial_1_7!(happyShift)(box action_325)
+            partial_1_5!(happyShift)(box action_325)
         },
         178 => {
-            partial_1_7!(happyShift)(box action_326)
+            partial_1_5!(happyShift)(box action_326)
         },
         121 => {
             partial_1_5!(happyGoto)(box action_896)
@@ -30383,10 +30383,10 @@ pub fn action_770(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_771(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_894)
+            partial_1_5!(happyShift)(box action_894)
         },
         179 => {
-            partial_1_7!(happyShift)(box action_895)
+            partial_1_5!(happyShift)(box action_895)
         },
         _ => {
             happyFail
@@ -30401,7 +30401,7 @@ pub fn action_772(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_773(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_893)
+            partial_1_5!(happyShift)(box action_893)
         },
         _ => {
             happyFail
@@ -30424,76 +30424,76 @@ pub fn action_776(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_777(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -30561,13 +30561,13 @@ pub fn action_777(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_778(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         182 => {
-            partial_1_7!(happyShift)(box action_891)
+            partial_1_5!(happyShift)(box action_891)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         63 => {
             partial_1_5!(happyGoto)(box action_774)
@@ -30588,19 +30588,19 @@ pub fn action_779(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_780(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_751)
+            partial_1_5!(happyShift)(box action_751)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_424)
+            partial_1_5!(happyShift)(box action_424)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         70 => {
             partial_1_5!(happyGoto)(box action_419)
@@ -30641,34 +30641,34 @@ pub fn action_780(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_781(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_435)
@@ -30697,37 +30697,37 @@ pub fn action_781(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_782(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_571)
+            partial_1_5!(happyShift)(box action_571)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_572)
+            partial_1_5!(happyShift)(box action_572)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_435)
@@ -30765,7 +30765,7 @@ pub fn action_782(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_783(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_890)
+            partial_1_5!(happyShift)(box action_890)
         },
         _ => {
             happyFail
@@ -30784,76 +30784,76 @@ pub fn action_785(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_786(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -30921,7 +30921,7 @@ pub fn action_786(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_787(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_888)
+            partial_1_5!(happyShift)(box action_888)
         },
         _ => {
             happyFail
@@ -30952,7 +30952,7 @@ pub fn action_792(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_793(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         134 => {
             partial_1_5!(happyGoto)(box action_887)
@@ -30966,7 +30966,7 @@ pub fn action_793(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_794(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_886)
+            partial_1_5!(happyShift)(box action_886)
         },
         _ => {
             happyReduce_206
@@ -30977,76 +30977,76 @@ pub fn action_794(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_795(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -31114,16 +31114,16 @@ pub fn action_795(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_796(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         167 => {
-            partial_1_7!(happyShift)(box action_795)
+            partial_1_5!(happyShift)(box action_795)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         60 => {
             partial_1_5!(happyGoto)(box action_884)
@@ -31149,76 +31149,76 @@ pub fn action_796(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_797(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_438)
+            partial_1_5!(happyShift)(box action_438)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_439)
+            partial_1_5!(happyShift)(box action_439)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         45 => {
             partial_1_5!(happyGoto)(box action_433)
@@ -31250,7 +31250,7 @@ pub fn action_797(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_798(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_883)
@@ -31274,7 +31274,7 @@ pub fn action_799(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_800(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_882)
@@ -31298,7 +31298,7 @@ pub fn action_801(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_802(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_881)
@@ -31318,7 +31318,7 @@ pub fn action_802(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_803(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         167 => {
-            partial_1_7!(happyShift)(box action_880)
+            partial_1_5!(happyShift)(box action_880)
         },
         _ => {
             happyReduce_203
@@ -31329,76 +31329,76 @@ pub fn action_803(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_804(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -31474,37 +31474,37 @@ pub fn action_806(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_807(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_571)
+            partial_1_5!(happyShift)(box action_571)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_572)
+            partial_1_5!(happyShift)(box action_572)
         },
         186 => {
-            partial_1_7!(happyShift)(box action_171)
+            partial_1_5!(happyShift)(box action_171)
         },
         193 => {
-            partial_1_7!(happyShift)(box action_172)
+            partial_1_5!(happyShift)(box action_172)
         },
         213 => {
-            partial_1_7!(happyShift)(box action_173)
+            partial_1_5!(happyShift)(box action_173)
         },
         214 => {
-            partial_1_7!(happyShift)(box action_174)
+            partial_1_5!(happyShift)(box action_174)
         },
         216 => {
-            partial_1_7!(happyShift)(box action_175)
+            partial_1_5!(happyShift)(box action_175)
         },
         231 => {
-            partial_1_7!(happyShift)(box action_176)
+            partial_1_5!(happyShift)(box action_176)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         64 => {
             partial_1_5!(happyGoto)(box action_435)
@@ -31542,13 +31542,13 @@ pub fn action_807(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_808(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         139 => {
-            partial_1_7!(happyShift)(box action_878)
+            partial_1_5!(happyShift)(box action_878)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_573)
@@ -31584,121 +31584,121 @@ pub fn action_812(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_813(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_877)
@@ -31796,76 +31796,76 @@ pub fn action_813(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_814(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -31939,76 +31939,76 @@ pub fn action_814(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_815(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -32082,7 +32082,7 @@ pub fn action_815(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_816(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_874)
+            partial_1_5!(happyShift)(box action_874)
         },
         _ => {
             happyFail
@@ -32097,10 +32097,10 @@ pub fn action_817(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_818(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_872)
+            partial_1_5!(happyShift)(box action_872)
         },
         167 => {
-            partial_1_7!(happyShift)(box action_873)
+            partial_1_5!(happyShift)(box action_873)
         },
         _ => {
             happyFail
@@ -32111,7 +32111,7 @@ pub fn action_818(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_819(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_871)
+            partial_1_5!(happyShift)(box action_871)
         },
         _ => {
             happyReduce_77
@@ -32126,7 +32126,7 @@ pub fn action_820(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_821(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_870)
+            partial_1_5!(happyShift)(box action_870)
         },
         _ => {
             happyFail
@@ -32137,10 +32137,10 @@ pub fn action_821(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_822(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_868)
+            partial_1_5!(happyShift)(box action_868)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_869)
+            partial_1_5!(happyShift)(box action_869)
         },
         _ => {
             happyFail
@@ -32175,7 +32175,7 @@ pub fn action_828(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_829(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         14 => {
             partial_1_5!(happyGoto)(box action_867)
@@ -32201,76 +32201,76 @@ pub fn action_832(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_833(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -32341,10 +32341,10 @@ pub fn action_833(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_834(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         237 => {
-            partial_1_7!(happyShift)(box action_254)
+            partial_1_5!(happyShift)(box action_254)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         131 => {
             partial_1_5!(happyGoto)(box action_865)
@@ -32362,76 +32362,76 @@ pub fn action_835(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_836(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -32503,61 +32503,61 @@ pub fn action_837(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_838(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         190 => {
-            partial_1_7!(happyShift)(box action_116)
+            partial_1_5!(happyShift)(box action_116)
         },
         192 => {
-            partial_1_7!(happyShift)(box action_117)
+            partial_1_5!(happyShift)(box action_117)
         },
         195 => {
-            partial_1_7!(happyShift)(box action_118)
+            partial_1_5!(happyShift)(box action_118)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_668)
+            partial_1_5!(happyShift)(box action_668)
         },
         198 => {
-            partial_1_7!(happyShift)(box action_119)
+            partial_1_5!(happyShift)(box action_119)
         },
         200 => {
-            partial_1_7!(happyShift)(box action_120)
+            partial_1_5!(happyShift)(box action_120)
         },
         202 => {
-            partial_1_7!(happyShift)(box action_122)
+            partial_1_5!(happyShift)(box action_122)
         },
         208 => {
-            partial_1_7!(happyShift)(box action_124)
+            partial_1_5!(happyShift)(box action_124)
         },
         209 => {
-            partial_1_7!(happyShift)(box action_125)
+            partial_1_5!(happyShift)(box action_125)
         },
         210 => {
-            partial_1_7!(happyShift)(box action_126)
+            partial_1_5!(happyShift)(box action_126)
         },
         218 => {
-            partial_1_7!(happyShift)(box action_129)
+            partial_1_5!(happyShift)(box action_129)
         },
         219 => {
-            partial_1_7!(happyShift)(box action_130)
+            partial_1_5!(happyShift)(box action_130)
         },
         223 => {
-            partial_1_7!(happyShift)(box action_133)
+            partial_1_5!(happyShift)(box action_133)
         },
         226 => {
-            partial_1_7!(happyShift)(box action_135)
+            partial_1_5!(happyShift)(box action_135)
         },
         228 => {
-            partial_1_7!(happyShift)(box action_137)
+            partial_1_5!(happyShift)(box action_137)
         },
         229 => {
-            partial_1_7!(happyShift)(box action_138)
+            partial_1_5!(happyShift)(box action_138)
         },
         230 => {
-            partial_1_7!(happyShift)(box action_139)
+            partial_1_5!(happyShift)(box action_139)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_141)
+            partial_1_5!(happyShift)(box action_141)
         },
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         44 => {
             partial_1_5!(happyGoto)(box action_286)
@@ -32613,76 +32613,76 @@ pub fn action_838(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_839(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -32758,10 +32758,10 @@ pub fn action_841(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_842(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_413)
+            partial_1_5!(happyShift)(box action_413)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_182)
+            partial_1_5!(happyShift)(box action_182)
         },
         88 => {
             partial_1_5!(happyGoto)(box action_861)
@@ -32785,10 +32785,10 @@ pub fn action_843(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_844(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         179 => {
-            partial_1_7!(happyShift)(box action_859)
+            partial_1_5!(happyShift)(box action_859)
         },
         182 => {
-            partial_1_7!(happyShift)(box action_860)
+            partial_1_5!(happyShift)(box action_860)
         },
         _ => {
             happyFail
@@ -32803,10 +32803,10 @@ pub fn action_845(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_846(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_857)
+            partial_1_5!(happyShift)(box action_857)
         },
         183 => {
-            partial_1_7!(happyShift)(box action_858)
+            partial_1_5!(happyShift)(box action_858)
         },
         _ => {
             happyFail
@@ -32837,91 +32837,91 @@ pub fn action_851(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_852(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_652)
+            partial_1_5!(happyShift)(box action_652)
         },
         143 => {
-            partial_1_7!(happyShift)(box action_653)
+            partial_1_5!(happyShift)(box action_653)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_654)
+            partial_1_5!(happyShift)(box action_654)
         },
         182 => {
-            partial_1_7!(happyShift)(box action_856)
+            partial_1_5!(happyShift)(box action_856)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         93 => {
             partial_1_5!(happyGoto)(box action_854)
@@ -33015,79 +33015,79 @@ pub fn action_854(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_855(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_654)
+            partial_1_5!(happyShift)(box action_654)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         93 => {
             partial_1_5!(happyGoto)(box action_918)
@@ -33166,76 +33166,76 @@ pub fn action_857(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_858(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -33303,91 +33303,91 @@ pub fn action_858(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_859(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         140 => {
-            partial_1_7!(happyShift)(box action_652)
+            partial_1_5!(happyShift)(box action_652)
         },
         143 => {
-            partial_1_7!(happyShift)(box action_653)
+            partial_1_5!(happyShift)(box action_653)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_654)
+            partial_1_5!(happyShift)(box action_654)
         },
         182 => {
-            partial_1_7!(happyShift)(box action_916)
+            partial_1_5!(happyShift)(box action_916)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         93 => {
             partial_1_5!(happyGoto)(box action_854)
@@ -33497,7 +33497,7 @@ pub fn action_865(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_866(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_915)
+            partial_1_5!(happyShift)(box action_915)
         },
         _ => {
             happyFail
@@ -33512,7 +33512,7 @@ pub fn action_867(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_868(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_914)
+            partial_1_5!(happyShift)(box action_914)
         },
         _ => {
             happyFail
@@ -33523,7 +33523,7 @@ pub fn action_868(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_869(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_913)
+            partial_1_5!(happyShift)(box action_913)
         },
         _ => {
             happyFail
@@ -33534,76 +33534,76 @@ pub fn action_869(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_870(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -33674,10 +33674,10 @@ pub fn action_870(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_871(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         140 => {
-            partial_1_7!(happyShift)(box action_822)
+            partial_1_5!(happyShift)(box action_822)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         30 => {
             partial_1_5!(happyGoto)(box action_911)
@@ -33694,7 +33694,7 @@ pub fn action_871(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_872(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_910)
+            partial_1_5!(happyShift)(box action_910)
         },
         _ => {
             happyFail
@@ -33705,10 +33705,10 @@ pub fn action_872(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_873(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         140 => {
-            partial_1_7!(happyShift)(box action_822)
+            partial_1_5!(happyShift)(box action_822)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         28 => {
             partial_1_5!(happyGoto)(box action_909)
@@ -33735,7 +33735,7 @@ pub fn action_874(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_875(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_908)
+            partial_1_5!(happyShift)(box action_908)
         },
         _ => {
             happyFail
@@ -33746,7 +33746,7 @@ pub fn action_875(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_876(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_907)
+            partial_1_5!(happyShift)(box action_907)
         },
         _ => {
             happyFail
@@ -33769,76 +33769,76 @@ pub fn action_879(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_880(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -33910,16 +33910,16 @@ pub fn action_881(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_882(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_475)
+            partial_1_5!(happyShift)(box action_475)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_476)
+            partial_1_5!(happyShift)(box action_476)
         },
         167 => {
-            partial_1_7!(happyShift)(box action_795)
+            partial_1_5!(happyShift)(box action_795)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         60 => {
             partial_1_5!(happyGoto)(box action_905)
@@ -33945,19 +33945,19 @@ pub fn action_882(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_883(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_524)
+            partial_1_5!(happyShift)(box action_524)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_525)
+            partial_1_5!(happyShift)(box action_525)
         },
         167 => {
-            partial_1_7!(happyShift)(box action_804)
+            partial_1_5!(happyShift)(box action_804)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_140)
+            partial_1_5!(happyShift)(box action_140)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_229)
+            partial_1_5!(happyShift)(box action_229)
         },
         59 => {
             partial_1_5!(happyGoto)(box action_904)
@@ -34004,7 +34004,7 @@ pub fn action_883(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_884(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         134 => {
             partial_1_5!(happyGoto)(box action_887)
@@ -34022,76 +34022,76 @@ pub fn action_885(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_886(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -34167,7 +34167,7 @@ pub fn action_888(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_889(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_902)
+            partial_1_5!(happyShift)(box action_902)
         },
         _ => {
             happyFail
@@ -34198,76 +34198,76 @@ pub fn action_894(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_895(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -34335,79 +34335,79 @@ pub fn action_895(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_896(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_272)
+            partial_1_5!(happyShift)(box action_272)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         246 => {
-            partial_1_7!(happyShift)(box action_899)
+            partial_1_5!(happyShift)(box action_899)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -34451,37 +34451,37 @@ pub fn action_899(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_900(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         168 => {
-            partial_1_7!(happyShift)(box action_316)
+            partial_1_5!(happyShift)(box action_316)
         },
         169 => {
-            partial_1_7!(happyShift)(box action_317)
+            partial_1_5!(happyShift)(box action_317)
         },
         170 => {
-            partial_1_7!(happyShift)(box action_318)
+            partial_1_5!(happyShift)(box action_318)
         },
         171 => {
-            partial_1_7!(happyShift)(box action_319)
+            partial_1_5!(happyShift)(box action_319)
         },
         172 => {
-            partial_1_7!(happyShift)(box action_320)
+            partial_1_5!(happyShift)(box action_320)
         },
         173 => {
-            partial_1_7!(happyShift)(box action_321)
+            partial_1_5!(happyShift)(box action_321)
         },
         174 => {
-            partial_1_7!(happyShift)(box action_322)
+            partial_1_5!(happyShift)(box action_322)
         },
         175 => {
-            partial_1_7!(happyShift)(box action_323)
+            partial_1_5!(happyShift)(box action_323)
         },
         176 => {
-            partial_1_7!(happyShift)(box action_324)
+            partial_1_5!(happyShift)(box action_324)
         },
         177 => {
-            partial_1_7!(happyShift)(box action_325)
+            partial_1_5!(happyShift)(box action_325)
         },
         178 => {
-            partial_1_7!(happyShift)(box action_326)
+            partial_1_5!(happyShift)(box action_326)
         },
         121 => {
             partial_1_5!(happyGoto)(box action_928)
@@ -34507,7 +34507,7 @@ pub fn action_903(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_904(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         132 => {
             partial_1_5!(happyGoto)(box action_927)
@@ -34527,7 +34527,7 @@ pub fn action_904(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_905(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         239 => {
-            partial_1_7!(happyShift)(box action_142)
+            partial_1_5!(happyShift)(box action_142)
         },
         134 => {
             partial_1_5!(happyGoto)(box action_887)
@@ -34545,121 +34545,121 @@ pub fn action_906(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_907(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_926)
@@ -34757,121 +34757,121 @@ pub fn action_907(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_908(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         180 => {
-            partial_1_7!(happyShift)(box action_60)
+            partial_1_5!(happyShift)(box action_60)
         },
         181 => {
-            partial_1_7!(happyShift)(box action_61)
+            partial_1_5!(happyShift)(box action_61)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         187 => {
-            partial_1_7!(happyShift)(box action_62)
+            partial_1_5!(happyShift)(box action_62)
         },
         189 => {
-            partial_1_7!(happyShift)(box action_63)
+            partial_1_5!(happyShift)(box action_63)
         },
         191 => {
-            partial_1_7!(happyShift)(box action_64)
+            partial_1_5!(happyShift)(box action_64)
         },
         194 => {
-            partial_1_7!(happyShift)(box action_65)
+            partial_1_5!(happyShift)(box action_65)
         },
         196 => {
-            partial_1_7!(happyShift)(box action_66)
+            partial_1_5!(happyShift)(box action_66)
         },
         197 => {
-            partial_1_7!(happyShift)(box action_67)
+            partial_1_5!(happyShift)(box action_67)
         },
         203 => {
-            partial_1_7!(happyShift)(box action_68)
+            partial_1_5!(happyShift)(box action_68)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         205 => {
-            partial_1_7!(happyShift)(box action_69)
+            partial_1_5!(happyShift)(box action_69)
         },
         206 => {
-            partial_1_7!(happyShift)(box action_70)
+            partial_1_5!(happyShift)(box action_70)
         },
         217 => {
-            partial_1_7!(happyShift)(box action_71)
+            partial_1_5!(happyShift)(box action_71)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         224 => {
-            partial_1_7!(happyShift)(box action_72)
+            partial_1_5!(happyShift)(box action_72)
         },
         232 => {
-            partial_1_7!(happyShift)(box action_73)
+            partial_1_5!(happyShift)(box action_73)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_74)
+            partial_1_5!(happyShift)(box action_74)
         },
         238 => {
-            partial_1_7!(happyShift)(box action_75)
+            partial_1_5!(happyShift)(box action_75)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         12 => {
             partial_1_5!(happyGoto)(box action_925)
@@ -34969,10 +34969,10 @@ pub fn action_908(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_909(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_923)
+            partial_1_5!(happyShift)(box action_923)
         },
         167 => {
-            partial_1_7!(happyShift)(box action_924)
+            partial_1_5!(happyShift)(box action_924)
         },
         _ => {
             happyFail
@@ -34991,7 +34991,7 @@ pub fn action_911(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_912(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_922)
+            partial_1_5!(happyShift)(box action_922)
         },
         _ => {
             happyFail
@@ -35002,7 +35002,7 @@ pub fn action_912(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_913(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         128 => {
             partial_1_5!(happyGoto)(box action_921)
@@ -35016,7 +35016,7 @@ pub fn action_913(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_914(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         128 => {
             partial_1_5!(happyGoto)(box action_920)
@@ -35038,7 +35038,7 @@ pub fn action_916(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_917(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         141 => {
-            partial_1_7!(happyShift)(box action_919)
+            partial_1_5!(happyShift)(box action_919)
         },
         _ => {
             happyFail
@@ -35057,7 +35057,7 @@ pub fn action_919(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_920(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_936)
+            partial_1_5!(happyShift)(box action_936)
         },
         _ => {
             happyFail
@@ -35068,7 +35068,7 @@ pub fn action_920(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_921(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_935)
+            partial_1_5!(happyShift)(box action_935)
         },
         _ => {
             happyFail
@@ -35083,7 +35083,7 @@ pub fn action_922(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_923(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_934)
+            partial_1_5!(happyShift)(box action_934)
         },
         _ => {
             happyFail
@@ -35094,7 +35094,7 @@ pub fn action_923(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_924(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         31 => {
             partial_1_5!(happyGoto)(box action_932)
@@ -35130,79 +35130,79 @@ pub fn action_927(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_928(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_272)
+            partial_1_5!(happyShift)(box action_272)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         246 => {
-            partial_1_7!(happyShift)(box action_899)
+            partial_1_5!(happyShift)(box action_899)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -35246,10 +35246,10 @@ pub fn action_931(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_932(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_939)
+            partial_1_5!(happyShift)(box action_939)
         },
         179 => {
-            partial_1_7!(happyShift)(box action_940)
+            partial_1_5!(happyShift)(box action_940)
         },
         _ => {
             happyFail
@@ -35268,76 +35268,76 @@ pub fn action_934(_: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(H
 pub fn action_935(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -35408,76 +35408,76 @@ pub fn action_935(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_936(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         138 => {
-            partial_1_7!(happyShift)(box action_26)
+            partial_1_5!(happyShift)(box action_26)
         },
         144 => {
-            partial_1_7!(happyShift)(box action_27)
+            partial_1_5!(happyShift)(box action_27)
         },
         145 => {
-            partial_1_7!(happyShift)(box action_28)
+            partial_1_5!(happyShift)(box action_28)
         },
         146 => {
-            partial_1_7!(happyShift)(box action_29)
+            partial_1_5!(happyShift)(box action_29)
         },
         147 => {
-            partial_1_7!(happyShift)(box action_30)
+            partial_1_5!(happyShift)(box action_30)
         },
         148 => {
-            partial_1_7!(happyShift)(box action_31)
+            partial_1_5!(happyShift)(box action_31)
         },
         149 => {
-            partial_1_7!(happyShift)(box action_32)
+            partial_1_5!(happyShift)(box action_32)
         },
         150 => {
-            partial_1_7!(happyShift)(box action_33)
+            partial_1_5!(happyShift)(box action_33)
         },
         153 => {
-            partial_1_7!(happyShift)(box action_34)
+            partial_1_5!(happyShift)(box action_34)
         },
         164 => {
-            partial_1_7!(happyShift)(box action_35)
+            partial_1_5!(happyShift)(box action_35)
         },
         184 => {
-            partial_1_7!(happyShift)(box action_36)
+            partial_1_5!(happyShift)(box action_36)
         },
         204 => {
-            partial_1_7!(happyShift)(box action_37)
+            partial_1_5!(happyShift)(box action_37)
         },
         220 => {
-            partial_1_7!(happyShift)(box action_38)
+            partial_1_5!(happyShift)(box action_38)
         },
         233 => {
-            partial_1_7!(happyShift)(box action_39)
+            partial_1_5!(happyShift)(box action_39)
         },
         234 => {
-            partial_1_7!(happyShift)(box action_40)
+            partial_1_5!(happyShift)(box action_40)
         },
         235 => {
-            partial_1_7!(happyShift)(box action_41)
+            partial_1_5!(happyShift)(box action_41)
         },
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         237 => {
-            partial_1_7!(happyShift)(box action_43)
+            partial_1_5!(happyShift)(box action_43)
         },
         240 => {
-            partial_1_7!(happyShift)(box action_44)
+            partial_1_5!(happyShift)(box action_44)
         },
         241 => {
-            partial_1_7!(happyShift)(box action_45)
+            partial_1_5!(happyShift)(box action_45)
         },
         242 => {
-            partial_1_7!(happyShift)(box action_46)
+            partial_1_5!(happyShift)(box action_46)
         },
         243 => {
-            partial_1_7!(happyShift)(box action_47)
+            partial_1_5!(happyShift)(box action_47)
         },
         244 => {
-            partial_1_7!(happyShift)(box action_48)
+            partial_1_5!(happyShift)(box action_48)
         },
         245 => {
-            partial_1_7!(happyShift)(box action_49)
+            partial_1_5!(happyShift)(box action_49)
         },
         100 => {
             partial_1_5!(happyGoto)(box action_6)
@@ -35548,7 +35548,7 @@ pub fn action_936(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_937(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_944)
+            partial_1_5!(happyShift)(box action_944)
         },
         _ => {
             happyFail
@@ -35559,7 +35559,7 @@ pub fn action_937(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_938(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         139 => {
-            partial_1_7!(happyShift)(box action_943)
+            partial_1_5!(happyShift)(box action_943)
         },
         _ => {
             happyFail
@@ -35570,7 +35570,7 @@ pub fn action_938(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_939(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         180 => {
-            partial_1_7!(happyShift)(box action_942)
+            partial_1_5!(happyShift)(box action_942)
         },
         _ => {
             happyFail
@@ -35581,7 +35581,7 @@ pub fn action_939(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(
 pub fn action_940(_0: isize) -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
     match (_0) {
         236 => {
-            partial_1_7!(happyShift)(box action_42)
+            partial_1_5!(happyShift)(box action_42)
         },
         128 => {
             partial_1_5!(happyGoto)(box action_941)
