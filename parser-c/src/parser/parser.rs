@@ -41749,9 +41749,9 @@ pub fn happyAccept(_0: isize, _1: CToken, _2: HappyState<CToken, Box<Fn(HappyStk
 pub struct HappyState<b, c>(Box<Fn(isize, isize, b, HappyState<b, c>, Vec<HappyState<b, c>>) -> c>);
 
 
-pub fn happyShift(_0: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, _1: isize, _2: CToken, _3: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, _4: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, _5: HappyStk<HappyAbsSyn>, _6: P<HappyAbsSyn>) -> P<HappyAbsSyn> {
-    match (_0, _1, _2, _3, _4, _5, _6, _7) {
-        (new_state, 1, tk, st, sts, stk, __OP__, HappyStk(x, _)) => {
+pub fn happyShift(_0: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>, _1: isize, _2: CToken, _3: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, _4: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, _5: HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
+    match (_0, _1, _2, _3, _4, _5) {
+        (new_state, 1, tk, st, sts, stk) => {
             {
                 let i = (match x {
                         HappyErrorToken(i) => {
