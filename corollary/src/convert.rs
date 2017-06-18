@@ -217,7 +217,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 out = format!("partial_5_1!(partial_4_1!(({})()))", out);
             }
             if out.starts_with("action_") {
-                out = format!("curry_1_5!(curry_5_1!({}))", out);
+                out = format!("curry_1_5!({})", out);
             }
 
             out
