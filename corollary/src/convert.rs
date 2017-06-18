@@ -263,7 +263,15 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 format!("let {} = {}", print_expr(state, l), print_expr(state, r))
             } else {
                 let new_op = print_op_fn(op);
-                format!("{}({}, {})", new_op, print_expr(state, l), print_expr(state, r))
+                let left_str = print_expr(state, l);
+                let mut right_str = print_expr(state, r);
+
+                // HACK for HappyStk to box second arguent
+                if new_op == "HappyStk" {
+                    right_str = format!("box {}", right_str);
+                }
+
+                format!("{}({}, {})", new_op, left_str, right_str)
             }
         }
         Record(ref base, ref items) => {
@@ -332,7 +340,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             } else {
                 // Check for return() here, for now
                 if print_expr(state, &span[0]) == "return" {
-                    //TODO handle return more intelligently
+                    //TODO handle return more intelligently, like with .into()
                     print_expr(state, &Expr::Span(span[1..].to_vec()))
                 } else {
                     // Check for `if` statements
@@ -373,7 +381,19 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                 }
                                 end = format!("({})", out.join(", "));
                             }
-                            format!("{}{}", start, end)
+
+                            // HACK partially-apply some fns
+                            if start == "happyReduce" && span.len() < 8 && span.len() > 0 {
+                                format!("partial_{}_{}!({}){}", span.len(), 8 - span.len(), start, end)
+                            } else if start == "happyMonadReduce" && span.len() < 8 && span.len() > 0 {
+                                format!("partial_{}_{}!({}){}", span.len(), 8 - span.len(), start, end)
+                            } else if start == "happyGoto" && span.len() < 6 && span.len() > 0 {
+                                format!("partial_{}_{}!({}){}", span.len(), 6 - span.len(), start, end)
+                            } else if start == "happySpecReduce_1" && span.len() < 7 && span.len() > 0 {
+                                format!("partial_{}_{}!({}){}", span.len(), 7 - span.len(), start, end)
+                            } else {
+                                format!("{}{}", start, end)
+                            }
                         }
                     }
                 }
