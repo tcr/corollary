@@ -33263,247 +33263,247 @@ pub fn readCOctal(_0: String, _1: Either<String, CInteger>) -> Either<String, CI
     }
 }
 
-pub fn idkwtok(_0: Vec<char>) -> P<CToken> {
+pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
     match (_0) {
         ['_', ['A', ['l', ['i', ['g', ['n', ['a', ['s', []]]]]]]]] => {
-            tok(8, CTokAlignas)
+            tok(8, CTokAlignas, _curry_1)
         },
         ['_', ['A', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]]] => {
-            tok(8, CTokAlignof)
+            tok(8, CTokAlignof, _curry_1)
         },
         ['_', ['A', ['t', ['o', ['m', ['i', ['c', []]]]]]]] => {
-            tok(7, CTokAtomic)
+            tok(7, CTokAtomic, _curry_1)
         },
         ['_', ['B', ['o', ['o', ['l', []]]]]] => {
-            tok(5, CTokBool)
+            tok(5, CTokBool, _curry_1)
         },
         ['_', ['C', ['o', ['m', ['p', ['l', ['e', ['x', []]]]]]]]] => {
-            tok(8, CTokComplex)
+            tok(8, CTokComplex, _curry_1)
         },
         ['_', ['N', ['o', ['n', ['n', ['u', ['l', ['l', []]]]]]]]] => {
-            tok(8, CTokNonnull)
+            tok(8, CTokNonnull, _curry_1)
         },
         ['_', ['G', ['e', ['n', ['e', ['r', ['i', ['c', []]]]]]]]] => {
-            tok(8, CTokGeneric)
+            tok(8, CTokGeneric, _curry_1)
         },
         ['_', ['N', ['o', ['r', ['e', ['t', ['u', ['r', ['n', []]]]]]]]]] => {
-            tok(9, CTokNoreturn)
+            tok(9, CTokNoreturn, _curry_1)
         },
         ['_', ['N', ['u', ['l', ['l', ['a', ['b', ['l', ['e', []]]]]]]]]] => {
-            tok(9, CTokNullable)
+            tok(9, CTokNullable, _curry_1)
         },
         ['_', ['S', ['t', ['a', ['t', ['i', ['c', ['_', ['a', ['s', ['s', ['e', ['r', ['t', []]]]]]]]]]]]]]] => {
-            tok(14, CTokStaticAssert)
+            tok(14, CTokStaticAssert, _curry_1)
         },
         ['_', ['T', ['h', ['r', ['e', ['a', ['d', ['_', ['l', ['o', ['c', ['a', ['l', []]]]]]]]]]]]]] => {
-            tok(13, CTokThread)
+            tok(13, CTokThread, _curry_1)
         },
         ['_', ['_', ['a', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]]]] => {
-            tok(9, CTokAlignof)
+            tok(9, CTokAlignof, _curry_1)
         },
         ['a', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]] => {
-            tok(7, CTokAlignof)
+            tok(7, CTokAlignof, _curry_1)
         },
         ['_', ['_', ['a', ['l', ['i', ['g', ['n', ['o', ['f', ['_', ['_', []]]]]]]]]]]] => {
-            tok(11, CTokAlignof)
+            tok(11, CTokAlignof, _curry_1)
         },
         ['_', ['_', ['a', ['s', ['m', []]]]]] => {
-            tok(5, CTokAsm)
+            tok(5, CTokAsm, _curry_1)
         },
         ['a', ['s', ['m', []]]] => {
-            tok(3, CTokAsm)
+            tok(3, CTokAsm, _curry_1)
         },
         ['_', ['_', ['a', ['s', ['m', ['_', ['_', []]]]]]]] => {
-            tok(7, CTokAsm)
+            tok(7, CTokAsm, _curry_1)
         },
         ['_', ['_', ['a', ['t', ['t', ['r', ['i', ['b', ['u', ['t', ['e', []]]]]]]]]]]] => {
-            tok(11, (CTokGnuC(GnuCAttrTok)))
+            tok(11, (CTokGnuC(GnuCAttrTok)), _curry_1)
         },
         ['_', ['_', ['a', ['t', ['t', ['r', ['i', ['b', ['u', ['t', ['e', ['_', ['_', []]]]]]]]]]]]]] => {
-            tok(13, (CTokGnuC(GnuCAttrTok)))
+            tok(13, (CTokGnuC(GnuCAttrTok)), _curry_1)
         },
         ['a', ['u', ['t', ['o', []]]]] => {
-            tok(4, CTokAuto)
+            tok(4, CTokAuto, _curry_1)
         },
         ['b', ['r', ['e', ['a', ['k', []]]]]] => {
-            tok(5, CTokBreak)
+            tok(5, CTokBreak, _curry_1)
         },
         ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['o', ['f', ['f', ['s', ['e', ['t', ['o', ['f', []]]]]]]]]]]]]]]]]]] => {
-            tok(18, (CTokGnuC(GnuCOffsetof)))
+            tok(18, (CTokGnuC(GnuCOffsetof)), _curry_1)
         },
         ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['t', ['y', ['p', ['e', ['s', ['_', ['c', ['o', ['m', ['p', ['a', ['t', ['i', ['b', ['l', ['e', ['_', ['p', []]]]]]]]]]]]]]]]]]]]]]]]]]]]] => {
-            tok(28, (CTokGnuC(GnuCTyCompat)))
+            tok(28, (CTokGnuC(GnuCTyCompat)), _curry_1)
         },
         ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['v', ['a', ['_', ['a', ['r', ['g', []]]]]]]]]]]]]]]]] => {
-            tok(16, (CTokGnuC(GnuCVaArg)))
+            tok(16, (CTokGnuC(GnuCVaArg)), _curry_1)
         },
         ['c', ['a', ['s', ['e', []]]]] => {
-            tok(4, CTokCase)
+            tok(4, CTokCase, _curry_1)
         },
         ['c', ['h', ['a', ['r', []]]]] => {
-            tok(4, CTokChar)
+            tok(4, CTokChar, _curry_1)
         },
         ['_', ['_', ['c', ['o', ['m', ['p', ['l', ['e', ['x', ['_', ['_', []]]]]]]]]]]] => {
-            tok(11, CTokComplex)
+            tok(11, CTokComplex, _curry_1)
         },
         ['_', ['_', ['c', ['o', ['n', ['s', ['t', []]]]]]]] => {
-            tok(7, CTokConst)
+            tok(7, CTokConst, _curry_1)
         },
         ['c', ['o', ['n', ['s', ['t', []]]]]] => {
-            tok(5, CTokConst)
+            tok(5, CTokConst, _curry_1)
         },
         ['_', ['_', ['c', ['o', ['n', ['s', ['t', ['_', ['_', []]]]]]]]]] => {
-            tok(9, CTokConst)
+            tok(9, CTokConst, _curry_1)
         },
         ['c', ['o', ['n', ['t', ['i', ['n', ['u', ['e', []]]]]]]]] => {
-            tok(8, CTokContinue)
+            tok(8, CTokContinue, _curry_1)
         },
         ['d', ['e', ['f', ['a', ['u', ['l', ['t', []]]]]]]] => {
-            tok(7, CTokDefault)
+            tok(7, CTokDefault, _curry_1)
         },
         ['d', ['o', []]] => {
-            tok(2, CTokDo)
+            tok(2, CTokDo, _curry_1)
         },
         ['d', ['o', ['u', ['b', ['l', ['e', []]]]]]] => {
-            tok(6, CTokDouble)
+            tok(6, CTokDouble, _curry_1)
         },
         ['e', ['l', ['s', ['e', []]]]] => {
-            tok(4, CTokElse)
+            tok(4, CTokElse, _curry_1)
         },
         ['e', ['n', ['u', ['m', []]]]] => {
-            tok(4, CTokEnum)
+            tok(4, CTokEnum, _curry_1)
         },
         ['_', ['_', ['e', ['x', ['t', ['e', ['n', ['s', ['i', ['o', ['n', ['_', ['_', []]]]]]]]]]]]]] => {
-            tok(13, (CTokGnuC(GnuCExtTok)))
+            tok(13, (CTokGnuC(GnuCExtTok)), _curry_1)
         },
         ['e', ['x', ['t', ['e', ['r', ['n', []]]]]]] => {
-            tok(6, CTokExtern)
+            tok(6, CTokExtern, _curry_1)
         },
         ['f', ['l', ['o', ['a', ['t', []]]]]] => {
-            tok(5, CTokFloat)
+            tok(5, CTokFloat, _curry_1)
         },
         ['f', ['o', ['r', []]]] => {
-            tok(3, CTokFor)
+            tok(3, CTokFor, _curry_1)
         },
         ['g', ['o', ['t', ['o', []]]]] => {
-            tok(4, CTokGoto)
+            tok(4, CTokGoto, _curry_1)
         },
         ['i', ['f', []]] => {
-            tok(2, CTokIf)
+            tok(2, CTokIf, _curry_1)
         },
         ['_', ['_', ['i', ['m', ['a', ['g', []]]]]]] => {
-            tok(6, (CTokGnuC(GnuCComplexImag)))
+            tok(6, (CTokGnuC(GnuCComplexImag)), _curry_1)
         },
         ['_', ['_', ['i', ['m', ['a', ['g', ['_', ['_', []]]]]]]]] => {
-            tok(8, (CTokGnuC(GnuCComplexImag)))
+            tok(8, (CTokGnuC(GnuCComplexImag)), _curry_1)
         },
         ['_', ['_', ['i', ['n', ['l', ['i', ['n', ['e', []]]]]]]]] => {
-            tok(8, CTokInline)
+            tok(8, CTokInline, _curry_1)
         },
         ['i', ['n', ['l', ['i', ['n', ['e', []]]]]]] => {
-            tok(6, CTokInline)
+            tok(6, CTokInline, _curry_1)
         },
         ['_', ['_', ['i', ['n', ['l', ['i', ['n', ['e', ['_', ['_', []]]]]]]]]]] => {
-            tok(10, CTokInline)
+            tok(10, CTokInline, _curry_1)
         },
         ['i', ['n', ['t', []]]] => {
-            tok(3, CTokInt)
+            tok(3, CTokInt, _curry_1)
         },
         ['_', ['_', ['i', ['n', ['t', ['1', ['2', ['8', []]]]]]]]] => {
-            tok(8, CTokInt128)
+            tok(8, CTokInt128, _curry_1)
         },
         ['_', ['_', ['l', ['a', ['b', ['e', ['l', ['_', ['_', []]]]]]]]]] => {
-            tok(9, CTokLabel)
+            tok(9, CTokLabel, _curry_1)
         },
         ['l', ['o', ['n', ['g', []]]]] => {
-            tok(4, CTokLong)
+            tok(4, CTokLong, _curry_1)
         },
         ['_', ['_', ['n', ['o', ['n', ['n', ['u', ['l', ['l', []]]]]]]]]] => {
-            tok(9, CTokNonnull)
+            tok(9, CTokNonnull, _curry_1)
         },
         ['_', ['_', ['n', ['u', ['l', ['l', ['a', ['b', ['l', ['e', []]]]]]]]]]] => {
-            tok(10, CTokNullable)
+            tok(10, CTokNullable, _curry_1)
         },
         ['_', ['_', ['r', ['e', ['a', ['l', []]]]]]] => {
-            tok(6, (CTokGnuC(GnuCComplexReal)))
+            tok(6, (CTokGnuC(GnuCComplexReal)), _curry_1)
         },
         ['_', ['_', ['r', ['e', ['a', ['l', ['_', ['_', []]]]]]]]] => {
-            tok(8, (CTokGnuC(GnuCComplexReal)))
+            tok(8, (CTokGnuC(GnuCComplexReal)), _curry_1)
         },
         ['r', ['e', ['g', ['i', ['s', ['t', ['e', ['r', []]]]]]]]] => {
-            tok(8, CTokRegister)
+            tok(8, CTokRegister, _curry_1)
         },
         ['_', ['_', ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', []]]]]]]]]]] => {
-            tok(10, CTokRestrict)
+            tok(10, CTokRestrict, _curry_1)
         },
         ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', []]]]]]]]] => {
-            tok(8, CTokRestrict)
+            tok(8, CTokRestrict, _curry_1)
         },
         ['_', ['_', ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', ['_', ['_', []]]]]]]]]]]]] => {
-            tok(12, CTokRestrict)
+            tok(12, CTokRestrict, _curry_1)
         },
         ['r', ['e', ['t', ['u', ['r', ['n', []]]]]]] => {
-            tok(6, CTokReturn)
+            tok(6, CTokReturn, _curry_1)
         },
         ['s', ['h', ['o', ['r', ['t', []]]]]] => {
-            tok(5, CTokShort)
+            tok(5, CTokShort, _curry_1)
         },
         ['_', ['_', ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]]]] => {
-            tok(8, CTokSigned)
+            tok(8, CTokSigned, _curry_1)
         },
         ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]] => {
-            tok(6, CTokSigned)
+            tok(6, CTokSigned, _curry_1)
         },
         ['_', ['_', ['s', ['i', ['g', ['n', ['e', ['d', ['_', ['_', []]]]]]]]]]] => {
-            tok(10, CTokSigned)
+            tok(10, CTokSigned, _curry_1)
         },
         ['s', ['i', ['z', ['e', ['o', ['f', []]]]]]] => {
-            tok(6, CTokSizeof)
+            tok(6, CTokSizeof, _curry_1)
         },
         ['s', ['t', ['a', ['t', ['i', ['c', []]]]]]] => {
-            tok(6, CTokStatic)
+            tok(6, CTokStatic, _curry_1)
         },
         ['s', ['t', ['r', ['u', ['c', ['t', []]]]]]] => {
-            tok(6, CTokStruct)
+            tok(6, CTokStruct, _curry_1)
         },
         ['s', ['w', ['i', ['t', ['c', ['h', []]]]]]] => {
-            tok(6, CTokSwitch)
+            tok(6, CTokSwitch, _curry_1)
         },
         ['_', ['_', ['t', ['h', ['r', ['e', ['a', ['d', []]]]]]]]] => {
-            tok(8, CTokThread)
+            tok(8, CTokThread, _curry_1)
         },
         ['t', ['y', ['p', ['e', ['d', ['e', ['f', []]]]]]]] => {
-            tok(7, CTokTypedef)
+            tok(7, CTokTypedef, _curry_1)
         },
         ['_', ['_', ['t', ['y', ['p', ['e', ['o', ['f', []]]]]]]]] => {
-            tok(8, CTokTypeof)
+            tok(8, CTokTypeof, _curry_1)
         },
         ['t', ['y', ['p', ['e', ['o', ['f', []]]]]]] => {
-            tok(6, CTokTypeof)
+            tok(6, CTokTypeof, _curry_1)
         },
         ['_', ['_', ['t', ['y', ['p', ['e', ['o', ['f', ['_', ['_', []]]]]]]]]]] => {
-            tok(10, CTokTypeof)
+            tok(10, CTokTypeof, _curry_1)
         },
         ['u', ['n', ['i', ['o', ['n', []]]]]] => {
-            tok(5, CTokUnion)
+            tok(5, CTokUnion, _curry_1)
         },
         ['u', ['n', ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]]]] => {
-            tok(8, CTokUnsigned)
+            tok(8, CTokUnsigned, _curry_1)
         },
         ['v', ['o', ['i', ['d', []]]]] => {
-            tok(4, CTokVoid)
+            tok(4, CTokVoid, _curry_1)
         },
         ['_', ['_', ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', []]]]]]]]]]] => {
-            tok(10, CTokVolatile)
+            tok(10, CTokVolatile, _curry_1)
         },
         ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', []]]]]]]]] => {
-            tok(8, CTokVolatile)
+            tok(8, CTokVolatile, _curry_1)
         },
         ['_', ['_', ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', ['_', ['_', []]]]]]]]]]]]] => {
-            tok(12, CTokVolatile)
+            tok(12, CTokVolatile, _curry_1)
         },
         ['w', ['h', ['i', ['l', ['e', []]]]]] => {
-            tok(5, CTokWhile)
+            tok(5, CTokWhile, _curry_1)
         },
         cs => {
             box |pos| { /*do*/ {
@@ -33523,7 +33523,7 @@ pub fn idkwtok(_0: Vec<char>) -> P<CToken> {
 (CTokTyIdent((pos, len), ident))} else {
 (CTokIdent((pos, len), ident))
                     }
-                } }
+                } }(_curry_1)
         },
     }
 }

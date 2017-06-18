@@ -982,6 +982,22 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                                         inner.push(ast::Expr::Ref(ast::Ident(format!("_curry_{}", i))));
                                     }
                                     //TODO do case
+                                    ast::Expr::Case(_, ref mut cases) => {
+                                        args.push(ast::Pat::Ref(ast::Ident(format!("_curry_{}", i))));
+                                        for case in cases {
+                                            match *case {
+                                                ast::CaseCond::Direct(_, ref mut values) => {
+                                                    match values.last_mut() {
+                                                        Some(&mut Expr::Span(ref mut inner)) => {
+                                                            inner.push(ast::Expr::Ref(ast::Ident(format!("_curry_{}", i))));
+                                                        }
+                                                        _ => { }
+                                                    }
+                                                }
+                                                _ => { }
+                                            }
+                                        }
+                                    }
                                     _ => {
                                         // TODO
                                     }
