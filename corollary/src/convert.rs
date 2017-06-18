@@ -981,6 +981,7 @@ pub fn print_item_list(state: PrintState, stats: &[ast::Item], toplevel: bool) -
                                         args.push(ast::Pat::Ref(ast::Ident(format!("_curry_{}", i))));
                                         inner.push(ast::Expr::Ref(ast::Ident(format!("_curry_{}", i))));
                                     }
+                                    //TODO do case
                                     _ => {
                                         // TODO
                                     }
