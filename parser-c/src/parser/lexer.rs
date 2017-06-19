@@ -33263,8 +33263,8 @@ pub fn readCOctal(_0: String, _1: Either<String, CInteger>) -> Either<String, CI
     }
 }
 
-pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
-    match (_0) {
+pub fn idkwtok(_0: String, _curry_1: Position) -> P<CToken> {
+    match (_0.as_ref()) {
         "_Alignas" => {
             tok(8, box CTokAlignas, _curry_1)
         },
