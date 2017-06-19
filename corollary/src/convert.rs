@@ -212,7 +212,8 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                 format!("box {}", start)
             } else if start.starts_with("action_") {
                 format!("curry_1_5!({})", start)
-            } else if start.starts_with("happyReduce_") {
+            } else if start.starts_with("happyReduce_")
+                || start == "notHappyAtAll" {
                 format!("({})()", start)
             } else {
                 start
@@ -418,6 +419,9 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                 } else if start == "happyShift" && span.len() < 6 && span.len() > 0 {
                                     out.insert(0, start);
                                     format!("partial_{}!({})", 6 - span.len(), out.join(", "))
+                                } else if start == "tok" {
+                                    out[1] = format!("box {}", out[1]);
+                                    format!("{}({})", start, out.join(", "))
                                 } else {
                                     format!("{}({})", start, out.join(", "))
                                 }

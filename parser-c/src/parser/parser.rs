@@ -35644,7 +35644,7 @@ pub fn happyReduction_6<t>(_0: t, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn8(happy_var_1)
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35659,7 +35659,7 @@ pub fn happyReduction_7(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn8((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35674,7 +35674,7 @@ pub fn happyReduction_8(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn9((CFDefExt(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35689,7 +35689,7 @@ pub fn happyReduction_9(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn9((CDeclExt(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35704,7 +35704,7 @@ pub fn happyReduction_10<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
             HappyAbsSyn9(happy_var_2)
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35850,7 +35850,7 @@ pub fn happyReduction_27(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn12(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35865,7 +35865,7 @@ pub fn happyReduction_28(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn12(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35880,7 +35880,7 @@ pub fn happyReduction_29(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn12(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35895,7 +35895,7 @@ pub fn happyReduction_30(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn12(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35910,7 +35910,7 @@ pub fn happyReduction_31(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn12(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -35925,7 +35925,7 @@ pub fn happyReduction_32(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn12(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36020,7 +36020,7 @@ pub fn happyReduction_43(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn17((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36035,7 +36035,7 @@ pub fn happyReduction_44(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn18((CBlockStmt(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36050,7 +36050,7 @@ pub fn happyReduction_45(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn18(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36065,7 +36065,7 @@ pub fn happyReduction_46(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn18((CBlockDecl(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36080,7 +36080,7 @@ pub fn happyReduction_47(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn18((CNestedFunDef(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36095,7 +36095,7 @@ pub fn happyReduction_48<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
             HappyAbsSyn18(happy_var_2)
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36150,7 +36150,7 @@ pub fn happyReduction_54<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn {
             HappyAbsSyn21(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36325,7 +36325,7 @@ pub fn happyReduction_75(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn27((Some(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36348,7 +36348,7 @@ pub fn happyReduction_77(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn28((reverse(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36363,7 +36363,7 @@ pub fn happyReduction_78(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn29((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36378,7 +36378,7 @@ pub fn happyReduction_79<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAbs
             HappyAbsSyn29((snoc(happy_var_1, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36417,7 +36417,7 @@ pub fn happyReduction_83(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn31((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36432,7 +36432,7 @@ pub fn happyReduction_84<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAbs
             HappyAbsSyn31((snoc(happy_var_1, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36503,7 +36503,7 @@ pub fn happyReduction_91(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn33((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36599,7 +36599,7 @@ pub fn happyReduction_97(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn35(((happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36657,7 +36657,7 @@ pub fn happyReduction_101(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36672,7 +36672,7 @@ pub fn happyReduction_102(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36687,7 +36687,7 @@ pub fn happyReduction_103(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36702,7 +36702,7 @@ pub fn happyReduction_104(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36717,7 +36717,7 @@ pub fn happyReduction_105(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(reverseList((liftCAttrs(happy_var_1))), happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36732,7 +36732,7 @@ pub fn happyReduction_106(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(rmap(CTypeQual, happy_var_1), happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36747,7 +36747,7 @@ pub fn happyReduction_107(_0: HappyAbsSyn, _1: HappyAbsSyn, _2: HappyAbsSyn) -> 
             HappyAbsSyn38((snoc((rappend(rmap(CTypeQual, happy_var_1), liftCAttrs(happy_var_2))), happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36762,7 +36762,7 @@ pub fn happyReduction_108(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36777,7 +36777,7 @@ pub fn happyReduction_109(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36792,7 +36792,7 @@ pub fn happyReduction_110(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn39((CStorageSpec(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36807,7 +36807,7 @@ pub fn happyReduction_111(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn39((CTypeQual(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36822,7 +36822,7 @@ pub fn happyReduction_112(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn39((CFunSpec(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36837,7 +36837,7 @@ pub fn happyReduction_113(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn39((CAlignSpec(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36852,7 +36852,7 @@ pub fn happyReduction_114(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn39((CStorageSpec(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36867,7 +36867,7 @@ pub fn happyReduction_115(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn39((CFunSpec(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36882,7 +36882,7 @@ pub fn happyReduction_116(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn39((CAlignSpec(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36977,7 +36977,7 @@ pub fn happyReduction_127(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -36992,7 +36992,7 @@ pub fn happyReduction_128(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37007,7 +37007,7 @@ pub fn happyReduction_129(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn37((reverse(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37118,7 +37118,7 @@ pub fn happyReduction_142(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37133,7 +37133,7 @@ pub fn happyReduction_143(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CStorageSpec(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37148,7 +37148,7 @@ pub fn happyReduction_144(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37163,7 +37163,7 @@ pub fn happyReduction_145(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37178,7 +37178,7 @@ pub fn happyReduction_146(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37193,7 +37193,7 @@ pub fn happyReduction_147(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((singleton((CTypeSpec(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37208,7 +37208,7 @@ pub fn happyReduction_148(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc((reverseList(liftCAttrs(happy_var_1))), (CTypeSpec(happy_var_2)))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37223,7 +37223,7 @@ pub fn happyReduction_149(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(rmap(CTypeQual, happy_var_1), CTypeSpec(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37238,7 +37238,7 @@ pub fn happyReduction_150(_0: HappyAbsSyn, _1: HappyAbsSyn, _2: HappyAbsSyn) -> 
             HappyAbsSyn38((rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec(happy_var_3)))))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37253,7 +37253,7 @@ pub fn happyReduction_151(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CTypeQual(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37268,7 +37268,7 @@ pub fn happyReduction_152(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37283,7 +37283,7 @@ pub fn happyReduction_153(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37298,7 +37298,7 @@ pub fn happyReduction_154(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CTypeSpec(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37313,7 +37313,7 @@ pub fn happyReduction_155(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CStorageSpec(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37328,7 +37328,7 @@ pub fn happyReduction_156(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37343,7 +37343,7 @@ pub fn happyReduction_157(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37358,7 +37358,7 @@ pub fn happyReduction_158(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((singleton((CTypeSpec(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37373,7 +37373,7 @@ pub fn happyReduction_159(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc((reverseList(liftCAttrs(happy_var_1))), (CTypeSpec(happy_var_2)))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37388,7 +37388,7 @@ pub fn happyReduction_160(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(rmap(CTypeQual, happy_var_1), CTypeSpec(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37403,7 +37403,7 @@ pub fn happyReduction_161(_0: HappyAbsSyn, _1: HappyAbsSyn, _2: HappyAbsSyn) -> 
             HappyAbsSyn38((rappend(rmap(CTypeQual, happy_var_1), snoc((liftCAttrs(happy_var_2)), CTypeSpec(happy_var_3)))))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37418,7 +37418,7 @@ pub fn happyReduction_162(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CTypeQual(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37433,7 +37433,7 @@ pub fn happyReduction_163(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37448,7 +37448,7 @@ pub fn happyReduction_164(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CStorageSpec(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37487,7 +37487,7 @@ pub fn happyReduction_168(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37502,7 +37502,7 @@ pub fn happyReduction_169(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37613,7 +37613,7 @@ pub fn happyReduction_182(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((snoc(happy_var_1, CTypeQual(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37628,7 +37628,7 @@ pub fn happyReduction_183(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn38((addTrailingAttrs(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37683,7 +37683,7 @@ pub fn happyReduction_189(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn54((Located(CStructTag, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37698,7 +37698,7 @@ pub fn happyReduction_190(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn54((Located(CUnionTag, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37721,7 +37721,7 @@ pub fn happyReduction_192<t>(_0: t, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn33(happy_var_1)
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37736,7 +37736,7 @@ pub fn happyReduction_193(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn33((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37755,7 +37755,7 @@ pub fn happyReduction_194<t>(_0: t, _1: HappyAbsSyn) -> HappyAbsSyn {
                 }))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37774,7 +37774,7 @@ pub fn happyReduction_195<t>(_0: t, _1: HappyAbsSyn) -> HappyAbsSyn {
                 }))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37789,7 +37789,7 @@ pub fn happyReduction_196<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
             HappyAbsSyn32(happy_var_2)
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37889,7 +37889,7 @@ pub fn happyReduction_203(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn59(((Some((reverseDeclr(happy_var_1))), None)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37904,7 +37904,7 @@ pub fn happyReduction_204<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
             HappyAbsSyn59(((None, Some(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37919,7 +37919,7 @@ pub fn happyReduction_205<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn59(((Some((reverseDeclr(happy_var_1))), Some(happy_var_3))))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37934,7 +37934,7 @@ pub fn happyReduction_206(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn59(((Some((reverseDeclr(happy_var_1))), None)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37949,7 +37949,7 @@ pub fn happyReduction_207<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
             HappyAbsSyn59(((None, Some(happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37964,7 +37964,7 @@ pub fn happyReduction_208<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn59(((Some((reverseDeclr(happy_var_1))), Some(happy_var_3))))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -37986,7 +37986,7 @@ pub fn happyReduction_209(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
                 }))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38041,7 +38041,7 @@ pub fn happyReduction_215(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn62((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38056,7 +38056,7 @@ pub fn happyReduction_216<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn62((snoc(happy_var_1, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38071,7 +38071,7 @@ pub fn happyReduction_217(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn63(((happy_var_1, None)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38086,7 +38086,7 @@ pub fn happyReduction_218<t>(_0: t, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn63(((happy_var_1, None)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38109,7 +38109,7 @@ pub fn happyReduction_220<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn63(((happy_var_1, Some(happy_var_3))))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38172,7 +38172,7 @@ pub fn happyReduction_227(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn65((snoc(reverseList((__map!(CAttrQual, happy_var_1))), happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38187,7 +38187,7 @@ pub fn happyReduction_228(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn65((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38202,7 +38202,7 @@ pub fn happyReduction_229(_0: HappyAbsSyn, _1: HappyAbsSyn, _2: HappyAbsSyn) -> 
             HappyAbsSyn65((snoc((rappend(happy_var_1, __map!(CAttrQual, happy_var_2))), happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38217,7 +38217,7 @@ pub fn happyReduction_230(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38232,7 +38232,7 @@ pub fn happyReduction_231(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38263,7 +38263,7 @@ pub fn happyReduction_234(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38278,7 +38278,7 @@ pub fn happyReduction_235(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38309,7 +38309,7 @@ pub fn happyReduction_238(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38324,7 +38324,7 @@ pub fn happyReduction_239(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38371,7 +38371,7 @@ pub fn happyReduction_244<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38410,7 +38410,7 @@ pub fn happyReduction_248(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38473,7 +38473,7 @@ pub fn happyReduction_255<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38512,7 +38512,7 @@ pub fn happyReduction_259<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38527,7 +38527,7 @@ pub fn happyReduction_260(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38542,7 +38542,7 @@ pub fn happyReduction_261(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38557,7 +38557,7 @@ pub fn happyReduction_262(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38604,7 +38604,7 @@ pub fn happyReduction_267(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66((happy_var_2(happy_var_1)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38619,7 +38619,7 @@ pub fn happyReduction_268<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38666,7 +38666,7 @@ pub fn happyReduction_273<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38689,7 +38689,7 @@ pub fn happyReduction_275(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn11((reverseDeclr(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38704,7 +38704,7 @@ pub fn happyReduction_276(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38743,7 +38743,7 @@ pub fn happyReduction_280<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38774,7 +38774,7 @@ pub fn happyReduction_283(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn82(((reverse(happy_var_1), false)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38789,7 +38789,7 @@ pub fn happyReduction_284<t, t1>(_0: t1, _1: t, _2: HappyAbsSyn) -> HappyAbsSyn 
             HappyAbsSyn82(((reverse(happy_var_1), true)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38804,7 +38804,7 @@ pub fn happyReduction_285(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn33((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38819,7 +38819,7 @@ pub fn happyReduction_286<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn33((snoc(happy_var_1, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38954,7 +38954,7 @@ pub fn happyReduction_302(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn21((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -38969,7 +38969,7 @@ pub fn happyReduction_303<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn21((snoc(happy_var_1, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39016,7 +39016,7 @@ pub fn happyReduction_308(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39031,7 +39031,7 @@ pub fn happyReduction_309(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39046,7 +39046,7 @@ pub fn happyReduction_310(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66((happy_var_1(emptyDeclr)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39061,7 +39061,7 @@ pub fn happyReduction_311(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn88(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39088,7 +39088,7 @@ pub fn happyReduction_313(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn88(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39103,7 +39103,7 @@ pub fn happyReduction_314(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn88((box |decl| { happy_var_2((happy_var_1(decl))) }))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39254,7 +39254,7 @@ pub fn happyReduction_332<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39269,7 +39269,7 @@ pub fn happyReduction_333<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn66(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39284,7 +39284,7 @@ pub fn happyReduction_334<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn66((happy_var_2(emptyDeclr)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39339,7 +39339,7 @@ pub fn happyReduction_340(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn66((appendDeclrAttrs(happy_var_2, happy_var_1)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39386,7 +39386,7 @@ pub fn happyReduction_345<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
             HappyAbsSyn94((Some(happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39409,7 +39409,7 @@ pub fn happyReduction_347(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn95((singleton((vec![], happy_var_1))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39424,7 +39424,7 @@ pub fn happyReduction_348(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn95((singleton((happy_var_1, happy_var_2))))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39439,7 +39439,7 @@ pub fn happyReduction_349<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn95((snoc(happy_var_1, (vec![], happy_var_3))))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39462,7 +39462,7 @@ pub fn happyReduction_351<t>(_0: t, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn96((reverse(happy_var_1)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39485,7 +39485,7 @@ pub fn happyReduction_353(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn96((vec![happy_var_1]))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39500,7 +39500,7 @@ pub fn happyReduction_354(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn97((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39515,7 +39515,7 @@ pub fn happyReduction_355(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn97((snoc(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39546,7 +39546,7 @@ pub fn happyReduction_358(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn98(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39577,7 +39577,7 @@ pub fn happyReduction_361(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100((CConst(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39592,7 +39592,7 @@ pub fn happyReduction_362(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100((CConst((liftStrLit(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39607,7 +39607,7 @@ pub fn happyReduction_363<t, t1>(_0: t1, _1: HappyAbsSyn, _2: t) -> HappyAbsSyn 
             HappyAbsSyn100(happy_var_2)
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39662,7 +39662,7 @@ pub fn happyReduction_369<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn101((snoc(happy_var_1, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39677,7 +39677,7 @@ pub fn happyReduction_370(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn101((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39692,7 +39692,7 @@ pub fn happyReduction_371<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn102(((Some(happy_var_1), happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39707,7 +39707,7 @@ pub fn happyReduction_372<t, t1>(_0: HappyAbsSyn, _1: t1, _2: t) -> HappyAbsSyn 
             HappyAbsSyn102(((None, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39746,7 +39746,7 @@ pub fn happyReduction_376(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39833,7 +39833,7 @@ pub fn happyReduction_386(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn105((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39848,7 +39848,7 @@ pub fn happyReduction_387<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn105((snoc(happy_var_1, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39863,7 +39863,7 @@ pub fn happyReduction_388(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39894,7 +39894,7 @@ pub fn happyReduction_391<t>(_0: HappyAbsSyn, _1: t) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_2)
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39973,7 +39973,7 @@ pub fn happyReduction_400(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn107((Located(CAdrOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -39988,7 +39988,7 @@ pub fn happyReduction_401(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn107((Located(CIndOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40003,7 +40003,7 @@ pub fn happyReduction_402(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn107((Located(CPlusOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40018,7 +40018,7 @@ pub fn happyReduction_403(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn107((Located(CMinOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40033,7 +40033,7 @@ pub fn happyReduction_404(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn107((Located(CCompOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40048,7 +40048,7 @@ pub fn happyReduction_405(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn107((Located(CNegOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40063,7 +40063,7 @@ pub fn happyReduction_406(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40086,7 +40086,7 @@ pub fn happyReduction_408(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40125,7 +40125,7 @@ pub fn happyReduction_412(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40156,7 +40156,7 @@ pub fn happyReduction_415(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40187,7 +40187,7 @@ pub fn happyReduction_418(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40234,7 +40234,7 @@ pub fn happyReduction_423(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40265,7 +40265,7 @@ pub fn happyReduction_426(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40288,7 +40288,7 @@ pub fn happyReduction_428(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40311,7 +40311,7 @@ pub fn happyReduction_430(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40334,7 +40334,7 @@ pub fn happyReduction_432(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40357,7 +40357,7 @@ pub fn happyReduction_434(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40380,7 +40380,7 @@ pub fn happyReduction_436(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40411,7 +40411,7 @@ pub fn happyReduction_439(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40434,7 +40434,7 @@ pub fn happyReduction_441(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CAssignOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40449,7 +40449,7 @@ pub fn happyReduction_442(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CMulAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40464,7 +40464,7 @@ pub fn happyReduction_443(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CDivAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40479,7 +40479,7 @@ pub fn happyReduction_444(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CRmdAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40494,7 +40494,7 @@ pub fn happyReduction_445(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CAddAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40509,7 +40509,7 @@ pub fn happyReduction_446(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CSubAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40524,7 +40524,7 @@ pub fn happyReduction_447(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CShlAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40539,7 +40539,7 @@ pub fn happyReduction_448(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CShrAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40554,7 +40554,7 @@ pub fn happyReduction_449(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CAndAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40569,7 +40569,7 @@ pub fn happyReduction_450(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(CXorAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40584,7 +40584,7 @@ pub fn happyReduction_451(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn121((Located(COrAssOp, (posOf(happy_var_1)))))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40599,7 +40599,7 @@ pub fn happyReduction_452(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40625,7 +40625,7 @@ pub fn happyReduction_454(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn105((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40640,7 +40640,7 @@ pub fn happyReduction_455<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn105((snoc(happy_var_1, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40663,7 +40663,7 @@ pub fn happyReduction_457(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn124((Some(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40686,7 +40686,7 @@ pub fn happyReduction_459(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn124((Some(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40701,7 +40701,7 @@ pub fn happyReduction_460(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn100(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40780,7 +40780,7 @@ pub fn happyReduction_466(_0: HappyAbsSyn) -> HappyAbsSyn {
                 }))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40799,7 +40799,7 @@ pub fn happyReduction_467(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
                 }))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40814,7 +40814,7 @@ pub fn happyReduction_468(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn130(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40829,7 +40829,7 @@ pub fn happyReduction_469(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn131(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40844,7 +40844,7 @@ pub fn happyReduction_470(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn131(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40867,7 +40867,7 @@ pub fn happyReduction_472(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn132(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40882,7 +40882,7 @@ pub fn happyReduction_473(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn132(happy_var_1)
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40897,7 +40897,7 @@ pub fn happyReduction_474(_0: HappyAbsSyn, _1: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn132((__op_addadd(happy_var_1, happy_var_2)))
         },
         (_, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40927,7 +40927,7 @@ pub fn happyReduction_476(_0: HappyAbsSyn) -> HappyAbsSyn {
                 }))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40942,7 +40942,7 @@ pub fn happyReduction_477<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn135(((maybe(id, (flip(snoc)), happy_var_3))(happy_var_1)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -40997,7 +40997,7 @@ pub fn happyReduction_483(_0: HappyAbsSyn) -> HappyAbsSyn {
             HappyAbsSyn105((singleton(happy_var_1)))
         },
         _ => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -41028,7 +41028,7 @@ pub fn happyReduction_486<t>(_0: HappyAbsSyn, _1: t, _2: HappyAbsSyn) -> HappyAb
             HappyAbsSyn105((snoc(happy_var_1, happy_var_3)))
         },
         (_, _, _) => {
-            notHappyAtAll
+            (notHappyAtAll)()
         },
     }
 }
@@ -41430,7 +41430,7 @@ pub fn translation_unit() -> P<CTranslationUnit<NodeInfo>> {
                         happyReturn(z)
                     },
                     _other => {
-                        notHappyAtAll
+                        (notHappyAtAll)()
                     },
                 } }));
 
@@ -41444,7 +41444,7 @@ pub fn external_declaration() -> P<CExtDecl> {
                         happyReturn(z)
                     },
                     _other => {
-                        notHappyAtAll
+                        (notHappyAtAll)()
                     },
                 } }));
 
@@ -41458,7 +41458,7 @@ pub fn statement() -> P<CStat> {
                         happyReturn(z)
                     },
                     _other => {
-                        notHappyAtAll
+                        (notHappyAtAll)()
                     },
                 } }));
 
@@ -41472,7 +41472,7 @@ pub fn expression() -> P<CExpr> {
                         happyReturn(z)
                     },
                     _other => {
-                        notHappyAtAll
+                        (notHappyAtAll)()
                     },
                 } }));
 
@@ -41724,7 +41724,7 @@ pub struct HappyStk<a>(a, HappyStk<a>);
 
 
 pub fn happyParse(start_state: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>) -> P<HappyAbsSyn> {
-    happyNewToken(start_state, notHappyAtAll, notHappyAtAll)
+    happyNewToken(start_state, (notHappyAtAll)(), (notHappyAtAll)())
 }
 
 pub fn happyAccept(_0: isize, _1: CToken, _2: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, _3: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, _4: HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn> {
