@@ -8,6 +8,8 @@ use data::node::*;
 use data::ident::*;
 use syntax::ops::*;
 use syntax::constants::*;
+use data::position::posOf;
+use data::position::{Position, Pos};
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Syntax::Constants;
@@ -391,3 +393,159 @@ pub fn cstringOfLit<a>(CStringLiteral(cstr, _): CStringLiteral<a>) -> CString {
 pub fn liftStrLit<a>(CStringLiteral(__str, at): CStringLiteral<a>) -> CConstant<a> {
     CStrConst(__str, at)
 }
+
+// GENERATED START
+
+impl<T> Pos for CTranslationUnit<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CExternalDeclaration<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CFunctionDef<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+
+impl<T> Pos for CDeclaration<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+
+impl<T> Pos for CDeclarator<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CDerivedDeclarator<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CStatement<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CAssemblyStatement<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CAssemblyOperand<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CCompoundBlockItem<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CDeclarationSpecifier<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CStorageSpecifier<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CTypeSpecifier<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CTypeQualifier<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CFunctionSpecifier<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CAlignmentSpecifier<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CStructureUnion<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CEnumeration<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CInitializer<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CPartDesignator<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CAttribute<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CExpression<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CBuiltinThing<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CConstant<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+impl<T> Pos for CStringLiteral<T> where T: CNode {
+    fn posOf(self) -> Position {
+        posOf(nodeInfo(self))
+    }
+}
+
+// GENERATED STOP
