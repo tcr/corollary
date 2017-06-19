@@ -22,6 +22,7 @@ tempdir = "0.3"
 walkdir = "1"
 Inflector = "0.10.0"
 matches = "0.1.4"
+iflet = "0.1.0"
 
 [dependencies.parser-haskell]
 path = "../parser-haskell"

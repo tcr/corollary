@@ -52,7 +52,7 @@ pub fn alex_tab_size() -> isize {
     8
 }
 
-pub fn alex_base() -> Array<isize, isize> {
+pub fn alex_base() -> Vec<isize> {
     listArray((0, 338), vec![
             -8,
             109,
@@ -396,7 +396,7 @@ pub fn alex_base() -> Array<isize, isize> {
         ])
 }
 
-pub fn alex_table() -> Array<isize, isize> {
+pub fn alex_table() -> Vec<isize> {
     listArray((0, 16011), vec![
             0,
             212,
@@ -16413,7 +16413,7 @@ pub fn alex_table() -> Array<isize, isize> {
         ])
 }
 
-pub fn alex_check() -> Array<isize, isize> {
+pub fn alex_check() -> Vec<isize> {
     listArray((0, 16011), vec![
             -1,
             9,
@@ -32430,7 +32430,7 @@ pub fn alex_check() -> Array<isize, isize> {
         ])
 }
 
-pub fn alex_deflt() -> Array<isize, isize> {
+pub fn alex_deflt() -> Vec<isize> {
     listArray((0, 338), vec![
             -1,
             9,
@@ -32774,7 +32774,7 @@ pub fn alex_deflt() -> Array<isize, isize> {
         ])
 }
 
-pub fn alex_accept<a>() -> Array<isize, AlexAcc<a>> {
+pub fn alex_accept<a>() -> Vec<AlexAcc<a>> {
     listArray((0, 338), vec![
             AlexAccNone,
             AlexAccNone,
@@ -33118,7 +33118,7 @@ pub fn alex_accept<a>() -> Array<isize, AlexAcc<a>> {
         ])
 }
 
-pub fn alex_actions() -> Array<isize, Box<Fn(Position, isize, InputStream) -> P<CToken>>> {
+pub fn alex_actions() -> Vec<Box<Fn(Position, isize, InputStream) -> P<CToken>>> {
     array((0, 124), vec![
             (123, box alex_action_1),
             (122, box alex_action_4),
@@ -33249,7 +33249,7 @@ pub fn alex_actions() -> Array<isize, Box<Fn(Position, isize, InputStream) -> P<
 
 pub fn readCOctal(_0: String, _1: Either<String, CInteger>) -> Either<String, CInteger> {
     match (_0, _1, _2) {
-        (s, __OP__, ['0', r]) => {
+        (s, __OP__, "0", r) => {
             match r {
                 [c, _] if isDigit(c) => { readCInteger(OctalRepr, r) }
                 _ => {
@@ -33265,244 +33265,244 @@ pub fn readCOctal(_0: String, _1: Either<String, CInteger>) -> Either<String, CI
 
 pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
     match (_0) {
-        ['_', ['A', ['l', ['i', ['g', ['n', ['a', ['s', []]]]]]]]] => {
+        "_Alignas" => {
             tok(8, box CTokAlignas, _curry_1)
         },
-        ['_', ['A', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]]] => {
+        "_Alignof" => {
             tok(8, box CTokAlignof, _curry_1)
         },
-        ['_', ['A', ['t', ['o', ['m', ['i', ['c', []]]]]]]] => {
+        "_Atomic" => {
             tok(7, box CTokAtomic, _curry_1)
         },
-        ['_', ['B', ['o', ['o', ['l', []]]]]] => {
+        "_Bool" => {
             tok(5, box CTokBool, _curry_1)
         },
-        ['_', ['C', ['o', ['m', ['p', ['l', ['e', ['x', []]]]]]]]] => {
+        "_Complex" => {
             tok(8, box CTokComplex, _curry_1)
         },
-        ['_', ['N', ['o', ['n', ['n', ['u', ['l', ['l', []]]]]]]]] => {
+        "_Nonnull" => {
             tok(8, box CTokNonnull, _curry_1)
         },
-        ['_', ['G', ['e', ['n', ['e', ['r', ['i', ['c', []]]]]]]]] => {
+        "_Generic" => {
             tok(8, box CTokGeneric, _curry_1)
         },
-        ['_', ['N', ['o', ['r', ['e', ['t', ['u', ['r', ['n', []]]]]]]]]] => {
+        "_Noreturn" => {
             tok(9, box CTokNoreturn, _curry_1)
         },
-        ['_', ['N', ['u', ['l', ['l', ['a', ['b', ['l', ['e', []]]]]]]]]] => {
+        "_Nullable" => {
             tok(9, box CTokNullable, _curry_1)
         },
-        ['_', ['S', ['t', ['a', ['t', ['i', ['c', ['_', ['a', ['s', ['s', ['e', ['r', ['t', []]]]]]]]]]]]]]] => {
+        "_Static_assert" => {
             tok(14, box CTokStaticAssert, _curry_1)
         },
-        ['_', ['T', ['h', ['r', ['e', ['a', ['d', ['_', ['l', ['o', ['c', ['a', ['l', []]]]]]]]]]]]]] => {
+        "_Thread_local" => {
             tok(13, box CTokThread, _curry_1)
         },
-        ['_', ['_', ['a', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]]]] => {
+        "__alignof" => {
             tok(9, box CTokAlignof, _curry_1)
         },
-        ['a', ['l', ['i', ['g', ['n', ['o', ['f', []]]]]]]] => {
+        "alignof" => {
             tok(7, box CTokAlignof, _curry_1)
         },
-        ['_', ['_', ['a', ['l', ['i', ['g', ['n', ['o', ['f', ['_', ['_', []]]]]]]]]]]] => {
+        "__alignof__" => {
             tok(11, box CTokAlignof, _curry_1)
         },
-        ['_', ['_', ['a', ['s', ['m', []]]]]] => {
+        "__asm" => {
             tok(5, box CTokAsm, _curry_1)
         },
-        ['a', ['s', ['m', []]]] => {
+        "asm" => {
             tok(3, box CTokAsm, _curry_1)
         },
-        ['_', ['_', ['a', ['s', ['m', ['_', ['_', []]]]]]]] => {
+        "__asm__" => {
             tok(7, box CTokAsm, _curry_1)
         },
-        ['_', ['_', ['a', ['t', ['t', ['r', ['i', ['b', ['u', ['t', ['e', []]]]]]]]]]]] => {
+        "__attribute" => {
             tok(11, box (CTokGnuC(GnuCAttrTok)), _curry_1)
         },
-        ['_', ['_', ['a', ['t', ['t', ['r', ['i', ['b', ['u', ['t', ['e', ['_', ['_', []]]]]]]]]]]]]] => {
+        "__attribute__" => {
             tok(13, box (CTokGnuC(GnuCAttrTok)), _curry_1)
         },
-        ['a', ['u', ['t', ['o', []]]]] => {
+        "auto" => {
             tok(4, box CTokAuto, _curry_1)
         },
-        ['b', ['r', ['e', ['a', ['k', []]]]]] => {
+        "break" => {
             tok(5, box CTokBreak, _curry_1)
         },
-        ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['o', ['f', ['f', ['s', ['e', ['t', ['o', ['f', []]]]]]]]]]]]]]]]]]] => {
+        "__builtin_offsetof" => {
             tok(18, box (CTokGnuC(GnuCOffsetof)), _curry_1)
         },
-        ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['t', ['y', ['p', ['e', ['s', ['_', ['c', ['o', ['m', ['p', ['a', ['t', ['i', ['b', ['l', ['e', ['_', ['p', []]]]]]]]]]]]]]]]]]]]]]]]]]]]] => {
+        "__builtin_types_compatible_p" => {
             tok(28, box (CTokGnuC(GnuCTyCompat)), _curry_1)
         },
-        ['_', ['_', ['b', ['u', ['i', ['l', ['t', ['i', ['n', ['_', ['v', ['a', ['_', ['a', ['r', ['g', []]]]]]]]]]]]]]]]] => {
+        "__builtin_va_arg" => {
             tok(16, box (CTokGnuC(GnuCVaArg)), _curry_1)
         },
-        ['c', ['a', ['s', ['e', []]]]] => {
+        "case" => {
             tok(4, box CTokCase, _curry_1)
         },
-        ['c', ['h', ['a', ['r', []]]]] => {
+        "char" => {
             tok(4, box CTokChar, _curry_1)
         },
-        ['_', ['_', ['c', ['o', ['m', ['p', ['l', ['e', ['x', ['_', ['_', []]]]]]]]]]]] => {
+        "__complex__" => {
             tok(11, box CTokComplex, _curry_1)
         },
-        ['_', ['_', ['c', ['o', ['n', ['s', ['t', []]]]]]]] => {
+        "__const" => {
             tok(7, box CTokConst, _curry_1)
         },
-        ['c', ['o', ['n', ['s', ['t', []]]]]] => {
+        "const" => {
             tok(5, box CTokConst, _curry_1)
         },
-        ['_', ['_', ['c', ['o', ['n', ['s', ['t', ['_', ['_', []]]]]]]]]] => {
+        "__const__" => {
             tok(9, box CTokConst, _curry_1)
         },
-        ['c', ['o', ['n', ['t', ['i', ['n', ['u', ['e', []]]]]]]]] => {
+        "continue" => {
             tok(8, box CTokContinue, _curry_1)
         },
-        ['d', ['e', ['f', ['a', ['u', ['l', ['t', []]]]]]]] => {
+        "default" => {
             tok(7, box CTokDefault, _curry_1)
         },
-        ['d', ['o', []]] => {
+        "do" => {
             tok(2, box CTokDo, _curry_1)
         },
-        ['d', ['o', ['u', ['b', ['l', ['e', []]]]]]] => {
+        "double" => {
             tok(6, box CTokDouble, _curry_1)
         },
-        ['e', ['l', ['s', ['e', []]]]] => {
+        "else" => {
             tok(4, box CTokElse, _curry_1)
         },
-        ['e', ['n', ['u', ['m', []]]]] => {
+        "enum" => {
             tok(4, box CTokEnum, _curry_1)
         },
-        ['_', ['_', ['e', ['x', ['t', ['e', ['n', ['s', ['i', ['o', ['n', ['_', ['_', []]]]]]]]]]]]]] => {
+        "__extension__" => {
             tok(13, box (CTokGnuC(GnuCExtTok)), _curry_1)
         },
-        ['e', ['x', ['t', ['e', ['r', ['n', []]]]]]] => {
+        "extern" => {
             tok(6, box CTokExtern, _curry_1)
         },
-        ['f', ['l', ['o', ['a', ['t', []]]]]] => {
+        "float" => {
             tok(5, box CTokFloat, _curry_1)
         },
-        ['f', ['o', ['r', []]]] => {
+        "for" => {
             tok(3, box CTokFor, _curry_1)
         },
-        ['g', ['o', ['t', ['o', []]]]] => {
+        "goto" => {
             tok(4, box CTokGoto, _curry_1)
         },
-        ['i', ['f', []]] => {
+        "if" => {
             tok(2, box CTokIf, _curry_1)
         },
-        ['_', ['_', ['i', ['m', ['a', ['g', []]]]]]] => {
+        "__imag" => {
             tok(6, box (CTokGnuC(GnuCComplexImag)), _curry_1)
         },
-        ['_', ['_', ['i', ['m', ['a', ['g', ['_', ['_', []]]]]]]]] => {
+        "__imag__" => {
             tok(8, box (CTokGnuC(GnuCComplexImag)), _curry_1)
         },
-        ['_', ['_', ['i', ['n', ['l', ['i', ['n', ['e', []]]]]]]]] => {
+        "__inline" => {
             tok(8, box CTokInline, _curry_1)
         },
-        ['i', ['n', ['l', ['i', ['n', ['e', []]]]]]] => {
+        "inline" => {
             tok(6, box CTokInline, _curry_1)
         },
-        ['_', ['_', ['i', ['n', ['l', ['i', ['n', ['e', ['_', ['_', []]]]]]]]]]] => {
+        "__inline__" => {
             tok(10, box CTokInline, _curry_1)
         },
-        ['i', ['n', ['t', []]]] => {
+        "int" => {
             tok(3, box CTokInt, _curry_1)
         },
-        ['_', ['_', ['i', ['n', ['t', ['1', ['2', ['8', []]]]]]]]] => {
+        "__int128" => {
             tok(8, box CTokInt128, _curry_1)
         },
-        ['_', ['_', ['l', ['a', ['b', ['e', ['l', ['_', ['_', []]]]]]]]]] => {
+        "__label__" => {
             tok(9, box CTokLabel, _curry_1)
         },
-        ['l', ['o', ['n', ['g', []]]]] => {
+        "long" => {
             tok(4, box CTokLong, _curry_1)
         },
-        ['_', ['_', ['n', ['o', ['n', ['n', ['u', ['l', ['l', []]]]]]]]]] => {
+        "__nonnull" => {
             tok(9, box CTokNonnull, _curry_1)
         },
-        ['_', ['_', ['n', ['u', ['l', ['l', ['a', ['b', ['l', ['e', []]]]]]]]]]] => {
+        "__nullable" => {
             tok(10, box CTokNullable, _curry_1)
         },
-        ['_', ['_', ['r', ['e', ['a', ['l', []]]]]]] => {
+        "__real" => {
             tok(6, box (CTokGnuC(GnuCComplexReal)), _curry_1)
         },
-        ['_', ['_', ['r', ['e', ['a', ['l', ['_', ['_', []]]]]]]]] => {
+        "__real__" => {
             tok(8, box (CTokGnuC(GnuCComplexReal)), _curry_1)
         },
-        ['r', ['e', ['g', ['i', ['s', ['t', ['e', ['r', []]]]]]]]] => {
+        "register" => {
             tok(8, box CTokRegister, _curry_1)
         },
-        ['_', ['_', ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', []]]]]]]]]]] => {
+        "__restrict" => {
             tok(10, box CTokRestrict, _curry_1)
         },
-        ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', []]]]]]]]] => {
+        "restrict" => {
             tok(8, box CTokRestrict, _curry_1)
         },
-        ['_', ['_', ['r', ['e', ['s', ['t', ['r', ['i', ['c', ['t', ['_', ['_', []]]]]]]]]]]]] => {
+        "__restrict__" => {
             tok(12, box CTokRestrict, _curry_1)
         },
-        ['r', ['e', ['t', ['u', ['r', ['n', []]]]]]] => {
+        "return" => {
             tok(6, box CTokReturn, _curry_1)
         },
-        ['s', ['h', ['o', ['r', ['t', []]]]]] => {
+        "short" => {
             tok(5, box CTokShort, _curry_1)
         },
-        ['_', ['_', ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]]]] => {
+        "__signed" => {
             tok(8, box CTokSigned, _curry_1)
         },
-        ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]] => {
+        "signed" => {
             tok(6, box CTokSigned, _curry_1)
         },
-        ['_', ['_', ['s', ['i', ['g', ['n', ['e', ['d', ['_', ['_', []]]]]]]]]]] => {
+        "__signed__" => {
             tok(10, box CTokSigned, _curry_1)
         },
-        ['s', ['i', ['z', ['e', ['o', ['f', []]]]]]] => {
+        "sizeof" => {
             tok(6, box CTokSizeof, _curry_1)
         },
-        ['s', ['t', ['a', ['t', ['i', ['c', []]]]]]] => {
+        "static" => {
             tok(6, box CTokStatic, _curry_1)
         },
-        ['s', ['t', ['r', ['u', ['c', ['t', []]]]]]] => {
+        "struct" => {
             tok(6, box CTokStruct, _curry_1)
         },
-        ['s', ['w', ['i', ['t', ['c', ['h', []]]]]]] => {
+        "switch" => {
             tok(6, box CTokSwitch, _curry_1)
         },
-        ['_', ['_', ['t', ['h', ['r', ['e', ['a', ['d', []]]]]]]]] => {
+        "__thread" => {
             tok(8, box CTokThread, _curry_1)
         },
-        ['t', ['y', ['p', ['e', ['d', ['e', ['f', []]]]]]]] => {
+        "typedef" => {
             tok(7, box CTokTypedef, _curry_1)
         },
-        ['_', ['_', ['t', ['y', ['p', ['e', ['o', ['f', []]]]]]]]] => {
+        "__typeof" => {
             tok(8, box CTokTypeof, _curry_1)
         },
-        ['t', ['y', ['p', ['e', ['o', ['f', []]]]]]] => {
+        "typeof" => {
             tok(6, box CTokTypeof, _curry_1)
         },
-        ['_', ['_', ['t', ['y', ['p', ['e', ['o', ['f', ['_', ['_', []]]]]]]]]]] => {
+        "__typeof__" => {
             tok(10, box CTokTypeof, _curry_1)
         },
-        ['u', ['n', ['i', ['o', ['n', []]]]]] => {
+        "union" => {
             tok(5, box CTokUnion, _curry_1)
         },
-        ['u', ['n', ['s', ['i', ['g', ['n', ['e', ['d', []]]]]]]]] => {
+        "unsigned" => {
             tok(8, box CTokUnsigned, _curry_1)
         },
-        ['v', ['o', ['i', ['d', []]]]] => {
+        "void" => {
             tok(4, box CTokVoid, _curry_1)
         },
-        ['_', ['_', ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', []]]]]]]]]]] => {
+        "__volatile" => {
             tok(10, box CTokVolatile, _curry_1)
         },
-        ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', []]]]]]]]] => {
+        "volatile" => {
             tok(8, box CTokVolatile, _curry_1)
         },
-        ['_', ['_', ['v', ['o', ['l', ['a', ['t', ['i', ['l', ['e', ['_', ['_', []]]]]]]]]]]]] => {
+        "__volatile__" => {
             tok(12, box CTokVolatile, _curry_1)
         },
-        ['w', ['h', ['i', ['l', ['e', []]]]]] => {
+        "while" => {
             tok(5, box CTokWhile, _curry_1)
         },
         cs => {
@@ -33515,13 +33515,13 @@ pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
                             },
                         };
 
-                    let ident = mkIdent(box pos, cs, name);
+                    let ident = mkIdent(pos, cs, name);
 
                     let tyident = isTypeIdent(ident);
 
                     if tyident {                     
-(CTokTyIdent((box pos, len), ident))} else {
-(CTokIdent((box pos, len), ident))
+(CTokTyIdent((pos, len), ident))} else {
+(CTokIdent((pos, len), ident))
                     }
                 } }(_curry_1)
         },
@@ -33551,12 +33551,12 @@ pub fn ignoreAttribute() -> P<()> {
 }
 
 pub fn tok(len: isize, tc: Box<Fn(PosLength) -> CToken>, pos: Position) -> P<CToken> {
-    (tc((box pos, len)))
+    (tc((pos, len)))
 }
 
 pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Position {
 
-    let offs_q = ((posOffset(box pos)) + pragmaLen);
+    let offs_q = ((posOffset(pos)) + pragmaLen);
 
     let str_q = dropWhite(drop(1, __str));
 
@@ -33566,7 +33566,7 @@ pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Po
 
     let fnameStr = takeWhile((__op_assign_div('\"')), drop(1, str_q_q_q));
 
-    let fname = posFile(box pos);
+    let fname = posFile(pos);
 
     let dropWhite = dropWhile((box |c| { (c == (' ' || (c == '\t'))) }));
 
@@ -33582,7 +33582,7 @@ pub fn unescapeMultiChars(_0: String, _1: Vec<char>) -> Vec<char> {
                 },
             }
         },
-        ['\'', []] => {
+        "'" => {
             vec![]
         },
         _ => {
@@ -33592,24 +33592,24 @@ pub fn unescapeMultiChars(_0: String, _1: Vec<char>) -> Vec<char> {
 }
 
 pub fn token_(len: isize, mkTok: Box<Fn(PosLength) -> CToken>, pos: Position, _: isize, _: InputStream) -> P<CToken> {
-    (mkTok((box pos, len)))
+    (mkTok((pos, len)))
 }
 
 pub fn token_fail(errmsg: String, pos: Position, _: isize, _: InputStream) -> P<CToken> {
-    failP(box pos, vec!["Lexical Error !".to_string(), errmsg])
+    failP(pos, vec!["Lexical Error !".to_string(), errmsg])
 }
 
 pub fn token<a>(mkTok: Box<Fn(PosLength, a) -> CToken>, fromStr: Box<Fn(String) -> a>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
-    (mkTok((box pos, len), (fromStr(takeChars(len, __str)))))
+    (mkTok((pos, len), (fromStr(takeChars(len, __str)))))
 }
 
 pub fn token_plus<a>(mkTok: Box<Fn(PosLength, a) -> CToken>, fromStr: Box<Fn(String) -> Either<String, a>>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
     match fromStr((takeChars(len, __str))) {
         Left(err) => {
-            failP(box pos, vec!["Lexical error ! ".to_string(), err])
+            failP(pos, vec!["Lexical error ! ".to_string(), err])
         },
         Right(ok) => {
-            mkTok((box pos, len), ok)
+            mkTok((pos, len), ok)
         },
     }
 }
@@ -33623,16 +33623,16 @@ pub fn alexInputPrevChar(_: AlexInput) -> char {
 pub fn alexMove(_0: Position, _1: char) -> Position {
     match (_0, _1) {
         (pos, ' ') => {
-            incPos(box pos, 1)
+            incPos(pos, 1)
         },
         (pos, '\n') => {
-            retPos(box pos)
+            retPos(pos)
         },
         (pos, '\r') => {
-            incOffset(box pos, 1)
+            incOffset(pos, 1)
         },
         (pos, _) => {
-            incPos(box pos, 1)
+            incPos(pos, 1)
         },
     }
 }
@@ -33643,7 +33643,7 @@ pub fn lexicalError<a>() -> P<a> {
 
         let (c, _) = liftM(takeChar, getInput);
 
-        failP(box pos, vec![
+        failP(pos, vec![
                 "Lexical error !".to_string(),
                 __op_addadd("The character ".to_string(), __op_addadd(show(c), " does not fit here.".to_string())),
             ])
@@ -33671,7 +33671,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
 
         let inp = getInput;
 
-        match alexScan((box pos, box inp), 0) {
+        match alexScan((pos, box inp), 0) {
             AlexEOF => {
                 /*do*/ {
                     handleEofToken;
@@ -33692,10 +33692,10 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                 /*do*/ {
                     setPos(pos_q);
                     setInput(inp_q);
-                    let nextTok = action(box pos, len, box inp);
+                    let nextTok = action(pos, len, box inp);
 
-                    if modifyCache { setLastToken(nextTok) };
-                    nextTok
+                    if modifyCache { setLastToken(box nextTok) };
+                    box nextTok
                 }
             },
         }
@@ -33706,16 +33706,16 @@ pub fn lexC<a>(cont: Box<Fn(CToken) -> P<a>>) -> P<a> {
     /*do*/ {
         let nextTok = lexToken;
 
-        cont(nextTok)
+        cont(box nextTok)
     }
 }
 
 pub fn alex_action_1(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    box |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), box pos))), lexToken_q(false)) }(_curry_0, _curry_1, _curry_2)
+    box |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) }(_curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_4(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    box |pos, len, __str| { idkwtok((takeChars(len, __str)), box pos) }(_curry_0, _curry_1, _curry_2)
+    box |pos, len, __str| { idkwtok((takeChars(len, __str)), pos) }(_curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_5(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33751,7 +33751,7 @@ pub fn alex_action_12(_curry_0: Position, _curry_1: isize, _curry_2: InputStream
 }
 
 pub fn alex_action_13(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token((box |pos| { CTokClangC(box pos, ClangCTok) }), readClangCVersion, _curry_0, _curry_1, _curry_2)
+    token((box |pos| { CTokClangC(pos, ClangCTok) }), readClangCVersion, _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_14(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33970,15 +33970,15 @@ pub fn alex_action_67(_curry_0: Position, _curry_1: isize, _curry_2: InputStream
     token_(3, box CTokEllipsis, _curry_0, _curry_1, _curry_2)
 }
 
-pub fn alexIndexInt16OffAddr(arr: Array<isize, isize>, off: isize) -> isize {
+pub fn alexIndexInt16OffAddr(arr: Vec<isize>, off: isize) -> isize {
     __op_array_index(arr, off)
 }
 
-pub fn alexIndexInt32OffAddr(arr: Array<isize, isize>, off: isize) -> isize {
+pub fn alexIndexInt32OffAddr(arr: Vec<isize>, off: isize) -> isize {
     __op_array_index(arr, off)
 }
 
-pub fn quickIndex<b>(arr: Array<isize, b>, i: isize) -> b {
+pub fn quickIndex<b>(arr: Vec<b>, i: isize) -> b {
     __op_array_index(arr, i)
 }
 
@@ -34106,7 +34106,7 @@ pub fn alexPrevCharMatches(f: Box<Fn(char) -> isize>, _: isize, input: AlexInput
     f((alexInputPrevChar(input)))
 }
 
-pub fn alexPrevCharIsOneOf(arr: Array<char, bool>, _: isize, input: AlexInput, _: isize, _: AlexInput) -> bool {
+pub fn alexPrevCharIsOneOf(arr: Vec<bool>, _: isize, input: AlexInput, _: isize, _: AlexInput) -> bool {
     __op_array_index(arr, alexInputPrevChar(input))
 }
 

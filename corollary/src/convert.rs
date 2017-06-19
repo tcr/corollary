@@ -210,7 +210,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             if start.starts_with("happyReduction_")
                 || start.starts_with("alex_action_")
                 || start == "happyFail"
-                || start == "pos"
+                || start == "nextTok"
                 || start == "inp"
                 || start == "alex_check"
                 || start == "alex_base" {
@@ -597,10 +597,28 @@ pub fn print_pattern(state: PrintState, pat: &Pat) -> String {
         Pat::Not(ref s) => print_pattern(state, &**s),
         Pat::EmptyParen => format!("()"),
         Pat::Concat(ref a, ref b) => {
-            format!("[{}, {}]", // TODO expand second argument
-                print_pattern(state.tab(), &**a),
-                print_pattern(state.tab(), &**b),
-            )
+            // TODO should char strips like this be converted?
+            if_chain!([
+                let Pat::Span(ref inner) => (**a).clone(),
+                let true => inner.len() == 1,
+                let Pat::Char(v) => inner[0].clone()
+            ] {
+                let right = print_pattern(state.tab(), &**b);
+                format!(r#""{}{}"#, // TODO expand second argument
+                    v,
+                    if right == "[]" {
+                        format!("\"")
+                    } else if !right.starts_with("\"") {
+                        format!("\", {}", right)
+                    } else {
+                        right.replacen("\"", "", 1)
+                    })
+            } else {
+                format!("[{}, {}]", // TODO expand second argument, don't nest it
+                    print_pattern(state.tab(), &**a),
+                    print_pattern(state.tab(), &**b),
+                )
+            })
         }
         Pat::Operator(_) => {
             // Should only be @
@@ -623,10 +641,15 @@ pub fn print_type<T: Borrow<Ty>>(state: PrintState, t: T) -> String {
         }
         Ty::Span(ref span) => {
             let mut out_span = print_type(state.tab(), &span[0]);
-            if span.len() > 1 {
-                out_span.push_str(&format!("<{}>", print_types(state.tab(), &span[1..])));
+            //HACK for Array<i, T>
+            if out_span == "Array" {
+                format!("Vec<{}>", print_types(state.tab(), &span[2..]))
+            } else {
+                if span.len() > 1 {
+                    out_span.push_str(&format!("<{}>", print_types(state.tab(), &span[1..])));
+                }
+                out_span
             }
-            out_span
         }
         Ty::Tuple(ref spans) => {
             if spans.len() == 1 {

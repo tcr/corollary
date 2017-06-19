@@ -791,12 +791,10 @@ impl<T: Eq + Hash + Debug> Set<T> {
 // Array things
 
 pub fn array<T>(dim: (isize, isize), list: Vec<(isize, T)>) -> Vec<T> {
-    // TODO
-    vec![]
+    list.into_iter().map(|x| x.1).collect()
 }
 
 pub fn listArray<T>(dim: (isize, isize), list: Vec<T>) -> Vec<T> {
-    // TODO
     list
 }
 
