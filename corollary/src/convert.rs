@@ -205,6 +205,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             format!("{{\n{}{}}}", out.join("\n"), state.indent())
         }
         Ref(ast::Ident(ref i)) => {
+            // TODO these might be better in the Span check
             let start = print_code_ident(state, i);
             if start.starts_with("happyReduction_")
                 || start.starts_with("alex_action_")
@@ -213,7 +214,8 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             } else if start.starts_with("action_") {
                 format!("curry_1_5!({})", start)
             } else if start.starts_with("happyReduce_")
-                || start == "notHappyAtAll" {
+                || start == "notHappyAtAll"
+                || start == "empty" {
                 format!("({})()", start)
             } else {
                 start
@@ -404,6 +406,9 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                 } else if start == "happyGoto" && span.len() < 6 && span.len() > 0 {
                                     out.insert(0, start);
                                     format!("partial_{}!({})", 6 - span.len(), out.join(", "))
+                                } else if start == "happySpecReduce_0" && span.len() < 7 && span.len() > 0 {
+                                    out.insert(0, start);
+                                    format!("partial_{}!({})", 7 - span.len(), out.join(", "))
                                 } else if start == "happySpecReduce_1" && span.len() < 7 && span.len() > 0 {
                                     out.insert(0, start);
                                     format!("partial_{}!({})", 7 - span.len(), out.join(", "))

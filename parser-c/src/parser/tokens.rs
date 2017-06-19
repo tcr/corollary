@@ -125,6 +125,12 @@ pub enum CToken {
 }
 pub use self::CToken::*;
 
+impl Pos for CToken {
+    fn posOf(self) -> Position {
+        posLenOfTok(self).0
+    }
+}
+
 #[derive(Clone, Debug)]
 pub enum GnuCTok {
     GnuCAttrTok,
@@ -140,6 +146,7 @@ pub use self::GnuCTok::*;
 #[derive(Clone, Debug)]
 pub struct ClangCTok(pub ClangCVersion);
 pub type ClangCVersionTok = ClangCTok;
+
 
 pub fn posLenOfTok(_0: CToken) -> (Position, isize) {
     match (_0) {

@@ -55,8 +55,12 @@ impl CNode for Ident {
         at
     }
 }
-// instance Pos Ident where
-//   posOf = posOfNode . nodeInfo
+
+impl Pos for Ident {
+    fn posOf(self) -> Position {
+        posOfNode(nodeInfo(self))
+    }
+}
 
 pub fn quad(_0: String) -> isize {
     let c: Vec<char> = _0.chars().collect();
