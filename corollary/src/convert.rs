@@ -210,6 +210,7 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             if start.starts_with("happyReduction_")
                 || start.starts_with("alex_action_")
                 || start == "happyFail"
+                || start == "happyAccept"
                 || start == "nextTok"
                 || start == "inp"
                 || start == "alex_check"
@@ -412,6 +413,11 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                     format!("partial_{}!({})", 6 - span.len(), out.join(", "))
                                 } else if start == "happySpecReduce_0" && span.len() < 7 && span.len() > 0 {
                                     out.insert(0, start);
+                                    out.last_mut()
+                                        .map(|x| {
+                                            let new = format!("({})()", x.replace("box ", ""));
+                                            *x = new;
+                                        });
                                     format!("partial_{}!({})", 7 - span.len(), out.join(", "))
                                 } else if start == "happySpecReduce_1" && span.len() < 7 && span.len() > 0 {
                                     out.insert(0, start);
