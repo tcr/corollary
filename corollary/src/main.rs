@@ -207,7 +207,10 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool, dump_ast: bool) -> Resu
                     writeln!(file_out, "{}", r#"
 // fn(A, B) -> fn(C) -> {eval fn(A, B, C)}
 #[allow(unused_macros)]
-macro_rules! partial_1 { ($inner: expr, $($arg: expr),+ ) => ( box |_0| { $inner($($arg),+ , _0) } ) }
+macro_rules! partial_1 {
+    ($inner: expr) => ( box $inner );
+    ($inner: expr, $($arg: expr),+ ) => ( box |_0| { $inner($($arg),+ , _0) } )
+}
 #[allow(unused_macros)]
 macro_rules! partial_2 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1| { $inner($($arg),+ , _0, _1) } ) }
 #[allow(unused_macros)]

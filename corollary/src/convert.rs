@@ -432,7 +432,10 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
                                     out[1] = format!("box {}", out[1]);
                                     format!("{}({})", start, out.join(", "))
                                 } else if start == "withNodeInfo" {
-                                    out[1] = format!("box {}", out[1]);
+                                    if let &ast::Expr::Span(ref inner) = &span[1] {
+                                        out[1] = format!("partial_1!{}",
+                                            print_expr(state.tab(), &ast::Expr::Parens(inner.clone())))
+                                    }
                                     format!("{}({})", start, out.join(", "))
                                 } else {
                                     format!("{}({})", start, out.join(", "))
