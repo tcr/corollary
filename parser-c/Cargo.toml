@@ -14,3 +14,4 @@ license = "BSD-3"
 corollary-support = { path = "../corollary-support" }
 num = "0.1"
 num-derive = "0.1"
+parser-c-macro = { path = "parser-c-macro" }

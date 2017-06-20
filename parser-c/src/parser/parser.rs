@@ -26,7 +26,9 @@ macro_rules! partial_8 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, 
 #[allow(unused_macros)]
 macro_rules! partial_9 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6, _7, _8| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6, _7, _8) } ) }
 
+#[allow(unused_macros)]
 macro_rules! curry_1_5 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0))(_1, _2, _3, _4, _5) }; ) }
+#[allow(unused_macros)]
 macro_rules! curry_5_1 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0, _1, _2, _3, _4))(_5) }; ) }
 
 
