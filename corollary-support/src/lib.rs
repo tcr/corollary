@@ -92,6 +92,15 @@ pub enum Either<A, B> {
 }
 pub use self::Either::*;
 
+impl<A, B> Either<A, B> {
+    pub fn map<C, F: Fn(B) -> C>(self, f: F) -> Either<A, C> {
+        match self {
+            Either::Right(b) => Either::Right(f(b)),
+            Either::Left(a) => Either::Left(a),
+        }
+    }
+}
+
 
 use std::fmt::Display;
 pub fn show<A: Display>(a: A) -> String {
@@ -454,6 +463,9 @@ pub fn testBit(left: isize, right: isize) -> bool {
 
 // Monads
 
+pub fn __return<A: Into<B>, B>(left: A) -> B {
+    left.into()
+}
 // pub trait Functor {
 //   fmap = liftM
 // }
@@ -853,4 +865,6 @@ pub fn __op_rshift(left: isize, right: isize) {
     // TODO
     unreachable!();
 }
+
+
 

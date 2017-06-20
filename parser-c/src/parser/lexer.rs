@@ -2,6 +2,7 @@
 // File auto-generated using Corollary.
 
 #[macro_use] use corollary_support::*;
+use parser::parser_monad::{unP, rshift_monad};
 
 // fn(A, B) -> fn(C) -> {eval fn(A, B, C)}
 #[allow(unused_macros)]
@@ -30,8 +31,6 @@ macro_rules! partial_9 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, 
 macro_rules! curry_1_5 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0))(_1, _2, _3, _4, _5) }; ) }
 #[allow(unused_macros)]
 macro_rules! curry_5_1 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0, _1, _2, _3, _4))(_5) }; ) }
-
-
 
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Control::Monad;
@@ -33264,8 +33263,8 @@ pub fn readCOctal(s: String) -> Either<String, CInteger> {
     }
 }
 
-pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
-    match (_0) {
+pub fn idkwtok(_0: String, _curry_1: Position) -> P<CToken> {
+    match _0.as_ref() {
         "_Alignas" => {
             tok(8, box CTokAlignas, _curry_1)
         },
@@ -33318,10 +33317,10 @@ pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
             tok(7, box CTokAsm, _curry_1)
         },
         "__attribute" => {
-            tok(11, box (CTokGnuC(GnuCAttrTok)), _curry_1)
+            tok(11, partial_1!(CTokGnuC, GnuCAttrTok), _curry_1)
         },
         "__attribute__" => {
-            tok(13, box (CTokGnuC(GnuCAttrTok)), _curry_1)
+            tok(13, partial_1!(CTokGnuC, GnuCAttrTok), _curry_1)
         },
         "auto" => {
             tok(4, box CTokAuto, _curry_1)
@@ -33330,13 +33329,13 @@ pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
             tok(5, box CTokBreak, _curry_1)
         },
         "__builtin_offsetof" => {
-            tok(18, box (CTokGnuC(GnuCOffsetof)), _curry_1)
+            tok(18, partial_1!(CTokGnuC, GnuCOffsetof), _curry_1)
         },
         "__builtin_types_compatible_p" => {
-            tok(28, box (CTokGnuC(GnuCTyCompat)), _curry_1)
+            tok(28, partial_1!(CTokGnuC, GnuCTyCompat), _curry_1)
         },
         "__builtin_va_arg" => {
-            tok(16, box (CTokGnuC(GnuCVaArg)), _curry_1)
+            tok(16, partial_1!(CTokGnuC, GnuCVaArg), _curry_1)
         },
         "case" => {
             tok(4, box CTokCase, _curry_1)
@@ -33375,7 +33374,7 @@ pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
             tok(4, box CTokEnum, _curry_1)
         },
         "__extension__" => {
-            tok(13, box (CTokGnuC(GnuCExtTok)), _curry_1)
+            tok(13, partial_1!(CTokGnuC, GnuCExtTok), _curry_1)
         },
         "extern" => {
             tok(6, box CTokExtern, _curry_1)
@@ -33393,10 +33392,10 @@ pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
             tok(2, box CTokIf, _curry_1)
         },
         "__imag" => {
-            tok(6, box (CTokGnuC(GnuCComplexImag)), _curry_1)
+            tok(6, partial_1!(CTokGnuC, GnuCComplexImag), _curry_1)
         },
         "__imag__" => {
-            tok(8, box (CTokGnuC(GnuCComplexImag)), _curry_1)
+            tok(8, partial_1!(CTokGnuC, GnuCComplexImag), _curry_1)
         },
         "__inline" => {
             tok(8, box CTokInline, _curry_1)
@@ -33426,10 +33425,10 @@ pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
             tok(10, box CTokNullable, _curry_1)
         },
         "__real" => {
-            tok(6, box (CTokGnuC(GnuCComplexReal)), _curry_1)
+            tok(6, partial_1!(CTokGnuC, GnuCComplexReal), _curry_1)
         },
         "__real__" => {
-            tok(8, box (CTokGnuC(GnuCComplexReal)), _curry_1)
+            tok(8, partial_1!(CTokGnuC, GnuCComplexReal), _curry_1)
         },
         "register" => {
             tok(8, box CTokRegister, _curry_1)
@@ -33507,8 +33506,12 @@ pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
             tok(5, box CTokWhile, _curry_1)
         },
         cs => {
-            box |pos| { /*do*/ {
-                    let name = getNewName;
+            let cs = cs.to_owned();
+            let pos = _curry_1;
+
+            thenP(
+                /* let name = */ getNewName(),
+                box |name| {
 
                     let len = match length(cs) {
                             l => {
@@ -33518,13 +33521,14 @@ pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
 
                     let ident = mkIdent(pos, cs, name);
 
-                    let tyident = isTypeIdent(ident);
+                    thenP(isTypeIdent(ident), box |tyident| {
 
                     if tyident {                     
 __return((CTokTyIdent((pos, len), ident)))} else {
 __return((CTokIdent((pos, len), ident)))
                     }
-                } }(_curry_1)
+                    })
+                })
         },
     }
 }
@@ -33533,7 +33537,7 @@ pub fn ignoreAttribute() -> P<()> {
 
     pub fn skipTokens(n: isize) -> P<()> {
         /*do*/ {
-            let ntok = lexToken_q(false);
+            thenP(lexToken_q(false), box |ntok| {
 
             match ntok {
                 CTokRParen(_) if (n == 1) => { __return(()) }
@@ -33545,6 +33549,7 @@ pub fn ignoreAttribute() -> P<()> {
                     skipTokens(n)
                 },
             }
+            })
         }
     }
 
@@ -33556,8 +33561,8 @@ pub fn tok(len: isize, tc: Box<Fn(PosLength) -> CToken>, pos: Position) -> P<CTo
 }
 
 pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Position {
-    fn dropWhite(input: String) {
-        dropWhile((|c| { (c == (' ' || (c == '\t'))) }), input);
+    fn dropWhite(input: String) -> String {
+        dropWhile((|c| { (c == ' ') || (c == '\t') }), input)
     }
 
     let offs_q = ((posOffset(pos)) + pragmaLen);
@@ -33633,7 +33638,7 @@ pub fn alexGetByte((p, is): AlexInput) -> Option<(Word8, AlexInput)> {
     } else {
         let (b, s) = takeByte(is);
         // this is safe for latin-1, but ugly
-        let p_q = alexMove(p, chr(fromIntegral(b)));
+        let p_q = alexMove(p, chr(fromIntegral(b as isize)));
         seq(p_q, Some((b, (p_q, s))))
     }
 }
@@ -33661,7 +33666,7 @@ pub fn lexicalError<a>() -> P<a> {
 
         let (c, _) = liftM(takeChar, getInput);
 
-        failP(pos, vec![
+        failP(pos(), vec![
                 "Lexical error !".to_string(),
                 __op_addadd("The character ".to_string(), __op_addadd(show(c), " does not fit here.".to_string())),
             ])
@@ -33685,9 +33690,9 @@ pub fn lexToken() -> P<CToken> {
 
 pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
     /*do*/ {
-        let pos = getPos;
+        let pos = getPos();
 
-        let inp = getInput;
+        let inp = getInput();
 
         match alexScan((pos, box inp), 0) {
             AlexEOF => {
@@ -33697,7 +33702,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                 }
             },
             AlexError(_inp) => {
-                lexicalError
+                lexicalError()
             },
             AlexSkip((pos_q, inp_q), _len) => {
                 /*do*/ {
@@ -33710,10 +33715,11 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                 /*do*/ {
                     setPos(pos_q);
                     setInput(inp_q);
-                    let nextTok = action(pos, len, box inp);
+                    thenP(action(pos, len, box inp), box |nextTok| {
 
-                    if modifyCache { setLastToken(box nextTok) };
-                    __return(box nextTok)
+                        if modifyCache { setLastToken(box nextTok) };
+                        __return(box nextTok)
+                    })
                 }
             },
         }
@@ -33729,7 +33735,7 @@ pub fn lexC<a>(cont: Box<Fn(CToken) -> P<a>>) -> P<a> {
 }
 
 pub fn alex_action_1(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    box |pos, len, __str| { __op_rshift(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) }(_curry_0, _curry_1, _curry_2)
+    box |pos, len, __str| { rshift_monad(setPos((adjustLineDirective(len, (takeChars(len, __str)), pos))), lexToken_q(false)) }(_curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_4(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33737,15 +33743,15 @@ pub fn alex_action_4(_curry_0: Position, _curry_1: isize, _curry_2: InputStream)
 }
 
 pub fn alex_action_5(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token_plus(CTokILit, readCOctal, _curry_0, _curry_1, _curry_2)
+    token_plus(box CTokILit, box readCOctal, _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_6(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token_plus(CTokILit, (readCInteger(DecRepr)), _curry_0, _curry_1, _curry_2)
+    token_plus(box CTokILit, partial_1!(readCInteger, DecRepr), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_7(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token_plus(CTokILit, (readCInteger(HexRepr, drop(2))), _curry_0, _curry_1, _curry_2)
+    token_plus(box CTokILit, box |_0| readCInteger(HexRepr, drop(2, _0)), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_8(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33753,19 +33759,19 @@ pub fn alex_action_8(_curry_0: Position, _curry_1: isize, _curry_2: InputStream)
 }
 
 pub fn alex_action_9(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(CTokCLit, (cChar(fst(unescapeChar(tail)))), _curry_0, _curry_1, _curry_2)
+    token(box CTokCLit, (cChar(fst(unescapeChar(tail)))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_10(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))), _curry_0, _curry_1, _curry_2)
+    token(box CTokCLit, (cChar_w(fst(unescapeChar(tail(tail))))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_11(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(CTokCLit, (flip(cChars, false, unescapeMultiChars(tail))), _curry_0, _curry_1, _curry_2)
+    token(box CTokCLit, (flip(cChars, false, unescapeMultiChars(tail))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_12(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(CTokCLit, (flip(cChars, true, unescapeMultiChars(tail(tail)))), _curry_0, _curry_1, _curry_2)
+    token(box CTokCLit, (flip(cChars, true, unescapeMultiChars(tail(tail)))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_13(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33773,11 +33779,11 @@ pub fn alex_action_13(_curry_0: Position, _curry_1: isize, _curry_2: InputStream
 }
 
 pub fn alex_action_14(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(CTokFLit, readCFloat, _curry_0, _curry_1, _curry_2)
+    token(box CTokFLit, box readCFloat, _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_15(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(CTokFLit, readCFloat, _curry_0, _curry_1, _curry_2)
+    token(box CTokFLit, box readCFloat, _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_16(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -34036,7 +34042,7 @@ pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<Box<F
 
 pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexInput, s: isize, last_acc: AlexLastAcc) -> (AlexLastAcc, AlexInput) {
     // TODO recursive lambda
-    fn check_accs<A>((user, orig_input, len, input, last_acc): (bool, AlexInput, isize, AlexInput, AlexLastAcc), _0: AlexAcc<A>) -> AlexAcc<A> {
+    fn check_accs<A>((user, orig_input, len, input, last_acc): (bool, AlexInput, isize, AlexInput, AlexLastAcc), _0: AlexAcc<A>) -> AlexLastAcc {
         match (_0) {
             AlexAccNone => {
                 last_acc
@@ -34047,23 +34053,23 @@ pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexI
             AlexAccSkip => {
                 AlexLastSkip(input, len)
             },
-            AlexAccPred(a, predx, rest) if predx(user, orig_input, len, input) => {
+            AlexAccPred(a, predx, box rest) if predx(user, orig_input, len, input) => {
                 AlexLastAcc(a, input, len)
             },
-            AlexAccPred(a, predx, rest) => {
+            AlexAccPred(a, predx, box rest) => {
                 check_accs((user, orig_input, len, input, last_acc), rest)
             },
-            AlexAccSkipPred(predx, rest) if predx(user, orig_input, len, input) => {
+            AlexAccSkipPred(predx, box rest) if predx(user, orig_input, len, input) => {
                 AlexLastSkip(input, len)
             },
-            AlexAccSkipPred(predx, rest) => {
+            AlexAccSkipPred(predx, box rest) => {
                 check_accs((user, orig_input, len, input, last_acc), rest)
             },
         }
     };
 
     seq(input, {
-        let new_acc = (check_accs((user, orig_input, len, input, last_acc), (quickIndex(alex_accept, s()))));
+        let new_acc = (check_accs((user, orig_input, len, input, last_acc), (quickIndex(alex_accept(), s))));
 
     seq(new_acc, match alexGetByte(input) {
             None => {
@@ -34073,15 +34079,15 @@ pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexI
                 match fromIntegral(c) {
                     ord_c => {
                         {
-                            let base = alexIndexInt32OffAddr(box alex_base, s);
+                            let base = alexIndexInt32OffAddr(alex_base(), s);
 
                             let offset = ((base + ord_c));
 
-                            let check = alexIndexInt16OffAddr(box alex_check, offset);
+                            let check = alexIndexInt16OffAddr(alex_check(), offset);
 
                             let new_s = if (((offset >= (0))) && ((check == ord_c))) {                                 
-alexIndexInt16OffAddr(alex_table, offset)} else {
-alexIndexInt16OffAddr(alex_deflt, s)
+alexIndexInt16OffAddr(alex_table(), offset)} else {
+alexIndexInt16OffAddr(alex_deflt(), s)
                                 };
 
                         match new_s {

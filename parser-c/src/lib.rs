@@ -6,6 +6,7 @@
 
 #[macro_use] extern crate corollary_support;
 extern crate num;
+#[macro_use] extern crate matches;
 #[macro_use] extern crate parser_c_macro;
 #[macro_use] extern crate num_derive;
 

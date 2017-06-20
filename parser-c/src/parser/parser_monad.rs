@@ -75,9 +75,15 @@ fn scopes(a: PState) -> Vec<Set<Ident>> {
     a.scopes
 }
 
-pub struct P<a>(Box<FnBox(PState) -> ParseResult<a>>);
-fn unP<a>(p: P<a>) -> Box<FnBox(PState) -> ParseResult<a>> {
+pub struct P<a>(pub Box<FnBox(PState) -> ParseResult<a>>);
+pub fn unP<a>(p: P<a>) -> Box<FnBox(PState) -> ParseResult<a>> {
     p.0
+}
+
+impl<A> From<A> for P<A> {
+    fn from(item: A) -> P<A> {
+        P(box |_| item)
+    }
 }
 
 pub fn execParser<a: 'static>(P(parser): P<a>,
@@ -108,7 +114,7 @@ pub fn returnP<a: 'static + Send>(a: a) -> P<a> {
     P(box move |s| POk(s, a))
 }
 
-pub fn thenP<a: 'static, b: 'static>(P(m): P<a>, k: fn(a) -> P<b>) -> P<b> {
+pub fn thenP<a: 'static, b: 'static>(P(m): P<a>, k: Box<Fn(a) -> P<b>>) -> P<b> {
     P(box move |s| match m(s) {
           POk(s_q, a) => (unP((k(a))))(s_q),
           PFailed(err, pos) => PFailed(err, pos),
@@ -212,4 +218,10 @@ pub fn handleEofToken() -> P<()> {
 
 pub fn getCurrentPosition() -> P<Position> {
     P(box |s: PState| POk(s.clone(), s.curPos.clone()))
+}
+
+// --------
+
+pub fn rshift_monad<A, B>(a: P<A>, b: P<B>) -> P<B> {
+    thenP(a, b)
 }

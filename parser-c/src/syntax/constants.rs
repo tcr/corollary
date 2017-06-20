@@ -14,6 +14,7 @@ use corollary_support::*;
 use num::ToPrimitive;
 use std::marker::PhantomData;
 use data::error::Error;
+use std::fmt::{self, Display, Formatter};
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub enum CChar {
@@ -199,6 +200,11 @@ pub fn readClangCVersion(input: String) -> ClangCVersion {
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct CString(pub String, pub bool);
 
+impl Display for CString {
+    fn fmt(&self, f: &mut Formatter) -> Result<(), fmt::Error> {
+        write!(f, "{}", _showWideFlag(self.1).show_s(showStringLit(self.0).show_s("".to_string())))
+    }
+}
 
 pub fn cString(__str: String) -> CString {
     CString(__str, false)
