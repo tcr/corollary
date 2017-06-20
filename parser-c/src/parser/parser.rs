@@ -35622,7 +35622,7 @@ pub fn happyReduction_4<t>(HappyStk(HappyAbsSyn8(happy_var_1), happyRest): Happy
 
                         let p = getCurrentPosition;
 
-                        CTranslationUnit::<NodeInfo>(decls, (mkNodeInfo_q(p, (p, 0), n)))
+                        __return(CTranslationUnit::<NodeInfo>(decls, (mkNodeInfo_q(p, (p, 0), n))))
                     }
                 },
                 [d, ds] => {
@@ -35842,7 +35842,7 @@ pub fn happyReduction_26<t>(HappyStk(HappyAbsSyn66(happy_var_1), happyRest): Hap
     happyThen((({
             let declr = reverseDeclr(happy_var_1);
 
-        __op_rshift(enterScope, __op_rshift(doFuncParamDeclIdent(declr), declr))        })), (box |r| { happyReturn((HappyAbsSyn11(r))) }))
+        __op_rshift(enterScope, __op_rshift(doFuncParamDeclIdent(declr), __return(declr)))        })), (box |r| { happyReturn((HappyAbsSyn11(r))) }))
 }
 
 pub fn happyReduce_27() -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
@@ -36646,7 +36646,7 @@ pub fn happyReduction_100<t>(HappyStk(HappyAbsSyn94(happy_var_6), box HappyStk(H
                     let declr = withAsmNameAttrs((fst(happy_var_5), __op_addadd(snd(happy_var_5), happy_var_3)), happy_var_4);
 
                     doDeclIdent(declspecs, declr);
-                    (CDecl(declspecs, (__op_concat((Some((reverseDeclr(declr))), happy_var_6, None), dies)), at))
+                    __return((CDecl(declspecs, (__op_concat((Some((reverseDeclr(declr))), happy_var_6, None), dies)), at)))
                 }
             },
         })), (box |r| { happyReturn((HappyAbsSyn32(r))) }))
@@ -41413,7 +41413,7 @@ pub fn happyThen<a, b>(_curry_0: P<a>, _curry_1: Box<Fn(a) -> P<b>>) -> P<b> {
 }
 
 pub fn happyReturn<a>(_curry_0: a) -> P<a> {
-    _curry_0
+    __return(_curry_0)
 }
 
 pub fn happyThen1<a0, b0>(_curry_0: P<a0>, _curry_1: Box<Fn(a0) -> P<b0>>) -> P<b0> {
@@ -41509,7 +41509,7 @@ pub fn withNodeInfo<a>(node: node, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
 
         let attrs = mkNodeInfo_q(firstPos, (posLenOfTok(lastTok)), name);
 
-        seq(attrs, (mkAttrNode(attrs)))
+        seq(attrs, __return((mkAttrNode(attrs))))
     }
 }
 
@@ -41521,7 +41521,7 @@ pub fn withLength<a>(nodeinfo: NodeInfo, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> 
 
         let attrs = mkNodeInfo_q(firstPos, (posLenOfTok(lastTok)), (maybe((__error!("nameOfNode".to_string())), id, (nameOfNode(nodeinfo)))));
 
-        seq(attrs, (mkAttrNode(attrs)))
+        seq(attrs, __return((mkAttrNode(attrs))))
     }
 }
 
@@ -41540,7 +41540,7 @@ pub fn withAttribute(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrNode:
 
         let newDeclr = appendDeclrAttrs(cattrs, mkDeclrNode(attrs));
 
-        seq(attrs, seq(newDeclr, newDeclr))
+        seq(attrs, seq(newDeclr, __return(newDeclr)))
     }
 }
 
@@ -41552,7 +41552,7 @@ pub fn withAttributePF(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrCto
 
         let newDeclr = appendDeclrAttrs(cattrs, mkDeclrCtor(attrs));
 
-        seq(attrs, seq(newDeclr, newDeclr))
+        seq(attrs, seq(newDeclr, __return(newDeclr)))
     }
 }
 
@@ -41592,7 +41592,7 @@ pub fn setAsmName(mAsmName: Option<CStringLiteral<NodeInfo>>, CDeclrR(ident, ind
             failP((posOf(n2)), vec!["Duplicate assembler name: ".to_string(), showName(n1), showName(n2)])
         },
         Right(newName) => {
-            CDeclrR(ident, indirections, newName, cattrs, at)
+            __return(CDeclrR(ident, indirections, newName, cattrs, at))
         },
     }
 }
@@ -41679,7 +41679,7 @@ pub fn doDeclIdent(declspecs: Vec<CDeclSpec>, CDeclrR(mIdent, _, _, _, _): CDecl
 
     match mIdent {
         None => {
-            ()
+            __return(())
         },
         Some(ident) if any(iypedef, declspecs) => { addTypedef(ident) }
         Some(ident) => { shadowTypedef(ident) }
@@ -41692,7 +41692,7 @@ pub fn doFuncParamDeclIdent(_0: CDeclarator<NodeInfo>) -> P<()> {
             sequence_(/* Expr::Generator */ Generator)
         },
         _ => {
-            ()
+            __return(())
         },
     }
 }

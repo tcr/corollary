@@ -54,6 +54,7 @@ pub fn print_ident(_: PrintState, expr: String) -> String {
         "pure" => "__pure".to_string(),
         "as" => "__as".to_string(),
         "main" => "__main".to_string(),
+        "return" => "__return".to_string(),
 
         // HACK multiple hacks for Parser.hs
         // these are because typedef expansions don't work in patterns
@@ -357,97 +358,91 @@ pub fn convert_expr(state: PrintState, expr: &ast::Expr) -> ir::Expr {
             } else if span.len() == 0 {
                 format!("()") //TODO not sure what this would be?
             } else {
-                // Check for return() here, for now
-                if print_expr(state, &span[0]) == "return" {
-                    //TODO handle return more intelligently, like with .into()
-                    print_expr(state, &Expr::Span(span[1..].to_vec()))
-                } else {
-                    // Check for `if` statements
-                    let first_word = print_expr(PrintState::new(), &span[0]);
-                    if first_word == "unless" || first_word == "when" {
-                        let mut span = span.clone();
-                        span.remove(0);
+                // Check for `if`-like statements
+                let first_word = print_expr(PrintState::new(), &span[0]);
+                if first_word == "unless" || first_word == "when" {
+                    let mut span = span.clone();
+                    span.remove(0);
 
-                        // Condition
-                        let cond = if first_word == "unless" {
-                            format!("!({})", print_expr(state, &span.remove(0)))
-                        } else {
-                            format!("{}", print_expr(state, &span.remove(0)))
-                        };
-                        format!("if {} {{ {} }}",
-                            cond,
-                            print_expr(state, &Expr::Span(span)))
+                    // Condition
+                    let cond = if first_word == "unless" {
+                        format!("!({})", print_expr(state, &span.remove(0)))
                     } else {
-                        // Print normal function invocation a(...)
-                        let mut span = span.clone();
-                        let start = print_expr(state, &span.remove(0));
-                        let mut end = "".to_string();
+                        format!("{}", print_expr(state, &span.remove(0)))
+                    };
+                    format!("if {} {{ {} }}",
+                        cond,
+                        print_expr(state, &Expr::Span(span)))
+                } else {
+                    // Print normal function invocation a(...)
+                    let mut span = span.clone();
+                    let start = print_expr(state, &span.remove(0));
+                    let mut end = "".to_string();
 
-                        //HACK check for action(..) calls in parser.rs
-                        if start.starts_with("action") && span.len() == 6 {
+                    //HACK check for action(..) calls in parser.rs
+                    if start.starts_with("action") && span.len() == 6 {
+                        let mut out = vec![];
+                        for item in &span {
+                            out.push(print_expr(state.tab(), item));
+                        }
+                        let last = out.pop().unwrap();
+                        end = format!("({})", out.join(", "));
+                        format!("{}{}({})", start, end, last)
+                    } else {
+                        if span.len() == 0 {
+                            format!("{}{}", start, end)
+                        } else {
                             let mut out = vec![];
                             for item in &span {
                                 out.push(print_expr(state.tab(), item));
                             }
-                            let last = out.pop().unwrap();
-                            end = format!("({})", out.join(", "));
-                            format!("{}{}({})", start, end, last)
-                        } else {
-                            if span.len() == 0 {
-                                format!("{}{}", start, end)
-                            } else {
-                                let mut out = vec![];
-                                for item in &span {
-                                    out.push(print_expr(state.tab(), item));
-                                }
 
-                                // HACK partially-apply some fns
-                                if start == "happyReduce" && span.len() < 8 && span.len() > 0 {
-                                    out.insert(0, start);
-                                    format!("partial_{}!({})", 8 - span.len(), out.join(", "))
-                                } else if start == "happyMonadReduce" && span.len() < 8 && span.len() > 0 {
-                                    out.insert(0, start);
-                                    format!("partial_{}!({})", 8 - span.len(), out.join(", "))
-                                } else if start == "happyGoto" && span.len() < 6 && span.len() > 0 {
-                                    out.insert(0, start);
-                                    format!("partial_{}!({})", 6 - span.len(), out.join(", "))
-                                } else if start == "happySpecReduce_0" && span.len() < 7 && span.len() > 0 {
-                                    out.insert(0, start);
-                                    out.last_mut()
-                                        .map(|x| {
-                                            let new = format!("({})()", x.replace("box ", ""));
-                                            *x = new;
-                                        });
-                                    format!("partial_{}!({})", 7 - span.len(), out.join(", "))
-                                } else if start == "happySpecReduce_1" && span.len() < 7 && span.len() > 0 {
-                                    out.insert(0, start);
-                                    format!("partial_{}!({})", 7 - span.len(), out.join(", "))
-                                } else if start == "happySpecReduce_2" && span.len() < 7 && span.len() > 0 {
-                                    out.insert(0, start);
-                                    format!("partial_{}!({})", 7 - span.len(), out.join(", "))
-                                } else if start == "happySpecReduce_3" && span.len() < 7 && span.len() > 0 {
-                                    out.insert(0, start);
-                                    format!("partial_{}!({})", 7 - span.len(), out.join(", "))
-                                } else if start.ends_with("happyFail") && span.len() < 6 && span.len() > 0 {
-                                    out.insert(0, start);
-                                    format!("partial_{}!({})", 6 - span.len(), out.join(", "))
-                                } else if start == "happyShift" && span.len() < 6 && span.len() > 0 {
-                                    out.insert(0, start);
-                                    format!("partial_{}!({})", 6 - span.len(), out.join(", "))
-                                } else if start == "tok" || start == "token_" {
-                                    out[1] = format!("box {}", out[1]);
-                                    format!("{}({})", start, out.join(", "))
-                                } else if start == "withNodeInfo" {
-                                    if let &ast::Expr::Span(ref inner) = &span[1] {
-                                        if let Some(&ast::Expr::Ref(..)) = inner.get(0) {
-                                            out[1] = format!("partial_1!{}",
-                                                print_expr(state.tab(), &ast::Expr::Parens(inner.clone())))
-                                        }
+                            // HACK partially-apply some fns
+                            if start == "happyReduce" && span.len() < 8 && span.len() > 0 {
+                                out.insert(0, start);
+                                format!("partial_{}!({})", 8 - span.len(), out.join(", "))
+                            } else if start == "happyMonadReduce" && span.len() < 8 && span.len() > 0 {
+                                out.insert(0, start);
+                                format!("partial_{}!({})", 8 - span.len(), out.join(", "))
+                            } else if start == "happyGoto" && span.len() < 6 && span.len() > 0 {
+                                out.insert(0, start);
+                                format!("partial_{}!({})", 6 - span.len(), out.join(", "))
+                            } else if start == "happySpecReduce_0" && span.len() < 7 && span.len() > 0 {
+                                out.insert(0, start);
+                                out.last_mut()
+                                    .map(|x| {
+                                        let new = format!("({})()", x.replace("box ", ""));
+                                        *x = new;
+                                    });
+                                format!("partial_{}!({})", 7 - span.len(), out.join(", "))
+                            } else if start == "happySpecReduce_1" && span.len() < 7 && span.len() > 0 {
+                                out.insert(0, start);
+                                format!("partial_{}!({})", 7 - span.len(), out.join(", "))
+                            } else if start == "happySpecReduce_2" && span.len() < 7 && span.len() > 0 {
+                                out.insert(0, start);
+                                format!("partial_{}!({})", 7 - span.len(), out.join(", "))
+                            } else if start == "happySpecReduce_3" && span.len() < 7 && span.len() > 0 {
+                                out.insert(0, start);
+                                format!("partial_{}!({})", 7 - span.len(), out.join(", "))
+                            } else if start.ends_with("happyFail") && span.len() < 6 && span.len() > 0 {
+                                out.insert(0, start);
+                                format!("partial_{}!({})", 6 - span.len(), out.join(", "))
+                            } else if start == "happyShift" && span.len() < 6 && span.len() > 0 {
+                                out.insert(0, start);
+                                format!("partial_{}!({})", 6 - span.len(), out.join(", "))
+                            } else if start == "tok" || start == "token_" {
+                                out[1] = format!("box {}", out[1]);
+                                format!("{}({})", start, out.join(", "))
+                            } else if start == "withNodeInfo" {
+                                if let &ast::Expr::Span(ref inner) = &span[1] {
+                                    if let Some(&ast::Expr::Ref(..)) = inner.get(0) {
+                                        out[1] = format!("partial_1!{}",
+                                            print_expr(state.tab(), &ast::Expr::Parens(inner.clone())))
                                     }
-                                    format!("{}({})", start, out.join(", "))
-                                } else {
-                                    format!("{}({})", start, out.join(", "))
                                 }
+                                format!("{}({})", start, out.join(", "))
+                            } else {
+                                format!("{}({})", start, out.join(", "))
                             }
                         }
                     }

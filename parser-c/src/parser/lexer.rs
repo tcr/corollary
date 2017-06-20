@@ -5,7 +5,10 @@
 
 // fn(A, B) -> fn(C) -> {eval fn(A, B, C)}
 #[allow(unused_macros)]
-macro_rules! partial_1 { ($inner: expr, $($arg: expr),+ ) => ( box |_0| { $inner($($arg),+ , _0) } ) }
+macro_rules! partial_1 {
+    ($inner: expr) => ( box $inner );
+    ($inner: expr, $($arg: expr),+ ) => ( box |_0| { $inner($($arg),+ , _0) } )
+}
 #[allow(unused_macros)]
 macro_rules! partial_2 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1| { $inner($($arg),+ , _0, _1) } ) }
 #[allow(unused_macros)]
@@ -33265,8 +33268,8 @@ pub fn readCOctal(_0: String, _1: Either<String, CInteger>) -> Either<String, CI
     }
 }
 
-pub fn idkwtok(_0: String, _curry_1: Position) -> P<CToken> {
-    match (_0.as_ref()) {
+pub fn idkwtok(_0: Vec<char>, _curry_1: Position) -> P<CToken> {
+    match (_0) {
         "_Alignas" => {
             tok(8, box CTokAlignas, _curry_1)
         },
@@ -33522,8 +33525,8 @@ pub fn idkwtok(_0: String, _curry_1: Position) -> P<CToken> {
                     let tyident = isTypeIdent(ident);
 
                     if tyident {                     
-(CTokTyIdent((pos, len), ident))} else {
-(CTokIdent((pos, len), ident))
+__return((CTokTyIdent((pos, len), ident)))} else {
+__return((CTokIdent((pos, len), ident)))
                     }
                 } }(_curry_1)
         },
@@ -33537,7 +33540,7 @@ pub fn ignoreAttribute() -> P<()> {
             let ntok = lexToken_q(false);
 
             match ntok {
-                CTokRParen(_) if (n == 1) => { () }
+                CTokRParen(_) if (n == 1) => { __return(()) }
                 CTokRParen(_) => { skipTokens(((n - 1))) }
                 CTokLParen(_) => {
                     skipTokens(((n + 1)))
@@ -33553,7 +33556,7 @@ pub fn ignoreAttribute() -> P<()> {
 }
 
 pub fn tok(len: isize, tc: Box<Fn(PosLength) -> CToken>, pos: Position) -> P<CToken> {
-    (tc((pos, len)))
+    __return((tc((pos, len))))
 }
 
 pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Position {
@@ -33594,7 +33597,7 @@ pub fn unescapeMultiChars(_0: String, _1: Vec<char>) -> Vec<char> {
 }
 
 pub fn token_(len: isize, mkTok: Box<Fn(PosLength) -> CToken>, pos: Position, _: isize, _: InputStream) -> P<CToken> {
-    (mkTok((pos, len)))
+    __return((mkTok((pos, len))))
 }
 
 pub fn token_fail(errmsg: String, pos: Position, _: isize, _: InputStream) -> P<CToken> {
@@ -33602,7 +33605,7 @@ pub fn token_fail(errmsg: String, pos: Position, _: isize, _: InputStream) -> P<
 }
 
 pub fn token<a>(mkTok: Box<Fn(PosLength, a) -> CToken>, fromStr: Box<Fn(String) -> a>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
-    (mkTok((pos, len), (fromStr(takeChars(len, __str)))))
+    __return((mkTok((pos, len), (fromStr(takeChars(len, __str))))))
 }
 
 pub fn token_plus<a>(mkTok: Box<Fn(PosLength, a) -> CToken>, fromStr: Box<Fn(String) -> Either<String, a>>, pos: Position, len: isize, __str: InputStream) -> P<CToken> {
@@ -33611,7 +33614,7 @@ pub fn token_plus<a>(mkTok: Box<Fn(PosLength, a) -> CToken>, fromStr: Box<Fn(Str
             failP(pos, vec!["Lexical error ! ".to_string(), err])
         },
         Right(ok) => {
-            mkTok((pos, len), ok)
+            __return(mkTok((pos, len), ok))
         },
     }
 }
@@ -33677,7 +33680,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
             AlexEOF => {
                 /*do*/ {
                     handleEofToken;
-                    CTokEof
+                    __return(CTokEof)
                 }
             },
             AlexError(_inp) => {
@@ -33697,7 +33700,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                     let nextTok = action(pos, len, box inp);
 
                     if modifyCache { setLastToken(box nextTok) };
-                    box nextTok
+                    __return(box nextTok)
                 }
             },
         }
