@@ -20,6 +20,15 @@ pub enum NodeInfo {
 }
 pub use self::NodeInfo::*;
 
+impl Pos for NodeInfo {
+    fn posOf(self) -> Position {
+        match self {
+            NodeInfo::OnlyPos(pos, _) => pos,
+            NodeInfo::NodeInfo(pos, _, _) => pos
+        }
+    }
+}
+
 pub fn lengthOfNode(ni: NodeInfo) -> Option<isize> {
 
     let computeLength = |pos, (lastPos, lastTokLen)| {

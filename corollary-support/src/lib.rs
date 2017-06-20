@@ -92,6 +92,15 @@ pub enum Either<A, B> {
 }
 pub use self::Either::*;
 
+impl<A, B> Either<A, B> {
+    pub fn map<C, F: Fn(B) -> C>(self, f: F) -> Either<A, C> {
+        match self {
+            Either::Right(b) => Either::Right(f(b)),
+            Either::Left(a) => Either::Left(a),
+        }
+    }
+}
+
 
 use std::fmt::Display;
 pub fn show<A: Display>(a: A) -> String {
@@ -303,9 +312,19 @@ pub fn head(input: Vec<char>) -> char {
     input[0]
 }
 
+pub fn head_str(input: String) -> char {
+    input.chars().nth(0).unwrap()
+}
+
 pub fn init(mut input: Vec<char>) -> Vec<char> {
     input.pop();
     input
+}
+
+pub fn init_str(input: String) -> String {
+    let mut v: Vec<_> = input.chars().collect();
+    v.pop();
+    v.into_iter().collect()
 }
 
 pub fn tail(input: Vec<char>) -> Vec<char> {
@@ -388,6 +407,10 @@ pub fn drop<T>(len: isize, mut input: Vec<T>) -> Vec<T> {
     input
 }
 
+pub fn drop_str(len: isize, input: String) -> String {
+    input.chars().skip(len as usize).collect()
+}
+
 pub fn dropWhile<F: Fn(char) -> bool>(cond: F, input: String) -> String {
     let mut out = vec![];
     for item in input.chars() {
@@ -421,10 +444,6 @@ pub fn id<A>(input: A) -> A {
     input
 }
 
-pub fn drop_str<T>(len: isize, input: String) -> String {
-    input.chars().skip(len as usize).collect()
-}
-
 pub fn __boxed_chars(input: String) -> Box<[char]> {
     input.chars().collect::<Vec<_>>().into_boxed_slice()
 }
@@ -454,6 +473,9 @@ pub fn testBit(left: isize, right: isize) -> bool {
 
 // Monads
 
+pub fn __return<A: Into<B>, B>(left: A) -> B {
+    left.into()
+}
 // pub trait Functor {
 //   fmap = liftM
 // }
@@ -775,10 +797,6 @@ pub fn maybe<A, B, F: Fn(A) -> B>(default_: B, method: F, maybe: Option<A>) -> B
     maybe.map(|x| method(x)).unwrap_or(default_)
 }
 
-pub fn liftM() {
-    // TODO
-}
-
 pub fn bracket<A, B, C>(a: A, b: B, c: C) -> C {
     // TODO these are all methods
     c
@@ -853,4 +871,6 @@ pub fn __op_rshift(left: isize, right: isize) {
     // TODO
     unreachable!();
 }
+
+
 

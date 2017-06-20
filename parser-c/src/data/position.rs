@@ -69,7 +69,7 @@ pub fn position(posOffset: isize, posFile: String, posRow: isize, posColumn: isi
 pub trait Pos {
     fn posOf(self) -> Position;
 }
-pub fn posOf<P>(input: P) -> Position {
+pub fn posOf<P: Pos>(input: P) -> Position {
     input.posOf()
 }
 

@@ -131,6 +131,14 @@ impl Pos for CToken {
     }
 }
 
+use std::fmt::{self, Display, Formatter};
+impl Display for CToken {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        // TODO
+        write!(f, "TODO_TOKEN")
+    }
+}
+
 #[derive(Clone, Debug)]
 pub enum GnuCTok {
     GnuCAttrTok,

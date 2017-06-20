@@ -30,6 +30,9 @@ pub fn takeChars(n: isize, bstr: InputStream) -> Vec<char> {
     BSC::unpack(BSC::take(n, bstr)).chars().collect()
 }
 
+pub fn takeChars_str(n: isize, bstr: InputStream) -> String {
+    BSC::unpack(BSC::take(n, bstr)).chars().collect()
+}
 pub fn readInputStream(f: FilePath) -> InputStream {
     BSW::readFile(f)
 }
