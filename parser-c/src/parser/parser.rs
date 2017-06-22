@@ -41093,7 +41093,7 @@ pub fn happyReduction_488(HappyStk(_, box HappyStk(_, box HappyStk(_, box HappyS
     HappyStk(HappyAbsSyn105(happy_var_1), box happyRest)
 }
 
-pub fn happyNewToken<a: 'static, b: 'static>(action: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(b) -> P<a>>>, Vec<HappyState<CToken, Box<Fn(b) -> P<a>>>>, b) -> P<a>>, sts: Vec<HappyState<CToken, Box<Fn(b) -> P<a>>>>, stk: b) -> P<a> {
+pub fn happyNewToken<a, b>(action: Box<Fn(isize, isize, CToken, HappyState<CToken, Box<Fn(b) -> P<a>>>, Vec<HappyState<CToken, Box<Fn(b) -> P<a>>>>, b) -> P<a>>, sts: Vec<HappyState<CToken, Box<Fn(b) -> P<a>>>>, stk: b) -> P<a> {
     lexC(((box |tk| {
                 let cont = |i| {
                     action(i, i, tk, (HappyState(Rc::new(apply_5_1!(action)))), sts, stk)
@@ -41447,19 +41447,19 @@ pub fn happyError_<a>(_0: isize, _1: CToken) -> P<a> {
     }
 }
 
-pub fn happyThen<a: 'static, b: 'static>(_curry_0: P<a>, _curry_1: Box<Fn(a) -> P<b>>) -> P<b> {
+pub fn happyThen<a, b>(_curry_0: P<a>, _curry_1: Box<Fn(a) -> P<b>>) -> P<b> {
     thenP(_curry_0, _curry_1)
 }
 
-pub fn happyReturn<a: 'static>(_curry_0: a) -> P<a> {
+pub fn happyReturn<a>(_curry_0: a) -> P<a> {
     __return(_curry_0)
 }
 
-pub fn happyThen1<a0: 'static, b0: 'static>(_curry_0: P<a0>, _curry_1: Box<Fn(a0) -> P<b0>>) -> P<b0> {
+pub fn happyThen1<a0, b0>(_curry_0: P<a0>, _curry_1: Box<Fn(a0) -> P<b0>>) -> P<b0> {
     happyThen(_curry_0, _curry_1)
 }
 
-pub fn happyReturn1<a: 'static>(_curry_0: a) -> P<a> {
+pub fn happyReturn1<a>(_curry_0: a) -> P<a> {
     happyReturn(_curry_0)
 }
 
@@ -41545,7 +41545,7 @@ pub fn unL<a>(Located(a, pos): Located<a>) -> a {
     a
 }
 
-pub fn withNodeInfo<a: 'static, node: Pos + 'static>(node: node, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
+pub fn withNodeInfo<a, node: Pos>(node: node, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
     /*do*/ {
         thenP(getNewName(), box |name| {
             thenP(getSavedToken(), box |lastTok| {
@@ -41559,7 +41559,7 @@ pub fn withNodeInfo<a: 'static, node: Pos + 'static>(node: node, mkAttrNode: Box
     }
 }
 
-pub fn withLength<a: 'static>(nodeinfo: NodeInfo, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
+pub fn withLength<a>(nodeinfo: NodeInfo, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
     /*do*/ {
         thenP(getSavedToken(), box |lastTok| {
             let firstPos = posOfNode(nodeinfo);
@@ -41589,7 +41589,7 @@ pub fn reverseDeclr(CDeclrR(ide, reversedDDs, asmname, cattrs, at): CDeclrR) -> 
     CDeclarator::<NodeInfo>(ide, (reverse(reversedDDs)), asmname, cattrs, at)
 }
 
-pub fn withAttribute<node: Pos + 'static>(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrNode: Box<Fn(NodeInfo) -> CDeclrR>) -> P<CDeclrR> {
+pub fn withAttribute<node: Pos>(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrNode: Box<Fn(NodeInfo) -> CDeclrR>) -> P<CDeclrR> {
     /*do*/ {
         thenP(getNewName(), box |name| {
             let attrs = mkNodeInfo((posOf(node)), name);
@@ -41601,7 +41601,7 @@ pub fn withAttribute<node: Pos + 'static>(node: node, cattrs: Vec<CAttribute<Nod
     }
 }
 
-pub fn withAttributePF<node: Pos + 'static>(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrCtor: Box<Fn(NodeInfo, CDeclrR) -> CDeclrR>) -> P<Box<Fn(CDeclrR) -> CDeclrR>> {
+pub fn withAttributePF<node: Pos>(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrCtor: Box<Fn(NodeInfo, CDeclrR) -> CDeclrR>) -> P<Box<Fn(CDeclrR) -> CDeclrR>> {
     /*do*/ {
         thenP(getNewName(), box |name| {
             let attrs = mkNodeInfo((posOf(node)), name);
@@ -41944,7 +41944,7 @@ pub fn happySpecReduce_3(_0: isize, _1: Box<Fn(HappyAbsSyn, HappyAbsSyn, HappyAb
     }
 }
 
-pub fn happyReduce<a00: 'static>(_0: isize, _1: isize, _2: Box<Fn(HappyStk<HappyAbsSyn>) -> HappyStk<HappyAbsSyn>>, _3: isize, _4: CToken, _5: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a00>>>, _6: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a00>>>>, _7: HappyStk<HappyAbsSyn>) -> P<a00> {
+pub fn happyReduce<a00>(_0: isize, _1: isize, _2: Box<Fn(HappyStk<HappyAbsSyn>) -> HappyStk<HappyAbsSyn>>, _3: isize, _4: CToken, _5: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a00>>>, _6: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<a00>>>>, _7: HappyStk<HappyAbsSyn>) -> P<a00> {
     match (_0, _1, _2, _3, _4, _5, _6, _7) {
         (k, i, __fn, 1, tk, st, sts, stk) => {
             happyFail( (1), tk, st, sts, stk)
@@ -41966,7 +41966,7 @@ pub fn happyReduce<a00: 'static>(_0: isize, _1: isize, _2: Box<Fn(HappyStk<Happy
     }
 }
 
-pub fn happyMonadReduce<b00: 'static>(_0: isize, _1: isize, _2: Box<Fn(HappyStk<HappyAbsSyn>, CToken) -> P<HappyAbsSyn>>, _3: isize, _4: CToken, _5: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<b00>>>, _6: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<b00>>>>, _7: HappyStk<HappyAbsSyn>) -> P<b00> {
+pub fn happyMonadReduce<b00>(_0: isize, _1: isize, _2: Box<Fn(HappyStk<HappyAbsSyn>, CToken) -> P<HappyAbsSyn>>, _3: isize, _4: CToken, _5: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<b00>>>, _6: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<b00>>>>, _7: HappyStk<HappyAbsSyn>) -> P<b00> {
     match (_0, _1, _2, _3, _4, _5, _6, _7) {
         (k, nt, __fn, 1, tk, st, sts, stk) => {
             happyFail((1), tk, st, sts, stk)
@@ -41987,7 +41987,7 @@ pub fn happyMonadReduce<b00: 'static>(_0: isize, _1: isize, _2: Box<Fn(HappyStk<
     }
 }
 
-pub fn happyMonad2Reduce<b00: 'static, t0: 'static>(_0: isize, _1: t0, _2: Box<Fn(HappyStk<HappyAbsSyn>, CToken) -> P<HappyAbsSyn>>, _3: isize, _4: CToken, _5: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<b00>>>, _6: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<b00>>>>, _7: HappyStk<HappyAbsSyn>) -> P<b00> {
+pub fn happyMonad2Reduce<b00, t0>(_0: isize, _1: t0, _2: Box<Fn(HappyStk<HappyAbsSyn>, CToken) -> P<HappyAbsSyn>>, _3: isize, _4: CToken, _5: HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<b00>>>, _6: Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<b00>>>>, _7: HappyStk<HappyAbsSyn>) -> P<b00> {
     match (_0, _1, _2, _3, _4, _5, _6, _7) {
         (k, nt, __fn, 1, tk, st, sts, stk) => {
             happyFail( (1), tk, st, sts, stk)
