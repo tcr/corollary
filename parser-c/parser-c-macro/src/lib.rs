@@ -1,3 +1,4 @@
+#![feature(proc_macro)]
 #![allow(unused_imports)]
 
 extern crate proc_macro;
@@ -7,6 +8,77 @@ extern crate syn;
 use syn::{ Ident, Body, Variant, VariantData };
 use proc_macro::TokenStream;
 use quote::{ToTokens, Tokens};
+
+#[proc_macro]
+pub fn refute(input: TokenStream) -> TokenStream {
+    let input = input.to_string();
+
+    let mut ast = syn::parse_item(&input).unwrap();
+
+    match &mut ast.node {
+        &mut syn::ItemKind::Fn(ref mut decl, _, _, _, _, ref mut body) => {
+            let mut pat_expand = vec![];
+            for (i, arg) in decl.inputs.iter_mut().enumerate() {
+                match arg {
+                    &mut syn::FnArg::Captured(ref mut pat, _) => {
+                        pat_expand.push(pat.clone());
+                        *pat = syn::Pat::Ident(syn::BindingMode::ByValue(syn::Mutability::Immutable),
+                            syn::Ident::new(format!("_{}", i)), None);
+                    }
+                    _ => {
+                        println!("TODO");
+                    }
+                }
+            }
+
+            let body_inner: syn::Block = (**body).clone();
+
+
+
+            *body = Box::new(syn::Block {
+                stmts: vec![
+                    syn::Stmt::Expr(Box::new(syn::Expr {
+                        node: syn::ExprKind::Match(
+                            Box::new(syn::parse_expr(&format!("({})", 
+                                (0..pat_expand.len()).map(|x| format!("_{}", x)).collect::<Vec<_>>().join(", ")
+                            )).unwrap()),
+                            vec![
+                                syn::Arm {
+                                    attrs: vec![],
+                                    pats: if pat_expand.len() == 1 {
+                                        pat_expand
+                                    } else {
+                                        vec![syn::Pat::Tuple(pat_expand, None)]
+                                    },
+                                    guard: None,
+                                    body: Box::new(syn::Expr {
+                                        node: syn::ExprKind::Block(syn::BlockCheckMode::Default, body_inner),
+                                        attrs: vec![],
+                                    })
+                                },
+                                syn::Arm {
+                                    attrs: vec![],
+                                    pats: vec![syn::Pat::Wild],
+                                    guard: None,
+                                    body: Box::new(syn::parse_expr(r#"panic!("Irrefutable pattern!")"#).unwrap()),
+                                }
+                            ],
+                        ),
+                        attrs: vec![],
+                    })),
+                ],
+            });
+        }
+        _ => {
+            panic!("Unexpected item, expected fn");
+        }
+    }
+
+    let mut args = Tokens::new();
+    ast.to_tokens(&mut args);
+    
+    args.parse().unwrap()
+}
 
 #[proc_macro_derive(CNodeable)]
 pub fn cnodeable(input: TokenStream) -> TokenStream {

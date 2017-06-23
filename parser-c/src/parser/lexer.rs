@@ -33662,7 +33662,7 @@ pub fn alexMove(_0: Position, _1: char) -> Position {
     }
 }
 
-pub fn lexicalError<a>() -> P<a> {
+pub fn lexicalError<a: 'static>() -> P<a> {
     /*do*/ {
         thenP(getPos(), box |pos| {
 
@@ -33678,7 +33678,7 @@ pub fn lexicalError<a>() -> P<a> {
     }
 }
 
-pub fn parseError<a>() -> P<a> {
+pub fn parseError<a: 'static>() -> P<a> {
     /*do*/ {
         thenP(getLastToken(), box |lastTok| {
 
@@ -34065,17 +34065,19 @@ pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexI
             AlexAccSkip => {
                 AlexLastSkip(input, len)
             },
-            AlexAccPred(a, predx, box rest) if predx(user, orig_input, len, input) => {
-                AlexLastAcc(a, input, len)
-            },
             AlexAccPred(a, predx, box rest) => {
-                check_accs((user, orig_input, len, input, last_acc), rest)
-            },
-            AlexAccSkipPred(predx, box rest) if predx(user, orig_input, len, input) => {
-                AlexLastSkip(input, len)
+                if predx(user, orig_input, len, input) {
+                    AlexLastAcc(a, input, len)
+                } else {
+                    check_accs((user, orig_input, len, input, last_acc), rest)
+                }
             },
             AlexAccSkipPred(predx, box rest) => {
-                check_accs((user, orig_input, len, input, last_acc), rest)
+                if predx(user, orig_input, len, input){
+                    AlexLastSkip(input, len)
+                } else {
+                    check_accs((user, orig_input, len, input, last_acc), rest)
+                }
             },
         }
     };

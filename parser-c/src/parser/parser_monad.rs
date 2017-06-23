@@ -94,7 +94,7 @@ impl<a> Clone for P<a> {
     }
 }
 
-impl<A> From<A> for P<A> {
+impl<A: 'static> From<A> for P<A> {
     fn from(item: A) -> P<A> {
         P::with(box |state| POk(state, item))
     }
@@ -124,11 +124,11 @@ pub fn execParser<a>(P(parser): P<a>,
     }
 }
 
-pub fn returnP<a>(a: a) -> P<a> {
+pub fn returnP<a: 'static>(a: a) -> P<a> {
     P::with(box move |s| POk(s, a))
 }
 
-pub fn thenP<a, b>(P(m): P<a>, k: Box<Fn(a) -> P<b>>) -> P<b> {
+pub fn thenP<a: 'static, b: 'static>(P(m): P<a>, k: Box<Fn(a) -> P<b>>) -> P<b> {
     P::with(box move |s| match m(s) {
           POk(s_q, a) => (unP((k(a))))(s_q),
           PFailed(err, pos) => PFailed(err, pos),
@@ -236,6 +236,6 @@ pub fn getCurrentPosition() -> P<Position> {
 
 // --------
 
-pub fn rshift_monad<a, b>(a: P<a>, b: P<b>) -> P<b> {
+pub fn rshift_monad<a: 'static, b: 'static>(a: P<a>, b: P<b>) -> P<b> {
     thenP(a, box |_| b)
 }

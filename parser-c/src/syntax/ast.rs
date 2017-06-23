@@ -13,6 +13,8 @@ use syntax::constants::*;
 use data::position::posOf;
 use data::position::{Position, Pos};
 
+use parser_c_macro::CNodeable;
+
 // NOTE: These imports are advisory. You probably need to change them to support Rust.
 // use Language::C::Syntax::Constants;
 // use Language::C::Syntax::Ops;
