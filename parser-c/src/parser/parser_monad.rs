@@ -96,7 +96,7 @@ impl<a> Clone for P<a> {
 
 impl<A: 'static> From<A> for P<A> {
     fn from(item: A) -> P<A> {
-        P::with(box |state| POk(state, item))
+        P::with(box move |state| POk(state, item))
     }
 }
 
@@ -136,11 +136,11 @@ pub fn thenP<a: 'static, b: 'static>(P(m): P<a>, k: Box<Fn(a) -> P<b>>) -> P<b> 
 }
 
 pub fn failP<a>(pos: Position, msg: Vec<String>) -> P<a> {
-    P::with(box |_| PFailed(msg, pos))
+    P::with(box move |_| PFailed(msg.clone(), pos.clone()))
 }
 
 pub fn getNewName() -> P<Name> {
-    P::with(box |s: PState| {
+    P::with(box move |s: PState| {
         let mut ns = s.namesupply.clone();
         let n = ns.remove(0);
         seq(n.clone(), POk(__assign!(s, { namesupply: ns }), n))
@@ -173,11 +173,11 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
 }
 
 pub fn isTypeIdent(mut ident: Ident) -> P<bool> {
-    P::with(box |s: PState| POk(s.clone(), Set::member(ident.clone(), s.tyidents.clone())))
+    P::with(box move |s: PState| POk(s.clone(), Set::member(ident.clone(), s.tyidents.clone())))
 }
 
 pub fn enterScope() -> P<()> {
-    P::with(box |s: PState| POk(__assign!(s, { scopes: __op_concat(s.tyidents.clone(), s.scopes.clone()) }), ()))
+    P::with(box move |s: PState| POk(__assign!(s, { scopes: __op_concat(s.tyidents.clone(), s.scopes.clone()) }), ()))
 }
 
 pub fn leaveScope() -> P<()> {
@@ -237,5 +237,5 @@ pub fn getCurrentPosition() -> P<Position> {
 // --------
 
 pub fn rshift_monad<a: 'static, b: 'static>(a: P<a>, b: P<b>) -> P<b> {
-    thenP(a, box |_| b)
+    thenP(a, box move |_| b.clone())
 }

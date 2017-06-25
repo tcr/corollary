@@ -119,9 +119,9 @@ pub fn refute(input: TokenStream) -> TokenStream {
     let mut args = Tokens::new();
     ast.to_tokens(&mut args);
 
-    if input.find("happyReduction_315").is_some() {
-        println!("OH {:?}", args.to_string());
-    }
+    // if input.find("happyReduction_315").is_some() {
+    //     println!("OH {:?}", args.to_string());
+    // }
     
     args.parse().unwrap()
 }

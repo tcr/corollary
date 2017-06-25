@@ -33513,6 +33513,7 @@ pub fn idkwtok(_0: String, _curry_1: Position) -> P<CToken> {
             thenP(
                 /* let name = */ getNewName(),
                 box move |name| {
+                    let pos = pos.clone();
 
                     let len = match length(cs.clone()) {
                             l => {
@@ -33668,6 +33669,7 @@ pub fn lexicalError<a: 'static>() -> P<a> {
 
             thenP(getInput(), box move |input| {
                 let (c, _) = takeChar(input);
+                let pos = pos.clone();
 
         failP(pos, vec![
                 "Lexical error !".to_string(),
@@ -33682,7 +33684,7 @@ pub fn parseError<a: 'static>() -> P<a> {
     /*do*/ {
         thenP(getLastToken(), box move |lastTok| {
 
-        failP((posOf(lastTok)), vec![
+        failP((posOf(lastTok.clone())), vec![
                 "Syntax error !".to_string(),
                 __op_addadd("The symbol `".to_string(), __op_addadd(show(lastTok), "\' does not fit here.".to_string())),
             ])
@@ -33699,8 +33701,9 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
         thenP(getPos(), box move |pos| {
 
         thenP(getInput(), box move |inp| {
+            let pos = pos.clone();
 
-        match alexScan((pos, inp), 0) {
+        match alexScan((pos.clone(), inp.clone()), 0) {
             AlexEOF => {
                 /*do*/ {
                     handleEofToken;
@@ -33724,7 +33727,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                     thenP(action(pos, len, inp), box move |nextTok| {
 
                         if modifyCache { 
-                            thenP(setLastToken(nextTok), box move |_| __return(nextTok))
+                            thenP(setLastToken(nextTok.clone()), box move |_| __return(nextTok.clone()))
                         } else {
                             __return(nextTok)
                         }
@@ -34032,7 +34035,7 @@ pub fn alexScan(input: (Position, InputStream), sc: isize) -> AlexReturn<Box<Fn(
 }
 
 pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<Box<Fn(Position, isize, InputStream) -> P<CToken>>> {
-    match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
+    match alex_scan_tkn(user, input.clone(), (0), input.clone(), sc, AlexNone) {
         (AlexNone, input_q) => {
             match alexGetByte(input) {
                 None => {
@@ -34054,7 +34057,7 @@ pub fn alexScanUser(user: bool, input: AlexInput, sc: isize) -> AlexReturn<Box<F
 
 pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexInput, s: isize, last_acc: AlexLastAcc) -> (AlexLastAcc, AlexInput) {
     // TODO recursive lambda
-    fn check_accs<A>((user, orig_input, len, input, last_acc): (A, AlexInput, isize, AlexInput, AlexLastAcc), _0: AlexAcc<A>) -> AlexLastAcc {
+    fn check_accs<A: Clone>((user, orig_input, len, input, last_acc): (A, AlexInput, isize, AlexInput, AlexLastAcc), _0: AlexAcc<A>) -> AlexLastAcc {
         match (_0) {
             AlexAccNone => {
                 last_acc
@@ -34066,14 +34069,14 @@ pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexI
                 AlexLastSkip(input, len)
             },
             AlexAccPred(a, predx, box rest) => {
-                if predx(user, orig_input, len, input.clone()) {
+                if predx(user.clone(), orig_input.clone(), len, input.clone()) {
                     AlexLastAcc(a, input, len)
                 } else {
                     check_accs((user, orig_input, len, input, last_acc), rest)
                 }
             },
             AlexAccSkipPred(predx, box rest) => {
-                if predx(user, orig_input, len, input.clone()){
+                if predx(user.clone(), orig_input.clone(), len, input.clone()){
                     AlexLastSkip(input, len)
                 } else {
                     check_accs((user, orig_input, len, input, last_acc), rest)
@@ -34082,10 +34085,9 @@ pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexI
         }
     };
 
-    seq(input, {
-        let new_acc = (check_accs((user, orig_input, len, input, last_acc), (quickIndex(alex_accept(), s))));
+        let new_acc = (check_accs((user, orig_input.clone(), len, input.clone(), last_acc), (quickIndex(alex_accept(), s))));
 
-    seq(new_acc, match alexGetByte(input) {
+    match alexGetByte(input.clone()) {
             None => {
                 (new_acc, input)
             },
@@ -34118,7 +34120,7 @@ len
                     },
                 }
             },
-        })    })
+        }   
 }
 
 pub enum AlexLastAcc {
@@ -34139,8 +34141,8 @@ pub use self::AlexAcc::*;
 
 pub type AlexAccPred<user> = Box<Fn(user, AlexInput, isize, AlexInput) -> bool>;
 
-pub fn alexAndPred<a>(p1: Box<Fn(a, AlexInput, isize, AlexInput) -> bool>, p2: Box<Fn(a, AlexInput, isize, AlexInput) -> bool>, user: a, in1: AlexInput, len: isize, in2: AlexInput) -> bool {
-    (p1(user, in1, len, in2) && p2(user, in1, len, in2))
+pub fn alexAndPred<a: Clone>(p1: Box<Fn(a, AlexInput, isize, AlexInput) -> bool>, p2: Box<Fn(a, AlexInput, isize, AlexInput) -> bool>, user: a, in1: AlexInput, len: isize, in2: AlexInput) -> bool {
+    (p1(user.clone(), in1.clone(), len, in2.clone()) && p2(user, in1, len, in2))
 }
 
 pub fn alexPrevCharIs(c: char, _: isize, input: AlexInput, _: isize, _: isize) -> bool {
@@ -34156,7 +34158,7 @@ pub fn alexPrevCharIsOneOf(arr: Vec<bool>, _: isize, input: AlexInput, _: isize,
 }
 
 pub fn alexRightContext(sc: isize, user: bool, _: AlexInput, _: isize, input: AlexInput) -> bool {
-    match alex_scan_tkn(user, input, (0), input, sc, AlexNone) {
+    match alex_scan_tkn(user, input.clone(), (0), input, sc, AlexNone) {
         (AlexNone, _) => {
             false
         },
