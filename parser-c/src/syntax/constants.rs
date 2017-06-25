@@ -202,7 +202,8 @@ pub struct CString(pub String, pub bool);
 
 impl Display for CString {
     fn fmt(&self, f: &mut Formatter) -> Result<(), fmt::Error> {
-        write!(f, "{}", _showWideFlag(self.1).show_s(showStringLit(self.0).show_s("".to_string())))
+        let CString(s, b) = self.clone();
+        write!(f, "{}", _showWideFlag(b).show_s(showStringLit(s).show_s("".to_string())))
     }
 }
 

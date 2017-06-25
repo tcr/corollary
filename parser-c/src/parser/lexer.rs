@@ -33508,25 +33508,25 @@ pub fn idkwtok(_0: String, _curry_1: Position) -> P<CToken> {
         },
         cs => {
             let cs = cs.to_owned();
-            let pos = _curry_1;
+            let pos = _curry_1.clone();
 
             thenP(
                 /* let name = */ getNewName(),
-                box |name| {
+                box move |name| {
 
-                    let len = match length(cs) {
+                    let len = match length(cs.clone()) {
                             l => {
                                 l
                             },
                         };
 
-                    let ident = mkIdent(pos, cs, name);
+                    let ident = mkIdent(pos.clone(), cs.clone(), name);
 
-                    thenP(isTypeIdent(ident), box |tyident| {
+                    thenP(isTypeIdent(ident.clone()), box move |tyident| {
 
                     if tyident {                     
-__return((CTokTyIdent((pos, len), ident)))} else {
-__return((CTokIdent((pos, len), ident)))
+__return((CTokTyIdent((pos.clone(), len), ident.clone())))} else {
+__return((CTokIdent((pos.clone(), len), ident.clone())))
                     }
                     })
                 })
@@ -33538,7 +33538,7 @@ pub fn ignoreAttribute() -> P<()> {
 
     pub fn skipTokens(n: isize) -> P<()> {
         /*do*/ {
-            thenP(lexToken_q(false), box |ntok| {
+            thenP(lexToken_q(false), box move |ntok| {
 
             match ntok {
                 CTokRParen(_) if (n == 1) => { __return(()) }
@@ -33566,7 +33566,7 @@ pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Po
         dropWhile((|c| { (c == ' ') || (c == '\t') }), input)
     }
 
-    let offs_q = ((posOffset(pos)) + pragmaLen);
+    let offs_q = ((posOffset(pos.clone())) + pragmaLen);
 
     let str_q = dropWhite(drop_str(1, __str));
 
@@ -33577,9 +33577,9 @@ pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Po
 
     let str_q_q_q = dropWhite(str_q_q);
 
-    let fnameStr = takeWhile_str(|x| { x != '\"' }, drop_str(1, str_q_q_q));
+    let fnameStr = takeWhile_str(|x| { x != '\"' }, drop_str(1, str_q_q_q.clone()));
 
-    let fname = posFile(pos);
+    let fname = posFile(pos.clone());
 
     let fname_q = if str_q_q_q.len() == 0 || head_str(str_q_q_q) != '"' {
         fname
@@ -33590,13 +33590,13 @@ pub fn adjustLineDirective(pragmaLen: isize, __str: String, pos: Position) -> Po
         fnameStr
     };
 
-    seq(offs_q, seq(fname_q, seq(row_q, (position(offs_q, fname_q, row_q, 1)))))
+    position(offs_q, fname_q, row_q, 1)
 }
 
 pub fn unescapeMultiChars(cs: String) -> String {
     if cs.len() > 2 {
         let cs_0 = cs.chars().nth(0).unwrap();
-        let value = unescapeChar(cs);
+        let value = unescapeChar(cs.clone());
         format!("{}{}", cs_0, unescapeMultiChars(cs.chars().skip(1).collect::<String>()))
     } else if cs.len() == 1 && cs.chars().nth(0).unwrap() == '\'' {
         "".to_string()
@@ -33635,13 +33635,13 @@ pub fn alexInputPrevChar(_: AlexInput) -> char {
 }
 
 pub fn alexGetByte((p, is): AlexInput) -> Option<(Word8, AlexInput)> {
-    if inputStreamEmpty(is) {
+    if inputStreamEmpty(is.clone()) {
         None
     } else {
         let (b, s) = takeByte(is);
         // this is safe for latin-1, but ugly
         let p_q = alexMove(p, chr(fromIntegral(b as isize)));
-        seq(p_q, Some((b, (p_q, s))))
+        Some((b, (p_q, s)))
     }
 }
 
@@ -33664,9 +33664,9 @@ pub fn alexMove(_0: Position, _1: char) -> Position {
 
 pub fn lexicalError<a: 'static>() -> P<a> {
     /*do*/ {
-        thenP(getPos(), box |pos| {
+        thenP(getPos(), box move |pos| {
 
-            thenP(getInput(), box |input| {
+            thenP(getInput(), box move |input| {
                 let (c, _) = takeChar(input);
 
         failP(pos, vec![
@@ -33680,7 +33680,7 @@ pub fn lexicalError<a: 'static>() -> P<a> {
 
 pub fn parseError<a: 'static>() -> P<a> {
     /*do*/ {
-        thenP(getLastToken(), box |lastTok| {
+        thenP(getLastToken(), box move |lastTok| {
 
         failP((posOf(lastTok)), vec![
                 "Syntax error !".to_string(),
@@ -33696,9 +33696,9 @@ pub fn lexToken() -> P<CToken> {
 
 pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
     /*do*/ {
-        thenP(getPos(), box |pos| {
+        thenP(getPos(), box move |pos| {
 
-        thenP(getInput(), box |inp| {
+        thenP(getInput(), box move |inp| {
 
         match alexScan((pos, inp), 0) {
             AlexEOF => {
@@ -33721,10 +33721,10 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
                 /*do*/ {
                     setPos(pos_q);
                     setInput(inp_q);
-                    thenP(action(pos, len, inp), box |nextTok| {
+                    thenP(action(pos, len, inp), box move |nextTok| {
 
                         if modifyCache { 
-                            thenP(setLastToken(nextTok), box |_| __return(nextTok))
+                            thenP(setLastToken(nextTok), box move |_| __return(nextTok))
                         } else {
                             __return(nextTok)
                         }
@@ -33739,7 +33739,7 @@ pub fn lexToken_q(modifyCache: bool) -> P<CToken> {
 
 pub fn lexC<a: 'static>(cont: Box<Fn(CToken) -> P<a>>) -> P<a> {
     /*do*/ {
-        thenP(lexToken(), box |nextTok| {
+        thenP(lexToken(), box move |nextTok| {
 
         cont(nextTok)
         })
@@ -33747,11 +33747,11 @@ pub fn lexC<a: 'static>(cont: Box<Fn(CToken) -> P<a>>) -> P<a> {
 }
 
 pub fn alex_action_1(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    (box |pos, len, __str| { rshift_monad(setPos((adjustLineDirective(len, (takeChars_str(len, __str)), pos))), lexToken_q(false)) })(_curry_0, _curry_1, _curry_2)
+    (box move |pos, len, __str| { rshift_monad(setPos((adjustLineDirective(len, (takeChars_str(len, __str)), pos))), lexToken_q(false)) })(_curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_4(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    (box |pos, len, __str| { idkwtok((takeChars_str(len, __str)), pos) })(_curry_0, _curry_1, _curry_2)
+    (box move |pos, len, __str| { idkwtok((takeChars_str(len, __str)), pos) })(_curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_5(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33763,7 +33763,7 @@ pub fn alex_action_6(_curry_0: Position, _curry_1: isize, _curry_2: InputStream)
 }
 
 pub fn alex_action_7(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token_plus(box CTokILit, box |_0| readCInteger(HexRepr, drop_str(2, _0)), _curry_0, _curry_1, _curry_2)
+    token_plus(box CTokILit, box move |_0| readCInteger(HexRepr, drop_str(2, _0)), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_8(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33771,23 +33771,23 @@ pub fn alex_action_8(_curry_0: Position, _curry_1: isize, _curry_2: InputStream)
 }
 
 pub fn alex_action_9(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(box CTokCLit, box |_0| (cChar(fst(unescapeChar(tail_str(_0))))), _curry_0, _curry_1, _curry_2)
+    token(box CTokCLit, box move |_0| (cChar(fst(unescapeChar(tail_str(_0))))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_10(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(box CTokCLit, box |_0| (cChar_w(fst(unescapeChar(tail_str(tail_str(_0)))))), _curry_0, _curry_1, _curry_2)
+    token(box CTokCLit, box move |_0| (cChar_w(fst(unescapeChar(tail_str(tail_str(_0)))))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_11(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(box CTokCLit, box |_0| (flip(cChars, false, unescapeMultiChars(tail_str(_0)))), _curry_0, _curry_1, _curry_2)
+    token(box CTokCLit, box move |_0| (flip(cChars, false, unescapeMultiChars(tail_str(_0)))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_12(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(box CTokCLit, box |_0| (flip(cChars, true, unescapeMultiChars(tail_str(tail_str(_0))))), _curry_0, _curry_1, _curry_2)
+    token(box CTokCLit, box move |_0| (flip(cChars, true, unescapeMultiChars(tail_str(tail_str(_0))))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_13(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token((box |pos, _0| { CTokClangC(pos, ClangCTok(_0)) }), box readClangCVersion, _curry_0, _curry_1, _curry_2)
+    token((box move |pos, _0| { CTokClangC(pos, ClangCTok(_0)) }), box readClangCVersion, _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_14(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -33803,11 +33803,11 @@ pub fn alex_action_16(_curry_0: Position, _curry_1: isize, _curry_2: InputStream
 }
 
 pub fn alex_action_17(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(box CTokSLit, box |_0| (cString(unescapeString(init_str(tail_str(_0))))), _curry_0, _curry_1, _curry_2)
+    token(box CTokSLit, box move |_0| (cString(unescapeString(init_str(tail_str(_0))))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_18(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
-    token(box CTokSLit, box |_0| (cString_w(unescapeString(init_str(tail_str(tail_str(_0)))))), _curry_0, _curry_1, _curry_2)
+    token(box CTokSLit, box move |_0| (cString_w(unescapeString(init_str(tail_str(tail_str(_0)))))), _curry_0, _curry_1, _curry_2)
 }
 
 pub fn alex_action_19(_curry_0: Position, _curry_1: isize, _curry_2: InputStream) -> P<CToken> {
@@ -34066,14 +34066,14 @@ pub fn alex_scan_tkn(user: bool, orig_input: AlexInput, len: isize, input: AlexI
                 AlexLastSkip(input, len)
             },
             AlexAccPred(a, predx, box rest) => {
-                if predx(user, orig_input, len, input) {
+                if predx(user, orig_input, len, input.clone()) {
                     AlexLastAcc(a, input, len)
                 } else {
                     check_accs((user, orig_input, len, input, last_acc), rest)
                 }
             },
             AlexAccSkipPred(predx, box rest) => {
-                if predx(user, orig_input, len, input){
+                if predx(user, orig_input, len, input.clone()){
                     AlexLastSkip(input, len)
                 } else {
                     check_accs((user, orig_input, len, input, last_acc), rest)

@@ -4,14 +4,56 @@
 extern crate proc_macro;
 extern crate syn;
 #[macro_use] extern crate quote;
+extern crate regex;
 
 use syn::{ Ident, Body, Variant, VariantData };
 use proc_macro::TokenStream;
 use quote::{ToTokens, Tokens};
+use regex::{Regex, Captures};
 
 #[proc_macro]
 pub fn refute(input: TokenStream) -> TokenStream {
     let input = input.to_string();
+
+    // Replace things with clones.
+    // let mut clones: Vec<String> = vec![];
+    // for item in Regex::new(r#"happy_var_\d+"#).unwrap().captures_iter(&input) {
+        // clones.push(format!("let {} = {}.clone();", &item[0], &item[0]));
+    // }
+    let r = Regex::new(r#"box\s*(?:move\s*)?(\|\s*(at|_0)[^|]*\|\s*\{)"#).unwrap();
+    // println!("{:?} clones {:?}", input, clones);
+    let input: String = r.replace(input.as_ref(), format!(r#"box move $1 "#).as_str()).to_string();
+    // println!("{:?} clones {:?}", input, clones);
+
+    let input = if input.find("clones !").is_none() {
+        Regex::new(r#"((?:\bwith[A-Za-z_0-9]+)[\s\S]+?box move \| (?:at|_0)[^|]+\|)([\s\S]*)(box move)"#)
+        .unwrap().replace_all(&input, |cap: &Captures| {
+            format!("{}{}{}",
+                &cap[1],
+                Regex::new(r#"happy_var_\d+"#).unwrap().replace_all(&cap[2], "$0.clone()"),
+                &cap[3])
+        }).to_string()
+    } else {
+        input
+    };
+    let input = Regex::new(r#"((?:\bwith[A-Za-z_0-9]+)[\s\S]+box move[\s\S\+]box move \| (?:at|_0)[^|]+\|)([\s\S]*)(box move)"#)
+    .unwrap().replace_all(&input, |cap: &Captures| {
+        format!("{}{}{}",
+            &cap[1],
+            Regex::new(r#"happy_var_\d+"#).unwrap().replace_all(&cap[2], "$0.clone()"),
+            &cap[3])
+    });
+
+    let input = Regex::new(r#"((?:\bwith[A-Za-z0-9]+)[\s\S]+partial_1\s*!\s*\(\s*)([\s\S]*)(box move)"#).unwrap().replace_all(&input, |cap: &Captures| {
+        format!("{}{}{}",
+            &cap[1],
+            Regex::new(r#"happy_var_\d+"#).unwrap().replace_all(&cap[2], "$0.clone()"),
+            &cap[3])
+    });
+
+// 35834 |    refute!( pub fn happyReduction_23<t>(HappyStk(HappyAbsSyn12(happy_var_4), box HappyStk(HappyAbsSyn33(happy_var_3), box HappyStk(HappyAbsSyn11(happy_var_2), box HappyStk(HappyAbsSyn38(happy_var_1), box happyRest)))): HappyStk<HappyAbsSyn>, tk: t) -> P<HappyAbsSyn> {
+
+      // match withNodeInfo ... partial1(...) and replace happy_var_1 elements with .clone()
 
     let mut ast = syn::parse_item(&input).unwrap();
 
@@ -40,7 +82,7 @@ pub fn refute(input: TokenStream) -> TokenStream {
                     syn::Stmt::Expr(Box::new(syn::Expr {
                         node: syn::ExprKind::Match(
                             Box::new(syn::parse_expr(&format!("({})", 
-                                (0..pat_expand.len()).map(|x| format!("_{}", x)).collect::<Vec<_>>().join(", ")
+                                (0..pat_expand.len()).map(|x| format!("{{ _{} }}", x)).collect::<Vec<_>>().join(", ")
                             )).unwrap()),
                             vec![
                                 syn::Arm {
@@ -76,6 +118,10 @@ pub fn refute(input: TokenStream) -> TokenStream {
 
     let mut args = Tokens::new();
     ast.to_tokens(&mut args);
+
+    if input.find("happyReduction_315").is_some() {
+        println!("OH {:?}", args.to_string());
+    }
     
     args.parse().unwrap()
 }
