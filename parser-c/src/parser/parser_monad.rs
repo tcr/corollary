@@ -173,7 +173,7 @@ pub fn shadowTypedef(ident: Ident) -> P<()> {
 }
 
 pub fn isTypeIdent(mut ident: Ident) -> P<bool> {
-    P::with(box |s: PState| POk(s.clone(), Set::member(ident, s.tyidents.clone())))
+    P::with(box |s: PState| POk(s.clone(), Set::member(ident.clone(), s.tyidents.clone())))
 }
 
 pub fn enterScope() -> P<()> {
