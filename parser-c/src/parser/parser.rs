@@ -39170,9 +39170,9 @@ pub fn happyReduce_315() -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(Happ
 }
 
 refute!( pub fn happyReduction_315<t>(HappyStk(_, box HappyStk(HappyAbsSyn124(happy_var_2), box HappyStk(HappyTerminal(happy_var_1), box happyRest))): HappyStk<HappyAbsSyn>, tk: t) -> P<HappyAbsSyn> {
-    happyThen(((withNodeInfo(happy_var_1.clone(), box move |at| { clones!(happy_var_2); box move |declr| {
+    happyThen(((withNodeInfo(happy_var_1.clone(), box move |at| { clones!(happy_var_2); Rc::new(box move |declr| {
         arrDeclr(declr, vec![], false, false, happy_var_2.clone(), at.clone())
-    } }))), (box move |r| { let me = box move |_0| r(_0); happyReturn((HappyAbsSyn88(Rc::new(me)))) }))
+    }) }))), (box move |r| { let me = box move |_0| r(_0); happyReturn((HappyAbsSyn88(Rc::new(me)))) }))
 } );
 
 pub fn happyReduce_316() -> Box<Fn(isize, CToken, HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>, Vec<HappyState<CToken, Box<Fn(HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>>>>, HappyStk<HappyAbsSyn>) -> P<HappyAbsSyn>> {
@@ -41501,7 +41501,7 @@ pub fn happyThen<a: 'static, b: 'static>(_curry_0: P<a>, _curry_1: Box<Fn(a) -> 
     thenP(_curry_0, _curry_1)
 }
 
-pub fn happyReturn<a: 'static>(_curry_0: a) -> P<a> {
+pub fn happyReturn<a: Clone + 'static>(_curry_0: a) -> P<a> {
     __return(_curry_0)
 }
 
@@ -41509,7 +41509,7 @@ pub fn happyThen1<a0: 'static, b0: 'static>(_curry_0: P<a0>, _curry_1: Box<Fn(a0
     happyThen(_curry_0, _curry_1)
 }
 
-pub fn happyReturn1<a: 'static>(_curry_0: a) -> P<a> {
+pub fn happyReturn1<a: Clone + 'static>(_curry_0: a) -> P<a> {
     happyReturn(_curry_0)
 }
 
@@ -41596,7 +41596,7 @@ pub fn unL<a>(Located(a, pos): Located<a>) -> a {
     a
 }
 
-pub fn withNodeInfo<a: 'static, node: Pos + Clone + 'static>(node: node, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
+pub fn withNodeInfo<a: Clone + 'static, node: Pos + Clone + 'static>(node: node, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
     /*do*/ {
         let mkAttrNode = Rc::new(mkAttrNode);
         thenP(getNewName(), box move |name| {
@@ -41613,7 +41613,7 @@ pub fn withNodeInfo<a: 'static, node: Pos + Clone + 'static>(node: node, mkAttrN
     }
 }
 
-pub fn withLength<a: 'static>(nodeinfo: NodeInfo, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
+pub fn withLength<a: Clone + 'static>(nodeinfo: NodeInfo, mkAttrNode: Box<Fn(NodeInfo) -> a>) -> P<a> {
     /*do*/ {
         thenP(getSavedToken(), box move |lastTok| {
             let firstPos = posOfNode(nodeinfo.clone());
@@ -41656,7 +41656,7 @@ pub fn withAttribute<node: Pos + Clone + 'static>(node: node, cattrs: Vec<CAttri
     }
 }
 
-pub fn withAttributePF<node: Pos + Clone + 'static>(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrCtor: Box<Fn(NodeInfo, CDeclrR) -> CDeclrR>) -> P<Box<Fn(CDeclrR) -> CDeclrR>> {
+pub fn withAttributePF<node: Pos + Clone + 'static>(node: node, cattrs: Vec<CAttribute<NodeInfo>>, mkDeclrCtor: Box<Fn(NodeInfo, CDeclrR) -> CDeclrR>) -> P<Rc<Box<Fn(CDeclrR) -> CDeclrR>>> {
             let mkDeclrCtor = Rc::new(mkDeclrCtor);
     /*do*/ {
         thenP(getNewName(), box move |name| {
@@ -41669,7 +41669,7 @@ pub fn withAttributePF<node: Pos + Clone + 'static>(node: node, cattrs: Vec<CAtt
                 let mkDeclrCtor = mkDeclrCtor.clone();
                 appendDeclrAttrs(cattrs.clone(), mkDeclrCtor(attrs.clone(), _0)) };
 
-            __return(newDeclr)
+            __return(Rc::new(newDeclr))
         })
     }
 }

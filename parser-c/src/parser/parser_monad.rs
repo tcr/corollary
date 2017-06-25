@@ -94,9 +94,9 @@ impl<a> Clone for P<a> {
     }
 }
 
-impl<A: 'static> From<A> for P<A> {
+impl<A: Clone + 'static> From<A> for P<A> {
     fn from(item: A) -> P<A> {
-        P::with(box move |state| POk(state, item))
+        P::with(box move |state| POk(state, item.clone()))
     }
 }
 
@@ -124,8 +124,8 @@ pub fn execParser<a>(P(parser): P<a>,
     }
 }
 
-pub fn returnP<a: 'static>(a: a) -> P<a> {
-    P::with(box move |s| POk(s, a))
+pub fn returnP<a: Clone + 'static>(a: a) -> P<a> {
+    P::with(box move |s| POk(s, a.clone()))
 }
 
 pub fn thenP<a: 'static, b: 'static>(P(m): P<a>, k: Box<Fn(a) -> P<b>>) -> P<b> {
