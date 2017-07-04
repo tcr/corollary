@@ -34,7 +34,7 @@ Corrode can be used as an independent binary (and is used in our build pipelines
 cargo run --bin corrode -- input/file/path.hs -o target/output.rs
 ```
 
-Thsi converts a file from Haskell into Rust. You can omit the `-o` parameter to write the file to stdout.
+This converts a file from Haskell into Rust. You can omit the `-o` parameter to write the file to stdout.
 
 Additionally, you can run a file using the `--run` parameter, which will strip any code in a `{-HASKELL-} ... {-/HASKELL-}` block and run any code in a `{-RUST ... /RUST-}` block embedded in a file. This is how tests for Corollary are written; to run more than one file you'll want to convert a Haskell source tree into a Cargo crate.
 
