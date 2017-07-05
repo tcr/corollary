@@ -1,6 +1,6 @@
 [package]
 name = "corollary"
-version = "0.2.0"
+version = "0.3.0"
 authors = [
   "Tim Ryan <tim@timryan.org>",
   "Paul Collier <paul@paulcollier.ca>"
