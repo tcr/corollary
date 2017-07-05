@@ -874,3 +874,30 @@ pub fn __op_rshift(left: isize, right: isize) {
 
 
 
+// fn(A, B) -> fn(C) -> {eval fn(A, B, C)}
+#[allow(unused_macros)]
+macro_rules! partial_1 {
+    ($inner: expr) => ( box $inner );
+    ($inner: expr, $($arg: expr),+ ) => ( box |_0| { $inner($($arg),+ , _0) } )
+}
+#[allow(unused_macros)]
+macro_rules! partial_2 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1| { $inner($($arg),+ , _0, _1) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_3 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2| { $inner($($arg),+ , _0, _1, _2) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_4 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3| { $inner($($arg),+ , _0, _1, _2, _3) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_5 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4| { $inner($($arg),+ , _0, _1, _2, _3, _4) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_6 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_7 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_8 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6, _7| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6, _7) } ) }
+#[allow(unused_macros)]
+macro_rules! partial_9 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6, _7, _8| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6, _7, _8) } ) }
+
+#[allow(unused_macros)]
+macro_rules! curry_1_5 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0))(_1, _2, _3, _4, _5) }; ) }
+#[allow(unused_macros)]
+macro_rules! curry_5_1 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0, _1, _2, _3, _4))(_5) }; ) }

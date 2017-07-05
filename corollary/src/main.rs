@@ -204,36 +204,6 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool, dump_ast: bool) -> Resu
                     writeln!(file_out, "}}\n")?;
                 } else {
                     writeln!(file_out, "#[macro_use] use corollary_support::*;")?;
-                    writeln!(file_out, "{}", r#"
-// fn(A, B) -> fn(C) -> {eval fn(A, B, C)}
-#[allow(unused_macros)]
-macro_rules! partial_1 {
-    ($inner: expr) => ( box $inner );
-    ($inner: expr, $($arg: expr),+ ) => ( box |_0| { $inner($($arg),+ , _0) } )
-}
-#[allow(unused_macros)]
-macro_rules! partial_2 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1| { $inner($($arg),+ , _0, _1) } ) }
-#[allow(unused_macros)]
-macro_rules! partial_3 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2| { $inner($($arg),+ , _0, _1, _2) } ) }
-#[allow(unused_macros)]
-macro_rules! partial_4 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3| { $inner($($arg),+ , _0, _1, _2, _3) } ) }
-#[allow(unused_macros)]
-macro_rules! partial_5 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4| { $inner($($arg),+ , _0, _1, _2, _3, _4) } ) }
-#[allow(unused_macros)]
-macro_rules! partial_6 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5) } ) }
-#[allow(unused_macros)]
-macro_rules! partial_7 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6) } ) }
-#[allow(unused_macros)]
-macro_rules! partial_8 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6, _7| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6, _7) } ) }
-#[allow(unused_macros)]
-macro_rules! partial_9 { ($inner: expr, $($arg: expr),+ ) => ( box |_0, _1, _2, _3, _4, _5, _6, _7, _8| { $inner($($arg),+ , _0, _1, _2, _3, _4, _5, _6, _7, _8) } ) }
-
-#[allow(unused_macros)]
-macro_rules! curry_1_5 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0))(_1, _2, _3, _4, _5) }; ) }
-#[allow(unused_macros)]
-macro_rules! curry_5_1 { ($inner: expr) => ( box |_0, _1, _2, _3, _4, _5| { ($inner(_0, _1, _2, _3, _4))(_5) }; ) }
-
-"#)?;
                     writeln!(file_out, "")?;
                     let state = PrintState::new();
                     writeln!(file_out, "{}", print_item_list(state, &v.items, true))?;
