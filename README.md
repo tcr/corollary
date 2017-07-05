@@ -32,7 +32,7 @@ git clone http://github.com/tcr/corollary --recursive
 These are the crates contained in this repo:
 
 * **`parser-haskell/`**, an original Haskell Parser written in LALRPOP.
-* **`corollary/`**, an experimental Haskell to Rust compiler. This is used to generate (part of) the `parser-c` and `rust-corrode` crates.
+* **`corollary/`**, an experimental Haskell to Rust compiler.
 * **`corollary-support/`**, a support crate for converted Haskell code to use.
 
 In addition, libraries to test Corollary against exist in the `deps/` directory.
