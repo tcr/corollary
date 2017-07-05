@@ -1,6 +1,6 @@
 [package]
 name = "parser-haskell"
-version = "0.1.0"
+version = "0.2.0"
 authors = [
   "Tim Ryan <tim@timryan.org>",
   "Paul Collier <paul@paulcollier.ca>"

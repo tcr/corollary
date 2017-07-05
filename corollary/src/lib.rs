@@ -1,5 +1,6 @@
 #[macro_use] extern crate errln;
 #[macro_use] extern crate maplit;
+#[macro_use] extern crate iflet;
 extern crate clap;
 extern crate hex;
 extern crate inflector;

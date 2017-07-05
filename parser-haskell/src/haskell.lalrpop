@@ -68,7 +68,8 @@ SingleQuote: String = {
 
 // Note: we only have signed integers for now.
 Num: isize = {
-    r"[0-9]+" => isize::from_str(<>).unwrap()
+    r"0x[0-9A-Fa-f]+" => isize::from_str_radix(&<>[2..], 16).unwrap(),
+    r"-?[0-9]+" => isize::from_str(<>).unwrap(),
 };
 
 ImportIdent: Ident = {
@@ -200,6 +201,11 @@ Expr: Expr = {
       => Expr::Case(Box::new(e), s),
     "do" "{" <body:Semi<DoItem>> <w:Where> "}"
       => Expr::Do(body, w),
+    "if" "{" <cond:ExprSpan> "}"
+      "then" "{" <then_:ExprSpan> "}"
+      <else_:("else" "{" <ExprSpan> "}")?> => {
+        Expr::If(Box::new(cond), Box::new(then_), else_.map(|x| Box::new(x)))
+    },
     "{" <r:Comma<(<Ident> "=" <ExprSpan>)>> ";"? "}"
       => Expr::RecordArgs(r),
 };

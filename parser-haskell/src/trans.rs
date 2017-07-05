@@ -17,19 +17,19 @@ pub fn rearrange_infix_pat(mut pats: Vec<Pat>) -> Vec<Pat> {
     let mut index = None;
     for (i, pat) in pats.iter().enumerate() {
         if match pat { &Pat::Infix(_) => true, _ => false } {
-            if !index.is_none() {
-                errln!("TODO: assert failed: multiple infix patterns: {:?}", pats);
-            }
             index = Some(i);
+            break;
         }
     }
 
     if let Some(i) = index {
+        let left = pats[0..i].to_vec();
+        let right = pats[i+1..].to_vec();
         let ident = match pats.remove(i) {
             Pat::Infix(ident) => ident,
             _ => panic!(),
         };
-        pats.insert(0, Pat::Ref(ident));
+        return vec![Pat::Ref(ident), Pat::Span(left), Pat::Span(rearrange_infix_pat(right))]
     }
 
     pats
@@ -60,6 +60,7 @@ pub fn expr_to_pat(expr: &Expr) -> Pat {
         Expr::Str(ref s) => Pat::Str(s.clone()),
         Expr::Char(ref s) => Pat::Char(s.clone()),
 
+        Expr::If(..) |
         Expr::Op(..) |
         Expr::Case(..) |
         Expr::Let(..) |

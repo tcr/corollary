@@ -72,7 +72,16 @@ fn strip_comments(text: &str) -> String {
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-enum BlockWord { Do, Where, Of, Let, In }
+enum BlockWord {
+    Do,
+    Where,
+    Of,
+    Let,
+    In,
+    If,
+    Then,
+    Else,
+}
 
 impl BlockWord {
     fn from_str(word: &str) -> Option<Self> {
@@ -83,6 +92,9 @@ impl BlockWord {
             "of" => Of,
             "let" => Let,
             "in" => In,
+            "if" => If,
+            "then" => Then,
+            "else" => Else,   
             _ => return None,
         })
     }
@@ -144,7 +156,8 @@ pub fn commify(val: &str) -> String {
                 });
             }
 
-            if first {
+            // TODO why do we need to prevent `;} then` semicolon insertion here 
+            if first && word != "then" {
                 while {
                     if let Some(&(last_level, last_word)) = stash.last() {
                         // Check if we decreased our indent level
@@ -200,6 +213,20 @@ pub fn commify(val: &str) -> String {
                 } else {
                     let bw = stash.last().expect("`in` at top level").1;
                     out.push_str(&format!(" /* ERR: `in` while in `{:?}` block */ ", bw));
+                }
+            }
+
+
+            // make sure `if { ... } then` is closed
+            if word == "then" {
+                // are we still in the `if`?
+                if let Some(&(_, BlockWord::If)) = stash.last() {
+                    pop_brace!();
+                } else if let Some((_, BlockWord::If)) = popped {
+                    // an `If { ... }` just closed so we don't have to do anything
+                } else {
+                    let bw = stash.last().expect("`if` at top level").1;
+                    out.push_str(&format!(" /* ERR: `ifin` while in `{:?}` block */ ", bw));
                 }
             }
 

@@ -180,6 +180,7 @@ fn convert_file(input: &str, p: &Path, inline_mod: bool, dump_ast: bool) -> Resu
 
     // Preprocess the file.
     let contents = parser_haskell::preprocess(&contents);
+    // errln!("{}", contents);
 
     // Parse the file.
     let mut errors = Vec::new();
