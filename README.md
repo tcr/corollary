@@ -4,7 +4,7 @@
 
 Corollary is a very experimental Haskell to Rust compiler. The goal is to automate the syntatic conversion of Haskell into Rust, letting users manually finish the conversion into idiomatic Rust code. Along with an (extremely loose) adaptation of Haskell methods in `corollary-support`, this can expediate the process of completing a full port.
 
-**Current status:** Source code translation can parse and translate entire files. Source code specific hacks, along with manual translation, were used for **the [language-c](http://github.com/tcr/parser-c) port of Haskell's C parsing library.**
+**Current status:** Source code translation can parse and translate entire files. Source code specific hacks, along with manual translation, were used for the [language-c](http://github.com/tcr/parser-c) port of Haskell's C parsing library.
 
 Given this project was purpose-built for porting a single library, you'll find source-specific hacks throughout the codebase, though they should ultimately be removed. There are no solutions yet for converting Haskell's module and import system, top-level functions without explicit type declarations, monadic classes, tail recursion, true laziness, or currying (lacking a better way to involve Haskell's type analysis). Want to help? Suggest your ideas in the issue tracker!
 
