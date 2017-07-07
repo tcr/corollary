@@ -1,6 +1,6 @@
 # Corollary: Haskell to Rust conversion
 
-[![https://img.shields.io/crates/v/corollary.svg](https://img.shields.io/crates/v/corollary.svg)](http://crates.io/crates/corollary])
+[![https://img.shields.io/crates/v/corollary.svg](https://img.shields.io/crates/v/corollary.svg)](http://crates.io/crates/corollary)
 
 **WIP: [parser-c (language-c port)](https://github.com/tcr/parser-c) works with simple C programs!**
 
