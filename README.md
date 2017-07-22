@@ -2,8 +2,6 @@
 
 [![https://img.shields.io/crates/v/corollary.svg](https://img.shields.io/crates/v/corollary.svg)](http://crates.io/crates/corollary)
 
-**WIP: [parser-c (language-c port)](https://github.com/tcr/parser-c) works with simple C programs!**
-
 Corollary is a very experimental Haskell to Rust compiler. The goal is to automate the syntatic conversion of Haskell into Rust, letting users manually finish the conversion into idiomatic Rust code. Along with an (extremely loose) adaptation of Haskell methods in `corollary-support`, this can expediate the process of completing a full port.
 
 **Current status: Looking for maintainers.** Corollary can parse and translate entire files, with varying results. Source code specific hacks, along with manual translation, were used for the [language-c](http://github.com/tcr/parser-c) port of Haskell's C parsing library.
